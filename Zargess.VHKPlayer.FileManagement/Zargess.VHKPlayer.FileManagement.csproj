@@ -43,9 +43,11 @@
     <Compile Include="File.cs" />
     <Compile Include="Folder.cs" />
     <Compile Include="IContainer.cs" />
-    <Compile Include="IFileContainer.cs" />
+    <Compile Include="IPlayAble.cs" />
+    <Compile Include="PlayAbleContainer.cs" />
     <Compile Include="MemoryManager.cs" />
     <Compile Include="PathHandler.cs" />
+    <Compile Include="PlayList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public interface IContainer {
-        List<IFileContainer> FileContainers { get; }
+        List<IPlayAble> FileContainers { get; }
         string Name { get; }
         void Refresh();
     }

@@ -1,8 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Zargess.VHKPlayer.Enums;
 
 namespace Zargess.VHKPlayer.FileManagement {
-    public class File {
+    public class File : IPlayAble {
         private string _fullpath;
         public string Name { get; private set; }
         public string Source { get; private set; }
@@ -30,6 +31,10 @@ namespace Zargess.VHKPlayer.FileManagement {
             }
         }
 
+        public File(string path) {
+            FullPath = path;
+        }
+
         private void SetFileType(string e) {
             switch (e) {
                 case "jpg":
@@ -48,8 +53,8 @@ namespace Zargess.VHKPlayer.FileManagement {
             }
         }
 
-        public File(string path) {
-            FullPath = path;
+        public IEnumerable<IPlayAble> GetContent() {
+            return new List<IPlayAble> {this};
         }
     }
 }

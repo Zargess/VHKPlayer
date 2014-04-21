@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
-    public interface IFileContainer {
+    public interface IPlayAble {
         string Name { get; }
+        IEnumerable<IPlayAble> GetContent();
     }
 }
