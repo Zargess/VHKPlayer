@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Console", "Zargess.VHKPlayer.Console\Zargess.VHKPlayer.Console.csproj", "{42288D2B-6FAF-452B-9D1A-186650B57E9A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.FileManagement", "Zargess.VHKPlayer.FileManagement\Zargess.VHKPlayer.FileManagement.csproj", "{496C2F79-4714-4772-B7DF-40D49857C0B9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Enums", "Zargess.VHKPlayer.Enums\Zargess.VHKPlayer.Enums.csproj", "{66A5B7BA-6E48-48DD-8FB8-94C8B96A8D85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.FileManagementTest", "Zargess.VHKPlayer.FileManagementTest\Zargess.VHKPlayer.FileManagementTest.csproj", "{059E73E3-BA2E-4C79-9A96-D3E8AA9168C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.ConsoleView", "Zargess.VHKPlayer.ConsoleView\Zargess.VHKPlayer.ConsoleView.csproj", "{7BF50C4C-42A2-417B-B091-AC7FD0FA7ADD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{42288D2B-6FAF-452B-9D1A-186650B57E9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42288D2B-6FAF-452B-9D1A-186650B57E9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42288D2B-6FAF-452B-9D1A-186650B57E9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42288D2B-6FAF-452B-9D1A-186650B57E9A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{496C2F79-4714-4772-B7DF-40D49857C0B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{496C2F79-4714-4772-B7DF-40D49857C0B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{496C2F79-4714-4772-B7DF-40D49857C0B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +25,14 @@ Global
 		{66A5B7BA-6E48-48DD-8FB8-94C8B96A8D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66A5B7BA-6E48-48DD-8FB8-94C8B96A8D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66A5B7BA-6E48-48DD-8FB8-94C8B96A8D85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{059E73E3-BA2E-4C79-9A96-D3E8AA9168C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{059E73E3-BA2E-4C79-9A96-D3E8AA9168C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{059E73E3-BA2E-4C79-9A96-D3E8AA9168C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{059E73E3-BA2E-4C79-9A96-D3E8AA9168C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BF50C4C-42A2-417B-B091-AC7FD0FA7ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BF50C4C-42A2-417B-B091-AC7FD0FA7ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BF50C4C-42A2-417B-B091-AC7FD0FA7ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BF50C4C-42A2-417B-B091-AC7FD0FA7ADD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

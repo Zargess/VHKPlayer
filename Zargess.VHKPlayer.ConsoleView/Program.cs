@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zargess.VHKPlayer.Console {
+namespace Zargess.VHKPlayer.ConsoleView {
     class Program {
         static void Main(string[] args) {
+            
         }
     }
 }
