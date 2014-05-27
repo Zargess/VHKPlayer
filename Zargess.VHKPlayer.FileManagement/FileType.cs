@@ -5,10 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
-    public class MemoryManager {
-
-        public MemoryManager(string path) {
-            
-        }
+    public enum FileType {
+        Video, Picture, Music, Unsupported
     }
 }
