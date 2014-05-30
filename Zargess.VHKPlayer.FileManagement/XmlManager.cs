@@ -43,14 +43,16 @@ namespace Zargess.VHKPlayer.FileManagement {
             foreach (var child in newChildren) {
                 var c = child as XmlNode;
                 if (!DocumentHasNode(doc, c.Attributes.Item(0).Value)) {
-                    Notifications.Add(new NewFolderNotification("A new folder has been detected. Do you want to add this to the view? \n " + c.Attributes.Item(0).Value));
+                    Notifications.Add(new NewFolderNotification("A new folder has been detected. Do you want to add this to the view? \n" + 
+                        c.Attributes.Item(0).Value));
                 }
             }
 
             foreach (var child in oldChildren) {
                 var c = child as XmlNode;
                 if (!DocumentHasNode(newDoc, c.Attributes.Item(0).Value)) {
-                    Notifications.Add(new MissingFolderNotification("A folder was found missing. Do you want to remove it from the program? \n" + c.Attributes.Item(0).Value));
+                    Notifications.Add(new MissingFolderNotification("A folder was found missing. Do you want to remove it from the program? \n" + 
+                        c.Attributes.Item(0).Value));
                 }
             }
         }
