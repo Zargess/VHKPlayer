@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.ConsoleView", "Zargess.VHKPlayer.ConsoleView\Zargess.VHKPlayer.ConsoleView.csproj", "{7BF50C4C-42A2-417B-B091-AC7FD0FA7ADD}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.FileManag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Settings", "Zargess.VHKPlayer.Settings\Zargess.VHKPlayer.Settings.csproj", "{08A46B80-D8D4-44DF-BE65-F84E6F3E6DF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.NotifycationManagement", "Zargess.VHKPlayer.NotifycationManagement\Zargess.VHKPlayer.NotifycationManagement.csproj", "{AB37ABD0-9D75-46B2-BB39-A4D015CA177F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.NotificationManagement", "Zargess.VHKPlayer.NotificationManagement\Zargess.VHKPlayer.NotificationManagement.csproj", "{E4224665-9EBE-4451-85B8-5916F1933C53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{08A46B80-D8D4-44DF-BE65-F84E6F3E6DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08A46B80-D8D4-44DF-BE65-F84E6F3E6DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08A46B80-D8D4-44DF-BE65-F84E6F3E6DF8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB37ABD0-9D75-46B2-BB39-A4D015CA177F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB37ABD0-9D75-46B2-BB39-A4D015CA177F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB37ABD0-9D75-46B2-BB39-A4D015CA177F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB37ABD0-9D75-46B2-BB39-A4D015CA177F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4224665-9EBE-4451-85B8-5916F1933C53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4224665-9EBE-4451-85B8-5916F1933C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4224665-9EBE-4451-85B8-5916F1933C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4224665-9EBE-4451-85B8-5916F1933C53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

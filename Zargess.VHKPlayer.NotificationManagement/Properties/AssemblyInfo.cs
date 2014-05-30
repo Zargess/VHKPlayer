@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Zargess.VHKPlayer.NotifycationManagement")]
+[assembly: AssemblyTitle("Zargess.VHKPlayer.NotificationManagement")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Zargess.VHKPlayer.NotifycationManagement")]
+[assembly: AssemblyProduct("Zargess.VHKPlayer.NotificationManagement")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e8682597-768f-4d5e-adfe-9e5a62b5b04b")]
+[assembly: Guid("5baa6f0c-e30f-4e97-9b49-e504d1c0e7a0")]
 
 // Version information for an assembly consists of the following four values:
 //

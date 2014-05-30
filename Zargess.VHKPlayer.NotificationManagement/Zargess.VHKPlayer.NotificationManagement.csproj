@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AB37ABD0-9D75-46B2-BB39-A4D015CA177F}</ProjectGuid>
+    <ProjectGuid>{E4224665-9EBE-4451-85B8-5916F1933C53}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Zargess.VHKPlayer.NotifycationManagement</RootNamespace>
-    <AssemblyName>Zargess.VHKPlayer.NotifycationManagement</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>Zargess.VHKPlayer.NotificationManagement</RootNamespace>
+    <AssemblyName>Zargess.VHKPlayer.NotificationManagement</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -39,8 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Notifycation.cs" />
-    <Compile Include="NotifycationManager.cs" />
+    <Compile Include="INotification.cs" />
+    <Compile Include="MissingFolderNotification.cs" />
+    <Compile Include="NewFolderNotification.cs" />
+    <Compile Include="NotificationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Zargess.VHKPlayer.ConsoleView</RootNamespace>
     <AssemblyName>Zargess.VHKPlayer.ConsoleView</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,6 +52,10 @@
     <ProjectReference Include="..\Zargess.VHKPlayer.FileManagement\Zargess.VHKPlayer.FileManagement.csproj">
       <Project>{1862bf4f-c9ae-489c-ad9e-d3dc6fc82b10}</Project>
       <Name>Zargess.VHKPlayer.FileManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.NotificationManagement\Zargess.VHKPlayer.NotificationManagement.csproj">
+      <Project>{e4224665-9ebe-4451-85b8-5916f1933c53}</Project>
+      <Name>Zargess.VHKPlayer.NotificationManagement</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

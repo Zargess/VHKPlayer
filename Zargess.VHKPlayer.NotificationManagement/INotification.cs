@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zargess.VHKPlayer.NotifycationManagement {
-    public class NotifycationManager {
+namespace Zargess.VHKPlayer.NotificationManagement {
+    public interface INotification {
+        string Text { get; set; }
     }
 }
