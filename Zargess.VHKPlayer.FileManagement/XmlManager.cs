@@ -134,6 +134,15 @@ namespace Zargess.VHKPlayer.FileManagement {
             return false;
         }
 
+        public string WriteToString() {
+            using (var stringwriter = new StringWriter())
+            using (var xmlwriter = XmlWriter.Create(stringwriter)) {
+                Document.WriteTo(xmlwriter);
+                xmlwriter.Flush();
+                return stringwriter.GetStringBuilder().ToString();
+            }
+        }
+
         public string WriteToStringPretty() {
             var builder = new StringBuilder();
             var settings = new XmlWriterSettings {

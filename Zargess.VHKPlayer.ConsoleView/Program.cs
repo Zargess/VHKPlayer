@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zargess.VHKPlayer.FileManagement;
 using Zargess.VHKPlayer.NotificationManagement;
+using Zargess.VHKPlayer.WebSocket;
 
 namespace Zargess.VHKPlayer.ConsoleView {
     class Program {
@@ -15,6 +16,11 @@ namespace Zargess.VHKPlayer.ConsoleView {
             var folders = new FolderNode(@"C:\Users\MFH\vhk", false).GetContent();
             Console.WriteLine("");
             Console.ReadLine();
+            var server = new WebServer(8100);
+            var b = "200";
+            server.StartServer(b);
+            //Console.ReadLine();
+            //server.SendToAll("xml", x.WriteToString());
         }
     }
 }
