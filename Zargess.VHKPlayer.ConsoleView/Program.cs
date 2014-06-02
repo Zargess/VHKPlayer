@@ -14,13 +14,8 @@ namespace Zargess.VHKPlayer.ConsoleView {
             var x = new XmlManager(@"C:\Users\MFH\vhk", manager);
             x.Document.Save(@"c:\users\mfh\desktop\test.xml");
             var folders = new FolderNode(@"C:\Users\MFH\vhk", false).GetContent();
-            Console.WriteLine("");
-            Console.ReadLine();
-            var server = new WebServer(8100);
-            var b = "200";
-            server.StartServer(b);
-            //Console.ReadLine();
-            //server.SendToAll("xml", x.WriteToString());
+            var server = new WebServer(8100, x);
+            server.StartServer();
         }
     }
 }

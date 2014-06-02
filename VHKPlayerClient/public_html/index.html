@@ -13,30 +13,30 @@ and open the template in the editor.
     </head>
 
     <body>
-        <ul class="tabs">
-            <li>
-                <input type="radio" checked name="tabs" id="tab1">
-                <label for="tab1">tab 1</label>
-                <div id="tab-content1" class="tab-content animated fadeIn">
-                    <button id="btn">Send Request</button>
-                    <div>hello</div>
+        <div id="wrapper">
+            <div id="tabContainer">
+                <div class="tabs">
+                    <ul id='tabsContainer'>
+                        <li class="tab" id="tabHeader_1">Page 1</li>
+                        <li class="tab" id="tabHeader_2">Page 2</li>
+                        <li class="tab" id="tabHeader_3">Page 3</li>
+                    </ul>
                 </div>
-            </li>
-            <li>
-                <input type="radio" name="tabs" id="tab2">
-                <label for="tab2">tab 2</label>
-                <div id="tab-content2" class="tab-content animated fadeIn">
-                    <div id="content"></div>
-                    ...
+                <div class="tabscontent">
+                    <div class="tabpage" id="tabpage_1">
+                        <h2>Page 1</h2>
+                        <p>Pellentesque habitant morbi tristique senectus...</p>
+                    </div>
+                    <div class="tabpage" id="tabpage_2">
+                        <h2>Page 2</h2>
+                        <p>Pellentesque habitant morbi tristique senectus...</p>
+                    </div>
+                    <div class="tabpage" id="tabpage_3">
+                        <h2>Page 3</h2>
+                        <p>Pellentesque habitant morbi tristique senectus...</p>
+                    </div>
                 </div>
-            </li>
-            <li>
-                <input type="radio" name="tabs" id="tab3">
-                <label for="tab3">tab 3</label>
-                <div id="tab-content3" class="tab-content animated fadeIn">
-                    ...
-                </div>
-            </li>
-        </ul>
+            </div>
+        </div>
     </body>
 </html>

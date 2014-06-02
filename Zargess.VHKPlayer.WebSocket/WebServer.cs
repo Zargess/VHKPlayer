@@ -7,19 +7,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Alchemy;
 using Alchemy.Classes;
+using Zargess.VHKPlayer.FileManagement;
 
 namespace Zargess.VHKPlayer.WebSocket {
     public class WebServer {
         public int Port { get; private set; }
-        public string S { get; set; }
+        public XmlManager Manager { get; set; }
         protected static ConcurrentDictionary<string, Connection> OnlineConnections = new ConcurrentDictionary<string, Connection>();
         
-        public WebServer(int port) {
+        public WebServer(int port, XmlManager manager) {
             Port = port;
+            Manager = manager;
         }
 
-        public void StartServer(string msg) {
-            S = msg;
+        public void StartServer() {
             var aServer = new WebSocketServer(Port, IPAddress.Any) {
                 OnReceive = OnReceive,
                 OnSend = OnSend,
@@ -36,20 +37,30 @@ namespace Zargess.VHKPlayer.WebSocket {
             Console.WriteLine("[Type \"exit\" and hit enter to stop the server]");
             Console.WriteLine("[Type \"help\" and hit enter to show list of commands]");
 
+            CheckCommands(aServer);
+        }
 
-            // Accept commands on the console and keep it alive
-            var command = string.Empty;
+        private void CheckCommands(WebSocketServer aServer) {
             var running = true;
             while (running) {
-                command = Console.ReadLine();
+                var input = Console.ReadLine().Split(' ');
+                if (input.Length == 0) { continue; }
+                var command = input[0];
+                var parameter = "";
+                for (var i = 1; i < input.Length; i++) {
+                    parameter = parameter + " " + input[i];
+                }
                 switch (command) {
                     case "exit":
                         aServer.Stop();
                         aServer.Dispose();
                         running = false;
                         break;
-                    case "test":
-                        Console.WriteLine(command);
+                    case "send":
+                        SendToAll("string", parameter);
+                        break;
+                    case "sendXml":
+                        SendToAll("xml", Manager.WriteToString());
                         break;
                     default:
                         Console.WriteLine("'{0}' is not a command", command);
@@ -72,10 +83,20 @@ namespace Zargess.VHKPlayer.WebSocket {
         public void OnReceive(UserContext aContext) {
             try {
                 Console.WriteLine("Data Received From [" + aContext.ClientAddress + "] - " + aContext.DataFrame);
-                var conn = new Connection { Context = aContext };
-                conn.SendMessage(S);
+                CheckRequest(aContext.DataFrame.ToString());
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void CheckRequest(string request) {
+            switch (request) {
+                case "getStructure":
+                    SendToAll("xml", Manager.WriteToString());
+                    break;
+                default:
+                    SendToAll("string", "400");
+                    break;
             }
         }
 
