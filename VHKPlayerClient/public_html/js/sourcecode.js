@@ -5,6 +5,7 @@ $(document).ready(function() {
     openConnection();
 
     newTab('Hello, World');
+    newTab('Hello, World');
 
     var item = $('.tab');
     var itemId = $(item).attr('id').split('_')[1];
@@ -20,10 +21,11 @@ $(document).ready(function() {
         displayPage(this);
         doSend("hello world");
     });
+    xmlParserTests();
 });
 
 function displayPage(tab) {
-    var current = $(tab).parent().attr('data-current');
+    var current = $(tab).parent().attr('data-current'); 
     $('#tabHeader_' + current).removeClass('tabActiveHeader');
     $('#tabpage_' + current).css('display', 'none');
     console.log($('#tabpage_' + current).text());
@@ -47,11 +49,11 @@ function openConnection() {
         var msgArray = msg.split(' ');
         if (msgArray.length > 0) {
             var res = "";
-            for (i = 1; i < msgArray.length; i++) {
+            for (var i = 1; i < msgArray.length; i++) {
                 res = res + " " + msgArray[i];
             }
             if (msgArray[0] === "xml") {
-                parseXml(res);
+                folders = parseXml(res);
             }
         }
     };
@@ -70,6 +72,7 @@ function doSend(msg) {
 }
 
 function parseXml(sdoc) {
+    var folders = [];
     var xml = $(sdoc);
     $(xml).find('Folder').each(function(index, node) {
         if ($(node).attr('marked') === "True") {
@@ -83,6 +86,7 @@ function parseXml(sdoc) {
             folders.push(folder);
         }
     });
+    return folders;
 }
 
 function newTab(name) {
@@ -94,4 +98,11 @@ function newTab(name) {
     var newContent = $("#tabpage_1").clone().prop({id: "tabpage_" + pos, class: "tabpage"});
     newContent.html('<h2>' + name + '</h2>');
     $('.tabscontent').append(newContent);
+    console.log($(".tabs"));
+    if ($(".tabs").innerWidth() < $(".tabs").Width) {
+        console.log("true");
+    } else {
+        console.log($(".tabs").innerWidth());
+        console.log($(".tabs").width);
+    }
 }
