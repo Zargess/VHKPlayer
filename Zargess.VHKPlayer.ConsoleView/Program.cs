@@ -11,7 +11,7 @@ namespace Zargess.VHKPlayer.ConsoleView {
     class Program {
         static void Main(string[] args) {
             var manager = new NotificationManager();
-            var x = new XmlManager(@"C:\Users\MFH\vhk", manager);
+            var x = new StructureManager(@"C:\Users\MFH\vhk", manager);
             x.Document.Save(@"c:\users\mfh\desktop\test.xml");
             var folders = new FolderNode(@"C:\Users\MFH\vhk", false).GetContent();
             var server = new WebServer(8100, x);

@@ -12,10 +12,10 @@ using Zargess.VHKPlayer.FileManagement;
 namespace Zargess.VHKPlayer.WebSocket {
     public class WebServer {
         public int Port { get; private set; }
-        public XmlManager Manager { get; set; }
+        public StructureManager Manager { get; set; }
         protected static ConcurrentDictionary<string, Connection> OnlineConnections = new ConcurrentDictionary<string, Connection>();
         
-        public WebServer(int port, XmlManager manager) {
+        public WebServer(int port, StructureManager manager) {
             Port = port;
             Manager = manager;
         }

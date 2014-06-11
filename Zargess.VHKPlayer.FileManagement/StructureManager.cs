@@ -9,19 +9,19 @@ using System.Xml;
 using Zargess.VHKPlayer.NotificationManagement;
 
 namespace Zargess.VHKPlayer.FileManagement {
-    public class XmlManager {
+    public class StructureManager {
         public FolderNode RootFolder { get; set; }
         public XmlDocument Document { get; set; }
         public NotificationManager Notifications{ get; private set; }
         public readonly FolderNode XmlFolder = new FolderNode(Environment.CurrentDirectory, false);
 
-        public XmlManager(string path, NotificationManager manager) {
+        public StructureManager(string path, NotificationManager manager) {
             RootFolder = new FolderNode(path, false);
             Notifications = manager;
             Document = InitDocument();
         }
 
-        public XmlManager(FolderNode root, NotificationManager manager) : this(root.FullPath, manager) { }
+        public StructureManager(FolderNode root, NotificationManager manager) : this(root.FullPath, manager) { }
 
         private XmlDocument InitDocument() {
             var doc = new XmlDocument();
@@ -86,6 +86,8 @@ namespace Zargess.VHKPlayer.FileManagement {
                         "in? \n 1 or 2 to show it. 0 to hide it.", new[] { "1", "2", "3" });
                 }
                 element.SetAttributeNode(MakeAttribute("viewport", viewport));
+
+                // Gør sådan at brugeren kan beskrive hvordan en mappe skal loades
             }
 
             return doc;
