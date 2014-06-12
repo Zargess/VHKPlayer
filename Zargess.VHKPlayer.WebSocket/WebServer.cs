@@ -14,21 +14,22 @@ namespace Zargess.VHKPlayer.WebSocket {
         public int Port { get; private set; }
         public StructureManager Manager { get; set; }
         protected static ConcurrentDictionary<string, Connection> OnlineConnections = new ConcurrentDictionary<string, Connection>();
-        
+        private TcpServer Server { get; set; }
+
         public WebServer(int port, StructureManager manager) {
             Port = port;
             Manager = manager;
         }
 
         public void StartServer() {
-            var aServer = new WebSocketServer(Port, IPAddress.Any) {
+            Server = new WebSocketServer(Port, IPAddress.Any) {
                 OnReceive = OnReceive,
                 OnSend = OnSend,
                 OnConnected = OnConnect,
                 OnDisconnect = OnDisconnect,
                 TimeOut = new TimeSpan(0, 5, 0)
             };
-            aServer.Start();
+            Server.Start();
 
 
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -36,37 +37,31 @@ namespace Zargess.VHKPlayer.WebSocket {
             Console.WriteLine("Running Alchemy WebSocket Server ...");
             Console.WriteLine("[Type \"exit\" and hit enter to stop the server]");
             Console.WriteLine("[Type \"help\" and hit enter to show list of commands]");
-
-            CheckCommands(aServer);
         }
 
-        private void CheckCommands(WebSocketServer aServer) {
-            var running = true;
-            while (running) {
-                var input = Console.ReadLine().Split(' ');
-                if (input.Length == 0) { continue; }
-                var command = input[0];
-                var parameter = "";
-                for (var i = 1; i < input.Length; i++) {
-                    parameter = parameter + " " + input[i];
-                }
-                switch (command) {
-                    case "exit":
-                        aServer.Stop();
-                        aServer.Dispose();
-                        running = false;
-                        break;
-                    case "send":
-                        SendToAll("string", parameter);
-                        break;
-                    case "sendXml":
-                        SendToAll("xml", Manager.WriteToString());
-                        break;
-                    default:
-                        Console.WriteLine("'{0}' is not a command", command);
-                        break;
-                }
+        public void CheckCommands(string s) {
+            var input = s.Split(' ');
+            var command = input[0];
+            var parameter = "";
+            for (var i = 1; i < input.Length; i++) {
+                parameter = parameter + " " + input[i];
             }
+            switch (command) {
+                case "exit":
+                    Server.Stop();
+                    Server.Dispose();
+                    break;
+                case "send":
+                    SendToAll("string", parameter);
+                    break;
+                case "sendXml":
+                    SendToAll("xml", Manager.WriteToString());
+                    break;
+                default:
+                    Console.WriteLine("'{0}' is not a command", command);
+                    break;
+            }
+
         }
 
         public void OnConnect(UserContext aContext) {

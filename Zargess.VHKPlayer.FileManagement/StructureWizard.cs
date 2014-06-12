@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Zargess.VHKPlayer.FileManagement {
+    public class StructureWizard {
+        public void Begin() {
+            throw new NotImplementedException();
+        }
+    }
+}
