@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Notificat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.WebSocket", "Zargess.VHKPlayer.WebSocket\Zargess.VHKPlayer.WebSocket.csproj", "{43CCF786-86AA-4528-A176-DC14CFB45D6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Enums", "Zargess.VHKPlayer.Enums\Zargess.VHKPlayer.Enums.csproj", "{4D64C7EB-EB97-4DF3-B77D-DA7FD5E2905E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{43CCF786-86AA-4528-A176-DC14CFB45D6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43CCF786-86AA-4528-A176-DC14CFB45D6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43CCF786-86AA-4528-A176-DC14CFB45D6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D64C7EB-EB97-4DF3-B77D-DA7FD5E2905E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D64C7EB-EB97-4DF3-B77D-DA7FD5E2905E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D64C7EB-EB97-4DF3-B77D-DA7FD5E2905E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D64C7EB-EB97-4DF3-B77D-DA7FD5E2905E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

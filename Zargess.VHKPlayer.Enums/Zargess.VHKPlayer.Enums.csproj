@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1862BF4F-C9AE-489C-AD9E-D3DC6FC82B10}</ProjectGuid>
+    <ProjectGuid>{4D64C7EB-EB97-4DF3-B77D-DA7FD5E2905E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Zargess.VHKPlayer.FileManagement</RootNamespace>
-    <AssemblyName>Zargess.VHKPlayer.FileManagement</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>Zargess.VHKPlayer.Enums</RootNamespace>
+    <AssemblyName>Zargess.VHKPlayer.Enums</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,26 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileNode.cs" />
-    <Compile Include="FileType.cs" />
-    <Compile Include="FolderNode.cs" />
-    <Compile Include="IPlayable.cs" />
-    <Compile Include="Node.cs" />
-    <Compile Include="PathHandler.cs" />
-    <Compile Include="PlayableCreator.cs" />
-    <Compile Include="Playlist.cs" />
+    <Compile Include="Procedure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StructureManager.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Zargess.VHKPlayer.Enums\Zargess.VHKPlayer.Enums.csproj">
-      <Project>{4d64c7eb-eb97-4df3-b77d-da7fd5e2905e}</Project>
-      <Name>Zargess.VHKPlayer.Enums</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Zargess.VHKPlayer.NotificationManagement\Zargess.VHKPlayer.NotificationManagement.csproj">
-      <Project>{e4224665-9ebe-4451-85b8-5916f1933c53}</Project>
-      <Name>Zargess.VHKPlayer.NotificationManagement</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
