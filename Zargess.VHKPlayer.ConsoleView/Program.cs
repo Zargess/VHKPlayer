@@ -14,7 +14,6 @@ namespace Zargess.VHKPlayer.ConsoleView {
             var manager = new NotificationManager();
             var x = new StructureManager(@"C:\Users\MFH\vhk", manager);
             x.Document.Save(@"c:\users\mfh\desktop\test.xml");
-            Console.ReadLine();
             var server = new WebServer(8100, x);
             server.StartServer();
             ListenForCommands(server);
@@ -26,16 +25,13 @@ namespace Zargess.VHKPlayer.ConsoleView {
                 var cType = command[0];
                 var parameter = "";
                 for (var i = 1; i < command.Length; i++) {
-                    parameter = parameter + " " + command[i];
+                    if (parameter == "") parameter = command[i];
+                    else parameter = parameter + " " + command[i];
                 }
 
                 switch (cType) {
                     case "server":
                         server.CheckCommands(parameter);
-                        break;
-                    case "createStructure":
-                        var wizard = new StructureWizard();
-                        wizard.Begin();
                         break;
                     default:
                         Console.WriteLine("'{0}' is not at command", cType);

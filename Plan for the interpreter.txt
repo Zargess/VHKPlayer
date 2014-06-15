@@ -1,0 +1,45 @@
+################################################### VHKPlayer interpreter ###################################################
+
+BNF over commands:
+
+<command>				::= <server-expression>
+						  | (insertStructure <integer> <string> <integer> <structure-expression>) // viewport, sourcepath, tab number, the structure
+						  | <expression>
+					  
+
+<server-expression>		::= (server <server-command>)
+
+<server-command>		::= (send <expression>)
+						  | (sendXml)
+						  | (exit)
+						  
+
+<structure-expression>	::= (createStructure <structure>)
+
+
+<structure>				::= (category <string> <integer> <structure>)
+						  | (folder-content <string> <folder-expression>)
+						  | (playlist-container <playlist-construction>*)
+						  
+					
+<expression>			::= <folder-expression>
+						  | <playlist-structure>
+						  | (add <string> <playlist-structure>) // name of playlist
+						  
+<folder-expression>		::= (getFiles <string>)
+						  
+<playlist-construction>	::= (create-playlist <playlist-structure> <bool>) // the bool in these two are to indicate if the playlist can be set to repeat
+						  | (create-playlist <playlist-special> <bool>)
+						  
+<playlist-structure>	::= (procedure <string>) // give name of procedure
+						  | (file <string>) // path
+						  | (folder <string>) // path
+						  
+<playlist-special>		::= (skab-stat <string> <string> <string>) // parameters: src, music, and video. its an automated function to make it easy
+						::= (skab-sortable <string> <integer>) // path, character nr i tekst hvor filerne kan sorteres
+				
+################################################### Examples of usage ###################################################
+
+(insertStructure 1 "SpillerVideoStat" 1 (createStructure (category "Test" 1 (playlist-container (skab-stat "/SpillerVideoStat" "/Mp3" "Video")))))
+
+(insertStructure 2 "

@@ -107,3 +107,18 @@ h2{
     margin:0;
     color:#333;
 }
+
+.item {
+    width: auto;
+    height: 30px;
+}
+
+.item:hover {
+    background: blue;
+    color: white;
+}
+
+.selectedItem {
+    background: blue;
+    color: white;
+}

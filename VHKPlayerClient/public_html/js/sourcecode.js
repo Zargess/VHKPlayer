@@ -28,8 +28,6 @@ function displayPage(tab) {
     var current = $(tab).parent().attr('data-current'); 
     $('#tabHeader_' + current).removeClass('tabActiveHeader');
     $('#tabpage_' + current).css('display', 'none');
-    console.log($('#tabpage_' + current).text());
-    console.log(current);
     var ident = $(tab).attr('id').split('_')[1];
     $(tab).addClass('tabActiveHeader');
     $('#tabpage_' + ident).css('display', 'block');
@@ -52,8 +50,14 @@ function openConnection() {
             for (var i = 1; i < msgArray.length; i++) {
                 res = res + " " + msgArray[i];
             }
-            if (msgArray[0] === "xml") {
-                folders = parseXml(res);
+            
+            switch(msgArray[0]) {
+                case "xml":
+                    folders = parseXml(res);
+                    break;
+                case "msg":
+                    alert(res);
+                    break;
             }
         }
     };
@@ -98,11 +102,4 @@ function newTab(name) {
     var newContent = $("#tabpage_1").clone().prop({id: "tabpage_" + pos, class: "tabpage"});
     newContent.html('<h2>' + name + '</h2>');
     $('.tabscontent').append(newContent);
-    console.log($(".tabs"));
-    if ($(".tabs").innerWidth() < $(".tabs").Width) {
-        console.log("true");
-    } else {
-        console.log($(".tabs").innerWidth());
-        console.log($(".tabs").width);
-    }
 }

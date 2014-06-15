@@ -52,7 +52,7 @@ namespace Zargess.VHKPlayer.WebSocket {
                     Server.Dispose();
                     break;
                 case "send":
-                    SendToAll("string", parameter);
+                    SendToAll("msg", parameter);
                     break;
                 case "sendXml":
                     SendToAll("xml", Manager.WriteToString());
