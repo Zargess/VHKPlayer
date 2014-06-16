@@ -12,6 +12,8 @@ namespace Zargess.VHKPlayer.FileManagement {
         public List<Procedure> Procedures { get; protected set; }
         public bool Repeatable { get; protected set; }
 
-
+        public List<IPlayable> GetNext() {
+            throw new NotImplementedException();
+        }
     }
 }

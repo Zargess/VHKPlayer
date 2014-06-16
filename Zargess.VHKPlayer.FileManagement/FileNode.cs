@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
-    public class FileNode : Node {
+    public class FileNode : Node, IPlayable {
         private string _fullpath;
         public string Extension { get; private set; }
         public string NameWithNoExtension { get; private set; }
@@ -57,6 +57,10 @@ namespace Zargess.VHKPlayer.FileManagement {
             if (!(obj is FileNode)) { return false; }
             var other = obj as FileNode;
             return _fullpath == other._fullpath;
+        }
+
+        public List<IPlayable> GetNext() {
+            throw new NotImplementedException();
         }
     }
 }

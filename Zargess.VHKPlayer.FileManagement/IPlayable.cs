@@ -6,5 +6,6 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public interface IPlayable {
+        List<IPlayable> GetNext();
     }
 }
