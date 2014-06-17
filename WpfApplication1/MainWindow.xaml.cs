@@ -19,41 +19,45 @@ namespace WpfApplication1 {
     /// </summary>
     public partial class MainWindow : Window {
 
-        public Category[] Categories { get; set; }
+        public Category[] Items { get; set; }
 
         public MainWindow() {
 
 
             InitializeComponent();
-
-            Ild.DataContext = Categories = new[] {
+            DataContext = this;
+            Items = new[] {
                 new Category() {
                     Name = "main category",
-                    Categories = new[] {
+                    Childs = new[] {
                         new Category() {Name = "subcategory"},
                         new Category() {Name = "subcategory"}
                     }
                 },
                 new Category() {
                     Name = "main category",
-                    Categories = new[] {
+                    Childs = new[] {
                         new Category() {Name = "subcategory"},
                         new Category() {Name = "subcategory"}
                     }
                 },
                 new Category() {
                     Name = "main category",
-                    Categories = new[] {
+                    Childs = new[] {
                         new Category() {Name = "subcategory"},
                         new Category() {Name = "subcategory"}
                     }
-                }
+                },
+                new Category() {
+                    Name = "test",
+                    Childs = new Category[0]
+                }, 
             };
         }
     }
 
     public class Category {
-        public Category[] Categories { get; set; }
+        public Category[] Childs { get; set; }
         public string Name { get; set; }
     }
 }
