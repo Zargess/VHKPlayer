@@ -19,45 +19,68 @@ namespace WpfApplication1 {
     /// </summary>
     public partial class MainWindow : Window {
 
-        public Category[] Items { get; set; }
+        public object[] Items { get; set; }
 
         public MainWindow() {
-
-
             InitializeComponent();
             DataContext = this;
-            Items = new[] {
+            Items = new object[] {
                 new Category() {
                     Name = "main category",
                     Childs = new[] {
-                        new Category() {Name = "subcategory"},
-                        new Category() {Name = "subcategory"}
+                        new Category() {
+                            Name = "subcategory",
+                            Content = "Test"
+                        },
+                        new Category() {
+                            Name = "subcategory",
+                            Content = "Test"
+                        }
                     }
                 },
                 new Category() {
                     Name = "main category",
                     Childs = new[] {
-                        new Category() {Name = "subcategory"},
-                        new Category() {Name = "subcategory"}
+                        new Category() {
+                            Name = "subcategory",
+                            Content = "Test"
+                        },
+                        new Category() {
+                            Name = "subcategory",
+                            Content = "Test"
+                        }
                     }
                 },
                 new Category() {
                     Name = "main category",
                     Childs = new[] {
-                        new Category() {Name = "subcategory"},
-                        new Category() {Name = "subcategory"}
+                        new Category() {
+                            Name = "subcategory",
+                            Content = "test"
+                        },
+                        new Category() {
+                            Name = "subcategory",
+                            Content = "test"
+                        }
                     }
                 },
-                new Category() {
-                    Name = "test",
-                    Childs = new Category[0]
-                }, 
+                new Foo() {
+                    Test = new object[] {
+                        "hello",
+                        "mate"
+                    }
+                }
             };
         }
     }
 
     public class Category {
-        public Category[] Childs { get; set; }
+        public object[] Childs { get; set; }
         public string Name { get; set; }
+        public string Content { get; set; }
+    }
+
+    public class Foo {
+        public object[] Test { get; set; }
     }
 }

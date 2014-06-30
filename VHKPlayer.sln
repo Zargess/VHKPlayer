@@ -7,15 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.ConsoleVi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.FileManagement", "Zargess.VHKPlayer.FileManagement\Zargess.VHKPlayer.FileManagement.csproj", "{1862BF4F-C9AE-489C-AD9E-D3DC6FC82B10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Settings", "Zargess.VHKPlayer.Settings\Zargess.VHKPlayer.Settings.csproj", "{08A46B80-D8D4-44DF-BE65-F84E6F3E6DF8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.NotificationManagement", "Zargess.VHKPlayer.NotificationManagement\Zargess.VHKPlayer.NotificationManagement.csproj", "{E4224665-9EBE-4451-85B8-5916F1933C53}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.WebSocket", "Zargess.VHKPlayer.WebSocket\Zargess.VHKPlayer.WebSocket.csproj", "{43CCF786-86AA-4528-A176-DC14CFB45D6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Enums", "Zargess.VHKPlayer.Enums\Zargess.VHKPlayer.Enums.csproj", "{4D64C7EB-EB97-4DF3-B77D-DA7FD5E2905E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication1", "WpfApplication1\WpfApplication1.csproj", "{37089B96-A921-40EB-8EE7-3BC9338BEDE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.GUI", "Zargess.VHKPlayer.GUI\Zargess.VHKPlayer.GUI.csproj", "{03830EE5-50E3-49F7-8066-38712E98E068}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Players", "Zargess.VHKPlayer.Players\Zargess.VHKPlayer.Players.csproj", "{6C2CC60A-5411-4BCA-B7CA-58C353FACC5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,26 +29,22 @@ Global
 		{1862BF4F-C9AE-489C-AD9E-D3DC6FC82B10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1862BF4F-C9AE-489C-AD9E-D3DC6FC82B10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1862BF4F-C9AE-489C-AD9E-D3DC6FC82B10}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08A46B80-D8D4-44DF-BE65-F84E6F3E6DF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08A46B80-D8D4-44DF-BE65-F84E6F3E6DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08A46B80-D8D4-44DF-BE65-F84E6F3E6DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08A46B80-D8D4-44DF-BE65-F84E6F3E6DF8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E4224665-9EBE-4451-85B8-5916F1933C53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4224665-9EBE-4451-85B8-5916F1933C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4224665-9EBE-4451-85B8-5916F1933C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4224665-9EBE-4451-85B8-5916F1933C53}.Release|Any CPU.Build.0 = Release|Any CPU
 		{43CCF786-86AA-4528-A176-DC14CFB45D6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43CCF786-86AA-4528-A176-DC14CFB45D6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43CCF786-86AA-4528-A176-DC14CFB45D6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43CCF786-86AA-4528-A176-DC14CFB45D6B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D64C7EB-EB97-4DF3-B77D-DA7FD5E2905E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D64C7EB-EB97-4DF3-B77D-DA7FD5E2905E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D64C7EB-EB97-4DF3-B77D-DA7FD5E2905E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D64C7EB-EB97-4DF3-B77D-DA7FD5E2905E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{37089B96-A921-40EB-8EE7-3BC9338BEDE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{37089B96-A921-40EB-8EE7-3BC9338BEDE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37089B96-A921-40EB-8EE7-3BC9338BEDE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37089B96-A921-40EB-8EE7-3BC9338BEDE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03830EE5-50E3-49F7-8066-38712E98E068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03830EE5-50E3-49F7-8066-38712E98E068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03830EE5-50E3-49F7-8066-38712E98E068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03830EE5-50E3-49F7-8066-38712E98E068}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C2CC60A-5411-4BCA-B7CA-58C353FACC5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C2CC60A-5411-4BCA-B7CA-58C353FACC5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C2CC60A-5411-4BCA-B7CA-58C353FACC5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C2CC60A-5411-4BCA-B7CA-58C353FACC5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

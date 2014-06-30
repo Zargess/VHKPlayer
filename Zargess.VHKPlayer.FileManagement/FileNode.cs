@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,8 @@ namespace Zargess.VHKPlayer.FileManagement {
         public string Extension { get; private set; }
         public string NameWithNoExtension { get; private set; }
         public FileType Type { get; private set; }
-        public override string FullPath {
+        public bool Exists { get; private set; }
+        public override sealed string FullPath {
             get {
                 return _fullpath;
             }
@@ -51,16 +53,13 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public FileNode(string path) {
             FullPath = path;
+            File.Exists(FullPath);
         }
 
         public override bool Equals(object obj) {
             if (!(obj is FileNode)) { return false; }
             var other = obj as FileNode;
             return _fullpath == other._fullpath;
-        }
-
-        public List<IPlayable> GetNext() {
-            throw new NotImplementedException();
         }
     }
 }

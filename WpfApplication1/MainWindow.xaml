@@ -13,5 +13,29 @@
                 </HierarchicalDataTemplate>
             </TreeView.Resources>
         </TreeView>
+
+        <TabControl ItemsSource="{Binding Items}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate DataType="{x:Type local:Category}">
+                    <TabControl ItemsSource="{Binding Childs}">
+                        <TabControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </TabControl.ItemTemplate>
+                        <TabControl.ContentTemplate>
+                            <DataTemplate>
+                                <ListBox ItemsSource="{Binding Content}"/>
+                            </DataTemplate>
+                        </TabControl.ContentTemplate>
+                    </TabControl>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
     </Grid>
 </Window>

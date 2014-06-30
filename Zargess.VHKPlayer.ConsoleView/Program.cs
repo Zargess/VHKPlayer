@@ -5,17 +5,18 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Zargess.VHKPlayer.FileManagement;
-using Zargess.VHKPlayer.NotificationManagement;
 using Zargess.VHKPlayer.WebSocket;
 
 namespace Zargess.VHKPlayer.ConsoleView {
     class Program {
         private static void Main(string[] args) {
-            var manager = new NotificationManager();
-            var x = new StructureManager(@"C:\Users\MFH\vhk", manager);
+            var x = new StructureManager(@"C:\Users\MFH\vhk");
             x.Document.Save(@"c:\users\mfh\desktop\test.xml");
             var server = new WebServer(8100, x);
             server.StartServer();
+            foreach (var p in PlayableCreator.CreatePlayables("files", new[] { @"C:\Users\MFH\Dropbox\Programmering\C#\Damer 2013-2014\Video\Blandet" }).Select(playable => playable as FileNode)) {
+                Console.WriteLine(p.Name);
+            }
             ListenForCommands(server);
         }
 

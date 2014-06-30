@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{459B4FFE-3334-4B8B-92C9-EB72F8B7B2AE}</ProjectGuid>
+    <ProjectGuid>{03830EE5-50E3-49F7-8066-38712E98E068}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Zargess.VHKPlayer.GUI</RootNamespace>
@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AurelienRibon.Ui.Terminal">
+      <HintPath>..\..\..\..\..\Desktop\AurelienRibon.Ui.Terminal.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -57,11 +60,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XmlWizard.xaml.cs">
-      <DependentUpon>XmlWizard.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Console.xaml.cs">
+      <DependentUpon>Console.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -89,7 +92,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="XmlWizard.xaml">
+    <Page Include="Console.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

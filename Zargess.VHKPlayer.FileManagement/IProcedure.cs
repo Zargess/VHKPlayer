@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zargess.VHKPlayer.Enums {
-    public enum Procedure {
-        Statistics, NextInList
+namespace Zargess.VHKPlayer.FileManagement {
+    public interface IProcedure : IPlayable {
+        
     }
 }

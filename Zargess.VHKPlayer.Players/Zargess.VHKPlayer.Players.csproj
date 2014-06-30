@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E4224665-9EBE-4451-85B8-5916F1933C53}</ProjectGuid>
+    <ProjectGuid>{6C2CC60A-5411-4BCA-B7CA-58C353FACC5D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Zargess.VHKPlayer.NotificationManagement</RootNamespace>
-    <AssemblyName>Zargess.VHKPlayer.NotificationManagement</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>Zargess.VHKPlayer.Players</RootNamespace>
+    <AssemblyName>Zargess.VHKPlayer.Players</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -39,11 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="INotification.cs" />
-    <Compile Include="MissingFolderNotification.cs" />
-    <Compile Include="NewFolderNotification.cs" />
-    <Compile Include="NotificationManager.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Statistics.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zargess.VHKPlayer.FileManagement\Zargess.VHKPlayer.FileManagement.csproj">
+      <Project>{1862bf4f-c9ae-489c-ad9e-d3dc6fc82b10}</Project>
+      <Name>Zargess.VHKPlayer.FileManagement</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

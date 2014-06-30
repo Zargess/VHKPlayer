@@ -6,55 +6,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using Zargess.VHKPlayer.NotificationManagement;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class StructureManager {
         public FolderNode RootFolder { get; set; }
         public XmlDocument Document { get; set; }
-        public NotificationManager Notifications{ get; private set; }
         public readonly FolderNode XmlFolder = new FolderNode(Environment.CurrentDirectory, false);
 
-        public StructureManager(string path, NotificationManager manager) {
+        public StructureManager(string path) {
             RootFolder = new FolderNode(path, false);
-            Notifications = manager;
             Document = InitDocument();
         }
 
-        public StructureManager(FolderNode root, NotificationManager manager) : this(root.FullPath, manager) { }
+        public StructureManager(FolderNode root) : this(root.FullPath) { }
 
         private XmlDocument InitDocument() {
             var doc = new XmlDocument();
             if (XmlFolder.Exists && XmlFolder.ContainsFile("FolderStructure.xml")) {
                 doc.Load(XmlFolder.GetFile("FolderStructure.xml").FullPath);
-                CheckMatch(doc);
             } else {
                 doc = CreateDocument(true);
             }
             doc.Save(PathHandler.CombinePaths(Environment.CurrentDirectory, "FolderStructure.xml"));
             return doc;
-        }
-
-        private void CheckMatch(XmlDocument doc) {
-            var oldChildren = doc.GetElementsByTagName("RootFolder").Item(0).ChildNodes;
-            var newDoc = CreateDocument(false);
-            var newChildren = newDoc.GetElementsByTagName("RootFolder").Item(0).ChildNodes;
-
-            foreach (var child in newChildren) {
-                var c = child as XmlNode;
-                if (!DocumentHasNode(doc, c.Attributes.Item(0).Value)) {
-                    Notifications.Add(new NewFolderNotification("A new folder has been detected. Do you want to add this to the view? \n" + 
-                        c.Attributes.Item(0).Value));
-                }
-            }
-
-            foreach (var child in oldChildren) {
-                var c = child as XmlNode;
-                if (!DocumentHasNode(newDoc, c.Attributes.Item(0).Value)) {
-                    Notifications.Add(new MissingFolderNotification("A folder was found missing. Do you want to remove it from the program? \n" + 
-                        c.Attributes.Item(0).Value));
-                }
-            }
         }
 
         private XmlDocument CreateDocument(bool userRespReq) {

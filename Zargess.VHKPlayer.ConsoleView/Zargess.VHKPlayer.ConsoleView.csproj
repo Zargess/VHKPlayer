@@ -56,10 +56,6 @@
       <Project>{1862bf4f-c9ae-489c-ad9e-d3dc6fc82b10}</Project>
       <Name>Zargess.VHKPlayer.FileManagement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zargess.VHKPlayer.NotificationManagement\Zargess.VHKPlayer.NotificationManagement.csproj">
-      <Project>{e4224665-9ebe-4451-85b8-5916f1933c53}</Project>
-      <Name>Zargess.VHKPlayer.NotificationManagement</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Zargess.VHKPlayer.WebSocket\Zargess.VHKPlayer.WebSocket.csproj">
       <Project>{43ccf786-86aa-4528-a176-dc14cfb45d6b}</Project>
       <Name>Zargess.VHKPlayer.WebSocket</Name>
