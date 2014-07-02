@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Zargess.VHKPlayer.GUI</RootNamespace>
     <AssemblyName>Zargess.VHKPlayer.GUI</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,9 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AurelienRibon.Ui.Terminal">
-      <HintPath>..\..\..\..\..\Desktop\AurelienRibon.Ui.Terminal.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -60,11 +58,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Command.cs" />
+    <Compile Include="Terminal.cs" />
+    <Compile Include="TerminalUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Console.xaml.cs">
-      <DependentUpon>Console.xaml</DependentUpon>
+    <Compile Include="CommandPrompt.xaml.cs">
+      <DependentUpon>CommandPrompt.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -92,10 +94,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Console.xaml">
+    <Page Include="CommandPrompt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zargess.VHKPlayer.FileManagement\Zargess.VHKPlayer.FileManagement.csproj">
+      <Project>{1862bf4f-c9ae-489c-ad9e-d3dc6fc82b10}</Project>
+      <Name>Zargess.VHKPlayer.FileManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.Players\Zargess.VHKPlayer.Players.csproj">
+      <Project>{6c2cc60a-5411-4bca-b7ca-58c353facc5d}</Project>
+      <Name>Zargess.VHKPlayer.Players</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.Settings\Zargess.VHKPlayer.Settings.csproj">
+      <Project>{31e49ade-234f-4f94-81a6-6a5be080dc01}</Project>
+      <Name>Zargess.VHKPlayer.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.WebSocket\Zargess.VHKPlayer.WebSocket.csproj">
+      <Project>{43ccf786-86aa-4528-a176-dc14cfb45d6b}</Project>
+      <Name>Zargess.VHKPlayer.WebSocket</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

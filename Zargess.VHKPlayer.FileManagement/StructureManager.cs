@@ -11,10 +11,10 @@ namespace Zargess.VHKPlayer.FileManagement {
     public class StructureManager {
         public FolderNode RootFolder { get; set; }
         public XmlDocument Document { get; set; }
-        public readonly FolderNode XmlFolder = new FolderNode(Environment.CurrentDirectory, false);
+        public readonly FolderNode XmlFolder = new FolderNode(Environment.CurrentDirectory);
 
         public StructureManager(string path) {
-            RootFolder = new FolderNode(path, false);
+            RootFolder = new FolderNode(path);
             Document = InitDocument();
         }
 

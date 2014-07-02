@@ -1,0 +1,11 @@
+﻿<Window x:Name="win" x:Class="Zargess.VHKPlayer.GUI.CommandPrompt"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:local="clr-namespace:Zargess.VHKPlayer.GUI"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CommandPrompt" Height="400" Width="600">
+    <Grid>
+        <local:Terminal Grid.Row="0" x:Name="Term" FontFamily="Courier New" FontSize="12"
+				IsPromptInsertedAtLaunch="False" IsSystemBeepEnabled="True"
+				VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="Black" Foreground="White"/>
+    </Grid>
+</Window>

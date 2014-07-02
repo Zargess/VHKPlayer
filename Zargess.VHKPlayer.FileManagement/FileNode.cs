@@ -53,7 +53,7 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public FileNode(string path) {
             FullPath = path;
-            File.Exists(FullPath);
+            Exists = File.Exists(FullPath);
         }
 
         public override bool Equals(object obj) {

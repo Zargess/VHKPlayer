@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class FolderNode : Node{
-        public bool Marked { get; set; }
         public List<FolderNode> SubFolders { get; private set; }
         public bool Exists { get; private set; }
         public List<FileNode> Files { get; private set; }
@@ -26,9 +25,8 @@ namespace Zargess.VHKPlayer.FileManagement {
             }
         }
 
-        public FolderNode(string path, bool mark) {
+        public FolderNode(string path) {
             FullPath = path;
-            Marked = mark;
             Exists = Directory.Exists(FullPath);
             SubFolders = LoadSubFolders();
             Files = LoadFiles();
@@ -41,13 +39,13 @@ namespace Zargess.VHKPlayer.FileManagement {
         public List<FolderNode> LoadSubFolders() {
             if (!Exists) return new List<FolderNode>();
             var folders = Directory.GetDirectories(FullPath, "*", SearchOption.TopDirectoryOnly);
-            return folders.Select(folder => new FolderNode(folder, Marked)).ToList();
+            return folders.Select(folder => new FolderNode(folder)).ToList();
         }
 
         public List<FolderNode> GetContent() {
-            var res = new List<FolderNode> { new FolderNode(FullPath, Marked) };
+            var res = new List<FolderNode> { new FolderNode(FullPath) };
             foreach (var folder in SubFolders) {
-                res.AddRange(folder.GetContent().Select(f => new FolderNode(f.FullPath, Marked)));
+                res.AddRange(folder.GetContent().Select(f => new FolderNode(f.FullPath)));
             }
             return res;
         }
