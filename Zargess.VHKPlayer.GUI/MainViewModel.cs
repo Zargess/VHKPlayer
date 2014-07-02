@@ -28,13 +28,12 @@ namespace Zargess.VHKPlayer.GUI {
         public void LoadStructure(string path) {
             var root = new FolderNode(SettingsManager.GetSetting("root") as string);
             var audiofolder = new FolderNode(PathHandler.CombinePaths(root.FullPath, "musik"));
-            var folders = Directory.GetDirectories(path, "*", SearchOption.AllDirectories);
+            var folders = Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly);
 
-            foreach (var folder in folders.Where(x => x != "").Select(f => new FolderNode(f))) {
+            foreach (var folder in folders.Select(f => new FolderNode(f))) {
                 if (folder.FullPath.Contains(audiofolder.FullPath) && folder.Source == "musik") {
-                    Files.AddRange(folder.Files.Select(x => new FileNode(x.FullPath)));
                     Audio.Add(folder);
-                } else if (folder.FullPath.Contains(root.FullPath) && folder.Name != "musik") {
+                } else if (folder.FullPath.Contains(root.FullPath) && !folder.FullPath.Contains(audiofolder.FullPath)) {
                     Video.Add(folder);
                     if (!folder.Name.Contains("Spiller") || folder.Name == "SpillerUd") continue;
                     foreach (var file in folder.Files.Where(x => x.Type != FileType.Unsupported)) {
@@ -59,6 +58,8 @@ namespace Zargess.VHKPlayer.GUI {
                                 break;
                         }
                     }
+                } else if (folder.Name == "musik") {
+                    LoadStructure(folder.FullPath);
                 }
             }
         }

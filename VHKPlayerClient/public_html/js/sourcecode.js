@@ -36,7 +36,7 @@ function displayPage(tab) {
 
 function openConnection() {
     conn = new WebSocket('ws://localhost:8100');
-
+    
     conn.onopen = function() {
         doSend("Connection Established Confirmation");
         doSend("getStructure");
@@ -44,6 +44,9 @@ function openConnection() {
 
     conn.onmessage = function(event) {
         var msg = event.data;
+        if (msg === "disconnect") {
+            location.reload();
+        }
         var msgArray = msg.split(' ');
         if (msgArray.length > 0) {
             var res = "";
