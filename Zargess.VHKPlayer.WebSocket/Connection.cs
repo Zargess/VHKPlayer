@@ -31,5 +31,9 @@ namespace Zargess.VHKPlayer.WebSocket {
                 Console.WriteLine(e.Message);
             }
         }
+
+        public void Close() {
+            Context.Context.Handler.Cancel();
+        }
     }
 }

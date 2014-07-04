@@ -16,23 +16,25 @@ namespace Zargess.VHKPlayer.WebSocket {
         public event MessageHandler MessageSent;
 
         public int Port { get; private set; }
-        protected static ConcurrentDictionary<string, Connection> OnlineConnections = new ConcurrentDictionary<string, Connection>();
+        private ConcurrentDictionary<string, Connection> OnlineConnections { get; set; }
         private TcpServer Server { get; set; }
 
         public WebServer(int port) {
             Port = port;
+            OnlineConnections = new ConcurrentDictionary<string, Connection>();
         }
 
         public void StartServer() {
-            Server = new WebSocketServer(Port, IPAddress.Any) {
-                OnReceive = OnReceive,
-                OnSend = OnSend,
-                OnConnected = OnConnect,
-                OnDisconnect = OnDisconnect,
-                TimeOut = new TimeSpan(0, 5, 0)
-            };
-            Server.Start();
-            PrintToConsole("Running Alchemy WebSocket Server ...");
+            if (Server != null) return;
+                Server = new WebSocketServer(Port, IPAddress.Any) {
+                    OnReceive = OnReceive,
+                    OnSend = OnSend,
+                    OnConnected = OnConnect,
+                    OnDisconnect = OnDisconnect,
+                    TimeOut = new TimeSpan(0, 0, 10)
+                };
+                Server.Start();
+                PrintToConsole("Running Alchemy WebSocket Server ...");
         }
 
         public void CheckCommands(string command, string[] args) {
@@ -59,9 +61,10 @@ namespace Zargess.VHKPlayer.WebSocket {
         }
 
         public void Shutdown() {
-            SendToAll("disconnect", "");
+            if (Server == null) return;
             Server.Stop();
-            Server.Dispose();
+            Server = null;
+            OnlineConnections.Values.ToList().ForEach(x => x.Close());
         }
 
         public void OnConnect(UserContext aContext) {
@@ -72,7 +75,6 @@ namespace Zargess.VHKPlayer.WebSocket {
 
             // Add a connection Object to thread-safe collection
             OnlineConnections.TryAdd(aContext.ClientAddress.ToString(), conn);
-
         }
 
         public void OnReceive(UserContext aContext) {

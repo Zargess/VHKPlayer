@@ -17,7 +17,6 @@ namespace Zargess.VHKPlayer.Players {
         public FileNode StatVideo { get; set; }
         public FileNode Video { get; set; }
         public FileNode Picture { get; set; }
-        public bool Keeper { get; set; }
         public bool Trainer { get; set; }
         public string Name { get; set; }
         public Statistics Stats { get; set; }
@@ -26,19 +25,17 @@ namespace Zargess.VHKPlayer.Players {
         public FileNode File { get; private set; }
         private FileSystemWatcher Watcher { get; set; }
 
-        public Player(string name, int no, bool keeper) {
+        public Player(string name, int no) {
             Name = name;
             Number = no;
-            Keeper = keeper;
             Trainer = Number >= 90;
             Stats = new Statistics();
             InitWatcher();
         }
 
-        public Player(string name, int no, bool keeper, FileNode pic, FileNode vid, FileNode statvid, FileNode statmus, FileNode statpic) {
+        public Player(string name, int no, FileNode pic, FileNode vid, FileNode statvid, FileNode statmus, FileNode statpic) {
             Name = name;
             Number = no;
-            Keeper = keeper;
             Picture = pic;
             Video = vid;
             StatVideo = statvid;
@@ -70,6 +67,9 @@ namespace Zargess.VHKPlayer.Players {
                     continue;
                 }
                 break;
+            }
+            if (File.Exists) {
+                OnChanged(null, null);
             }
         }
 

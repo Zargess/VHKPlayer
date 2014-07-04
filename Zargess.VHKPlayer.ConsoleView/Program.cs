@@ -12,7 +12,7 @@ namespace Zargess.VHKPlayer.ConsoleView {
         private static void Main(string[] args) {
             var x = new StructureManager(@"C:\Users\MFH\vhk");
             x.Document.Save(@"c:\users\mfh\desktop\test.xml");
-            var server = new WebServer(8100, x);
+            var server = new WebServer(8100);
             server.StartServer();
             foreach (var p in PlayableCreator.CreatePlayables("files", new[] { @"C:\Users\MFH\Dropbox\Programmering\C#\Damer 2013-2014\Video\Blandet" }).Select(playable => playable as FileNode)) {
                 Console.WriteLine(p.Name);

@@ -32,11 +32,12 @@ namespace Zargess.VHKPlayer.GUI {
                 Term.RegisteredCommands.Add("load");
                 Term.RegisteredCommands.Add("reload");
                 Term.RegisteredCommands.Add("server");
+                Term.RegisteredCommands.Add("exit");
 
                 Term.Text += "Welcome !\n";
                 Term.Text += "Hit tab to complete your current command.\n";
                 Term.Text += "Use ctrl+c to raise an AbortRequested event.\n\n";
-                Term.Text += "Available (fake) commands are:\n";
+                Term.Text += "Available commands are:\n";
                 Term.RegisteredCommands.ForEach(cmd => Term.Text += "  - " + cmd + "\n");
                 Term.InsertNewPrompt();
 
@@ -51,14 +52,14 @@ namespace Zargess.VHKPlayer.GUI {
                 Console.WriteLine(msg);
                 CheckCommand(ee.Command);
             };
-            Closing += (s, e) => Environment.Exit(0);
+            Closing += (s, e) => Server.Shutdown();
         }
 
         private void CheckCommand(Command command) {
             if (command.Name == "load") {
                 MainView.LoadStructure(SettingsManager.GetSetting("root") as string);
-                MainView.Video.Select(x => x).ToList().ForEach(x => PrintText(x.FullPath));
-                MainView.Audio.Select(x => x).ToList().ForEach(x => PrintText(x.FullPath));
+                MainView.Video.ToList().ForEach(x => PrintText(x.FullPath));
+                MainView.Audio.ToList().ForEach(x => PrintText(x.FullPath));
             } else if (command.Name == "set-root" && command.Args.Length == 1) {
                 SettingsManager.SetSetting("root", command.Args[0]);
             } else if (command.Name == "reload" && command.Args.Length == 1) {

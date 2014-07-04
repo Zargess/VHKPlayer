@@ -41,7 +41,7 @@ namespace Zargess.VHKPlayer.GUI {
                         var name = file.Name.Substring(6, file.Name.Length - 10);
                         var p = Players.SingleOrDefault(x => x.Number == no);
                         if (p == null) {
-                            p = new Player(name, no, false);
+                            p = new Player(name, no);
                             Players.Add(p);
                         }
                         switch (file.Source) {

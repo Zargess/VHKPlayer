@@ -25,7 +25,7 @@ namespace Zargess.VHKPlayer.FileManagement {
                 }
                 var extens = _fullpath.Split('.');
                 Extension = extens[extens.Length - 1];
-                var noextens = Name.Split('.');
+                var noextens = Name.Split('.').ToList();
                 for (var i = 0; i < noextens.Count() - 1; i++) {
                     NameWithNoExtension += noextens[i];
                 }
