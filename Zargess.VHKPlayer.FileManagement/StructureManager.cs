@@ -56,8 +56,8 @@ namespace Zargess.VHKPlayer.FileManagement {
 
                 var viewport = "0";
                 if (response == "yes") {
-                    viewport = UserResponse("Which viewport should we show" + folder.FullPath + 
-                        "in? \n 1 or 2 to show it. 0 to hide it.", new[] { "1", "2", "3" });
+                    viewport = UserResponse("Which viewport should we show " + folder.FullPath + 
+                        " in? \n 1 or 2 to show it. 0 to hide it.", new[] { "1", "2", "3" });
                 }
                 element.SetAttributeNode(MakeAttribute("viewport", viewport));
 

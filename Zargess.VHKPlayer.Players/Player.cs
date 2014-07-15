@@ -11,37 +11,33 @@ using Zargess.VHKPlayer.Settings;
 
 namespace Zargess.VHKPlayer.Players {
     public class Player {
+        public delegate void ValueChangedHandler(object sender, EventArgs e);
+        public event ValueChangedHandler ValueChanged;
+
         public int Number { get; set; }
+        public readonly Func<bool> Trainer;
+        public string Name { get; set; }
+
         public FileNode StatPicture { get; set; }
         public FileNode StatMusic { get; set; }
         public FileNode StatVideo { get; set; }
         public FileNode Video { get; set; }
         public FileNode Picture { get; set; }
-        public bool Trainer { get; set; }
-        public string Name { get; set; }
         public Statistics Stats { get; set; }
-        public delegate void ValueChangedHandler(object sender, EventArgs e);
-        public event ValueChangedHandler ValueChanged;
-        public FileNode File { get; private set; }
+        public FileNode StatFile { get; private set; }
         private FileSystemWatcher Watcher { get; set; }
 
         public Player(string name, int no) {
             Name = name;
             Number = no;
-            Trainer = Number >= 90;
-            Stats = new Statistics();
-            InitWatcher();
-        }
-
-        public Player(string name, int no, FileNode pic, FileNode vid, FileNode statvid, FileNode statmus, FileNode statpic) {
-            Name = name;
-            Number = no;
-            Picture = pic;
-            Video = vid;
-            StatVideo = statvid;
-            StatMusic = statmus;
-            StatPicture = statpic;
-            Trainer = Number >= 90;
+            Trainer = () => {
+                var res = Number >= 90 && Picture != null && Video == null && StatVideo == null && StatPicture == null &&
+                          StatMusic == null;
+                if (!res) {
+                    InitWatcher();
+                }
+                return res;
+            };
             Stats = new Statistics();
             InitWatcher();
         }
@@ -50,9 +46,9 @@ namespace Zargess.VHKPlayer.Players {
             while (true) {
                 if (SettingsManager.GetSetting("statfolder") as string != "") {
                     var folder = new FolderNode(SettingsManager.GetSetting("statfolder") as string);
-                    File = new FileNode(PathHandler.CombinePaths(folder.FullPath, "VHK_" + Number + "player.xml"));
+                    StatFile = new FileNode(PathHandler.CombinePaths(folder.FullPath, "VHK_" + Number + "player.xml"));
                     Watcher = new FileSystemWatcher {
-                        Path = folder.FullPath + "\\", Filter = File.Name, NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size
+                        Path = folder.FullPath + "\\", Filter = StatFile.Name, NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size
                     };
                     Watcher.Changed += OnChanged;
                     Watcher.Created += OnChanged;
@@ -68,14 +64,14 @@ namespace Zargess.VHKPlayer.Players {
                 }
                 break;
             }
-            if (File.Exists) {
+            if (StatFile.Exists) {
                 OnChanged(null, null);
             }
         }
 
         private void OnChanged(object sender, FileSystemEventArgs e) {
-            using (var reader = new XmlTextReader(File.FullPath)) {
-                var old = new Statistics(Stats.Goals, Stats.Shots, Stats.Saves, Stats.SaveAttempts, Stats.YellowCard, Stats.Suspension, Stats.RedCard);
+            using (var reader = new XmlTextReader(StatFile.FullPath)) {
+                var old = Stats.Clone();
                 while (reader.Read()) {
                     switch (reader.Name) {
                         case "shot":

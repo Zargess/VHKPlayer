@@ -24,8 +24,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public static string RemovePathFromNode(Node org, Node toRemove) {
-            var res = "";
-            res = org.FullPath;
+            var res = org.FullPath;
             res = res.Replace(toRemove.FullPath, "");
             return res;
         }

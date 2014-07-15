@@ -21,7 +21,7 @@ namespace Zargess.VHKPlayer.GUI {
         private WebServer Server { get; set; }
 
         public CommandPrompt() {
-            MainView = new MainViewModel(this);
+            MainView = new MainViewModel(PrintText);
             InitializeComponent();
             Term.Prompt = "\n> ";
 
@@ -46,10 +46,7 @@ namespace Zargess.VHKPlayer.GUI {
             };
             
             Term.CommandEntered += (ss, ee) => {
-                var msg = ee.Command.GetDescription("Command is '{0}'", " with args '{0}'", ", '{0}'", ".");
-                Term.Text += msg;
                 Term.InsertNewPrompt();
-                Console.WriteLine(msg);
                 CheckCommand(ee.Command);
             };
             Closing += (s, e) => Server.Shutdown();
@@ -60,12 +57,11 @@ namespace Zargess.VHKPlayer.GUI {
                 MainView.LoadStructure(SettingsManager.GetSetting("root") as string);
                 MainView.Video.ToList().ForEach(x => PrintText(x.FullPath));
                 MainView.Audio.ToList().ForEach(x => PrintText(x.FullPath));
+                MainView.Players.Where(x => x.Trainer()).ToList().ForEach(x => PrintText(x.Name));
             } else if (command.Name == "set-root" && command.Args.Length == 1) {
                 SettingsManager.SetSetting("root", command.Args[0]);
             } else if (command.Name == "reload" && command.Args.Length == 1) {
                 var folder = new FolderNode(command.Args[0]);
-                var files = MainView.Files.Where(x => x.Source == folder.Name).ToList();
-                files.ForEach(x => MainView.Files.Remove(x));
                 MainView.LoadStructure(folder.FullPath);
             } else if (command.Name == "server") {
                 var list = new List<string>();

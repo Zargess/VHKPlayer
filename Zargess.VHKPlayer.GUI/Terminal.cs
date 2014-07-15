@@ -190,7 +190,6 @@ namespace Zargess.VHKPlayer.GUI {
             CommandLog.Add(cmd);
             indexInLog = CommandLog.Count;
             RaiseCommandEntered(cmd);
-            Console.WriteLine(command);
         }
 
         protected virtual void HandleTabKey() {

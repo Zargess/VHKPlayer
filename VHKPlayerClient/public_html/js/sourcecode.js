@@ -44,9 +44,6 @@ function openConnection() {
 
     conn.onmessage = function(event) {
         var msg = event.data;
-        if (msg === "disconnect") {
-            location.reload();
-        }
         var msgArray = msg.split(' ');
         if (msgArray.length > 0) {
             var res = "";

@@ -37,6 +37,10 @@ namespace Zargess.VHKPlayer.Players {
             RedCard = r;
         }
 
+        public Statistics Clone() {
+            return new Statistics(Goals, Shots, Saves, SaveAttempts, YellowCard, Suspension, RedCard);
+        }
+
         public override bool Equals(object obj) {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;

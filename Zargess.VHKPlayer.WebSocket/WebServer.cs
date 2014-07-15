@@ -43,8 +43,7 @@ namespace Zargess.VHKPlayer.WebSocket {
                     Shutdown();
                     break;
                 case "send":
-                    var s = "";
-                    args.ToList().ForEach(x => s += x);
+                    var s = String.Join("", args);
                     SendToAll("msg", s);
                     break;
                 case "sendXml":
