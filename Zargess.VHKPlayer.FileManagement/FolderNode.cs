@@ -16,6 +16,9 @@ namespace Zargess.VHKPlayer.FileManagement {
                 return _fullpath;
             }
             set {
+                if (String.IsNullOrEmpty(value)) {
+                    return;
+                }
                 _fullpath = value;
                 var temp = PathHandler.SplitPath(_fullpath);
                 Name = temp[temp.Length - 1];
