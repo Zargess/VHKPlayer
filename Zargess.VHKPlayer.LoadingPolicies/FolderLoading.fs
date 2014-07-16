@@ -9,7 +9,7 @@ module FolderLoading =
         lastElement (List.ofSeq (path.Split[|'\\'|]))
 
     let shouldInclude limits dir =
-        List.fold (fun a b -> a && b) true (List.map (fun x -> x <> (folderName dir)) limits)
+        List.fold (fun a b -> a && b) true (List.map (fun x -> not ( Compare x (folderName dir))) limits)
 
     let rec generalfolderfunc func limits root =
         match root with

@@ -2,13 +2,14 @@
 
 open System
 
-let Compare (a : string) (b : string) (case:StringComparison) = String.Compare(a, b, case) = 0
+let Compare (a : string) (b : string) = 
+    String.Compare(a, b, StringComparison.OrdinalIgnoreCase) = 0
 
 let rec find func empty (element : string) list =
     match list with
     | [] -> empty
     | first::rest ->
-        if Compare ((func first) :string) element StringComparison.OrdinalIgnoreCase then
+        if Compare ((func first) :string) element then
             first
         else find func empty element rest
 

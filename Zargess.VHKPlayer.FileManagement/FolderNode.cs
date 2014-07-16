@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,22 +10,18 @@ namespace Zargess.VHKPlayer.FileManagement {
     public class FolderNode : Node{
         public List<FolderNode> SubFolders { get; private set; }
         public bool Exists { get; private set; }
-        public List<FileNode> Files { get; private set; }
+        public ObservableCollection<FileNode> Files { get; private set; }
         private string _fullpath;
         public override sealed string FullPath {
             get {
                 return _fullpath;
             }
             set {
-                if (String.IsNullOrEmpty(value)) {
-                    return;
-                }
+                if (String.IsNullOrEmpty(value))  return;
                 _fullpath = value;
                 var temp = PathHandler.SplitPath(_fullpath);
                 Name = temp[temp.Length - 1];
-                if (temp.Length > 1) {
-                    Source = temp[temp.Length - 2];
-                }
+                if (temp.Length > 1) Source = temp[temp.Length - 2];
             }
         }
 
@@ -35,23 +32,31 @@ namespace Zargess.VHKPlayer.FileManagement {
             Files = LoadFiles();
         }
 
-        private List<FileNode> LoadFiles() {
-            if (!Exists) {
-                return new List<FileNode>();
-            }
-
-            return Directory.GetFiles(FullPath)
+        private ObservableCollection<FileNode> LoadFiles() {
+            if (!Exists)  return new ObservableCollection<FileNode>();
+            var temp = Directory.GetFiles(FullPath)
                     .Select(x => new FileNode(x))
-                    .Where(x => x.Type != FileType.Unsupported)
-                    .ToList();
+                    .Where(x => x.Type != FileType.Unsupported);
+            var res = new ObservableCollection<FileNode>();
+            foreach (var fileNode in temp) {
+                res.Add(fileNode);
+            }
+            return res;
         }
 
-        public List<FolderNode> LoadSubFolders() {
+        private List<FolderNode> LoadSubFolders() {
             if (!Exists) return new List<FolderNode>();
             var folders = Directory.GetDirectories(FullPath, "*", SearchOption.TopDirectoryOnly);
             return folders.Select(folder => new FolderNode(folder)).ToList();
         }
 
+        public void Refresh() {
+            Exists = Directory.Exists(FullPath);
+            Files = LoadFiles();
+            SubFolders = LoadSubFolders();
+        }
+
+        // Remove since it no longer makes sense
         public List<FolderNode> GetContent() {
             var res = new List<FolderNode> { new FolderNode(FullPath) };
             foreach (var folder in SubFolders) {
@@ -60,12 +65,22 @@ namespace Zargess.VHKPlayer.FileManagement {
             return res;
         }
 
+        public bool ContainsFolder(string name) {
+            return SubFolders.Any(folder => folder.Name == name);
+        }
+
         public bool ContainsFile(string name) {
             return GetFile(name) != null;
         }
 
         public FileNode GetFile(string name) {
             return Files.SingleOrDefault(x => x.Name == name);
+        }
+
+        public override bool Equals(object obj) {
+            if (obj.GetType() != GetType()) return false;
+            var other = obj as FolderNode;
+            return other != null && FullPath == other.FullPath;
         }
     }
 }

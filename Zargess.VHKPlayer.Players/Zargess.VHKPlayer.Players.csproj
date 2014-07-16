@@ -50,6 +50,10 @@
       <Project>{1862bf4f-c9ae-489c-ad9e-d3dc6fc82b10}</Project>
       <Name>Zargess.VHKPlayer.FileManagement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.LoadingPolicies\Zargess.VHKPlayer.LoadingPolicies.fsproj">
+      <Project>{09bc008f-e94b-4c20-b153-aa8ed6ed1d90}</Project>
+      <Name>Zargess.VHKPlayer.LoadingPolicies</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zargess.VHKPlayer.Settings\Zargess.VHKPlayer.Settings.csproj">
       <Project>{31e49ade-234f-4f94-81a6-6a5be080dc01}</Project>
       <Name>Zargess.VHKPlayer.Settings</Name>

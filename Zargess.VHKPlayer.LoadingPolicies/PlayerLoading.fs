@@ -1,4 +1,5 @@
 ﻿namespace Zargess.VHKPlayer.LoadingPolicies
+
 module PlayerLoading =
     open System
     open System.IO
@@ -8,7 +9,7 @@ module PlayerLoading =
     type File = { Name:string; Path:string; }
     type StatFiles = { Music:File; Video:File; Picture:File; }
     type FileSet = { Picture:File; Video:File; Stats:StatFiles; }
-    type Player = { Number:int32; Name:string; Picture:File; Video:File; StatFiles:StatFiles; Trainer:bool }
+    type Player = { Number:int; Name:string; Picture:File; Video:File; StatFiles:StatFiles; Trainer:bool }
 
     let constructFile path = 
         let name = folderName path
@@ -19,7 +20,7 @@ module PlayerLoading =
         |> (fun arr -> arr.[0])
 
     let createPlayer (file : FileSet) =
-        let number = Int32.Parse(file.Picture.Name.[0..2])
+        let number = int(file.Picture.Name.[0..2])
         let name = file.Picture.Name.[6..(file.Picture.Name.Length - 5)]
         let res = { 
             Number=number; 

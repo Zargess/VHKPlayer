@@ -45,6 +45,7 @@
     <Compile Include="Utiliti.fs" />
     <Compile Include="FolderLoading.fs" />
     <Compile Include="PlayerLoading.fs" />
+    <Compile Include="PlaylistLoading.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
