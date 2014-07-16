@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FSharp.Core, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -104,6 +105,10 @@
       <Project>{1862bf4f-c9ae-489c-ad9e-d3dc6fc82b10}</Project>
       <Name>Zargess.VHKPlayer.FileManagement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.LoadingPolicies\Zargess.VHKPlayer.LoadingPolicies.fsproj">
+      <Project>{09bc008f-e94b-4c20-b153-aa8ed6ed1d90}</Project>
+      <Name>Zargess.VHKPlayer.LoadingPolicies</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zargess.VHKPlayer.Players\Zargess.VHKPlayer.Players.csproj">
       <Project>{6c2cc60a-5411-4bca-b7ca-58c353facc5d}</Project>
       <Name>Zargess.VHKPlayer.Players</Name>
@@ -111,6 +116,10 @@
     <ProjectReference Include="..\Zargess.VHKPlayer.Settings\Zargess.VHKPlayer.Settings.csproj">
       <Project>{31e49ade-234f-4f94-81a6-6a5be080dc01}</Project>
       <Name>Zargess.VHKPlayer.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.Utility\Zargess.VHKPlayer.Utility.csproj">
+      <Project>{39e2f252-9745-4357-a96b-7d74ffa46462}</Project>
+      <Name>Zargess.VHKPlayer.Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\Zargess.VHKPlayer.WebSocket\Zargess.VHKPlayer.WebSocket.csproj">
       <Project>{43ccf786-86aa-4528-a176-dc14cfb45d6b}</Project>

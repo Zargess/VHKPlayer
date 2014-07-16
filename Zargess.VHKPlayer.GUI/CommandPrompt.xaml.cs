@@ -29,6 +29,7 @@ namespace Zargess.VHKPlayer.GUI {
                 Term.AbortRequested += (ss, ee) => MessageBox.Show("Abort !");
 
                 Term.RegisteredCommands.Add("set-root");
+                Term.RegisteredCommands.Add("set-stat-fold");
                 Term.RegisteredCommands.Add("load");
                 Term.RegisteredCommands.Add("reload");
                 Term.RegisteredCommands.Add("server");
@@ -43,6 +44,7 @@ namespace Zargess.VHKPlayer.GUI {
 
                 Server = new WebServer(8100);
                 Server.MessageSent += (sender, ee) => Dispatcher.Invoke(() => PrintText(ee.Message));
+                Term.Focus();
             };
             
             Term.CommandEntered += (ss, ee) => {
@@ -60,6 +62,8 @@ namespace Zargess.VHKPlayer.GUI {
                 MainView.Players.Where(x => x.Trainer()).ToList().ForEach(x => PrintText(x.Name));
             } else if (command.Name == "set-root" && command.Args.Length == 1) {
                 SettingsManager.SetSetting("root", command.Args[0]);
+            } else if (command.Name == "set-stat-fold" && command.Args.Length == 1) {
+                SettingsManager.SetSetting("statfolder", command.Args[0]);
             } else if (command.Name == "reload" && command.Args.Length == 1) {
                 var folder = new FolderNode(command.Args[0]);
                 MainView.LoadStructure(folder.FullPath);

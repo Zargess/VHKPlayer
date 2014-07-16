@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using Zargess.VHKPlayer.FileManagement;
+using Zargess.VHKPlayer.LoadingPolicies;
 using Zargess.VHKPlayer.Settings;
 
 namespace Zargess.VHKPlayer.Players {
@@ -40,6 +41,10 @@ namespace Zargess.VHKPlayer.Players {
             };
             Stats = new Statistics();
             InitWatcher();
+        }
+
+        public Player(PlayerLoading.Player player) {
+            
         }
 
         private void InitWatcher() {

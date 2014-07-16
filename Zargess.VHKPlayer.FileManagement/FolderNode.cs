@@ -11,7 +11,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         public bool Exists { get; private set; }
         public List<FileNode> Files { get; private set; }
         private string _fullpath;
-        public override string FullPath {
+        public override sealed string FullPath {
             get {
                 return _fullpath;
             }
@@ -36,7 +36,14 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         private List<FileNode> LoadFiles() {
-            return Exists ? Directory.GetFiles(FullPath).Select(file => new FileNode(file)).ToList() : new List<FileNode>();
+            if (!Exists) {
+                return new List<FileNode>();
+            }
+
+            return Directory.GetFiles(FullPath)
+                    .Select(x => new FileNode(x))
+                    .Where(x => x.Type != FileType.Unsupported)
+                    .ToList();
         }
 
         public List<FolderNode> LoadSubFolders() {
