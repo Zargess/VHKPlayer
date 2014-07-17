@@ -11,6 +11,11 @@ module PlayerLoading =
     type FileSet = { Picture:File; Video:File; Stats:StatFiles; }
     type Player = { Number:int; Name:string; Picture:File; Video:File; StatFiles:StatFiles; Trainer:bool }
 
+    let supportedTypes = [".jpg"; ".png"; ".mp3"; ".avi"]
+
+    let isSupported (file : File) =
+        List.fold (fun a b -> a || b) false (List.map (fun x -> file.Name.EndsWith x) supportedTypes)
+
     let constructFile path = 
         let name = folderName path
         { Name=name; Path=path; }
@@ -35,8 +40,8 @@ module PlayerLoading =
     let FileList source =
         Directory.GetFiles source
         |> Array.toList
-        |> List.filter (fun x -> not (x.EndsWith ".db"))
         |> List.map (fun x -> constructFile x)
+        |> List.filter isSupported
 
     let emptyFile = { Name=""; Path="";}
     let emptyStats = { Music=emptyFile; Video=emptyFile; Picture=emptyFile; }
