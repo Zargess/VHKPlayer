@@ -12,15 +12,13 @@ using Zargess.VHKPlayer.LoadingPolicies;
 
 namespace Zargess.VHKPlayer.GUI {
     public class MainViewModel {
-        public List<PlayerLoading.Player> Players { get; private set; }
-        public List<PlayerLoading.Player> Trainers { get; private set; }
+        public ObservableCollection<Player> Players { get; private set; }
         public ObservableCollection<FolderNode> Audio { get; private set; }
         public ObservableCollection<FolderNode> Video { get; private set; }
         public Action<string> Print { get; private set; }
 
         public MainViewModel(Action<string> print) {
-            Players = new List<PlayerLoading.Player>();
-            Trainers = new List<PlayerLoading.Player>();
+            Players = new ObservableCollection<Player>();
             Audio = new ObservableCollection<FolderNode>();
             Video = new ObservableCollection<FolderNode>();
             Print = print;
@@ -44,6 +42,8 @@ namespace Zargess.VHKPlayer.GUI {
 
                 var folders = FolderLoading.getSomeFolders(root.FullPath, Utils.ToFSharpList(limits)).Select(x => new FolderNode(x)).ToList();
                 folders.ForEach(x => Print(x.FullPath));
+                folders.Where(x => x.Source == "musik").ToList().ForEach(Audio.Add);
+                folders.Where(x => x.Source == root.Name && x.Name != "musik").ToList().ForEach(Video.Add);
 
                 var s = PlaylistLoading.rek;
                 s.Content.ToList().ForEach(x => Print(x.Name));
@@ -64,8 +64,9 @@ namespace Zargess.VHKPlayer.GUI {
             if (!root.ContainsFolder("Spiller")) return;
             try {
                 var people = PlayerLoading.createAllPlayers(root.FullPath).ToList();
-                Players = people.Where(x => !x.Trainer).ToList();
-                Trainers = people.Where(x => x.Trainer).ToList();
+                Players.Clear();
+                people.ForEach(x => Players.Add(new Player(x)));
+                Players.ToList().ForEach(x => Print(x.ToString()));
             } catch (UnauthorizedAccessException) {
                 Print("You do not have permission to use this folder. \nPlease choose another one.");
             }

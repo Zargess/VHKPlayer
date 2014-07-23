@@ -59,7 +59,7 @@ namespace Zargess.VHKPlayer.GUI {
                 MainView.LoadStructure(SettingsManager.GetSetting("root") as string);
                 MainView.Video.ToList().ForEach(x => PrintText(x.FullPath));
                 MainView.Audio.ToList().ForEach(x => PrintText(x.FullPath));
-                MainView.Players.Where(x => x.Trainer()).ToList().ForEach(x => PrintText(x.Name));
+                MainView.Players.Where(x => x.Trainer).ToList().ForEach(x => PrintText(x.Name));
             } else if (command.Name == "set-root" && command.Args.Length == 1) {
                 SettingsManager.SetSetting("root", command.Args[0]);
             } else if (command.Name == "set-stat-fold" && command.Args.Length == 1) {

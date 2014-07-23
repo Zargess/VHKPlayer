@@ -15,5 +15,9 @@ namespace Zargess.VHKPlayer.Settings {
             Settings.Default[key] = value;
             Settings.Default.Save();
         }
+
+        public static void Reset() {
+            Settings.Default.Reset();
+        }
     }
 }

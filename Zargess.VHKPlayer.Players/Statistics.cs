@@ -27,7 +27,7 @@ namespace Zargess.VHKPlayer.Players {
             RedCard = 0;
         }
 
-        public Statistics(int g, int s, int sa, int savea, int y, int sus, int r) {
+        private Statistics(int g, int s, int sa, int savea, int y, int sus, int r) {
             Goals = g;
             Shots = s;
             Saves = sa;

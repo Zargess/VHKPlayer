@@ -16,7 +16,7 @@ namespace Zargess.VHKPlayer.Players {
         public event ValueChangedHandler ValueChanged;
 
         public int Number { get; set; }
-        public readonly Func<bool> Trainer;
+        public bool Trainer;
         public string Name { get; set; }
 
         public FileNode StatPicture { get; set; }
@@ -28,23 +28,18 @@ namespace Zargess.VHKPlayer.Players {
         public FileNode StatFile { get; private set; }
         private FileSystemWatcher Watcher { get; set; }
 
-        public Player(string name, int no) {
-            Name = name;
-            Number = no;
-            Trainer = () => {
-                var res = Number >= 90 && Picture != null && Video == null && StatVideo == null && StatPicture == null &&
-                          StatMusic == null;
-                if (!res) {
-                    InitWatcher();
-                }
-                return res;
-            };
+        public Player(PlayerLoading.Player player) {
+            Name = player.Name;
+            Number = player.Number;
+            Trainer = player.Trainer;
+            Video = new FileNode(player.Video.Path);
+            Picture = new FileNode(player.Picture.Path);
+            var staFiles = player.StatFiles;
+            StatPicture = new FileNode(staFiles.Picture.Path);
+            StatVideo = new FileNode(staFiles.Video.Path);
+            StatMusic = new FileNode(staFiles.Music.Path);
             Stats = new Statistics();
             InitWatcher();
-        }
-
-        public Player(PlayerLoading.Player player) {
-            
         }
 
         private void InitWatcher() {
@@ -104,6 +99,10 @@ namespace Zargess.VHKPlayer.Players {
             int s;
             int.TryParse(text, out s);
             return s;
+        }
+
+        public override string ToString() {
+            return "No: " + Number + ", Name: " + Name;
         }
     }
 }
