@@ -30,12 +30,14 @@ module PlaylistLoading =
             | :? FormatException as ex ->
                 0
 
-    let sortedPlaylist source index =
+    let sortedPlaylist source name index =
         let files = List.sortBy (fun x -> getNumber x index) (List.filter (fun x -> (getNumber x index) <> 0) (getFiles source))                    
         let content = files
-        let name = folderName source
         createPlaylist name files false false
 
     // test
-    let rek = sortedPlaylist @"C:\Users\MFH\vhk\Rek" 1
+    let rek = sortedPlaylist @"C:\Users\MFH\vhk\Rek" "Før Kamp" 1
     let sek = playlistFromFolderContent @"C:\Users\MFH\vhk\10sek" false false
+
+    do
+        Console.WriteLine("Hello, World!")

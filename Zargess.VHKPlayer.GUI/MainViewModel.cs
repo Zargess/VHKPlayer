@@ -12,13 +12,15 @@ using Zargess.VHKPlayer.LoadingPolicies;
 
 namespace Zargess.VHKPlayer.GUI {
     public class MainViewModel {
-        public List<Player> Players { get; private set; }
+        public List<PlayerLoading.Player> Players { get; private set; }
+        public List<PlayerLoading.Player> Trainers { get; private set; }
         public ObservableCollection<FolderNode> Audio { get; private set; }
         public ObservableCollection<FolderNode> Video { get; private set; }
         public Action<string> Print { get; private set; }
 
         public MainViewModel(Action<string> print) {
-            Players = new List<Player>();
+            Players = new List<PlayerLoading.Player>();
+            Trainers = new List<PlayerLoading.Player>();
             Audio = new ObservableCollection<FolderNode>();
             Video = new ObservableCollection<FolderNode>();
             Print = print;
@@ -43,26 +45,30 @@ namespace Zargess.VHKPlayer.GUI {
                 var folders = FolderLoading.getSomeFolders(root.FullPath, Utils.ToFSharpList(limits)).Select(x => new FolderNode(x)).ToList();
                 folders.ForEach(x => Print(x.FullPath));
 
-                var s = PlaylistLoading.rek.Content.ToList();
-                s.ForEach(x => Print(x.Name));
+                var s = PlaylistLoading.rek;
+                s.Content.ToList().ForEach(x => Print(x.Name));
+                Print(s.Name);
 
-                var b = PlaylistLoading.sek.Content.ToList();
-                b.ForEach(x => Print(x.Name));
+                var b = PlaylistLoading.sek;
+                b.Content.ToList().ForEach(x => Print(x.Name));
+                Print(b.Name);
 
-                if (!root.ContainsFolder("Spiller")) return;
-                var people = PlayerLoading.createAllPlayers(root.FullPath).ToList();
-                var players = people.Where(x => !x.Trainer).ToList();
-                players.ForEach(x => Print("Number: " + x.Number + ", Name: " + x.Name));
-                
+                LoadPlayers(path);
             } catch (UnauthorizedAccessException) {
                 Print("You do not have permission to use this folder. \nPlease choose another one.");
             }
         }
 
-        //private int ConvertToInt(string text) {
-        //    int s;
-        //    int.TryParse(text, out s);
-        //    return s;
-        //}
+        public void LoadPlayers(string path) {
+            var root = new FolderNode(path);
+            if (!root.ContainsFolder("Spiller")) return;
+            try {
+                var people = PlayerLoading.createAllPlayers(root.FullPath).ToList();
+                Players = people.Where(x => !x.Trainer).ToList();
+                Trainers = people.Where(x => x.Trainer).ToList();
+            } catch (UnauthorizedAccessException) {
+                Print("You do not have permission to use this folder. \nPlease choose another one.");
+            }
+        }
     }
 }

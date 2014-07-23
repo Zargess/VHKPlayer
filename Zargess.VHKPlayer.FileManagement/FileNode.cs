@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
-    public class FileNode : Node, IPlayable {
+    public class FileNode : Node {
         private string _fullpath;
         public string Extension { get; private set; }
         public string NameWithNoExtension { get; private set; }
