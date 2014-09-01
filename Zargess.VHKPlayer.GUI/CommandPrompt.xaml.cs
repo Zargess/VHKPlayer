@@ -78,8 +78,8 @@ namespace Zargess.VHKPlayer.GUI {
             }
         }
 
-        public void PrintText(string text) {
-            Term.InsertLineBeforePrompt(text);
+        public void PrintText(object text) {
+            Term.InsertLineBeforePrompt(text.ToString());
         }
     }
 }

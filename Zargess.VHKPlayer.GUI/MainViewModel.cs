@@ -13,12 +13,14 @@ using Zargess.VHKPlayer.LoadingPolicies;
 namespace Zargess.VHKPlayer.GUI {
     public class MainViewModel {
         public ObservableCollection<Player> Players { get; private set; }
+        public ObservableCollection<Player> People { get; private set; }
         public ObservableCollection<FolderNode> Audio { get; private set; }
         public ObservableCollection<FolderNode> Video { get; private set; }
-        public Action<string> Print { get; private set; }
+        public Action<object> Print { get; private set; }
 
-        public MainViewModel(Action<string> print) {
+        public MainViewModel(Action<object> print) {
             Players = new ObservableCollection<Player>();
+            People = new ObservableCollection<Player>();
             Audio = new ObservableCollection<FolderNode>();
             Video = new ObservableCollection<FolderNode>();
             Print = print;
@@ -61,12 +63,14 @@ namespace Zargess.VHKPlayer.GUI {
 
         public void LoadPlayers(string path) {
             var root = new FolderNode(path);
-            if (!root.ContainsFolder("Spiller")) return;
+            if (!root.ContainsFolder("Spiller") || !root.ContainsFolder("SpillerVideo") || !root.ContainsFolder("SpillerVideoStat")) return;
             try {
                 var people = PlayerLoading.createAllPlayers(root.FullPath).ToList();
                 Players.Clear();
-                people.ForEach(x => Players.Add(new Player(x)));
-                Players.ToList().ForEach(x => Print(x.ToString()));
+                People.Clear();
+                people.ForEach(x => People.Add(new Player(x)));
+                people.Where(x => !x.Trainer).ToList().ForEach(x => Players.Add(new Player(x)));
+                Players.ToList().ForEach(x => Print(x));
             } catch (UnauthorizedAccessException) {
                 Print("You do not have permission to use this folder. \nPlease choose another one.");
             }
