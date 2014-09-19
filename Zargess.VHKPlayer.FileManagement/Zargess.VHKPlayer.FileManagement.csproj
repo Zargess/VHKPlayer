@@ -45,7 +45,9 @@
     <Compile Include="FolderNode.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="PathHandler.cs" />
+    <Compile Include="PlayList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpecialList.cs" />
     <Compile Include="StructureManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
