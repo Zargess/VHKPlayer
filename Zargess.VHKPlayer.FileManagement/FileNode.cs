@@ -41,6 +41,7 @@ namespace Zargess.VHKPlayer.FileManagement {
                     Type = FileType.Picture;
                     break;
                 case "avi":
+                case "mp4":
                     Type = FileType.Video;
                     break;
                 case "mp3":
