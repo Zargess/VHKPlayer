@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zargess.VHKPlayer.LoadingPolicies;
 
 namespace Zargess.VHKPlayer.FileManagement {
     class SpecialList : PlayList {
-        private int Counter { get; set; }
+        public int Counter { get; private set; }
 
         public SpecialList(string name) : base(name) {
             Counter = 0;
         }
 
         public SpecialList(string name, List<FileNode> content) : base(name, content) {
+            Counter = 0;
+        }
+
+        public SpecialList(PlaylistLoading.Playlist list) : base(list) {
             Counter = 0;
         }
 

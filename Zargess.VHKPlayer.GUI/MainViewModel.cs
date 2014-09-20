@@ -9,6 +9,7 @@ using Zargess.VHKPlayer.FileManagement;
 using Zargess.VHKPlayer.Players;
 using Zargess.VHKPlayer.Utility;
 using Zargess.VHKPlayer.LoadingPolicies;
+using Zargess.VHKPlayer.Settings;
 
 namespace Zargess.VHKPlayer.GUI {
     public class MainViewModel {
@@ -30,17 +31,7 @@ namespace Zargess.VHKPlayer.GUI {
             try {
                 var root = new FolderNode(path);
 
-                var limits = new List<string> {
-                    "Temp", 
-                    "Arkiv - Sct Mathias Centret - Benyttes igen efter", 
-                    "Originaler", 
-                    "Normalized", 
-                    "Arkiv", 
-                    "konverteret", 
-                    "Spiller", 
-                    "SpillerVideo", 
-                    "spillerVideoStat"
-                };
+                var limits = ((string) SettingsManager.GetSetting("limits")).Split(',').ToList();
 
                 var folders = FolderLoading.getSomeFolders(root.FullPath, Utils.ToFSharpList(limits)).Select(x => new FolderNode(x)).ToList();
                 folders.ForEach(x => Print(x.FullPath));

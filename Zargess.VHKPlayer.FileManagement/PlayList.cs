@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zargess.VHKPlayer.LoadingPolicies;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class PlayList {
@@ -16,6 +17,11 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public PlayList(string name, List<FileNode> content) : this(name) {
             AddRange(content);
+        }
+
+        public PlayList(PlaylistLoading.Playlist list) {
+            Name = list.Name;
+            list.Content.ToList().ForEach(x => Add(new FileNode(x.Path)));
         }
 
         public void AddRange(List<FileNode> list) {

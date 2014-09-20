@@ -8,5 +8,8 @@
     <Setting Name="statfolder" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="limits" Type="System.String" Scope="User">
+      <Value Profile="(Default)">temp,Arkiv - Sct Mathias Centret - Benyttes igen efter, originaler,normalized,arkiv,konverteret,spiller,spillervideo,spillervideostat</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

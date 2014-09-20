@@ -1,7 +1,6 @@
 ﻿namespace Zargess.VHKPlayer.LoadingPolicies
 
 module FolderLoading =
-    open System
     open System.IO
     open Utiliti
 

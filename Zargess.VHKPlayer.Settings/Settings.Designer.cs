@@ -46,5 +46,18 @@ namespace Zargess.VHKPlayer.Settings {
                 this["statfolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("temp,Arkiv - Sct Mathias Centret - Benyttes igen efter, originaler,normalized,ark" +
+            "iv,konverteret,spiller,spillervideo,spillervideostat")]
+        public string limits {
+            get {
+                return ((string)(this["limits"]));
+            }
+            set {
+                this["limits"] = value;
+            }
+        }
     }
 }
