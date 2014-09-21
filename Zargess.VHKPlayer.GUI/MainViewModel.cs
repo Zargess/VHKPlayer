@@ -18,6 +18,7 @@ namespace Zargess.VHKPlayer.GUI {
         public ObservableCollection<FolderNode> Audio { get; private set; }
         public ObservableCollection<FolderNode> Video { get; private set; }
         public Action<object> Print { get; private set; }
+        public ObservableCollection<PlayList> PlayLists { get; private set; } 
 
         public MainViewModel(Action<object> print) {
             Players = new ObservableCollection<Player>();
@@ -37,12 +38,13 @@ namespace Zargess.VHKPlayer.GUI {
                 folders.ForEach(x => Print(x.FullPath));
                 folders.Where(x => x.Source == "musik").ToList().ForEach(Audio.Add);
                 folders.Where(x => x.Source == root.Name && x.Name != "musik").ToList().ForEach(Video.Add);
+                PlayLists.Clear();
+                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(root.FullPath, "RekFørKamp", 1)));
+                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(root.FullPath, "RekHalvej1", 2)));
+                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(root.FullPath, "RekHalvej2", 3)));
+                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(root.FullPath, "RekEfterKamp", 4)));
 
-                var s = PlaylistLoading.rek;
-                s.Content.ToList().ForEach(x => Print(x.Name));
-                Print(s.Name);
-
-                var b = PlaylistLoading.sek;
+                var b = PlaylistLoading.tensek;
                 b.Content.ToList().ForEach(x => Print(x.Name));
                 Print(b.Name);
 

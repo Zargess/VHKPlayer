@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Zargess.VHKPlayer.LoadingPolicies;
 
 namespace Zargess.VHKPlayer.FileManagement {
-    class SpecialList : PlayList {
+    public class SpecialList : PlayList {
         public int Counter { get; private set; }
 
         public SpecialList(string name) : base(name) {

@@ -36,5 +36,5 @@ module PlaylistLoading =
         createPlaylist name files false false
 
     // test
-    let rek = sortedPlaylist @"C:\Users\MFH\vhk\Rek" "Før Kamp" 1
-    let sek = playlistFromFolderContent @"C:\Users\MFH\vhk\10sek" false false
+    let rek = sortedPlaylist @"C:\Users\MFH\vhk\Rek" "RekFørKamp" 1
+    let tensek = playlistFromFolderContent @"C:\Users\MFH\vhk\10sek" false false
