@@ -19,8 +19,7 @@ namespace Zargess.VHKPlayer.FileManagement {
             AddRange(content);
         }
 
-        public PlayList(PlaylistLoading.Playlist list) {
-            Name = list.Name;
+        public PlayList(PlaylistLoading.Playlist list) : this(list.Name) {
             list.Content.ToList().ForEach(x => Add(new FileNode(x.Path)));
         }
 
