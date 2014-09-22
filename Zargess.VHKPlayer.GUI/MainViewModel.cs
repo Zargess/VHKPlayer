@@ -25,6 +25,7 @@ namespace Zargess.VHKPlayer.GUI {
             People = new ObservableCollection<Player>();
             Audio = new ObservableCollection<FolderNode>();
             Video = new ObservableCollection<FolderNode>();
+            PlayLists = new ObservableCollection<PlayList>();
             Print = print;
         }
 
