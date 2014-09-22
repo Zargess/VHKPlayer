@@ -39,10 +39,13 @@ namespace Zargess.VHKPlayer.GUI {
                 folders.Where(x => x.Source == "musik").ToList().ForEach(Audio.Add);
                 folders.Where(x => x.Source == root.Name && x.Name != "musik").ToList().ForEach(Video.Add);
                 PlayLists.Clear();
-                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(root.FullPath, "RekFørKamp", 1)));
-                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(root.FullPath, "RekHalvej1", 2)));
-                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(root.FullPath, "RekHalvej2", 3)));
-                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(root.FullPath, "RekEfterKamp", 4)));
+                var reks = PathHandler.CombinePaths(root.FullPath, "Rek");
+                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekFørKamp", 1)));
+                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej1", 2)));
+                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej2", 3)));
+                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekEfterKamp", 4)));
+
+
 
                 var b = PlaylistLoading.tensek;
                 b.Content.ToList().ForEach(x => Print(x.Name));
