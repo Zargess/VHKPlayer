@@ -55,6 +55,8 @@ namespace Zargess.VHKPlayer.GUI {
                 LoadPlayers(path);
             } catch (UnauthorizedAccessException) {
                 Print("You do not have permission to use this folder. \nPlease choose another one.");
+            } catch (NullReferenceException) {
+                Print("You habe not chosen a folder to load. Please do this before continuing.");
             }
         }
 
