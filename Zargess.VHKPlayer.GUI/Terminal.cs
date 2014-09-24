@@ -186,6 +186,7 @@ namespace Zargess.VHKPlayer.GUI {
         }
 
         public void RunCommand(string command) {
+            Text += command;
             var cmd = TerminalUtils.ParseCommandLine(command);
             CommandLog.Add(cmd);
             indexInLog = CommandLog.Count;

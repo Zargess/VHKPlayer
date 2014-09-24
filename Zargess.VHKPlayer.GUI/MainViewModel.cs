@@ -39,25 +39,27 @@ namespace Zargess.VHKPlayer.GUI {
                 folders.ForEach(x => Print(x.FullPath));
                 folders.Where(x => x.Source == "musik").ToList().ForEach(Audio.Add);
                 folders.Where(x => x.Source == root.Name && x.Name != "musik").ToList().ForEach(Video.Add);
-                PlayLists.Clear();
-                var reks = PathHandler.CombinePaths(root.FullPath, "Rek");
-                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekFørKamp", 1)));
-                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej1", 2)));
-                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej2", 3)));
-                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekEfterKamp", 4)));
-
-
 
                 var b = PlaylistLoading.tensek;
                 b.Content.ToList().ForEach(x => Print(x.Name));
                 Print(b.Name);
-
+                LoadPlayLists(path);
                 LoadPlayers(path);
             } catch (UnauthorizedAccessException) {
                 Print("You do not have permission to use this folder. \nPlease choose another one.");
             } catch (NullReferenceException) {
-                Print("You habe not chosen a folder to load. Please do this before continuing.");
+                Print("You have not chosen a folder to load. Please do this before continuing.");
             }
+        }
+
+        public void LoadPlayLists(string path) {
+            var root = new FolderNode(path);
+            PlayLists.Clear();
+            var reks = PathHandler.CombinePaths(root.FullPath, "Rek");
+            PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekFørKamp", 1)));
+            PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej1", 2)));
+            PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej2", 3)));
+            PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekEfterKamp", 4)));
         }
 
         public void LoadPlayers(string path) {
