@@ -3,7 +3,6 @@
 module PlaylistLoading =
     open System
     open System.IO
-    open Utiliti
     open FolderLoading
     open PlayerLoading
 
@@ -18,6 +17,7 @@ module PlaylistLoading =
     let createPlaylist name content firstonly repeat = 
         { Name = name; Content = content; FirstOnly = firstonly; Repeat = repeat }
 
+    // Creates a playlist of files which lies in a given source. it takes all files that are supported
     let playlistFromFolderContent source firstonly repeat =
         let files = getFiles source
         let name = folderName source
@@ -29,10 +29,9 @@ module PlaylistLoading =
         with
             | :? FormatException as ex ->
                 0
-
+    // Creates a playlist of files in the given source where the char in position number index is a number and not 0. It also sorts by that number
     let sortedPlaylist source name index =
         let files = List.sortBy (fun x -> getNumber x index) (List.filter (fun x -> (getNumber x index) <> 0) (getFiles source))                    
-        let content = files
         createPlaylist name files false false
 
     // test
