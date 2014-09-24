@@ -60,6 +60,8 @@ namespace Zargess.VHKPlayer.GUI {
             PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej1", 2)));
             PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej2", 3)));
             PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekEfterKamp", 4)));
+            PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "10sek"))));
+            PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "Scor"))));
         }
 
         public void LoadPlayers(string path) {

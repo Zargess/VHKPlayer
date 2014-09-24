@@ -6,7 +6,7 @@ module PlaylistLoading =
     open FolderLoading
     open PlayerLoading
 
-    type Playlist = { Name : string; Content : File list; FirstOnly : bool; mutable Repeat : bool; }
+    type Playlist = { Name : string; Content : File list; }
 
     let getFiles source =
         Directory.GetFiles(source)
@@ -14,14 +14,14 @@ module PlaylistLoading =
         |> List.map constructFile
         |> List.filter isSupported
 
-    let createPlaylist name content firstonly repeat = 
-        { Name = name; Content = content; FirstOnly = firstonly; Repeat = repeat }
+    let createPlaylist name content = 
+        { Name = name; Content = content; }
 
     // Creates a playlist of files which lies in a given source. it takes all files that are supported
-    let playlistFromFolderContent source firstonly repeat =
+    let playlistFromFolderContent source =
         let files = getFiles source
         let name = folderName source
-        createPlaylist name files firstonly repeat
+        createPlaylist name files
 
     let getNumber (file : File) index = 
         try
@@ -32,8 +32,8 @@ module PlaylistLoading =
     // Creates a playlist of files in the given source where the char in position number index is a number and not 0. It also sorts by that number
     let sortedPlaylist source name index =
         let files = List.sortBy (fun x -> getNumber x index) (List.filter (fun x -> (getNumber x index) <> 0) (getFiles source))                    
-        createPlaylist name files false false
+        createPlaylist name files
 
     // test
     let rek = sortedPlaylist @"C:\Users\MFH\vhk\Rek" "RekFørKamp" 1
-    let tensek = playlistFromFolderContent @"C:\Users\MFH\vhk\10sek" false false
+    let tensek = playlistFromFolderContent @"C:\Users\MFH\vhk\10sek"
