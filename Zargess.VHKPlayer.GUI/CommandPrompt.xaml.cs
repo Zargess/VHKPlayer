@@ -45,7 +45,6 @@ namespace Zargess.VHKPlayer.GUI {
                 Server = new WebServer(8100);
                 Server.MessageSent += (sender, ee) => Dispatcher.Invoke(() => PrintText(ee.Message));
                 Term.Focus();
-                Term.RunCommand("load");
             };
             
             Term.CommandEntered += (ss, ee) => {

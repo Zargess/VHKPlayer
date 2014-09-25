@@ -36,13 +36,12 @@ namespace Zargess.VHKPlayer.GUI {
                 var limits = ((string) SettingsManager.GetSetting("limits")).Split(',').ToList();
 
                 var folders = FolderLoading.getSomeFolders(root.FullPath, Utils.ToFSharpList(limits)).Select(x => new FolderNode(x)).ToList();
-                folders.ForEach(x => Print(x.FullPath));
                 folders.Where(x => x.Source == "musik").ToList().ForEach(Audio.Add);
                 folders.Where(x => x.Source == root.Name && x.Name != "musik").ToList().ForEach(Video.Add);
 
-                var b = PlaylistLoading.tensek;
-                b.Content.ToList().ForEach(x => Print(x.Name));
-                Print(b.Name);
+                //var b = PlaylistLoading.tensek;
+                //b.Content.ToList().ForEach(x => Print(x.Name));
+                //Print(b.Name);
                 LoadPlayLists(path);
                 LoadPlayers(path);
             } catch (UnauthorizedAccessException) {
@@ -61,7 +60,8 @@ namespace Zargess.VHKPlayer.GUI {
             PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej2", 3)));
             PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekEfterKamp", 4)));
             PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "10sek"))));
-            PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "Scor"))));
+            PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "ScorRek"))));
+            PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "FoerKamp"))));
         }
 
         public void LoadPlayers(string path) {
