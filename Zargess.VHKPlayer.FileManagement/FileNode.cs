@@ -35,7 +35,8 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         private void SetFileType(string e) {
-            switch (e) {
+            var t = e.ToLower();
+            switch (t) {
                 case "jpg":
                 case "png":
                     Type = FileType.Picture;

@@ -29,19 +29,10 @@ namespace Zargess.VHKPlayer.GUI {
             Print = print;
         }
 
+        // TODO : Run some simulations on the loaded structure.
         public void LoadStructure(string path) {
             try {
-                var root = new FolderNode(path);
-
-                var limits = ((string) SettingsManager.GetSetting("limits")).Split(',').ToList();
-
-                var folders = FolderLoading.getSomeFolders(root.FullPath, Utils.ToFSharpList(limits)).Select(x => new FolderNode(x)).ToList();
-                folders.Where(x => x.Source == "musik").ToList().ForEach(Audio.Add);
-                folders.Where(x => x.Source == root.Name && x.Name != "musik").ToList().ForEach(Video.Add);
-
-                //var b = PlaylistLoading.tensek;
-                //b.Content.ToList().ForEach(x => Print(x.Name));
-                //Print(b.Name);
+                LoadFolders(path);
                 LoadPlayLists(path);
                 LoadPlayers(path);
             } catch (UnauthorizedAccessException) {
@@ -51,17 +42,36 @@ namespace Zargess.VHKPlayer.GUI {
             }
         }
 
+        public void LoadFolders(string path) {
+            var root = new FolderNode(path);
+            var limits = ((string)SettingsManager.GetSetting("limits")).Split(',').ToList();
+
+            var folders = FolderLoading.getSomeFolders(root.FullPath, Utils.ToFSharpList(limits)).Select(x => new FolderNode(x)).ToList();
+            folders.Where(x => x.Source == "musik").ToList().ForEach(Audio.Add);
+            folders.Where(x => x.Source == root.Name && x.Name != "musik").ToList().ForEach(Video.Add);
+        }
+
+        public void ReloadFolder(FolderNode fn) {
+            fn.Refresh();
+        }
+
         public void LoadPlayLists(string path) {
             var root = new FolderNode(path);
-            PlayLists.Clear();
-            var reks = PathHandler.CombinePaths(root.FullPath, "Rek");
-            PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekFørKamp", 1)));
-            PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej1", 2)));
-            PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej2", 3)));
-            PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekEfterKamp", 4)));
-            PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "10sek"))));
-            PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "ScorRek"))));
-            PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "FoerKamp"))));
+            try {
+                PlayLists.Clear();
+                var reks = PathHandler.CombinePaths(root.FullPath, "Rek");
+                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekFørKamp", 1)));
+                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej1", 2)));
+                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej2", 3)));
+                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekEfterKamp", 4)));
+                PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "10sek"))));
+                PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "ScorRek"))));
+                PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "FoerKamp"))));
+            } catch (UnauthorizedAccessException) {
+                Print("You do not have permission to use this folder. \nPlease choose another one.");
+            } catch (NullReferenceException) {
+                Print("You have not chosen a folder to load. Please do this before continuing.");
+            }
         }
 
         public void LoadPlayers(string path) {
@@ -76,6 +86,8 @@ namespace Zargess.VHKPlayer.GUI {
                 Players.ToList().ForEach(x => Print(x));
             } catch (UnauthorizedAccessException) {
                 Print("You do not have permission to use this folder. \nPlease choose another one.");
+            } catch (NullReferenceException) {
+                Print("You have not chosen a folder to load. Please do this before continuing.");
             }
         }
     }

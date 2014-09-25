@@ -54,6 +54,7 @@ namespace Zargess.VHKPlayer.GUI {
             Closing += (s, e) => Server.Shutdown();
         }
 
+        // TODO : Implement some more reload options so that one can specify what should be reloaded
         private void CheckCommand(Command command) {
             if (command.Name == "load") {
                 MainView.LoadStructure(SettingsManager.GetSetting("root") as string);
