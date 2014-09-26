@@ -31,7 +31,7 @@ namespace Zargess.VHKPlayer.GUI {
                 Term.RegisteredCommands.Add("set-root");
                 Term.RegisteredCommands.Add("set-stat-fold");
                 Term.RegisteredCommands.Add("load");
-                Term.RegisteredCommands.Add("reload");
+                Term.RegisteredCommands.Add("reload-all");
                 Term.RegisteredCommands.Add("server");
                 Term.RegisteredCommands.Add("exit");
 
@@ -51,7 +51,9 @@ namespace Zargess.VHKPlayer.GUI {
                 Term.InsertNewPrompt();
                 CheckCommand(ee.Command);
             };
-            Closing += (s, e) => Server.Shutdown();
+            Closing += (s, e) => {
+                if (Server != null) Server.Shutdown();
+            };
         }
 
         // TODO : Implement some more reload options so that one can specify what should be reloaded
@@ -65,7 +67,7 @@ namespace Zargess.VHKPlayer.GUI {
                 SettingsManager.SetSetting("root", command.Args[0]);
             } else if (command.Name == "set-stat-fold" && command.Args.Length == 1) {
                 SettingsManager.SetSetting("statfolder", command.Args[0]);
-            } else if (command.Name == "reload" && command.Args.Length == 1) {
+            } else if (command.Name == "reload-all" && command.Args.Length == 1) {
                 var folder = new FolderNode(command.Args[0]);
                 MainView.LoadStructure(folder.FullPath);
             } else if (command.Name == "server") {
@@ -75,12 +77,23 @@ namespace Zargess.VHKPlayer.GUI {
                 }
                 Server.CheckCommands(command.Args[0], list.ToArray());
             } else if (command.Name == "exit") {
+                Server.Shutdown();
                 Close();
             }
         }
 
+        public void RunCommand(string command) {
+            Term.RunCommand(command);
+        }
+
         public void PrintText(object text) {
             Term.InsertLineBeforePrompt(text.ToString());
+        }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
+            base.OnClosing(e);
+            e.Cancel = true;
+            Visibility = Visibility.Hidden;
         }
     }
 }

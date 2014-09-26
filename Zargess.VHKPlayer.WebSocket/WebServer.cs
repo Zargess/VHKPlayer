@@ -39,7 +39,7 @@ namespace Zargess.VHKPlayer.WebSocket {
 
         public void CheckCommands(string command, string[] args) {
             switch (command) {
-                case "exit":
+                case "stop":
                     Shutdown();
                     break;
                 case "send":
