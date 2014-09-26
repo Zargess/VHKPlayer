@@ -35,10 +35,10 @@ namespace Zargess.VHKPlayer.GUI {
                 LoadFolders(path);
                 LoadPlayLists(path);
                 LoadPlayers(path);
-            } catch (UnauthorizedAccessException) {
-                Print("You do not have permission to use this folder. \nPlease choose another one.");
-            } catch (NullReferenceException) {
-                Print("You have not chosen a folder to load. Please do this before continuing.");
+            } catch (UnauthorizedAccessException e) {
+                Print("You do not have permission to use this folder. \nPlease choose another one.\n" + e.Message);
+            } catch (NullReferenceException e) {
+                Print("You have not chosen a folder to load. Please do this before continuing.\n" + e.Message);
             }
         }
 
@@ -67,10 +67,10 @@ namespace Zargess.VHKPlayer.GUI {
                 PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "10sek"))));
                 PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "ScorRek"))));
                 PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "FoerKamp"))));
-            } catch (UnauthorizedAccessException) {
-                Print("You do not have permission to use this folder. \nPlease choose another one.");
-            } catch (NullReferenceException) {
-                Print("You have not chosen a folder to load. Please do this before continuing.");
+            } catch (UnauthorizedAccessException e) {
+                Print("You do not have permission to use this folder. \nPlease choose another one.\n" + e.Message);
+            } catch (NullReferenceException e) {
+                Print("You have not chosen a folder to load. Please do this before continuing.\n" + e.Message);
             }
         }
 
@@ -84,10 +84,10 @@ namespace Zargess.VHKPlayer.GUI {
                 people.ForEach(x => People.Add(new Player(x)));
                 people.Where(x => !x.Trainer).ToList().ForEach(x => Players.Add(new Player(x)));
                 Players.ToList().ForEach(x => Print(x));
-            } catch (UnauthorizedAccessException) {
-                Print("You do not have permission to use this folder. \nPlease choose another one.");
-            } catch (NullReferenceException) {
-                Print("You have not chosen a folder to load. Please do this before continuing.");
+            } catch (UnauthorizedAccessException e) {
+                Print("You do not have permission to use this folder. \nPlease choose another one.\n" + e.Message);
+            } catch (NullReferenceException e) {
+                Print("You have not chosen a folder to load. Please do this before continuing.\n" + e.Message);
             }
         }
     }
