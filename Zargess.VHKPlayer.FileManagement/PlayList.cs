@@ -8,7 +8,7 @@ using Zargess.VHKPlayer.LoadingPolicies;
 namespace Zargess.VHKPlayer.FileManagement {
     public class PlayList {
         public List<FileNode> Content { get; private set; }
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         public PlayList(string name) {
             Name = name;
