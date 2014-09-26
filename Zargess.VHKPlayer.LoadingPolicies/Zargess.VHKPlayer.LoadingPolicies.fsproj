@@ -9,9 +9,10 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Zargess.VHKPlayer.LoadingPolicies</RootNamespace>
     <AssemblyName>Zargess.VHKPlayer.LoadingPolicies</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <TargetFSharpCoreVersion>4.3.1.0</TargetFSharpCoreVersion>
     <Name>Zargess.VHKPlayer.LoadingPolicies</Name>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
