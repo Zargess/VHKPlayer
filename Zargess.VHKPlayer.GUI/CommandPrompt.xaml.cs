@@ -86,6 +86,7 @@ namespace Zargess.VHKPlayer.GUI {
             Term.RunCommand(command);
         }
 
+        // TODO : Make it so that all console.writeline is printed to this interface.
         public void PrintText(object text) {
             Term.InsertLineBeforePrompt(text.ToString());
         }

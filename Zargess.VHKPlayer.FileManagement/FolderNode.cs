@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
-    public class FolderNode : Node{
+    public class FolderNode : Node {
         public List<FolderNode> SubFolders { get; private set; }
         public bool Exists { get; private set; }
         public ObservableCollection<FileNode> Files { get; private set; }
@@ -17,23 +17,54 @@ namespace Zargess.VHKPlayer.FileManagement {
                 return _fullpath;
             }
             set {
-                if (String.IsNullOrEmpty(value))  return;
+                if (String.IsNullOrEmpty(value)) return;
                 _fullpath = value;
                 var temp = PathHandler.SplitPath(_fullpath);
                 Name = temp[temp.Length - 1];
                 if (temp.Length > 1) Source = temp[temp.Length - 2];
             }
         }
+        public FileSystemWatcher Watcher { get; set; }
 
         public FolderNode(string path) {
             FullPath = path;
             Exists = Directory.Exists(FullPath);
             SubFolders = LoadSubFolders();
             Files = LoadFiles();
+            InitWatcher();
+        }
+
+        private void InitWatcher() {
+            if (!Exists) return;
+            Watcher = new FileSystemWatcher() {
+                Path = FullPath,
+                NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastAccess
+                    | NotifyFilters.LastWrite,
+                Filter = "."
+            };
+            Watcher.Created += Watcher_Created;
+            Watcher.Deleted += Watcher_Deleted;
+            Watcher.Renamed += Watcher_Renamed;
+            Watcher.EnableRaisingEvents = true;
+        }
+
+        private void Watcher_Renamed(object sender, RenamedEventArgs e) {
+            var f = Files.SingleOrDefault(x => x.FullPath.Equals(e.OldFullPath));
+            Files.Remove(f);
+            Files.Add(new FileNode(e.FullPath));
+        }
+
+        private void Watcher_Deleted(object sender, FileSystemEventArgs e) {
+            var f = Files.SingleOrDefault(x => x.FullPath.Equals(e.FullPath));
+            Files.Remove(f);
+        }
+
+        private void Watcher_Created(object sender, FileSystemEventArgs e) {
+            Files.Add(new FileNode(e.FullPath));
         }
 
         private ObservableCollection<FileNode> LoadFiles() {
-            if (!Exists)  return new ObservableCollection<FileNode>();
+            if (!Exists) return new ObservableCollection<FileNode>();
             var temp = Directory.GetFiles(FullPath)
                     .Select(x => new FileNode(x))
                     .Where(x => x.Type != FileType.Unsupported);
