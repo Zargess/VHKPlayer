@@ -34,6 +34,7 @@ namespace Zargess.VHKPlayer.GUI {
                 Term.RegisteredCommands.Add("reload-all");
                 Term.RegisteredCommands.Add("server");
                 Term.RegisteredCommands.Add("exit");
+                Term.RegisteredCommands.Add("get-root");
 
                 Term.Text += "Welcome !\n";
                 Term.Text += "Hit tab to complete your current command.\n";
@@ -45,6 +46,7 @@ namespace Zargess.VHKPlayer.GUI {
                 Server = new WebServer(8100);
                 Server.MessageSent += (sender, ee) => Dispatcher.Invoke(() => PrintText(ee.Message));
                 Term.Focus();
+                Console.SetOut(new ControlWriter(Term, Application.Current.Dispatcher));
             };
             
             Term.CommandEntered += (ss, ee) => {
@@ -79,6 +81,8 @@ namespace Zargess.VHKPlayer.GUI {
             } else if (command.Name == "exit") {
                 Server.Shutdown();
                 Close();
+            } else if (command.Name == "get-root") {
+                PrintText(SettingsManager.GetSetting("root"));
             }
         }
 

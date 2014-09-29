@@ -193,6 +193,14 @@ namespace Zargess.VHKPlayer.GUI {
             RaiseCommandEntered(cmd);
         }
 
+        public void AppendText(object o) {
+            if (o is string) {
+                Text += o as string;
+            } else {
+                Text += o.ToString();
+            }
+        }
+
         protected virtual void HandleTabKey() {
             // Command completion works only if caret is at last character
             // and if the user already typed something.

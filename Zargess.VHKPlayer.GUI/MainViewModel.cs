@@ -49,11 +49,11 @@ namespace Zargess.VHKPlayer.GUI {
             var folders = FolderLoading.getSomeFolders(root.FullPath, Utils.ToFSharpList(limits)).Select(x => new FolderNode(x)).ToList();
             folders.Where(x => x.Source == "musik").ToList().ForEach(Audio.Add);
             folders.Where(x => x.Source == root.Name && x.Name != "musik").ToList().ForEach(Video.Add);
-            folders.ForEach(x => {
-                foreach (var item in x.Files) {
-                    Print(item.FullPath);
-                }
-            });
+            //folders.ForEach(x => {
+            //    foreach (var item in x.Files) {
+            //        Print(item.FullPath);
+            //    }
+            //});
         }
 
         public void ReloadFolder(FolderNode fn) {
