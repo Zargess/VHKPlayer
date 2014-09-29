@@ -44,7 +44,7 @@ namespace Zargess.VHKPlayer.GUI {
                 Term.InsertNewPrompt();
 
                 Server = new WebServer(8100);
-                Server.MessageSent += (sender, ee) => Dispatcher.Invoke(() => PrintText(ee.Message));
+                Server.MessageSent += (sender, ee) => Dispatcher.Invoke(() => Console.WriteLine(ee.Message));
                 Term.Focus();
                 Console.SetOut(new ControlWriter(Term, Application.Current.Dispatcher));
             };
@@ -88,11 +88,6 @@ namespace Zargess.VHKPlayer.GUI {
 
         public void RunCommand(string command) {
             Term.RunCommand(command);
-        }
-
-        // TODO : Make it so that all console.writeline is printed to this interface.
-        public void PrintText(object text) {
-            Console.WriteLine(text.ToString());
         }
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
