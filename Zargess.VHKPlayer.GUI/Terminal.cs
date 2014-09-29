@@ -194,11 +194,7 @@ namespace Zargess.VHKPlayer.GUI {
         }
 
         public void AppendText(object o) {
-            if (o is string) {
-                Text += o as string;
-            } else {
-                Text += o.ToString();
-            }
+            InsertLineBeforePrompt(o.ToString());
         }
 
         protected virtual void HandleTabKey() {

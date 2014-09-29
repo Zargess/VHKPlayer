@@ -64,6 +64,7 @@ namespace Zargess.VHKPlayer.WebSocket {
             Server.Stop();
             Server = null;
             OnlineConnections.Values.ToList().ForEach(x => x.Close());
+            OnlineConnections.Clear();
         }
 
         public void OnConnect(UserContext aContext) {

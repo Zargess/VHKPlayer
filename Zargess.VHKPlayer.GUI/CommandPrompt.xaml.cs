@@ -20,8 +20,8 @@ namespace Zargess.VHKPlayer.GUI {
         private MainViewModel MainView { get; set; }
         private WebServer Server { get; set; }
 
-        public CommandPrompt() {
-            MainView = new MainViewModel(PrintText);
+        public CommandPrompt(MainViewModel mv) {
+            MainView = mv;
             InitializeComponent();
             Term.Prompt = "\n> ";
 
@@ -62,9 +62,9 @@ namespace Zargess.VHKPlayer.GUI {
         private void CheckCommand(Command command) {
             if (command.Name == "load") {
                 MainView.LoadStructure(SettingsManager.GetSetting("root") as string);
-                MainView.Video.ToList().ForEach(x => PrintText(x.FullPath));
-                MainView.Audio.ToList().ForEach(x => PrintText(x.FullPath));
-                MainView.Players.Where(x => x.Trainer).ToList().ForEach(x => PrintText(x.Name));
+                MainView.Video.ToList().ForEach(x => Console.WriteLine(x.FullPath));
+                MainView.Audio.ToList().ForEach(x => Console.WriteLine(x.FullPath));
+                MainView.Players.Where(x => x.Trainer).ToList().ForEach(x => Console.WriteLine(x.Name));
             } else if (command.Name == "set-root" && command.Args.Length == 1) {
                 SettingsManager.SetSetting("root", command.Args[0]);
             } else if (command.Name == "set-stat-fold" && command.Args.Length == 1) {
@@ -82,7 +82,7 @@ namespace Zargess.VHKPlayer.GUI {
                 Server.Shutdown();
                 Close();
             } else if (command.Name == "get-root") {
-                PrintText(SettingsManager.GetSetting("root"));
+                Console.WriteLine(SettingsManager.GetSetting("root"));
             }
         }
 
@@ -92,7 +92,7 @@ namespace Zargess.VHKPlayer.GUI {
 
         // TODO : Make it so that all console.writeline is printed to this interface.
         public void PrintText(object text) {
-            Term.InsertLineBeforePrompt(text.ToString());
+            Console.WriteLine(text.ToString());
         }
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {

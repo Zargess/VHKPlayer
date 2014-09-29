@@ -46,7 +46,6 @@ namespace Zargess.VHKPlayer.FileManagement {
             Watcher.Deleted += Watcher_Deleted;
             Watcher.Renamed += Watcher_Renamed;
             Watcher.EnableRaisingEvents = true;
-            Console.WriteLine("Listening");
         }
 
         private void Watcher_Renamed(object sender, RenamedEventArgs e) {
