@@ -2,7 +2,7 @@ var folders = [];
 
 $(document).ready(function() {
     conn = {}, window.WebSocket = window.WebSocket || window.MozWebSocket;
-    openConnection();
+    //openConnection();
 
     newTab('Hello, World');
     newTab('Hello, World');

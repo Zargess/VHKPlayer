@@ -16,7 +16,7 @@ namespace Zargess.VHKPlayer.Players {
         public event ValueChangedHandler ValueChanged;
 
         public int Number { get; set; }
-        public bool Trainer;
+        public bool Trainer { get; set; }
         public string Name { get; set; }
 
         public FileNode StatPicture { get; set; }
