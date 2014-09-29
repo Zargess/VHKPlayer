@@ -83,6 +83,9 @@ namespace Zargess.VHKPlayer.GUI {
                 Close();
             } else if (command.Name == "get-root") {
                 Console.WriteLine(SettingsManager.GetSetting("root"));
+            } else if (command.Name == "help") {
+                Console.WriteLine("Available commands are:");
+                Term.RegisteredCommands.ForEach(cmd => Console.WriteLine("  - " + cmd + "\n"));
             }
         }
 

@@ -36,7 +36,7 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         private void InitWatcher() {
             if (!Exists) return;
-            Watcher = new FileSystemWatcher() {
+            Watcher = new FileSystemWatcher {
                 Path = FullPath,
                 NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastAccess
                     | NotifyFilters.LastWrite,
@@ -50,18 +50,22 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         private void Watcher_Renamed(object sender, RenamedEventArgs e) {
             var f = Files.SingleOrDefault(x => x.FullPath.Equals(e.OldFullPath));
+            if (f == null) return;
             Files.Remove(f);
             Files.Add(new FileNode(e.FullPath));
         }
 
         private void Watcher_Deleted(object sender, FileSystemEventArgs e) {
             var f = Files.SingleOrDefault(x => x.FullPath.Equals(e.FullPath));
+            if (f == null) return;
             Files.Remove(f);
             Console.WriteLine(f.FullPath + " was deleted");
         }
 
         private void Watcher_Created(object sender, FileSystemEventArgs e) {
-            Files.Add(new FileNode(e.FullPath));
+            var file = new FileNode(e.FullPath);
+            if (Files.Contains(file)) return;
+            Files.Add(file);
             Console.WriteLine("Created " + e.FullPath);
         }
 
@@ -108,6 +112,10 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public FileNode GetFile(string name) {
             return Files.SingleOrDefault(x => x.Name == name);
+        }
+
+        public void StopListening() {
+            Watcher.EnableRaisingEvents = false;
         }
 
         public override bool Equals(object obj) {
