@@ -27,7 +27,6 @@ namespace Zargess.VHKPlayer.GUI {
             PlayLists = new ObservableCollection<PlayList>();
         }
 
-        // TODO : Run some simulations on the loaded structure.
         public void LoadStructure(string path) {
             try {
                 var root = new FolderNode(path);
@@ -41,6 +40,7 @@ namespace Zargess.VHKPlayer.GUI {
             }
         }
 
+        // TODO : Make this multithreaded
         public void LoadFolders(FolderNode root) {
             var limits = ((string)SettingsManager.GetSetting("limits")).Split(',').ToList();
 
