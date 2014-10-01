@@ -17,6 +17,7 @@ namespace Zargess.VHKPlayer.GUI {
     ///     Interaction logic for CommandPrompt.xaml
     /// </summary>
     public partial class CommandPrompt {
+        // TODO : Change gui to a more linux mint terminal look, because it is awesome! image link: http://www.ozone3d.net/blogs/lab/20120612/linux-mint-13-marco-et-les-terminaux-transparents/
         private MainViewModel MainVM { get; set; }
         private WebServer Server { get; set; }
 
