@@ -7,6 +7,7 @@ using Zargess.VHKPlayer.LoadingPolicies;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class SpecialList : PlayList {
+        // TODO : Consider implementing a filesystemwatcher to look for changes
         public int Counter { get; private set; }
 
         public SpecialList(string name) : base(name) {

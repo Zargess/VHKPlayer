@@ -7,6 +7,8 @@ using Zargess.VHKPlayer.LoadingPolicies;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class PlayList {
+        // TODO : Consider implementing a filesystemwatcher for changes. Consider making this an abstract class and then implement a watcher in each sub type.
+        // TODO : Rethink the entire concept of playlists. How to get the next element in the list? When do we stop playing this playlist? Should this be controlled in a videoqueue object?
         public List<FileNode> Content { get; private set; }
         public string Name { get; private set; }
 

@@ -17,7 +17,7 @@ namespace Zargess.VHKPlayer.GUI {
         public ObservableCollection<Player> People { get; private set; }
         public ObservableCollection<FolderNode> Audio { get; private set; }
         public ObservableCollection<FolderNode> Video { get; private set; }
-        public ObservableCollection<PlayList> PlayLists { get; private set; } 
+        public ObservableCollection<PlayList> PlayLists { get; private set; }
 
         public MainViewModel() {
             Players = new ObservableCollection<Player>();
@@ -28,25 +28,34 @@ namespace Zargess.VHKPlayer.GUI {
         }
 
         public void LoadStructure(string path) {
+            ClearData();
+            var root = new FolderNode(path);
+            LoadFolders(root);
+            LoadPlayLists(root);
+            LoadPlayers(root);
+        }
+
+        // TODO : Make this multithreaded
+        public void LoadFolders(FolderNode root) {
             try {
-                var root = new FolderNode(path);
-                LoadFolders(root);
-                LoadPlayLists(root);
-                LoadPlayers(root);
+                var limits = ((string)SettingsManager.GetSetting("limits")).Split(',').ToList();
+
+                var folders = FolderLoading.getSomeFolders(root.FullPath, Utils.ToFSharpList(limits)).Select(x => new FolderNode(x)).ToList();
+
+                foreach (var folder in folders) {
+                    if (folder.Source == "musik") {
+                        Audio.Add(folder);
+                        folder.InitWatcher();
+                    } else if (folder.Source == root.Name && folder.Name != "musik") {
+                        Video.Add(folder);
+                        folder.InitWatcher();
+                    }
+                }
             } catch (UnauthorizedAccessException e) {
                 Console.WriteLine("You do not have permission to use this folder. \nPlease choose another one.\n" + e.Message);
             } catch (NullReferenceException e) {
                 Console.WriteLine("You have not chosen a folder to load. Please do this before continuing.\n" + e.Message);
             }
-        }
-
-        // TODO : Make this multithreaded
-        public void LoadFolders(FolderNode root) {
-            var limits = ((string)SettingsManager.GetSetting("limits")).Split(',').ToList();
-
-            var folders = FolderLoading.getSomeFolders(root.FullPath, Utils.ToFSharpList(limits)).Select(x => new FolderNode(x)).ToList();
-            folders.Where(x => x.Source == "musik").ToList().ForEach(Audio.Add);
-            folders.Where(x => x.Source == root.Name && x.Name != "musik").ToList().ForEach(Video.Add);
         }
 
         public void ReloadFolder(FolderNode fn) {
@@ -65,6 +74,7 @@ namespace Zargess.VHKPlayer.GUI {
                     PlayLists.Add(
                         new SpecialList(
                             PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "10sek"))));
+                    // TODO : Consider making a special playlist type for ScorRek
                     PlayLists.Add(
                         new SpecialList(
                             PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "ScorRek"))));
@@ -81,20 +91,53 @@ namespace Zargess.VHKPlayer.GUI {
             }
         }
 
+        // TODO : Consider making a Person class and make the Player class a subclass of Person. Then a trainer won't be a Player.
         public void LoadPlayers(FolderNode root) {
             if (!root.ContainsFolder("Spiller") || !root.ContainsFolder("SpillerVideo") || !root.ContainsFolder("SpillerVideoStat")) return;
             try {
                 var people = PlayerLoading.createAllPlayers(root.FullPath).ToList();
-                Players.Clear();
-                People.Clear();
-                people.ForEach(x => People.Add(new Player(x)));
-                people.Where(x => !x.Trainer).ToList().ForEach(x => Players.Add(new Player(x)));
+                ClearPeople(People);
+                ClearPeople(Players);
+
+                foreach (var p in people.Select(person => new Player(person))) {
+                    People.Add(p);
+                    if (!p.Trainer) {
+                        Players.Add(p);
+                    }
+                }
+
                 Players.ToList().ForEach(Console.WriteLine);
             } catch (UnauthorizedAccessException e) {
                 Console.WriteLine("You do not have permission to use this folder. \nPlease choose another one.\n" + e.Message);
             } catch (NullReferenceException e) {
                 Console.WriteLine("You have not chosen a folder to load. Please do this before continuing.\n" + e.Message);
             }
+        }
+
+        private void ClearData() {
+            ClearFolderList(Audio);
+            ClearFolderList(Video);
+            ClearPeople(People);
+            ClearPeople(Players);
+            ClearPlayLists(PlayLists);
+        }
+
+        private void ClearFolderList(ICollection<FolderNode> list) {
+            foreach (var folder in list) {
+                folder.StopListening();
+            }
+            list.Clear();
+        }
+
+        private void ClearPeople(ICollection<Player> list) {
+            foreach (var player in list) {
+                player.StopListener();
+            }
+            list.Clear();
+        }
+
+        private void ClearPlayLists(ICollection<PlayList> list) {
+            list.Clear();
         }
     }
 }

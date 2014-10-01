@@ -31,11 +31,10 @@ namespace Zargess.VHKPlayer.FileManagement {
             Exists = Directory.Exists(FullPath);
             SubFolders = LoadSubFolders();
             Files = LoadFiles();
-            InitWatcher();
         }
 
-        private void InitWatcher() {
-            if (!Exists) return;
+        public void InitWatcher() {
+            if (!Exists || Watcher != null) return;
             Watcher = new FileSystemWatcher {
                 Path = FullPath,
                 NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastAccess
@@ -83,8 +82,13 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         private List<FolderNode> LoadSubFolders() {
             if (!Exists) return new List<FolderNode>();
-            var folders = Directory.GetDirectories(FullPath, "*", SearchOption.TopDirectoryOnly);
-            return folders.Select(folder => new FolderNode(folder)).ToList();
+            try {
+                var folders = Directory.GetDirectories(FullPath, "*", SearchOption.TopDirectoryOnly);
+                return folders.Select(folder => new FolderNode(folder)).ToList();
+            } catch (UnauthorizedAccessException e) {
+                Console.WriteLine("You do not have permission to use this folder. \nPlease choose another one.\n" + e.Message);
+                return new List<FolderNode>();
+            }
         }
 
         public void Refresh() {
@@ -116,6 +120,8 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public void StopListening() {
             Watcher.EnableRaisingEvents = false;
+            Watcher.Dispose();
+            Watcher = null;
         }
 
         public override bool Equals(object obj) {

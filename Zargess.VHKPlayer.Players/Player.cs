@@ -39,10 +39,11 @@ namespace Zargess.VHKPlayer.Players {
             StatVideo = new FileNode(staFiles.Video.Path);
             StatMusic = new FileNode(staFiles.Music.Path);
             Stats = new Statistics();
-            InitWatcher();
+            if(!Trainer) InitWatcher();
         }
 
-        private void InitWatcher() {
+        public void InitWatcher() {
+            if (Watcher != null) return;
             while (true) {
                 if (SettingsManager.GetSetting("statfolder") as string != "") {
                     var folder = new FolderNode(SettingsManager.GetSetting("statfolder") as string);
@@ -93,6 +94,13 @@ namespace Zargess.VHKPlayer.Players {
                     ValueChanged(this, new EventArgs());
                 }
             }
+        }
+
+        public void StopListener() {
+            if (Watcher == null) return;
+            Watcher.EnableRaisingEvents = false;
+            Watcher.Dispose();
+            Watcher = null;
         }
 
         private int ConvertToInt(string text) {
