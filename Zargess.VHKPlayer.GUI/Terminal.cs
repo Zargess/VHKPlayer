@@ -34,7 +34,7 @@ namespace Zargess.VHKPlayer.GUI {
             IsPromptInsertedAtLaunch = true;
             IsSystemBeepEnabled = true;
             LastPomptIndex = -1;
-            Prompt = "> ";
+            Prompt = "\n> ";
             IsInputEnabled = false;
 
             Loaded += (s, e) => {
