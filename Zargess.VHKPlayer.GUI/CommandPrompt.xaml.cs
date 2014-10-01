@@ -20,11 +20,12 @@ namespace Zargess.VHKPlayer.GUI {
         // TODO : Change gui to a more linux mint terminal look, because it is awesome! image link: http://www.ozone3d.net/blogs/lab/20120612/linux-mint-13-marco-et-les-terminaux-transparents/
         private MainViewModel MainVM { get; set; }
         private WebServer Server { get; set; }
+        private Terminal Term { get; set; }
 
         public CommandPrompt(MainViewModel mv) {
             MainVM = mv;
             InitializeComponent();
-            Term.Prompt = "\n> ";
+            Term = Cons.Term;
 
             Loaded += (s, e) => {
                 Term.AbortRequested += (ss, ee) => MessageBox.Show("Abort !");

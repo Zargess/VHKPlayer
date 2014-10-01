@@ -20,7 +20,7 @@ namespace Zargess.VHKPlayer.GUI {
             try {
                 _term.AppendText(value);
             } catch (InvalidOperationException ie) {
-                _disp.Invoke(new Action(() => _term.AppendText(value)));
+                _disp.Invoke(() => _term.AppendText(value));
             }
         }
 
@@ -28,7 +28,7 @@ namespace Zargess.VHKPlayer.GUI {
             try {
                 _term.AppendText(value);
             } catch (InvalidOperationException ie) {
-                _disp.Invoke(new Action(() => _term.AppendText(value)));
+                _disp.Invoke(() => _term.AppendText(value));
             }
         }
 
@@ -36,7 +36,7 @@ namespace Zargess.VHKPlayer.GUI {
             try {
                 _term.AppendText(value);
             } catch (InvalidOperationException ie) {
-                _disp.Invoke(new Action(() => _term.AppendText(value)));
+                _disp.Invoke(() => _term.AppendText(value));
             }
         }
 

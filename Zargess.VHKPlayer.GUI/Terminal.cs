@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Media;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.IO;
@@ -20,6 +21,8 @@ namespace Zargess.VHKPlayer.GUI {
         public bool IsInputEnabled { get; private set; }
 
         private int indexInLog = 0;
+
+        private Border Caret { get; set; }
 
         public Terminal() {
             IsUndoEnabled = false;
@@ -40,6 +43,27 @@ namespace Zargess.VHKPlayer.GUI {
             };
 
             TextChanged += (s, e) => ScrollToEnd();
+        }
+
+        public void SetNewCaret(Border c) {
+            Caret = c;
+
+            SelectionChanged += (sender, e) => MoveCustomCaret();
+            LostFocus += (sender, e) => Caret.Visibility = Visibility.Collapsed;
+            GotFocus += (sender, e) => Caret.Visibility = Visibility.Visible;
+            SizeChanged += (sender, e) => MoveCustomCaret();
+        }
+
+        private void MoveCustomCaret() {
+            var caretLocation = GetRectFromCharacterIndex(CaretIndex).Location;
+
+            if (!double.IsInfinity(caretLocation.X)) {
+                Canvas.SetLeft(Caret, caretLocation.X);
+            }
+
+            if (!double.IsInfinity(caretLocation.Y)) {
+                Canvas.SetTop(Caret, caretLocation.Y);
+            }
         }
 
         // --------------------------------------------------------------------
