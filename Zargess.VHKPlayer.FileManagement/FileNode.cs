@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class FileNode : Node {
+        // TODO : Get duration of file if available
         private string _fullpath;
         public string Extension { get; private set; }
         public string NameWithNoExtension { get; private set; }
