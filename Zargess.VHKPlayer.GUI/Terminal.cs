@@ -49,7 +49,7 @@ namespace Zargess.VHKPlayer.GUI {
             Caret = c;
 
             SelectionChanged += (sender, e) => MoveCustomCaret();
-            LostFocus += (sender, e) => Caret.Visibility = Visibility.Collapsed;
+            LostFocus += (sender, e) => Caret.Visibility = Visibility.Hidden;
             GotFocus += (sender, e) => Caret.Visibility = Visibility.Visible;
             SizeChanged += (sender, e) => MoveCustomCaret();
         }
