@@ -61,6 +61,7 @@ namespace Zargess.VHKPlayer.GUI {
         }
 
         // TODO : Rethink the concept of reload. Should a manual reload be possible?
+        // TODO : Make a function that checks if a root folder can be used in the program to spare load time
         private void CheckCommand(Command command) {
             if (command.Name == "load" || command.Name == "reload-all") {
                 MainVM.LoadStructure(SettingsManager.GetSetting("root") as string);
