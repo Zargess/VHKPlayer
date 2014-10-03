@@ -35,8 +35,10 @@ namespace Zargess.VHKPlayer.GUI {
                 Term.RegisteredCommands.Add("load");
                 Term.RegisteredCommands.Add("reload-all");
                 Term.RegisteredCommands.Add("server");
-                Term.RegisteredCommands.Add("exit");
                 Term.RegisteredCommands.Add("get-root");
+                Term.RegisteredCommands.Add("validate");
+                Term.RegisteredCommands.Add("help");
+                Term.RegisteredCommands.Add("exit");
 
                 Term.Text += "Welcome !\n";
                 Term.Text += "Hit tab to complete your current command.\n";
@@ -63,6 +65,7 @@ namespace Zargess.VHKPlayer.GUI {
         // TODO : Rethink the concept of reload. Should a manual reload be possible?
         // TODO : Make a function that checks if a root folder can be used in the program to spare load time
         private void CheckCommand(Command command) {
+            var watch = Stopwatch.StartNew();
             if (command.Name == "load" || command.Name == "reload-all") {
                 MainVM.LoadStructure(SettingsManager.GetSetting("root") as string);
                 MainVM.Video.ToList().ForEach(x => Console.WriteLine(x.FullPath));
@@ -86,7 +89,14 @@ namespace Zargess.VHKPlayer.GUI {
             } else if (command.Name == "help") {
                 Console.WriteLine("Available commands are:");
                 Term.RegisteredCommands.ForEach(cmd => Console.WriteLine("  - " + cmd + "\n"));
+            } else if (command.Name == "validate") {
+                var folder = new FolderNode(SettingsManager.GetSetting("root") as string);
+                Console.WriteLine("Folder valid: {0}", folder.ValidRootFolder());
             }
+            // the code that you want to measure comes here
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+            Console.WriteLine("Time used: {0}", elapsedMs);
         }
 
         public void RunCommand(string command) {

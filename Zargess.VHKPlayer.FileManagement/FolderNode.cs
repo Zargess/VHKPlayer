@@ -29,7 +29,6 @@ namespace Zargess.VHKPlayer.FileManagement {
         public FolderNode(string path) {
             FullPath = path;
             Exists = Directory.Exists(FullPath);
-            SubFolders = LoadSubFolders();
             Files = LoadFiles();
         }
 
@@ -93,8 +92,7 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public void Refresh() {
             Exists = Directory.Exists(FullPath);
-            Files = LoadFiles();
-            SubFolders = LoadSubFolders();
+            Files = LoadFiles();;
         }
 
         // Remove since it no longer makes sense
@@ -107,7 +105,8 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public bool ContainsFolder(string name) {
-            return SubFolders.Any(folder => folder.Name == name);
+            var folders = Directory.GetDirectories(FullPath, "*", SearchOption.TopDirectoryOnly);
+            return folders.Select(PathHandler.SplitPath).Select(temp => temp[temp.Length - 1]).Any(n => name == n);
         }
 
         public bool ContainsFile(string name) {
@@ -122,6 +121,27 @@ namespace Zargess.VHKPlayer.FileManagement {
             Watcher.EnableRaisingEvents = false;
             Watcher.Dispose();
             Watcher = null;
+        }
+
+        public bool ValidRootFolder() {
+            var requiredFolders = new [] {
+                "musik",
+                "Rek",
+                "Spiller",
+                "SpillerVideo",
+                "SpillerVideoStat",
+                "10sek",
+                "ScorRek",
+                "FoerKamp"
+            };
+
+            foreach (var s in requiredFolders) {
+                if (!ContainsFolder(s)) {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public override bool Equals(object obj) {
