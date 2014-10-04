@@ -72,7 +72,12 @@ namespace Zargess.VHKPlayer.GUI {
                 MainVM.Audio.ToList().ForEach(x => Console.WriteLine(x.FullPath));
                 MainVM.People.Where(x => x.Trainer).ToList().ForEach(x => Console.WriteLine(x.Name));
             } else if (command.Name == "set-root" && command.Args.Length == 1) {
-                SettingsManager.SetSetting("root", command.Args[0]);
+                var root = new FolderNode(command.Args[0]);
+                if (root.ValidRootFolder()) {
+                    SettingsManager.SetSetting("root", command.Args[0]);
+                } else {
+                    Console.WriteLine("Cannot use {0} as a root folder.\nPlease choose another.", command.Args[0]);
+                }
             } else if (command.Name == "set-stat-fold" && command.Args.Length == 1) {
                 SettingsManager.SetSetting("statfolder", command.Args[0]);
             } else if (command.Name == "server") {
@@ -93,7 +98,6 @@ namespace Zargess.VHKPlayer.GUI {
                 var folder = new FolderNode(SettingsManager.GetSetting("root") as string);
                 Console.WriteLine("Folder valid: {0}", folder.ValidRootFolder());
             }
-            // the code that you want to measure comes here
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
             Console.WriteLine("Time used: {0}", elapsedMs);

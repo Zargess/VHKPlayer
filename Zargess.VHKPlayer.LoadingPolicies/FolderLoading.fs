@@ -3,6 +3,7 @@
 module FolderLoading =
     open System.IO
     open Utiliti
+    open System.Collections.Generic;
 
     let folderName (path:string) =
         lastElement (List.ofSeq (path.Split[|'\\'|]))
@@ -26,6 +27,16 @@ module FolderLoading =
             | false ->
                 rest |> generalfolderfunc func limits
 
-    let findFolders root = Array.toList (Directory.GetDirectories root)
+    let rec enumerableToList (e : IEnumerator<_> ) list  =
+        match e.MoveNext() with
+        | false -> list
+        | true ->
+            e.Current :: list
+            |> enumerableToList e
+
+    let findFolders root = 
+        let e = (Directory.EnumerateDirectories root).GetEnumerator()
+        enumerableToList e []
+
     let getAllFolders target = generalfolderfunc findFolders [] [target]
     let getSomeFolders target (limits : list<string>) = generalfolderfunc findFolders limits [target]

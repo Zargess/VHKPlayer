@@ -59,5 +59,17 @@ namespace Zargess.VHKPlayer.Settings {
                 this["limits"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("musik,rek,spiller,spillervideo,spillervideostat,10sek,scorrek,foerkamp")]
+        public string requiredFolders {
+            get {
+                return ((string)(this["requiredFolders"]));
+            }
+            set {
+                this["requiredFolders"] = value;
+            }
+        }
     }
 }

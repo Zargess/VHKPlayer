@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zargess.VHKPlayer.Settings;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class FolderNode : Node {
@@ -69,7 +70,7 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         private ObservableCollection<FileNode> LoadFiles() {
             if (!Exists) return new ObservableCollection<FileNode>();
-            var temp = Directory.GetFiles(FullPath)
+            var temp = Directory.EnumerateFiles(FullPath)
                     .Select(x => new FileNode(x))
                     .Where(x => x.Type != FileType.Unsupported);
             var res = new ObservableCollection<FileNode>();
@@ -105,8 +106,10 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public bool ContainsFolder(string name) {
-            var folders = Directory.GetDirectories(FullPath, "*", SearchOption.TopDirectoryOnly);
-            return folders.Select(PathHandler.SplitPath).Select(temp => temp[temp.Length - 1]).Any(n => name == n);
+            var folders = Directory.EnumerateDirectories(FullPath, "*", SearchOption.TopDirectoryOnly);
+            name = name.ToLower();
+            var ls = folders.Select(folder => folder.ToLower()).ToList();
+            return ls.Select(PathHandler.SplitPath).Select(temp => temp[temp.Length - 1]).Any(n => name == n);
         }
 
         public bool ContainsFile(string name) {
@@ -124,18 +127,13 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public bool ValidRootFolder() {
-            var requiredFolders = new [] {
-                "musik",
-                "Rek",
-                "Spiller",
-                "SpillerVideo",
-                "SpillerVideoStat",
-                "10sek",
-                "ScorRek",
-                "FoerKamp"
-            };
-
-            foreach (var s in requiredFolders) {
+            var requiredFolders = SettingsManager.GetSetting("requiredFolders") as string;
+            if (requiredFolders == null) {
+                Console.WriteLine("No such setting");
+                return false;
+            }
+            var e = requiredFolders.Split(',');
+            foreach (var s in e) {
                 if (!ContainsFolder(s)) {
                     return false;
                 }

@@ -28,11 +28,15 @@ namespace Zargess.VHKPlayer.GUI {
         }
 
         public void LoadStructure(string path) {
-            ClearData();
             var root = new FolderNode(path);
-            LoadFolders(root);
-            LoadPlayLists(root);
-            LoadPlayers(root);
+            if (root.ValidRootFolder()) {
+                ClearData();
+                LoadFolders(root);
+                LoadPlayLists(root);
+                LoadPlayers(root);
+            } else {
+                Console.WriteLine("Could not load: {0}\nPlease choose another folder.", path);
+            }
         }
 
         // TODO : Make this multithreaded
@@ -65,7 +69,7 @@ namespace Zargess.VHKPlayer.GUI {
         public void LoadPlayLists(FolderNode root) {
             try {
                 PlayLists.Clear();
-                var reks = PathHandler.CombinePaths(root.FullPath, "Rek");
+                var reks = PathHandler.CombinePaths(root.FullPath, "rek");
                 if (Directory.Exists(reks)) {
                     PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekFørKamp", 1)));
                     PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej1", 2)));

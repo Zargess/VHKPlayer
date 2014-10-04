@@ -11,5 +11,8 @@
     <Setting Name="limits" Type="System.String" Scope="User">
       <Value Profile="(Default)">temp,Arkiv - Sct Mathias Centret - Benyttes igen efter, originaler,normalized,arkiv,konverteret,spiller,spillervideo,spillervideostat</Value>
     </Setting>
+    <Setting Name="requiredFolders" Type="System.String" Scope="User">
+      <Value Profile="(Default)">musik,rek,spiller,spillervideo,spillervideostat,10sek,scorrek,foerkamp</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
