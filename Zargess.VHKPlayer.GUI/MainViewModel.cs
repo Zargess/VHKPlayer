@@ -27,19 +27,19 @@ namespace Zargess.VHKPlayer.GUI {
             PlayLists = new ObservableCollection<PlayList>();
         }
 
+        // TODO : Make this multithreaded
         public void LoadStructure(string path) {
             var root = new FolderNode(path);
             if (root.ValidRootFolder()) {
-                ClearData();
-                LoadFolders(root);
-                LoadPlayLists(root);
-                LoadPlayers(root);
+                Utils.TimeMethod(ClearData);
+                Utils.TimeMethod(LoadFolders, root);
+                Utils.TimeMethod(LoadPlayLists, root);
+                Utils.TimeMethod(LoadPlayers, root);
             } else {
                 Console.WriteLine("Could not load: {0}\nPlease choose another folder.", path);
             }
         }
 
-        // TODO : Make this multithreaded
         public void LoadFolders(FolderNode root) {
             try {
                 var limits = ((string)SettingsManager.GetSetting("limits")).Split(',').ToList();
@@ -110,7 +110,7 @@ namespace Zargess.VHKPlayer.GUI {
                     }
                 }
 
-                Players.ToList().ForEach(Console.WriteLine);
+                //Players.ToList().ForEach(Console.WriteLine);
             } catch (UnauthorizedAccessException e) {
                 Console.WriteLine("You do not have permission to use this folder. \nPlease choose another one.\n" + e.Message);
             } catch (NullReferenceException e) {

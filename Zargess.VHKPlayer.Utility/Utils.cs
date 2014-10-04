@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,22 @@ namespace Zargess.VHKPlayer.Utility {
                 return FSharpList<T>.Empty;
             }
             return FSharpList<T>.Cons(input[index], CreateFSharpList(input, index + 1));
+        }
+
+        public static void TimeMethod<T>(Action<T> action, T input) {
+            var watch = Stopwatch.StartNew();
+            action(input);
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+            Console.WriteLine("Time used: {0}", elapsedMs);
+        }
+
+        public static void TimeMethod(Action action) {
+            var watch = Stopwatch.StartNew();
+            action();
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+            Console.WriteLine("Time used: {0}", elapsedMs);
         }
     }
 }

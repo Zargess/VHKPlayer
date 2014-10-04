@@ -68,9 +68,9 @@ namespace Zargess.VHKPlayer.GUI {
             var watch = Stopwatch.StartNew();
             if (command.Name == "load" || command.Name == "reload-all") {
                 MainVM.LoadStructure(SettingsManager.GetSetting("root") as string);
-                MainVM.Video.ToList().ForEach(x => Console.WriteLine(x.FullPath));
-                MainVM.Audio.ToList().ForEach(x => Console.WriteLine(x.FullPath));
-                MainVM.People.Where(x => x.Trainer).ToList().ForEach(x => Console.WriteLine(x.Name));
+                //MainVM.Video.ToList().ForEach(x => Console.WriteLine(x.FullPath));
+                //MainVM.Audio.ToList().ForEach(x => Console.WriteLine(x.FullPath));
+                //MainVM.People.Where(x => x.Trainer).ToList().ForEach(x => Console.WriteLine(x.Name));
             } else if (command.Name == "set-root" && command.Args.Length == 1) {
                 var root = new FolderNode(command.Args[0]);
                 if (root.ValidRootFolder()) {
