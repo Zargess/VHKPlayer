@@ -67,7 +67,7 @@ namespace Zargess.VHKPlayer.GUI {
         private void CheckCommand(Command command) {
             var watch = Stopwatch.StartNew();
             if (command.Name == "load" || command.Name == "reload-all") {
-                MainVM.LoadStructure(SettingsManager.GetSetting("root") as string);
+                MainVM.LoadStructureThreaded(SettingsManager.GetSetting("root") as string);
                 //MainVM.Video.ToList().ForEach(x => Console.WriteLine(x.FullPath));
                 //MainVM.Audio.ToList().ForEach(x => Console.WriteLine(x.FullPath));
                 //MainVM.People.Where(x => x.Trainer).ToList().ForEach(x => Console.WriteLine(x.Name));

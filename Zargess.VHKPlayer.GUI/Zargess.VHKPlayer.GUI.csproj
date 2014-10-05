@@ -116,6 +116,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Zargess.VHKPlayer.Collections\Zargess.VHKPlayer.Collections.csproj">
+      <Project>{8809ec94-bbc6-4f39-ba93-ff32509675ad}</Project>
+      <Name>Zargess.VHKPlayer.Collections</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zargess.VHKPlayer.FileManagement\Zargess.VHKPlayer.FileManagement.csproj">
       <Project>{1862bf4f-c9ae-489c-ad9e-d3dc6fc82b10}</Project>
       <Name>Zargess.VHKPlayer.FileManagement</Name>
