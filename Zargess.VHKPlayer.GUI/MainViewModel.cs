@@ -44,7 +44,7 @@ namespace Zargess.VHKPlayer.GUI {
             }
         }
         public bool PeopleShowable {
-            get { return _playlistshowable; }
+            get { return _peopleshowable; }
             set {
                 _peopleshowable = value;
                 if (PropertyChanged != null) {
