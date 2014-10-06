@@ -129,6 +129,7 @@ namespace Zargess.VHKPlayer.GUI {
         }
 
         public void LoadPlayLists(FolderNode root) {
+            var sortedLists = (SettingsManager.GetSetting("sortedPlayLists") as string).Split(',');
             var reks = PathHandler.CombinePaths(root.FullPath, "rek");
             if (Directory.Exists(reks)) {
                 PlayListShowable = false;

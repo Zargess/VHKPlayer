@@ -71,5 +71,29 @@ namespace Zargess.VHKPlayer.Settings {
                 this["requiredFolders"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("rek,{RekFørKamp,1},{RekHalvej1,2},{RekHalvej2,3},{RekEfterKamp,4}")]
+        public string sortedPlayLists {
+            get {
+                return ((string)(this["sortedPlayLists"]));
+            }
+            set {
+                this["sortedPlayLists"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{10sek,10sek},{ScorRek,ScorRek},{FørKamp,FoerKamp}")]
+        public string specialPlayLists {
+            get {
+                return ((string)(this["specialPlayLists"]));
+            }
+            set {
+                this["specialPlayLists"] = value;
+            }
+        }
     }
 }
