@@ -141,7 +141,7 @@ namespace Zargess.VHKPlayer.GUI {
                         var elements = temp[i].Split(';');
                         var name = elements[0].Replace("{", "");
                         var index = Utils.ConvertToInt(elements[1].Replace("}", ""));
-                        PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, name, index)));
+                        PlayLists.Add(new SortedPlayList(PlaylistLoading.sortedPlaylist(reks, name, index), index, new FolderNode(reks)));
                     }
                 }
             }
@@ -152,7 +152,7 @@ namespace Zargess.VHKPlayer.GUI {
                     var elements = s.Split(';');
                     var path = PathHandler.CombinePaths(root.FullPath,elements[1].Replace("}", ""));
                     if (Directory.Exists(path)) {
-                        PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(path)));
+                        PlayLists.Add(new SpecialPlayList(PlaylistLoading.playlistFromFolderContent(path), new FolderNode(path)));
                     }
                 }
             }

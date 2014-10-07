@@ -29,7 +29,7 @@ namespace Zargess.VHKPlayer.GUI {
 
             Loaded += (s, e) => {
                 Term.AbortRequested += (ss, ee) => MessageBox.Show("Abort !");
-
+                // TODO : Make some printing functions to show the application's current state
                 Term.RegisteredCommands.Add("set-root");
                 Term.RegisteredCommands.Add("set-stat-fold");
                 Term.RegisteredCommands.Add("load");

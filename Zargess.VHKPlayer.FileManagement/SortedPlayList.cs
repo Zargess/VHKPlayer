@@ -11,19 +11,27 @@ namespace Zargess.VHKPlayer.FileManagement {
         public int Index { get; private set; }
 
 
-        public SortedPlayList(string name, int index) : base(name) {
+        public SortedPlayList(string name, int index, FolderNode folder) : base(name, folder) {
             Index = index;
         }
 
-        public SortedPlayList(string name, List<FileNode> content, int index) : base(name, content){
+        public SortedPlayList(string name, List<FileNode> content, int index, FolderNode folder) : base(name, folder, content) {
             Index = index;
         }
 
-        public SortedPlayList(PlaylistLoading.Playlist list, int index) : base(list) {
+        public SortedPlayList(PlaylistLoading.Playlist list, int index, FolderNode folder) : base(list, folder) {
             Index = index;
         }
 
-        public override void InitWatcher() {
+        protected override void OnCreated(object sender, FileSystemEventArgs e) {
+            throw new NotImplementedException();
+        }
+
+        protected override void OnRenamed(object sender, RenamedEventArgs e) {
+            throw new NotImplementedException();
+        }
+
+        protected override void OnDeleted(object sender, FileSystemEventArgs e) {
             throw new NotImplementedException();
         }
     }

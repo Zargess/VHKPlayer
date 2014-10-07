@@ -28,5 +28,15 @@ namespace Zargess.VHKPlayer.FileManagement {
             res = res.Replace(toRemove.FullPath, "");
             return res;
         }
+
+        public static bool IsFile(string path) {
+            try {
+                var file = new FileNode(path);
+                return file.Exists;
+            } catch (Exception e) {
+                Console.WriteLine(e.StackTrace);
+                return false;
+            }
+        }
     }
 }

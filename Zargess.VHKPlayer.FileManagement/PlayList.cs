@@ -13,18 +13,20 @@ namespace Zargess.VHKPlayer.FileManagement {
         public List<FileNode> Content { get; private set; }
         public string Name { get; private set; }
         public FileSystemWatcher Watcher { get; protected set; }
+        public FolderNode Folder { get; protected set; }
 
-        protected PlayList(string name) {
+        protected PlayList(string name, FolderNode folder) {
             Name = name;
             Content = new List<FileNode>();
+            Folder = folder;
             InitWatcher();
         }
 
-        protected PlayList(string name, List<FileNode> content) : this(name) {
+        protected PlayList(string name, FolderNode folder, List<FileNode> content) : this(name, folder) {
             AddRange(content);
         }
 
-        protected PlayList(PlaylistLoading.Playlist list) : this(list.Name) {
+        protected PlayList(PlaylistLoading.Playlist list, FolderNode folder) : this(list.Name, folder) {
             list.Content.ToList().ForEach(x => Add(new FileNode(x.Path)));
         }
 
@@ -40,7 +42,19 @@ namespace Zargess.VHKPlayer.FileManagement {
             return Content[index];
         }
 
-        public abstract void InitWatcher();
+        public void InitWatcher() {
+            if (!Folder.Exists || Watcher != null) return;
+            Watcher = new FileSystemWatcher {
+                Path = Folder.FullPath,
+                NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastAccess
+                    | NotifyFilters.LastWrite,
+                Filter = "*.*"
+            };
+            Watcher.Created += OnCreated;
+            Watcher.Deleted += OnDeleted;
+            Watcher.Renamed += OnRenamed;
+            Watcher.EnableRaisingEvents = true;
+        }
 
         public void StopListening() {
             if (Watcher == null) return;
@@ -48,5 +62,9 @@ namespace Zargess.VHKPlayer.FileManagement {
             Watcher.Dispose();
             Watcher = null;
         }
+
+        protected abstract void OnCreated(object sender, FileSystemEventArgs e);
+        protected abstract void OnRenamed(object sender, RenamedEventArgs e);
+        protected abstract void OnDeleted(object sender, FileSystemEventArgs e);
     }
 }
