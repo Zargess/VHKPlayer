@@ -9,6 +9,7 @@ using System.Xml;
 using Zargess.VHKPlayer.FileManagement;
 using Zargess.VHKPlayer.LoadingPolicies;
 using Zargess.VHKPlayer.Settings;
+using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer.Players {
     public class Player {
@@ -76,17 +77,17 @@ namespace Zargess.VHKPlayer.Players {
                 while (reader.Read()) {
                     switch (reader.Name) {
                         case "shot":
-                            Stats.Goals = ConvertToInt(reader.GetAttribute("goaltot"));
-                            Stats.Shots = ConvertToInt(reader.GetAttribute("shottot"));
+                            Stats.Goals = Utils.ConvertToInt(reader.GetAttribute("goaltot"));
+                            Stats.Shots = Utils.ConvertToInt(reader.GetAttribute("shottot"));
                             break;
                         case "penalty":
-                            Stats.YellowCard = ConvertToInt(reader.GetAttribute("yellowcard"));
-                            Stats.Suspension = ConvertToInt(reader.GetAttribute("suspension"));
-                            Stats.RedCard = ConvertToInt(reader.GetAttribute("redcard"));
+                            Stats.YellowCard = Utils.ConvertToInt(reader.GetAttribute("yellowcard"));
+                            Stats.Suspension = Utils.ConvertToInt(reader.GetAttribute("suspension"));
+                            Stats.RedCard = Utils.ConvertToInt(reader.GetAttribute("redcard"));
                             break;
                         case "mvshot":
-                            Stats.Saves = ConvertToInt(reader.GetAttribute("savetot"));
-                            Stats.SaveAttempts = ConvertToInt(reader.GetAttribute("shottot"));
+                            Stats.Saves = Utils.ConvertToInt(reader.GetAttribute("savetot"));
+                            Stats.SaveAttempts = Utils.ConvertToInt(reader.GetAttribute("shottot"));
                             break;
                     }
                 }
@@ -101,12 +102,6 @@ namespace Zargess.VHKPlayer.Players {
             Watcher.EnableRaisingEvents = false;
             Watcher.Dispose();
             Watcher = null;
-        }
-
-        private int ConvertToInt(string text) {
-            int s;
-            int.TryParse(text, out s);
-            return s;
         }
 
         public override string ToString() {

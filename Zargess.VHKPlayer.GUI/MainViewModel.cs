@@ -129,28 +129,35 @@ namespace Zargess.VHKPlayer.GUI {
         }
 
         public void LoadPlayLists(FolderNode root) {
-            var sortedLists = (SettingsManager.GetSetting("sortedPlayLists") as string).Split(',');
-            var reks = PathHandler.CombinePaths(root.FullPath, "rek");
-            if (Directory.Exists(reks)) {
-                PlayListShowable = false;
-                PlayLists.Clear();
-                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekFørKamp", 1)));
-                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej1", 2)));
-                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekHalvej2", 3)));
-                PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, "RekEfterKamp", 4)));
-                PlayLists.Add(
-                    new SpecialList(
-                        PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "10sek"))));
-                // TODO : Consider making a special playlist type for ScorRek
-                PlayLists.Add(
-                    new SpecialList(
-                        PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "ScorRek"))));
-                PlayLists.Add(
-                    new SpecialList(
-                        PlaylistLoading.playlistFromFolderContent(PathHandler.CombinePaths(root.FullPath, "FoerKamp"))));
-            } else {
-                Console.WriteLine("The folder {0} does not exists. Please select a proper root folder", reks);
+            PlayListShowable = false;
+            PlayLists.Clear();
+            var sortedTemp = SettingsManager.GetSetting("sortedPlayLists") as string;
+            var specialTemp = SettingsManager.GetSetting("specialPlayLists") as string;
+            if (!String.IsNullOrEmpty(sortedTemp)) {
+                var temp = sortedTemp.Split(',');
+                var reks = PathHandler.CombinePaths(root.FullPath, temp[0]);
+                if (Directory.Exists(reks)) {
+                    for (var i = 1; i < temp.Length; i++) {
+                        var elements = temp[i].Split(';');
+                        var name = elements[0].Replace("{", "");
+                        var index = Utils.ConvertToInt(elements[1].Replace("}", ""));
+                        PlayLists.Add(new PlayList(PlaylistLoading.sortedPlaylist(reks, name, index)));
+                    }
+                }
             }
+
+            if (!String.IsNullOrEmpty(specialTemp)) {
+                //// TODO : Consider making a special playlist type for ScorRek
+                var temp = specialTemp.Split(',');
+                foreach (var s in temp) {
+                    var elements = s.Split(';');
+                    var path = PathHandler.CombinePaths(root.FullPath,elements[1].Replace("}", ""));
+                    if (Directory.Exists(path)) {
+                        PlayLists.Add(new SpecialList(PlaylistLoading.playlistFromFolderContent(path)));
+                    }
+                }
+            }
+            PlayLists.ToList().ForEach(x => Console.WriteLine(x.Name));
             PlayListShowable = true;
             Console.WriteLine("PlayList done loading");
         }
@@ -169,8 +176,6 @@ namespace Zargess.VHKPlayer.GUI {
                     Players.Add(p);
                 }
             }
-
-            //Players.ToList().ForEach(Console.WriteLine);
             PeopleShowable = true;
             Console.WriteLine("Players done loading");
         }

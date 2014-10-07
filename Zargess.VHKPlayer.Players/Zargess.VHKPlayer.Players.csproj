@@ -58,6 +58,10 @@
       <Project>{31e49ade-234f-4f94-81a6-6a5be080dc01}</Project>
       <Name>Zargess.VHKPlayer.Settings</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.Utility\Zargess.VHKPlayer.Utility.csproj">
+      <Project>{39e2f252-9745-4357-a96b-7d74ffa46462}</Project>
+      <Name>Zargess.VHKPlayer.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

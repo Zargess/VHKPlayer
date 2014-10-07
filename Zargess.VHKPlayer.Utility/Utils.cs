@@ -34,5 +34,11 @@ namespace Zargess.VHKPlayer.Utility {
             var elapsedMs = watch.ElapsedMilliseconds;
             Console.WriteLine("Time used: {0}", elapsedMs);
         }
+
+        public static int ConvertToInt(string text) {
+            int s;
+            int.TryParse(text, out s);
+            return s;
+        }
     }
 }
