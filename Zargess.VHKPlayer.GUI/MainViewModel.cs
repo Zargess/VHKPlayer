@@ -147,7 +147,6 @@ namespace Zargess.VHKPlayer.GUI {
             }
 
             if (!String.IsNullOrEmpty(specialTemp)) {
-                //// TODO : Consider making a special playlist type for ScorRek
                 var temp = specialTemp.Split(',');
                 foreach (var s in temp) {
                     var elements = s.Split(';');
@@ -157,7 +156,6 @@ namespace Zargess.VHKPlayer.GUI {
                     }
                 }
             }
-            PlayLists.ToList().ForEach(x => Console.WriteLine(x.Name));
             PlayListShowable = true;
             Console.WriteLine("PlayList done loading");
         }

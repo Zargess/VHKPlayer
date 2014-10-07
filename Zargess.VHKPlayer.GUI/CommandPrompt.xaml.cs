@@ -39,6 +39,7 @@ namespace Zargess.VHKPlayer.GUI {
                 Term.RegisteredCommands.Add("validate");
                 Term.RegisteredCommands.Add("help");
                 Term.RegisteredCommands.Add("exit");
+                Term.RegisteredCommands.Add("terminate");
 
                 Term.Text += "Welcome !\n";
                 Term.Text += "Hit tab to complete your current command.\n";
@@ -63,22 +64,19 @@ namespace Zargess.VHKPlayer.GUI {
         }
 
         // TODO : Rethink the concept of reload. Should a manual reload be possible?
-        // TODO : Make a function that checks if a root folder can be used in the program to spare load time
         private void CheckCommand(Command command) {
             var watch = Stopwatch.StartNew();
+            var argLength = command.Args.Length;
             if (command.Name == "load" || command.Name == "reload-all") {
                 MainVM.LoadStructureThreaded(SettingsManager.GetSetting("root") as string);
-                //MainVM.Video.ToList().ForEach(x => Console.WriteLine(x.FullPath));
-                //MainVM.Audio.ToList().ForEach(x => Console.WriteLine(x.FullPath));
-                //MainVM.People.Where(x => x.Trainer).ToList().ForEach(x => Console.WriteLine(x.Name));
-            } else if (command.Name == "set-root" && command.Args.Length == 1) {
+            } else if (command.Name == "set-root" && argLength == 1) {
                 var root = new FolderNode(command.Args[0]);
                 if (root.ValidRootFolder()) {
                     SettingsManager.SetSetting("root", command.Args[0]);
                 } else {
                     Console.WriteLine("Cannot use {0} as a root folder.\nPlease choose another.", command.Args[0]);
                 }
-            } else if (command.Name == "set-stat-fold" && command.Args.Length == 1) {
+            } else if (command.Name == "set-stat-fold" && argLength == 1) {
                 SettingsManager.SetSetting("statfolder", command.Args[0]);
             } else if (command.Name == "server") {
                 var list = new List<string>();
@@ -87,7 +85,6 @@ namespace Zargess.VHKPlayer.GUI {
                 }
                 Server.CheckCommands(command.Args[0], list.ToArray());
             } else if (command.Name == "exit") {
-                Server.Shutdown();
                 Close();
             } else if (command.Name == "get-root") {
                 Console.WriteLine(SettingsManager.GetSetting("root"));
@@ -97,7 +94,10 @@ namespace Zargess.VHKPlayer.GUI {
             } else if (command.Name == "validate") {
                 var folder = new FolderNode(SettingsManager.GetSetting("root") as string);
                 Console.WriteLine("Folder valid: {0}", folder.ValidRootFolder());
+            } else if (command.Name == "terminate") {
+                Application.Current.Shutdown();
             }
+
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
             Console.WriteLine("Time used: {0}", elapsedMs);

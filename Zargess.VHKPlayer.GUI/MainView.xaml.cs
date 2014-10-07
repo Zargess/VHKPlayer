@@ -24,7 +24,8 @@ namespace Zargess.VHKPlayer.GUI {
         public MainView() {
             InitializeComponent();
             Vm = new MainViewModel();
-            Cmd = new CommandPrompt(Vm) { Visibility = Visibility.Hidden };
+            Visibility = Visibility.Hidden;
+            Cmd = new CommandPrompt(Vm) { Visibility = Visibility.Visible };
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e) {
