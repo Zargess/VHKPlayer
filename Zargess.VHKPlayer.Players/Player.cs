@@ -28,7 +28,7 @@ namespace Zargess.VHKPlayer.Players {
         public Statistics Stats { get; set; }
         public FileNode StatFile { get; private set; }
         private FileSystemWatcher Watcher { get; set; }
-
+        // TODO : Consider making watchers for all of the filenodes here so that we can handle if the files are missing. Or if that makes no sense then make Exisits in filenode a method the playhandler can call.
         public Player(PlayerLoading.Player player) {
             Name = player.Name;
             Number = player.Number;
