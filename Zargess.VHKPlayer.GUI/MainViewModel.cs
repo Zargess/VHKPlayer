@@ -36,7 +36,7 @@ namespace Zargess.VHKPlayer.GUI {
         }
         public bool PlayListShowable {
             get { return _playlistshowable; }
-            set {
+            private set {
                 _playlistshowable = value;
                 if (PropertyChanged != null) {
                     PropertyChanged(this, new PropertyChangedEventArgs("_playlistshowable"));
@@ -45,7 +45,7 @@ namespace Zargess.VHKPlayer.GUI {
         }
         public bool PeopleShowable {
             get { return _peopleshowable; }
-            set {
+            private set {
                 _peopleshowable = value;
                 if (PropertyChanged != null) {
                     PropertyChanged(this, new PropertyChangedEventArgs("_peopleshowable"));
@@ -201,6 +201,9 @@ namespace Zargess.VHKPlayer.GUI {
         }
 
         private void ClearPlayLists(ICollection<PlayList> list) {
+            foreach (var playList in list) {
+                playList.StopListening();
+            }
             list.Clear();
         }
     }

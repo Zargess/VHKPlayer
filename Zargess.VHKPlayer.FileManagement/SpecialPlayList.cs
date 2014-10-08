@@ -8,7 +8,6 @@ using Zargess.VHKPlayer.LoadingPolicies;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class SpecialPlayList : PlayList {
-        // TODO : Consider implementing a filesystemwatcher to look for changes
         public int Counter { get; private set; }
 
         public SpecialPlayList(string name, FolderNode folder) : base(name, folder) {
@@ -24,8 +23,9 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public FileNode GetNext() {
+            if (Counter >= Content.Count) Counter = 0;
             var file = Content[Counter];
-            Counter = Counter == Content.Count ? 0 : Counter++;
+            Counter = Counter >= Content.Count ? 0 : Counter++;
 
             return file;
         }
@@ -35,16 +35,10 @@ namespace Zargess.VHKPlayer.FileManagement {
             return Content[Counter];
         }
 
-        protected override void OnCreated(object sender, FileSystemEventArgs e) {
-            throw new NotImplementedException();
-        }
-
-        protected override void OnRenamed(object sender, RenamedEventArgs e) {
-            throw new NotImplementedException();
-        }
-
-        protected override void OnDeleted(object sender, FileSystemEventArgs e) {
-            throw new NotImplementedException();
+        public override void Refresh() {
+            Content.Clear();
+            var list = PlaylistLoading.playlistFromFolderContent(Folder.FullPath);
+            list.Content.ToList().ForEach(x => Content.Add(new FileNode(x.Path)));
         }
     }
 }

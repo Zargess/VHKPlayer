@@ -23,16 +23,10 @@ namespace Zargess.VHKPlayer.FileManagement {
             Index = index;
         }
 
-        protected override void OnCreated(object sender, FileSystemEventArgs e) {
-            throw new NotImplementedException();
-        }
-
-        protected override void OnRenamed(object sender, RenamedEventArgs e) {
-            throw new NotImplementedException();
-        }
-
-        protected override void OnDeleted(object sender, FileSystemEventArgs e) {
-            throw new NotImplementedException();
+        public override void Refresh() {
+            Content.Clear();
+            var list = PlaylistLoading.sortedPlaylist(Folder.FullPath, Name, Index);
+            list.Content.ToList().ForEach(x => Content.Add(new FileNode(x.Path)));
         }
     }
 }
