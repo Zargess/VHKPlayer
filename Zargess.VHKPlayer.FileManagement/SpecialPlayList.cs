@@ -9,7 +9,7 @@ using Zargess.VHKPlayer.LoadingPolicies;
 namespace Zargess.VHKPlayer.FileManagement {
     public class SpecialPlayList : PlayList {
         public int Counter { get; private set; }
-
+        // TODO : Consider setting a boolean if a playlist can be played as a sequence or not.
         public SpecialPlayList(string name, FolderNode folder) : base(name, folder) {
             Counter = 0;
         }

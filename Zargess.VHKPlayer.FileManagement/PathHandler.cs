@@ -32,7 +32,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         public static bool IsFile(string path) {
             try {
                 var file = new FileNode(path);
-                return file.Exists;
+                return file.Exists();
             } catch (Exception e) {
                 Console.WriteLine(e.StackTrace);
                 return false;

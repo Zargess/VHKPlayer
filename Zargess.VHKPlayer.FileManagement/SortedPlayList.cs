@@ -28,5 +28,9 @@ namespace Zargess.VHKPlayer.FileManagement {
             var list = PlaylistLoading.sortedPlaylist(Folder.FullPath, Name, Index);
             list.Content.ToList().ForEach(x => Content.Add(new FileNode(x.Path)));
         }
+
+        public List<FileNode> GetContent() {
+            return Content;
+        }
     }
 }

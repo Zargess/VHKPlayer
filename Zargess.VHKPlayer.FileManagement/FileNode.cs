@@ -12,7 +12,6 @@ namespace Zargess.VHKPlayer.FileManagement {
         public string Extension { get; private set; }
         public string NameWithNoExtension { get; private set; }
         public FileType Type { get; private set; }
-        public bool Exists { get; private set; }
         public override sealed string FullPath {
             get {
                 return _fullpath;
@@ -35,6 +34,7 @@ namespace Zargess.VHKPlayer.FileManagement {
             }
         }
 
+        // TODO : Rewrite this so that the user can define what types of files is supported
         private void SetFileType(string e) {
             var t = e.ToLower();
             switch (t) {
@@ -57,7 +57,10 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public FileNode(string path) {
             FullPath = path;
-            Exists = File.Exists(FullPath);
+        }
+
+        public bool Exists() {
+            return File.Exists(FullPath);
         }
 
         public override bool Equals(object obj) {

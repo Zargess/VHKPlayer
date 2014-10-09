@@ -19,7 +19,6 @@ namespace Zargess.VHKPlayer.Players {
         public int Number { get; set; }
         public bool Trainer { get; set; }
         public string Name { get; set; }
-
         public FileNode StatPicture { get; set; }
         public FileNode StatMusic { get; set; }
         public FileNode StatVideo { get; set; }
@@ -66,7 +65,7 @@ namespace Zargess.VHKPlayer.Players {
                 }
                 break;
             }
-            if (StatFile.Exists) {
+            if (StatFile.Exists()) {
                 OnChanged(null, null);
             }
         }
