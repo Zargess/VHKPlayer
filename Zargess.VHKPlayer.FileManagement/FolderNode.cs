@@ -5,13 +5,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zargess.VHKPlayer.Collections;
 using Zargess.VHKPlayer.Settings;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class FolderNode : Node {
         public List<FolderNode> SubFolders { get; private set; }
         public bool Exists { get; private set; }
-        public ObservableCollection<FileNode> Files { get; private set; }
+        public ObservableSafeCollection<FileNode> Files { get; private set; }
         private string _fullpath;
         public override sealed string FullPath {
             get {
@@ -52,6 +53,7 @@ namespace Zargess.VHKPlayer.FileManagement {
             if (f == null) return;
             Files.Remove(f);
             Files.Add(new FileNode(e.FullPath));
+            Files.Sort(p => p.Name);
         }
 
         private void Watcher_Deleted(object sender, FileSystemEventArgs e) {
@@ -66,14 +68,15 @@ namespace Zargess.VHKPlayer.FileManagement {
             if (Files.Contains(file)) return;
             Files.Add(file);
             Console.WriteLine("Created " + e.FullPath);
+            Files.Sort(p => p.Name);
         }
 
-        private ObservableCollection<FileNode> LoadFiles() {
-            if (!Exists) return new ObservableCollection<FileNode>();
+        private ObservableSafeCollection<FileNode> LoadFiles() {
+            if (!Exists) return new ObservableSafeCollection<FileNode>();
             var temp = Directory.EnumerateFiles(FullPath)
                     .Select(x => new FileNode(x))
                     .Where(x => x.Type != FileType.Unsupported);
-            var res = new ObservableCollection<FileNode>();
+            var res = new ObservableSafeCollection<FileNode>();
             foreach (var fileNode in temp) {
                 res.Add(fileNode);
             }

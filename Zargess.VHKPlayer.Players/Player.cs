@@ -104,7 +104,7 @@ namespace Zargess.VHKPlayer.Players {
         }
 
         public override string ToString() {
-            return "No: " + Number + ", Name: " + Name;
+            return Number + " - " + Name;
         }
     }
 }

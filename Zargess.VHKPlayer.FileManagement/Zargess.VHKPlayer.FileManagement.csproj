@@ -54,6 +54,10 @@
     <Compile Include="StructureManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Zargess.VHKPlayer.Collections\Zargess.VHKPlayer.Collections.csproj">
+      <Project>{8809ec94-bbc6-4f39-ba93-ff32509675ad}</Project>
+      <Name>Zargess.VHKPlayer.Collections</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zargess.VHKPlayer.LoadingPolicies\Zargess.VHKPlayer.LoadingPolicies.fsproj">
       <Project>{09bc008f-e94b-4c20-b153-aa8ed6ed1d90}</Project>
       <Name>Zargess.VHKPlayer.LoadingPolicies</Name>

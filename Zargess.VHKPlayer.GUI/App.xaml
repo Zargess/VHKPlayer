@@ -3,35 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainView.xaml">
     <Application.Resources>
-        <Style TargetType="Window" x:Key="CustomTitleBar">
-            <Setter Property="WindowChrome.WindowChrome">
-                <Setter.Value>
-                    <WindowChrome CaptionHeight="{x:Static SystemParameters.CaptionHeight}" />
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Window">
-                        <DockPanel LastChildFill="True">
-                            <Border Background="LightGray" DockPanel.Dock="Top" 
-                            Height="{x:Static SystemParameters.CaptionHeight}" x:Name="titlebar">
-                                <Grid>
-                                    <TextBlock Text="{TemplateBinding Title}" 
-                                        Margin="10,0,0,0"
-                                        VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <TextBlock.Effect>
-                                            <DropShadowEffect Color="White" ShadowDepth="3"/>
-                                        </TextBlock.Effect>
-                                    </TextBlock>
-                                </Grid>
-                            </Border>
-                            <Border Background="{TemplateBinding Background}" Padding="5" BorderBrush="Black">
-                                <ContentPresenter/>
-                            </Border>
-                        </DockPanel>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/green.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
+                <ResourceDictionary Source="Assets/CustomTitleBar.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
