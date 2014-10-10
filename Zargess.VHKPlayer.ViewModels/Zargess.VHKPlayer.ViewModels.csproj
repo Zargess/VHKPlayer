@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C55E3F43-BB05-45AB-98BC-5CD185110209}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Zargess.VHKPlayer.ViewModels</RootNamespace>
+    <AssemblyName>Zargess.VHKPlayer.ViewModels</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FSharp.Core, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zargess.VHKPlayer.Collections\Zargess.VHKPlayer.Collections.csproj">
+      <Project>{8809ec94-bbc6-4f39-ba93-ff32509675ad}</Project>
+      <Name>Zargess.VHKPlayer.Collections</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.FileManagement\Zargess.VHKPlayer.FileManagement.csproj">
+      <Project>{1862bf4f-c9ae-489c-ad9e-d3dc6fc82b10}</Project>
+      <Name>Zargess.VHKPlayer.FileManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.LoadingPolicies\Zargess.VHKPlayer.LoadingPolicies.fsproj">
+      <Project>{09bc008f-e94b-4c20-b153-aa8ed6ed1d90}</Project>
+      <Name>Zargess.VHKPlayer.LoadingPolicies</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.Players\Zargess.VHKPlayer.Players.csproj">
+      <Project>{6c2cc60a-5411-4bca-b7ca-58c353facc5d}</Project>
+      <Name>Zargess.VHKPlayer.Players</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.Settings\Zargess.VHKPlayer.Settings.csproj">
+      <Project>{31e49ade-234f-4f94-81a6-6a5be080dc01}</Project>
+      <Name>Zargess.VHKPlayer.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.Utility\Zargess.VHKPlayer.Utility.csproj">
+      <Project>{39e2f252-9745-4357-a96b-7d74ffa46462}</Project>
+      <Name>Zargess.VHKPlayer.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

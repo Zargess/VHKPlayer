@@ -14,7 +14,7 @@ using Zargess.VHKPlayer.Utility;
 using Zargess.VHKPlayer.LoadingPolicies;
 using Zargess.VHKPlayer.Settings;
 
-namespace Zargess.VHKPlayer.GUI {
+namespace Zargess.VHKPlayer.ViewModels {
     public class MainViewModel : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableSafeCollection<Player> Players { get; private set; }

@@ -11,6 +11,7 @@ using System.Windows.Threading;
 using Zargess.VHKPlayer.FileManagement;
 using Zargess.VHKPlayer.Settings;
 using Zargess.VHKPlayer.WebSocket;
+using Zargess.VHKPlayer.ViewModels;
 
 namespace Zargess.VHKPlayer.GUI {
     /// <summary>

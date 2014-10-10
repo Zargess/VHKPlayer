@@ -83,7 +83,6 @@
     <Compile Include="CommandPrompt.xaml.cs">
       <DependentUpon>CommandPrompt.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -149,6 +148,10 @@
     <ProjectReference Include="..\Zargess.VHKPlayer.Utility\Zargess.VHKPlayer.Utility.csproj">
       <Project>{39e2f252-9745-4357-a96b-7d74ffa46462}</Project>
       <Name>Zargess.VHKPlayer.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.ViewModels\Zargess.VHKPlayer.ViewModels.csproj">
+      <Project>{c55e3f43-bb05-45ab-98bc-5cd185110209}</Project>
+      <Name>Zargess.VHKPlayer.ViewModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\Zargess.VHKPlayer.WebSocket\Zargess.VHKPlayer.WebSocket.csproj">
       <Project>{43ccf786-86aa-4528-a176-dc14cfb45d6b}</Project>

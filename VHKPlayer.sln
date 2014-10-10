@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.FileManagement", "Zargess.VHKPlayer.FileManagement\Zargess.VHKPlayer.FileManagement.csproj", "{1862BF4F-C9AE-489C-AD9E-D3DC6FC82B10}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Utility", "Zargess.VHKPlayer.Utility\Zargess.VHKPlayer.Utility.csproj", "{39E2F252-9745-4357-A96B-7D74FFA46462}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Collections", "Zargess.VHKPlayer.Collections\Zargess.VHKPlayer.Collections.csproj", "{8809EC94-BBC6-4F39-BA93-FF32509675AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.ViewModels", "Zargess.VHKPlayer.ViewModels\Zargess.VHKPlayer.ViewModels.csproj", "{C55E3F43-BB05-45AB-98BC-5CD185110209}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,12 @@ Global
 		{8809EC94-BBC6-4F39-BA93-FF32509675AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8809EC94-BBC6-4F39-BA93-FF32509675AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8809EC94-BBC6-4F39-BA93-FF32509675AD}.Release|x64.ActiveCfg = Release|Any CPU
+		{C55E3F43-BB05-45AB-98BC-5CD185110209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C55E3F43-BB05-45AB-98BC-5CD185110209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C55E3F43-BB05-45AB-98BC-5CD185110209}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C55E3F43-BB05-45AB-98BC-5CD185110209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C55E3F43-BB05-45AB-98BC-5CD185110209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C55E3F43-BB05-45AB-98BC-5CD185110209}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
