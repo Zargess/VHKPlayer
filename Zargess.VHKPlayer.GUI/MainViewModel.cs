@@ -52,7 +52,7 @@ namespace Zargess.VHKPlayer.GUI {
                 }
             }
         }
-
+        // TODO : Implement a playmanager
         public MainViewModel() {
             Players = new ObservableSafeCollection<Player>();
             People = new ObservableSafeCollection<Player>();
