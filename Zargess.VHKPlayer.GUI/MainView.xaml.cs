@@ -46,13 +46,22 @@ namespace Zargess.VHKPlayer.GUI {
         private void MenuItemClick(object sender, RoutedEventArgs e) {
             var item = sender as MenuItem;
             if (item == null) return;
+            if (item.Tag.ToString() == "showConsole" && Cmd.Visibility == Visibility.Hidden) {
+                Cmd.Visibility = Visibility.Visible;
+                item.Header = "Hide Console";
+                return;
+            } else if (item.Tag.ToString() == "showConsole") {
+                Cmd.Visibility = Visibility.Hidden;
+                item.Header = "Show Console";
+                return;
+            }
             RunCommand(item.Tag.ToString());
         }
 
         private void ListBoxItem_Click(object sender, MouseButtonEventArgs e) {
             var item = sender as StackPanel;
             if (item == null) return;
-            Console.WriteLine(item.Tag.ToString());
+            RunCommand("play " + item.Name + " " + item.Tag);
         }
     }
 }

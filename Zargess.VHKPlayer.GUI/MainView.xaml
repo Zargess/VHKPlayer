@@ -27,7 +27,7 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <ContentControl>
-                                <StackPanel PreviewMouseDown="ListBoxItem_Click" Tag="{Binding FullPath}">
+                                <StackPanel Name="Music" PreviewMouseDown="ListBoxItem_Click" Tag="{Binding FullPath}">
                                     <Label HorizontalAlignment="Stretch" FontSize="12" Height="30" Margin="-4,-1,-4,-1" Content="{Binding Name}"/>
                                 </StackPanel>
                             </ContentControl>
@@ -43,6 +43,12 @@
             <Setter Property="ContentTemplate" Value="{StaticResource TabContent}" />
         </Style>
     </Window.Resources>
+    
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
+            <Button Content="Settings" />
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
 
     <Grid>
         <DockPanel>
@@ -51,6 +57,7 @@
                     <!--<MenuItem Name="OpenFolder" Header="Load" Command="{Binding RunCommand}" CommandParameter="load"/>-->
                     <MenuItem Name="OpenFolder" Header="Load" Click="MenuItemClick" Tag="load"/>
                     <MenuItem Header="Vælg XML mappe"/>
+                    <MenuItem Header="Show Console" Click="MenuItemClick" Tag="showConsole" />
                 </MenuItem>
             </Menu>
             <Grid>
@@ -73,6 +80,7 @@
                 <Grid Grid.Row="0" Grid.Column="0">
                     <controls:MetroAnimatedSingleRowTabControl Style="{StaticResource TabControlContent}" ItemsSource="{Binding Audio}"/>
                 </Grid>
+                <!--Right side of screen-->
                 <Grid Grid.Row="0" Grid.Column="2">
                     <!--TODO : You have to design this section manualy-->
                     <controls:MetroAnimatedSingleRowTabControl>
@@ -87,8 +95,9 @@
                                         </ListBox.ItemContainerStyle>
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel PreviewMouseDown="ListBoxItem_Click" Tag="{Binding}">
-                                                    <Label HorizontalAlignment="Stretch" Height="30" FontSize="12" Margin="-4,-1,-4,-1" Content="{Binding}"/>
+                                                <StackPanel Name="People"  PreviewMouseDown="ListBoxItem_Click" Tag="{Binding}" Orientation="Horizontal">
+                                                    <Image Source="{Binding Picture.FullPath}" Height="100"/>
+                                                    <Label Height="30" FontSize="12" Margin="-4,-1,-4,-1" Content="{Binding}"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>
@@ -103,7 +112,23 @@
                                         </ListBox.ItemContainerStyle>
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel PreviewMouseDown="ListBoxItem_Click" Tag="{Binding}">
+                                                <StackPanel Name="Video"  PreviewMouseDown="ListBoxItem_Click" Tag="{Binding}">
+                                                    <Label HorizontalAlignment="Stretch" Height="30" FontSize="12" Margin="-4,-1,-4,-1" Content="{Binding}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </controls:MetroTabItem>
+                                <controls:MetroTabItem Header="SpillerVideoStat" controls:ControlsHelper.HeaderFontSize="16">
+                                    <ListBox ItemsSource="{Binding Players}">
+                                        <ListBox.ItemContainerStyle>
+                                            <Style TargetType="ListBoxItem">
+                                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                            </Style>
+                                        </ListBox.ItemContainerStyle>
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Name="Stat"  PreviewMouseDown="ListBoxItem_Click" Tag="{Binding}">
                                                     <Label HorizontalAlignment="Stretch" Height="30" FontSize="12" Margin="-4,-1,-4,-1" Content="{Binding}"/>
                                                 </StackPanel>
                                             </DataTemplate>
@@ -114,6 +139,7 @@
                         </controls:MetroTabItem>
                     </controls:MetroAnimatedSingleRowTabControl>
                 </Grid>
+                
                 <Grid Grid.Row="2" Grid.Column="0">
                     <ListBox Width="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <Label Content="Hello" HorizontalContentAlignment="Stretch" Height="30" Margin="-4,0,0,0" BorderThickness="0.5" BorderBrush="Black" FontFamily="Calibri" >

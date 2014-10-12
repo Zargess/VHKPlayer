@@ -97,6 +97,8 @@ namespace Zargess.VHKPlayer.GUI {
                 Console.WriteLine("Folder valid: {0}", folder.ValidRootFolder());
             } else if (command.Name == "terminate") {
                 Application.Current.Shutdown();
+            } else {
+                Console.WriteLine("{0} with the given parameters is not a recordnized command.", command.Name);
             }
 
             watch.Stop();
