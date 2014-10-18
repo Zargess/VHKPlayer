@@ -7,6 +7,20 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class FileNode : Node {
+        protected bool Equals(FileNode other) {
+            return string.Equals(_fullpath, other._fullpath) && string.Equals(Extension, other.Extension) && string.Equals(NameWithNoExtension, other.NameWithNoExtension) && Type == other.Type;
+        }
+
+        public override int GetHashCode() {
+            unchecked {
+                int hashCode = (_fullpath != null ? _fullpath.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (Extension != null ? Extension.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (NameWithNoExtension != null ? NameWithNoExtension.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (int) Type;
+                return hashCode;
+            }
+        }
+
         // TODO : Get duration of file if available
         private string _fullpath;
         public string Extension { get; private set; }
@@ -64,9 +78,9 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public override bool Equals(object obj) {
-            if (!(obj is FileNode)) { return false; }
-            var other = obj as FileNode;
-            return _fullpath == other._fullpath;
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj.GetType() == GetType() && Equals((FileNode) obj);
         }
     }
 }

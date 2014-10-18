@@ -47,7 +47,7 @@ namespace Zargess.VHKPlayer.Utility {
             var watcher = new FileSystemWatcher {
                 Path = path,
                 Filter = filter,
-                NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size
+                NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size | NotifyFilters.FileName | NotifyFilters.LastAccess
             };
             return watcher;
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,10 @@ using Zargess.VHKPlayer.Settings;
 using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer.Players {
-    public class Player {
+    public class Player : INotifyPropertyChanged{
         public delegate void ValueChangedHandler(object sender, EventArgs e);
         public event ValueChangedHandler ValueChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public int Number { get; set; }
         public bool Trainer { get; set; }
@@ -41,12 +43,20 @@ namespace Zargess.VHKPlayer.Players {
             StatVideo = new FileNode(staFiles.Video.Path);
             StatMusic = new FileNode(staFiles.Music.Path);
             Stats = new Statistics();
+            Watchers = new Dictionary<string, FileSystemWatcher>();
             if(!Trainer) InitWatcher();
+            InitWatchers();
+        }
+
+        private void InitWatchers() {
             var files = new List<FileNode> {
                 StatPicture,StatMusic,StatVideo,Video,Picture
             };
             foreach (var file in files) {
-                Utils.CreateWatcher()
+                var path = file.FullPath.Replace(file.Name, "");
+                var w = Utils.CreateWatcher(path, file.Name);
+                // TODO : Complete these watchers
+                Watchers.Add(file.Name, w);
             }
         }
 
