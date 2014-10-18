@@ -28,6 +28,8 @@ namespace Zargess.VHKPlayer.Players {
         public FileNode StatFile { get; private set; }
         private FileSystemWatcher Watcher { get; set; }
         // TODO : Consider making watchers for all of the filenodes here so that we can handle if the files are missing. Or if that makes no sense then make Exisits in filenode a method the playhandler can call.
+        private Dictionary<string,FileSystemWatcher> Watchers { get; set; }  
+        
         public Player(PlayerLoading.Player player) {
             Name = player.Name;
             Number = player.Number;
@@ -40,6 +42,12 @@ namespace Zargess.VHKPlayer.Players {
             StatMusic = new FileNode(staFiles.Music.Path);
             Stats = new Statistics();
             if(!Trainer) InitWatcher();
+            var files = new List<FileNode> {
+                StatPicture,StatMusic,StatVideo,Video,Picture
+            };
+            foreach (var file in files) {
+                Utils.CreateWatcher()
+            }
         }
 
         public void InitWatcher() {
@@ -48,9 +56,7 @@ namespace Zargess.VHKPlayer.Players {
                 if (SettingsManager.GetSetting("statfolder") as string != "") {
                     var folder = new FolderNode(SettingsManager.GetSetting("statfolder") as string);
                     StatFile = new FileNode(PathHandler.CombinePaths(folder.FullPath, "VHK_" + Number + "player.xml"));
-                    Watcher = new FileSystemWatcher {
-                        Path = folder.FullPath + "\\", Filter = StatFile.Name, NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size
-                    };
+                    Watcher = Utils.CreateWatcher(folder.FullPath + "\\", StatFile.Name);
                     Watcher.Changed += OnChanged;
                     Watcher.Created += OnChanged;
                     Watcher.EnableRaisingEvents = true;

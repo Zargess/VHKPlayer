@@ -6,5 +6,8 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.PlayManagement {
     public class PlayManager {
+        public PlayManager() {
+            
+        }
     }
 }

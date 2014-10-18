@@ -13,6 +13,9 @@ module PlayerLoading =
 
     let supportedTypes = [".jpg"; ".png"; ".mp3"; ".avi"]
 
+    let emptyFile = { Name=""; Path="";}
+    let emptyStats = { Music=emptyFile; Video=emptyFile; Picture=emptyFile; }
+
     let isSupported (file : File) =
         List.fold (fun a b -> a || b) false (List.map (fun x -> file.Name.EndsWith x) supportedTypes)
 
@@ -33,7 +36,7 @@ module PlayerLoading =
             Picture=file.Picture;
             Video=file.Video;
             StatFiles=file.Stats
-            Trainer = number >= 90
+            Trainer = number >= 90 // TODO : Check if StatFiles is the emptyStats
         }
         res
 
@@ -42,9 +45,6 @@ module PlayerLoading =
         |> Array.toList
         |> List.map (fun x -> constructFile x)
         |> List.filter isSupported
-
-    let emptyFile = { Name=""; Path="";}
-    let emptyStats = { Music=emptyFile; Video=emptyFile; Picture=emptyFile; }
 
     let getFileName (f : File) =
         f.Name

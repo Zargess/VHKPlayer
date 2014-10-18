@@ -96,7 +96,7 @@
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Name="People"  PreviewMouseDown="ListBoxItem_Click" Tag="{Binding}" Orientation="Horizontal">
-                                                    <Image Source="{Binding Picture.FullPath}" Height="100"/>
+                                                    <Image Source="{Binding Picture.FullPath}" Height="50"/>
                                                     <Label Height="30" FontSize="12" Margin="-4,-1,-4,-1" Content="{Binding}"/>
                                                 </StackPanel>
                                             </DataTemplate>

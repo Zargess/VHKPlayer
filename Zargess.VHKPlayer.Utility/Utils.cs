@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.FSharp.Collections;
+using Zargess.VHKPlayer.FileManagement;
 
 namespace Zargess.VHKPlayer.Utility {
     public class Utils {
@@ -39,6 +41,15 @@ namespace Zargess.VHKPlayer.Utility {
             int s;
             int.TryParse(text, out s);
             return s;
+        }
+
+        public static FileSystemWatcher CreateWatcher(string path, string filter) {
+            var watcher = new FileSystemWatcher {
+                Path = path,
+                Filter = filter,
+                NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size
+            };
+            return watcher;
         }
     }
 }
