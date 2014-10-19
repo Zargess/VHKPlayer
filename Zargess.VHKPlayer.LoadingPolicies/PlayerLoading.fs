@@ -17,7 +17,8 @@ module PlayerLoading =
     let emptyStats = { Music=emptyFile; Video=emptyFile; Picture=emptyFile; }
 
     let isSupported (file : File) =
-        List.fold (fun a b -> a || b) false (List.map (fun x -> file.Name.EndsWith x) supportedTypes)
+        List.map (fun x -> file.Name.EndsWith x) supportedTypes
+        |> List.fold (fun a b -> a || b) false
 
     let constructFile path = 
         let name = folderName path
@@ -41,8 +42,8 @@ module PlayerLoading =
         res
 
     let FileList source =
-        Directory.GetFiles source
-        |> Array.toList
+        Directory.EnumerateFiles source
+        |> List.ofSeq
         |> List.map (fun x -> constructFile x)
         |> List.filter isSupported
 

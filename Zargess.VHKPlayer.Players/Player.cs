@@ -28,9 +28,9 @@ namespace Zargess.VHKPlayer.Players {
         public FileNode Picture { get; set; }
         public Statistics Stats { get; set; }
         public FileNode StatFile { get; private set; }
-        private FileSystemWatcher Watcher { get; set; }
+        private FileSystemWatcher StatWatcher { get; set; }
         // TODO : Consider making watchers for all of the filenodes here so that we can handle if the files are missing. Or if that makes no sense then make Exisits in filenode a method the playhandler can call.
-        private Dictionary<string,FileSystemWatcher> Watchers { get; set; }  
+        private FileSystemWatcher PictureWatcher { get; set; }  
         
         public Player(PlayerLoading.Player player) {
             Name = player.Name;
@@ -43,33 +43,51 @@ namespace Zargess.VHKPlayer.Players {
             StatVideo = new FileNode(staFiles.Video.Path);
             StatMusic = new FileNode(staFiles.Music.Path);
             Stats = new Statistics();
-            Watchers = new Dictionary<string, FileSystemWatcher>();
-            if(!Trainer) InitWatcher();
-            InitWatchers();
+            PictureWatcher = new FileSystemWatcher();
+            if(!Trainer) InitStatWatcher();
+            InitPictureWatcher();
         }
 
-        private void InitWatchers() {
-            var files = new List<FileNode> {
-                StatPicture,StatMusic,StatVideo,Video,Picture
-            };
-            foreach (var file in files) {
-                var path = file.FullPath.Replace(file.Name, "");
-                var w = Utils.CreateWatcher(path, file.Name);
-                // TODO : Complete these watchers
-                Watchers.Add(file.Name, w);
+        private void InitPictureWatcher() {
+            var path = Picture.FullPath.Replace(Picture.Name, "");
+            var w = Utils.CreateWatcher(path, Picture.Name);
+            w.Created += PictureWatcher_Created;
+            w.Deleted += PictureWatcher_Created;
+            w.EnableRaisingEvents = true;
+            PictureWatcher = w;
+        }
+
+        private void PictureWatcher_Created(object sender, FileSystemEventArgs e) {
+            switch (e.ChangeType) {
+                case WatcherChangeTypes.Deleted:
+                    var root = SettingsManager.GetSetting("root") as string;
+                    if (String.IsNullOrEmpty(root)) return;
+                    Picture = new FileNode(PathHandler.CombinePaths(root, "Logo.png"));
+                    PictureChanged();
+                    break;
+                case WatcherChangeTypes.Created:
+                    Picture = new FileNode(e.FullPath);
+                    PictureChanged();
+                    break;
             }
         }
 
-        public void InitWatcher() {
-            if (Watcher != null) return;
+        private void PictureChanged() {
+            if (PropertyChanged != null) {
+                PropertyChanged(this, new PropertyChangedEventArgs("Picture"));
+            }
+        }
+
+        public void InitStatWatcher() {
+            if (StatWatcher != null) return;
             while (true) {
                 if (SettingsManager.GetSetting("statfolder") as string != "") {
                     var folder = new FolderNode(SettingsManager.GetSetting("statfolder") as string);
                     StatFile = new FileNode(PathHandler.CombinePaths(folder.FullPath, "VHK_" + Number + "player.xml"));
-                    Watcher = Utils.CreateWatcher(folder.FullPath + "\\", StatFile.Name);
-                    Watcher.Changed += OnChanged;
-                    Watcher.Created += OnChanged;
-                    Watcher.EnableRaisingEvents = true;
+                    StatWatcher = Utils.CreateWatcher(folder.FullPath + "\\", StatFile.Name);
+                    StatWatcher.Changed += OnChanged;
+                    StatWatcher.Created += OnChanged;
+                    StatWatcher.EnableRaisingEvents = true;
                 } else {
                     var fbd = new FolderBrowserDialog {
                         Description = "Select the folder where the statistics is saved"
@@ -113,10 +131,10 @@ namespace Zargess.VHKPlayer.Players {
         }
 
         public void StopListener() {
-            if (Watcher == null) return;
-            Watcher.EnableRaisingEvents = false;
-            Watcher.Dispose();
-            Watcher = null;
+            if (StatWatcher == null) return;
+            StatWatcher.EnableRaisingEvents = false;
+            StatWatcher.Dispose();
+            StatWatcher = null;
         }
 
         public override string ToString() {

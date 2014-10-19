@@ -161,6 +161,7 @@ namespace Zargess.VHKPlayer.ViewModels {
         }
 
         // TODO : Consider making a Person class and make the Player class a subclass of Person. Then a trainer won't be a Player.
+        // TODO : Make it so that if a person is created later on in the folders then the player updates
         public void LoadPlayers(FolderNode root) {
             if (!root.ContainsFolder("Spiller") || !root.ContainsFolder("SpillerVideo") || !root.ContainsFolder("SpillerVideoStat")) return;
             PeopleShowable = false;
