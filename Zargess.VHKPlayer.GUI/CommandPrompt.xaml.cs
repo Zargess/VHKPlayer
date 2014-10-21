@@ -69,7 +69,7 @@ namespace Zargess.VHKPlayer.GUI {
             var watch = Stopwatch.StartNew();
             var argLength = command.Args.Length;
             if (command.Name == "load" || command.Name == "reload-all") {
-                MainVM.LoadStructure(SettingsManager.GetSetting("root") as string);
+                MainVM.LoadStructureThreaded(SettingsManager.GetSetting("root") as string);
             } else if (command.Name == "set-root" && argLength == 1) {
                 var root = new FolderNode(command.Args[0]);
                 if (root.ValidRootFolder()) {

@@ -48,6 +48,13 @@
     <Compile Include="PlayerLoading.fs" />
     <Compile Include="PlaylistLoading.fs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zargess.VHKPlayer.Settings\Zargess.VHKPlayer.Settings.csproj">
+      <Name>Zargess.VHKPlayer.Settings</Name>
+      <Project>{31e49ade-234f-4f94-81a6-6a5be080dc01}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
   </PropertyGroup>

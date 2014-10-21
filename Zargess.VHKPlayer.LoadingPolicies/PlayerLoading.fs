@@ -11,10 +11,23 @@ module PlayerLoading =
     type FileSet = { Picture:File; Video:File; Stats:StatFiles; }
     type Player = { Number:int; Name:string; Picture:File; Video:File; StatFiles:StatFiles; Trainer:bool }
 
-    let supportedTypes = [".jpg"; ".png"; ".mp3"; ".avi"]
+    let supportedTypes = 
+        let pics = settingList "supportedPicture"
+        let vids = settingList "supportedVideo"
+        let music = settingList "supportedMusic"
+        List.concat [ pics; vids; music ]
 
     let emptyFile = { Name=""; Path="";}
     let emptyStats = { Music=emptyFile; Video=emptyFile; Picture=emptyFile; }
+
+    let (==) (a : File) (b : File) =
+        a.Path = b.Path
+
+    let (===) (a : StatFiles) (b : StatFiles) =
+        let mus = a.Music == b.Music
+        let vid = a.Video == b.Video
+        let pic = a.Picture == b.Picture
+        mus && vid && pic
 
     let isSupported (file : File) =
         List.map (fun x -> file.Name.EndsWith x) supportedTypes
@@ -37,7 +50,7 @@ module PlayerLoading =
             Picture=file.Picture;
             Video=file.Video;
             StatFiles=file.Stats
-            Trainer = number >= 90 // TODO : Check if StatFiles is the emptyStats
+            Trainer = number >= 90 && file.Stats === emptyStats && file.Video == emptyFile
         }
         res
 
@@ -49,7 +62,8 @@ module PlayerLoading =
 
     let getFileName (f : File) =
         f.Name
-
+    
+    // TODO : Make this code cleaner
     let createAllPlayers source =
         let spiller = FileList (source + "\\Spiller")
         let video = FileList (source + "\\SpillerVideo")

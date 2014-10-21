@@ -95,5 +95,41 @@ namespace Zargess.VHKPlayer.Settings {
                 this["specialPlayLists"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("jpg;png")]
+        public string supportedPicture {
+            get {
+                return ((string)(this["supportedPicture"]));
+            }
+            set {
+                this["supportedPicture"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("avi;mp4")]
+        public string supportedVideo {
+            get {
+                return ((string)(this["supportedVideo"]));
+            }
+            set {
+                this["supportedVideo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("mp3")]
+        public string supportedMusic {
+            get {
+                return ((string)(this["supportedMusic"]));
+            }
+            set {
+                this["supportedMusic"] = value;
+            }
+        }
     }
 }

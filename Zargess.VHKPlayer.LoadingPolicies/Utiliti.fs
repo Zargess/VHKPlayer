@@ -1,6 +1,7 @@
 ﻿module Utiliti
 
 open System
+open Zargess.VHKPlayer.Settings
 
 let Compare (a : string) (b : string) = 
     String.Compare(a, b, StringComparison.OrdinalIgnoreCase) = 0
@@ -18,3 +19,17 @@ let rec lastElement list =
     | hd::[] -> hd
     | hd::rest -> lastElement rest
     | [] -> failwith "empty"
+
+let getSettingString name =
+    try
+        SettingsManager.GetSetting(name) :?> String
+    with
+    | _ -> ""
+
+let split (symbol : char) (text : string) =
+    text.Split(symbol)
+    |> List.ofArray
+
+let settingList name =
+    getSettingString name
+    |> split ';'
