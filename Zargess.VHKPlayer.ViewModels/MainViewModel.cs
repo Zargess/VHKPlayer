@@ -17,11 +17,12 @@ using Zargess.VHKPlayer.Settings;
 namespace Zargess.VHKPlayer.ViewModels {
     public class MainViewModel : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
-        public ObservableSafeCollection<Player> Players { get; private set; }
-        public ObservableSafeCollection<Player> People { get; private set; }
-        public ObservableSafeCollection<FolderNode> Audio { get; private set; }
-        public ObservableSafeCollection<FolderNode> Video { get; private set; }
-        public ObservableSafeCollection<PlayList> PlayLists { get; private set; }
+        public ObservableCollection<Player> Players { get; private set; }
+        public ObservableCollection<Player> People { get; private set; }
+        public ObservableCollection<FolderNode> Audio { get; private set; }
+        public ObservableCollection<FolderNode> Video { get; private set; }
+        public ObservableCollection<PlayList> PlayLists { get; private set; }
+        public List<FileSystemWatcher> Watchers { get; private set; } 
         private bool _foldershowable;
         private bool _playlistshowable;
         private bool _peopleshowable;
@@ -54,11 +55,12 @@ namespace Zargess.VHKPlayer.ViewModels {
         }
 
         public MainViewModel() {
-            Players = new ObservableSafeCollection<Player>();
-            People = new ObservableSafeCollection<Player>();
-            Audio = new ObservableSafeCollection<FolderNode>();
-            Video = new ObservableSafeCollection<FolderNode>();
-            PlayLists = new ObservableSafeCollection<PlayList>();
+            Players = new ObservableCollection<Player>();
+            People = new ObservableCollection<Player>();
+            Audio = new ObservableCollection<FolderNode>();
+            Video = new ObservableCollection<FolderNode>();
+            PlayLists = new ObservableCollection<PlayList>();
+            Watchers = new List<FileSystemWatcher>();
             FolderShowable = false;
             PlayListShowable = false;
             PeopleShowable = false;
@@ -161,7 +163,6 @@ namespace Zargess.VHKPlayer.ViewModels {
         }
 
         // TODO : Consider making a Person class and make the Player class a subclass of Person. Then a trainer won't be a Player.
-        // TODO : Make it so that if a person is created later on in the folders then the player updates
         public void LoadPlayers(FolderNode root) {
             if (!root.ContainsFolder("Spiller") || !root.ContainsFolder("SpillerVideo") || !root.ContainsFolder("SpillerVideoStat")) return;
             PeopleShowable = false;
@@ -176,6 +177,17 @@ namespace Zargess.VHKPlayer.ViewModels {
                 }
             }
             PeopleShowable = true;
+            if (Watchers.Count <= 0) {
+                foreach (var s in new []{"spiller", "spillervideo", "spillervideostat"}) {
+                    var w = Utils.CreateWatcher(PathHandler.CombinePaths(root.FullPath, s), "*.*");
+                    w.Created += (sender, args) => LoadPlayers(root);
+                    w.Deleted += (sender, args) => LoadPlayers(root);
+                    w.Renamed += (sender, args) => LoadPlayers(root);
+                    w.Changed += (sender, args) => LoadPlayers(root);
+                    w.EnableRaisingEvents = true;
+                    Watchers.Add(w);
+                }
+            }
             Console.WriteLine("Players done loading");
         }
 
