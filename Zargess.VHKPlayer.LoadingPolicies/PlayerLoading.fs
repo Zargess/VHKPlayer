@@ -17,7 +17,7 @@ module PlayerLoading =
         let music = settingList "supportedMusic"
         List.concat [ pics; vids; music ]
 
-    let emptyFile = { Name=""; Path="";}
+    let emptyFile = { Name=""; Path=""; }
     let emptyStats = { Music=emptyFile; Video=emptyFile; Picture=emptyFile; }
 
     let (==) (a : File) (b : File) =

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zargess.VHKPlayer.Settings;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class FileNode : Node {
@@ -48,24 +49,19 @@ namespace Zargess.VHKPlayer.FileManagement {
             }
         }
 
-        // TODO : Rewrite this so that the user can define what types of files is supported
         private void SetFileType(string e) {
             var t = e.ToLower();
-            switch (t) {
-                case "jpg":
-                case "png":
-                    Type = FileType.Picture;
-                    break;
-                case "avi":
-                case "mp4":
-                    Type = FileType.Video;
-                    break;
-                case "mp3":
-                    Type = FileType.Music;
-                    break;
-                default:
-                    Type = FileType.Unsupported;
-                    break;
+            var pics = Utiliti.settingList("supportedPicture").ToList().Contains(t);
+            var vids = Utiliti.settingList("supportedVideo").ToList().Contains(t);
+            var mus = Utiliti.settingList("supportedMusic").ToList().Contains(t);
+            if (pics) {
+                Type = FileType.Picture;
+            } else if (vids) {
+                Type = FileType.Video;
+            } else if (mus) {
+                Type = FileType.Music;
+            } else {
+                Type = FileType.Unsupported;
             }
         }
 

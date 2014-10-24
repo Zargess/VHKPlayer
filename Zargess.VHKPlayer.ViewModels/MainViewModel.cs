@@ -70,28 +70,11 @@ namespace Zargess.VHKPlayer.ViewModels {
             try {
                 var root = new FolderNode(path);
                 if (root.ValidRootFolder()) {
+                    ClearData();
                     Utils.TimeMethod(ClearData);
                     Utils.TimeMethod(LoadFolders, root);
                     Utils.TimeMethod(LoadPlayLists, root);
                     Utils.TimeMethod(LoadPlayers, root);
-                } else {
-                    Console.WriteLine("Could not load: {0}\nPlease choose another folder.", path);
-                }
-            } catch (UnauthorizedAccessException e) {
-                Console.WriteLine("You do not have permission to use this folder. \nPlease choose another one.\n" + e.Message);
-            } catch (NullReferenceException e) {
-                Console.WriteLine("You have not chosen a folder to load. Please do this before continuing.\n" + e.Message);
-            }
-        }
-
-        public void LoadStructureThreaded(string path) {
-            try {
-                var root = new FolderNode(path);
-                if (root.ValidRootFolder()) {
-                    ClearData();
-                    new Thread(() => LoadFolders(root)).Start();
-                    new Thread(() => LoadPlayLists(root)).Start();
-                    new Thread(() => LoadPlayers(root)).Start();
                 } else {
                     Console.WriteLine("Could not load: {0}\nPlease choose another folder.", path);
                 }
