@@ -1,6 +1,7 @@
 ﻿module Utiliti
 
 open System
+open System.IO
 open Zargess.VHKPlayer.Settings
 
 let Compare (a : string) (b : string) = 
@@ -33,3 +34,5 @@ let split (symbol : char) (text : string) =
 let settingList name =
     getSettingString name
     |> split ';'
+
+let combinePaths (path1 : string) (path2 : string) = Path.Combine(path1,path2)

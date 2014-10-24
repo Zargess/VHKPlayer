@@ -54,35 +54,37 @@ module PlayerLoading =
         }
         res
 
-    let FileList source =
-        Directory.EnumerateFiles source
+    let FileList source folder =
+        let path = combinePaths source folder
+        Directory.EnumerateFiles path
         |> List.ofSeq
         |> List.map (fun x -> constructFile x)
         |> List.filter isSupported
 
     let getFileName (f : File) =
         f.Name
+
+    let createStatFiles statsMus statsVid file = 
+        let pic = file
+        let q = FileNameWithoutExtension pic
+        let mus = find getFileName emptyFile (q + ".mp3") statsMus
+        let vid = find getFileName emptyFile (q + ".avi") statsVid
+        { Music=mus; Video=vid; Picture=pic; }
+
+    let createFileSets video stats file =
+        let pic = file
+        let q = FileNameWithoutExtension pic
+        let vid = find getFileName emptyFile (q + ".avi") video
+        let stat = find (fun (x : StatFiles) -> x.Picture.Name) emptyStats pic.Name stats
+        { Picture=pic; Video=vid; Stats=stat }
     
-    // TODO : Make this code cleaner
     let createAllPlayers source =
-        let spiller = FileList (source + "\\Spiller")
-        let video = FileList (source + "\\SpillerVideo")
-        let statsPic = FileList (source + "\\SpillerVideoStat") 
-        let statsMus = FileList (source + "\\SpillerVideoStat\\mp3")
-        let statsVid = FileList (source + "\\SpillerVideoStat\\Video")
-        let stats =
-            List.map (fun x -> 
-                        let pic = x
-                        let q = FileNameWithoutExtension pic
-                        let mus = find getFileName emptyFile (q + ".mp3") statsMus
-                        let vid = find getFileName emptyFile (q + ".avi") statsVid
-                        { Music=mus; Video=vid; Picture=pic; }
-                        ) statsPic
-        let filesets =
-            List.map (fun x -> 
-                        let pic : File = x
-                        let q = FileNameWithoutExtension pic
-                        let vid = find getFileName emptyFile (q + ".avi") video
-                        let stat = find (fun (x : StatFiles) -> x.Picture.Name) emptyStats pic.Name stats
-                        { Picture=pic; Video=vid; Stats=stat }) spiller
+        let ls = FileList source
+        let spiller = ls "Spiller"
+        let video = ls "SpillerVideo"
+        let statsPic = ls "SpillerVideoStat"
+        let statsMus = ls "SpillerVideoStat\\mp3"
+        let statsVid = ls "SpillerVideoStat\\Video"
+        let stats = List.map (createStatFiles statsMus statsVid) statsPic
+        let filesets = List.map (createFileSets video stats) spiller
         List.map createPlayer filesets
