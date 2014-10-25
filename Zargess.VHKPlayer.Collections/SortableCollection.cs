@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 using System.Windows.Threading;
 
 namespace Zargess.VHKPlayer.Collections {
-    public class ObservableSafeCollection<T> : ObservableCollection<T> {
+    public class SortableCollection<T> : ObservableCollection<T> {
         // Override the event so this class can access it
         public override event NotifyCollectionChangedEventHandler CollectionChanged;
 
-        public ObservableSafeCollection() : base() { }
-        public ObservableSafeCollection(IEnumerable<T> collection) : base(collection) { }
-        public ObservableSafeCollection(List<T> collection) : base(collection) { }
+        public SortableCollection() : base() { }
+        public SortableCollection(IEnumerable<T> collection) : base(collection) { }
+        public SortableCollection(List<T> collection) : base(collection) { }
 
         protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e) {
             // Be nice - use BlockReentrancy like MSDN said

@@ -12,7 +12,7 @@ namespace Zargess.VHKPlayer.FileManagement {
     public class FolderNode : Node {
         public List<FolderNode> SubFolders { get; private set; }
         public bool Exists { get; private set; }
-        public ObservableSafeCollection<FileNode> Files { get; private set; }
+        public SortableCollection<FileNode> Files { get; private set; }
         private string _fullpath;
         public override sealed string FullPath {
             get {
@@ -71,12 +71,12 @@ namespace Zargess.VHKPlayer.FileManagement {
             Files.Sort(p => p.Name);
         }
 
-        private ObservableSafeCollection<FileNode> LoadFiles() {
-            if (!Exists) return new ObservableSafeCollection<FileNode>();
+        private SortableCollection<FileNode> LoadFiles() {
+            if (!Exists) return new SortableCollection<FileNode>();
             var temp = Directory.EnumerateFiles(FullPath)
                     .Select(x => new FileNode(x))
                     .Where(x => x.Type != FileType.Unsupported);
-            var res = new ObservableSafeCollection<FileNode>();
+            var res = new SortableCollection<FileNode>();
             foreach (var fileNode in temp) {
                 res.Add(fileNode);
             }

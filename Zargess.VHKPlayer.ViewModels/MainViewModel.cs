@@ -17,11 +17,11 @@ using Zargess.VHKPlayer.Settings;
 namespace Zargess.VHKPlayer.ViewModels {
     public class MainViewModel : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
-        public ObservableCollection<Player> Players { get; private set; }
-        public ObservableCollection<Player> People { get; private set; }
-        public ObservableCollection<FolderNode> Audio { get; private set; }
-        public ObservableCollection<FolderNode> Video { get; private set; }
-        public ObservableCollection<PlayList> PlayLists { get; private set; }
+        public SortableCollection<Player> Players { get; private set; }
+        public SortableCollection<Player> People { get; private set; }
+        public SortableCollection<FolderNode> Audio { get; private set; }
+        public SortableCollection<FolderNode> Video { get; private set; }
+        public SortableCollection<PlayList> PlayLists { get; private set; }
         public List<FileSystemWatcher> Watchers { get; private set; } 
         private bool _foldershowable;
         private bool _playlistshowable;
@@ -55,11 +55,11 @@ namespace Zargess.VHKPlayer.ViewModels {
         }
 
         public MainViewModel() {
-            Players = new ObservableCollection<Player>();
-            People = new ObservableCollection<Player>();
-            Audio = new ObservableCollection<FolderNode>();
-            Video = new ObservableCollection<FolderNode>();
-            PlayLists = new ObservableCollection<PlayList>();
+            Players = new SortableCollection<Player>();
+            People = new SortableCollection<Player>();
+            Audio = new SortableCollection<FolderNode>();
+            Video = new SortableCollection<FolderNode>();
+            PlayLists = new SortableCollection<PlayList>();
             Watchers = new List<FileSystemWatcher>();
             FolderShowable = false;
             PlayListShowable = false;
