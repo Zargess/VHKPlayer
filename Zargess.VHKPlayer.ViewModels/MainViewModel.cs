@@ -66,6 +66,7 @@ namespace Zargess.VHKPlayer.ViewModels {
             PeopleShowable = false;
         }
 
+        // TODO : Move all loading methods to another class for a clean ViewModel
         public void LoadStructure(string path) {
             try {
                 var root = new FolderNode(path);

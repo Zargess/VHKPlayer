@@ -1,1 +1,3 @@
 ﻿Implement the playmanager
+	- Make it so that the playmanager knows when sound on a mediaelement should fade out and then does it.
+	- Try to make the mediaelement preload the files for smooth transition
