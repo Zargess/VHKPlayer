@@ -27,8 +27,8 @@ module PlaylistLoading =
         try
             int(file.Name.[index - 1]) - 48
         with
-            | :? FormatException as ex ->
-                0
+            | :? FormatException as ex -> 0
+
     // Creates a playlist of files in the given source where the char in position number index is a number and not 0. It also sorts by that number
     let sortedPlaylist source name index =
         let files = List.sortBy (fun x -> getNumber x index) (List.filter (fun x -> (getNumber x index) <> 0) (getFiles source))                    
