@@ -15,44 +15,13 @@ using Zargess.VHKPlayer.LoadingPolicies;
 using Zargess.VHKPlayer.Settings;
 
 namespace Zargess.VHKPlayer.ViewModels {
-    public class MainViewModel : INotifyPropertyChanged {
-        public event PropertyChangedEventHandler PropertyChanged;
+    public class MainViewModel {
         public SortableCollection<Player> Players { get; private set; }
         public SortableCollection<Player> People { get; private set; }
         public SortableCollection<FolderNode> Audio { get; private set; }
         public SortableCollection<FolderNode> Video { get; private set; }
         public SortableCollection<PlayList> PlayLists { get; private set; }
         public List<FileSystemWatcher> Watchers { get; private set; } 
-        private bool _foldershowable;
-        private bool _playlistshowable;
-        private bool _peopleshowable;
-        public bool FolderShowable {
-            get { return _foldershowable; }
-            private set {
-                _foldershowable = value;
-                if (PropertyChanged != null) {
-                    PropertyChanged(this,new PropertyChangedEventArgs("_foldershowable"));
-                }
-            }
-        }
-        public bool PlayListShowable {
-            get { return _playlistshowable; }
-            private set {
-                _playlistshowable = value;
-                if (PropertyChanged != null) {
-                    PropertyChanged(this, new PropertyChangedEventArgs("_playlistshowable"));
-                }
-            }
-        }
-        public bool PeopleShowable {
-            get { return _peopleshowable; }
-            private set {
-                _peopleshowable = value;
-                if (PropertyChanged != null) {
-                    PropertyChanged(this, new PropertyChangedEventArgs("_peopleshowable"));
-                }
-            }
-        }
 
         public MainViewModel() {
             Players = new SortableCollection<Player>();
@@ -61,9 +30,6 @@ namespace Zargess.VHKPlayer.ViewModels {
             Video = new SortableCollection<FolderNode>();
             PlayLists = new SortableCollection<PlayList>();
             Watchers = new List<FileSystemWatcher>();
-            FolderShowable = false;
-            PlayListShowable = false;
-            PeopleShowable = false;
         }
 
         // TODO : Move all loading methods to another class for a clean ViewModel
@@ -90,7 +56,6 @@ namespace Zargess.VHKPlayer.ViewModels {
             if (!root.ValidRootFolder()) {
                 return;
             }
-            FolderShowable = false;
             ClearFolderList(Video);
             ClearFolderList(Audio);
             var limits = ((string)SettingsManager.GetSetting("limits")).Split(',').ToList();
@@ -106,7 +71,6 @@ namespace Zargess.VHKPlayer.ViewModels {
                     folder.InitWatcher();
                 }
             }
-            FolderShowable = true;
             Console.WriteLine("Folder done loading");
         }
 
@@ -115,7 +79,6 @@ namespace Zargess.VHKPlayer.ViewModels {
         }
 
         public void LoadPlayLists(FolderNode root) {
-            PlayListShowable = false;
             PlayLists.Clear();
             var sortedTemp = SettingsManager.GetSetting("sortedPlayLists") as string;
             var specialTemp = SettingsManager.GetSetting("specialPlayLists") as string;
@@ -142,14 +105,12 @@ namespace Zargess.VHKPlayer.ViewModels {
                     }
                 }
             }
-            PlayListShowable = true;
             Console.WriteLine("PlayList done loading");
         }
 
         // TODO : Consider making a Person class and make the Player class a subclass of Person. Then a trainer won't be a Player.
         public void LoadPlayers(FolderNode root) {
             if (!root.ContainsFolder("Spiller") || !root.ContainsFolder("SpillerVideo") || !root.ContainsFolder("SpillerVideoStat")) return;
-            PeopleShowable = false;
             var people = PlayerLoading.createAllPlayers(root.FullPath).ToList();
             ClearPeople(People);
             ClearPeople(Players);
@@ -160,7 +121,6 @@ namespace Zargess.VHKPlayer.ViewModels {
                     Players.Add(p);
                 }
             }
-            PeopleShowable = true;
             if (Watchers.Count <= 0) {
                 foreach (var s in new []{"spiller", "spillervideo", "spillervideostat"}) {
                     var w = Utils.CreateWatcher(PathHandler.CombinePaths(root.FullPath, s), "*.*");
