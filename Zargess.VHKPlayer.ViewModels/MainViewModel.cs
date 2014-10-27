@@ -52,6 +52,24 @@ namespace Zargess.VHKPlayer.ViewModels {
             }
         }
 
+        public void LoadStructureThreaded(string path) {
+            try {
+                var root = new FolderNode(path);
+                if (root.ValidRootFolder()) {
+                    ClearData();
+                    new Thread(() => Utils.TimeMethod(LoadFolders, root)).Start();
+                    new Thread(() => Utils.TimeMethod(LoadPlayLists, root)).Start();
+                    new Thread(() => Utils.TimeMethod(LoadPlayers, root)).Start();
+                } else {
+                    Console.WriteLine("Could not load: {0}\nPlease choose another folder.", path);
+                }
+            } catch (UnauthorizedAccessException e) {
+                Console.WriteLine("You do not have permission to use this folder. \nPlease choose another one.\n" + e.Message);
+            } catch (NullReferenceException e) {
+                Console.WriteLine("You have not chosen a folder to load. Please do this before continuing.\n" + e.Message);
+            }
+        }
+
         public void LoadFolders(FolderNode root) {
             if (!root.ValidRootFolder()) {
                 return;
@@ -147,21 +165,21 @@ namespace Zargess.VHKPlayer.ViewModels {
             foreach (var folder in list) {
                 folder.StopListening();
             }
-            list.Clear();
+            list.ClearOnUI();
         }
 
         private void ClearPeople(ICollection<Player> list) {
             foreach (var player in list) {
                 player.StopListener();
             }
-            list.Clear();
+            list.ClearOnUI();
         }
 
         private void ClearPlayLists(ICollection<PlayList> list) {
             foreach (var playList in list) {
                 playList.StopListening();
             }
-            list.Clear();
+            list.ClearOnUI();
         }
     }
 }
