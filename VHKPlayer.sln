@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.FileManagement", "Zargess.VHKPlayer.FileManagement\Zargess.VHKPlayer.FileManagement.csproj", "{1862BF4F-C9AE-489C-AD9E-D3DC6FC82B10}"
 EndProject
@@ -25,7 +25,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.ViewModel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.PlayManagement", "Zargess.VHKPlayer.PlayManagement\Zargess.VHKPlayer.PlayManagement.csproj", "{3BC88D82-E099-4B7F-9A69-93ADCE0DCE39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Website", "Zargess.VHKPlayer.Website\Zargess.VHKPlayer.Website.csproj", "{368303FF-523B-43E2-9E07-DA923E156D88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Website", "Zargess.VHKPlayer.Website\Zargess.VHKPlayer.Website.csproj", "{636BA8FA-59C9-4701-8D90-27D084854DE8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D793C341-02EE-4B78-8A87-60D8F38BE056}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,12 +106,12 @@ Global
 		{3BC88D82-E099-4B7F-9A69-93ADCE0DCE39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BC88D82-E099-4B7F-9A69-93ADCE0DCE39}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3BC88D82-E099-4B7F-9A69-93ADCE0DCE39}.Release|x64.ActiveCfg = Release|Any CPU
-		{368303FF-523B-43E2-9E07-DA923E156D88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{368303FF-523B-43E2-9E07-DA923E156D88}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{368303FF-523B-43E2-9E07-DA923E156D88}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{368303FF-523B-43E2-9E07-DA923E156D88}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{368303FF-523B-43E2-9E07-DA923E156D88}.Release|Any CPU.Build.0 = Release|Any CPU
-		{368303FF-523B-43E2-9E07-DA923E156D88}.Release|x64.ActiveCfg = Release|Any CPU
+		{636BA8FA-59C9-4701-8D90-27D084854DE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{636BA8FA-59C9-4701-8D90-27D084854DE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{636BA8FA-59C9-4701-8D90-27D084854DE8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{636BA8FA-59C9-4701-8D90-27D084854DE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{636BA8FA-59C9-4701-8D90-27D084854DE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{636BA8FA-59C9-4701-8D90-27D084854DE8}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
