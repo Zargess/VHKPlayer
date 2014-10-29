@@ -4,7 +4,7 @@
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:vm="clr-namespace:Zargess.VHKPlayer.ViewModels;assembly=Zargess.VHKPlayer.ViewModels"
         Title="MainView" Height="500" Width="900" Icon="Images/Logo48.ico">
-    
+
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
@@ -43,7 +43,7 @@
             <Setter Property="ContentTemplate" Value="{StaticResource TabContent}" />
         </Style>
     </Window.Resources>
-    
+
     <controls:MetroWindow.RightWindowCommands>
         <controls:WindowCommands>
             <Button Content="Settings" />
@@ -139,7 +139,7 @@
                         </controls:MetroTabItem>
                     </controls:MetroAnimatedSingleRowTabControl>
                 </Grid>
-                
+
                 <Grid Grid.Row="2" Grid.Column="0">
                     <ListBox Width="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <Label Content="Hello" HorizontalContentAlignment="Stretch" Height="30" Margin="-4,0,0,0" BorderThickness="0.5" BorderBrush="Black" FontFamily="Calibri" >
@@ -150,14 +150,39 @@
                     </ListBox >
                 </Grid>
                 <Grid Grid.Row="2" Grid.Column="2">
-                    <Expander>
+                    <!--<Expander>
                         <Expander.Header>
                             <Label Content="Hello world"/>
                         </Expander.Header>
                         <Expander.Content>
                             <TextBlock Text="LOL"/>
                         </Expander.Content>
-                    </Expander>
+                    </Expander>-->
+                    <Grid>
+                        <ScrollViewer>
+                            <Grid ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  Width="auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Label Target="{Binding ElementName=textBlock}" VerticalAlignment="Center">_Name:</Label>
+                                    <TextBox Grid.Column="1" x:Name="textBlock" VerticalAlignment="Center" Text="Enter text here" />
+                                </Grid>
+                                <Border Grid.Column="1">
+                                    <TextBlock Text="Anything you like" />
+                                </Border>
+                            </Grid>
+                        </ScrollViewer>
+                    </Grid>
                 </Grid>
 
             </Grid>

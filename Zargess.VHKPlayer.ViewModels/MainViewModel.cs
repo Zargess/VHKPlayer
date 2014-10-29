@@ -38,7 +38,6 @@ namespace Zargess.VHKPlayer.ViewModels {
                 var root = new FolderNode(path);
                 if (root.ValidRootFolder()) {
                     ClearData();
-                    Utils.TimeMethod(ClearData);
                     Utils.TimeMethod(LoadFolders, root);
                     Utils.TimeMethod(LoadPlayLists, root);
                     Utils.TimeMethod(LoadPlayers, root);
@@ -74,8 +73,6 @@ namespace Zargess.VHKPlayer.ViewModels {
             if (!root.ValidRootFolder()) {
                 return;
             }
-            ClearFolderList(Video);
-            ClearFolderList(Audio);
             var limits = ((string)SettingsManager.GetSetting("limits")).Split(',').ToList();
 
             var folders = FolderLoading.getSomeFolders(root.FullPath, Utils.ToFSharpList(limits)).Select(x => new FolderNode(x)).ToList();

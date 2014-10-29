@@ -124,6 +124,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public void StopListening() {
+            if (Watcher == null) return;
             Watcher.EnableRaisingEvents = false;
             Watcher.Dispose();
             Watcher = null;
