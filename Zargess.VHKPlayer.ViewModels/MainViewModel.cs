@@ -127,8 +127,6 @@ namespace Zargess.VHKPlayer.ViewModels {
         public void LoadPlayers(FolderNode root) {
             if (!root.ContainsFolder("Spiller") || !root.ContainsFolder("SpillerVideo") || !root.ContainsFolder("SpillerVideoStat")) return;
             var people = PlayerLoading.createAllPlayers(root.FullPath).ToList();
-            ClearPeople(People);
-            ClearPeople(Players);
 
             foreach (var p in people.Select(person => new Player(person))) {
                 People.Add(p);
@@ -137,8 +135,10 @@ namespace Zargess.VHKPlayer.ViewModels {
                 }
             }
             if (Watchers.Count <= 0) {
-                foreach (var s in new []{"spiller", "spillervideo", "spillervideostat"}) {
-                    var w = Utils.CreateWatcher(PathHandler.CombinePaths(root.FullPath, s), "*.*");
+                var list =
+                    new[] {"spiller", "spillervideo", "spillervideostat"}.Select(
+                        x => Utils.CreateWatcher(PathHandler.CombinePaths(root.FullPath, x), "*.*"));
+                foreach (var w in list) {
                     w.Created += (sender, args) => LoadPlayers(root);
                     w.Deleted += (sender, args) => LoadPlayers(root);
                     w.Renamed += (sender, args) => LoadPlayers(root);

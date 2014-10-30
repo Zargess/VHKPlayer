@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 using Zargess.VHKPlayer.LoadingPolicies;
 
 namespace Zargess.VHKPlayer.FileManagement {
-    public abstract class PlayList : IWatchable {
+    public abstract class PlayList : IWatchable, IEnumerable<FileNode> {
         // TODO : Rethink the entire concept of playlists. How to get the next element in the list? When do we stop playing this playlist? Should this be controlled in a videoqueue object?
         public List<FileNode> Content { get; private set; }
         public string Name { get; private set; }
@@ -77,6 +78,14 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         protected void OnDeleted(object sender, FileSystemEventArgs e) {
             Refresh();
+        }
+
+        public IEnumerator<FileNode> GetEnumerator() {
+            return Content.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return GetEnumerator();
         }
     }
 }

@@ -23,8 +23,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Collectio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.ViewModels", "Zargess.VHKPlayer.ViewModels\Zargess.VHKPlayer.ViewModels.csproj", "{C55E3F43-BB05-45AB-98BC-5CD185110209}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.PlayManagement", "Zargess.VHKPlayer.PlayManagement\Zargess.VHKPlayer.PlayManagement.csproj", "{3BC88D82-E099-4B7F-9A69-93ADCE0DCE39}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Website", "Zargess.VHKPlayer.Website\Zargess.VHKPlayer.Website.csproj", "{636BA8FA-59C9-4701-8D90-27D084854DE8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D793C341-02EE-4B78-8A87-60D8F38BE056}"
@@ -100,12 +98,6 @@ Global
 		{C55E3F43-BB05-45AB-98BC-5CD185110209}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C55E3F43-BB05-45AB-98BC-5CD185110209}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C55E3F43-BB05-45AB-98BC-5CD185110209}.Release|x64.ActiveCfg = Release|Any CPU
-		{3BC88D82-E099-4B7F-9A69-93ADCE0DCE39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3BC88D82-E099-4B7F-9A69-93ADCE0DCE39}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3BC88D82-E099-4B7F-9A69-93ADCE0DCE39}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{3BC88D82-E099-4B7F-9A69-93ADCE0DCE39}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3BC88D82-E099-4B7F-9A69-93ADCE0DCE39}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3BC88D82-E099-4B7F-9A69-93ADCE0DCE39}.Release|x64.ActiveCfg = Release|Any CPU
 		{636BA8FA-59C9-4701-8D90-27D084854DE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{636BA8FA-59C9-4701-8D90-27D084854DE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{636BA8FA-59C9-4701-8D90-27D084854DE8}.Debug|x64.ActiveCfg = Debug|Any CPU

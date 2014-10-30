@@ -29,5 +29,8 @@
     <Setting Name="supportedMusic" Type="System.String" Scope="User">
       <Value Profile="(Default)">mp3</Value>
     </Setting>
+    <Setting Name="postStatPlayList" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ScorRek</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

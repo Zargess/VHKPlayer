@@ -131,5 +131,17 @@ namespace Zargess.VHKPlayer.Settings {
                 this["supportedMusic"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ScorRek")]
+        public string postStatPlayList {
+            get {
+                return ((string)(this["postStatPlayList"]));
+            }
+            set {
+                this["postStatPlayList"] = value;
+            }
+        }
     }
 }
