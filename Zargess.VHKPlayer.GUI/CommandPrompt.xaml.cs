@@ -9,6 +9,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Zargess.VHKPlayer.FileManagement;
+using Zargess.VHKPlayer.GUI.PlayManagement;
 using Zargess.VHKPlayer.Settings;
 using Zargess.VHKPlayer.WebSocket;
 using Zargess.VHKPlayer.ViewModels;
@@ -22,12 +23,13 @@ namespace Zargess.VHKPlayer.GUI {
         private MainViewModel MainVM { get; set; }
         private WebServer Server { get; set; }
         private Terminal Term { get; set; }
+        private PlayManager Manager { get; set; }
 
-        public CommandPrompt(MainViewModel mv) {
+        public CommandPrompt(MainViewModel mv, PlayManager manager) {
             MainVM = mv;
             InitializeComponent();
             Term = Cons.Term;
-
+            Manager = manager;
             Loaded += (s, e) => {
                 Term.AbortRequested += (ss, ee) => MessageBox.Show("Abort !");
                 // TODO : Make some printing functions to show the application's current state
@@ -39,7 +41,7 @@ namespace Zargess.VHKPlayer.GUI {
                 Term.RegisteredCommands.Add("get-root");
                 Term.RegisteredCommands.Add("validate");
                 Term.RegisteredCommands.Add("help");
-                Term.RegisteredCommands.Add("exit");
+                Term.RegisteredCommands.Add("hide");
                 Term.RegisteredCommands.Add("terminate");
 
                 Term.Text += "Welcome !\n";
@@ -85,7 +87,7 @@ namespace Zargess.VHKPlayer.GUI {
                     list.Add(command.Args[i]);
                 }
                 Server.CheckCommands(command.Args[0], list.ToArray());
-            } else if (command.Name == "exit") {
+            } else if (command.Name == "hide") {
                 Close();
             } else if (command.Name == "get-root") {
                 Console.WriteLine(SettingsManager.GetSetting("root"));

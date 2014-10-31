@@ -4,3 +4,6 @@
 
 Main view:
 	Make the players be side by side: http://www.codeproject.com/Articles/18561/Custom-ListBox-Layout-in-WPF
+
+PlayManager:
+	Use the following solution to handle when sound should fade: http://stackoverflow.com/questions/4058175/binding-a-progressbar-to-a-mediaelement-in-wpf

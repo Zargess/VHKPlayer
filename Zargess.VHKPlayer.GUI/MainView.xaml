@@ -46,7 +46,7 @@
 
     <controls:MetroWindow.RightWindowCommands>
         <controls:WindowCommands>
-            <Button Content="Settings" />
+            <Button Content="Settings" Click="ShowSettings" />
         </controls:WindowCommands>
     </controls:MetroWindow.RightWindowCommands>
 
@@ -69,7 +69,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="100*"/>
                     <RowDefinition Height="5"/>
-                    <RowDefinition Height="70*"/>
+                    <RowDefinition Height="50*"/>
                 </Grid.RowDefinitions>
 
                 <GridSplitter IsEnabled="False" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
@@ -95,7 +95,7 @@
                                         </ListBox.ItemContainerStyle>
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel Name="People"  PreviewMouseDown="ListBoxItem_Click" Tag="{Binding}" Orientation="Horizontal">
+                                                <StackPanel Name="People"  PreviewMouseDown="Player_Click" Tag="{Binding}" Orientation="Horizontal">
                                                     <Image Source="{Binding Picture.FullPath}" Height="50"/>
                                                     <Label Height="30" FontSize="12" Margin="-4,-1,-4,-1" Content="{Binding}"/>
                                                 </StackPanel>
@@ -112,7 +112,7 @@
                                         </ListBox.ItemContainerStyle>
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel Name="Video"  PreviewMouseDown="ListBoxItem_Click" Tag="{Binding}">
+                                                <StackPanel Name="Video"  PreviewMouseDown="Player_Click" Tag="{Binding}">
                                                     <Label HorizontalAlignment="Stretch" Height="30" FontSize="12" Margin="-4,-1,-4,-1" Content="{Binding}"/>
                                                 </StackPanel>
                                             </DataTemplate>
@@ -128,7 +128,7 @@
                                         </ListBox.ItemContainerStyle>
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel Name="Stat"  PreviewMouseDown="ListBoxItem_Click" Tag="{Binding}">
+                                                <StackPanel Name="Stat"  PreviewMouseDown="Player_Click" Tag="{Binding}">
                                                     <Label HorizontalAlignment="Stretch" Height="30" FontSize="12" Margin="-4,-1,-4,-1" Content="{Binding}"/>
                                                 </StackPanel>
                                             </DataTemplate>
@@ -136,18 +136,13 @@
                                     </ListBox>
                                 </controls:MetroTabItem>
                             </controls:MetroTabControl>
+                            <!--TODO : Make design so that the cards in superhero folder is shown at all times-->
                         </controls:MetroTabItem>
                     </controls:MetroAnimatedSingleRowTabControl>
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="0">
-                    <ListBox Width="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
-                        <Label Content="Hello" HorizontalContentAlignment="Stretch" Height="30" Margin="-4,0,0,0" BorderThickness="0.5" BorderBrush="Black" FontFamily="Calibri" >
-                            <Label.Width>
-                                <Binding Path="Width" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}" />
-                            </Label.Width>
-                        </Label>
-                    </ListBox >
+                    
                 </Grid>
                 <Grid Grid.Row="2" Grid.Column="2">
                     <!--<Expander>
@@ -158,33 +153,7 @@
                             <TextBlock Text="LOL"/>
                         </Expander.Content>
                     </Expander>-->
-                    <Grid>
-                        <ScrollViewer>
-                            <Grid ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition  Width="auto" />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <Label Target="{Binding ElementName=textBlock}" VerticalAlignment="Center">_Name:</Label>
-                                    <TextBox Grid.Column="1" x:Name="textBlock" VerticalAlignment="Center" Text="Enter text here" />
-                                </Grid>
-                                <Border Grid.Column="1">
-                                    <TextBlock Text="Anything you like" />
-                                </Border>
-                            </Grid>
-                        </ScrollViewer>
-                    </Grid>
                 </Grid>
-
             </Grid>
         </DockPanel>
     </Grid>
