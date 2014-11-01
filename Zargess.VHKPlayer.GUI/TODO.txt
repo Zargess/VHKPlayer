@@ -7,3 +7,4 @@ Main view:
 
 PlayManager:
 	Use the following solution to handle when sound should fade: http://stackoverflow.com/questions/4058175/binding-a-progressbar-to-a-mediaelement-in-wpf
+	kombined with this guide: http://stackoverflow.com/questions/22500918/how-to-fade-in-out-between-songs-with-a-wpf-c-sharp-mediaelement

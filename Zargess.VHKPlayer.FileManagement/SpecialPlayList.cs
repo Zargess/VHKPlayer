@@ -25,7 +25,11 @@ namespace Zargess.VHKPlayer.FileManagement {
         public FileNode GetNext() {
             if (Counter >= Content.Count) Counter = 0;
             var file = Content[Counter];
-            Counter = Counter >= Content.Count ? 0 : Counter++;
+            if (Counter >= Content.Count) {
+                Counter = 0;
+            } else {
+                Counter++;
+            }
 
             return file;
         }
@@ -37,7 +41,7 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public override void Refresh() {
             Content.Clear();
-            var list = PlaylistLoading.playlistFromFolderContent(Folder.FullPath);
+            var list = PlaylistLoading.playlistFromFolderContent(Name, Folder.FullPath);
             list.Content.ToList().ForEach(x => Content.Add(new FileNode(x.Path)));
         }
     }

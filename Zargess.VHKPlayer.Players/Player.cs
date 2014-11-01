@@ -13,7 +13,7 @@ using Zargess.VHKPlayer.Settings;
 using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer.Players {
-    public class Player : INotifyPropertyChanged{
+    public class Player : INotifyPropertyChanged {
         public delegate void ValueChangedHandler(object sender, EventArgs e);
         public event ValueChangedHandler ValueChanged;
         public event PropertyChangedEventHandler PropertyChanged;

@@ -70,13 +70,13 @@ namespace Zargess.VHKPlayer.GUI.PlayManagement {
 
         public void Play(Player p, string type) {
             switch (type) {
-                case "People":
+                case "people":
                     ShowImage(p.Picture);
                     break;
-                case "Video":
+                case "video":
                     Play(p.Video);
                     break;
-                case "Stat":
+                case "stat":
                     PlayPlayerStat(p);
                     break;
             }

@@ -176,25 +176,27 @@ namespace Zargess.VHKPlayer.GUI {
         // --------------------------------------------------------------------
 
         protected virtual void HandleCommandHistoryRequest(CommandHistoryDirection direction) {
-            switch (direction) {
-                case CommandHistoryDirection.BACKWARD:
-                    if (indexInLog > 0)
-                        indexInLog--;
-                    if (CommandLog.Count > 0) {
-                        Text = GetTextWithPromptSuffix(CommandLog[indexInLog].Raw);
-                        CaretIndex = Text.Length;
-                    }
-                    break;
+            try {
+                switch (direction) {
+                    case CommandHistoryDirection.BACKWARD:
+                        if (indexInLog > 0)
+                            indexInLog--;
+                        if (CommandLog.Count > 0) {
+                            Text = GetTextWithPromptSuffix(CommandLog[indexInLog].Raw);
+                            CaretIndex = Text.Length;
+                        }
+                        break;
 
-                case CommandHistoryDirection.FORWARD:
-                    if (indexInLog < CommandLog.Count - 1)
-                        indexInLog++;
-                    if (CommandLog.Count > 0) {
-                        Text = GetTextWithPromptSuffix(CommandLog[indexInLog].Raw);
-                        CaretIndex = Text.Length;
-                    }
-                    break;
-            }
+                    case CommandHistoryDirection.FORWARD:
+                        if (indexInLog < CommandLog.Count - 1)
+                            indexInLog++;
+                        if (CommandLog.Count > 0) {
+                            Text = GetTextWithPromptSuffix(CommandLog[indexInLog].Raw);
+                            CaretIndex = Text.Length;
+                        }
+                        break;
+                }
+            } catch (ArgumentOutOfRangeException) {}
         }
 
         public virtual void HandleEnterKey() {

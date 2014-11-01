@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using Zargess.VHKPlayer.Collections;
 using Zargess.VHKPlayer.Utility;
 using Forms = System.Windows.Forms;
 using Zargess.VHKPlayer.FileManagement;
@@ -36,9 +37,11 @@ namespace Zargess.VHKPlayer.GUI {
                 Term.RegisteredCommands.Add("set-root");
                 Term.RegisteredCommands.Add("set-stat-fold");
                 Term.RegisteredCommands.Add("load");
-                Term.RegisteredCommands.Add("reload-all");
                 Term.RegisteredCommands.Add("server");
                 Term.RegisteredCommands.Add("get-root");
+                Term.RegisteredCommands.Add("get-players");
+                Term.RegisteredCommands.Add("get-playlists");
+                Term.RegisteredCommands.Add("get-folders");
                 Term.RegisteredCommands.Add("validate");
                 Term.RegisteredCommands.Add("help");
                 Term.RegisteredCommands.Add("play");
@@ -104,12 +107,23 @@ namespace Zargess.VHKPlayer.GUI {
                 StopPlayer(command.Args[0]);
             } else if (command.Name == "continue" && argLength == 1) {
                 ContinuePlayer(command.Args[0]);
+            } else if (command.Name == "get-playlists") {
+                PrintCollection(MainVm.PlayLists);
+            } else if (command.Name == "get-players") {
+                PrintCollection(MainVm.Players);
+            } else if (command.Name == "get-folders") {
+                PrintCollection(MainVm.Audio);
+                PrintCollection(MainVm.Video);
             } else {
                 Console.WriteLine("{0} with the given parameters is not a recordnized command.", command.Name);
             }
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
             Console.WriteLine("Time used: {0}", elapsedMs);
+        }
+
+        private void PrintCollection<T>(IEnumerable<T> collection) {
+            collection.ToList().ForEach(x => Console.WriteLine(x));
         }
 
         private void SetRoot() {
@@ -147,24 +161,40 @@ namespace Zargess.VHKPlayer.GUI {
         }
 
         private void Play(string type, string key) {
-            switch (type) {
-                case "Music":
-                    PlayMusic(key);
-                    break;
-                case "File":
-                    PlayVideo(key);
-                    break;
-                case "PlayList":
-                    break;
-                case "Video":
-                case "Stat":
-                    var player = MainVm.Players.SingleOrDefault(x => x.Number == Utils.ConvertToInt(key));
-                    PlayPlayer(player,type);
-                    break;
-                case "People":
-                    var p = MainVm.People.SingleOrDefault(x => x.Number == Utils.ConvertToInt(key));
-                    PlayPlayer(p,type);
-                    break;
+            type = type.ToLower();
+            try {
+                switch (type) {
+                    case "music":
+                        PlayMusic(key);
+                        break;
+                    case "file":
+                        PlayVideo(key);
+                        break;
+                    case "playlist":
+                        var playlist = MainVm.PlayLists.SingleOrDefault(x => x.Name == key);
+                        PlayPlayList(playlist);
+                        break;
+                    case "video":
+                    case "stat":
+                        var player = MainVm.Players.SingleOrDefault(x => x.Number == Utils.ConvertToInt(key));
+                        PlayPlayer(player, type);
+                        break;
+                    case "people":
+                        var p = MainVm.People.SingleOrDefault(x => x.Number == Utils.ConvertToInt(key));
+                        PlayPlayer(p, type);
+                        break;
+                }
+            } catch (Exception e) {
+                Console.WriteLine("An error was encountered:\n {0}", e.Message);
+            }
+        }
+
+        private void PlayPlayList(PlayList playlist) {
+            if (playlist == null) return;
+            if (playlist.GetType() == typeof(SpecialPlayList)) {
+                Manager.Play(playlist as SpecialPlayList);
+            } else if (playlist.GetType() == typeof(SortedPlayList)) {
+                Manager.Play(playlist as SortedPlayList);
             }
         }
 

@@ -159,5 +159,9 @@ namespace Zargess.VHKPlayer.FileManagement {
             var other = obj as FolderNode;
             return other != null && FullPath == other.FullPath;
         }
+
+        public override string ToString() {
+            return Name;
+        }
     }
 }

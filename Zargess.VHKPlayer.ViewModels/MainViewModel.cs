@@ -114,9 +114,10 @@ namespace Zargess.VHKPlayer.ViewModels {
                 var temp = specialTemp.Split(',');
                 foreach (var s in temp) {
                     var elements = s.Split(';');
+                    var name = elements[0].Replace("{", "");
                     var path = PathHandler.CombinePaths(root.FullPath,elements[1].Replace("}", ""));
                     if (Directory.Exists(path)) {
-                        PlayLists.Add(new SpecialPlayList(PlaylistLoading.playlistFromFolderContent(path), new FolderNode(path)));
+                        PlayLists.Add(new SpecialPlayList(PlaylistLoading.playlistFromFolderContent(name, path), new FolderNode(path)));
                     }
                 }
             }

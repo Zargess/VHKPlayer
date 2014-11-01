@@ -87,5 +87,9 @@ namespace Zargess.VHKPlayer.FileManagement {
         IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
         }
+
+        public override string ToString() {
+            return Name;
+        }
     }
 }

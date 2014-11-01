@@ -18,9 +18,8 @@ module PlaylistLoading =
         { Name = name; Content = content; }
 
     // Creates a playlist of files which lies in a given source. it takes all files that are supported
-    let playlistFromFolderContent source =
+    let playlistFromFolderContent name source =
         let files = getFiles source
-        let name = folderName source
         createPlaylist name files
 
     let getNumber (file : File) index = 
