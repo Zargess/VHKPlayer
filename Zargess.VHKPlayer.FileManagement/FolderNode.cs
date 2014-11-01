@@ -115,12 +115,20 @@ namespace Zargess.VHKPlayer.FileManagement {
             return ls.Select(PathHandler.SplitPath).Select(temp => temp[temp.Length - 1]).Any(n => name == n);
         }
 
-        public bool ContainsFile(string name) {
-            return GetFile(name) != null;
+        public bool ContainsFile(string path) {
+            var b = GetFile(path) != null;
+            return b;
         }
 
-        public FileNode GetFile(string name) {
-            return Files.SingleOrDefault(x => x.Name == name);
+        public FileNode GetFile(string path) {
+            path = path.ToLower();
+            foreach (var file in Files) {
+                var p = file.FullPath.ToLower();
+                if (p == path) {
+                    return file;
+                }
+            }
+            return null;
         }
 
         public void StopListening() {

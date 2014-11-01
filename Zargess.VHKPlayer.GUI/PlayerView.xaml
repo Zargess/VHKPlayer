@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="PlayerView" Height="300" Width="300">
     <Grid>
-        <MediaElement Name="Video" />
-        <MediaElement Name="Audio" Visibility="Hidden" />
+        <MediaElement Name="Video" LoadedBehavior="Manual"/>
+        <MediaElement Name="Audio" Visibility="Hidden" LoadedBehavior="Manual"/>
         <Label Name="Scorings" Visibility="Hidden" />
         <Label Name="Penalties" Visibility="Hidden" />
     </Grid>

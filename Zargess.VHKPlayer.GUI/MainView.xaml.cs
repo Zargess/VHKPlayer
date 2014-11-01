@@ -29,11 +29,12 @@ namespace Zargess.VHKPlayer.GUI {
         public MainView() {
             InitializeComponent();
             Vm = new MainViewModel();
-            Visibility = Visibility.Visible;
+            Visibility = Visibility.Hidden;
             DataContext = Vm;
-            ViewPort = new PlayerView { Visibility = Visibility.Hidden };
+            ViewPort = new PlayerView();
+            ViewPort.Show();
             Manager = new PlayManager(ViewPort);
-            Cmd = new CommandPrompt(Vm, Manager) { Visibility = Visibility.Hidden };
+            Cmd = new CommandPrompt(Vm, Manager) { Visibility = Visibility.Visible };
         }
 
         public void RunCommand(string command) {
