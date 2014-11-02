@@ -45,6 +45,8 @@ namespace Zargess.VHKPlayer.FileManagement {
             return Content[index];
         }
 
+        public abstract List<FileNode> GetContent(); 
+
         public void InitWatcher() {
             if (!Folder.Exists || Watcher != null) return;
             Watcher = new FileSystemWatcher {

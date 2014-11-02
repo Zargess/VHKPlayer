@@ -37,10 +37,6 @@ namespace Zargess.VHKPlayer.GUI {
             Cmd = new CommandPrompt(Vm, Manager) { Visibility = Visibility.Visible };
         }
 
-        public void RunCommand(string command) {
-            Cmd.RunCommand(command);
-        }
-
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
             base.OnClosing(e);
             Application.Current.Shutdown(0);
@@ -58,7 +54,7 @@ namespace Zargess.VHKPlayer.GUI {
                 item.Header = "Show Console";
                 return;
             }
-            RunCommand(item.Tag.ToString());
+            Cmd.RunCommand(item.Tag.ToString());
         }
 
         // TODO : Implement a way to tell the playmanager what and how a playable should be played
@@ -66,7 +62,7 @@ namespace Zargess.VHKPlayer.GUI {
         private void ListBoxItem_Click(object sender, MouseButtonEventArgs e) {
             var item = sender as StackPanel;
             if (item == null) return;
-            RunCommand("play " + item.Name + " " + item.Tag);
+            Cmd.RunCommand("play " + item.Name + " " + item.Tag);
         }
 
         private void Player_Click(object sender, MouseButtonEventArgs e) {
@@ -74,7 +70,7 @@ namespace Zargess.VHKPlayer.GUI {
             if (item == null) return;
             var player = item.Tag as Player;
             if (player == null) return;
-            RunCommand("play " + item.Name + " " + player.Number);
+            Cmd.RunCommand("play " + item.Name + " " + player.Number);
         }
 
         private void ShowSettings(object sender, RoutedEventArgs e) {

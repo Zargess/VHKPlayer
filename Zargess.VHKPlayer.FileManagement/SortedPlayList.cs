@@ -29,8 +29,8 @@ namespace Zargess.VHKPlayer.FileManagement {
             list.Content.ToList().ForEach(x => Content.Add(new FileNode(x.Path)));
         }
 
-        public List<FileNode> GetContent() {
-            return Content;
+        public override List<FileNode> GetContent() {
+            return Content.Select(x => new FileNode(x.FullPath)).ToList();
         }
     }
 }

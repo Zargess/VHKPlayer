@@ -10,15 +10,18 @@ namespace Zargess.VHKPlayer.FileManagement {
     public class SpecialPlayList : PlayList {
         public int Counter { get; private set; }
         // TODO : Consider setting a boolean if a playlist can be played as a sequence or not.
-        public SpecialPlayList(string name, FolderNode folder) : base(name, folder) {
+        public SpecialPlayList(string name, FolderNode folder)
+            : base(name, folder) {
             Counter = 0;
         }
 
-        public SpecialPlayList(string name, FolderNode folder, List<FileNode> content) : base(name, folder, content) {
+        public SpecialPlayList(string name, FolderNode folder, List<FileNode> content)
+            : base(name, folder, content) {
             Counter = 0;
         }
 
-        public SpecialPlayList(PlaylistLoading.Playlist list, FolderNode folder) : base(list, folder) {
+        public SpecialPlayList(PlaylistLoading.Playlist list, FolderNode folder)
+            : base(list, folder) {
             Counter = 0;
         }
 
@@ -37,6 +40,17 @@ namespace Zargess.VHKPlayer.FileManagement {
         public FileNode GetCurrent() {
             if (Counter == Content.Count) Counter = 0;
             return Content[Counter];
+        }
+
+        public override List<FileNode> GetContent() {
+            try {
+                return new List<FileNode> { Content[Counter] };
+            } catch (ArgumentOutOfRangeException) {
+                Counter = 0;
+                return new List<FileNode> { Content[Counter] };
+            } finally {
+                Counter++;
+            }
         }
 
         public override void Refresh() {

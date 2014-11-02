@@ -31,6 +31,7 @@ namespace Zargess.VHKPlayer.GUI.PlayManagement {
             Audio = PlayingView.Audio;
             VideoQueue = new Queue<FileNode>();
             MediaElements = new Dictionary<string, MediaElement> { { "video", Video }, { "audio", Audio } };
+            Video.MediaEnded += (sender, args) => PlayQueue();
         }
 
         public void Play(FileNode file) {
@@ -56,7 +57,7 @@ namespace Zargess.VHKPlayer.GUI.PlayManagement {
             //me.Volume = 10.0;
             me.Play();
         }
-
+        /*
         public void Play(SortedPlayList list) {
             foreach (var file in list) {
                 VideoQueue.Enqueue(file);
@@ -66,6 +67,14 @@ namespace Zargess.VHKPlayer.GUI.PlayManagement {
 
         public void Play(SpecialPlayList list) {
             Play(list.GetNext());
+        }
+        */
+        public void Play(PlayList list) {
+            VideoQueue.Clear();
+            foreach (var file in list.GetContent()) {
+                VideoQueue.Enqueue(new FileNode(file.FullPath));
+            }
+            PlayQueue();
         }
 
         public void Play(Player p, string type) {
@@ -89,7 +98,11 @@ namespace Zargess.VHKPlayer.GUI.PlayManagement {
         }
 
         public void PlayQueue() {
+            Console.WriteLine("PlayQueue is not implemented yet.... :(");
 
+            if (VideoQueue.Count > 0) {
+                Play(VideoQueue.Dequeue());
+            }
         }
 
         public void ShowImage(FileNode file) {
@@ -112,7 +125,7 @@ namespace Zargess.VHKPlayer.GUI.PlayManagement {
         public void PostStatPlayList(SortableCollection<PlayList> list) {
             var name = SettingsManager.GetSetting("postStatPlayList") as string;
             if (String.IsNullOrEmpty(name)) return;
-            var playlist = list.SingleOrDefault(x => x.Name == name) as SpecialPlayList;
+            var playlist = list.SingleOrDefault(x => x.Name == name);
             if (playlist == null) return;
             Play(playlist);
         }
