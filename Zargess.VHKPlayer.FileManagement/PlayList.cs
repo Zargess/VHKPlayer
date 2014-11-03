@@ -38,12 +38,6 @@ namespace Zargess.VHKPlayer.FileManagement {
         public void Add(FileNode file) {
             Content.Add(new FileNode(file.FullPath));
         }
-        // TODO : For each of the subtypes implement a method to get the content to play. Consider adding an abstract method with the following signature:
-        // public abstract object GetContent();     or     public abstract List<FileNode> GetContent();
-        // Otherwise let the future playmanager handle the different cases by checking the given type of playlist.
-        public FileNode GetFile(int index) {
-            return Content[index];
-        }
 
         public abstract List<FileNode> GetContent(); 
 
