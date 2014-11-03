@@ -40,7 +40,7 @@ namespace Zargess.VHKPlayer.GUI.PlayManagement {
         public void Play(FileNode file) {
             switch (file.Type) {
                 case FileType.Picture:
-                    ShowImage(file);
+                    ShowImage(file, null);
                     break;
                 case FileType.Music:
                     LastPlayedMusicFile = new FileNode(file.FullPath);
