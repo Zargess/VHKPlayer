@@ -14,7 +14,7 @@ using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer.Players {
     public class Player : INotifyPropertyChanged {
-        public delegate void ValueChangedHandler(object sender, EventArgs e);
+        public delegate void ValueChangedHandler(object sender, StatEventArgs e);
         public event ValueChangedHandler ValueChanged;
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -125,7 +125,7 @@ namespace Zargess.VHKPlayer.Players {
                     }
                 }
                 if (ValueChanged != null && !Stats.Equals(old)) {
-                    ValueChanged(this, new EventArgs());
+                    ValueChanged(this, new StatEventArgs(Stats.Clone()));
                 }
             }
         }

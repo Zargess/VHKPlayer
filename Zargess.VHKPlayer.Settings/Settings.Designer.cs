@@ -143,5 +143,77 @@ namespace Zargess.VHKPlayer.Settings {
                 this["postStatPlayList"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int scorlabel_x {
+            get {
+                return ((int)(this["scorlabel_x"]));
+            }
+            set {
+                this["scorlabel_x"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int scorlabel_y {
+            get {
+                return ((int)(this["scorlabel_y"]));
+            }
+            set {
+                this["scorlabel_y"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int penaltylabel_x {
+            get {
+                return ((int)(this["penaltylabel_x"]));
+            }
+            set {
+                this["penaltylabel_x"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int penaltylabel_y {
+            get {
+                return ((int)(this["penaltylabel_y"]));
+            }
+            set {
+                this["penaltylabel_y"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int savedlabel_x {
+            get {
+                return ((int)(this["savedlabel_x"]));
+            }
+            set {
+                this["savedlabel_x"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int savedlabel_y {
+            get {
+                return ((int)(this["savedlabel_y"]));
+            }
+            set {
+                this["savedlabel_y"] = value;
+            }
+        }
     }
 }

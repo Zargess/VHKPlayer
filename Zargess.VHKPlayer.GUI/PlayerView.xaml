@@ -7,5 +7,6 @@
         <MediaElement Name="Audio" Visibility="Hidden" LoadedBehavior="Manual"/>
         <Label Name="Scorings" Visibility="Hidden" />
         <Label Name="Penalties" Visibility="Hidden" />
+        <Label Name="Saves" Visibility="Hidden" />
     </Grid>
 </Window>

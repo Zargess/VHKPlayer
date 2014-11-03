@@ -4,15 +4,18 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using Zargess.VHKPlayer.Collections;
 using Zargess.VHKPlayer.FileManagement;
 using Zargess.VHKPlayer.Settings;
 using Zargess.VHKPlayer.Players;
+using Timer = System.Windows.Forms.Timer;
 
 namespace Zargess.VHKPlayer.GUI.PlayManagement {
     public class PlayManager {
@@ -80,7 +83,7 @@ namespace Zargess.VHKPlayer.GUI.PlayManagement {
         public void Play(Player p, string type) {
             switch (type) {
                 case "people":
-                    ShowImage(p.Picture);
+                    ShowImage(p.Picture, p);
                     break;
                 case "video":
                     Play(p.Video);
@@ -98,20 +101,61 @@ namespace Zargess.VHKPlayer.GUI.PlayManagement {
         }
 
         public void PlayQueue() {
-            Console.WriteLine("PlayQueue is not implemented yet.... :(");
+            Console.WriteLine("PlayQueue is not done yet.... :(");
 
             if (VideoQueue.Count > 0) {
                 Play(VideoQueue.Dequeue());
             }
         }
 
-        public void ShowImage(FileNode file) {
+        public void ShowImage(FileNode file, Player p) {
             if (file.Type != FileType.Picture) return;
             HideVideoPlayer();
             PlayingView.Background = new ImageBrush(new BitmapImage(new Uri(file.FullPath)));
             if (file.Source == "SpillerVideoStat") {
-                // TODO : Implement how to show stats
+                ShowStats(p);
             }
+        }
+
+        private void ShowStats(Player player) {
+            player.ValueChanged += ValuesUpdated;
+            UpdateLabelText(player.Stats);
+            var t = new Timer {Interval = 5000};
+            t.Tick +=
+                (sender, args) =>
+                    Application.Current.Dispatcher.Invoke(() => {
+                        player.ValueChanged -= ValuesUpdated;
+                        var q = sender as Timer;
+                        q.Stop();
+                        t.Enabled = false;
+                    });
+            t.Enabled = true;
+            t.Start();
+        }
+
+        private void ValuesUpdated(object sender, StatEventArgs args) {
+            UpdateLabelText(args.Stats);
+        }
+
+        private void UpdateLabelText(Statistics stats) {
+            PlayingView.Penalties.Content = stats.Suspension;
+            ChangeLabelText(PlayingView.Saves, stats.Saves, stats.SaveAttempts);
+            ChangeLabelText(PlayingView.Scorings, stats.Goals, stats.Shots);
+            ShowLabels(stats.Shots > 0, stats.Suspension > 0, stats.SaveAttempts > 0);
+        }
+
+        private void ChangeLabelText(Label l, int succesfull, int attempts) {
+            l.Content = succesfull + "/" + attempts;
+        }
+
+        private void ShowLabels(bool shots, bool saves, bool suspensions) {
+            PlayingView.Scorings.Visibility = GetVisibility(shots);
+            PlayingView.Penalties.Visibility = GetVisibility(suspensions);
+            PlayingView.Saves.Visibility = GetVisibility(saves);
+        }
+
+        private Visibility GetVisibility(bool b) {
+            return b ? Visibility.Visible : Visibility.Hidden;
         }
 
         private void HideVideoPlayer() {
