@@ -30,6 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D793C3
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.FileManagement.Test", "Zargess.VHKPlayer.FileManagement.Test\Zargess.VHKPlayer.FileManagement.Test.csproj", "{8F7AB897-0239-4FCE-B9C3-5032186417F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,12 @@ Global
 		{636BA8FA-59C9-4701-8D90-27D084854DE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{636BA8FA-59C9-4701-8D90-27D084854DE8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{636BA8FA-59C9-4701-8D90-27D084854DE8}.Release|x64.ActiveCfg = Release|Any CPU
+		{8F7AB897-0239-4FCE-B9C3-5032186417F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F7AB897-0239-4FCE-B9C3-5032186417F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F7AB897-0239-4FCE-B9C3-5032186417F6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8F7AB897-0239-4FCE-B9C3-5032186417F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F7AB897-0239-4FCE-B9C3-5032186417F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F7AB897-0239-4FCE-B9C3-5032186417F6}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

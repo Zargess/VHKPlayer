@@ -8,25 +8,13 @@ using Zargess.VHKPlayer.Settings;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class FileNode : Node {
-        protected bool Equals(FileNode other) {
-            return string.Equals(_fullpath, other._fullpath) && string.Equals(Extension, other.Extension) && string.Equals(NameWithNoExtension, other.NameWithNoExtension) && Type == other.Type;
-        }
-
-        public override int GetHashCode() {
-            unchecked {
-                int hashCode = (_fullpath != null ? _fullpath.GetHashCode() : 0);
-                hashCode = (hashCode*397) ^ (Extension != null ? Extension.GetHashCode() : 0);
-                hashCode = (hashCode*397) ^ (NameWithNoExtension != null ? NameWithNoExtension.GetHashCode() : 0);
-                hashCode = (hashCode*397) ^ (int) Type;
-                return hashCode;
-            }
-        }
-
         // TODO : Get duration of file if available
         private string _fullpath;
         public string Extension { get; private set; }
         public string NameWithNoExtension { get; private set; }
         public FileType Type { get; private set; }
+
+        // TODO : Split this from fullpath into smaller methods and make this private set
         public override sealed string FullPath {
             get {
                 return _fullpath;
@@ -49,6 +37,12 @@ namespace Zargess.VHKPlayer.FileManagement {
             }
         }
 
+        // TODO : Put more of the fullpath logic into this
+        public FileNode(string path) {
+            FullPath = path;
+        }
+
+        // TODO : Make this method return the type instead of setting it
         private void SetFileType(string e) {
             var t = e.ToLower();
             var pics = Utiliti.settingList("supportedPicture").ToList().Contains(t);
@@ -65,10 +59,6 @@ namespace Zargess.VHKPlayer.FileManagement {
             }
         }
 
-        public FileNode(string path) {
-            FullPath = path;
-        }
-
         public bool Exists() {
             return File.Exists(FullPath);
         }
@@ -77,6 +67,20 @@ namespace Zargess.VHKPlayer.FileManagement {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             return obj.GetType() == GetType() && Equals((FileNode) obj);
+        }
+
+        protected bool Equals(FileNode other) {
+            return string.Equals(_fullpath, other._fullpath) && string.Equals(Extension, other.Extension) && string.Equals(NameWithNoExtension, other.NameWithNoExtension) && Type == other.Type;
+        }
+
+        public override int GetHashCode() {
+            unchecked {
+                int hashCode = (_fullpath != null ? _fullpath.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (Extension != null ? Extension.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (NameWithNoExtension != null ? NameWithNoExtension.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (int)Type;
+                return hashCode;
+            }
         }
     }
 }
