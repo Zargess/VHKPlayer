@@ -1,0 +1,4 @@
+* Illegal path for file does not exist DONE
+* Legal file on hard disk exists DONE
+* Test.txt is not a supported file
+* Test.txt equals Test.txt
