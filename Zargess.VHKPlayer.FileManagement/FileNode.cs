@@ -33,7 +33,7 @@ namespace Zargess.VHKPlayer.FileManagement {
                 for (var i = 0; i < noextens.Count() - 1; i++) {
                     NameWithNoExtension += noextens[i];
                 }
-                SetFileType(Extension);
+                GetFileType(Extension);
             }
         }
 
@@ -41,22 +41,26 @@ namespace Zargess.VHKPlayer.FileManagement {
         public FileNode(string path) {
             FullPath = path;
         }
-
-        // TODO : Make this method return the type instead of setting it
-        private void SetFileType(string e) {
+        
+        private FileType GetFileType(string e) {
             var t = e.ToLower();
             var pics = Utiliti.settingList("supportedPicture").ToList().Contains(t);
             var vids = Utiliti.settingList("supportedVideo").ToList().Contains(t);
             var mus = Utiliti.settingList("supportedMusic").ToList().Contains(t);
+
             if (pics) {
-                Type = FileType.Picture;
-            } else if (vids) {
-                Type = FileType.Video;
-            } else if (mus) {
-                Type = FileType.Music;
-            } else {
-                Type = FileType.Unsupported;
-            }
+                return FileType.Picture;
+            } 
+            
+            if (vids) {
+                return FileType.Video;
+            } 
+            
+            if (mus) {
+                return FileType.Music;
+            } 
+            
+            return FileType.Unsupported;
         }
 
         public bool Exists() {
