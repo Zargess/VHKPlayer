@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using Zargess.VHKPlayer.Collections;
 using Zargess.VHKPlayer.FileManagement;
 using Zargess.VHKPlayer.Players;
@@ -29,7 +30,6 @@ namespace Zargess.VHKPlayer.ViewModels {
             Audio = new SortableCollection<FolderNode>();
             Video = new SortableCollection<FolderNode>();
             PlayLists = new SortableCollection<PlayList>();
-            Watchers = new List<FileSystemWatcher>();
         }
 
         // TODO : Move all loading methods to another class for a clean ViewModel
@@ -41,24 +41,6 @@ namespace Zargess.VHKPlayer.ViewModels {
                     Utils.TimeMethod(LoadFolders, root);
                     Utils.TimeMethod(LoadPlayLists, root);
                     Utils.TimeMethod(LoadPlayers, root);
-                } else {
-                    Console.WriteLine("Could not load: {0}\nPlease choose another folder.", path);
-                }
-            } catch (UnauthorizedAccessException e) {
-                Console.WriteLine("You do not have permission to use this folder. \nPlease choose another one.\n" + e.Message);
-            } catch (NullReferenceException e) {
-                Console.WriteLine("You have not chosen a folder to load. Please do this before continuing.\n" + e.Message);
-            }
-        }
-
-        public void LoadStructureThreaded(string path) {
-            try {
-                var root = new FolderNode(path);
-                if (root.ValidRootFolder()) {
-                    ClearData();
-                    new Thread(() => Utils.TimeMethod(LoadFolders, root)).Start();
-                    new Thread(() => Utils.TimeMethod(LoadPlayLists, root)).Start();
-                    new Thread(() => Utils.TimeMethod(LoadPlayers, root)).Start();
                 } else {
                     Console.WriteLine("Could not load: {0}\nPlease choose another folder.", path);
                 }
@@ -87,10 +69,6 @@ namespace Zargess.VHKPlayer.ViewModels {
                 }
             }
             Console.WriteLine("Folder done loading");
-        }
-
-        public void ReloadFolder(FolderNode fn) {
-            fn.Refresh();
         }
 
         public void LoadPlayLists(FolderNode root) {
@@ -128,22 +106,24 @@ namespace Zargess.VHKPlayer.ViewModels {
         public void LoadPlayers(FolderNode root) {
             if (!root.ContainsFolder("Spiller") || !root.ContainsFolder("SpillerVideo") || !root.ContainsFolder("SpillerVideoStat")) return;
             var people = PlayerLoading.createAllPlayers(root.FullPath).ToList();
-
+            ClearIWatchable(People);
+            ClearIWatchable(Players);
             foreach (var p in people.Select(person => new Player(person))) {
                 People.Add(p);
                 if (!p.Trainer) {
                     Players.Add(p);
                 }
             }
-            if (Watchers.Count <= 0) {
+            if (Watchers == null) {
+                Watchers = new List<FileSystemWatcher>();
                 var list =
                     new[] {"spiller", "spillervideo", "spillervideostat"}.Select(
                         x => Utils.CreateWatcher(PathHandler.CombinePaths(root.FullPath, x), "*.*"));
                 foreach (var w in list) {
-                    w.Created += (sender, args) => LoadPlayers(root);
-                    w.Deleted += (sender, args) => LoadPlayers(root);
-                    w.Renamed += (sender, args) => LoadPlayers(root);
-                    w.Changed += (sender, args) => LoadPlayers(root);
+                    w.Created += (sender, args) => Application.Current.Dispatcher.Invoke(() => LoadPlayers(root));
+                    w.Deleted += (sender, args) => Application.Current.Dispatcher.Invoke(() => LoadPlayers(root));
+                    w.Renamed += (sender, args) => Application.Current.Dispatcher.Invoke(() => LoadPlayers(root));
+                    w.Changed += (sender, args) => Application.Current.Dispatcher.Invoke(() => LoadPlayers(root));
                     w.EnableRaisingEvents = true;
                     Watchers.Add(w);
                 }
