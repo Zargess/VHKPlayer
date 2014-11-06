@@ -13,7 +13,7 @@ using Zargess.VHKPlayer.Settings;
 using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer.Players {
-    public class Player : INotifyPropertyChanged {
+    public class Player : INotifyPropertyChanged, IWatchable {
         public delegate void ValueChangedHandler(object sender, StatEventArgs e);
         public event ValueChangedHandler ValueChanged;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -44,7 +44,7 @@ namespace Zargess.VHKPlayer.Players {
             StatMusic = new FileNode(staFiles.Music.Path);
             Stats = new Statistics();
             PictureWatcher = new FileSystemWatcher();
-            if(!Trainer) InitStatWatcher();
+            if(!Trainer) InitWatcher();
             InitPictureWatcher();
         }
 
@@ -78,7 +78,7 @@ namespace Zargess.VHKPlayer.Players {
             }
         }
 
-        public void InitStatWatcher() {
+        public void InitWatcher() {
             if (StatWatcher != null) return;
             while (true) {
                 if (SettingsManager.GetSetting("statfolder") as string != "") {
@@ -130,7 +130,7 @@ namespace Zargess.VHKPlayer.Players {
             }
         }
 
-        public void StopListener() {
+        public void StopListening() {
             if (StatWatcher == null) return;
             StatWatcher.EnableRaisingEvents = false;
             StatWatcher.Dispose();

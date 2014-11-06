@@ -29,7 +29,7 @@ namespace Zargess.VHKPlayer.GUI {
         public MainView() {
             InitializeComponent();
             Vm = new MainViewModel();
-            Visibility = Visibility.Hidden;
+            Visibility = Visibility.Visible;
             DataContext = Vm;
             ViewPort = new PlayerView();
             ViewPort.Show();

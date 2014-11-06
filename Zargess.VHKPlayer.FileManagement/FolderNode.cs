@@ -9,7 +9,7 @@ using Zargess.VHKPlayer.Collections;
 using Zargess.VHKPlayer.Settings;
 
 namespace Zargess.VHKPlayer.FileManagement {
-    public class FolderNode : Node {
+    public class FolderNode : Node, IWatchable {
         public List<FolderNode> SubFolders { get; private set; }
         public bool Exists { get; private set; }
         public SortableCollection<FileNode> Files { get; private set; }

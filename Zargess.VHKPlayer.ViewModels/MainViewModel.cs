@@ -152,32 +152,18 @@ namespace Zargess.VHKPlayer.ViewModels {
         }
 
         private void ClearData() {
-            ClearFolderList(Audio);
-            ClearFolderList(Video);
-            ClearPeople(People);
-            ClearPeople(Players);
-            ClearPlayLists(PlayLists);
+            ClearIWatchable(Audio);
+            ClearIWatchable(Video);
+            ClearIWatchable(People);
+            ClearIWatchable(Players);
+            ClearIWatchable(PlayLists);
         }
 
-        private void ClearFolderList(ICollection<FolderNode> list) {
-            foreach (var folder in list) {
-                folder.StopListening();
+        private void ClearIWatchable<T>(ICollection<T> collection) where T : IWatchable {
+            foreach (var element in collection) {
+                element.StopListening();
             }
-            list.ClearOnUI();
-        }
-
-        private void ClearPeople(ICollection<Player> list) {
-            foreach (var player in list) {
-                player.StopListener();
-            }
-            list.ClearOnUI();
-        }
-
-        private void ClearPlayLists(ICollection<PlayList> list) {
-            foreach (var playList in list) {
-                playList.StopListening();
-            }
-            list.ClearOnUI();
+            collection.ClearOnUI();
         }
     }
 }
