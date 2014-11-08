@@ -10,7 +10,7 @@
         <gui:Terminal Grid.Row="0" x:Name="Term" FontFamily="Courier New" FontSize="12"
 				IsPromptInsertedAtLaunch="False" IsSystemBeepEnabled="True"
 				VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="Transparent" 
-                Foreground="White" CaretBrush="Transparent" BorderThickness="0"/>
+                Foreground="White" CaretBrush="Transparent" BorderThickness="0" />
         <Canvas>
             <Border x:Name="Caret" 
                 Visibility="Collapsed"

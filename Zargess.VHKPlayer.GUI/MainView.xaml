@@ -95,7 +95,7 @@
                                         </ListBox.ItemContainerStyle>
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel Name="People"  PreviewMouseDown="Player_Click" Tag="{Binding}" Orientation="Horizontal">
+                                                <StackPanel Name="People"  PreviewMouseDown="Player_Click" Tag="{Binding}" Orientation="Horizontal" Background="Red" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="-4,-1,-4,-1">
                                                     <Image Source="{Binding Picture.FullPath}" Height="50"/>
                                                     <Label Height="30" FontSize="12" Margin="-4,-1,-4,-1" Content="{Binding}"/>
                                                 </StackPanel>
@@ -112,7 +112,7 @@
                                         </ListBox.ItemContainerStyle>
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel Name="Video"  PreviewMouseDown="Player_Click" Tag="{Binding}">
+                                                <StackPanel Name="Video"  PreviewMouseDown="Player_Click" Tag="{Binding}" Background="Red">
                                                     <Label HorizontalAlignment="Stretch" Height="30" FontSize="12" Margin="-4,-1,-4,-1" Content="{Binding}"/>
                                                 </StackPanel>
                                             </DataTemplate>
@@ -128,7 +128,7 @@
                                         </ListBox.ItemContainerStyle>
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel Name="Stat"  PreviewMouseDown="Player_Click" Tag="{Binding}">
+                                                <StackPanel Name="Stat"  PreviewMouseDown="Player_Click" Tag="{Binding}" Background="Red">
                                                     <Label HorizontalAlignment="Stretch" Height="30" FontSize="12" Margin="-4,-1,-4,-1" Content="{Binding}"/>
                                                 </StackPanel>
                                             </DataTemplate>

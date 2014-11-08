@@ -47,7 +47,6 @@
     <Compile Include="IWatchable.cs" />
     <Compile Include="PathHandler.cs" />
     <Compile Include="PlayList.cs" />
-    <Compile Include="PlayListType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SortedPlayList.cs" />
     <Compile Include="SpecialPlayList.cs" />
