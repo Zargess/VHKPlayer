@@ -9,29 +9,23 @@ using Zargess.VHKPlayer.Collections;
 using Zargess.VHKPlayer.Settings;
 
 namespace Zargess.VHKPlayer.FileManagement {
-    public class FolderNode : Node, IWatchable {
+    public class FolderNode : IWatchable {
         public List<FolderNode> SubFolders { get; private set; }
         public bool Exists { get; private set; }
         public SortableCollection<FileNode> Files { get; private set; }
-        private string _fullpath;
-        public override sealed string FullPath {
-            get {
-                return _fullpath;
-            }
-            set {
-                if (String.IsNullOrEmpty(value)) return;
-                _fullpath = value;
-                var temp = PathHandler.SplitPath(_fullpath);
-                Name = temp[temp.Length - 1];
-                if (temp.Length > 1) Source = temp[temp.Length - 2];
-            }
-        }
+        public string Source { get; private set; }
+        public string Name { get; private set; }
+        public string FullPath { get; private set; }
         public FileSystemWatcher Watcher { get; set; }
 
         public FolderNode(string path) {
+            if (String.IsNullOrEmpty(path)) return;
             FullPath = path;
             Exists = Directory.Exists(FullPath);
             Files = LoadFiles();
+            var temp = PathHandler.SplitPath(FullPath);
+            Name = temp[temp.Length - 1];
+            if (temp.Length > 1) Source = temp[temp.Length - 2];
         }
 
         public void InitWatcher() {

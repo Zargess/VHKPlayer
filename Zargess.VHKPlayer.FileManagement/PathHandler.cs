@@ -23,12 +23,13 @@ namespace Zargess.VHKPlayer.FileManagement {
             return Path.Combine(path1, path2);
         }
 
+        /*
         public static string RemovePathFromNode(Node org, Node toRemove) {
             var res = org.FullPath;
             res = res.Replace(toRemove.FullPath, "");
             return res;
         }
-
+        */
         public static bool IsFile(string path) {
             try {
                 var file = new FileNode(path);

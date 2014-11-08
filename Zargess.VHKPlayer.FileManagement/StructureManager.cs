@@ -43,7 +43,7 @@ namespace Zargess.VHKPlayer.FileManagement {
 
             foreach (var folder in folders) {
                 var element = doc.CreateElement("Folder");
-                element.SetAttributeNode(MakeAttribute("path", PathHandler.RemovePathFromNode(folder, RootFolder)));
+                //element.SetAttributeNode(MakeAttribute("path", PathHandler.RemovePathFromNode(folder, RootFolder)));
                 root.AppendChild(element);
 
                 var response = "";

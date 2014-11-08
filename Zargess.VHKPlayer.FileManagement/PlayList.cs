@@ -14,7 +14,6 @@ namespace Zargess.VHKPlayer.FileManagement {
         public string Name { get; private set; }
         public FileSystemWatcher Watcher { get; protected set; }
         public FolderNode Folder { get; protected set; }
-        public PlayListType Type { get; private set; }
 
         protected PlayList(string name, FolderNode folder) {
             Name = name;
