@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
-using Zargess.VHKPlayer.FileManagement;
-
+﻿
 namespace Zargess.VHKPlayer.Players {
     public class Statistics {
         public int Goals { get; set; }
@@ -47,7 +39,7 @@ namespace Zargess.VHKPlayer.Players {
             return obj.GetType() == GetType() && Equals((Statistics) obj);
         }
 
-        protected bool Equals(Statistics other) {
+        public bool Equals(Statistics other) {
             return Goals == other.Goals &&
                 Shots == other.Shots &&
                 Saves == other.Saves &&

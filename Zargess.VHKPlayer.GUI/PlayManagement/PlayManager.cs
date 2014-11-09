@@ -60,18 +60,7 @@ namespace Zargess.VHKPlayer.GUI.PlayManagement {
             //me.Volume = 10.0;
             me.Play();
         }
-        /*
-        public void Play(SortedPlayList list) {
-            foreach (var file in list) {
-                VideoQueue.Enqueue(file);
-            }
-            PlayQueue();
-        }
 
-        public void Play(SpecialPlayList list) {
-            Play(list.GetNext());
-        }
-        */
         public void Play(PlayList list) {
             VideoQueue.Clear();
             foreach (var file in list.GetContent()) {
