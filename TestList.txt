@@ -1,4 +1,5 @@
-* Illegal path for file does not exist DONE
-* Legal file on hard disk exists DONE
-* Test.txt is not a supported file
-* Test.txt equals Test.txt
+* Test_txtNameShouldBeTest_txt DONE
+* PathToTest_txtNameShouldBeTest_txt DONE
+* Test_txtPathShouldBePath_Test_txt DONE
+* Logo_pngPathShouldBePath_Logo_png DONE
+* PathToLogo_pngPathShouldBePath_Logo_png DONE
