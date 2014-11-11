@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Zargess.VHKPlayer.SettingsManager;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class FileImpl : IFile {
@@ -13,8 +11,33 @@ namespace Zargess.VHKPlayer.FileManagement {
         public FileType Type { get; private set; }
 
         public FileImpl(string path) {
-            Name = GetName(path);
+            Name = Path.GetFileName(path);
             FullPath = GetPath(path);
+            Source = Path.GetFileName(Path.GetDirectoryName(path));
+            Type = GetFileType();
+        }
+
+        private FileType GetFileType() {
+            var fullPath = FullPath.ToLower();
+            var temp = fullPath.Split('.');
+            var extension = temp[temp.Length - 1];
+            var pics = SettingsManagement.GetStringSetting("supportedPicture").Split(';').ToList();
+            var vids = SettingsManagement.GetStringSetting("supportedVideo").Split(';').ToList();
+            var mus = SettingsManagement.GetStringSetting("supportedMusic").Split(';').ToList();
+
+            if (pics.Contains(extension)) {
+                return FileType.Picture;
+            }
+
+            if (vids.Contains(extension)) {
+                return FileType.Video;
+            }
+
+            if (mus.Contains(extension)) {
+                return FileType.Music;
+            }
+
+            return FileType.Unsupported;
         }
 
         private string GetPath(string path) {
@@ -22,13 +45,8 @@ namespace Zargess.VHKPlayer.FileManagement {
             return temp.Length > 1 ? path : Path.Combine(Environment.CurrentDirectory, path);
         }
 
-        private string GetName(string path) {
-            var temp = path.Split('\\');
-            return temp[temp.Length - 1];
-        }
-
         public bool Exists() {
-            throw new NotImplementedException();
+            return File.Exists(FullPath);
         }
     }
 }

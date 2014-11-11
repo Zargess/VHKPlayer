@@ -9,27 +9,6 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
     /// </summary>
     [TestClass]
     public class FileTest {
-        public FileTest() {
-            //
-            // TODO: Add constructor logic here
-            //
-        }
-
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext {
-            get {
-                return testContextInstance;
-            }
-            set {
-                testContextInstance = value;
-            }
-        }
-
         #region Additional test attributes
         //
         // You can use the following additional attributes as you write your tests:
@@ -85,6 +64,42 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
         public void PathToLogo_pngPathShouldBePath_Logo_png() {
             IFile file = new FileImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Logo.png");
             Assert.AreEqual(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Logo.png", file.FullPath);
+        }
+
+        [TestMethod]
+        public void SourceOfLogo_pngPathShouldBeFiles_for_unit_test() {
+            IFile file = new FileImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Logo.png");
+            Assert.AreEqual("Files for unit test", file.Source);
+        }
+
+        [TestMethod]
+        public void SourceOfTestList_txtPathShouldBeVHKPlayer() {
+            IFile file = new FileImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\TestList.txt");
+            Assert.AreEqual("VHKPlayer", file.Source);
+        }
+
+        [TestMethod]
+        public void Logo_pngShouldExist() {
+            IFile file = new FileImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Logo.png");
+            Assert.IsTrue(file.Exists());
+        }
+
+        [TestMethod]
+        public void Temp_pngShouldNotExist() {
+            IFile file = new FileImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Temp.png");
+            Assert.IsFalse(file.Exists());
+        }
+
+        [TestMethod]
+        public void TypeOfLogo_pngShouldBePicture() {
+            IFile file = new FileImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Logo.png");
+            Assert.AreEqual(FileType.Picture, file.Type);
+        }
+
+        [TestMethod]
+        public void TypeOfTest_txtShouldBeUnsupported() {
+            IFile file = new FileImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Test.txt");
+            Assert.AreEqual(FileType.Unsupported, file.Type);
         }
     }
 }

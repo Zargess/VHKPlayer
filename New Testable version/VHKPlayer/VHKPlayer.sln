@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.FileManag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.FileManagement.Test", "Zargess.VHKPlayer.FileManagement.Test\Zargess.VHKPlayer.FileManagement.Test.csproj", "{DBAA1DCF-2BB3-4FEB-91D7-063FE0EC8CB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.SettingsManager", "Zargess.VHKPlayer.SettingsManager\Zargess.VHKPlayer.SettingsManager.csproj", "{F1718029-9846-433D-8DC1-39C51E6B547C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DBAA1DCF-2BB3-4FEB-91D7-063FE0EC8CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBAA1DCF-2BB3-4FEB-91D7-063FE0EC8CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBAA1DCF-2BB3-4FEB-91D7-063FE0EC8CB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1718029-9846-433D-8DC1-39C51E6B547C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1718029-9846-433D-8DC1-39C51E6B547C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1718029-9846-433D-8DC1-39C51E6B547C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1718029-9846-433D-8DC1-39C51E6B547C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
