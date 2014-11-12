@@ -38,67 +38,67 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
 
         [TestMethod]
         public void Test_txtNameShouldBeTest_txt() {
-            IFile file = new FileImpl("Test.txt");
+            IFile file = new FileNode("Test.txt");
             Assert.AreEqual("Test.txt", file.Name);
         }
 
         [TestMethod]
         public void PathToTest_txtNameShouldBeTest_txt() {
-            IFile file = new FileImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Test.txt");
+            IFile file = new FileNode(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Test.txt");
             Assert.AreEqual("Test.txt", file.Name);
         }
 
         [TestMethod]
         public void Test_txtPathShouldBePath_Test_txt() {
-            IFile file = new FileImpl("Test.txt");
+            IFile file = new FileNode("Test.txt");
             Assert.AreEqual(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Test.txt", file.FullPath);
         }
 
         [TestMethod]
         public void Logo_pngPathShouldBePath_Logo_png() {
-            IFile file = new FileImpl("Logo.png");
+            IFile file = new FileNode("Logo.png");
             Assert.AreEqual(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Logo.png", file.FullPath);
         }
 
         [TestMethod]
         public void PathToLogo_pngPathShouldBePath_Logo_png() {
-            IFile file = new FileImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Logo.png");
+            IFile file = new FileNode(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Logo.png");
             Assert.AreEqual(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Logo.png", file.FullPath);
         }
 
         [TestMethod]
         public void SourceOfLogo_pngPathShouldBeFiles_for_unit_test() {
-            IFile file = new FileImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Logo.png");
+            IFile file = new FileNode(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Logo.png");
             Assert.AreEqual("Files for unit test", file.Source);
         }
 
         [TestMethod]
         public void SourceOfTestList_txtPathShouldBeVHKPlayer() {
-            IFile file = new FileImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\TestList.txt");
+            IFile file = new FileNode(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\TestList.txt");
             Assert.AreEqual("VHKPlayer", file.Source);
         }
 
         [TestMethod]
         public void Logo_pngShouldExist() {
-            IFile file = new FileImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Logo.png");
+            IFile file = new FileNode(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Logo.png");
             Assert.IsTrue(file.Exists());
         }
 
         [TestMethod]
         public void Temp_pngShouldNotExist() {
-            IFile file = new FileImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Temp.png");
+            IFile file = new FileNode(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Temp.png");
             Assert.IsFalse(file.Exists());
         }
 
         [TestMethod]
         public void TypeOfLogo_pngShouldBePicture() {
-            IFile file = new FileImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Logo.png");
+            IFile file = new FileNode(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Logo.png");
             Assert.AreEqual(FileType.Picture, file.Type);
         }
 
         [TestMethod]
         public void TypeOfTest_txtShouldBeUnsupported() {
-            IFile file = new FileImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Test.txt");
+            IFile file = new FileNode(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test\Test.txt");
             Assert.AreEqual(FileType.Unsupported, file.Type);
         }
     }

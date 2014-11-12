@@ -4,13 +4,13 @@ using System.Linq;
 using Zargess.VHKPlayer.SettingsManager;
 
 namespace Zargess.VHKPlayer.FileManagement {
-    public class FileImpl : IFile {
+    public class FileNode : IFile {
         public string FullPath { get; private set; }
         public string Name { get; private set; }
         public string Source { get; private set; }
         public FileType Type { get; private set; }
 
-        public FileImpl(string path) {
+        public FileNode(string path) {
             Name = Path.GetFileName(path);
             FullPath = GetPath(path);
             Source = Path.GetFileName(Path.GetDirectoryName(path));

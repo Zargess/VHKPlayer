@@ -38,14 +38,20 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
 
         [TestMethod]
         public void ProjectFolderNameShouldBeVHKPlayer() {
-            var folder = new FolderImpl(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\");
+            IFolder folder = new FolderNode(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\");
             Assert.AreEqual("VHKPlayer", folder.Name);
         }
 
         [TestMethod]
         public void FolderNameShouldBeGitHub() {
-            var folder = new FolderImpl(@"C:\Users\MFH\Documents\GitHub\");
+            IFolder folder = new FolderNode(@"C:\Users\MFH\Documents\GitHub\");
             Assert.AreEqual("GitHub", folder.Name);
+        }
+
+        [TestMethod]
+        public void FolderPathShouldBePathGitHub() {
+            IFolder folder = new FolderNode(@"C:\Users\MFH\Documents\GitHub\");
+            Assert.AreEqual(@"C:\Users\MFH\Documents\GitHub\", folder.FullPath);
         }
     }
 }

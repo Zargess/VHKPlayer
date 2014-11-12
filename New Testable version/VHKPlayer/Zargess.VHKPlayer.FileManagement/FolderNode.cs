@@ -7,14 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
-    public class FolderImpl : IFolder {
+    public class FolderNode : IFolder {
 
         public ObservableCollection<IFile> Content { get; private set; }
         public string FullPath { get; private set; }
         public string Name { get; private set; }
         public string Source { get; private set; }
 
-        public FolderImpl(string path) {
+        public FolderNode(string path) {
             Name = Path.GetFileName(Path.GetDirectoryName(path));
         }
 
