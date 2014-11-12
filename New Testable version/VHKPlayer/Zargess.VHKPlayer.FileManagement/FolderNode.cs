@@ -12,10 +12,29 @@ namespace Zargess.VHKPlayer.FileManagement {
         public string FullPath { get; private set; }
         public string Name { get; private set; }
         public string Source { get; private set; }
+        public event EventHandler FolderChanged;
 
         public FolderNode(string path) {
-            Name = Path.GetFileName(Path.GetDirectoryName(path));
+            Name = Path.GetFileName(path);
             FullPath = GetFilePath(path);
+            Source = GetSource();
+            Content = GetFiles();
+        }
+
+        private ObservableCollection<IFile> GetFiles() {
+            var res = new ObservableCollection<IFile>();
+            try {
+                var paths = Directory.EnumerateFiles(FullPath);
+                foreach (var path in paths) {
+                    res.Add(new FileNode(path));
+                }
+            } catch (DirectoryNotFoundException) {}
+            return res;
+        }
+
+        private string GetSource() {
+            var temp = FullPath.Split('\\');
+            return String.IsNullOrEmpty(temp[temp.Length - 1]) ? temp[temp.Length - 3] : temp[temp.Length - 2];
         }
 
         private string GetFilePath(string path) {
@@ -23,12 +42,13 @@ namespace Zargess.VHKPlayer.FileManagement {
             return temp.Length > 1 ? path : Path.Combine(Environment.CurrentDirectory, path);
         }
 
-        public bool ContainsFolder(string name) {
-            throw new NotImplementedException();
+        public bool ContainsFolder(IFolder folder) {
+            var folders = Directory.EnumerateDirectories(FullPath).Select(x => new FolderNode(x));
+            return folders.Any(f => String.Equals(f.FullPath, folder.FullPath, StringComparison.CurrentCultureIgnoreCase));
         }
 
-        public bool ContainsFile(string path) {
-            throw new NotImplementedException();
+        public bool ContainsFile(IFile file) {
+            return Content.Any(f => String.Equals(f.FullPath, file.FullPath, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public bool ValidRootFolder() {

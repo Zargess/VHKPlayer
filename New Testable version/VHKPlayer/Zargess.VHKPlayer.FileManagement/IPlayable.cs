@@ -8,5 +8,6 @@ namespace Zargess.VHKPlayer.FileManagement
 {
     public interface IPlayable {
         List<IFile> Play();
+        List<IFile> GetContent();
     }
 }

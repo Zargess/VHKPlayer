@@ -3,3 +3,9 @@
 * Test_txtPathShouldBePath_Test_txt DONE
 * Logo_pngPathShouldBePath_Logo_png DONE
 * PathToLogo_pngPathShouldBePath_Logo_png DONE
+* C:\Users\MFH\vhk is a valid root folder
+* C:\Users\MFH\Documents is not at valid root folder
+* After folders InitWatcher is called the Watcher field is initialised
+* After folders StopWatcher is called the Watcher field is null
+* Cannot call folders InitWatcher again after it has been called
+* Can call folders InitWatcher after StopWatcher has been called
