@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class FolderNode : IFolder {
-
         public ObservableCollection<IFile> Content { get; private set; }
         public string FullPath { get; private set; }
         public string Name { get; private set; }
@@ -16,6 +15,12 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public FolderNode(string path) {
             Name = Path.GetFileName(Path.GetDirectoryName(path));
+            FullPath = GetFilePath(path);
+        }
+
+        private string GetFilePath(string path) {
+            var temp = path.Split('\\');
+            return temp.Length > 1 ? path : Path.Combine(Environment.CurrentDirectory, path);
         }
 
         public bool ContainsFolder(string name) {

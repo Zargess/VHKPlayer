@@ -53,5 +53,11 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
             IFolder folder = new FolderNode(@"C:\Users\MFH\Documents\GitHub\");
             Assert.AreEqual(@"C:\Users\MFH\Documents\GitHub\", folder.FullPath);
         }
+
+        [TestMethod]
+        public void FolderPathShouldBePathVHKPlayer() {
+            IFolder folder = new FolderNode(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\");
+            Assert.AreEqual(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\", folder.FullPath);
+        }
     }
 }
