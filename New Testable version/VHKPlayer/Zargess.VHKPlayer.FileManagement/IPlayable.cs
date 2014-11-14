@@ -9,6 +9,6 @@ namespace Zargess.VHKPlayer.FileManagement {
     public interface IPlayable {
         string Name { get; }
         ObservableCollection<IFile> Content { get; }
-        Queue<IFile> Play(IFileSelectionStrategy selection);
+        Queue<IFile> Play();
     }
 }

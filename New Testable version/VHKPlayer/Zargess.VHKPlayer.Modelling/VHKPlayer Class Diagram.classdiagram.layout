@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="VHKPlayer Class Diagram">
+  <logicalClassDesignerModelMoniker Id="c9085e68-de0b-4095-a009-35ee28ef4a33" />
+  <nestedChildShapes>
+    <interfaceShape Id="439227d7-d590-49f9-8eb6-014b55b17eab" absoluteBounds="1.25, 1, 1.5, 0.90234373509883881" hideQualifiedName="false" increaseHeight="0" customColor="207, 223, 191">
+      <interfaceMoniker Id="bd68b5b5-23bf-4a92-a1de-6be9e0ce68fa" LastKnownName="IPlayable" />
+      <nestedChildShapes>
+        <AttributeElementListCompartment Id="1f10c699-6255-41dd-bea5-c379945ac336" absoluteBounds="1.2650000000000001, 1.3900000000000001, 1.4700000000000002, 0.2011718675494194" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <OperationElementListCompartment Id="89e1f2a6-1044-4d62-b752-8a9e520bbd11" absoluteBounds="1.2650000000000001, 1.6011718675494193, 1.4700000000000002, 0.2011718675494194" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </interfaceShape>
+  </nestedChildShapes>
+</logicalClassDesignerDiagram>

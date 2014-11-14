@@ -11,10 +11,26 @@ namespace Zargess.VHKPlayer.FileManagement {
         public FileType Type { get; private set; }
 
         public FileNode(string path) {
-            Name = Path.GetFileName(path);
+            Name = GetFileName(path);
             FullPath = GetPath(path);
-            Source = Path.GetFileName(Path.GetDirectoryName(path));
+            Source = GetSource(path);
             Type = GetFileType();
+        }
+
+        private string GetFileName(string path) {
+            try {
+                return Path.GetFileName(path);
+            } catch (Exception) {
+                return "";
+            }
+        }
+
+        private string GetSource(string path) {
+            try {
+                return Path.GetFileName(Path.GetDirectoryName(path));
+            } catch (Exception) {
+                return "";
+            }
         }
 
         private FileType GetFileType() {
@@ -41,6 +57,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         private string GetPath(string path) {
+            if (!File.Exists(path)) return path;
             var temp = path.Split('\\');
             return temp.Length > 1 ? path : Path.Combine(Environment.CurrentDirectory, path);
         }

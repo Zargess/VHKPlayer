@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="c9085e68-de0b-4095-a009-35ee28ef4a33" name="VHKPlayer Class Diagram" linkedPackageId="e47a1734-c566-462f-9770-9707fe626a72" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <appliedStereotypesInternal>
+    <stereotypeInstance Id="698ac45c-a18c-4a59-be12-294b3bcb80bd" name="namespace" profile="CSharpProfile">
+      <elementDefinition Id="c34abd08-f814-496f-b987-ca753f0b8abd" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="53b0eb48-7afa-4737-bc2a-6c6754a5920a">
+          <propertyInstance Id="b7253453-4f4a-421c-bc5e-bed1b18a7954" name="BaseName">
+            <elementDefinition Id="5f3d0792-7a7e-4646-979b-131d1030b715" />
+          </propertyInstance>
+          <elementDefinition Id="ce11043e-c822-4862-9964-460031257546" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="6fef7bd5-96ad-473c-9cab-281e8d1f5fa8">
+          <propertyInstance Id="14a4a763-a42c-45a0-a5a0-aba3a4790e30" name="ClrAttributes">
+            <elementDefinition Id="e380aac0-7af4-48c6-a4cd-819fbaf1c265" />
+          </propertyInstance>
+          <elementDefinition Id="221b0ef4-846b-4bc1-8f94-e5a652f45f69" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="6d0b2997-11e1-45a1-a6d8-46ec86d0c05c">
+          <propertyInstance Id="cee8dc9e-9c14-442b-893d-b49f160decae" name="Usings">
+            <elementDefinition Id="c3732702-25c4-40dd-8ae0-7983b920ce26" />
+          </propertyInstance>
+          <elementDefinition Id="1112d656-caa1-4a9e-9447-0971c8200d03" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+    <stereotypeInstance Id="ecb2380b-7b69-456c-8aef-15be8d2931d1" name="TextTemplateBindings" profile="TextTemplateBindings">
+      <elementDefinition Id="228398a7-cb26-4b19-9618-2a458104085c" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="e526b012-15fe-4a3a-95b7-e14659024211">
+          <propertyInstance Id="a69c6261-4b98-4812-b26a-94b69c77e409" name="Alias" value="ClassTemplate|EnumTemplate|InterfaceTemplate|StructTemplate">
+            <elementDefinition Id="29bef3d5-e76e-49eb-9b6f-4cba1ddf426e" />
+          </propertyInstance>
+          <elementDefinition Id="623660ee-6570-4132-a9f8-7dbcbcd0bf52" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="090073d3-63a7-4d79-ac58-a19b16487c01">
+          <propertyInstance Id="b4accdc3-a9e1-4944-a04a-f808f455c54b" name="TemplateFilePath" value="ClassTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4|EnumTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4|InterfaceTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4|StructTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4">
+            <elementDefinition Id="e059b823-b946-4f8e-a7db-faffcc681850" />
+          </propertyInstance>
+          <elementDefinition Id="b8c8810a-7c37-4a04-8d9f-1e89e5960c4d" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="649b897f-87a0-46d7-b8b8-19098d90eb5e">
+          <propertyInstance Id="a11606bb-7c5f-4649-8588-b4869ae0209d" name="ProjectPath" value="ClassTemplate=..\Zargess.VHKPlayer.ModellingLib\Zargess.VHKPlayer.ModellingLib.csproj|EnumTemplate=..\Zargess.VHKPlayer.ModellingLib\Zargess.VHKPlayer.ModellingLib.csproj|InterfaceTemplate=..\Zargess.VHKPlayer.ModellingLib\Zargess.VHKPlayer.ModellingLib.csproj|StructTemplate=..\Zargess.VHKPlayer.ModellingLib\Zargess.VHKPlayer.ModellingLib.csproj">
+            <elementDefinition Id="6053eade-1118-4f23-9d91-f8df7df01bd2" />
+          </propertyInstance>
+          <elementDefinition Id="4f8dce58-fa37-43f9-aa47-b1e06916bafe" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="dfe65787-4d8d-443a-84f3-1be3bd50d4df">
+          <propertyInstance Id="cc8a9e3b-c86c-48ab-b47a-9461c85eca1f" name="TargetDirectory" value="ClassTemplate=GeneratedCode\{PackageStructure}|EnumTemplate=GeneratedCode\{PackageStructure}|InterfaceTemplate=GeneratedCode\{PackageStructure}|StructTemplate=GeneratedCode\{PackageStructure}">
+            <elementDefinition Id="363f0909-66bb-4231-b82e-caa57beb7d86" />
+          </propertyInstance>
+          <elementDefinition Id="8ba63120-a4ff-450b-8e07-6cd567fa7494" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="3eb0a949-d56f-4dcc-a88b-0fabcc47868b">
+          <propertyInstance Id="9a652269-99d1-4061-bce5-d574c8cdee44" name="TargetName" value="ClassTemplate={Name}|EnumTemplate={Name}|InterfaceTemplate={Name}|StructTemplate={Name}">
+            <elementDefinition Id="142254d0-8d14-4e66-aeb1-c2c5058dab49" />
+          </propertyInstance>
+          <elementDefinition Id="111aaee2-2b4e-4f94-8ff3-5967e68002f7" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="859bebdd-2e99-4ba3-bc7b-085e94b36e50">
+          <propertyInstance Id="30b425ce-549b-410f-8e95-feb803332e50" name="Overwrite" value="ClassTemplate=True|EnumTemplate=True|InterfaceTemplate=True|StructTemplate=True">
+            <elementDefinition Id="41fbe5e7-6e13-4ab4-8dae-9ee1ab7d7f1f" />
+          </propertyInstance>
+          <elementDefinition Id="6cd8ebb5-092d-4e14-8bd0-81a12f416134" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="101d957c-a9a0-404e-acc3-2fd0c4b68937">
+          <propertyInstance Id="e3eebfbe-6b40-4603-a73c-78c5994f9872" name="Parameters">
+            <elementDefinition Id="944ecc80-e40e-42a5-bed8-088302a060fc" />
+          </propertyInstance>
+          <elementDefinition Id="63ec857f-1881-45cc-b100-810955b15aa9" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+  </appliedStereotypesInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="70d3635c-9d7b-4365-9d3e-58288f8b2dfb">
+      <profileInstance Id="748c7725-f4f6-4008-a7fd-4243dfe2dd09" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="47f5f3cc-8e60-4c1b-a471-e90dcacc3afc">
+      <profileInstance Id="4f567cee-cde7-46ef-9b00-5a851d23b56d" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="7f14f8f0-c3e1-4b08-9e8f-71e97b61b365">
+      <profileInstance Id="46d632a3-b9d9-48df-b2dd-c11067c7c4ee" name="CSharpProfile">
+        <elementDefinition Id="d8aeebe4-1c53-46d9-8217-083a10540720" />
+      </profileInstance>
+      <elementDefinition Id="bbaaee92-6734-4f5b-8ecb-5eece44ae0db" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="f8637d18-97b6-4d9a-9c9d-ec2ed2731742">
+      <profileInstance Id="97dac592-f287-4b97-8423-6805db581a4e" name="TextTemplateBindings">
+        <elementDefinition Id="7c30190f-c248-46cc-9cad-e4bb823b7e6e" />
+      </profileInstance>
+      <elementDefinition Id="a743d13e-36fc-4260-91ab-2ba47af1c5b7" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="bd68b5b5-23bf-4a92-a1de-6be9e0ce68fa" name="IPlayable" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d7add96c-9c8e-4f56-97fc-c7fc954da7b9" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="e47a1734-c566-462f-9770-9707fe626a72" name="Zargess.VHKPlayer.Modelling">
+    <elementDefinition Id="bbbbfd71-6869-4340-a488-646f16ee3fed" />
+  </package>
+</logicalClassDesignerModel>

@@ -5,6 +5,6 @@ using System.Text;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public interface IFileSelectionStrategy {
-        Queue<IFile> SelectFiles(IPlayable p);
+        Queue<IFile> SelectFiles(IPlayable playable);
     }
 }
