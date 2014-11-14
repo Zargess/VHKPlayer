@@ -1,0 +1,1 @@
+* Later on make a InitialiseWatcher class or strategy
