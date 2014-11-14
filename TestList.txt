@@ -9,3 +9,12 @@
 * After folders StopWatcher is called the Watcher field is null
 * Cannot call folders InitWatcher again after it has been called
 * Can call folders InitWatcher after StopWatcher has been called
+* PlayList 1's name is Temp DONE
+* PlayList 2's name is 10sek DONE'
+* PlayList Content Count is 1 after adding file once DONE
+* PlayList Content Count is 2 after adding file twice DONE
+* After PlayList InitWatcher is called the Watcher field is initialised
+* After PlayList StopWatcher is called the Watcher field is null
+* Cannot call PlayList InitWatcher again after it has been called
+* Can call PlayList InitWatcher after StopWatcher has been called
+* 

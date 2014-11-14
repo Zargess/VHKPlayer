@@ -9,7 +9,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
     /// </summary>
     [TestClass]
     public class PlayListTest {
-
+        private IFile _file;
         #region Additional test attributes
         //
         // You can use the following additional attributes as you write your tests:
@@ -32,6 +32,11 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
         //
         #endregion
 
+        [TestInitialize]
+        public void Setup() {
+            _file = new FileNode(@"temp:\test");
+        }
+
         [TestMethod]
         public void PlayListNameIsTest() {
             IPlayList playlist = new RepeatablePlayList("Test");
@@ -44,6 +49,25 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
             Assert.AreEqual("10sek", playlist.Name);
         }
 
+        [TestMethod]
+        public void PlayListGetContentNotNull() {
+            IPlayList playlist = new RepeatablePlayList("Temp");
+            Assert.IsNotNull(playlist.Content);
+        }
 
+        [TestMethod]
+        public void ContentShouldHaveSingleItemAfterAdd() {
+            IPlayList playlist = new RepeatablePlayList("Temp");
+            playlist.Add(_file);
+            Assert.AreEqual(1, playlist.Content.Count);
+        }
+
+        [TestMethod]
+        public void ContentShouldHaveTwoItemsAfterAddingTwice() {
+            IPlayList playlist = new RepeatablePlayList("Temp");
+            playlist.Add(_file);
+            playlist.Add(_file);
+            Assert.AreEqual(2, playlist.Content.Count);
+        }
     }
 }

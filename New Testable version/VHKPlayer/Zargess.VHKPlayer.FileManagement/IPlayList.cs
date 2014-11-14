@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public interface IPlayList : IPlayable, IWatchable {
-        void Add(IPlayable p);
+        void Add(IFile p);
     }
 }
