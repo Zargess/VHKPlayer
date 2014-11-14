@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public interface IWatchable {
-        void InitWatcher();
-        void StopWatcher();
+        bool InitWatcher();
+        bool StopWatcher();
     }
 }

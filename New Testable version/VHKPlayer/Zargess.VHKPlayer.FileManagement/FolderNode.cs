@@ -55,11 +55,11 @@ namespace Zargess.VHKPlayer.FileManagement {
             throw new NotImplementedException();
         }
 
-        public void InitWatcher() {
+        public bool InitWatcher() {
             throw new NotImplementedException();
         }
 
-        public void StopWatcher() {
+        public bool StopWatcher() {
             throw new NotImplementedException();
         }
     }

@@ -11,6 +11,8 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
     [TestClass]
     public class PlayListTest {
         private IFile _file;
+        private IPlayList _playlist;
+        private IFolder _folder;
         #region Additional test attributes
         //
         // You can use the following additional attributes as you write your tests:
@@ -36,61 +38,58 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
         [TestInitialize]
         public void Setup() {
             _file = new FileNode(@"c:\test.txt");
+            _folder = new FolderNode(@"c:\users\mfh\vhk");
+            _playlist = new PlayList("Test", _folder, new AllFileSelectionStrategy());
         }
 
         [TestMethod]
         public void PlayListNameIsTest() {
-            IPlayList playlist = new PlayList("Test", new AllFileSelectionStrategy());
+            IPlayList playlist = new PlayList("Test", _folder, new AllFileSelectionStrategy());
             Assert.AreEqual("Test", playlist.Name);
         }
 
         [TestMethod]
         public void PlayListNameIs10sek() {
-            IPlayList playlist = new PlayList("10sek", new AllFileSelectionStrategy());
+            IPlayList playlist = new PlayList("10sek", _folder, new AllFileSelectionStrategy());
             Assert.AreEqual("10sek", playlist.Name);
         }
 
         [TestMethod]
         public void PlayListGetContentNotNull() {
-            IPlayList playlist = new PlayList("Temp", new AllFileSelectionStrategy());
-            Assert.IsNotNull(playlist.Content);
+            Assert.IsNotNull(_playlist.Content);
         }
 
         [TestMethod]
         public void ContentShouldHaveSingleItemAfterAdd() {
-            IPlayList playlist = new PlayList("Temp", new AllFileSelectionStrategy());
-            playlist.Add(_file);
-            Assert.AreEqual(1, playlist.Content.Count);
+            _playlist.Add(_file);
+            Assert.AreEqual(1, _playlist.Content.Count);
         }
 
         [TestMethod]
         public void ContentShouldHaveTwoItemsAfterAddingTwice() {
-            IPlayList playlist = new PlayList("Temp", new AllFileSelectionStrategy());
-            playlist.Add(_file);
-            playlist.Add(_file);
-            Assert.AreEqual(2, playlist.Content.Count);
+            _playlist.Add(_file);
+            _playlist.Add(_file);
+            Assert.AreEqual(2, _playlist.Content.Count);
         }
 
         [TestMethod]
         public void PlayCallOnPlayListWithOneFileShouldReturnQueueWithOneFile() {
-            IPlayList playlist = new PlayList("Test", new AllFileSelectionStrategy());
-            playlist.Add(_file);
-            var queue = playlist.Play();
+            _playlist.Add(_file);
+            var queue = _playlist.Play();
             Assert.AreEqual(1, queue.Count);
         }
 
         [TestMethod]
         public void PlayCallOnPlayListWithTwoFilesShouldReturnQueueWithTwoFiles() {
-            IPlayList playlist = new PlayList("Test", new AllFileSelectionStrategy());
-            playlist.Add(_file);
-            playlist.Add(_file);
-            var queue = playlist.Play();
+            _playlist.Add(_file);
+            _playlist.Add(_file);
+            var queue = _playlist.Play();
             Assert.AreEqual(2, queue.Count);
         }
 
         [TestMethod]
         public void PlayCallOnRepeatablePlayListWithTwoFileShouldReturnQueueWithOneFile() {
-            IPlayList playlist = new PlayList("Test", new IteratedFileSelectionStrategy());
+            IPlayList playlist = new PlayList("Test", _folder, new IteratedFileSelectionStrategy());
             playlist.Add(_file);
             playlist.Add(_file);
             var queue = playlist.Play();
@@ -99,7 +98,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
 
         [TestMethod]
         public void SecondPlayCallOnRepeatablePlayListWithTwoWillReturnSecondFile() {
-            IPlayList playlist = new PlayList("Test", new IteratedFileSelectionStrategy());
+            IPlayList playlist = new PlayList("Test", _folder, new IteratedFileSelectionStrategy());
             IFile file2 = new FileNode("c:\test.txt");
             playlist.Add(_file);
             playlist.Add(file2);
@@ -108,6 +107,28 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
             Assert.AreEqual(file2.FullPath, queue.Dequeue().FullPath);
         }
 
+        [TestMethod]
+        public void PlayListInitWatcherCallInitialisesWatcher() {
+            _playlist.InitWatcher();
+            Assert.IsNotNull(_playlist.Watcher);
+        }
 
+        [TestMethod]
+        public void PlayListInitWatcherCallEnablesRaisingEvents() {
+            _playlist.InitWatcher();
+            Assert.IsTrue(_playlist.Watcher.EnableRaisingEvents);
+        }
+
+        [TestMethod]
+        public void PlayListCannotCallInitWatcherIfItsInitialised() {
+            _playlist.InitWatcher();
+            Assert.IsFalse(_playlist.InitWatcher());
+        }
+
+        [TestMethod]
+        public void PlayListCannotInitialiseWatcherIfFolderDoesntExist() {
+            var playlist = new PlayList("Test", new FolderNode("c:\test"), new AllFileSelectionStrategy());
+            Assert.IsFalse(playlist.InitWatcher());
+        }
     }
 }
