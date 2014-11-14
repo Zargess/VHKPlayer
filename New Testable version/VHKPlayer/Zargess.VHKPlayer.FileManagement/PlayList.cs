@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zargess.VHKPlayer.FileManagement.Test;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class PlayList : IPlayList {
@@ -32,7 +28,7 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public bool InitWatcher() {
             if (Watcher != null) return false;
-
+            if (!Folder.Exists) return false;
             Watcher = new FileSystemWatcher {
                 Path = Folder.FullPath,
                 NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastAccess
@@ -60,7 +56,11 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public bool StopWatcher() {
-            throw new NotImplementedException();
+            if (Watcher == null) return false;
+            Watcher.EnableRaisingEvents = false;
+            Watcher.Dispose();
+            Watcher = null;
+            return true;
         }
     }
 }

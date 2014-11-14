@@ -11,6 +11,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         string FullPath { get; }
         string Name { get; }
         string Source { get; }
+        bool Exists { get; }
         event EventHandler FolderChanged;
 
         bool ContainsFolder(IFolder folder);

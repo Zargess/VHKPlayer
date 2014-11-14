@@ -130,5 +130,24 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
             var playlist = new PlayList("Test", new FolderNode("c:\test"), new AllFileSelectionStrategy());
             Assert.IsFalse(playlist.InitWatcher());
         }
+
+        [TestMethod]
+        public void PlayListWatcherIsNotInitialisedAfterStopWatcherIsCalled() {
+            _playlist.InitWatcher();
+            _playlist.StopWatcher();
+            Assert.IsNull(_playlist.Watcher);
+        }
+
+        [TestMethod]
+        public void PlayListStopWatcherCannotBeCalledIfWatcherIsntInitialised() {
+            Assert.IsFalse(_playlist.StopWatcher());
+        }
+
+        [TestMethod]
+        public void PlayListInitWatcherCanBeCalledAgainAfterStopWatcherIsCalled() {
+            _playlist.InitWatcher();
+            _playlist.StopWatcher();
+            Assert.IsTrue(_playlist.InitWatcher());
+        }
     }
 }

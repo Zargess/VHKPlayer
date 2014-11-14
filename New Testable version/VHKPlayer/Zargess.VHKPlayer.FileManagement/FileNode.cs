@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Zargess.VHKPlayer.SettingsManager;
+using Zargess.VHKPlayer.UtilFunctions;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class FileNode : IFile {
@@ -58,7 +59,7 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         private string GetPath(string path) {
             if (!File.Exists(path)) return path;
-            var temp = path.Split('\\');
+            var temp = PathHandler.SplitPath(path);
             return temp.Length > 1 ? path : Path.Combine(Environment.CurrentDirectory, path);
         }
 
