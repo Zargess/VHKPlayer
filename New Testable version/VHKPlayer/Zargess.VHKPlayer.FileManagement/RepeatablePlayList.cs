@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class RepeatablePlayList : IPlayList {
-        public Queue<IFile> Play() {
+        public string Name { get; private set; }
+
+        public RepeatablePlayList(string name) {
+            Name = name;
+        }
+
+        public void Add(IPlayable p) {
+            throw new NotImplementedException();
+        }
+
+        public Queue<IFile> Play(IFileSelectionStrategy selection) {
             throw new NotImplementedException();
         }
 

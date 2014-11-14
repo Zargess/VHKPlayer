@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Zargess.VHKPlayer.FileManagement
 {
     public interface IPlayable {
-        Queue<IFile> Play();
+        string Name { get; }
+        Queue<IFile> Play(IFileSelectionStrategy selection);
         List<IFile> GetContent();
     }
 }

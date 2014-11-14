@@ -53,6 +53,7 @@
     <Compile Include="FileTest.cs" />
     <Compile Include="FolderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PlayListTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zargess.VHKPlayer.FileManagement\Zargess.VHKPlayer.FileManagement.csproj">

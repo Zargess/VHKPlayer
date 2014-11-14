@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
-    public interface IPlayList : IPlayable, IWatchable {
-        void Add(IPlayable p);
+    public interface IFileSelectionStrategy {
+        Queue<IFile> SelectFiles();
     }
 }

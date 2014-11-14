@@ -44,6 +44,7 @@
     <Compile Include="FolderNode.cs" />
     <Compile Include="IContainer.cs" />
     <Compile Include="IFile.cs" />
+    <Compile Include="IFileSelectionStrategy.cs" />
     <Compile Include="IFolder.cs" />
     <Compile Include="IPlayable.cs" />
     <Compile Include="IPlayList.cs" />
