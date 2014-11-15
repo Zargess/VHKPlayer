@@ -135,7 +135,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
         }
 
         [TestMethod]
-        public void PlayListCannotInitialiseWatcherIfFolderDoesntExist() {
+        public void FolderCannotInitialiseWatcherIfFolderDoesntExist() {
             var folder = new FolderNode("c:\test");
             Assert.IsFalse(folder.InitWatcher());
         }

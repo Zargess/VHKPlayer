@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Zargess.VHKPlayer.UtilFunctions;
 
 namespace Zargess.VHKPlayer.FileManagement {
@@ -14,9 +11,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         public string Name { get; private set; }
         public string Source { get; private set; }
         public bool Exists { get; private set; }
-
         public FileSystemWatcher Watcher { get; set; }
-
         public event EventHandler FolderChanged;
 
         public FolderNode(string path) {
@@ -36,20 +31,17 @@ namespace Zargess.VHKPlayer.FileManagement {
         private ObservableCollection<IFile> GetFiles() {
             var res = new ObservableCollection<IFile>();
             if (!Exists) return res;
-            try {
-                var paths = Directory.EnumerateFiles(FullPath);
-                foreach (var path in paths) {
-                    res.Add(new FileNode(path));
-                }
-            } catch (DirectoryNotFoundException) { }
+            var paths = Directory.EnumerateFiles(FullPath);
+            foreach (var path in paths) {
+                res.Add(new FileNode(path));
+            }
             return res;
         }
 
         private string GetSource() {
             if (!Exists) return "";
             var temp = PathHandler.SplitPath(FullPath);
-            if (temp.Length > 1) return temp[temp.Length - 2];
-            return "";
+            return temp[temp.Length - 2];
         }
 
         private string GetFolderPath(string path) {
