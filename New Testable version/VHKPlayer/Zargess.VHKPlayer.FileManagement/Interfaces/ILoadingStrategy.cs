@@ -3,6 +3,6 @@ using System.Collections.ObjectModel;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public interface ILoadingStrategy {
-        void load(ICollection<IFile> content);
+        void Load(ICollection<IFile> content);
     }
 }

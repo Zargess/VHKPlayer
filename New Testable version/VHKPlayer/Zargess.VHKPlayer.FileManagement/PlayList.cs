@@ -12,11 +12,13 @@ namespace Zargess.VHKPlayer.FileManagement {
         private IFolder Folder { get; set; }
         public ILoadingStrategy LoadingStrategy { get; private set; }
 
-        public PlayList(string name, IFolder folder, IFileSelectionStrategy selectionStrategy) {
+        public PlayList(string name, IFolder folder, IFileSelectionStrategy selectionStrategy, ILoadingStrategy loadingStrategy) {
             Name = name;
             Content = new ObservableCollection<IFile>();
             SelectionStrategy = selectionStrategy;
             Folder = folder;
+            LoadingStrategy = loadingStrategy;
+            LoadingStrategy.Load(Content);
         }
 
         public void Add(IFile file) {
@@ -45,7 +47,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         private void RaisedEvent(object sender, FileSystemEventArgs e) {
-            LoadingStrategy.load(Content);
+            LoadingStrategy.Load(Content);
         }
 
         public bool StopWatcher() {

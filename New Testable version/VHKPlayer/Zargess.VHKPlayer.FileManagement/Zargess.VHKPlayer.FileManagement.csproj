@@ -49,11 +49,14 @@
     <Compile Include="Interfaces\IFolder.cs" />
     <Compile Include="Interfaces\IPlayable.cs" />
     <Compile Include="Interfaces\IPlayList.cs" />
-    <Compile Include="Strategies\IteratedSelectionStrategy.cs" />
+    <Compile Include="Strategies\Loading\FolderLoadingStrategy.cs" />
+    <Compile Include="Strategies\Loading\NoLoadingStrategy.cs" />
+    <Compile Include="Strategies\Loading\SortedLoadingStrategy.cs" />
+    <Compile Include="Strategies\Selection\IteratedSelectionStrategy.cs" />
     <Compile Include="Interfaces\IWatchable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlayList.cs" />
-    <Compile Include="Strategies\SelectAllFilesStrategy.cs" />
+    <Compile Include="Strategies\Selection\SelectAllFilesStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zargess.VHKPlayer.SettingsManager\Zargess.VHKPlayer.SettingsManager.csproj">
