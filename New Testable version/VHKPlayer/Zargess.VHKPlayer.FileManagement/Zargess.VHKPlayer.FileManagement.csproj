@@ -49,6 +49,8 @@
     <Compile Include="Interfaces\IFolder.cs" />
     <Compile Include="Interfaces\IPlayable.cs" />
     <Compile Include="Interfaces\IPlayList.cs" />
+    <Compile Include="SingleItemPlayable.cs" />
+    <Compile Include="Strategies\Loading\FileLoadingStrategy.cs" />
     <Compile Include="Strategies\Loading\FolderLoadingStrategy.cs" />
     <Compile Include="Strategies\Loading\NoLoadingStrategy.cs" />
     <Compile Include="Strategies\Loading\SortedLoadingStrategy.cs" />
