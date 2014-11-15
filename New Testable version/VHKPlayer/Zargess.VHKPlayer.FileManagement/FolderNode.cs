@@ -72,11 +72,36 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public bool InitWatcher() {
-            throw new NotImplementedException();
+            if (Watcher != null) return false;
+            if (!Exists) return false;
+            Watcher = new FileSystemWatcher {
+                Path = FullPath,
+                NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastAccess
+                    | NotifyFilters.LastWrite,
+                Filter = "*.*"
+            };
+            Watcher.Created += Changed;
+            Watcher.Deleted += Changed;
+            Watcher.Renamed += Changed;
+            Watcher.EnableRaisingEvents = true;
+            return true;
+        }
+
+        private void Changed(object sender, FileSystemEventArgs e) {
+            Content.Clear();
+            foreach (var file in GetFiles()) {
+                Content.Add(file);
+            }
+            if (FolderChanged == null) return;
+            FolderChanged.Invoke(this, new EventArgs());
         }
 
         public bool StopWatcher() {
-            throw new NotImplementedException();
+            if (Watcher == null) return false;
+            Watcher.EnableRaisingEvents = false;
+            Watcher.Dispose();
+            Watcher = null;
+            return true;
         }
     }
 }

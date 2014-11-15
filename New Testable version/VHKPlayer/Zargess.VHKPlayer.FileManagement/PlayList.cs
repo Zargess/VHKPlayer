@@ -6,18 +6,22 @@ using System.IO;
 namespace Zargess.VHKPlayer.FileManagement {
     public class PlayList : IPlayList {
         private IFileSelectionStrategy SelectionStrategy { get; set; }
+        public ILoadingStrategy LoadingStrategy { get; private set; }
         public string Name { get; private set; }
         public ObservableCollection<IFile> Content { get; private set; }
-        public FileSystemWatcher Watcher { get; private set; }
         private IFolder Folder { get; set; }
-        public ILoadingStrategy LoadingStrategy { get; private set; }
 
         public PlayList(string name, IFolder folder, IFileSelectionStrategy selectionStrategy, ILoadingStrategy loadingStrategy) {
             Name = name;
             Content = new ObservableCollection<IFile>();
             SelectionStrategy = selectionStrategy;
             Folder = folder;
+            Folder.FolderChanged += FolderChanged;
             LoadingStrategy = loadingStrategy;
+            LoadingStrategy.Load(Content);
+        }
+
+        private void FolderChanged(object sender, EventArgs e) {
             LoadingStrategy.Load(Content);
         }
 
@@ -27,35 +31,6 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public Queue<IFile> Play() {
             return SelectionStrategy.SelectFiles(this);
-        }
-
-        public bool InitWatcher() {
-            if (Watcher != null) return false;
-            if (!Folder.Exists) return false;
-            Watcher = new FileSystemWatcher {
-                Path = Folder.FullPath,
-                NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastAccess
-                    | NotifyFilters.LastWrite,
-                Filter = "*.*"
-            };
-            Watcher.Created += RaisedEvent;
-            Watcher.Deleted += RaisedEvent;
-            Watcher.Renamed += RaisedEvent;
-            Watcher.EnableRaisingEvents = true;
-
-            return true;
-        }
-
-        private void RaisedEvent(object sender, FileSystemEventArgs e) {
-            LoadingStrategy.Load(Content);
-        }
-
-        public bool StopWatcher() {
-            if (Watcher == null) return false;
-            Watcher.EnableRaisingEvents = false;
-            Watcher.Dispose();
-            Watcher = null;
-            return true;
         }
     }
 }

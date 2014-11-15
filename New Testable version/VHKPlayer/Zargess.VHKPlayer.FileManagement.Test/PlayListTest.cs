@@ -109,49 +109,6 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
         }
 
         [TestMethod]
-        public void PlayListInitWatcherCallInitialisesWatcher() {
-            _playlist.InitWatcher();
-            Assert.IsNotNull(_playlist.Watcher);
-        }
-
-        [TestMethod]
-        public void PlayListInitWatcherCallEnablesRaisingEvents() {
-            _playlist.InitWatcher();
-            Assert.IsTrue(_playlist.Watcher.EnableRaisingEvents);
-        }
-
-        [TestMethod]
-        public void PlayListCannotCallInitWatcherIfItsInitialised() {
-            _playlist.InitWatcher();
-            Assert.IsFalse(_playlist.InitWatcher());
-        }
-
-        [TestMethod]
-        public void PlayListCannotInitialiseWatcherIfFolderDoesntExist() {
-            var playlist = new PlayList("Test", new FolderNode("c:\test"), new AllFileSelectionStrategy(), new NoLoadingStrategy());
-            Assert.IsFalse(playlist.InitWatcher());
-        }
-
-        [TestMethod]
-        public void PlayListWatcherIsNotInitialisedAfterStopWatcherIsCalled() {
-            _playlist.InitWatcher();
-            _playlist.StopWatcher();
-            Assert.IsNull(_playlist.Watcher);
-        }
-
-        [TestMethod]
-        public void PlayListStopWatcherCannotBeCalledIfWatcherIsntInitialised() {
-            Assert.IsFalse(_playlist.StopWatcher());
-        }
-
-        [TestMethod]
-        public void PlayListInitWatcherCanBeCalledAgainAfterStopWatcherIsCalled() {
-            _playlist.InitWatcher();
-            _playlist.StopWatcher();
-            Assert.IsTrue(_playlist.InitWatcher());
-        }
-
-        [TestMethod]
         public void PlayListShouldNotHaveContentWhenHasNoLoadingStrategy() {
             Assert.AreEqual(0, _playlist.Content.Count);
         }

@@ -9,6 +9,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
     /// </summary>
     [TestClass]
     public class FolderTest {
+        IFolder _folder;
         #region Additional test attributes
         //
         // You can use the following additional attributes as you write your tests:
@@ -34,6 +35,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
         [TestInitialize()]
         public void BeforeTests() {
             Environment.CurrentDirectory = @"C:\Users\MFH\Documents\GitHub\VHKPlayer";
+            _folder = new FolderNode(@"c:\users\mfh\vhk");
         }
 
         [TestMethod]
@@ -112,6 +114,49 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
         public void VHKPlayerFolderShouldContainFiles_for_unit_test() {
             IFolder folder = new FolderNode(@"C:\Users\MFH\Documents\GitHub\VHKPlayer");
             Assert.AreEqual(true, folder.ContainsFolder(new FolderNode(@"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test")));
+        }
+
+        [TestMethod]
+        public void FolderInitWatcherCallInitialisesWatcher() {
+            _folder.InitWatcher();
+            Assert.IsNotNull(_folder.Watcher);
+        }
+
+        [TestMethod]
+        public void FolderInitWatcherCallEnablesRaisingEvents() {
+            _folder.InitWatcher();
+            Assert.IsTrue(_folder.Watcher.EnableRaisingEvents);
+        }
+
+        [TestMethod]
+        public void FolderCannotCallInitWatcherIfItsInitialised() {
+            _folder.InitWatcher();
+            Assert.IsFalse(_folder.InitWatcher());
+        }
+
+        [TestMethod]
+        public void PlayListCannotInitialiseWatcherIfFolderDoesntExist() {
+            var folder = new FolderNode("c:\test");
+            Assert.IsFalse(folder.InitWatcher());
+        }
+
+        [TestMethod]
+        public void FolderWatcherIsNotInitialisedAfterStopWatcherIsCalled() {
+            _folder.InitWatcher();
+            _folder.StopWatcher();
+            Assert.IsNull(_folder.Watcher);
+        }
+
+        [TestMethod]
+        public void FolderStopWatcherCannotBeCalledIfWatcherIsntInitialised() {
+            Assert.IsFalse(_folder.StopWatcher());
+        }
+
+        [TestMethod]
+        public void FolderInitWatcherCanBeCalledAgainAfterStopWatcherIsCalled() {
+            _folder.InitWatcher();
+            _folder.StopWatcher();
+            Assert.IsTrue(_folder.InitWatcher());
         }
     }
 }
