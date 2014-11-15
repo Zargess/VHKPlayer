@@ -42,17 +42,18 @@
     <Compile Include="FileNode.cs" />
     <Compile Include="FileType.cs" />
     <Compile Include="FolderNode.cs" />
-    <Compile Include="IContainer.cs" />
-    <Compile Include="IFile.cs" />
-    <Compile Include="IFileSelectionStrategy.cs" />
-    <Compile Include="IFolder.cs" />
-    <Compile Include="IPlayable.cs" />
-    <Compile Include="IPlayList.cs" />
-    <Compile Include="IteratedSelectionStrategy.cs" />
-    <Compile Include="IWatchable.cs" />
+    <Compile Include="Interfaces\ILoadingStrategy.cs" />
+    <Compile Include="Interfaces\IContainer.cs" />
+    <Compile Include="Interfaces\IFile.cs" />
+    <Compile Include="Interfaces\IFileSelectionStrategy.cs" />
+    <Compile Include="Interfaces\IFolder.cs" />
+    <Compile Include="Interfaces\IPlayable.cs" />
+    <Compile Include="Interfaces\IPlayList.cs" />
+    <Compile Include="Strategies\IteratedSelectionStrategy.cs" />
+    <Compile Include="Interfaces\IWatchable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlayList.cs" />
-    <Compile Include="SelectAllFilesStrategy.cs" />
+    <Compile Include="Strategies\SelectAllFilesStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zargess.VHKPlayer.SettingsManager\Zargess.VHKPlayer.SettingsManager.csproj">

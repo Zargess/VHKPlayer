@@ -10,6 +10,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         public ObservableCollection<IFile> Content { get; private set; }
         public FileSystemWatcher Watcher { get; private set; }
         private IFolder Folder { get; set; }
+        public ILoadingStrategy LoadingStrategy { get; private set; }
 
         public PlayList(string name, IFolder folder, IFileSelectionStrategy selectionStrategy) {
             Name = name;
@@ -35,24 +36,16 @@ namespace Zargess.VHKPlayer.FileManagement {
                     | NotifyFilters.LastWrite,
                 Filter = "*.*"
             };
-            Watcher.Created += OnCreated;
-            Watcher.Deleted += OnDeleted;
-            Watcher.Renamed += OnRenamed;
+            Watcher.Created += RaisedEvent;
+            Watcher.Deleted += RaisedEvent;
+            Watcher.Renamed += RaisedEvent;
             Watcher.EnableRaisingEvents = true;
 
             return true;
         }
 
-        private void OnRenamed(object sender, RenamedEventArgs e) {
-            throw new NotImplementedException();
-        }
-
-        private void OnDeleted(object sender, FileSystemEventArgs e) {
-            throw new NotImplementedException();
-        }
-
-        private void OnCreated(object sender, FileSystemEventArgs e) {
-            throw new NotImplementedException();
+        private void RaisedEvent(object sender, FileSystemEventArgs e) {
+            LoadingStrategy.load(Content);
         }
 
         public bool StopWatcher() {
