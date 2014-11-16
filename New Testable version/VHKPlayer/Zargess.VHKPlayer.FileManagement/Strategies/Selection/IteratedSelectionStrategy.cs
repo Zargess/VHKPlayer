@@ -13,10 +13,10 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public Queue<IFile> SelectFiles(IPlayable playable) {
-            if (playable.Content.Count == 0) return new Queue<IFile>();
-            if (Index >= playable.Content.Count) Index = 0;
+            if (playable.Size == 0) return new Queue<IFile>();
+            if (Index >= playable.Size) Index = 0;
             var res = new Queue<IFile>();
-            res.Enqueue(playable.Content[Index]);
+            res.Enqueue(playable.GetContent()[Index]);
             Index++;
             return res;
         }

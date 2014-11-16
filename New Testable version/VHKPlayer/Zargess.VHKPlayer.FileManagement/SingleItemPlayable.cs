@@ -7,9 +7,15 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class SingleItemPlayable : IPlayable {
-        public ObservableCollection<IFile> Content { get; private set; }
+        private ObservableCollection<IFile> Content { get; set; }
         public ILoadingStrategy LoadingStrategy { get; private set; }
         public string Name { get; private set; }
+
+        public int Size {
+            get {
+                return Content.Count;
+            }
+        }
 
         public SingleItemPlayable(ILoadingStrategy loadingStrategy) {
             Content = new ObservableCollection<IFile>();
@@ -20,7 +26,17 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public Queue<IFile> Play() {
-            throw new NotImplementedException();
+            var res = new Queue<IFile>();
+            if (Content.Count > 0) res.Enqueue(new FileNode(Content[0].FullPath));
+            return res;
+        }
+
+        public ObservableCollection<IFile> GetContent() {
+            var res = new ObservableCollection<IFile>();
+            foreach (var file in Content) {
+                res.Add(new FileNode(file.FullPath));
+            }
+            return res;
         }
     }
 }

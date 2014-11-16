@@ -7,8 +7,14 @@ namespace Zargess.VHKPlayer.FileManagement {
         private IFileSelectionStrategy SelectionStrategy { get; set; }
         public ILoadingStrategy LoadingStrategy { get; private set; }
         public string Name { get; private set; }
-        public ObservableCollection<IFile> Content { get; private set; }
+        private ObservableCollection<IFile> Content { get; set; }
         private IFolder Folder { get; set; }
+
+        public int Size {
+            get {
+                return Content.Count;
+            }
+        }
 
         public PlayList(string name, IFolder folder, IFileSelectionStrategy selectionStrategy, ILoadingStrategy loadingStrategy) {
             Name = name;
@@ -30,6 +36,14 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public Queue<IFile> Play() {
             return SelectionStrategy.SelectFiles(this);
+        }
+
+        public ObservableCollection<IFile> GetContent() {
+            var res = new ObservableCollection<IFile>();
+            foreach (var file in Content) {
+                res.Add(new FileNode(file.FullPath));
+            }
+            return res;
         }
     }
 }
