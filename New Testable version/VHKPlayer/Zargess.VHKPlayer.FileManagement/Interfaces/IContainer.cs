@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 namespace Zargess.VHKPlayer.FileManagement {
     public interface IContainer {
         ObservableCollection<IPlayable> Content { get; }
-        
+        string Name { get; }
     }
 }
