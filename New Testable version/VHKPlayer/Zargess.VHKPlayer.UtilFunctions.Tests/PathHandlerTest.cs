@@ -15,6 +15,7 @@ namespace Zargess.VHKPlayer.UtilFunctions
     public partial class PathHandlerTest
     {
         [PexMethod]
+        [PexAllowedException(typeof(NullReferenceException))]
         public string[] SplitPath(string path) {
             string[] result = PathHandler.SplitPath(path);
             return result;

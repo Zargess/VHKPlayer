@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zargess.VHKPlayer.FileManagement.Strategies.Loading;
+using System.IO;
 
 namespace Zargess.VHKPlayer.FileManagement.Test {
     /// <summary>
@@ -36,7 +37,13 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
 
         [TestInitialize]
         public void Setup() {
-            _single = new SingleItemPlayable(new FileLoadingStrategy(@"C:\Users\MFH\vhk\musik\Andet\muse_2.mp3"));
+            var path = @"D:\Github";
+            if (Directory.Exists(path)) {
+                _single = new SingleItemPlayable(new FileLoadingStrategy(@"D:\Dropbox\Programmering\C#\damer 2013-2014\musik\Andet\muse_2.mp3"));
+            } else {
+                _single = new SingleItemPlayable(new FileLoadingStrategy(@"C:\Users\MFH\vhk\musik\Andet\muse_2.mp3"));
+            }
+            
         }
 
         [TestMethod]

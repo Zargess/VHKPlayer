@@ -13,7 +13,7 @@ using System.Security;
 
 // System.Runtime.InteropServices
 [assembly: ComVisible(false)]
-[assembly: Guid("3d13af07-a6d6-4c8c-af11-971fa95f7782")]
+[assembly: Guid("35cef2d5-558d-415d-bff7-2b60d98de923")]
 
 // System
 [assembly: CLSCompliant(false)]

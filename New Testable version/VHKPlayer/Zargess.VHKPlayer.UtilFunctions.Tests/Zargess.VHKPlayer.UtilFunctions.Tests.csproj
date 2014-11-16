@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{335ED0EF-F964-471C-9E51-74C8F2812A01}</ProjectGuid>
+    <ProjectGuid>{BA105AC7-7D4F-491A-B47A-362AF515EEE5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Zargess.VHKPlayer.UtilFunctions.Tests</RootNamespace>
     <AssemblyName>Zargess.VHKPlayer.UtilFunctions.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.3</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -18,6 +18,7 @@
     <TestProjectType>UnitTest</TestProjectType>
     <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
     <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,11 +39,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Pex.Framework">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Pex\Microsoft.Pex.Framework.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Pex\Microsoft.Pex.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Zargess.VHKPlayer.SettingsManager\Zargess.VHKPlayer.SettingsManager.csproj">
+      <Project>{f1718029-9846-433d-8dc1-39c51e6b547c}</Project>
+      <Name>Zargess.VHKPlayer.SettingsManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zargess.VHKPlayer.UtilFunctions\Zargess.VHKPlayer.UtilFunctions.csproj">
       <Project>{F4CD0C5B-E9D8-433C-9C51-E31146EE6B27}</Project>
       <Name>Zargess.VHKPlayer.UtilFunctions</Name>

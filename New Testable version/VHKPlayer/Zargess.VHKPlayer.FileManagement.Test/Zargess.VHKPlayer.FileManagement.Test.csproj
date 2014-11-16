@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Zargess.VHKPlayer.FileManagement.Test</RootNamespace>
     <AssemblyName>Zargess.VHKPlayer.FileManagement.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.3</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -60,6 +61,10 @@
     <ProjectReference Include="..\Zargess.VHKPlayer.FileManagement\Zargess.VHKPlayer.FileManagement.csproj">
       <Project>{8dedd345-e7ce-426d-9100-5c4f8e97e2c9}</Project>
       <Name>Zargess.VHKPlayer.FileManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.UtilFunctions\Zargess.VHKPlayer.UtilFunctions.csproj">
+      <Project>{f4cd0c5b-e9d8-433c-9c51-e31146ee6b27}</Project>
+      <Name>Zargess.VHKPlayer.UtilFunctions</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

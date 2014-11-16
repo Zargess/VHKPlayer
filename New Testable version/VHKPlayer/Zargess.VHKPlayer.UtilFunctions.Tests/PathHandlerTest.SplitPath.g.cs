@@ -14,17 +14,17 @@ namespace Zargess.VHKPlayer.UtilFunctions {
     public partial class PathHandlerTest {
         [TestMethod]
         [PexGeneratedBy(typeof(PathHandlerTest))]
-        public void SplitPath158() {
+        public void SplitPath959() {
             string[] ss;
-            ss = this.SplitPath("\0");
+            ss = this.SplitPath("");
             Assert.IsNotNull((object)ss);
             Assert.AreEqual<int>(0, ss.Length);
         }
         [TestMethod]
         [PexGeneratedBy(typeof(PathHandlerTest))]
-        public void SplitPath959() {
+        public void SplitPath158() {
             string[] ss;
-            ss = this.SplitPath("");
+            ss = this.SplitPath("\0");
             Assert.IsNotNull((object)ss);
             Assert.AreEqual<int>(0, ss.Length);
         }
