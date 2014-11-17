@@ -17,11 +17,12 @@ namespace Zargess.VHKPlayer.FileManagement {
         public Container(IFolder folder) {
             Folder = folder;
             Name = Folder.Name;
-            //Content = Load();
+            Content = Load();
         }
 
         public ObservableCollection<IPlayable> Load() {
-            return null;
+            var res = new ObservableCollection<IPlayable>();
+            return res;
         }
     }
 }
