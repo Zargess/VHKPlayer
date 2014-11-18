@@ -5,7 +5,7 @@ using System.Linq;
 using Zargess.VHKPlayer.UtilFunctions;
 
 namespace Zargess.VHKPlayer.FileManagement {
-    public class FolderNode : IFolder {
+    public class FolderNode : IFolder, IWatchable {
         public ObservableCollection<IFile> Content { get; private set; }
         public string FullPath { get; private set; }
         public string Name { get; private set; }
