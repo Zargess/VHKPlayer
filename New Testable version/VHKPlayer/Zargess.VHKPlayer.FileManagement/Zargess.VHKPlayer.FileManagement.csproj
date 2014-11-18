@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Container.cs" />
+    <Compile Include="Interfaces\IContainerFactory.cs" />
+    <Compile Include="Interfaces\IPlayListFactory.cs" />
     <Compile Include="FileNode.cs" />
     <Compile Include="FileType.cs" />
     <Compile Include="FolderNode.cs" />
@@ -51,6 +53,7 @@
     <Compile Include="Interfaces\IFolder.cs" />
     <Compile Include="Interfaces\IPlayable.cs" />
     <Compile Include="Interfaces\IPlayList.cs" />
+    <Compile Include="Interfaces\ISingeItemFactory.cs" />
     <Compile Include="SingleItemPlayable.cs" />
     <Compile Include="Strategies\Loading\FileLoadingStrategy.cs" />
     <Compile Include="Strategies\Loading\FolderLoadingStrategy.cs" />
@@ -71,6 +74,11 @@
       <Project>{f4cd0c5b-e9d8-433c-9c51-e31146ee6b27}</Project>
       <Name>Zargess.VHKPlayer.UtilFunctions</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Factories\Container\" />
+    <Folder Include="Factories\PlayList\" />
+    <Folder Include="Factories\SingleItem\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
