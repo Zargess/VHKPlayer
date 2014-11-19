@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Zargess.VHKPlayer.FileManagement.Strategies.Loading {
+namespace Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayable {
     public class SortedLoadingStrategy : ILoadingStrategy {
         public int Index { get; private set; }
         public IFolder Folder { get; private set; }

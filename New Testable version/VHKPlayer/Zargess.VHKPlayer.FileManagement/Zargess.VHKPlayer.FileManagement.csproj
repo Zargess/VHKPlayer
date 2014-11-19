@@ -59,10 +59,10 @@
     <Compile Include="Interfaces\ISingeItemFactory.cs" />
     <Compile Include="PlayListContainer.cs" />
     <Compile Include="SingleItemPlayable.cs" />
-    <Compile Include="Strategies\Loading\FileLoadingStrategy.cs" />
-    <Compile Include="Strategies\Loading\FolderLoadingStrategy.cs" />
-    <Compile Include="Strategies\Loading\NoLoadingStrategy.cs" />
-    <Compile Include="Strategies\Loading\SortedLoadingStrategy.cs" />
+    <Compile Include="Strategies\Loading\IPlayable\FileLoadingStrategy.cs" />
+    <Compile Include="Strategies\Loading\IPlayable\FolderLoadingStrategy.cs" />
+    <Compile Include="Strategies\Loading\IPlayable\NoLoadingStrategy.cs" />
+    <Compile Include="Strategies\Loading\IPlayable\SortedLoadingStrategy.cs" />
     <Compile Include="Strategies\Selection\IteratedFileSelectionStrategy.cs" />
     <Compile Include="Interfaces\IWatchable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,6 +82,7 @@
   <ItemGroup>
     <Folder Include="Factories\Container\" />
     <Folder Include="Factories\SingleItem\" />
+    <Folder Include="Strategies\Loading\IContainer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

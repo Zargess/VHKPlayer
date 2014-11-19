@@ -52,11 +52,11 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public bool ContainsFolder(IFolder folder) {
             var folders = Directory.EnumerateDirectories(FullPath).Select(x => new FolderNode(x));
-            return folders.Any(f => String.Equals(f.FullPath, folder.FullPath, StringComparison.CurrentCultureIgnoreCase));
+            return folders.Any(f => string.Equals(f.FullPath, folder.FullPath, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public bool ContainsFile(IFile file) {
-            return Content.Any(f => String.Equals(f.FullPath, file.FullPath, StringComparison.CurrentCultureIgnoreCase));
+            return Content.Any(f => string.Equals(f.FullPath, file.FullPath, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public bool ValidRootFolder() {

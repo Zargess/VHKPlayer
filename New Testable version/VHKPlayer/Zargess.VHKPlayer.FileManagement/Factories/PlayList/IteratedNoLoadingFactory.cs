@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zargess.VHKPlayer.FileManagement.Strategies.Loading;
-using Zargess.VHKPlayer.FileManagement.Strategies.Selection;
+﻿using Zargess.VHKPlayer.FileManagement.Strategies.Selection;
+using Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayable;
 using Zargess.VHKPlayer.UtilFunctions;
 
 namespace Zargess.VHKPlayer.FileManagement.Factories.PlayList {

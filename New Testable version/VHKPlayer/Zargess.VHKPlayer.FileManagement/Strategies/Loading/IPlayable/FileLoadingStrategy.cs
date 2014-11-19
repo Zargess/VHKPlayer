@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Zargess.VHKPlayer.FileManagement.Strategies.Loading {
+namespace Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayable {
     public class FileLoadingStrategy : ILoadingStrategy {
         private string Path { get; set; }
 
