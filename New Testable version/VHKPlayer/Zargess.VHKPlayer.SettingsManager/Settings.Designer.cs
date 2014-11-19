@@ -58,5 +58,29 @@ namespace Zargess.VHKPlayer.SettingsManager {
                 this["supportedMusic"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string root {
+            get {
+                return ((string)(this["root"]));
+            }
+            set {
+                this["root"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{RekFørKamp;root/Rek;1}")]
+        public string sortedIteratedPlayList {
+            get {
+                return ((string)(this["sortedIteratedPlayList"]));
+            }
+            set {
+                this["sortedIteratedPlayList"] = value;
+            }
+        }
     }
 }

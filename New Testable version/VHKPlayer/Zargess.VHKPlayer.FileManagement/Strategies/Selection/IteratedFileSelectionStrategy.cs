@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zargess.VHKPlayer.FileManagement {
+namespace Zargess.VHKPlayer.FileManagement.Strategies.Selection {
     public class IteratedFileSelectionStrategy : IFileSelectionStrategy {
         private int Index { get; set; }
 

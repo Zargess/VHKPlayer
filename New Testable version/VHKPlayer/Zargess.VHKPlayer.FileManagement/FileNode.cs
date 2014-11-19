@@ -3,6 +3,8 @@ using System.IO;
 using System.Linq;
 using Zargess.VHKPlayer.SettingsManager;
 using Zargess.VHKPlayer.UtilFunctions;
+using Zargess.VHKPlayer.FileManagement.Strategies.Loading;
+using Zargess.VHKPlayer.FileManagement.Strategies.Selection;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class FileNode : IFile {

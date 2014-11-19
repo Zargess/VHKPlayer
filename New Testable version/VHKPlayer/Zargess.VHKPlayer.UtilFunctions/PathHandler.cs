@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
+using Zargess.VHKPlayer.SettingsManager;
 
 namespace Zargess.VHKPlayer.UtilFunctions {
     public class PathHandler {
@@ -16,6 +13,17 @@ namespace Zargess.VHKPlayer.UtilFunctions {
                 res = path.Split('/');
             }
             return res;
+        }
+
+        public static string CombinePaths(string path1, string path2) {
+            return Path.Combine(path1, path2);
+        }
+
+        public static string AbsolutePath(string relativepath) {
+            if (Directory.Exists(relativepath)) return relativepath;
+            if (File.Exists(relativepath)) return relativepath;
+            var root = SettingsManagement.GetStringSetting("root");
+            return CombinePaths(root, relativepath);
         }
     }
 }

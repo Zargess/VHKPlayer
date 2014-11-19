@@ -11,5 +11,11 @@
     <Setting Name="supportedMusic" Type="System.String" Scope="User">
       <Value Profile="(Default)">mp3</Value>
     </Setting>
+    <Setting Name="root" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="sortedIteratedPlayList" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{RekFørKamp;root/Rek;1}</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

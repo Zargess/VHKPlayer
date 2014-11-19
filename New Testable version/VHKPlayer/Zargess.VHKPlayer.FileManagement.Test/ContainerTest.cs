@@ -9,7 +9,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
     /// Summary description for ContainerTest
     /// </summary>
     [TestClass]
-    public class ContainerTest {
+    public class PlayListContainerTest {
         IContainer _container;
         IFolder _folder;
         [TestInitialize]
@@ -20,19 +20,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
             } else {
                 _folder = new FolderNode(@"c:\users\mfh\vhk");
             }
-            _container = new Container(new FolderNode(_folder.FullPath + @"\musik\Andet"));
-        }
-
-        [TestMethod]
-        public void ContainerNameIsAndet() {
-            _container = new Container(new FolderNode(_folder.FullPath + @"\musik\Andet"));
-            Assert.AreEqual("Andet", _container.Name);
-        }
-
-        [TestMethod]
-        public void ContainerNameIsScor() {
-            _container = new Container(new FolderNode(_folder.FullPath + @"\musik\Scor"));
-            Assert.AreEqual("Scor", _container.Name);
+            _container = new PlayListContainer(new FolderNode(_folder.FullPath + @"\musik\Andet"));
         }
 
         [TestMethod]

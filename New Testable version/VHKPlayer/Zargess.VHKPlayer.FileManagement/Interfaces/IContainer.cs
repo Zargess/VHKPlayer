@@ -11,6 +11,6 @@ namespace Zargess.VHKPlayer.FileManagement {
         string Name { get; }
         IFolder Folder { get; }
 
-        ObservableCollection<IPlayable> Load();
+        void Load();
     }
 }

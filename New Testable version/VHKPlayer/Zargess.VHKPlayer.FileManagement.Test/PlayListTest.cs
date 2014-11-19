@@ -2,9 +2,10 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Zargess.VHKPlayer.FileManagement;
+using Zargess.VHKPlayer.FileManagement.Strategies.Selection;
 using Zargess.VHKPlayer.FileManagement.Strategies.Loading;
 using System.IO;
+using Zargess.VHKPlayer.FileManagement.Factories.PlayList;
 
 namespace Zargess.VHKPlayer.FileManagement.Test {
     /// <summary>
@@ -46,18 +47,17 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
                 _folder = new FolderNode(@"c:\users\mfh\vhk");
             }
             _file = new FileNode(@"c:\test.txt");
-            _playlist = new PlayList("Test", _folder, new AllFileSelectionStrategy(), new NoLoadingStrategy());
+            _playlist = new PlayList(new AllFilesNoLoadingFactory("{Test;" + _folder.FullPath + "}"));
         }
 
         [TestMethod]
         public void PlayListNameIsTest() {
-            IPlayList playlist = new PlayList("Test", _folder, new AllFileSelectionStrategy(), new NoLoadingStrategy());
-            Assert.AreEqual("Test", playlist.Name);
+            Assert.AreEqual("Test", _playlist.Name);
         }
 
         [TestMethod]
         public void PlayListNameIs10sek() {
-            IPlayList playlist = new PlayList("10sek", _folder, new AllFileSelectionStrategy(), new NoLoadingStrategy());
+            IPlayList playlist = new PlayList(new AllFilesNoLoadingFactory("{10sek;" + _folder.FullPath + "}"));
             Assert.AreEqual("10sek", playlist.Name);
         }
 
@@ -96,7 +96,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
 
         [TestMethod]
         public void PlayCallOnRepeatablePlayListWithTwoFileShouldReturnQueueWithOneFile() {
-            IPlayList playlist = new PlayList("Test", _folder, new IteratedFileSelectionStrategy(), new NoLoadingStrategy());
+            IPlayList playlist = new PlayList(new IteratedNoLoadingFactory("{Test;" + _folder.FullPath + "}"));
             playlist.Add(_file);
             playlist.Add(_file);
             var queue = playlist.Play();
@@ -105,7 +105,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
 
         [TestMethod]
         public void SecondPlayCallOnRepeatablePlayListWithTwoWillReturnSecondFile() {
-            IPlayList playlist = new PlayList("Test", _folder, new IteratedFileSelectionStrategy(), new NoLoadingStrategy());
+            IPlayList playlist = new PlayList(new IteratedNoLoadingFactory("{Test;" + _folder.FullPath + "}"));
             IFile file2 = new FileNode("c:\test.txt");
             playlist.Add(_file);
             playlist.Add(file2);
@@ -122,28 +122,28 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
         [TestMethod]
         public void PlayListShouldHaveOneElementWhenSortedLoadingStrategyUsesIndex2InVhkRekFolder() {
             IFolder folder = new FolderNode(_folder.FullPath + @"\rek");
-            IPlayList playlist = new PlayList("Test", folder, new AllFileSelectionStrategy(), new SortedLoadingStrategy(2, folder));
+            IPlayList playlist = new PlayList(new AllFilesSortedPlayListFactory("{Test;" + folder.FullPath + ";2}"));
             Assert.AreEqual(1, playlist.Size);
         }
 
         [TestMethod]
         public void PlayListShouldHaveTwoElementsWhenSortedLoadingStrategyUsesIndex3InVhkRekFolder() {
             IFolder folder = new FolderNode(_folder.FullPath + @"\rek");
-            IPlayList playlist = new PlayList("Test", folder, new AllFileSelectionStrategy(), new SortedLoadingStrategy(3, folder));
+            IPlayList playlist = new PlayList(new AllFilesSortedPlayListFactory("{Test;" + folder.FullPath + ";3}"));
             Assert.AreEqual(2, playlist.Size);
         }
 
         [TestMethod]
         public void PlayListShouldHave18ElementsWhenFolderLoadingStrategyLoads10sekFolder() {
             IFolder folder = new FolderNode(_folder.FullPath + @"\10sek");
-            IPlayList playlist = new PlayList("Test", folder, new IteratedFileSelectionStrategy(), new FolderLoadingStrategy(folder));
+            IPlayList playlist = new PlayList(new IteratedFolderPlayListFactory("{Test;" + folder.FullPath + "}"));
             Assert.AreEqual(18, playlist.Size);
         }
 
         [TestMethod]
         public void PlayListShouldHave6ElementsWhenFolderLoadingStrategyLoadsScorRekkFolder() {
             IFolder folder = new FolderNode(_folder.FullPath + @"\ScorRek");
-            IPlayList playlist = new PlayList("Test", folder, new IteratedFileSelectionStrategy(), new FolderLoadingStrategy(folder));
+            IPlayList playlist = new PlayList(new IteratedFolderPlayListFactory("{Test;" + folder.FullPath + "}"));
             Assert.AreEqual(6, playlist.Size);
         }
     }
