@@ -15,6 +15,7 @@ namespace Zargess.VHKPlayer.FileManagement.Strategies.Loading {
         public void Load(ICollection<IFile> content) {
             var file = new FileNode(Path);
             if (!file.Exists()) return;
+            if (file.Type == FileType.Unsupported) return;
             content.Add(file);
         }
     }

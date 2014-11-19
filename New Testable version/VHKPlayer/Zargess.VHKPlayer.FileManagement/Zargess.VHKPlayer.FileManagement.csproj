@@ -44,8 +44,6 @@
     <Compile Include="Factories\PlayList\AllFilesSortedPlayListFactory.cs" />
     <Compile Include="Factories\PlayList\IteratedFolderPlayListFactory.cs" />
     <Compile Include="Factories\PlayList\IteratedNoLoadingFactory.cs" />
-    <Compile Include="Factories\PlayList\AllFilesFolderLoadingPlayListFactory.cs" />
-    <Compile Include="Factories\PlayList\IteratedSortedPlayListFactory.cs" />
     <Compile Include="Interfaces\IContainerFactory.cs" />
     <Compile Include="Interfaces\IPlayListFactory.cs" />
     <Compile Include="FileNode.cs" />
