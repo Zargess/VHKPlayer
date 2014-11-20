@@ -82,7 +82,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
         [TestMethod]
         public void PlayCallOnPlayListWithOneFileShouldReturnQueueWithOneFile() {
             _playlist.Add(_file);
-            var queue = _playlist.Play();
+            var queue = _playlist.Play(PlayType.PlayList);
             Assert.AreEqual(1, queue.Count);
         }
 
@@ -90,7 +90,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
         public void PlayCallOnPlayListWithTwoFilesShouldReturnQueueWithTwoFiles() {
             _playlist.Add(_file);
             _playlist.Add(_file);
-            var queue = _playlist.Play();
+            var queue = _playlist.Play(PlayType.PlayList);
             Assert.AreEqual(2, queue.Count);
         }
 
@@ -99,7 +99,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
             IPlayList playlist = new PlayList(new IteratedNoLoadingFactory("{Test;" + _folder.FullPath + "}"));
             playlist.Add(_file);
             playlist.Add(_file);
-            var queue = playlist.Play();
+            var queue = playlist.Play(PlayType.PlayList);
             Assert.AreEqual(1, queue.Count);
         }
 
@@ -109,8 +109,8 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
             IFile file2 = new FileNode("c:\test.txt");
             playlist.Add(_file);
             playlist.Add(file2);
-            playlist.Play();
-            var queue = playlist.Play();
+            playlist.Play(PlayType.PlayList);
+            var queue = playlist.Play(PlayType.PlayList);
             Assert.AreEqual(file2.FullPath, queue.Dequeue().FullPath);
         }
 

@@ -36,7 +36,7 @@ namespace Zargess.VHKPlayer.FileManagement {
             Content.Add(file);
         }
 
-        public Queue<IFile> Play() {
+        public Queue<IFile> Play(PlayType pt) {
             return SelectionStrategy.SelectFiles(this);
         }
 

@@ -11,6 +11,6 @@ namespace Zargess.VHKPlayer.FileManagement {
         ILoadingStrategy LoadingStrategy { get; }
         ObservableCollection<IFile> GetContent();
         int Size { get; }
-        Queue<IFile> Play();
+        Queue<IFile> Play(PlayType pt);
     }
 }

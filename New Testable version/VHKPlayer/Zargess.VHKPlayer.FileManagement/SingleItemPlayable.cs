@@ -21,7 +21,7 @@ namespace Zargess.VHKPlayer.FileManagement {
             Name = Content[0].Name;
         }
 
-        public Queue<IFile> Play() {
+        public Queue<IFile> Play(PlayType pt) {
             var res = new Queue<IFile>();
             if (Content.Count > 0) res.Enqueue(new FileNode(Content[0].FullPath));
             return res;

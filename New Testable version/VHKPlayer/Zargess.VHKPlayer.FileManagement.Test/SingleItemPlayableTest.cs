@@ -67,13 +67,13 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
 
         [TestMethod]
         public void SingleItemPlayableCountOnQueueFromPlayCallShouldBe1() {
-            Assert.AreEqual(1, _single.Play().Count);
+            Assert.AreEqual(1, _single.Play(PlayType.PlayList).Count);
         }
 
         [TestMethod]
         public void EmptySingleItemPlayablePlayCallShouldResultInEmptyQueue() {
             IPlayable single = new SingleItemPlayable(new FileLoadingStrategy(@"C:\Users\MFH\vhk\musik\Andet\Test.txt"));
-            Assert.AreEqual(0, single.Play().Count);
+            Assert.AreEqual(0, single.Play(PlayType.PlayList).Count);
         }
     }
 }
