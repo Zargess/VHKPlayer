@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement.Interfaces {
     public interface IContainerFactory {
-        IFolder CreateFoler();
+        IFolder CreateFolder();
     }
 }

@@ -18,7 +18,11 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public void Load() {
-            
+            Content.Clear();
+        }
+
+        public List<IPlayList> AllFilesSorted() {
+            throw new NotImplementedException();
         }
     }
 }

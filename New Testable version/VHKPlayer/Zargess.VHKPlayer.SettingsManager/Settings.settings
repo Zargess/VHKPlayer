@@ -14,8 +14,11 @@
     <Setting Name="root" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="sortedIteratedPlayList" Type="System.String" Scope="User">
+    <Setting Name="allFilesSortedPlayLists" Type="System.String" Scope="User">
       <Value Profile="(Default)">{RekFørKamp;root/Rek;1}</Value>
+    </Setting>
+    <Setting Name="iteratedFolderPlayLists" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

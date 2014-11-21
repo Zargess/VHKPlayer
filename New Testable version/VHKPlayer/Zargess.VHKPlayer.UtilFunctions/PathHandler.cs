@@ -20,9 +20,11 @@ namespace Zargess.VHKPlayer.UtilFunctions {
         }
 
         public static string AbsolutePath(string relativepath) {
+            relativepath = relativepath.ToLower();
+            var root = SettingsManagement.GetStringSetting("root");
             if (Directory.Exists(relativepath)) return relativepath;
             if (File.Exists(relativepath)) return relativepath;
-            var root = SettingsManagement.GetStringSetting("root");
+            if (relativepath.Contains("root")) relativepath = relativepath.Replace("root", "");
             return CombinePaths(root, relativepath);
         }
     }
