@@ -85,13 +85,13 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
         [TestMethod]
         public void FolderContentSizeShouldBeFour() {
             IFolder folder = new FolderNode(Environment.CurrentDirectory + @"\VHKPlayer\Files for unit test");
-            Assert.AreEqual(4, folder.Content.Count);
+            Assert.AreEqual(3, folder.Content.Count);
         }
 
         [TestMethod]
         public void FolderContentSizeShouldBeNine() {
             IFolder folder = new FolderNode(Environment.CurrentDirectory + @"\VHKPlayer\Files for unit test\more tests");
-            Assert.AreEqual(2, folder.Content.Count);
+            Assert.AreEqual(1, folder.Content.Count);
         }
 
         [TestMethod]

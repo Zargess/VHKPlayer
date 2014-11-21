@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
+using Zargess.VHKPlayer.SettingsManager;
 
 namespace Zargess.VHKPlayer.FileManagement.Test {
     /// <summary>
@@ -20,12 +21,24 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
             } else {
                 _folder = new FolderNode(@"c:\users\mfh\vhk");
             }
-            _container = new PlayListContainer(new FolderNode(_folder.FullPath + @"\musik\Andet"));
+            SettingsManagement.SetSetting("root", _folder.FullPath);
+            _container = new PlayListContainer();
         }
 
         [TestMethod]
         public void AfterCreationContainerContentIsNotNull() {
             Assert.IsNotNull(_container.Content);
+        }
+
+        [TestMethod]
+        public void AfterLoadIsCalledPlayListContainerSizeShouldBeX() {
+            _container.Load();
+            Assert.AreEqual(3, _container.Content.Count);
+        }
+
+        [TestMethod]
+        public void PlayListContainerShouldBePlayLister() {
+            Assert.AreEqual("PlayLister", _container.Name);
         }
     }
 }

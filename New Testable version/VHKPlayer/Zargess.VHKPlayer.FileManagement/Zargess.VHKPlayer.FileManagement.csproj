@@ -59,6 +59,7 @@
     <Compile Include="Interfaces\ISingeItemFactory.cs" />
     <Compile Include="PlayType.cs" />
     <Compile Include="PlayListContainer.cs" />
+    <Compile Include="SingleItemContainer.cs" />
     <Compile Include="SingleItemPlayable.cs" />
     <Compile Include="Strategies\Loading\IPlayable\FileLoadingStrategy.cs" />
     <Compile Include="Strategies\Loading\IPlayable\FolderLoadingStrategy.cs" />

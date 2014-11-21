@@ -10,42 +10,47 @@ namespace Zargess.VHKPlayer.FileManagement {
         public string FullPath { get; private set; }
         public string Name { get; private set; }
         public string Source { get; private set; }
-        public bool Exists { get; private set; }
         public FileSystemWatcher Watcher { get; set; }
         public event EventHandler FolderChanged;
 
         public FolderNode(string path) {
-            Exists = Directory.Exists(path);
-            Name = GetFolderName(path);
             FullPath = GetFolderPath(path);
+            Name = GetFolderName(path);
             Source = GetSource();
             Content = GetFiles();
         }
 
+        public bool Exists() {
+            return Directory.Exists(FullPath);
+        }
+
         private string GetFolderName(string path) {
             if (String.IsNullOrEmpty(path)) return "";
-            if (!Exists) return "";
+            if (!Exists()) return "";
             return Path.GetFileName(path);
         }
 
         private ObservableCollection<IFile> GetFiles() {
             var res = new ObservableCollection<IFile>();
-            if (!Exists) return res;
+            if (!Exists()) return res;
             var paths = Directory.EnumerateFiles(FullPath);
             foreach (var path in paths) {
-                res.Add(new FileNode(path));
+                var file = new FileNode(path);
+                if (file.Type != FileType.Unsupported) {
+                    res.Add(file);
+                }
             }
             return res;
         }
 
         private string GetSource() {
-            if (!Exists) return "";
+            if (!Exists()) return "";
             var temp = PathHandler.SplitPath(FullPath);
             return temp[temp.Length - 2];
         }
 
         private string GetFolderPath(string path) {
-            if (!Exists) return "";
+            if (!Directory.Exists(path)) return "";
             var temp = PathHandler.SplitPath(path);
             return temp.Length > 1 ? path : Path.Combine(Environment.CurrentDirectory, path);
         }
@@ -65,7 +70,7 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public bool InitWatcher() {
             if (Watcher != null) return false;
-            if (!Exists) return false;
+            if (!Exists()) return false;
             Watcher = new FileSystemWatcher {
                 Path = FullPath,
                 NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastAccess
