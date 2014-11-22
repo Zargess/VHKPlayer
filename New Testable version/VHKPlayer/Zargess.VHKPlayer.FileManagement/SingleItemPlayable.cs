@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Zargess.VHKPlayer.FileManagement.Interfaces;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class SingleItemPlayable : IPlayable {
         private ObservableCollection<IFile> Content { get; set; }
-        public ILoadingStrategy LoadingStrategy { get; private set; }
+        private ILoadingStrategy LoadingStrategy { get; set; }
         public string Name { get; private set; }
 
         public int Size {

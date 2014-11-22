@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
+using Zargess.VHKPlayer.FileManagement.Interfaces;
 
 namespace Zargess.VHKPlayer.FileManagement.Test {
     /// <summary>

@@ -40,11 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTypes\Statistics.cs" />
+    <Compile Include="EvenHandlers\StatEventArgs.cs" />
     <Compile Include="Factories\PlayList\AllFilesNoLoadingFactory.cs" />
     <Compile Include="Factories\PlayList\AllFilesSortedPlayListFactory.cs" />
     <Compile Include="Factories\PlayList\IteratedFolderPlayListFactory.cs" />
     <Compile Include="Factories\PlayList\IteratedNoLoadingFactory.cs" />
     <Compile Include="Interfaces\IContainerFactory.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IPlayListFactory.cs" />
     <Compile Include="FileNode.cs" />
     <Compile Include="FileType.cs" />
@@ -57,6 +60,7 @@
     <Compile Include="Interfaces\IPlayable.cs" />
     <Compile Include="Interfaces\IPlayList.cs" />
     <Compile Include="Interfaces\ISingeItemFactory.cs" />
+    <Compile Include="EvenHandlers\StatsChangedHandler.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayType.cs" />
     <Compile Include="PlayListContainer.cs" />

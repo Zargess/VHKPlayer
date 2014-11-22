@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Zargess.VHKPlayer.FileManagement.Interfaces;
 
 namespace Zargess.VHKPlayer.FileManagement.Strategies.Selection {
     public class AllFilesSelectionStrategy : IFileSelectionStrategy {

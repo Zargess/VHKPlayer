@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Zargess.VHKPlayer.FileManagement.Interfaces;
 using Zargess.VHKPlayer.SettingsManager;
 using Zargess.VHKPlayer.UtilFunctions;
 

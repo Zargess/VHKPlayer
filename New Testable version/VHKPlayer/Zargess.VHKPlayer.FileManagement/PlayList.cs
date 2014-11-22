@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Zargess.VHKPlayer.FileManagement.Factories;
+using Zargess.VHKPlayer.FileManagement.Interfaces;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class PlayList : IPlayList {
         private IFileSelectionStrategy SelectionStrategy { get; set; }
-        public ILoadingStrategy LoadingStrategy { get; private set; }
+        private ILoadingStrategy LoadingStrategy { get; set; }
         public string Name { get; private set; }
         private ObservableCollection<IFile> Content { get; set; }
         private IFolder Folder { get; set; }

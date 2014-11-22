@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.UtilFunct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.UtilFunctions.Tests", "Zargess.VHKPlayer.UtilFunctions.Tests\Zargess.VHKPlayer.UtilFunctions.Tests.csproj", "{BA105AC7-7D4F-491A-B47A-362AF515EEE5}"
 EndProject
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Zargess.VHKPlayer.Modeling", "Zargess.VHKPlayer.Modeling\Zargess.VHKPlayer.Modeling.modelproj", "{D0A2C892-F2FE-416C-8B49-A1F56295A61A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{BA105AC7-7D4F-491A-B47A-362AF515EEE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA105AC7-7D4F-491A-B47A-362AF515EEE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA105AC7-7D4F-491A-B47A-362AF515EEE5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D0A2C892-F2FE-416C-8B49-A1F56295A61A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0A2C892-F2FE-416C-8B49-A1F56295A61A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0A2C892-F2FE-416C-8B49-A1F56295A61A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0A2C892-F2FE-416C-8B49-A1F56295A61A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

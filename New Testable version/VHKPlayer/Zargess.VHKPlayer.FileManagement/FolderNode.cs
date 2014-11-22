@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using Zargess.VHKPlayer.FileManagement.Interfaces;
 using Zargess.VHKPlayer.UtilFunctions;
 
 namespace Zargess.VHKPlayer.FileManagement {

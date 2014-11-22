@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Zargess.VHKPlayer.FileManagement.Interfaces;
 using Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayable;
 
 namespace Zargess.VHKPlayer.FileManagement {

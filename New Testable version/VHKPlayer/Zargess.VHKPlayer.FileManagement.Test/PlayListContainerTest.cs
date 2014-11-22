@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
+using Zargess.VHKPlayer.FileManagement.Interfaces;
 using Zargess.VHKPlayer.SettingsManager;
 
 namespace Zargess.VHKPlayer.FileManagement.Test {

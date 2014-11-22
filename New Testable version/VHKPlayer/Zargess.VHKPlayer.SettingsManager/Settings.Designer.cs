@@ -106,5 +106,18 @@ namespace Zargess.VHKPlayer.SettingsManager {
                 this["supportedInfo"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root/spiller;root/spillervideo;root/spillervideostat;root/spillervideostat/mp3;ro" +
+            "ot/spillervideostat/video")]
+        public string playerFolders {
+            get {
+                return ((string)(this["playerFolders"]));
+            }
+            set {
+                this["playerFolders"] = value;
+            }
+        }
     }
 }

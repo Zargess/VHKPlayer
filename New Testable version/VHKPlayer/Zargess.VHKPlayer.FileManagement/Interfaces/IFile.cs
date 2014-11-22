@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zargess.VHKPlayer.FileManagement {
+namespace Zargess.VHKPlayer.FileManagement.Interfaces {
     public interface IFile {
         string FullPath { get; }
         string Name { get; }

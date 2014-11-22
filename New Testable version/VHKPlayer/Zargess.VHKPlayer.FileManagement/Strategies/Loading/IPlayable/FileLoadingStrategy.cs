@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Zargess.VHKPlayer.FileManagement.Interfaces;
 
 namespace Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayable {
     public class FileLoadingStrategy : ILoadingStrategy {
