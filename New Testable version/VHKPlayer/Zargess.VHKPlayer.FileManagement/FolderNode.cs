@@ -10,7 +10,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         public string FullPath { get; private set; }
         public string Name { get; private set; }
         public string Source { get; private set; }
-        public FileSystemWatcher Watcher { get; set; }
+        public FileSystemWatcher Watcher { get; private set; }
         public event EventHandler FolderChanged;
 
         public FolderNode(string path) {

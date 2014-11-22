@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public enum FileType {
-        Video, Picture, Music, Unsupported
+        Video, Picture, Music, Info, Unsupported
     }
 }

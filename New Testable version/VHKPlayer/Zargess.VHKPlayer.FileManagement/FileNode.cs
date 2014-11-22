@@ -3,8 +3,6 @@ using System.IO;
 using System.Linq;
 using Zargess.VHKPlayer.SettingsManager;
 using Zargess.VHKPlayer.UtilFunctions;
-using Zargess.VHKPlayer.FileManagement.Strategies.Loading;
-using Zargess.VHKPlayer.FileManagement.Strategies.Selection;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class FileNode : IFile {
@@ -43,6 +41,7 @@ namespace Zargess.VHKPlayer.FileManagement {
             var pics = SettingsManagement.GetStringSetting("supportedPicture").Split(';').ToList();
             var vids = SettingsManagement.GetStringSetting("supportedVideo").Split(';').ToList();
             var mus = SettingsManagement.GetStringSetting("supportedMusic").Split(';').ToList();
+            var inf = SettingsManagement.GetStringSetting("supportedInfo").Split(';').ToList();
 
             if (pics.Contains(extension)) {
                 return FileType.Picture;
@@ -54,6 +53,10 @@ namespace Zargess.VHKPlayer.FileManagement {
 
             if (mus.Contains(extension)) {
                 return FileType.Music;
+            }
+
+            if (inf.Contains(extension)) {
+                return FileType.Info;
             }
 
             return FileType.Unsupported;

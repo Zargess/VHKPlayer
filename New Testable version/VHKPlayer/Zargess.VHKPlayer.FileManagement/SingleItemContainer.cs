@@ -17,7 +17,9 @@ namespace Zargess.VHKPlayer.FileManagement {
         public void Load() {
             Content.Clear();
             foreach (var file in Folder.Content) {
-                if (file.Name != null) Content.Add(new SingleItemPlayable(new FileLoadingStrategy(file.FullPath)));
+                if (file.Name == null) continue;
+                if (file.Type == FileType.Info) continue;
+                Content.Add(new SingleItemPlayable(new FileLoadingStrategy(file.FullPath)));
             }
         }
     }

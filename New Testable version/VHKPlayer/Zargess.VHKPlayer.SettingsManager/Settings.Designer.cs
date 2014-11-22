@@ -94,5 +94,17 @@ namespace Zargess.VHKPlayer.SettingsManager {
                 this["iteratedFolderPlayLists"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("xml")]
+        public string supportedInfo {
+            get {
+                return ((string)(this["supportedInfo"]));
+            }
+            set {
+                this["supportedInfo"] = value;
+            }
+        }
     }
 }
