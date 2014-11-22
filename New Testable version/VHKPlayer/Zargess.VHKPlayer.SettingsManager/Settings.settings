@@ -15,16 +15,16 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="allFilesSortedPlayLists" Type="System.String" Scope="User">
-      <Value Profile="(Default)">{RekFørKamp;root/Rek;1},{RekHalvej1;root/Rek;2}</Value>
+      <Value Profile="(Default)">{RekFørKamp;root\Rek;1},{RekHalvej1;root\Rek;2}</Value>
     </Setting>
     <Setting Name="iteratedFolderPlayLists" Type="System.String" Scope="User">
-      <Value Profile="(Default)">{10sek;root/10sek}</Value>
+      <Value Profile="(Default)">{10sek;root\10sek}</Value>
     </Setting>
     <Setting Name="supportedInfo" Type="System.String" Scope="User">
       <Value Profile="(Default)">xml</Value>
     </Setting>
     <Setting Name="playerFolders" Type="System.String" Scope="User">
-      <Value Profile="(Default)">root/spiller;root/spillervideo;root/spillervideostat;root/spillervideostat/mp3;root/spillervideostat/video</Value>
+      <Value Profile="(Default)">root\spiller;root\spillervideo;root\spillervideostat;root\spillervideostat\mp3;root\spillervideostat\video</Value>
     </Setting>
   </Settings>
 </SettingsFile>

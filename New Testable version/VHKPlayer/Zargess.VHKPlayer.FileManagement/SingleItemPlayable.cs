@@ -4,7 +4,7 @@ using Zargess.VHKPlayer.FileManagement.Interfaces;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class SingleItemPlayable : IPlayable {
-        private ObservableCollection<IFile> Content { get; set; }
+        private List<IFile> Content { get; set; }
         private ILoadingStrategy LoadingStrategy { get; set; }
         public string Name { get; private set; }
 
@@ -15,7 +15,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public SingleItemPlayable(ILoadingStrategy loadingStrategy) {
-            Content = new ObservableCollection<IFile>();
+            Content = new List<IFile>();
             LoadingStrategy = loadingStrategy;
             LoadingStrategy.Load(Content);
             if (Content.Count <= 0) return;

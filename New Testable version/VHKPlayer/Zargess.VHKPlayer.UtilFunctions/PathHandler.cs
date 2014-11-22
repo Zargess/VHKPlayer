@@ -24,8 +24,9 @@ namespace Zargess.VHKPlayer.UtilFunctions {
             var root = SettingsManagement.GetStringSetting("root");
             if (Directory.Exists(relativepath)) return relativepath;
             if (File.Exists(relativepath)) return relativepath;
-            if (relativepath.Contains("root")) relativepath = relativepath.Replace("root", "");
-            return CombinePaths(root, relativepath);
+            if (relativepath.Contains(@"root\")) relativepath = relativepath.Replace(@"root\", "");
+            var path = CombinePaths(root, relativepath);
+            return path;
         }
     }
 }

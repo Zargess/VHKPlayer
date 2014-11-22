@@ -73,7 +73,7 @@ namespace Zargess.VHKPlayer.SettingsManager {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{RekFørKamp;root/Rek;1},{RekHalvej1;root/Rek;2}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{RekFørKamp;root\\Rek;1},{RekHalvej1;root\\Rek;2}")]
         public string allFilesSortedPlayLists {
             get {
                 return ((string)(this["allFilesSortedPlayLists"]));
@@ -85,7 +85,7 @@ namespace Zargess.VHKPlayer.SettingsManager {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{10sek;root/10sek}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{10sek;root\\10sek}")]
         public string iteratedFolderPlayLists {
             get {
                 return ((string)(this["iteratedFolderPlayLists"]));
@@ -109,8 +109,8 @@ namespace Zargess.VHKPlayer.SettingsManager {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("root/spiller;root/spillervideo;root/spillervideostat;root/spillervideostat/mp3;ro" +
-            "ot/spillervideostat/video")]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\spiller;root\\spillervideo;root\\spillervideostat;root\\spillervideostat\\mp3;ro" +
+            "ot\\spillervideostat\\video")]
         public string playerFolders {
             get {
                 return ((string)(this["playerFolders"]));

@@ -11,12 +11,25 @@ namespace Zargess.VHKPlayer.FileManagement {
         public string Name { get; private set; }
         public string Source { get; private set; }
         public FileType Type { get; private set; }
+        public string NameWithoutExtension { get; private set; }
 
         public FileNode(string path) {
             Name = GetFileName(path);
             FullPath = GetPath(path);
             Source = GetSource(path);
             Type = GetFileType();
+            NameWithoutExtension = GetNameWithoutExtension();
+        }
+
+        private string GetNameWithoutExtension() {
+            var temp = Name.Split('.');
+            var res = "";
+
+            for (int i = 0; i < temp.Length - 1; i++) {
+                res += temp[i];
+            }
+
+            return res;
         }
 
         private string GetFileName(string path) {
