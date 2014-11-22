@@ -57,6 +57,7 @@
     <Compile Include="Interfaces\IPlayable.cs" />
     <Compile Include="Interfaces\IPlayList.cs" />
     <Compile Include="Interfaces\ISingeItemFactory.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="PlayType.cs" />
     <Compile Include="PlayListContainer.cs" />
     <Compile Include="SingleItemContainer.cs" />
