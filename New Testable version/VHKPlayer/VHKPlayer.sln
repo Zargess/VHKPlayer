@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.UtilFunct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.UtilFunctions.Tests", "Zargess.VHKPlayer.UtilFunctions.Tests\Zargess.VHKPlayer.UtilFunctions.Tests.csproj", "{BA105AC7-7D4F-491A-B47A-362AF515EEE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.TwitterClient", "Zargess.TwitterClient\Zargess.TwitterClient.csproj", "{4A5EA0C4-120C-4244-9B7F-39A98EF59123}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{BA105AC7-7D4F-491A-B47A-362AF515EEE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA105AC7-7D4F-491A-B47A-362AF515EEE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA105AC7-7D4F-491A-B47A-362AF515EEE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A5EA0C4-120C-4244-9B7F-39A98EF59123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A5EA0C4-120C-4244-9B7F-39A98EF59123}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A5EA0C4-120C-4244-9B7F-39A98EF59123}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A5EA0C4-120C-4244-9B7F-39A98EF59123}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

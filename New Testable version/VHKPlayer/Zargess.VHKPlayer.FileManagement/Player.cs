@@ -54,7 +54,11 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public Queue<IFile> Play(PlayType pt) {
-            return null;
+            var res = new Queue<IFile>();
+            res.Enqueue(new FileNode(Content[2].FullPath));
+            res.Enqueue(new FileNode(Content[3].FullPath));
+            res.Enqueue(new FileNode(Content[4].FullPath));
+            return res;
         }
     }
 }

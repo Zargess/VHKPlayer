@@ -31,7 +31,6 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
             _playerFolder = new FolderNode(PathHandler.CombinePaths(_folder.FullPath, "spiller"));
             _file = new FileNode(PathHandler.CombinePaths(_playerFolder.FullPath, @"\001 - Chana de Souza Mason.png"));
             _player = new Player(_file, new PlayerLoadingStrategy(_file));
-            var temp = _player.GetContent();
         }
 
         [TestMethod]
@@ -62,7 +61,12 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
 
         [TestMethod]
         public void PlayerPlayCallWithStatParameterShouldReturnQueueOfSize3() {
-            Assert.AreEqual(3, _player.Play(PlayType.PlayerStat));
+            Assert.AreEqual(3, _player.Play(PlayType.PlayerStat).Count);
+        }
+
+        [TestMethod]
+        public void PlayerPlayCallWithPicParameterShouldReturnQueueOfSize1() {
+            Assert.AreEqual(1, _player.Play(PlayType.PlayerPic).Count);
         }
     }
 }
