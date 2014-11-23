@@ -71,7 +71,9 @@
     <Compile Include="Strategies\Loading\IPlayable\NoLoadingStrategy.cs" />
     <Compile Include="Strategies\Loading\IPlayable\SortedLoadingStrategy.cs" />
     <Compile Include="Strategies\Loading\IPlayer\PlayerLoadingStrategy.cs" />
+    <Compile Include="Strategies\Selection\IPlayer\PictureSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\IPlayer\StatSelectionStrategy.cs" />
+    <Compile Include="Strategies\Selection\IPlayer\VideoSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\IteratedFileSelectionStrategy.cs" />
     <Compile Include="Interfaces\IWatchable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

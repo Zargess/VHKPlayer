@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Zargess.VHKPlayer.FileManagement.DataTypes;
 using Zargess.VHKPlayer.FileManagement.EventHandlers;

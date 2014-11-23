@@ -26,7 +26,7 @@ namespace Zargess.VHKPlayer.UtilFunctions {
             if (File.Exists(relativepath)) return relativepath;
             if (relativepath.Contains(@"root\")) relativepath = relativepath.Replace(@"root\", "");
             var path = CombinePaths(root, relativepath);
-            return path;
+            return path.ToLower();
         }
     }
 }

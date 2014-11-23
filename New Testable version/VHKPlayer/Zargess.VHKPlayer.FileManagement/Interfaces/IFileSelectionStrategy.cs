@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Zargess.VHKPlayer.FileManagement.Interfaces;
+﻿using System.Collections.Generic;
 
-namespace Zargess.VHKPlayer.FileManagement {
+namespace Zargess.VHKPlayer.FileManagement.Interfaces {
     public interface IFileSelectionStrategy {
         Queue<IFile> SelectFiles(IPlayable playable);
     }
