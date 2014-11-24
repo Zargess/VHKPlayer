@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
 using Zargess.VHKPlayer.SettingsManager;
 using Zargess.VHKPlayer.UtilFunctions;

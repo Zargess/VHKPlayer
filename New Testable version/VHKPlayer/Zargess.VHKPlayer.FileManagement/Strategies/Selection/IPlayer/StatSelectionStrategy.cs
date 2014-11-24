@@ -7,8 +7,10 @@ namespace Zargess.VHKPlayer.FileManagement.Strategies.Selection.IPlayer {
     public class StatSelectionStrategy : IFileSelectionStrategy {
 
         public IFileSelectionStrategy VidSelection { get; private set; }
+        public IFileSelectionStrategy PicSelection { get; private set; }
 
-        public StatSelectionStrategy(IFileSelectionStrategy vidSelection) {
+        public StatSelectionStrategy(IFileSelectionStrategy picSelection, IFileSelectionStrategy vidSelection) {
+            PicSelection = picSelection;
             VidSelection = vidSelection;
         }
 
@@ -19,11 +21,12 @@ namespace Zargess.VHKPlayer.FileManagement.Strategies.Selection.IPlayer {
             string statFolder = PathHandler.AbsolutePath(@"root\spillervideostat");
             string statMusicFolder = PathHandler.AbsolutePath(@"root\spillervideostat\mp3");
             string statVideoFolder = PathHandler.AbsolutePath(@"root\spillervideostat\video");
+            if (content.Count == 1) return PicSelection.SelectFiles(playable);
             if (!content.Any(x => x.FullPath.ToLower().Contains(statFolder))) return VidSelection.SelectFiles(playable);
 
-            var pic = content.SingleOrDefault(x => x.FullPath.ToLower().Contains(statFolder));
-            var mus = content.SingleOrDefault(x => x.FullPath.ToLower().Contains(statMusicFolder));
-            var vid = content.SingleOrDefault(x => x.FullPath.ToLower().Contains(statVideoFolder));
+            var pic = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statFolder));
+            var mus = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statMusicFolder));
+            var vid = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statVideoFolder));
             res.Enqueue(pic);
             res.Enqueue(mus);
             res.Enqueue(vid);

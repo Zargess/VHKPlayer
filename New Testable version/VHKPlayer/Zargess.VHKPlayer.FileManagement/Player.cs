@@ -8,6 +8,9 @@ using Zargess.VHKPlayer.UtilFunctions;
 namespace Zargess.VHKPlayer.FileManagement {
     public class Player : IPlayer {
         private ILoadingStrategy LoadingStrategy { get; set; }
+        private IFileSelectionStrategy PicSelection { get; set; }
+        private IFileSelectionStrategy VidSelection { get; set; }
+        private IFileSelectionStrategy StatSelection { get; set; }
         private List<IFile> Content { get; set; }
         public string Name { get; private set; }
         public bool Trainer { get; private set; }
@@ -20,28 +23,16 @@ namespace Zargess.VHKPlayer.FileManagement {
             }
         }
 
-        public Player(IFile picFile, ILoadingStrategy loadingStrategy) {
-            Number = GetNumber(picFile);
-            Name = GetName(picFile);
-            Trainer = IsTrainer();
+        public Player(IPlayerFactory factory) {
+            Number = factory.CreateNumber();
+            Name = factory.CreateName();
+            Trainer = factory.CreateIfTrainer();
             Content = new List<IFile>();
-            LoadingStrategy = loadingStrategy;
+            LoadingStrategy = factory.CreateLoadingStrategy();
             LoadingStrategy.Load(Content);
-        }
-
-        private bool IsTrainer() {
-            return Number >= 90;
-        }
-
-        private string GetName(IFile picFile) {
-            var temp = picFile.Name.Remove(0, 6);
-            temp = temp.Replace(".png", "");
-            return temp;
-        }
-
-        private int GetNumber(IFile file) {
-            var temp = file.Name.Substring(0, 3);
-            return GeneralFunctions.StringToInteger(temp);
+            PicSelection = factory.CreatePicSelectionStrategy();
+            VidSelection = factory.CreateVidSelectionStrategy();
+            StatSelection = factory.CreateStatSelectionStrategy();
         }
 
         public ObservableCollection<IFile> GetContent() {
@@ -53,11 +44,10 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public Queue<IFile> Play(PlayType pt) {
-            var res = new Queue<IFile>();
-            res.Enqueue(new FileNode(Content[2].FullPath));
-            res.Enqueue(new FileNode(Content[3].FullPath));
-            res.Enqueue(new FileNode(Content[4].FullPath));
-            return res;
+            if (pt == PlayType.PlayerPic) return PicSelection.SelectFiles(this);
+            if (pt == PlayType.PlayerVid) return VidSelection.SelectFiles(this);
+            if (pt == PlayType.PlayerStat) return StatSelection.SelectFiles(this);
+            return new Queue<IFile>();
         }
     }
 }

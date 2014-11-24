@@ -3,8 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using Zargess.VHKPlayer.UtilFunctions;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
-using Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayer;
 using Zargess.VHKPlayer.SettingsManager;
+using Zargess.VHKPlayer.FileManagement.Factories.Player;
 
 namespace Zargess.VHKPlayer.FileManagement.Test {
     /// <summary>
@@ -30,7 +30,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
             var root = SettingsManagement.GetStringSetting("root");
             _playerFolder = new FolderNode(PathHandler.CombinePaths(_folder.FullPath, "spiller"));
             _file = new FileNode(PathHandler.CombinePaths(_playerFolder.FullPath, @"\001 - Chana de Souza Mason.png"));
-            _player = new Player(_file, new PlayerLoadingStrategy(_file));
+            _player = new Player(new PlayerFactory(_file));
         }
 
         [TestMethod]
@@ -50,7 +50,8 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
 
         [TestMethod]
         public void DalmoseShouldBeTrainer() {
-            var player = new Player(new FileNode(PathHandler.CombinePaths(_playerFolder.FullPath, @"090 - Christian Dalmose.png")), new PlayerLoadingStrategy(_file));
+            var file = new FileNode(PathHandler.CombinePaths(_playerFolder.FullPath, @"090 - Christian Dalmose.png"));
+            var player = new Player(new PlayerFactory(file));
             Assert.IsTrue(player.Trainer);
         }
 

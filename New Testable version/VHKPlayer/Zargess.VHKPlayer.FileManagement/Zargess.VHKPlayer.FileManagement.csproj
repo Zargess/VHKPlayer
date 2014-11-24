@@ -42,12 +42,14 @@
   <ItemGroup>
     <Compile Include="DataTypes\Statistics.cs" />
     <Compile Include="EvenHandlers\StatEventArgs.cs" />
+    <Compile Include="Factories\Player\PlayerFactory.cs" />
     <Compile Include="Factories\PlayList\AllFilesNoLoadingFactory.cs" />
     <Compile Include="Factories\PlayList\AllFilesSortedPlayListFactory.cs" />
     <Compile Include="Factories\PlayList\IteratedFolderPlayListFactory.cs" />
     <Compile Include="Factories\PlayList\IteratedNoLoadingFactory.cs" />
     <Compile Include="Interfaces\IContainerFactory.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
+    <Compile Include="Interfaces\IPlayerFactory.cs" />
     <Compile Include="Interfaces\IPlayListFactory.cs" />
     <Compile Include="FileNode.cs" />
     <Compile Include="FileType.cs" />
@@ -90,10 +92,7 @@
       <Name>Zargess.VHKPlayer.UtilFunctions</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Factories\Container\" />
-    <Folder Include="Factories\SingleItem\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
