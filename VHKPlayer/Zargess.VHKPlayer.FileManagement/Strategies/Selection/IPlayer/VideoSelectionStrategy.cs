@@ -18,7 +18,7 @@ namespace Zargess.VHKPlayer.FileManagement.Strategies.Selection.IPlayer {
             var temp = SettingsManagement.GetStringSetting("playerFolders").Split(';');
             var vidFolderPath = PathHandler.AbsolutePath(temp[1]);
             if (!playable.GetContent().Any(x => x.FullPath.ToLower().Contains(vidFolderPath))) return PicSelection.SelectFiles(playable);
-            res.Enqueue(playable.GetContent().Single(x => x.FullPath.ToLower().Contains(vidFolderPath)));
+            res.Enqueue(playable.GetContent().First(x => x.FullPath.ToLower().Contains(vidFolderPath)));
             return res;
         }
     }

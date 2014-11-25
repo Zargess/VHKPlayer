@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
 using Zargess.VHKPlayer.UtilFunctions;
@@ -27,8 +28,9 @@ namespace Zargess.VHKPlayer.FileManagement.Strategies.Selection.IPlayer {
             var pic = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statFolder));
             var mus = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statMusicFolder));
             var vid = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statVideoFolder));
-            res.Enqueue(pic);
+            if (pic == null || mus == null || vid == null) throw new FilesMissingException("Player stat files does not meet requirements. There should be one picture, one music and one video file pr. player.");
             res.Enqueue(mus);
+            res.Enqueue(pic);
             res.Enqueue(vid);
 
             return res;
