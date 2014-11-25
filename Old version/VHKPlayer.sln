@@ -1,8 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D793C341-02EE-4B78-8A87-60D8F38BE056}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.FileManagement", "Zargess.VHKPlayer.FileManagement\Zargess.VHKPlayer.FileManagement.csproj", "{1862BF4F-C9AE-489C-AD9E-D3DC6FC82B10}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.WebSocket", "Zargess.VHKPlayer.WebSocket\Zargess.VHKPlayer.WebSocket.csproj", "{43CCF786-86AA-4528-A176-DC14CFB45D6B}"
@@ -24,11 +29,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.ViewModels", "Zargess.VHKPlayer.ViewModels\Zargess.VHKPlayer.ViewModels.csproj", "{C55E3F43-BB05-45AB-98BC-5CD185110209}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Website", "Zargess.VHKPlayer.Website\Zargess.VHKPlayer.Website.csproj", "{636BA8FA-59C9-4701-8D90-27D084854DE8}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D793C341-02EE-4B78-8A87-60D8F38BE056}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.FileManagement.Test", "Zargess.VHKPlayer.FileManagement.Test\Zargess.VHKPlayer.FileManagement.Test.csproj", "{8F7AB897-0239-4FCE-B9C3-5032186417F6}"
 EndProject
