@@ -23,7 +23,7 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         private IEnumerable<IPlayList> IteratedFolder() {
             var res = new List<IPlayList>();
-            var strs = SettingsManagement.GetStringSetting("iteratedFolderPlayLists").Split(',');
+            var strs = SettingsManagement.Instance.GetStringSetting("iteratedFolderPlayLists").Split(',');
             foreach (var s in strs) {
                 res.Add(new PlayList(new IteratedFolderPlayListFactory(s)));
             }
@@ -32,7 +32,7 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public IEnumerable<IPlayList> AllFilesSorted() {
             var res = new List<IPlayList>();
-            var strs = SettingsManagement.GetStringSetting("allFilesSortedPlayLists").Split(',');
+            var strs = SettingsManagement.Instance.GetStringSetting("allFilesSortedPlayLists").Split(',');
             foreach(var s in strs) {
                 res.Add(new PlayList(new AllFilesSortedPlayListFactory(s)));
             }

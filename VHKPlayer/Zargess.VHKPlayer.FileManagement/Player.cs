@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using Zargess.VHKPlayer.FileManagement.DataTypes;
 using Zargess.VHKPlayer.FileManagement.EventHandlers;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
-using Zargess.VHKPlayer.UtilFunctions;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class Player : IPlayer {

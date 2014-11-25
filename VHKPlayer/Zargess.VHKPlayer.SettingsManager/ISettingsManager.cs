@@ -5,6 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.SettingsManager {
-    interface ISettingsManager {
+    public interface ISettingsManager {
+        object GetSetting(string key);
+        string GetStringSetting(string key);
+        string GetPathSetting(string key, int index);
+        void SetSetting(string key, object value);
+        void Reset();
     }
 }

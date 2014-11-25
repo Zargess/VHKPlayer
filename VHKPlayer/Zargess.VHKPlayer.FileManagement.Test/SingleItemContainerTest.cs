@@ -20,7 +20,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
             } else {
                 _folder = new FolderNode(@"c:\users\mfh\vhk");
             }
-            SettingsManagement.SetSetting("root", _folder.FullPath);
+            SettingsManagement.Instance.SetSetting("root", _folder.FullPath);
             _container = new SingleItemContainer(new FolderNode(PathHandler.CombinePaths(_folder.FullPath, @"musik\andet")));
         }
 

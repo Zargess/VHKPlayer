@@ -15,8 +15,8 @@ namespace Zargess.VHKPlayer.FileManagement.Strategies.Selection.IPlayer {
 
         public Queue<IFile> SelectFiles(IPlayable playable) {
             var res = new Queue<IFile>();
-            var temp = SettingsManagement.GetStringSetting("playerFolders").Split(';');
-            var vidFolderPath = PathHandler.AbsolutePath(temp[1]);
+            var temp = SettingsManagement.Instance.GetPathSetting("playerFolders", 1);
+            var vidFolderPath = PathHandler.AbsolutePath(temp);
             if (!playable.GetContent().Any(x => x.FullPath.ToLower().Contains(vidFolderPath))) return PicSelection.SelectFiles(playable);
             res.Enqueue(playable.GetContent().First(x => x.FullPath.ToLower().Contains(vidFolderPath)));
             return res;

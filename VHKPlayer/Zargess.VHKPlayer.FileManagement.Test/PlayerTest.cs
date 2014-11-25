@@ -26,8 +26,8 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
                 Environment.CurrentDirectory = @"C:\Users\MFH\Documents\GitHub";
                 _folder = new FolderNode(@"c:\users\mfh\vhk");
             }
-            SettingsManagement.SetSetting("root", _folder.FullPath);
-            var root = SettingsManagement.GetStringSetting("root");
+            SettingsManagement.Instance.SetSetting("root", _folder.FullPath);
+            var root = SettingsManagement.Instance.GetStringSetting("root");
             _playerFolder = new FolderNode(PathHandler.CombinePaths(_folder.FullPath, "spiller"));
             _file = new FileNode(PathHandler.CombinePaths(_playerFolder.FullPath, @"\001 - Chana de Souza Mason.png"));
             _player = new Player(new PlayerFactory(_file));

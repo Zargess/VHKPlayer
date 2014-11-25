@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
 using Zargess.VHKPlayer.UtilFunctions;
+using Zargess.VHKPlayer.SettingsManager;
 
 namespace Zargess.VHKPlayer.FileManagement.Strategies.Selection.IPlayer {
     public class StatSelectionStrategy : IFileSelectionStrategy {
@@ -19,9 +20,9 @@ namespace Zargess.VHKPlayer.FileManagement.Strategies.Selection.IPlayer {
             var res = new Queue<IFile>();
             var content = playable.GetContent();
 
-            string statFolder = PathHandler.AbsolutePath(@"root\spillervideostat");
-            string statMusicFolder = PathHandler.AbsolutePath(@"root\spillervideostat\mp3");
-            string statVideoFolder = PathHandler.AbsolutePath(@"root\spillervideostat\video");
+            string statFolder = PathHandler.AbsolutePath(SettingsManagement.Instance.GetPathSetting("playerFolders", 2));
+            string statMusicFolder = PathHandler.AbsolutePath(SettingsManagement.Instance.GetPathSetting("playerFolders", 3));
+            string statVideoFolder = PathHandler.AbsolutePath(SettingsManagement.Instance.GetPathSetting("playerFolders", 4));
             if (content.Count == 1) return PicSelection.SelectFiles(playable);
             if (!content.Any(x => x.FullPath.ToLower().Contains(statFolder))) return VidSelection.SelectFiles(playable);
 

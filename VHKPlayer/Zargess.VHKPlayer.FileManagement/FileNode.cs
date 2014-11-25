@@ -52,10 +52,10 @@ namespace Zargess.VHKPlayer.FileManagement {
             var fullPath = FullPath.ToLower();
             var temp = fullPath.Split('.');
             var extension = temp[temp.Length - 1];
-            var pics = SettingsManagement.GetStringSetting("supportedPicture").Split(';').ToList();
-            var vids = SettingsManagement.GetStringSetting("supportedVideo").Split(';').ToList();
-            var mus = SettingsManagement.GetStringSetting("supportedMusic").Split(';').ToList();
-            var inf = SettingsManagement.GetStringSetting("supportedInfo").Split(';').ToList();
+            var pics = SettingsManagement.Instance.GetStringSetting("supportedPicture").Split(';').ToList();
+            var vids = SettingsManagement.Instance.GetStringSetting("supportedVideo").Split(';').ToList();
+            var mus = SettingsManagement.Instance.GetStringSetting("supportedMusic").Split(';').ToList();
+            var inf = SettingsManagement.Instance.GetStringSetting("supportedInfo").Split(';').ToList();
 
             if (pics.Contains(extension)) {
                 return FileType.Picture;
