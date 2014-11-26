@@ -119,5 +119,17 @@ namespace Zargess.VHKPlayer.SettingsManager {
                 this["playerFolders"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string statsFolder {
+            get {
+                return ((string)(this["statsFolder"]));
+            }
+            set {
+                this["statsFolder"] = value;
+            }
+        }
     }
 }

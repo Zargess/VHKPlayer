@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.SettingsManager {
     public class SettingsManagement : ISettingsManager {
+        private SettingsManagement() {}
+
         public object GetSetting(string key) {
             return Settings.Default[key];
         }
@@ -28,8 +30,6 @@ namespace Zargess.VHKPlayer.SettingsManager {
             var setting = GetStringSetting(key).Split(';');
             return setting[index];
         }
-
-        private SettingsManagement() {}
 
         private static SettingsManagement instance;
         public static SettingsManagement Instance {

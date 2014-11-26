@@ -24,6 +24,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
                 _folder = new FolderNode(@"D:\Dropbox\Programmering\C#\damer 2013-2014");
             } else {
                 Environment.CurrentDirectory = @"C:\Users\MFH\Documents\GitHub";
+                SettingsManagement.Instance.SetSetting("statsFolder", @"C:\Users\MFH\Dropbox\Programmering\C#\DigiMatch");
                 _folder = new FolderNode(@"c:\users\mfh\vhk");
             }
             SettingsManagement.Instance.SetSetting("root", _folder.FullPath);

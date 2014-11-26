@@ -1,6 +1,9 @@
-﻿using Zargess.VHKPlayer.FileManagement.Interfaces;
+﻿using System;
+using Zargess.VHKPlayer.FileManagement.Interfaces;
+using Zargess.VHKPlayer.FileManagement.SharedInfo;
 using Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayer;
 using Zargess.VHKPlayer.FileManagement.Strategies.Selection.IPlayer;
+using Zargess.VHKPlayer.FileManagement.Strategies.StatsLoading;
 using Zargess.VHKPlayer.UtilFunctions;
 
 namespace Zargess.VHKPlayer.FileManagement.Factories.Player {
@@ -44,6 +47,10 @@ namespace Zargess.VHKPlayer.FileManagement.Factories.Player {
 
         public IFileSelectionStrategy CreateStatSelectionStrategy() {
             return new StatSelectionStrategy(CreatePicSelectionStrategy(), CreateVidSelectionStrategy());
+        }
+
+        public IStatsLoadingStrategy CreateStatsLoadingStrategy() {
+            return new DigimatchStatsLoadingStrategy();
         }
     }
 }

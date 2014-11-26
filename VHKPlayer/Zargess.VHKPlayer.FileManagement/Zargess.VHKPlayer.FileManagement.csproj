@@ -63,9 +63,11 @@
     <Compile Include="Interfaces\IPlayList.cs" />
     <Compile Include="Interfaces\ISingeItemFactory.cs" />
     <Compile Include="EvenHandlers\StatsChangedHandler.cs" />
+    <Compile Include="Interfaces\IStatsLoadingStrategy.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayType.cs" />
     <Compile Include="PlayListContainer.cs" />
+    <Compile Include="SharedInfo\GeneralPlayerInfo.cs" />
     <Compile Include="SingleItemContainer.cs" />
     <Compile Include="SingleItemPlayable.cs" />
     <Compile Include="Strategies\Loading\IPlayable\FileLoadingStrategy.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlayList.cs" />
     <Compile Include="Strategies\Selection\AllFilesStrategy.cs" />
+    <Compile Include="Strategies\StatsLoading\DigimatchStatsLoadingStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zargess.VHKPlayer.SettingsManager\Zargess.VHKPlayer.SettingsManager.csproj">

@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Zargess.VHKPlayer.FileManagement.DataTypes;
 using Zargess.VHKPlayer.FileManagement.EventHandlers;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
+using Zargess.VHKPlayer.FileManagement.SharedInfo;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class Player : IPlayer {
@@ -10,7 +12,9 @@ namespace Zargess.VHKPlayer.FileManagement {
         private IFileSelectionStrategy PicSelection { get; set; }
         private IFileSelectionStrategy VidSelection { get; set; }
         private IFileSelectionStrategy StatSelection { get; set; }
+        private IStatsLoadingStrategy StatsLoadingStrategy { get; set; }
         private List<IFile> Content { get; set; }
+
         public string Name { get; private set; }
         public bool Trainer { get; private set; }
         public int Number { get; private set; }
@@ -32,6 +36,9 @@ namespace Zargess.VHKPlayer.FileManagement {
             PicSelection = factory.CreatePicSelectionStrategy();
             VidSelection = factory.CreateVidSelectionStrategy();
             StatSelection = factory.CreateStatSelectionStrategy();
+            StatsLoadingStrategy = factory.CreateStatsLoadingStrategy();
+            GeneralPlayerInfo.Instance.GetStatsFolder().FolderChanged += StatsFolderChanged;
+            StatsFolderChanged(this, null);
         }
 
         public ObservableCollection<IFile> GetContent() {
@@ -47,6 +54,13 @@ namespace Zargess.VHKPlayer.FileManagement {
             if (pt == PlayType.PlayerVid) return VidSelection.SelectFiles(this);
             if (pt == PlayType.PlayerStat) return StatSelection.SelectFiles(this);
             return new Queue<IFile>();
+        }
+
+        private void StatsFolderChanged(object sender, EventArgs e) {
+            Stats = StatsLoadingStrategy.LoadStats(Number);
+            if (StatsChanged != null) {
+                StatsChanged.Invoke(this, new StatEventArgs(Stats.Clone()));
+            }
         }
     }
 }

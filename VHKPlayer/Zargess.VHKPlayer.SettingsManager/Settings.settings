@@ -26,5 +26,8 @@
     <Setting Name="playerFolders" Type="System.String" Scope="User">
       <Value Profile="(Default)">root\spiller;root\spillervideo;root\spillervideostat;root\spillervideostat\mp3;root\spillervideostat\video</Value>
     </Setting>
+    <Setting Name="statsFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -14,5 +14,6 @@ namespace Zargess.VHKPlayer.FileManagement.Interfaces {
         IFileSelectionStrategy CreatePicSelectionStrategy();
         IFileSelectionStrategy CreateVidSelectionStrategy();
         IFileSelectionStrategy CreateStatSelectionStrategy();
+        IStatsLoadingStrategy CreateStatsLoadingStrategy();
     }
 }
