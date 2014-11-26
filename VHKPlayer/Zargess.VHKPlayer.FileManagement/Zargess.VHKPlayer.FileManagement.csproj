@@ -65,6 +65,7 @@
     <Compile Include="EvenHandlers\StatsChangedHandler.cs" />
     <Compile Include="Interfaces\IStatsLoadingStrategy.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerContainer.cs" />
     <Compile Include="PlayType.cs" />
     <Compile Include="PlayListContainer.cs" />
     <Compile Include="SharedInfo\GeneralPlayerInfo.cs" />
