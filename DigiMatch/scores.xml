@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sendfrom user="PJ" level="5" type="SCORES">
+  <score home="24" guest="18" stand="24-18">
+    <playerone teamid="H" nr="19" />
+    <goalkeeper teamid="G" nr="12" />
+  </score>
+</sendfrom>

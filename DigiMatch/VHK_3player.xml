@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sendfrom user="VHK" level="1" type="PLAYER">
+  <player nr="3" name="FRAFJORD Marit Malm" id="851125" team="Viborg HK" teamshort="VHK" teamid="262" mep="1,3">
+    <shot goalfield="3" shotfield="6" percentfield="50" goalseven="0" shotseven="0" percentseven="0" goaltot="3" shottot="6" percenttot="50" />
+    <foul rulefault="0" passmiss="0" lostball="0" techfault="0" />
+    <penalty yellowcard="1" suspension="0" redcard="1" />
+    <mvshot savefield="0" shotfield="0" percentfield="0" saveseven="0" shotseven="0" percentseven="0" savetot="0" shottot="0" percenttot="0" />
+  </player>
+</sendfrom>

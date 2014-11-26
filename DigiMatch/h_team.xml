@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sendfrom user="PJ" level="5" type="LINEUP">
+  <team name="Viborg HK" short="VHK" id="262" homeguest="H">
+    <leader rank="A" firstname="Christian" lastname="DALMOSE" />
+    <leader rank="B" firstname="Liss" lastname="KRISTENSEN" />
+    <leader rank="C" firstname="Noel" lastname="MINGAM" />
+    <leader rank="D" firstname="Kasper" lastname="DANBORG" />
+    <leader rank="E" firstname="Per" lastname="BYRIALSEN" />
+    <player nr="1" firstname="Chana Franciela" lastname="MASSON DE SOUZA" playerid="781218" playpos="0" participating="True" isactive="True" />
+    <player nr="2" firstname="Rikke Erhardsen" lastname="SKOV" playerid="800907" playpos="4" participating="False" isactive="False" />
+    <player nr="3" firstname="Marit Malm" lastname="FRAFJORD" playerid="851125" playpos="2" participating="True" isactive="True" />
+    <player nr="5" firstname="Anne Kjersti" lastname="SUVDAL" playerid="870730" playpos="1" participating="True" isactive="True" />
+    <player nr="6" firstname="Tina" lastname="FLOGNMAN" playerid="810629" playpos="2" participating="False" isactive="False" />
+    <player nr="8" firstname="Mouna" lastname="CHEBBAH" playerid="820708" playpos="5" participating="False" isactive="False" />
+    <player nr="9" firstname="Isabella" lastname="GULLDEN" playerid="890629" playpos="5" participating="True" isactive="True" />
+    <player nr="10" firstname="Sofie" lastname="LAUGE" playerid="950610" playpos="7" participating="True" isactive="True" />
+    <player nr="11" firstname="Sanja" lastname="DAMNJANOVIC" playerid="870525" playpos="4" participating="False" isactive="False" />
+    <player nr="14" firstname="Camilla" lastname="SOMMER" playerid="950814" playpos="1" participating="False" isactive="False" />
+    <player nr="15" firstname="Sabine" lastname="PEDERSEN" playerid="860505" playpos="2" participating="True" isactive="True" />
+    <player nr="16" firstname="Astrid" lastname="JAKOBSEN" playerid="960720" playpos="0" participating="False" isactive="False" />
+    <player nr="17" firstname="Josefine Orby" lastname="POULSEN" playerid="950414" playpos="5" participating="False" isactive="False" />
+    <player nr="18" firstname="Mette" lastname="THYRSTED" playerid="960210" playpos="5" participating="True" isactive="True" />
+    <player nr="19" firstname="Louise" lastname="LYKSBORG" playerid="880117" playpos="3" participating="True" isactive="True" />
+    <player nr="22" firstname="Amanda" lastname="KURTOVIC" playerid="910725" playpos="6" participating="True" isactive="True" />
+    <player nr="23" firstname="Signe" lastname="HALD" playerid="950617" playpos="2" participating="False" isactive="False" />
+    <player nr="24" firstname="Cleopatre" lastname="DARLEUX" playerid="890701" playpos="0" participating="True" isactive="True" />
+    <player nr="25" firstname="Maria" lastname="FISKER" playerid="901003" playpos="1" participating="True" isactive="True" />
+    <player nr="27" firstname="Louise" lastname="BURGAARD" playerid="921017" playpos="6" participating="True" isactive="True" />
+    <player nr="0" firstname="" lastname="" playerid="" playpos="7" participating="True" isactive="True" />
+  </team>
+</sendfrom>

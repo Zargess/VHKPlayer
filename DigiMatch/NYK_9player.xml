@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sendfrom user="VHK" level="1" type="PLAYER">
+  <player nr="9" name="WERNGREEN Line Nielsen" id="950709" team="Nykøbing F Håndboldklub" teamshort="NYK" teamid="626" mep="1">
+    <shot goalfield="2" shotfield="3" percentfield="66,67" goalseven="0" shotseven="0" percentseven="0" goaltot="2" shottot="3" percenttot="66,67" />
+    <foul rulefault="1" passmiss="0" lostball="0" techfault="1" />
+    <penalty yellowcard="0" suspension="0" redcard="0" />
+    <mvshot savefield="0" shotfield="0" percentfield="0" saveseven="0" shotseven="0" percentseven="0" savetot="0" shottot="0" percenttot="0" />
+  </player>
+</sendfrom>
