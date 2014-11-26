@@ -85,5 +85,9 @@ namespace Zargess.VHKPlayer.FileManagement {
         public bool Exists() {
             return File.Exists(FullPath);
         }
+
+        public IFile Clone() {
+            return new FileNode(FullPath);
+        }
     }
 }

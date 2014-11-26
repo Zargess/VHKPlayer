@@ -12,5 +12,6 @@ namespace Zargess.VHKPlayer.FileManagement.Interfaces {
         string Source { get; }
         FileType Type { get; }
         bool Exists();
+        IFile Clone();
     }
 }

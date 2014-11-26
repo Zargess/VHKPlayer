@@ -17,7 +17,7 @@ namespace Zargess.VHKPlayer.FileManagement.Strategies.Selection {
             if (playable.Size == 0) return new Queue<IFile>();
             if (Index >= playable.Size) Index = 0;
             var res = new Queue<IFile>();
-            res.Enqueue(playable.GetContent()[Index]);
+            res.Enqueue(playable.GetContent()[Index].Clone());
             Index++;
             return res;
         }

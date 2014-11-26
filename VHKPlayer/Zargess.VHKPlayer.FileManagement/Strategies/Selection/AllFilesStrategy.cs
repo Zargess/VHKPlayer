@@ -7,7 +7,7 @@ namespace Zargess.VHKPlayer.FileManagement.Strategies.Selection {
         public Queue<IFile> SelectFiles(IPlayable playable) {
             var res = new Queue<IFile>();
             foreach (var file in playable.GetContent()) {
-                res.Enqueue(new FileNode(file.FullPath));
+                res.Enqueue(file.Clone());
             }
             return res;
         }

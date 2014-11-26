@@ -101,5 +101,9 @@ namespace Zargess.VHKPlayer.FileManagement {
             Watcher = null;
             return true;
         }
+
+        public IFolder Clone() {
+            return new FolderNode(FullPath);
+        }
     }
 }

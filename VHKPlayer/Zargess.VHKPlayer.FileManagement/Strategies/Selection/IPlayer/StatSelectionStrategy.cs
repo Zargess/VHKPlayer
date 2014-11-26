@@ -29,10 +29,13 @@ namespace Zargess.VHKPlayer.FileManagement.Strategies.Selection.IPlayer {
             var pic = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statFolder));
             var mus = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statMusicFolder));
             var vid = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statVideoFolder));
-            if (pic == null || mus == null || vid == null) throw new FilesMissingException("Player stat files does not meet requirements. There should be one picture, one music and one video file pr. player.");
-            res.Enqueue(mus);
-            res.Enqueue(pic);
-            res.Enqueue(vid);
+            if (pic == null || mus == null) throw new FilesMissingException("Player stat files does not meet requirements. There should be atleast one picture and one music file pr. player.");
+            res.Enqueue(mus.Clone());
+            res.Enqueue(pic.Clone());
+            if (vid == null) {
+                vid = PicSelection.SelectFiles(playable).Dequeue();
+            }
+            res.Enqueue(vid.Clone());
 
             return res;
         }

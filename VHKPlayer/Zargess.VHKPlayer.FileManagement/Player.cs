@@ -44,7 +44,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         public ObservableCollection<IFile> GetContent() {
             var res = new ObservableCollection<IFile>();
             foreach (var file in Content) {
-                res.Add(new FileNode(file.FullPath));
+                res.Add(file.Clone());
             }
             return res;
         }
@@ -61,6 +61,10 @@ namespace Zargess.VHKPlayer.FileManagement {
             if (StatsChanged != null) {
                 StatsChanged.Invoke(this, new StatEventArgs(Stats.Clone()));
             }
+        }
+
+        public override string ToString() {
+            return Number + " " + Name;
         }
     }
 }

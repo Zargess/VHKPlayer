@@ -17,5 +17,6 @@ namespace Zargess.VHKPlayer.FileManagement.Interfaces {
         bool ContainsFolder(IFolder folder);
         bool ContainsFile(IFile file);
         bool ValidRootFolder();
+        IFolder Clone();
     }
 }

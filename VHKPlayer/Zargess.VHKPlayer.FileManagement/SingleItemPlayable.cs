@@ -24,14 +24,14 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public Queue<IFile> Play(PlayType pt) {
             var res = new Queue<IFile>();
-            if (Content.Count > 0) res.Enqueue(new FileNode(Content[0].FullPath));
+            if (Content.Count > 0) res.Enqueue(Content[0].Clone());
             return res;
         }
 
         public ObservableCollection<IFile> GetContent() {
             var res = new ObservableCollection<IFile>();
             foreach (var file in Content) {
-                res.Add(new FileNode(file.FullPath));
+                res.Add(file.Clone());
             }
             return res;
         }
