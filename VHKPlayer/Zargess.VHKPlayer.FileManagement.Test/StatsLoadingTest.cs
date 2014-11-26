@@ -25,6 +25,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
             var path = @"D:\Github";
             if (Directory.Exists(path)) {
                 Environment.CurrentDirectory = @"D:\GitHub";
+                SettingsManagement.Instance.SetSetting("statsFolder", @"D:\Github\VHKPlayer\DigiMatch");
                 _folder = new FolderNode(@"D:\Dropbox\Programmering\C#\damer 2013-2014");
             } else {
                 Environment.CurrentDirectory = @"C:\Users\MFH\Documents\GitHub";
