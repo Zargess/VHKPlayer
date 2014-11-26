@@ -36,7 +36,7 @@ namespace Zargess.VHKPlayer.FileManagement.DataTypes {
             return obj.GetType() == GetType() && Equals((Statistics)obj);
         }
 
-        public bool Equals(Statistics other) {
+        private bool Equals(Statistics other) {
             return Goals == other.Goals &&
                 Shots == other.Shots &&
                 Saves == other.Saves &&

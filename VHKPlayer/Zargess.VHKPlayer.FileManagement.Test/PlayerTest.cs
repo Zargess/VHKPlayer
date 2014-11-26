@@ -77,9 +77,14 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
         }
 
         [TestMethod]
-        public void PlayerCallWithVidParameterShouldReturnAVideoFile() {
+        public void PlayerPlayCallWithVidParameterShouldReturnAVideoFile() {
             var file = _player.Play(PlayType.PlayerVid).Dequeue();
             Assert.AreEqual(FileType.Video, file.Type);
+        }
+
+        [TestMethod]
+        public void PlayerPlayCallWithPlayListParameterShouldReturnEmptyQueue() {
+            Assert.AreEqual(0, _player.Play(PlayType.PlayList).Count);
         }
     }
 }
