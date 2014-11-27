@@ -13,6 +13,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         public PlayListContainer() {
             Content = new ObservableCollection<IPlayable>();
             Name = "PlayLister";
+            Load();
         }
 
         public void Load() {

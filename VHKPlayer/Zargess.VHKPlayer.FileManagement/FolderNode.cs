@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -7,11 +8,12 @@ using Zargess.VHKPlayer.UtilFunctions;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class FolderNode : IFolder, IWatchable {
-        public ObservableCollection<IFile> Content { get; private set; }
+        public List<IFile> Content { get; private set; }
         public string FullPath { get; private set; }
         public string Name { get; private set; }
         public string Source { get; private set; }
         public FileSystemWatcher Watcher { get; private set; }
+
         public event EventHandler FolderChanged;
 
         public FolderNode(string path) {
@@ -31,8 +33,8 @@ namespace Zargess.VHKPlayer.FileManagement {
             return Path.GetFileName(path);
         }
 
-        private ObservableCollection<IFile> GetFiles() {
-            var res = new ObservableCollection<IFile>();
+        private List<IFile> GetFiles() {
+            var res = new List<IFile>();
             if (!Exists()) return res;
             var paths = Directory.EnumerateFiles(FullPath);
             foreach (var path in paths) {
@@ -66,6 +68,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public bool ValidRootFolder() {
+            // TODO : Implement this method
             throw new NotImplementedException();
         }
 

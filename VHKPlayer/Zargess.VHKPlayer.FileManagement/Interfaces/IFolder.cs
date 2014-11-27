@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.FileManagement.Interfaces {
     public interface IFolder : IWatchable {
-        ObservableCollection<IFile> Content { get; }
+        List<IFile> Content { get; }
         string FullPath { get; }
         string Name { get; }
         string Source { get; }

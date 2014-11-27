@@ -13,6 +13,7 @@ namespace Zargess.VHKPlayer.FileManagement {
             Name = folder.Name;
             Content = new ObservableCollection<IPlayable>();
             Folder.FolderChanged += (sender, ee) => Load();
+            Load();
         }
 
         public void Load() {
