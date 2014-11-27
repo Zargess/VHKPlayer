@@ -26,7 +26,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
             }
             SettingsManagement.Instance.SetSetting("root", _folder.FullPath);
             this.path = PathHandler.AbsolutePath(SettingsManagement.Instance.GetPathSetting("playerFolders", 0));
-            _container = new PlayerContainer("Spiller", new FolderNode(this.path), true);
+            _container = new PlayerContainer("Spiller", new FolderNode(this.path));
         }
 
         [TestMethod]
@@ -37,12 +37,6 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
         [TestMethod]
         public void ContainerNameShouldBeSpiller() {
             Assert.AreEqual("Spiller", _container.Name);
-        }
-
-        [TestMethod]
-        public void PlayerVideoContainerShouldNotIncludeTrainers() {
-            var container = new PlayerContainer("SpillerVideo", new FolderNode(path), false);
-            Assert.AreEqual(18, container.Content.Count);
         }
     }
 }

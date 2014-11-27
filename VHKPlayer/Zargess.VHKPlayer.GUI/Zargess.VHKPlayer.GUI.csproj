@@ -54,7 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\IMainViewModelFactory.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\VHKPlayerFactory.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -99,6 +101,14 @@
     <ProjectReference Include="..\Zargess.VHKPlayer.FileManagement\Zargess.VHKPlayer.FileManagement.csproj">
       <Project>{8dedd345-e7ce-426d-9100-5c4f8e97e2c9}</Project>
       <Name>Zargess.VHKPlayer.FileManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.SettingsManager\Zargess.VHKPlayer.SettingsManager.csproj">
+      <Project>{f1718029-9846-433d-8dc1-39c51e6b547c}</Project>
+      <Name>Zargess.VHKPlayer.SettingsManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zargess.VHKPlayer.UtilFunctions\Zargess.VHKPlayer.UtilFunctions.csproj">
+      <Project>{f4cd0c5b-e9d8-433c-9c51-e31146ee6b27}</Project>
+      <Name>Zargess.VHKPlayer.UtilFunctions</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

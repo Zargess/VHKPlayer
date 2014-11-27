@@ -143,5 +143,53 @@ namespace Zargess.VHKPlayer.SettingsManager {
                 this["requiredFolders"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\musik")]
+        public string musicFolder {
+            get {
+                return ((string)(this["musicFolder"]));
+            }
+            set {
+                this["musicFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\superhero")]
+        public string cardsFolder {
+            get {
+                return ((string)(this["cardsFolder"]));
+            }
+            set {
+                this["cardsFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\blandet")]
+        public string miscFolder {
+            get {
+                return ((string)(this["miscFolder"]));
+            }
+            set {
+                this["miscFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\spillerud")]
+        public string playersOutFolder {
+            get {
+                return ((string)(this["playersOutFolder"]));
+            }
+            set {
+                this["playersOutFolder"] = value;
+            }
+        }
     }
 }

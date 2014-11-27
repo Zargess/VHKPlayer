@@ -18,6 +18,7 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public void Load() {
             Content.Clear();
+            // TODO : Find a better way to define what strategies should be used
             AddAll(AllFilesSorted());
             AddAll(IteratedFolder());
         }

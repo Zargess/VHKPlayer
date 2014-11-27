@@ -32,5 +32,17 @@
     <Setting Name="requiredFolders" Type="System.String" Scope="User">
       <Value Profile="(Default)">root\rek;root\10sek;root\spiller;root\spillervideo;root\spillervideostat</Value>
     </Setting>
+    <Setting Name="musicFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\musik</Value>
+    </Setting>
+    <Setting Name="cardsFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\superhero</Value>
+    </Setting>
+    <Setting Name="miscFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\blandet</Value>
+    </Setting>
+    <Setting Name="playersOutFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\spillerud</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

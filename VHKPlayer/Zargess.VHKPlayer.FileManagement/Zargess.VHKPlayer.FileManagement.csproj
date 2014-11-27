@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompositeSingleItemContainer.cs" />
     <Compile Include="DataTypes\Statistics.cs" />
     <Compile Include="EvenHandlers\StatEventArgs.cs" />
     <Compile Include="Factories\Player\PlayerFactory.cs" />
@@ -47,6 +48,7 @@
     <Compile Include="Factories\PlayList\AllFilesSortedPlayListFactory.cs" />
     <Compile Include="Factories\PlayList\IteratedFolderPlayListFactory.cs" />
     <Compile Include="Factories\PlayList\IteratedNoLoadingFactory.cs" />
+    <Compile Include="Interfaces\ICompositeContainer.cs" />
     <Compile Include="Interfaces\IContainerFactory.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IPlayerFactory.cs" />
