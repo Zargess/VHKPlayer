@@ -29,5 +29,8 @@
     <Setting Name="statsFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="requiredFolders" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\rek;root\10sek;root\spiller;root\spillervideo;root\spillervideostat</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

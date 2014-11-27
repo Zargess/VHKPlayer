@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
+using Zargess.VHKPlayer.SettingsManager;
 using Zargess.VHKPlayer.UtilFunctions;
 
 namespace Zargess.VHKPlayer.FileManagement {
@@ -68,8 +69,14 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public bool ValidRootFolder() {
-            // TODO : Implement this method
-            throw new NotImplementedException();
+            var temp = SettingsManagement.Instance.GetStringSetting("requiredFolders").Split(';');
+            var folders = temp.Select(x => new FolderNode(PathHandler.AbsolutePath(x)));
+
+            foreach (var folder in folders) {
+                if (!ContainsFolder(folder)) return false;
+            }
+
+            return true;
         }
 
         public bool InitWatcher() {

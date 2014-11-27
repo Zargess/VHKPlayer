@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
+using Zargess.VHKPlayer.UtilFunctions;
 
 namespace Zargess.VHKPlayer.FileManagement.Test {
     /// <summary>
@@ -142,6 +143,17 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
             _folder.InitWatcher();
             _folder.StopWatcher();
             Assert.IsTrue(_folder.InitWatcher());
+        }
+
+        [TestMethod]
+        public void FolderShouldBeValidRootFolder() {
+            Assert.IsTrue(_folder.ValidRootFolder());
+        }
+
+        [TestMethod]
+        public void SpillerFolderShouldNotBeValidRootFolder() {
+            var folder = new FolderNode(PathHandler.CombinePaths(_folder.FullPath, "Spiller"));
+            Assert.IsFalse(folder.ValidRootFolder());
         }
     }
 }

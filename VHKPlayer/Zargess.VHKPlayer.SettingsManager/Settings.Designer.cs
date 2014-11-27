@@ -131,5 +131,17 @@ namespace Zargess.VHKPlayer.SettingsManager {
                 this["statsFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\rek;root\\10sek;root\\spiller;root\\spillervideo;root\\spillervideostat")]
+        public string requiredFolders {
+            get {
+                return ((string)(this["requiredFolders"]));
+            }
+            set {
+                this["requiredFolders"] = value;
+            }
+        }
     }
 }
