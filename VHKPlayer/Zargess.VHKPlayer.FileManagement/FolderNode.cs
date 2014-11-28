@@ -70,10 +70,10 @@ namespace Zargess.VHKPlayer.FileManagement {
 
         public bool ValidRootFolder() {
             var temp = SettingsManagement.Instance.GetStringSetting("requiredFolders").Split(';');
-            var folders = temp.Select(x => new FolderNode(PathHandler.AbsolutePath(x)));
+            var folders = temp.Select(x => x.Replace("root", FullPath));
 
             foreach (var folder in folders) {
-                if (!ContainsFolder(folder)) return false;
+                if (!Directory.Exists(folder)) return false;
             }
 
             return true;

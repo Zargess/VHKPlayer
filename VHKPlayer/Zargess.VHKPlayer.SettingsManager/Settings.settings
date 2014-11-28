@@ -30,7 +30,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="requiredFolders" Type="System.String" Scope="User">
-      <Value Profile="(Default)">root\rek;root\10sek;root\spiller;root\spillervideo;root\spillervideostat</Value>
+      <Value Profile="(Default)">root\rek;root\10sek;root\spiller;root\spillervideo;root\spillervideostat;root\spillervideostat\mp3;root\spillervideostat\video</Value>
     </Setting>
     <Setting Name="musicFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)">root\musik</Value>
