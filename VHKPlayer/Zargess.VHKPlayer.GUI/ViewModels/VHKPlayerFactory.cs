@@ -21,15 +21,15 @@ namespace Zargess.VHKPlayer.GUI.ViewModels {
         }
 
         public IContainer CreateMiscContainer() {
-            throw new NotImplementedException();
+            return new SingleItemContainer(CreateFolderFromSetting("miscFolder"));
         }
 
         public IContainer CreateCardContainer() {
-            throw new NotImplementedException();
+            return new SingleItemContainer(CreateFolderFromSetting("cardsFolder"));
         }
 
         public IContainer CreatePlayerOut() {
-            throw new NotImplementedException();
+            return new SingleItemContainer(CreateFolderFromSetting("playersOutFolder"));
         }
 
         public IFolder CreateFolder() {
@@ -37,9 +37,7 @@ namespace Zargess.VHKPlayer.GUI.ViewModels {
         }
 
         public ICompositeContainer CreateMusicContainer() {
-            var path = SettingsManagement.Instance.GetStringSetting("musicFolder");
-            var musicFolder = new FolderNode(PathHandler.AbsolutePath(path));
-            return new CompositeSingleItemContainer(musicFolder);
+            return new CompositeSingleItemContainer(CreateFolderFromSetting("musicFolder"));
         }
 
         public IContainer CreatePlayerContainer() {
@@ -50,6 +48,11 @@ namespace Zargess.VHKPlayer.GUI.ViewModels {
 
         public IContainer CreatePlayListContainer() {
             return new PlayListContainer();
+        }
+
+        private IFolder CreateFolderFromSetting(string key) {
+            var path = SettingsManagement.Instance.GetStringSetting(key);
+            return new FolderNode(PathHandler.AbsolutePath(path));
         }
     }
 }
