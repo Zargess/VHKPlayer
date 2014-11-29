@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
 
-namespace Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayable {
-    public class FileLoadingStrategy : ILoadingStrategy {
+namespace Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayables {
+    public class FileLoadingStrategy : ILoadingStrategy<IFile> {
         private string Path { get; set; }
 
         public FileLoadingStrategy(string path) {

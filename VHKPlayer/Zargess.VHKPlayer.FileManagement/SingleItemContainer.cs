@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
-using Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayable;
+using Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayables;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class SingleItemContainer : IContainer {

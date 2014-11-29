@@ -5,6 +5,6 @@ namespace Zargess.VHKPlayer.FileManagement.Factories {
         string CreateName();
         IFolder CreateFolder();
         IFileSelectionStrategy CreateSelectionStrategy();
-        ILoadingStrategy CreateLoadingStrategy();
+        ILoadingStrategy<IFile> CreateLoadingStrategy();
     }
 }

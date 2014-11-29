@@ -33,7 +33,7 @@ namespace Zargess.VHKPlayer.FileManagement.Factories.Player {
             return CreateNumber() >= 90;
         }
 
-        public ILoadingStrategy CreateLoadingStrategy() {
+        public ILoadingStrategy<IFile> CreateLoadingStrategy() {
             return new PlayerLoadingStrategy(File);
         }
 

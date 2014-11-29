@@ -8,7 +8,7 @@ using Zargess.VHKPlayer.SettingsManager;
 using Zargess.VHKPlayer.UtilFunctions;
 
 namespace Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayer {
-    public class PlayerLoadingStrategy : ILoadingStrategy {
+    public class PlayerLoadingStrategy : ILoadingStrategy<IFile> {
         private IFile _file;
 
         public PlayerLoadingStrategy(IFile file) {

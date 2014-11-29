@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
+using Zargess.VHKPlayer.FileManagement.Strategies.Loading.Container.IPlayLists;
 using Zargess.VHKPlayer.SettingsManager;
 
 namespace Zargess.VHKPlayer.FileManagement.Test {
@@ -20,7 +21,7 @@ namespace Zargess.VHKPlayer.FileManagement.Test {
                 _folder = new FolderNode(@"c:\users\mfh\vhk");
             }
             SettingsManagement.Instance.SetSetting("root", _folder.FullPath);
-            _container = new PlayListContainer();
+            _container = new PlayListContainer(new PlayListContainerLoadingStrategy());
         }
 
         [TestMethod]

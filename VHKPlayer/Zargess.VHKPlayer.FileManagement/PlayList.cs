@@ -7,7 +7,7 @@ using Zargess.VHKPlayer.FileManagement.Interfaces;
 namespace Zargess.VHKPlayer.FileManagement {
     public class PlayList : IPlayList {
         private IFileSelectionStrategy SelectionStrategy { get; set; }
-        private ILoadingStrategy LoadingStrategy { get; set; }
+        private ILoadingStrategy<IFile> LoadingStrategy { get; set; }
         public string Name { get; private set; }
         private ObservableCollection<IFile> Content { get; set; }
         private IFolder Folder { get; set; }

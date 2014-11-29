@@ -1,5 +1,5 @@
 ﻿using Zargess.VHKPlayer.FileManagement.Strategies.Selection;
-using Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayable;
+using Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayables;
 using Zargess.VHKPlayer.UtilFunctions;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
 
@@ -18,7 +18,7 @@ namespace Zargess.VHKPlayer.FileManagement.Factories.PlayList {
             return new FolderNode(PathHandler.AbsolutePath(Elements[1]));
         }
 
-        public ILoadingStrategy CreateLoadingStrategy() {
+        public ILoadingStrategy<IFile> CreateLoadingStrategy() {
             return new NoLoadingStrategy();
         }
 

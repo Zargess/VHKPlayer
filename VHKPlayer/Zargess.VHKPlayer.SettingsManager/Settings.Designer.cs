@@ -73,25 +73,14 @@ namespace Zargess.VHKPlayer.SettingsManager {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{RekFørKamp;root\\Rek;1},{RekHalvej1;root\\Rek;2}")]
-        public string allFilesSortedPlayLists {
+        [global::System.Configuration.DefaultSettingValueAttribute("{RekFørKamp;root\\Rek;1;AllFilesSorted},{RekHalvej1;root\\Rek;2;AllFilesSorted},{10" +
+            "sek;root\\10sek;IteratedFolder}")]
+        public string playLists {
             get {
-                return ((string)(this["allFilesSortedPlayLists"]));
+                return ((string)(this["playLists"]));
             }
             set {
-                this["allFilesSortedPlayLists"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{10sek;root\\10sek}")]
-        public string iteratedFolderPlayLists {
-            get {
-                return ((string)(this["iteratedFolderPlayLists"]));
-            }
-            set {
-                this["iteratedFolderPlayLists"] = value;
+                this["playLists"] = value;
             }
         }
         

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zargess.VHKPlayer.FileManagement;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
+using Zargess.VHKPlayer.FileManagement.Strategies.Loading.Container.IPlayLists;
 using Zargess.VHKPlayer.SettingsManager;
 using Zargess.VHKPlayer.UtilFunctions;
 
@@ -47,7 +48,7 @@ namespace Zargess.VHKPlayer.GUI.ViewModels {
         }
 
         public IContainer CreatePlayListContainer() {
-            return new PlayListContainer();
+            return new PlayListContainer(new PlayListContainerLoadingStrategy());
         }
 
         private IFolder CreateFolderFromSetting(string key) {

@@ -10,7 +10,7 @@ namespace Zargess.VHKPlayer.FileManagement.Interfaces {
         string CreateName();
         int CreateNumber();
         bool CreateIfTrainer();
-        ILoadingStrategy CreateLoadingStrategy();
+        ILoadingStrategy<IFile> CreateLoadingStrategy();
         IFileSelectionStrategy CreatePicSelectionStrategy();
         IFileSelectionStrategy CreateVidSelectionStrategy();
         IFileSelectionStrategy CreateStatSelectionStrategy();

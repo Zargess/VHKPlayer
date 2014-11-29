@@ -50,6 +50,7 @@
     <Compile Include="Factories\PlayList\IteratedNoLoadingFactory.cs" />
     <Compile Include="Interfaces\ICompositeContainer.cs" />
     <Compile Include="Interfaces\IContainerFactory.cs" />
+    <Compile Include="Interfaces\IContainerLoadingStrategy.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IPlayerFactory.cs" />
     <Compile Include="Interfaces\IPlayListFactory.cs" />
@@ -73,10 +74,11 @@
     <Compile Include="SharedInfo\GeneralPlayerInfo.cs" />
     <Compile Include="SingleItemContainer.cs" />
     <Compile Include="SingleItemPlayable.cs" />
-    <Compile Include="Strategies\Loading\IPlayable\FileLoadingStrategy.cs" />
-    <Compile Include="Strategies\Loading\IPlayable\FolderLoadingStrategy.cs" />
-    <Compile Include="Strategies\Loading\IPlayable\NoLoadingStrategy.cs" />
-    <Compile Include="Strategies\Loading\IPlayable\SortedLoadingStrategy.cs" />
+    <Compile Include="Strategies\Loading\Container\IPlayLists\PlayListContainerLoadingStrategy.cs" />
+    <Compile Include="Strategies\Loading\IPlayables\FileLoadingStrategy.cs" />
+    <Compile Include="Strategies\Loading\IPlayables\FolderLoadingStrategy.cs" />
+    <Compile Include="Strategies\Loading\IPlayables\NoLoadingStrategy.cs" />
+    <Compile Include="Strategies\Loading\IPlayables\SortedLoadingStrategy.cs" />
     <Compile Include="Strategies\Loading\IPlayer\PlayerLoadingStrategy.cs" />
     <Compile Include="Strategies\Selection\IPlayer\FilesMissingException.cs" />
     <Compile Include="Strategies\Selection\IPlayer\PictureSelectionStrategy.cs" />

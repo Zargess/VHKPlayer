@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
 
-namespace Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayable {
-    public class SortedLoadingStrategy : ILoadingStrategy {
+namespace Zargess.VHKPlayer.FileManagement.Strategies.Loading.IPlayables {
+    public class SortedLoadingStrategy : ILoadingStrategy<IFile> {
         public int Index { get; private set; }
         public IFolder Folder { get; private set; }
 

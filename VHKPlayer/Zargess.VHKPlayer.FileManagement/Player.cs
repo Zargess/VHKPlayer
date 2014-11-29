@@ -8,7 +8,7 @@ using Zargess.VHKPlayer.FileManagement.SharedInfo;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class Player : IPlayer {
-        private ILoadingStrategy LoadingStrategy { get; set; }
+        private ILoadingStrategy<IFile> LoadingStrategy { get; set; }
         private IFileSelectionStrategy PicSelection { get; set; }
         private IFileSelectionStrategy VidSelection { get; set; }
         private IFileSelectionStrategy StatSelection { get; set; }
