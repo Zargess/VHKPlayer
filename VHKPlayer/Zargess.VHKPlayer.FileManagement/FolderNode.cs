@@ -22,6 +22,7 @@ namespace Zargess.VHKPlayer.FileManagement {
             Name = GetFolderName(path);
             Source = GetSource();
             Content = GetFiles();
+            InitWatcher();
         }
 
         public bool Exists() {
@@ -85,8 +86,8 @@ namespace Zargess.VHKPlayer.FileManagement {
             Watcher = new FileSystemWatcher {
                 Path = FullPath,
                 NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastAccess
-                    | NotifyFilters.LastWrite,
-                Filter = "*.*"
+                    | NotifyFilters.LastWrite | NotifyFilters.DirectoryName,
+                Filter = "*"
             };
             Watcher.Created += Changed;
             Watcher.Deleted += Changed;
@@ -96,6 +97,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         private void Changed(object sender, FileSystemEventArgs e) {
+            Console.WriteLine("Changed");
             Content.Clear();
             foreach (var file in GetFiles()) {
                 Content.Add(file);

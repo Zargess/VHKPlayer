@@ -1,26 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Threading;
+using Zargess.VHKPlayer.FileManagement.Collections;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class CompositeSingleItemContainer : ICompositeContainer {
         public ObservableCollection<IContainer> Content { get; private set; }
         private IFolder Folder { get; set; }
+        private Dispatcher Disp { get; set; }
 
         public CompositeSingleItemContainer(IFolder folder) {
             Folder = folder;
-            Content = new ObservableCollection<IContainer>();
-            folder.FolderChanged += (sender, ee) => Load();
+            Content = new SortableCollection<IContainer>();
+            Disp = Dispatcher.CurrentDispatcher;
+            Action action = () => {
+                Load();
+            };
+            folder.FolderChanged += (sender, ee) => Disp.BeginInvoke(action);
             Load();
         }
 
         public void Load() {
-            // TODO : Make some sort method depending on settings
             Content.Clear();
             var temp = Directory.EnumerateDirectories(Folder.FullPath, "*", SearchOption.TopDirectoryOnly);
             var folders = temp.Select(x => new FolderNode(x));

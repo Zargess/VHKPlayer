@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MusicVisibilityConverter.cs" />
     <Compile Include="ViewModels\IMainViewModelFactory.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\VHKPlayerFactory.cs" />

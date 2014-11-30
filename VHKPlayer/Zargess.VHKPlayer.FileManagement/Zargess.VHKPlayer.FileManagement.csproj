@@ -38,8 +38,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\SortableCollection.cs" />
     <Compile Include="CompositeSingleItemContainer.cs" />
     <Compile Include="DataTypes\Statistics.cs" />
     <Compile Include="EvenHandlers\StatEventArgs.cs" />

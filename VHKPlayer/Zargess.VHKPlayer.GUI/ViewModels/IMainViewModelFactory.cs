@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zargess.VHKPlayer.FileManagement.Interfaces;
+﻿using Zargess.VHKPlayer.FileManagement.Interfaces;
 
 namespace Zargess.VHKPlayer.GUI.ViewModels {
     public interface IMainViewModelFactory {
