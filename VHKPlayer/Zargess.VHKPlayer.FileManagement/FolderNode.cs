@@ -97,7 +97,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         private void Changed(object sender, FileSystemEventArgs e) {
-            Console.WriteLine("Changed");
+            Console.WriteLine(Name);
             Content.Clear();
             foreach (var file in GetFiles()) {
                 Content.Add(file);

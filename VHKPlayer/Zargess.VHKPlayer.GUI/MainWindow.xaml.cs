@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Zargess.VHKPlayer.FileManagement;
+using Zargess.VHKPlayer.FileManagement.Interfaces;
 using Zargess.VHKPlayer.GUI.ViewModels;
 
 namespace Zargess.VHKPlayer.GUI {
@@ -30,8 +31,8 @@ namespace Zargess.VHKPlayer.GUI {
         public void ListBoxItem_Click(object sender, MouseButtonEventArgs e) {
             var item = sender as StackPanel;
             if (item == null) return;
-            var element = item.Tag as SingleItemPlayable;
-            if (item == null) return;
+            var element = item.Tag as IPlayable;
+            if (element == null) return;
             Console.WriteLine(element.Name);
         }
     }

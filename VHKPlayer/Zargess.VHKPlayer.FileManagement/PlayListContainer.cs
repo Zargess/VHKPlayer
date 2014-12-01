@@ -4,6 +4,7 @@ using Zargess.VHKPlayer.SettingsManager;
 using Zargess.VHKPlayer.FileManagement.Factories.PlayList;
 using System;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
+using Zargess.VHKPlayer.FileManagement.Collections;
 
 namespace Zargess.VHKPlayer.FileManagement {
     public class PlayListContainer : IContainer {
@@ -12,7 +13,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         private ILoadingStrategy<IPlayable> LoadingStrategy { get; set; }
 
         public PlayListContainer(ILoadingStrategy<IPlayable> loadingStrategy) {
-            Content = new ObservableCollection<IPlayable>();
+            Content = new SortableCollection<IPlayable>();
             Name = "PlayLister";
             LoadingStrategy = loadingStrategy;
             Load();

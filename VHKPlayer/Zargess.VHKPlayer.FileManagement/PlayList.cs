@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Zargess.VHKPlayer.FileManagement.Collections;
 using Zargess.VHKPlayer.FileManagement.Factories;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
 
@@ -19,7 +20,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         public PlayList(IPlayListFactory factory) {
-            Content = new ObservableCollection<IFile>();
+            Content = new SortableCollection<IFile>();
             Name = factory.CreateName();
             SelectionStrategy = factory.CreateSelectionStrategy();
             Folder = factory.CreateFolder();
@@ -30,6 +31,7 @@ namespace Zargess.VHKPlayer.FileManagement {
         }
 
         private void FolderChanged(object sender, EventArgs e) {
+            Console.WriteLine(Name);
             LoadingStrategy.Load(Content);
         }
 

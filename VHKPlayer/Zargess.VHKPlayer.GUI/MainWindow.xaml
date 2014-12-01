@@ -4,9 +4,9 @@
         xmlns:gui="clr-namespace:Zargess.VHKPlayer.GUI"
         Title="MainWindow" Height="350" Width="525">
 
-    <Window.Resources>        
+    <Window.Resources>
         <gui:MusicVisibilityConverter x:Key="MusicVisibilityConverter" />
-        
+
         <DataTemplate x:Key="TabName" DataType="{x:Type TabItem}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Name}" FontSize="13" />
@@ -25,7 +25,7 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <ContentControl>
-                                <StackPanel Name="Music" PreviewMouseDown="ListBoxItem_Click" Tag="{Binding}"  Visibility="{Binding Converter={StaticResource MusicVisibilityConverter}}">
+                                <StackPanel Name="Music" PreviewMouseDown="ListBoxItem_Click" Tag="{Binding}">
                                     <Label HorizontalAlignment="Stretch" FontSize="12" Height="30" Margin="-4,-1,-4,-1" Content="{Binding Name}"/>
                                 </StackPanel>
                             </ContentControl>
@@ -63,6 +63,33 @@
 
                 <Grid Grid.Row="0" Grid.Column="0">
                     <TabControl Style="{StaticResource TabControlContent}" ItemsSource="{Binding MusicContainer.Content}"/>
+                </Grid>
+
+                <Grid Grid.Row="0" Grid.Column="2">
+                    <TabControl>
+                        <TabItem Name="DuringMatch" Header="Under Kamp">
+                            
+                        </TabItem>
+                        
+                        <TabItem Name="PlayLists" Header="PlayLister">
+                            <ListBox ItemsSource="{Binding PlayListContainer.Content}">
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentControl>
+                                            <StackPanel Name="PlayLister" PreviewMouseDown="ListBoxItem_Click" Tag="{Binding}">
+                                                <Label HorizontalAlignment="Stretch" FontSize="12" Height="30" Margin="-4,-1,-4,-1" Content="{Binding Name}"/>
+                                            </StackPanel>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </TabItem>
+                    </TabControl>
                 </Grid>
             </Grid>
         </DockPanel>
