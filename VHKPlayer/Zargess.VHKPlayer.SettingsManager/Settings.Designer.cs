@@ -61,7 +61,7 @@ namespace Zargess.VHKPlayer.SettingsManager {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Dropbox\\Programmering\\C#\\damer 2013-2014")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string root {
             get {
                 return ((string)(this["root"]));

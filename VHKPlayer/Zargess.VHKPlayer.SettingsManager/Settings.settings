@@ -12,7 +12,7 @@
       <Value Profile="(Default)">mp3</Value>
     </Setting>
     <Setting Name="root" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\Dropbox\Programmering\C#\damer 2013-2014</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="playLists" Type="System.String" Scope="User">
       <Value Profile="(Default)">{RekFørKamp;root\Rek;1;AllFilesSorted},{RekHalvej1;root\Rek;2;AllFilesSorted},{10sek;root\10sek;IteratedFolder}</Value>

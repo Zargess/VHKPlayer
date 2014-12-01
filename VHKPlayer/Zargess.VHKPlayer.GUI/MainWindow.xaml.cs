@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Windows.Shapes;
 using Zargess.VHKPlayer.FileManagement;
 using Zargess.VHKPlayer.FileManagement.Interfaces;
 using Zargess.VHKPlayer.GUI.ViewModels;
+using Zargess.VHKPlayer.SettingsManager;
 
 namespace Zargess.VHKPlayer.GUI {
     /// <summary>
@@ -23,6 +25,9 @@ namespace Zargess.VHKPlayer.GUI {
     public partial class MainWindow : Window {
         private MainViewModel ViewModel { get; set; }
         public MainWindow() {
+            var root = @"D:\Dropbox\Programmering\C#\damer 2013-2014";
+            if (Directory.Exists(root)) SettingsManagement.Instance.SetSetting("root", root);
+            else SettingsManagement.Instance.SetSetting("root", @"C:\Users\MFH\vhk");
             InitializeComponent();
             ViewModel = new MainViewModel(new VHKPlayerFactory());
             DataContext = ViewModel;
