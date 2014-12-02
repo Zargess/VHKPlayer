@@ -36,9 +36,11 @@ namespace Zargess.VHKPlayer.GUI {
         public void ListBoxItem_Click(object sender, MouseButtonEventArgs e) {
             var item = sender as StackPanel;
             if (item == null) return;
-            var element = item.Tag as IPlayable;
+            Console.WriteLine(item.Name);
+            //var element = item.Tag as IPlayable;
+            var element = item.Tag as string;
             if (element == null) return;
-            Console.WriteLine(element.Name);
+            Console.WriteLine(element);
         }
     }
 }

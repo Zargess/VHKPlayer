@@ -55,6 +55,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="MusicVisibilityConverter.cs" />
+    <Compile Include="UtilClasses\FindParameters.cs" />
     <Compile Include="ViewModels\IMainViewModelFactory.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\VHKPlayerFactory.cs" />

@@ -1,0 +1,2 @@
+* Make RelayCommand classes and a MultiValueConverter so that multiple parameters may be given to the relay command
+	- http://dariosantarelli.wordpress.com/2010/11/07/wpf-binding-multiple-command-parameters-using-multibinding/
