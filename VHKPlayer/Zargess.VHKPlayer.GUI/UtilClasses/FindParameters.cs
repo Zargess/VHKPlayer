@@ -8,7 +8,7 @@ using Zargess.VHKPlayer.FileManagement.Interfaces;
 namespace Zargess.VHKPlayer.GUI.UtilClasses {
     public class FindParameters {
         public IPlayable Playable { get; set; }
-        public string TabItemName { get; set; }
+        public string ControlName { get; set; }
     }
 }
  
