@@ -15,7 +15,7 @@ namespace Zargess.VHKPlayer.GUI.ViewModels {
         public IContainer PlayListContainer { get; private set; }
         public IContainer CardContainer { get; private set; }
         public IContainer MiscContainer { get; private set; }
-        public RelayCommand PlayableClicked { get; private set; }
+        public RelayCommand PlayablePressed { get; private set; }
 
         public MainViewModel(IMainViewModelFactory factory) {
             RootFolder = factory.CreateFolder();
@@ -24,11 +24,13 @@ namespace Zargess.VHKPlayer.GUI.ViewModels {
             PlayListContainer = factory.CreatePlayListContainer();
             CardContainer = factory.CreateCardContainer();
             MiscContainer = factory.CreateMiscContainer();
-            PlayableClicked = new RelayCommand(PlayableClick);
+            PlayablePressed = new RelayCommand(PlayableClick);
         }
 
         private void PlayableClick(object parameter) {
-            Console.WriteLine(parameter is FindParameters);
+            var p = (FindParameters)parameter;
+            Console.WriteLine(p.Playable.Name);
+            Console.WriteLine(p.ControlName);
         }
     }
 }

@@ -1,2 +1,3 @@
-* Make RelayCommand classes and a MultiValueConverter so that multiple parameters may be given to the relay command
-	- http://dariosantarelli.wordpress.com/2010/11/07/wpf-binding-multiple-command-parameters-using-multibinding/
+* Make Style selector til gui:
+	http://tech.pro/tutorial/807/wpf-tutorial-how-to-use-a-datatemplateselector
+	http://www.telerik.com/help/wpf/e2411754-b7f0-4462-92af-e88c8b673e9c.html

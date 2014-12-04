@@ -4,6 +4,7 @@
         xmlns:gui="clr-namespace:Zargess.VHKPlayer.GUI"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:vm="clr-namespace:Zargess.VHKPlayer.GUI.ViewModels"
+        xmlns:util="clr-namespace:Zargess.VHKPlayer.GUI.UtilClasses"
         Title="MainWindow" Height="350" Width="525" Name="MView">
 
     <Window.Resources>
@@ -41,7 +42,7 @@
                                         </i:InvokeCommandAction>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
-                                <StackPanel Name="Music" Tag="{Binding}">
+                                <StackPanel>
                                     <Label HorizontalAlignment="Stretch" FontSize="12" Height="30" Margin="-4,-1,-4,-1" Content="{Binding Name}"/>
                                 </StackPanel>
                             </ContentControl>
@@ -78,7 +79,7 @@
                 <GridSplitter IsEnabled="False" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
                 <Grid Grid.Row="0" Grid.Column="0">
-                    <TabControl Style="{StaticResource TabControlContent}" ItemsSource="{Binding MusicContainer.Content}"/>
+                    <TabControl Name="Music" Style="{StaticResource TabControlContent}" ItemsSource="{Binding MusicContainer.Content}"/>
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="2">
