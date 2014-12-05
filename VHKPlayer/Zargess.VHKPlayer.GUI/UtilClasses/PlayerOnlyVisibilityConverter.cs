@@ -6,15 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
-using Zargess.VHKPlayer.FileManagement;
+using Zargess.VHKPlayer.FileManagement.Interfaces;
 
-namespace Zargess.VHKPlayer.GUI {
-    public class MusicVisibilityConverter : IValueConverter {
+namespace Zargess.VHKPlayer.GUI.UtilClasses {
+    public class PlayerOnlyVisibilityConverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            var element = value as SingleItemPlayable;
-            if (element == null) return Visibility.Collapsed;
-            var file = element.GetContent()[0];
-            if (file.Type != FileType.Music) return Visibility.Collapsed;
+            if (!(value is IPlayer)) return Visibility.Collapsed;
+            var element = (IPlayer)value;
+            if (element.Trainer) return Visibility.Collapsed;
             return Visibility.Visible;
         }
 

@@ -56,10 +56,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="FindCommandParameterConverter.cs" />
-    <Compile Include="MusicVisibilityConverter.cs" />
+    <Compile Include="UtilClasses\FindCommandParameterConverter.cs" />
+    <Compile Include="UtilClasses\MusicVisibilityConverter.cs" />
     <Compile Include="UtilClasses\FindParameters.cs" />
-    <Compile Include="UtilClasses\ListboxStyleSelector.cs" />
+    <Compile Include="UtilClasses\ListboxVisibilityStyleSelector.cs" />
+    <Compile Include="UtilClasses\PlayerOnlyVisibilityConverter.cs" />
     <Compile Include="UtilClasses\RelayCommand.cs" />
     <Compile Include="ViewModels\IMainViewModelFactory.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
