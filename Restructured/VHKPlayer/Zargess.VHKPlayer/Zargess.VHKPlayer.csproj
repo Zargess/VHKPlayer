@@ -54,14 +54,21 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Collections\SortableCollection.cs" />
+    <Compile Include="Commands\FindParameters.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Converters\FindParametersConverter.cs" />
+    <Compile Include="Converters\MusicVisibilityConverter.cs" />
+    <Compile Include="Converters\PlayerOnlyVisibilityConverter.cs" />
     <Compile Include="Exceptions\FilesMissingException.cs" />
     <Compile Include="Factories\IPlayers\PlayerFactory.cs" />
     <Compile Include="Factories\IPlayLists\AllFilesFolderPlayListFactory.cs" />
     <Compile Include="Factories\IPlayLists\AllFilesSortedPlayListFactory.cs" />
     <Compile Include="Factories\IPlayLists\IteratedFolderPlayListFactory.cs" />
     <Compile Include="Factories\IPlayLists\IteratedSortedPlayListFactory.cs" />
+    <Compile Include="Factories\ViewModels\VideoPlayerFactory.cs" />
     <Compile Include="Interfaces\IGlobalConfigService.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
+    <Compile Include="Interfaces\IVideoPlayerFactory.cs" />
     <Compile Include="Model\FileNode.cs" />
     <Compile Include="Model\FolderNode.cs" />
     <Compile Include="Model\MusicFolderContainer.cs" />
@@ -92,6 +99,7 @@
     <Compile Include="Strategies\Selection\StatisticsLoading\DigimatchStatsLoadingStrategy.cs" />
     <Compile Include="Utility\GeneralFunctions.cs" />
     <Compile Include="Utility\PathHandler.cs" />
+    <Compile Include="ViewModels\VideoPlayerViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
