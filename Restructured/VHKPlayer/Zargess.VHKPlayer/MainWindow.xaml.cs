@@ -20,6 +20,7 @@ namespace Zargess.VHKPlayer {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
+            DataContext = App.PlayerViewModel;
         }
     }
 }

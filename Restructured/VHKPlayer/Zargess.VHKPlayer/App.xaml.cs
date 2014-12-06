@@ -5,7 +5,9 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Zargess.VHKPlayer.Factories.ViewModels;
 using Zargess.VHKPlayer.Settings;
+using Zargess.VHKPlayer.ViewModels;
 
 namespace Zargess.VHKPlayer {
     /// <summary>
@@ -17,6 +19,14 @@ namespace Zargess.VHKPlayer {
             get {
                 if (_configService == null) _configService = new GlobalConfigService(new VHKSettings());
                 return _configService;
+            }
+        }
+
+        private static VideoPlayerViewModel _videoplayerviewmodel;
+        public static VideoPlayerViewModel PlayerViewModel {
+            get {
+                if (_videoplayerviewmodel == null) _videoplayerviewmodel = new VideoPlayerViewModel(new VideoPlayerFactory());
+                return _videoplayerviewmodel;
             }
         }
     }
