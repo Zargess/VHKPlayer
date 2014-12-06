@@ -64,6 +64,7 @@
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Model\FileNode.cs" />
     <Compile Include="Model\FolderNode.cs" />
+    <Compile Include="Model\MusicFolderContainer.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\PlayerContainer.cs" />
     <Compile Include="Model\PlayList.cs" />
