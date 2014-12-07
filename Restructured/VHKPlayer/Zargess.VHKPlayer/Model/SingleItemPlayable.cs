@@ -34,5 +34,9 @@ namespace Zargess.VHKPlayer.Model {
             }
             return res;
         }
+
+        public override string ToString() {
+            return Name;
+        }
     }
 }

@@ -9,14 +9,14 @@
         xmlns:selectors="clr-namespace:Zargess.VHKPlayer.Selectors"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" Name="MView">
-    
+
     <Window.Resources>
         <converters:MusicVisibilityConverter x:Key="MusicVisibilityConverter" />
         <converters:PlayerOnlyVisibilityConverter x:Key="PlayerOnlyVisibilityConverter" />
         <converters:FindCommandParameterConverter x:Key="ParameterConverter" />
         <converters:PlayerVideoVisibilityConverter x:Key="PlayerVidVisibility" />
         <converters:PlayerStatVisibilityConverter x:Key="PlayerStatVisibility" />
-        
+
         <Style x:Key="MusicOnlyVisibilityStyle" TargetType="ListBoxItem">
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="Visibility" Value="{Binding Converter={StaticResource MusicVisibilityConverter}}" />
@@ -26,7 +26,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="Visibility" Value="{Binding Converter={StaticResource PlayerVidVisibility}}" />
         </Style>
-        
+
         <Style x:Key="PlayerStatVisibilityStyle" TargetType="ListBoxItem">
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="Visibility" Value="{Binding Converter={StaticResource PlayerStatVisibility}}" />
@@ -35,27 +35,6 @@
         <Style x:Key="GeneralVisibilityStyle" TargetType="ListBoxItem">
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         </Style>
-        
-        <DataTemplate x:Key="MusicItemTemplate">
-            <ContentControl>
-                <i:Interaction.Triggers>
-                    <i:EventTrigger SourceObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}}" 
-                                                EventName="PreviewMouseLeftButtonDown">
-                        <i:InvokeCommandAction Command="{Binding DataContext.PlayablePressed, ElementName=MView}">
-                            <i:InvokeCommandAction.CommandParameter>
-                                <MultiBinding Converter="{StaticResource ParameterConverter}">
-                                    <Binding />
-                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type TabControl}}" Path="Name"/>
-                                </MultiBinding>
-                            </i:InvokeCommandAction.CommandParameter>
-                        </i:InvokeCommandAction>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                <StackPanel>
-                    <Label HorizontalAlignment="Stretch" FontSize="12" Height="30" Margin="-4,-1,-4,-1" Content="{Binding Name}"/>
-                </StackPanel>
-            </ContentControl>
-        </DataTemplate>
 
         <DataTemplate x:Key="GeneralItemTemplate">
             <ContentControl>
@@ -73,11 +52,11 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <StackPanel>
-                    <Label HorizontalAlignment="Stretch" FontSize="12" Height="30" Margin="-4,-1,-4,-1" Content="{Binding Name}"/>
+                    <Label HorizontalAlignment="Stretch" FontSize="12" Height="30" Margin="-4,-1,-4,-1" Content="{Binding}"/>
                 </StackPanel>
             </ContentControl>
         </DataTemplate>
-        
+
         <selectors:ListboxVisibilityStyleSelector x:Key="VisibilitySelector" MusicTemplate="{StaticResource MusicOnlyVisibilityStyle}" GeneralPlayerTemplate="{StaticResource PlayerVidVisibilityStyle}" GeneralTemplate="{StaticResource GeneralVisibilityStyle}" />
 
         <DataTemplate x:Key="TabName" DataType="{x:Type TabItem}">
@@ -85,10 +64,10 @@
                 <TextBlock Text="{Binding Name}" FontSize="13" />
             </StackPanel>
         </DataTemplate>
-        
+
         <DataTemplate x:Key="TabContent" DataType="{x:Type TabItem}">
             <DockPanel>
-                <ListBox ItemsSource="{Binding Content}" HorizontalAlignment="Stretch" ItemContainerStyle="{StaticResource MusicOnlyVisibilityStyle}" ItemTemplate="{StaticResource MusicItemTemplate}"/>
+                <ListBox Name="Music" ItemsSource="{Binding Content}" HorizontalAlignment="Stretch" ItemContainerStyle="{StaticResource MusicOnlyVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}"/>
             </DockPanel>
         </DataTemplate>
 
@@ -98,7 +77,7 @@
             <Setter Property="ContentTemplate" Value="{StaticResource TabContent}" />
         </Style>
     </Window.Resources>
-    
+
     <Grid>
         <DockPanel>
             <Grid>
@@ -123,7 +102,7 @@
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="2">
-                    <TabControl Name="Test2">
+                    <TabControl>
                         <TabItem Name="DuringMatch" Header="Under Kamp">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -135,79 +114,32 @@
                                 <GridSplitter IsEnabled="False" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
                                 <Grid Grid.Column="0">
-                                    <TabControl Name="Test">
-                                        <!--Click finds this control...-->
-                                        <TabItem Name="PlayerPic" Header="Spiller">
-                                            <ListBox ItemsSource="{Binding PlayerContainer.Content}" ItemContainerStyle="{StaticResource GeneralVisibilityStyle}">
-                                                <ListBox.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <ContentControl>
-                                                            <i:Interaction.Triggers>
-                                                                <i:EventTrigger SourceObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}}" EventName="PreviewMouseLeftButtonDown">
-                                                                    <i:InvokeCommandAction Command="{Binding DataContext.PlayerPicPressed, ElementName=MView}" CommandParameter="{Binding}" />
-                                                                </i:EventTrigger>
-                                                            </i:Interaction.Triggers>
-                                                            <StackPanel>
-                                                                <Label HorizontalAlignment="Stretch" FontSize="12" Height="30" Margin="-4,-1,-4,-1" Content="{Binding}"/>
-                                                            </StackPanel>
-                                                        </ContentControl>
-                                                    </DataTemplate>
-                                                </ListBox.ItemTemplate>
-                                            </ListBox>
+                                    <TabControl>
+                                        <TabItem Header="Spiller">
+                                            <ListBox Name="PlayerPicture" ItemsSource="{Binding PlayerContainer.Content}" ItemContainerStyle="{StaticResource GeneralVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}" />
                                         </TabItem>
 
                                         <TabItem Header="SpillerVideo">
-                                            <ListBox ItemsSource="{Binding PlayerContainer.Content}" ItemContainerStyle="{StaticResource PlayerVidVisibilityStyle}">
-                                                <ListBox.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <ContentControl>
-                                                            <i:Interaction.Triggers>
-                                                                <i:EventTrigger SourceObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}}" EventName="PreviewMouseLeftButtonDown">
-                                                                    <i:InvokeCommandAction Command="{Binding DataContext.PlayerVidPressed, ElementName=MView}" CommandParameter="{Binding}" />
-                                                                </i:EventTrigger>
-                                                            </i:Interaction.Triggers>
-                                                            <StackPanel>
-                                                                <Label HorizontalAlignment="Stretch" FontSize="12" Height="30" Margin="-4,-1,-4,-1" Content="{Binding}"/>
-                                                            </StackPanel>
-                                                        </ContentControl>
-                                                    </DataTemplate>
-                                                </ListBox.ItemTemplate>
-                                            </ListBox>
+                                            <ListBox Name="PlayerVideo" ItemsSource="{Binding PlayerContainer.Content}" ItemContainerStyle="{StaticResource PlayerVidVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}" />
                                         </TabItem>
 
                                         <TabItem Header="SpillerVideoStat">
-                                            <ListBox ItemsSource="{Binding PlayerContainer.Content}" ItemContainerStyle="{StaticResource PlayerStatVisibilityStyle}">
-                                                <ListBox.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <ContentControl>
-                                                            <i:Interaction.Triggers>
-                                                                <i:EventTrigger SourceObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}}" EventName="PreviewMouseLeftButtonDown">
-                                                                    <i:InvokeCommandAction Command="{Binding DataContext.PlayerStatPressed, ElementName=MView}" CommandParameter="{Binding}" />
-                                                                </i:EventTrigger>
-                                                            </i:Interaction.Triggers>
-                                                            <StackPanel>
-                                                                <Label HorizontalAlignment="Stretch" FontSize="12" Height="30" Margin="-4,-1,-4,-1" Content="{Binding}"/>
-                                                            </StackPanel>
-                                                        </ContentControl>
-                                                    </DataTemplate>
-                                                </ListBox.ItemTemplate>
-                                            </ListBox>
+                                            <ListBox Name="PlayerVideoStat" ItemsSource="{Binding PlayerContainer.Content}" ItemContainerStyle="{StaticResource PlayerStatVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}" />
                                         </TabItem>
 
                                     </TabControl>
                                 </Grid>
-                                
-                                <ListBox Grid.Column="2" ItemsSource="{Binding CardContainer.Content}" ItemContainerStyle="{StaticResource GeneralVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}"/>
+
+                                <ListBox Name="Video" Grid.Column="2" ItemsSource="{Binding CardContainer.Content}" ItemContainerStyle="{StaticResource GeneralVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}"/>
                             </Grid>
                         </TabItem>
 
-                        <TabItem Name="PlayLists" Header="PlayLister">
+                        <TabItem Header="PlayLister">
                             <ListBox Name="PlayList" ItemsSource="{Binding PlayListContainer.Content}" ItemContainerStyle="{StaticResource GeneralVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}"/>
                         </TabItem>
                     </TabControl>
                 </Grid>
             </Grid>
         </DockPanel>
-
     </Grid>
 </Window>

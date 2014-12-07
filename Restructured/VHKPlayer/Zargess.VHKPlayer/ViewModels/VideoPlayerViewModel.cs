@@ -30,6 +30,7 @@ namespace Zargess.VHKPlayer.ViewModels {
         private void PlayableClick(object parameter) {
             var item = (FindParameters)parameter;
             Console.WriteLine(item.ControlName);
+            Console.WriteLine(item.Playable);
         }
     }
 }
