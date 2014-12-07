@@ -19,20 +19,22 @@ namespace Zargess.VHKPlayer.Strategies.Selection.IPlayers {
         }
 
         public Queue<IFile> SelectFiles(IPlayable playable) {
+            // TODO : Make a better way to handle missing files.
             var res = new Queue<IFile>();
             var content = playable.Content;
 
-            string statFolder = PathHandler.AbsolutePath(App.ConfigService.GetPathString("playerFolders", 2));
-            string statMusicFolder = PathHandler.AbsolutePath(App.ConfigService.GetPathString("playerFolders", 3));
-            string statVideoFolder = PathHandler.AbsolutePath(App.ConfigService.GetPathString("playerFolders", 4));
+            string statPicFolder = PathHandler.AbsolutePath(App.ConfigService.GetPathString("playerFolders", 2)).ToLower();
+            string statMusicFolder = PathHandler.AbsolutePath(App.ConfigService.GetPathString("playerFolders", 3)).ToLower();
+            string statVideoFolder = PathHandler.AbsolutePath(App.ConfigService.GetPathString("playerFolders", 4)).ToLower();
             if (content.Count == 1) return PicSelection.SelectFiles(playable);
-            if (!content.Any(x => x.FullPath.ToLower().Contains(statFolder))) return VidSelection.SelectFiles(playable);
+            if (!content.Any(x => x.FullPath.ToLower().Contains(statPicFolder))) return VidSelection.SelectFiles(playable);
 
-            var pic = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statFolder));
+            // TODO : This might not work
+            var pic = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statPicFolder));
             var mus = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statMusicFolder));
             var vid = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statVideoFolder));
-            if (pic == null || mus == null) throw new FilesMissingException("Player stat files does not meet requirements. There should be atleast one picture and one music file pr. player.");
-            res.Enqueue(mus.Clone());
+            if (pic == null) throw new FilesMissingException("Player stat files does not meet requirements. There should be atleast one picture file pr. player.");
+            if (mus != null) res.Enqueue(mus.Clone());
             res.Enqueue(pic.Clone());
             if (vid == null) {
                 vid = PicSelection.SelectFiles(playable).Dequeue();

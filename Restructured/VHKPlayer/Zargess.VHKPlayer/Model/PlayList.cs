@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using Zargess.VHKPlayer.Collections;
 using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.Interfaces;
@@ -22,6 +23,8 @@ namespace Zargess.VHKPlayer.Model {
             }
         }
 
+        public Dispatcher Disp { get; private set; }
+
         public PlayList(IPlayListFactory factory) {
             Content = new SortableCollection<IFile>();
             Name = factory.CreateName();
@@ -29,13 +32,17 @@ namespace Zargess.VHKPlayer.Model {
             Folder = factory.CreateFolder();
             LoadingStrategy = factory.CreateLoadingStrategy();
             LoadingStrategy.Load(Content);
+            Disp = Dispatcher.CurrentDispatcher;
             Folder.InitWatcher();
             Folder.FolderChanged += FolderChanged;
         }
 
         private void FolderChanged(object sender, EventArgs e) {
             Console.WriteLine(Name);
-            LoadingStrategy.Load(Content);
+            Action action = () => {
+                LoadingStrategy.Load(Content);
+            };
+            Disp.BeginInvoke(action);
         }
 
         public void Add(IFile file) {
@@ -44,14 +51,6 @@ namespace Zargess.VHKPlayer.Model {
 
         public Queue<IFile> Play(PlayType pt) {
             return SelectionStrategy.SelectFiles(this);
-        }
-
-        public ObservableCollection<IFile> GetContent() {
-            var res = new ObservableCollection<IFile>();
-            foreach (var file in Content) {
-                res.Add(file.Clone());
-            }
-            return res;
         }
     }
 }

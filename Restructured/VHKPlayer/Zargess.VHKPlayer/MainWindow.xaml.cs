@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,9 @@ namespace Zargess.VHKPlayer {
     /// </summary>
     public partial class MainWindow : Window {
         public MainWindow() {
+            var root = @"D:\Dropbox\Programmering\C#\damer 2013-2014";
+            if (Directory.Exists(root)) App.ConfigService.Update("root", root);
+            else App.ConfigService.Update("root", @"C:\Users\MFH\vhk");
             InitializeComponent();
             DataContext = App.PlayerViewModel;
         }

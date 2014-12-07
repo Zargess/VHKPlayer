@@ -9,6 +9,7 @@ namespace Zargess.VHKPlayer.Interfaces {
         List<IFile> Content { get; }
         string FullPath { get; }
         string Name { get; }
+        string Source { get; }
         event EventHandler FolderChanged;
 
         bool Exists();

@@ -13,6 +13,7 @@ namespace Zargess.VHKPlayer.Model {
         public List<IFile> Content { get; private set; }
         public string FullPath { get; private set; }
         public string Name { get; private set; }
+        public string Source { get; private set; }
         public FileSystemWatcher Watcher { get; private set; }
 
         public event EventHandler FolderChanged;
@@ -20,6 +21,7 @@ namespace Zargess.VHKPlayer.Model {
         public FolderNode(string path) {
             FullPath = GetFolderPath(path);
             Name = GetFolderName(path);
+            Source = GetSource();
             Content = GetFiles();
             InitWatcher();
         }
@@ -32,6 +34,12 @@ namespace Zargess.VHKPlayer.Model {
             if (String.IsNullOrEmpty(path)) return "";
             if (!Exists()) return "";
             return Path.GetFileName(path);
+        }
+
+        private string GetSource() {
+            if (!Exists()) return "";
+            var temp = PathHandler.SplitPath(FullPath);
+            return temp[temp.Length - 2];
         }
 
         private List<IFile> GetFiles() {

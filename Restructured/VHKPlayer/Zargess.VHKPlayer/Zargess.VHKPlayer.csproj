@@ -34,8 +34,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\packages\MahApps.Metro.0.14.0.0\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.0.14.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -59,6 +66,8 @@
     <Compile Include="Converters\FindParametersConverter.cs" />
     <Compile Include="Converters\MusicVisibilityConverter.cs" />
     <Compile Include="Converters\PlayerOnlyVisibilityConverter.cs" />
+    <Compile Include="Converters\PlayerStatVisibilityConverter.cs" />
+    <Compile Include="Converters\PlayerVideoVisibilityConverter.cs" />
     <Compile Include="Exceptions\FilesMissingException.cs" />
     <Compile Include="Factories\IPlayers\PlayerFactory.cs" />
     <Compile Include="Factories\IPlayLists\AllFilesFolderPlayListFactory.cs" />
@@ -67,6 +76,7 @@
     <Compile Include="Factories\IPlayLists\IteratedSortedPlayListFactory.cs" />
     <Compile Include="Factories\ViewModels\VideoPlayerFactory.cs" />
     <Compile Include="Interfaces\IGlobalConfigService.cs" />
+    <Compile Include="Interfaces\INotification.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Interfaces\IVideoPlayerFactory.cs" />
     <Compile Include="Model\FileNode.cs" />
@@ -78,6 +88,7 @@
     <Compile Include="Model\PlayListContainer.cs" />
     <Compile Include="Model\SingleItemContainer.cs" />
     <Compile Include="Model\SingleItemPlayable.cs" />
+    <Compile Include="Selectors\ListboxVisibilityStyleSelector.cs" />
     <Compile Include="Settings\GlobalConfigService.cs" />
     <Compile Include="Settings\Properties.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -148,6 +159,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

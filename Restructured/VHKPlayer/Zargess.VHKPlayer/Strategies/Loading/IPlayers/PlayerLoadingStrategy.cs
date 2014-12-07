@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zargess.VHKPlayer.Exceptions;
 using Zargess.VHKPlayer.Interfaces;
 using Zargess.VHKPlayer.Model;
 using Zargess.VHKPlayer.Utility;
@@ -22,6 +23,12 @@ namespace Zargess.VHKPlayer.Strategies.Loading.IPlayers {
                 var file = folder.Content.SingleOrDefault(x => x.NameWithoutExtension.ToLower() == _file.NameWithoutExtension.ToLower());
                 if (file == null) continue;
                 content.Add(file);
+            }
+            foreach(var folder in folders) {
+                if(!content.Any(x => x.FullPath.Contains(folder.FullPath))) {
+                    // TODO : Make notification system instead of throwing exception
+                    //throw new FilesMissingException("Der mangler en fil i: " + folder.FullPath + " til " + _file.NameWithoutExtension);
+                }
             }
         }
     }

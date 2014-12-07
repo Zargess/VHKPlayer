@@ -12,12 +12,14 @@ namespace Zargess.VHKPlayer.Model {
     public class FileNode : IFile {
         public string FullPath { get; private set; }
         public string Name { get; private set; }
+        public string Source { get; private set; }
         public FileType Type { get; private set; }
         public string NameWithoutExtension { get; private set; }
 
         public FileNode(string path) {
             Name = GetFileName(path);
             FullPath = GetPath(path);
+            Source = GetSource(path);
             Type = GetFileType();
             NameWithoutExtension = GetNameWithoutExtension();
         }
@@ -36,6 +38,13 @@ namespace Zargess.VHKPlayer.Model {
         private string GetFileName(string path) {
             try {
                 return Path.GetFileName(path);
+            } catch (Exception) {
+                return "";
+            }
+        }
+        private string GetSource(string path) {
+            try {
+                return Path.GetFileName(Path.GetDirectoryName(path));
             } catch (Exception) {
                 return "";
             }
