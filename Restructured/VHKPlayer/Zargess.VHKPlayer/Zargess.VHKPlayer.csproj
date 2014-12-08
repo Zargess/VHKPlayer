@@ -77,11 +77,14 @@
     <Compile Include="Factories\ViewModels\VideoPlayerFactory.cs" />
     <Compile Include="Interfaces\IGlobalConfigService.cs" />
     <Compile Include="Interfaces\INotification.cs" />
+    <Compile Include="Interfaces\INotificationContainer.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Interfaces\IVideoPlayerFactory.cs" />
     <Compile Include="Model\FileNode.cs" />
     <Compile Include="Model\FolderNode.cs" />
     <Compile Include="Model\MusicFolderContainer.cs" />
+    <Compile Include="Model\Notification.cs" />
+    <Compile Include="Model\NotificationContainer.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\PlayerContainer.cs" />
     <Compile Include="Model\PlayList.cs" />
