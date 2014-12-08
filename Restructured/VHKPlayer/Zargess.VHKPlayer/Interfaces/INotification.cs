@@ -6,5 +6,6 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.Interfaces {
     public interface INotification {
+        string Message { get; }
     }
 }

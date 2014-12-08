@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace Zargess.VHKPlayer {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window {
+    public partial class MainWindow : MetroWindow {
         public MainWindow() {
             var root = @"D:\Dropbox\Programmering\C#\damer 2013-2014";
             if (Directory.Exists(root)) App.ConfigService.Update("root", root);
