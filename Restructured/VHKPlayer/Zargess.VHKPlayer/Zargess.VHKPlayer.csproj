@@ -110,7 +110,7 @@
     <Compile Include="Strategies\Selection\IPlayers\VideoSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\IPlayLists\AllFilesSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\IPlayLists\IteratedFileSelectionStrategy.cs" />
-    <Compile Include="Strategies\Selection\StatisticsLoading\DigimatchStatsLoadingStrategy.cs" />
+    <Compile Include="Strategies\Loading\StatisticsLoading\DigimatchStatsLoadingStrategy.cs" />
     <Compile Include="Utility\GeneralFunctions.cs" />
     <Compile Include="Utility\PathHandler.cs" />
     <Compile Include="ViewModels\VideoPlayerViewModel.cs" />

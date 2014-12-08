@@ -78,6 +78,13 @@
             <Setter Property="ContentTemplate" Value="{StaticResource TabContent}" />
         </Style>
     </Window.Resources>
+    
+    <metro:MetroWindow.RightWindowCommands>
+        <metro:WindowCommands>
+            <Button Content="settings" Command="{Binding Test}"/>
+            <metro:DropDownButton Background="Green" Foreground="Green" ItemsSource="{Binding NotifiContainer.Content}"/>
+        </metro:WindowCommands>
+    </metro:MetroWindow.RightWindowCommands>
 
     <Grid>
         <DockPanel>

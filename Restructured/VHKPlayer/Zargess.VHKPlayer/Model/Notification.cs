@@ -12,5 +12,9 @@ namespace Zargess.VHKPlayer.Model {
         public Notification(string message) {
             Message = message;
         }
+
+        public override string ToString() {
+            return Message;
+        }
     }
 }

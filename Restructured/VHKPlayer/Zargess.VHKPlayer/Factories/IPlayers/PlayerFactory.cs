@@ -7,7 +7,7 @@ using Zargess.VHKPlayer.Interfaces;
 using Zargess.VHKPlayer.Model;
 using Zargess.VHKPlayer.Strategies.Loading.IPlayers;
 using Zargess.VHKPlayer.Strategies.Selection.IPlayers;
-using Zargess.VHKPlayer.Strategies.Selection.StatisticsLoading;
+using Zargess.VHKPlayer.Strategies.Loading.StatisticsLoading;
 using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer.Factories.IPlayers {

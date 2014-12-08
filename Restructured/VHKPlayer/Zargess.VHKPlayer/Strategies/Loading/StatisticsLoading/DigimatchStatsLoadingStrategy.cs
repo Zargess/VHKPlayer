@@ -8,7 +8,7 @@ using Zargess.VHKPlayer.Interfaces;
 using Zargess.VHKPlayer.Model;
 using Zargess.VHKPlayer.Utility;
 
-namespace Zargess.VHKPlayer.Strategies.Selection.StatisticsLoading {
+namespace Zargess.VHKPlayer.Strategies.Loading.StatisticsLoading {
     public class DigimatchStatsLoadingStrategy : IStatsLoadingStrategy {
         public Statistics LoadStats(int number) {
             var res = new Statistics();

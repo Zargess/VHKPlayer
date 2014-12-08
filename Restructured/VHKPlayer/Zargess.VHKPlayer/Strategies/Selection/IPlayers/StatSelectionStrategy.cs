@@ -33,9 +33,8 @@ namespace Zargess.VHKPlayer.Strategies.Selection.IPlayers {
             var pic = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statPicFolder));
             var mus = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statMusicFolder));
             var vid = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statVideoFolder));
-            if (pic == null) throw new FilesMissingException("Player stat files does not meet requirements. There should be atleast one picture file pr. player.");
-            if (mus != null) res.Enqueue(mus.Clone());
             res.Enqueue(pic.Clone());
+            if (mus != null) res.Enqueue(mus.Clone());
             if (vid == null) {
                 vid = PicSelection.SelectFiles(playable).Dequeue();
             }
