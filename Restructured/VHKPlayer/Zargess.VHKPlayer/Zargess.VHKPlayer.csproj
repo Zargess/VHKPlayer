@@ -63,6 +63,9 @@
     <Compile Include="Collections\SortableCollection.cs" />
     <Compile Include="Commands\FindParameters.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Controls\NotificationControl.xaml.cs">
+      <DependentUpon>NotificationControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\FindParametersConverter.cs" />
     <Compile Include="Converters\MusicVisibilityConverter.cs" />
     <Compile Include="Converters\PlayerOnlyVisibilityConverter.cs" />
@@ -114,6 +117,10 @@
     <Compile Include="Utility\GeneralFunctions.cs" />
     <Compile Include="Utility\PathHandler.cs" />
     <Compile Include="ViewModels\VideoPlayerViewModel.cs" />
+    <Page Include="Controls\NotificationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
