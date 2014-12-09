@@ -11,9 +11,17 @@ namespace Zargess.VHKPlayer.Model {
     public class NotificationContainer : INotificationContainer {
         public ObservableCollection<INotification> Content { get; private set; }
 
+        public bool HasActiveNotification {
+            get {
+                throw new NotImplementedException();
+            }
+        }
+
         public NotificationContainer() {
             Content = new ObservableCollection<INotification>();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public void Add(INotification item) {
             Content.Add(item);
