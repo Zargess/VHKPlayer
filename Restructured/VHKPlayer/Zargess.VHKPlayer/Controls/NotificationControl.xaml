@@ -16,7 +16,7 @@
             </i:Interaction.Triggers>
             <TextBlock />-->
         </Grid>
-        <Popup x:Name="pop" PlacementTarget="{Binding ElementName=Ild}">
+        <Popup x:Name="pop" IsOpen="True" PlacementTarget="{Binding ElementName=Ild}">
             <ItemsControl ItemsSource="{Binding Notifications}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
