@@ -1,3 +1,2 @@
-* Make Style selector til gui:
-	http://tech.pro/tutorial/807/wpf-tutorial-how-to-use-a-datatemplateselector
-	http://www.telerik.com/help/wpf/e2411754-b7f0-4462-92af-e88c8b673e9c.html
+* Fix usage of FolderNode so that i use the ContainsFile method
+* Consider having to enable listening in FolderNode so that it's not enabled as a default as this results in many unnecessary updates of useless folders.
