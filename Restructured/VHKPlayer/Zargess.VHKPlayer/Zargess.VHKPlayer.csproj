@@ -74,8 +74,10 @@
     <Compile Include="Exceptions\FilesMissingException.cs" />
     <Compile Include="Factories\IPlayers\PlayerFactory.cs" />
     <Compile Include="Factories\IPlayLists\AllFilesFolderPlayListFactory.cs" />
+    <Compile Include="Factories\IPlayLists\AllFilesNoLoadingFactory.cs" />
     <Compile Include="Factories\IPlayLists\AllFilesSortedPlayListFactory.cs" />
     <Compile Include="Factories\IPlayLists\IteratedFolderPlayListFactory.cs" />
+    <Compile Include="Factories\IPlayLists\IteratedNoLoadingFactory.cs" />
     <Compile Include="Factories\IPlayLists\IteratedSortedPlayListFactory.cs" />
     <Compile Include="Factories\ViewModels\VideoPlayerFactory.cs" />
     <Compile Include="Interfaces\IGlobalConfigService.cs" />
