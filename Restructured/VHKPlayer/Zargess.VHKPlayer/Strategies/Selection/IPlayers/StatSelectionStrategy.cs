@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zargess.VHKPlayer.Exceptions;
 using Zargess.VHKPlayer.Interfaces;
+using Zargess.VHKPlayer.Model;
 using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer.Strategies.Selection.IPlayers {
@@ -19,20 +20,16 @@ namespace Zargess.VHKPlayer.Strategies.Selection.IPlayers {
         }
 
         public Queue<IFile> SelectFiles(IPlayable playable) {
-            // TODO : Make a better way to handle missing files.
             var res = new Queue<IFile>();
             var content = playable.Content;
 
-            string statPicFolder = PathHandler.AbsolutePath(App.ConfigService.GetPathString("playerFolders", 2)).ToLower();
-            string statMusicFolder = PathHandler.AbsolutePath(App.ConfigService.GetPathString("playerFolders", 3)).ToLower();
-            string statVideoFolder = PathHandler.AbsolutePath(App.ConfigService.GetPathString("playerFolders", 4)).ToLower();
-            if (content.Count == 1) return PicSelection.SelectFiles(playable);
-            if (!content.Any(x => x.FullPath.ToLower().Contains(statPicFolder))) return VidSelection.SelectFiles(playable);
+            var statPicFolder = new FolderNode(PathHandler.AbsolutePath(App.ConfigService.GetPathString("playerFolders", 2)));
+            var statMusicFolder = new FolderNode(PathHandler.AbsolutePath(App.ConfigService.GetPathString("playerFolders", 3)));
+            var statVideoFolder = new FolderNode(PathHandler.AbsolutePath(App.ConfigService.GetPathString("playerFolders", 4)));
 
-            // TODO : This might not work
-            var pic = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statPicFolder));
-            var mus = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statMusicFolder));
-            var vid = content.FirstOrDefault(x => x.FullPath.ToLower().Contains(statVideoFolder));
+            var pic = content.FirstOrDefault(x => statPicFolder.ContainsFile(x));
+            var mus = content.FirstOrDefault(x => statMusicFolder.ContainsFile(x));
+            var vid = content.FirstOrDefault(x => statVideoFolder.ContainsFile(x));
             res.Enqueue(pic.Clone());
             if (mus != null) res.Enqueue(mus.Clone());
             if (vid == null) {

@@ -316,7 +316,7 @@
 
                 <Grid Grid.Row="2" Grid.Column="0">
                     <!--<metro:DropDownButton HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding NotifiContainer.Content}" Icon="{x:Null}" Content="{Binding NotifiContainer.Content.Count}" Style="{DynamicResource IldStyle}" />-->
-                    <user:NotificationControl />
+                    <!--<user:NotificationControl />-->
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="0">
