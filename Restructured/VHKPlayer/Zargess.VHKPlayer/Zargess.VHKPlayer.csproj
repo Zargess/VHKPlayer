@@ -84,6 +84,7 @@
     <Compile Include="Interfaces\INotification.cs" />
     <Compile Include="Interfaces\INotificationContainer.cs" />
     <Compile Include="Interfaces\IPlayManager.cs" />
+    <Compile Include="Interfaces\IPlayStrategy.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Interfaces\IVideoPlayerFactory.cs" />
     <Compile Include="Model\FileNode.cs" />
@@ -97,6 +98,10 @@
     <Compile Include="Model\PlayListContainer.cs" />
     <Compile Include="Model\SingleItemContainer.cs" />
     <Compile Include="Model\SingleItemPlayable.cs" />
+    <Compile Include="PlayerWindow.xaml.cs">
+      <DependentUpon>PlayerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PlayManaging\PlayManager.cs" />
     <Compile Include="Selectors\ListboxVisibilityStyleSelector.cs" />
     <Compile Include="Settings\GlobalConfigService.cs" />
     <Compile Include="Settings\Properties.Designer.cs">
@@ -111,6 +116,10 @@
     <Compile Include="Strategies\Loading\IPlayables\NoLoadingStrategy.cs" />
     <Compile Include="Strategies\Loading\IPlayables\SortedLoadingStrategy.cs" />
     <Compile Include="Strategies\Loading\IPlayers\PlayerLoadingStrategy.cs" />
+    <Compile Include="Strategies\Playing\GeneralPlayStrategy.cs" />
+    <Compile Include="Strategies\Playing\PlayFileStrategy.cs" />
+    <Compile Include="Strategies\Playing\PlayPlayerStatStrategy.cs" />
+    <Compile Include="Strategies\Playing\ShowImageStrategy.cs" />
     <Compile Include="Strategies\Selection\IPlayers\PictureSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\IPlayers\StatSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\IPlayers\VideoSelectionStrategy.cs" />
@@ -152,6 +161,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PlayerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Statistics.cs" />
@@ -186,9 +199,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PlayManaging\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

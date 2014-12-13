@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Zargess.VHKPlayer.Enums;
+using Zargess.VHKPlayer.Interfaces;
+
+namespace Zargess.VHKPlayer.Strategies.Playing {
+    public class GeneralPlayStrategy : IPlayStrategy {
+        private IPlayStrategy PlayFileStrategy { get; set; }
+        private IPlayStrategy ShowImageStrategy { get; set; }
+        private IPlayStrategy PlayPlayerStatStrategy { get; set; }
+        private IPlayStrategy CurrentStrategy { get; set; }
+
+        public GeneralPlayStrategy(IPlayStrategy playFileStrategy, IPlayStrategy showImageStrategy, IPlayStrategy playPlayerStatStrategy) {
+            PlayFileStrategy = playFileStrategy;
+            ShowImageStrategy = showImageStrategy;
+            PlayPlayerStatStrategy = playPlayerStatStrategy;
+        }
+
+        public void Play(IFile file, PlayType type) {
+            if (file.Type != FileType.Picture) {
+                CurrentStrategy = PlayFileStrategy;
+            } else if (type != PlayType.PlayerStat) {
+                CurrentStrategy = ShowImageStrategy;
+            } else {
+                CurrentStrategy = PlayPlayerStatStrategy;
+            }
+            CurrentStrategy.Play(file, type);
+        }
+    }
+}
