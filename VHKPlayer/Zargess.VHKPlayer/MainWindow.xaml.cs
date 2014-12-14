@@ -29,6 +29,11 @@ namespace Zargess.VHKPlayer {
             InitializeComponent();
             DataContext = App.PlayerViewModel;
             App.PlayerViewModel.PlayFunction += PlayerViewModel_PlayFunction;
+            Viewer.MediaEnded += Viewer_MediaEnded;
+        }
+
+        private void Viewer_MediaEnded(object sender, RoutedEventArgs e) {
+            App.PlayerViewModel.Manager.PlayQueue();
         }
 
         private void PlayerViewModel_PlayFunction(object sender, PlayerFunctionEventArgs e) {

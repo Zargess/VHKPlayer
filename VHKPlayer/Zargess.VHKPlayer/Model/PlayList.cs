@@ -52,5 +52,9 @@ namespace Zargess.VHKPlayer.Model {
         public Queue<IFile> Play(PlayType pt) {
             return SelectionStrategy.SelectFiles(this);
         }
+
+        public override string ToString() {
+            return Name;
+        }
     }
 }

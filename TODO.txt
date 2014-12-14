@@ -19,6 +19,7 @@ Twitter:
 	- Show user name and user image in the main window's title bar if you are logged in to twitter
 		- Make this clickable and when clicked take the user to the settings section of twitter
 		- When non are logged in show the twitter logo and the text "Login på twitter"
+		- Only show this if twitter is enabled
 	- Make a filter that removes all inappropriate tweets and let the user of the program modify the search keywords
 		- Make the option to disable and enable the filter
 		
