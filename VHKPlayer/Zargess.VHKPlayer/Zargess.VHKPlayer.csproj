@@ -71,6 +71,9 @@
     <Compile Include="Converters\PlayerOnlyVisibilityConverter.cs" />
     <Compile Include="Converters\PlayerStatVisibilityConverter.cs" />
     <Compile Include="Converters\PlayerVideoVisibilityConverter.cs" />
+    <Compile Include="Enums\PlayerFunctionType.cs" />
+    <Compile Include="EventHandlers\PlayerFunctionEventArgs.cs" />
+    <Compile Include="EventHandlers\PlayerFunctionHandlers.cs" />
     <Compile Include="Exceptions\FilesMissingException.cs" />
     <Compile Include="Factories\IPlayers\PlayerFactory.cs" />
     <Compile Include="Factories\IPlayLists\AllFilesFolderPlayListFactory.cs" />
@@ -83,6 +86,7 @@
     <Compile Include="Interfaces\IGlobalConfigService.cs" />
     <Compile Include="Interfaces\INotification.cs" />
     <Compile Include="Interfaces\INotificationContainer.cs" />
+    <Compile Include="Interfaces\IPlayController.cs" />
     <Compile Include="Interfaces\IPlayManager.cs" />
     <Compile Include="Interfaces\IPlayStrategy.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
