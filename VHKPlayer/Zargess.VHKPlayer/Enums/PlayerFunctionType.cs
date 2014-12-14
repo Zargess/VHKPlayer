@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.Enums {
     public enum PlayerFunctionType {
-        Play, Pause, Stop, Mute
+        Play, Pause, Stop, Mute, Resume
     }
 }

@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Zargess.VHKPlayer.Enums;
+using Zargess.VHKPlayer.EventHandlers;
 
 namespace Zargess.VHKPlayer {
     /// <summary>
@@ -26,6 +28,14 @@ namespace Zargess.VHKPlayer {
             else App.ConfigService.Update("root", @"C:\Users\MFH\vhk");
             InitializeComponent();
             DataContext = App.PlayerViewModel;
+            App.PlayerViewModel.PlayFunction += PlayerViewModel_PlayFunction;
+        }
+
+        private void PlayerViewModel_PlayFunction(object sender, PlayerFunctionEventArgs e) {
+            if (e.File.Type == FileType.Music) return;
+            Viewer.Source = new Uri(e.File.FullPath);
+            Viewer.Play();
+            Console.WriteLine("Playing {0}", e.File.Name);
         }
     }
 }

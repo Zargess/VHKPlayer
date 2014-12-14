@@ -13,7 +13,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
         private PlayType CurrentType { get; set; }
         public IPlayStrategy PlayStrategy { get; private set; }
 
-        public PlayManager(PlayerWindow player, IPlayStrategy playStrategy) {
+        public PlayManager(IPlayStrategy playStrategy) {
             PlayStrategy = playStrategy;
         }
 
