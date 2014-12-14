@@ -3,21 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.GUI", "Zargess.VHKPlayer.GUI\Zargess.VHKPlayer.GUI.csproj", "{D648C8B7-66BD-4F53-A9FD-D7686FAF04D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer", "Zargess.VHKPlayer\Zargess.VHKPlayer.csproj", "{25FF6B80-E707-4E0D-8B3D-790CA5E75C5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.FileManagement", "Zargess.VHKPlayer.FileManagement\Zargess.VHKPlayer.FileManagement.csproj", "{8DEDD345-E7CE-426D-9100-5C4F8E97E2C9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.FileManagement.Test", "Zargess.VHKPlayer.FileManagement.Test\Zargess.VHKPlayer.FileManagement.Test.csproj", "{DBAA1DCF-2BB3-4FEB-91D7-063FE0EC8CB1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.SettingsManager", "Zargess.VHKPlayer.SettingsManager\Zargess.VHKPlayer.SettingsManager.csproj", "{F1718029-9846-433D-8DC1-39C51E6B547C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.UtilFunctions", "Zargess.VHKPlayer.UtilFunctions\Zargess.VHKPlayer.UtilFunctions.csproj", "{F4CD0C5B-E9D8-433C-9C51-E31146EE6B27}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.UtilFunctions.Tests", "Zargess.VHKPlayer.UtilFunctions.Tests\Zargess.VHKPlayer.UtilFunctions.Tests.csproj", "{BA105AC7-7D4F-491A-B47A-362AF515EEE5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.TwitterClient", "Zargess.TwitterClient\Zargess.TwitterClient.csproj", "{4A5EA0C4-120C-4244-9B7F-39A98EF59123}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.GUI.Test", "Zargess.VHKPlayer.GUI.Test\Zargess.VHKPlayer.GUI.Test.csproj", "{1E94C533-829F-4A38-93B4-45002424B61E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zargess.VHKPlayer.Test", "Zargess.VHKPlayer.Test\Zargess.VHKPlayer.Test.csproj", "{7C06DB0A-999E-47A1-AF6D-2BBCDD9AD0F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,38 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D648C8B7-66BD-4F53-A9FD-D7686FAF04D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D648C8B7-66BD-4F53-A9FD-D7686FAF04D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D648C8B7-66BD-4F53-A9FD-D7686FAF04D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D648C8B7-66BD-4F53-A9FD-D7686FAF04D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8DEDD345-E7CE-426D-9100-5C4F8E97E2C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8DEDD345-E7CE-426D-9100-5C4F8E97E2C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8DEDD345-E7CE-426D-9100-5C4F8E97E2C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8DEDD345-E7CE-426D-9100-5C4F8E97E2C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DBAA1DCF-2BB3-4FEB-91D7-063FE0EC8CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DBAA1DCF-2BB3-4FEB-91D7-063FE0EC8CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DBAA1DCF-2BB3-4FEB-91D7-063FE0EC8CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DBAA1DCF-2BB3-4FEB-91D7-063FE0EC8CB1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F1718029-9846-433D-8DC1-39C51E6B547C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F1718029-9846-433D-8DC1-39C51E6B547C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F1718029-9846-433D-8DC1-39C51E6B547C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F1718029-9846-433D-8DC1-39C51E6B547C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F4CD0C5B-E9D8-433C-9C51-E31146EE6B27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F4CD0C5B-E9D8-433C-9C51-E31146EE6B27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F4CD0C5B-E9D8-433C-9C51-E31146EE6B27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F4CD0C5B-E9D8-433C-9C51-E31146EE6B27}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA105AC7-7D4F-491A-B47A-362AF515EEE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA105AC7-7D4F-491A-B47A-362AF515EEE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA105AC7-7D4F-491A-B47A-362AF515EEE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA105AC7-7D4F-491A-B47A-362AF515EEE5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4A5EA0C4-120C-4244-9B7F-39A98EF59123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A5EA0C4-120C-4244-9B7F-39A98EF59123}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A5EA0C4-120C-4244-9B7F-39A98EF59123}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A5EA0C4-120C-4244-9B7F-39A98EF59123}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1E94C533-829F-4A38-93B4-45002424B61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1E94C533-829F-4A38-93B4-45002424B61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1E94C533-829F-4A38-93B4-45002424B61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1E94C533-829F-4A38-93B4-45002424B61E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25FF6B80-E707-4E0D-8B3D-790CA5E75C5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25FF6B80-E707-4E0D-8B3D-790CA5E75C5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25FF6B80-E707-4E0D-8B3D-790CA5E75C5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25FF6B80-E707-4E0D-8B3D-790CA5E75C5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C06DB0A-999E-47A1-AF6D-2BBCDD9AD0F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C06DB0A-999E-47A1-AF6D-2BBCDD9AD0F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C06DB0A-999E-47A1-AF6D-2BBCDD9AD0F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C06DB0A-999E-47A1-AF6D-2BBCDD9AD0F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
