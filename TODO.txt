@@ -11,3 +11,36 @@ Settings:
 PlayManager:
 	Use the following solution to handle when sound should fade: http://stackoverflow.com/questions/4058175/binding-a-progressbar-to-a-mediaelement-in-wpf
 	kombined with this guide: http://stackoverflow.com/questions/22500918/how-to-fade-in-out-between-songs-with-a-wpf-c-sharp-mediaelement
+	
+Twitter:
+	- Make it possible to enable and disable twitter
+	- Make a login screen for twitter in the settings section which only appears when twitter is enabled
+	- After login the login screen should disappear and show settings for twitter
+	- Show user name and user image in the main window's title bar if you are logged in to twitter
+		- Make this clickable and when clicked take the user to the settings section of twitter
+		- When non are logged in show the twitter logo and the text "Login på twitter"
+	- Make a filter that removes all inappropriate tweets and let the user of the program modify the search keywords
+		- Make the option to disable and enable the filter
+		
+	Requirements:
+		- Include the Twitter bird www.twitter.com/logo  in close proximity to the Tweets for the duration that Tweets appear in your broadcast.
+		- Include the user’s name and Twitter handle (@username) with each Tweet.
+		- Use the full text of the Tweet. You may edit or revise Tweet text only as necessary due to technical or medium limitations (e.g., removing hyperlinks).
+		- Make sure that the Twitter logo or bird icon is a reasonable size in relation to the content. A little taller than a single line of text is a good guideline.
+	Don’t:
+		- Delete, obscure, or alter the identification of the user. You may show Tweets in anonymous form in exceptional cases such as concerns over user privacy.
+	
+	Showing unattributed data in aggregate or visualized form is permitted, but must still include the official Twitter bird.
+	
+	More information on requirements: https://support.twitter.com/articles/114233
+	
+	- Make sure to delete all tweets as soon as the application closes
+	
+	- More requirements: https://dev.twitter.com/overview/terms/policy
+		
+Lys avis:
+	- Make a tabitem in the lower section of the application for changing the message
+	- Make it possible to view the message in the bottom of the screen
+	- When twitter is enabled show the tweets here
+	- While showing the tweets have the bird nearby - requirement from twitter www.twitter.com/logo 
+	- 
