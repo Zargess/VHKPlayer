@@ -12,6 +12,13 @@ namespace Zargess.VHKPlayer.Model {
         public ObservableCollection<IFile> Content { get; set; }
         private ILoadingStrategy<IFile> LoadingStrategy { get; set; }
         public string Name { get; private set; }
+        public bool Repeat {
+            get {
+                return false;
+            }
+
+            set { }
+        }
 
         public SingleItemPlayable(ILoadingStrategy<IFile> loadingStrategy) {
             Content = new ObservableCollection<IFile>();

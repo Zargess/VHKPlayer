@@ -22,10 +22,13 @@ namespace Zargess.VHKPlayer.Model {
         public int Number { get; private set; }
         public Statistics Stats { get; private set; }
         public event StatsChangedHandler StatsChanged;
-        public int Size {
+
+        public bool Repeat {
             get {
-                return Content.Count;
+                return false;
             }
+
+            set {}
         }
 
         public Player(IPlayerFactory factory) {

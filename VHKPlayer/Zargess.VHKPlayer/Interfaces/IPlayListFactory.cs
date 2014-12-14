@@ -10,5 +10,6 @@ namespace Zargess.VHKPlayer.Interfaces {
         IFolder CreateFolder();
         IFileSelectionStrategy CreateSelectionStrategy();
         ILoadingStrategy<IFile> CreateLoadingStrategy();
+        bool CreateRepeat();
     }
 }

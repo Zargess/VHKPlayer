@@ -32,5 +32,11 @@ namespace Zargess.VHKPlayer.Factories.IPlayLists {
         public IFileSelectionStrategy CreateSelectionStrategy() {
             return new AllFilesSelectionStrategy();
         }
+
+        public bool CreateRepeat() {
+            var res = false;
+            bool.TryParse(Elements[2], out res);
+            return res;
+        }
     }
 }

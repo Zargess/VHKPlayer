@@ -97,8 +97,9 @@ namespace Zargess.VHKPlayer.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{RekFørKamp;root\\Rek;1;AllFilesSorted},{RekHalvej1;root\\Rek;2;AllFilesSorted},{10" +
-            "sek;root\\10sek;IteratedFolder}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{RekFørKamp;root\\Rek;1;false;AllFilesSorted},{RekHalvej1;root\\Rek;2;false;AllFile" +
+            "sSorted},{10sek;root\\10sek;true;IteratedFolder},{FørKamp;root\\FoerKamp;true;Iter" +
+            "atedFolder}")]
         public string playLists {
             get {
                 return ((string)(this["playLists"]));

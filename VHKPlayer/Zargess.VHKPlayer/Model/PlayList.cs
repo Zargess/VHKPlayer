@@ -15,13 +15,8 @@ namespace Zargess.VHKPlayer.Model {
         private ILoadingStrategy<IFile> LoadingStrategy { get; set; }
         public string Name { get; private set; }
         public ObservableCollection<IFile> Content { get; private set; }
+        public bool Repeat { get; set; }
         private IFolder Folder { get; set; }
-
-        public int Size {
-            get {
-                return Content.Count;
-            }
-        }
 
         public Dispatcher Disp { get; private set; }
 
@@ -31,6 +26,7 @@ namespace Zargess.VHKPlayer.Model {
             SelectionStrategy = factory.CreateSelectionStrategy();
             Folder = factory.CreateFolder();
             LoadingStrategy = factory.CreateLoadingStrategy();
+            Repeat = factory.CreateRepeat();
             LoadingStrategy.Load(Content);
             Disp = Dispatcher.CurrentDispatcher;
             Folder.InitWatcher();
