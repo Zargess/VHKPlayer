@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Zargess.VHKPlayer.Interfaces;
 using Zargess.VHKPlayer.Model;
+using Zargess.VHKPlayer.PlayManaging;
 using Zargess.VHKPlayer.Strategies.Loading.IContainers;
+using Zargess.VHKPlayer.Strategies.Playing;
 using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer.Factories.ViewModels {
@@ -52,6 +54,10 @@ namespace Zargess.VHKPlayer.Factories.ViewModels {
         private IFolder CreateFolderFromSetting(string key) {
             var path = App.ConfigService.GetString(key);
             return new FolderNode(PathHandler.AbsolutePath(path));
+        }
+
+        public IPlayManager CreatePlayManager() {
+            return new PlayManager(new GeneralPlayStrategy(new PlayFileStrategy(), new ShowImageStrategy(), new PlayPlayerStatStrategy()));
         }
     }
 }

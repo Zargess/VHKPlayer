@@ -12,5 +12,6 @@ namespace Zargess.VHKPlayer.Interfaces {
         IContainer<IPlayable> CreateCardContainer();
         IContainer<IPlayable> CreateMiscContainer();
         IContainer<IPlayable> CreatePlayerOut();
+        IPlayManager CreatePlayManager();
     }
 }

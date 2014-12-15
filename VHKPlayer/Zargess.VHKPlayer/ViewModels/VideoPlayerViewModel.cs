@@ -15,7 +15,7 @@ using Zargess.VHKPlayer.PlayManaging;
 using Zargess.VHKPlayer.Strategies.Playing;
 
 namespace Zargess.VHKPlayer.ViewModels {
-    public class VideoPlayerViewModel : IPlayController, INotifyPropertyChanged {
+    public class VideoPlayerViewModel : INotifyPropertyChanged {
         public IContainer<IContainer<IPlayable>> MusicContainer { get; private set; }
         public IContainer<IPlayable> PlayerContainer { get; private set; }
         public IContainer<IPlayable> PlayListContainer { get; private set; }
@@ -30,11 +30,6 @@ namespace Zargess.VHKPlayer.ViewModels {
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public event PlayerFunctionHandler PlayFunction;
-        public event PlayerFunctionHandler PauseFunction;
-        public event PlayerFunctionHandler StopFunction;
-        public event PlayerFunctionHandler MuteFunction;
-        public event PlayerFunctionHandler ResumeFunction;
 
         private IFile _currentVideoFile;
         public IFile CurrentVideoFile {
@@ -77,13 +72,12 @@ namespace Zargess.VHKPlayer.ViewModels {
             PlayListContainer = factory.CreatePlayListContainer();
             CardContainer = factory.CreateCardContainer();
             MiscContainer = factory.CreateMiscContainer();
+            Manager = factory.CreatePlayManager();
             // TODO : Move this to the factory
             PlayablePressed = new RelayCommand(PlayableClick);
             Test = new RelayCommand(TestClick);
             NotifiContainer = new NotificationContainer();
             NotifiContainer.Add(new Notification("Test"));
-
-            Manager = new PlayManager(new GeneralPlayStrategy(new PlayFileStrategy(), new ShowImageStrategy(), new PlayPlayerStatStrategy()));
         }
 
         private void PlayableClick(object parameter) {
@@ -112,56 +106,9 @@ namespace Zargess.VHKPlayer.ViewModels {
             NotifiContainer.Add(new Notification("Lolz"));
         }
 
-        public void Play(FileType type) {
-            RaisePlayerFunction(PlayFunction, PlayerFunctionType.Play, GetCurrentFile(type));
-        }
-
-        public void Pause(FileType type) {
-            RaisePlayerFunction(PauseFunction, PlayerFunctionType.Pause, GetCurrentFile(type));
-        }
-
-        public void Stop(FileType type) {
-            RaisePlayerFunction(StopFunction, PlayerFunctionType.Stop, GetCurrentFile(type));
-        }
-
-        public void Mute(FileType type) {
-            RaisePlayerFunction(MuteFunction, PlayerFunctionType.Mute, GetCurrentFile(type));
-        }
-
-        public void Resume(FileType type) {
-            RaisePlayerFunction(ResumeFunction, PlayerFunctionType.Resume, GetCurrentFile(type));
-        }
-
-        /// <summary>
-        /// Finds the wanted File from the currently active files from each type.
-        /// Precondition: Parameter must be either Video, Music or Picture
-        /// </summary>
-        /// <param name="type">The wanted file type</param>
-        /// <returns>The wanted file</returns>
-        private IFile GetCurrentFile(FileType type) {
-            IFile res = null;
-            switch(type) {
-                case FileType.Music:
-                    res = CurrentMusicFile;
-                    break;
-                case FileType.Video:
-                    res = CurrentVideoFile;
-                    break;
-                case FileType.Picture:
-                    res = CurrentPictureFile;
-                    break;
-            }
-            return res;
-        }
-
         private void RaisePropertyChanged(string name) {
             if (PropertyChanged == null) return;
             PropertyChanged(this, new PropertyChangedEventArgs(name));
-        }
-
-        private void RaisePlayerFunction(PlayerFunctionHandler handler, PlayerFunctionType type, IFile file) {
-            if (handler == null) return;
-            handler(this, new PlayerFunctionEventArgs(type, file));
         }
     }
 }

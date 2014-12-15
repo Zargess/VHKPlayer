@@ -28,19 +28,19 @@ namespace Zargess.VHKPlayer {
             else App.ConfigService.Update("root", @"C:\Users\MFH\vhk");
             InitializeComponent();
             DataContext = App.PlayerViewModel;
-            App.PlayerViewModel.PlayFunction += PlayerViewModel_PlayFunction;
+            App.PlayerViewModel.Manager.PlayFunction += Manager_PlayFunction;
             Viewer.MediaEnded += Viewer_MediaEnded;
         }
 
-        private void Viewer_MediaEnded(object sender, RoutedEventArgs e) {
-            App.PlayerViewModel.Manager.PlayQueue();
-        }
-
-        private void PlayerViewModel_PlayFunction(object sender, PlayerFunctionEventArgs e) {
+        private void Manager_PlayFunction(object sender, PlayerFunctionEventArgs e) {
             if (e.File.Type == FileType.Music) return;
             Viewer.Source = new Uri(e.File.FullPath);
             Viewer.Play();
             Console.WriteLine("Playing {0}", e.File.Name);
+        }
+
+        private void Viewer_MediaEnded(object sender, RoutedEventArgs e) {
+            App.PlayerViewModel.Manager.PlayQueue();
         }
     }
 }

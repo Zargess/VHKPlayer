@@ -21,7 +21,7 @@ namespace Zargess.VHKPlayer.Strategies.Playing {
                 App.PlayerViewModel.CurrentMusicFile = file.Clone();
             }
 
-            App.PlayerViewModel.Play(file.Type);
+            App.PlayerViewModel.Manager.Play(file.Type);
         }
     }
 }

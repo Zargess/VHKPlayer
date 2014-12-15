@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Zargess.VHKPlayer.Enums;
 
 namespace Zargess.VHKPlayer.Interfaces {
-    public interface IPlayManager {
+    public interface IPlayManager : IPlayController {
         Queue<IFile> Queue { get; }
         IPlayable CurrentPlayable { get; }
 

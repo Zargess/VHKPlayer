@@ -6,7 +6,8 @@ Implement the playmanager
 	- Try to make the mediaelement preload the files for smooth transition
 	
 Settings:
-	Make a page where you can check for updates. Use the following guides: http://elbruno.com/2013/06/01/azure-howto-publish-a-clickonce-application-using-and-azure-website/ and http://msdn.microsoft.com/en-us/library/ms404263.aspx
+	Make a page where you can check for updates. Use the following guides: http://elbruno.com/2013/06/01/azure-howto-publish-a-clickonce-application-using-and-azure-website/ and 
+	http://msdn.microsoft.com/en-us/library/ms404263.aspx
 
 PlayManager:
 	Use the following solution to handle when sound should fade: http://stackoverflow.com/questions/4058175/binding-a-progressbar-to-a-mediaelement-in-wpf
