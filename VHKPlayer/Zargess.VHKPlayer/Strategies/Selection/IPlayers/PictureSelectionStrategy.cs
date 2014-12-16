@@ -8,6 +8,16 @@ using Zargess.VHKPlayer.Model;
 
 namespace Zargess.VHKPlayer.Strategies.Selection.IPlayers {
     public class PictureSelectionStrategy : IFileSelectionStrategy {
+        public IQueuePeekStrategy PeekStrategy { get; private set; }
+
+        public PictureSelectionStrategy(IQueuePeekStrategy peekStrategy) {
+            PeekStrategy = peekStrategy;
+        }
+
+        public IFile HintNext(Queue<IFile> q, IPlayable p) {
+            return PeekStrategy.HintNext(q, 0, p);
+        }
+
         public Queue<IFile> SelectFiles(IPlayable playable) {
             var res = new Queue<IFile>();
             var file = new FileNode(App.ConfigService.GetPathString("playerFolders", 0));

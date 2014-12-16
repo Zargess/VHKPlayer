@@ -7,6 +7,7 @@ using Zargess.VHKPlayer.Interfaces;
 using Zargess.VHKPlayer.Model;
 using Zargess.VHKPlayer.Strategies.Loading.IPlayables;
 using Zargess.VHKPlayer.Strategies.Selection.IPlayLists;
+using Zargess.VHKPlayer.Strategies.Utils;
 using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer.Factories.IPlayLists {
@@ -30,7 +31,7 @@ namespace Zargess.VHKPlayer.Factories.IPlayLists {
         }
 
         public IFileSelectionStrategy CreateSelectionStrategy() {
-            return new AllFilesSelectionStrategy();
+            return new AllFilesSelectionStrategy(new GeneralQueuePeekStrategy());
         }
 
         public bool CreateRepeat() {

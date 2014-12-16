@@ -30,14 +30,14 @@ namespace Zargess.VHKPlayer.Model {
 
         public Queue<IFile> Play(PlayType pt) {
             var res = new Queue<IFile>();
-            if (Content.Count > 0) res.Enqueue(Content[0].Clone());
+            if (Content.Count > 0) res.Enqueue(Content[0]);
             return res;
         }
 
         public ObservableCollection<IFile> GetContent() {
             var res = new ObservableCollection<IFile>();
             foreach (var file in Content) {
-                res.Add(file.Clone());
+                res.Add(file);
             }
             return res;
         }

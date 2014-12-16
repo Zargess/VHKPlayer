@@ -9,6 +9,7 @@ using Zargess.VHKPlayer.Strategies.Loading.IPlayers;
 using Zargess.VHKPlayer.Strategies.Selection.IPlayers;
 using Zargess.VHKPlayer.Strategies.Loading.StatisticsLoading;
 using Zargess.VHKPlayer.Utility;
+using Zargess.VHKPlayer.Strategies.Utils;
 
 namespace Zargess.VHKPlayer.Factories.IPlayers {
     public class PlayerFactory : IPlayerFactory {
@@ -42,15 +43,15 @@ namespace Zargess.VHKPlayer.Factories.IPlayers {
         }
 
         public IFileSelectionStrategy CreatePicSelectionStrategy() {
-            return new PictureSelectionStrategy();
+            return new PictureSelectionStrategy(new GeneralQueuePeekStrategy());
         }
 
         public IFileSelectionStrategy CreateVidSelectionStrategy() {
-            return new VideoSelectionStrategy(CreatePicSelectionStrategy());
+            return new VideoSelectionStrategy(CreatePicSelectionStrategy(), new GeneralQueuePeekStrategy());
         }
 
         public IFileSelectionStrategy CreateStatSelectionStrategy() {
-            return new StatSelectionStrategy(CreatePicSelectionStrategy(), CreateVidSelectionStrategy());
+            return new StatSelectionStrategy(CreatePicSelectionStrategy(), CreateVidSelectionStrategy(), new GeneralQueuePeekStrategy());
         }
 
         public IStatsLoadingStrategy CreateStatsLoadingStrategy() {

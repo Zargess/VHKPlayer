@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.Interfaces {
-    public interface IFileSelectionStrategy {
-        Queue<IFile> SelectFiles(IPlayable playable);
-        IFile HintNext(Queue<IFile> q, IPlayable p);
+    public interface IQueuePeekStrategy {
+        IFile HintNext(Queue<IFile> q, int index, IPlayable p);
     }
 }

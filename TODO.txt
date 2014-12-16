@@ -45,4 +45,6 @@ Lys avis:
 	- Make it possible to view the message in the bottom of the screen
 	- When twitter is enabled show the tweets here
 	- While showing the tweets have the bird nearby - requirement from twitter www.twitter.com/logo 
-	- 
+
+Control Placement:
+	- Find a way to set the placement of a control

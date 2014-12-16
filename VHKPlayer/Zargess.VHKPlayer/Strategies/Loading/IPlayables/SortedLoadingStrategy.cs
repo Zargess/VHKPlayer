@@ -25,7 +25,7 @@ namespace Zargess.VHKPlayer.Strategies.Loading.IPlayables {
                 if (!file.Exists()) continue;
                 if (file.Type == FileType.Unsupported) continue;
                 if (ToNumber(c) <= 0) continue;
-                content.Add(file.Clone());
+                content.Add(file);
             }
         }
 

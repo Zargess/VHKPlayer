@@ -114,9 +114,5 @@ namespace Zargess.VHKPlayer.Model {
             Watcher = null;
             return true;
         }
-
-        public IFolder Clone() {
-            return new FolderNode(FullPath);
-        }
     }
 }

@@ -13,10 +13,12 @@ namespace Zargess.VHKPlayer.Strategies.Selection.IPlayers {
 
         public IFileSelectionStrategy VidSelection { get; private set; }
         public IFileSelectionStrategy PicSelection { get; private set; }
+        public IQueuePeekStrategy PeekStrategy { get; private set; }
 
-        public StatSelectionStrategy(IFileSelectionStrategy picSelection, IFileSelectionStrategy vidSelection) {
+        public StatSelectionStrategy(IFileSelectionStrategy picSelection, IFileSelectionStrategy vidSelection, IQueuePeekStrategy peekStrategy) {
             PicSelection = picSelection;
             VidSelection = vidSelection;
+            PeekStrategy = peekStrategy;
         }
 
         public Queue<IFile> SelectFiles(IPlayable playable) {
@@ -30,14 +32,18 @@ namespace Zargess.VHKPlayer.Strategies.Selection.IPlayers {
             var pic = content.FirstOrDefault(x => statPicFolder.ContainsFile(x));
             var mus = content.FirstOrDefault(x => statMusicFolder.ContainsFile(x));
             var vid = content.FirstOrDefault(x => statVideoFolder.ContainsFile(x));
-            res.Enqueue(pic.Clone());
-            if (mus != null) res.Enqueue(mus.Clone());
+            res.Enqueue(pic);
+            if (mus != null) res.Enqueue(mus);
             if (vid == null) {
                 vid = PicSelection.SelectFiles(playable).Dequeue();
             }
-            res.Enqueue(vid.Clone());
+            res.Enqueue(vid);
 
             return res;
+        }
+
+        public IFile HintNext(Queue<IFile> q, IPlayable p) {
+            return PeekStrategy.HintNext(q, 0, p);
         }
     }
 }

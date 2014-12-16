@@ -50,7 +50,7 @@ namespace Zargess.VHKPlayer.Model {
         public ObservableCollection<IFile> GetContent() {
             var res = new ObservableCollection<IFile>();
             foreach (var file in Content) {
-                res.Add(file.Clone());
+                res.Add(file);
             }
             return res;
         }
