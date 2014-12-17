@@ -20,6 +20,13 @@ namespace Zargess.VHKPlayer.Model {
             set { }
         }
 
+
+        public IFileSelectionStrategy SelectionStrategy {
+            get {
+                throw new NotImplementedException();
+            }
+        }
+
         public SingleItemPlayable(ILoadingStrategy<IFile> loadingStrategy) {
             Content = new ObservableCollection<IFile>();
             LoadingStrategy = loadingStrategy;

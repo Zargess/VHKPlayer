@@ -32,6 +32,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
             }
             if (Queue.Count == 0) return; // TODO : Handle Auto 10 sek
             PlayStrategy.Play(Queue.Dequeue(), CurrentType);
+            
         }
 
         public void Play(IPlayable playable, PlayType type) {

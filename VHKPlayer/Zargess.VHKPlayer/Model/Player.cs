@@ -16,6 +16,7 @@ namespace Zargess.VHKPlayer.Model {
         private IFileSelectionStrategy StatSelection { get; set; }
         private IStatsLoadingStrategy StatsLoadingStrategy { get; set; }
         public ObservableCollection<IFile> Content { get; private set; }
+        public IFileSelectionStrategy SelectionStrategy { get; private set; }
 
         public string Name { get; private set; }
         public bool Trainer { get; private set; }
@@ -30,6 +31,7 @@ namespace Zargess.VHKPlayer.Model {
 
             set {}
         }
+
 
         public Player(IPlayerFactory factory) {
             Number = factory.CreateNumber();
@@ -56,10 +58,7 @@ namespace Zargess.VHKPlayer.Model {
         }
 
         public Queue<IFile> Play(PlayType pt) {
-            if (pt == PlayType.PlayerPic) return PicSelection.SelectFiles(this);
-            if (pt == PlayType.PlayerVid) return VidSelection.SelectFiles(this);
-            if (pt == PlayType.PlayerStat) return StatSelection.SelectFiles(this);
-            return new Queue<IFile>();
+            return SelectionStrategy.SelectFiles(this, pt);
         }
 
         private void StatsFolderChanged(object sender, EventArgs e) {

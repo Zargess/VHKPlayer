@@ -113,7 +113,7 @@
                 <Grid Grid.Row="2" Grid.Column="0">
                     <!--<metro:DropDownButton HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding NotifiContainer.Content}" Icon="{x:Null}" Content="{Binding NotifiContainer.Content.Count}" Style="{DynamicResource IldStyle}" />-->
                     <!--<user:NotificationControl />-->
-                    <MediaElement Name="Viewer" LoadedBehavior="Manual" Volume="0.0" />
+                    <MediaElement Name="Viewer" LoadedBehavior="Manual" IsMuted="False" />
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="0">

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.Interfaces;
+using Zargess.VHKPlayer.Model;
 using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer.Strategies.Selection.IPlayers {
@@ -16,15 +18,16 @@ namespace Zargess.VHKPlayer.Strategies.Selection.IPlayers {
             PeekStrategy = peekStrategy;
         }
 
-        public Queue<IFile> SelectFiles(IPlayable playable) {
+        public Queue<IFile> SelectFiles(IPlayable playable, PlayType type) {
             var res = new Queue<IFile>();
             var temp = App.ConfigService.GetPathString("playerFolders", 1);
-            var vidFolderPath = PathHandler.AbsolutePath(temp).ToLower();
-            res.Enqueue(playable.Content.First(x => x.FullPath.ToLower().Contains(vidFolderPath)));
+            var vidFolderPath = new FolderNode(PathHandler.AbsolutePath(temp).ToLower());
+            vidFolderPath.StopWatcher();
+            res.Enqueue(playable.Content.First(x => vidFolderPath.ContainsFile(x)));
             return res;
         }
 
-        public IFile HintNext(Queue<IFile> q, IPlayable p) {
+        public IFile HintNext(Queue<IFile> q, IPlayable p, PlayType type) {
             return PeekStrategy.HintNext(q, 0, p);
         }
     }

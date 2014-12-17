@@ -8,5 +8,6 @@ namespace Zargess.VHKPlayer.Interfaces {
         bool Repeat { get; set; }
         ObservableCollection<IFile> Content { get; }
         Queue<IFile> Play(PlayType pt);
+        IFileSelectionStrategy SelectionStrategy { get; }
     }
 }
