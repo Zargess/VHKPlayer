@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.Interfaces;
 
 namespace Zargess.VHKPlayer.Strategies.Selection.IPlayLists {
@@ -13,11 +14,11 @@ namespace Zargess.VHKPlayer.Strategies.Selection.IPlayLists {
             PeekStrategy = peekStrategy;
         }
 
-        public IFile HintNext(Queue<IFile> q, IPlayable p) {
+        public IFile HintNext(Queue<IFile> q, IPlayable p, PlayType type) {
             return PeekStrategy.HintNext(q, 0, p);
         }
 
-        public Queue<IFile> SelectFiles(IPlayable playable) {
+        public Queue<IFile> SelectFiles(IPlayable playable, PlayType type) {
             var res = new Queue<IFile>();
             foreach (var file in playable.Content) {
                 res.Enqueue(file);

@@ -11,9 +11,6 @@ using Zargess.VHKPlayer.Interfaces;
 namespace Zargess.VHKPlayer.Model {
     public class Player : IPlayer {
         private ILoadingStrategy<IFile> LoadingStrategy { get; set; }
-        private IFileSelectionStrategy PicSelection { get; set; }
-        private IFileSelectionStrategy VidSelection { get; set; }
-        private IFileSelectionStrategy StatSelection { get; set; }
         private IStatsLoadingStrategy StatsLoadingStrategy { get; set; }
         public ObservableCollection<IFile> Content { get; private set; }
         public IFileSelectionStrategy SelectionStrategy { get; private set; }
@@ -40,10 +37,8 @@ namespace Zargess.VHKPlayer.Model {
             Content = new ObservableCollection<IFile>();
             LoadingStrategy = factory.CreateLoadingStrategy();
             LoadingStrategy.Load(Content);
-            PicSelection = factory.CreatePicSelectionStrategy();
-            VidSelection = factory.CreateVidSelectionStrategy();
-            StatSelection = factory.CreateStatSelectionStrategy();
             StatsLoadingStrategy = factory.CreateStatsLoadingStrategy();
+            SelectionStrategy = factory.CreateSelectionStrategy();
             var statsFolder = new FolderNode(App.ConfigService.GetString("statsFolder"));
             statsFolder.FolderChanged += StatsFolderChanged;
             StatsFolderChanged(this, null);

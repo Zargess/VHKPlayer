@@ -41,7 +41,7 @@ namespace Zargess.VHKPlayer.Test {
 
         [TestMethod]
         public void PlayListContainerContains12PlayLists() {
-            Assert.AreEqual(3, _vm.PlayListContainer.Content.Count);
+            Assert.AreEqual(4, _vm.PlayListContainer.Content.Count);
         }
 
         [TestMethod]

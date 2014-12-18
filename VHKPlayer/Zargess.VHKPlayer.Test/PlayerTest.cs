@@ -67,7 +67,7 @@ namespace Zargess.VHKPlayer.Test {
 
         [TestMethod]
         public void PlayerPlayCallWithStatParameterShouldReturnQueueOfSize3() {
-            Assert.AreEqual(3, _player.Play(PlayType.PlayerStat).Count);
+            Assert.AreEqual(2, _player.Play(PlayType.PlayerStat).Count);
         }
 
         [TestMethod]
@@ -87,6 +87,7 @@ namespace Zargess.VHKPlayer.Test {
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException), "A wrong PlayType was given to the Player Selection Strategy")]
         public void PlayerPlayCallWithPlayListParameterShouldReturnEmptyQueue() {
             Assert.AreEqual(0, _player.Play(PlayType.PlayList).Count);
         }

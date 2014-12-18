@@ -82,6 +82,7 @@
     <Compile Include="Factories\IPlayLists\IteratedFolderPlayListFactory.cs" />
     <Compile Include="Factories\IPlayLists\IteratedNoLoadingFactory.cs" />
     <Compile Include="Factories\IPlayLists\IteratedSortedPlayListFactory.cs" />
+    <Compile Include="Factories\ISingleItemPlayables\SingleItemPlayableFactory.cs" />
     <Compile Include="Factories\ViewModels\VideoPlayerFactory.cs" />
     <Compile Include="Interfaces\IGlobalConfigService.cs" />
     <Compile Include="Interfaces\INotification.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Interfaces\IPlayStrategy.cs" />
     <Compile Include="Interfaces\IQueuePeekStrategy.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
+    <Compile Include="Interfaces\ISingleItemPlayableFactory.cs" />
     <Compile Include="Interfaces\IVideoPlayerFactory.cs" />
     <Compile Include="Model\FileNode.cs" />
     <Compile Include="Model\FolderNode.cs" />
@@ -132,6 +134,7 @@
     <Compile Include="Strategies\Selection\IPlayLists\AllFilesSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\IPlayLists\IteratedFileSelectionStrategy.cs" />
     <Compile Include="Strategies\Loading\StatisticsLoading\DigimatchStatsLoadingStrategy.cs" />
+    <Compile Include="Strategies\Selection\ISingleItemPlayables\SingleItemPlayableSelectionStrategy.cs" />
     <Compile Include="Strategies\Utils\GeneralQueuePeekStrategy.cs" />
     <Compile Include="Strategies\Utils\IteratedQueuePeekStrategy.cs" />
     <Compile Include="Utility\GeneralFunctions.cs" />

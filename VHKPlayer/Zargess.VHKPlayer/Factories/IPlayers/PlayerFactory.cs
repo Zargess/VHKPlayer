@@ -42,20 +42,24 @@ namespace Zargess.VHKPlayer.Factories.IPlayers {
             return new PlayerLoadingStrategy(File);
         }
 
-        public IFileSelectionStrategy CreatePicSelectionStrategy() {
+        public IStatsLoadingStrategy CreateStatsLoadingStrategy() {
+            return new DigimatchStatsLoadingStrategy();
+        }
+
+        public IFileSelectionStrategy CreateSelectionStrategy() {
+            return new GeneralPlayerSelectionStrategy(CreatePicSelectionStrategy(), CreateVidSelectionStrategy(), CreateStatSelectionStrategy());
+        }
+
+        private IFileSelectionStrategy CreatePicSelectionStrategy() {
             return new PictureSelectionStrategy(new GeneralQueuePeekStrategy());
         }
 
-        public IFileSelectionStrategy CreateVidSelectionStrategy() {
+        private IFileSelectionStrategy CreateVidSelectionStrategy() {
             return new VideoSelectionStrategy(CreatePicSelectionStrategy(), new GeneralQueuePeekStrategy());
         }
 
-        public IFileSelectionStrategy CreateStatSelectionStrategy() {
-            return new StatSelectionStrategy(CreatePicSelectionStrategy(), CreateVidSelectionStrategy(), new GeneralQueuePeekStrategy());
-        }
-
-        public IStatsLoadingStrategy CreateStatsLoadingStrategy() {
-            return new DigimatchStatsLoadingStrategy();
+        private IFileSelectionStrategy CreateStatSelectionStrategy() {
+            return new StatSelectionStrategy(CreatePicSelectionStrategy(), new GeneralQueuePeekStrategy());
         }
     }
 }

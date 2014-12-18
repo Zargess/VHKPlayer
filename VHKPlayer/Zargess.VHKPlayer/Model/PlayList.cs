@@ -11,7 +11,6 @@ using Zargess.VHKPlayer.Interfaces;
 
 namespace Zargess.VHKPlayer.Model {
     public class PlayList : IPlayList {
-        private IFileSelectionStrategy SelectionStrategy { get; set; }
         private ILoadingStrategy<IFile> LoadingStrategy { get; set; }
         public string Name { get; private set; }
         public ObservableCollection<IFile> Content { get; private set; }
@@ -19,6 +18,8 @@ namespace Zargess.VHKPlayer.Model {
         private IFolder Folder { get; set; }
 
         public Dispatcher Disp { get; private set; }
+
+        public IFileSelectionStrategy SelectionStrategy { get; private set; }
 
         public PlayList(IPlayListFactory factory) {
             Content = new SortableCollection<IFile>();

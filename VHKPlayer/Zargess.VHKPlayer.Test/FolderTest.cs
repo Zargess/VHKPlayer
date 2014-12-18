@@ -137,8 +137,8 @@ namespace Zargess.VHKPlayer.Test {
         }
 
         [TestMethod]
-        public void FolderStopWatcherCannotBeCalledIfWatcherIsntInitialised() {
-            Assert.IsFalse(_folder.StopWatcher());
+        public void FolderStopWatcherCanBeCalledIfWatcherIsntInitialised() {
+            Assert.IsTrue(_folder.StopWatcher());
         }
 
         [TestMethod]

@@ -31,7 +31,7 @@ namespace Zargess.VHKPlayer {
             App.PlayerViewModel.Manager.PlayFunction += Manager_PlayFunction;
             Viewer.MediaEnded += Viewer_MediaEnded;
         }
-
+        // TODO : Make this mediaelement work just like the mediaelement that will be shown on the big screen.
         private void Manager_PlayFunction(object sender, PlayerFunctionEventArgs e) {
             if (e.File.Type == FileType.Music) return;
             Viewer.Source = new Uri(e.File.FullPath);

@@ -7,6 +7,7 @@ using Zargess.VHKPlayer.Interfaces;
 using Zargess.VHKPlayer.Model;
 using Zargess.VHKPlayer.Strategies.Loading.IPlayables;
 using Zargess.VHKPlayer.Enums;
+using Zargess.VHKPlayer.Factories.ISingleItemPlayables;
 
 namespace Zargess.VHKPlayer.Test {
     /// <summary>
@@ -15,15 +16,19 @@ namespace Zargess.VHKPlayer.Test {
     [TestClass]
     public class SingleItemPlayableTest {
         private IPlayable _single;
+        private IFile _testFile;
         [TestInitialize]
         public void Setup() {
             var path = @"D:\Github";
+            IFile file;
             if (Directory.Exists(path)) {
-                _single = new SingleItemPlayable(new FileLoadingStrategy(@"D:\Dropbox\Programmering\C#\damer 2013-2014\musik\Andet\muse_2.mp3"));
+                file = new FileNode(@"D:\Dropbox\Programmering\C#\damer 2013-2014\musik\Andet\muse_2.mp3");
+                
             } else {
-                _single = new SingleItemPlayable(new FileLoadingStrategy(@"C:\Users\MFH\vhk\musik\Andet\muse_2.mp3"));
+                file = new FileNode(@"C:\Users\MFH\vhk\musik\Andet\muse_2.mp3");
             }
-
+            _single = new SingleItemPlayable(new SingleItemPlayableFactory(file));
+            _testFile = new FileNode(@"C:\Users\MFH\vhk\musik\Andet\Test.txt");
         }
 
         [TestMethod]
@@ -33,7 +38,7 @@ namespace Zargess.VHKPlayer.Test {
 
         [TestMethod]
         public void SingleItemPlayableCannotAddTest_txtToItAndShouldHaveNoFilesInContent() {
-            IPlayable single = new SingleItemPlayable(new FileLoadingStrategy(@"C:\Users\MFH\vhk\musik\Andet\Test.txt"));
+            IPlayable single = new SingleItemPlayable(new SingleItemPlayableFactory(_testFile));
             Assert.AreEqual(0, single.Content.Count);
         }
 
@@ -44,7 +49,7 @@ namespace Zargess.VHKPlayer.Test {
 
         [TestMethod]
         public void SingleItemPlayableNameShouldBeNullWhenFileDoesntExist() {
-            IPlayable single = new SingleItemPlayable(new FileLoadingStrategy(@"C:\Users\MFH\vhk\musik\Andet\Test.txt"));
+            IPlayable single = new SingleItemPlayable(new SingleItemPlayableFactory(_testFile));
             Assert.IsNull(single.Name);
         }
 
@@ -55,7 +60,7 @@ namespace Zargess.VHKPlayer.Test {
 
         [TestMethod]
         public void EmptySingleItemPlayablePlayCallShouldResultInEmptyQueue() {
-            IPlayable single = new SingleItemPlayable(new FileLoadingStrategy(@"C:\Users\MFH\vhk\musik\Andet\Test.txt"));
+            IPlayable single = new SingleItemPlayable(new SingleItemPlayableFactory(_testFile));
             Assert.AreEqual(0, single.Play(PlayType.PlayList).Count);
         }
 

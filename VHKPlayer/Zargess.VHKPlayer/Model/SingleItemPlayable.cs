@@ -21,24 +21,19 @@ namespace Zargess.VHKPlayer.Model {
         }
 
 
-        public IFileSelectionStrategy SelectionStrategy {
-            get {
-                throw new NotImplementedException();
-            }
-        }
+        public IFileSelectionStrategy SelectionStrategy { get; private set; }
 
-        public SingleItemPlayable(ILoadingStrategy<IFile> loadingStrategy) {
+        public SingleItemPlayable(ISingleItemPlayableFactory factory) {
             Content = new ObservableCollection<IFile>();
-            LoadingStrategy = loadingStrategy;
+            LoadingStrategy = factory.CreateLoadingStrategy();
+            SelectionStrategy = factory.CreateSelectionStrategy();
             LoadingStrategy.Load(Content);
             if (Content.Count <= 0) return;
             Name = Content[0].Name;
         }
 
         public Queue<IFile> Play(PlayType pt) {
-            var res = new Queue<IFile>();
-            if (Content.Count > 0) res.Enqueue(Content[0]);
-            return res;
+            return SelectionStrategy.SelectFiles(this, pt);
         }
 
         public ObservableCollection<IFile> GetContent() {

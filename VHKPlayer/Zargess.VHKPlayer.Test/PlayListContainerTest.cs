@@ -35,7 +35,7 @@ namespace Zargess.VHKPlayer.Test {
         [TestMethod]
         public void AfterLoadIsCalledPlayListContainerSizeShouldBeX() {
             _container.Load();
-            Assert.AreEqual(3, _container.Content.Count);
+            Assert.AreEqual(4, _container.Content.Count);
         }
 
         [TestMethod]

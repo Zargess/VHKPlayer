@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 using System.Windows.Threading;
 using Zargess.VHKPlayer.Collections;
 using Zargess.VHKPlayer.Enums;
+using Zargess.VHKPlayer.Factories.ISingleItemPlayables;
 using Zargess.VHKPlayer.Interfaces;
 using Zargess.VHKPlayer.Strategies.Loading.IPlayables;
+using Zargess.VHKPlayer.Strategies.Selection.ISingleItemPlayables;
 
 namespace Zargess.VHKPlayer.Model {
     public class SingleItemContainer : IContainer<IPlayable> {
@@ -34,7 +36,7 @@ namespace Zargess.VHKPlayer.Model {
             foreach (var file in Folder.Content) {
                 if (file.Name == null) continue;
                 if (file.Type == FileType.Info) continue;
-                Content.Add(new SingleItemPlayable(new FileLoadingStrategy(file.FullPath)));
+                Content.Add(new SingleItemPlayable(new SingleItemPlayableFactory(file)));
             }
         }
     }

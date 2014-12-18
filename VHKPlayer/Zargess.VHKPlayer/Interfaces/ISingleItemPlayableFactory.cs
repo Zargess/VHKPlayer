@@ -5,13 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.Interfaces {
-    public interface IPlayerFactory {
-        IFile CreateFile();
-        string CreateName();
-        int CreateNumber();
-        bool CreateTrainer();
+    public interface ISingleItemPlayableFactory {
         ILoadingStrategy<IFile> CreateLoadingStrategy();
-        IStatsLoadingStrategy CreateStatsLoadingStrategy();
         IFileSelectionStrategy CreateSelectionStrategy();
     }
 }

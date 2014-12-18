@@ -16,9 +16,8 @@ namespace Zargess.VHKPlayer.Strategies.Selection.IPlayers {
         public IFileSelectionStrategy PicSelection { get; private set; }
         public IQueuePeekStrategy PeekStrategy { get; private set; }
 
-        public StatSelectionStrategy(IFileSelectionStrategy picSelection, IFileSelectionStrategy vidSelection, IQueuePeekStrategy peekStrategy) {
+        public StatSelectionStrategy(IFileSelectionStrategy picSelection, IQueuePeekStrategy peekStrategy) {
             PicSelection = picSelection;
-            VidSelection = vidSelection;
             PeekStrategy = peekStrategy;
         }
 
