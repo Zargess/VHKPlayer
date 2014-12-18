@@ -25,6 +25,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
             PlayStrategy = playStrategy;
         }
 
+        // TODO : Handle Music Queue
         public void PlayQueue() {
             if (Queue == null) return;
             if (CurrentPlayable.Repeat && Queue.Count == 0) {
@@ -32,7 +33,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
             }
             if (Queue.Count == 0) return; // TODO : Handle Auto 10 sek
             PlayStrategy.Play(Queue.Dequeue(), CurrentType);
-            
+
         }
 
         public void Play(IPlayable playable, PlayType type) {
@@ -62,6 +63,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
             RaisePlayerFunction(ResumeFunction, PlayerFunctionType.Resume, GetCurrentFile(type));
         }
 
+        // TODO : Consider moving this method to a strategy
         /// <summary>
         /// Finds the wanted File from the currently active files from each type.
         /// Precondition: Parameter must be either Video, Music or Picture
