@@ -55,9 +55,5 @@ namespace Zargess.VHKPlayer.Factories.ViewModels {
             var path = App.ConfigService.GetString(key);
             return new FolderNode(PathHandler.AbsolutePath(path));
         }
-
-        public IPlayManager CreatePlayManager() {
-            return new PlayManager(new GeneralPlayStrategy(new PlayFileStrategy(), new ShowImageStrategy(), new PlayPlayerStatStrategy()));
-        }
     }
 }

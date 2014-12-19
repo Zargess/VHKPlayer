@@ -20,10 +20,8 @@ namespace Zargess.VHKPlayer.Strategies.Playing {
         }
 
         public void Play(IFile file, PlayType type) {
-            if (file.Type != FileType.Picture) {
+            if (type != PlayType.PlayerStat) {
                 CurrentStrategy = PlayFileStrategy;
-            } else if (type != PlayType.PlayerStat) {
-                CurrentStrategy = ShowImageStrategy;
             } else {
                 CurrentStrategy = PlayPlayerStatStrategy;
             }

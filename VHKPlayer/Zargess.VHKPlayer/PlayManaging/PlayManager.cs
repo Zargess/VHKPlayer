@@ -14,15 +14,11 @@ namespace Zargess.VHKPlayer.PlayManaging {
         private PlayType CurrentType { get; set; }
         public IPlayStrategy PlayStrategy { get; private set; }
         public IFileSelectionStrategy QueueEmptyStrategy { get; private set; }
-
-        public event PlayerFunctionHandler PlayFunction;
-        public event PlayerFunctionHandler PauseFunction;
-        public event PlayerFunctionHandler StopFunction;
-        public event PlayerFunctionHandler MuteFunction;
-        public event PlayerFunctionHandler ResumeFunction;
+        private List<IPlayObserver> Observers { get; set; }
 
         public PlayManager(IPlayStrategy playStrategy) {
             PlayStrategy = playStrategy;
+            Observers = new List<IPlayObserver>();
         }
 
         // TODO : Handle Music Queue
@@ -32,8 +28,10 @@ namespace Zargess.VHKPlayer.PlayManaging {
                 Queue = CurrentPlayable.Play(CurrentType);
             }
             if (Queue.Count == 0) return; // TODO : Handle Auto 10 sek
+            var file = Queue.Dequeue();
+            PlayStrategy.Play(file, CurrentType);
+            if (file.Type != FileType.Music || CurrentPlayable.SelectionStrategy.HintNext(Queue, CurrentPlayable, CurrentType).Type == FileType.Music) return;
             PlayStrategy.Play(Queue.Dequeue(), CurrentType);
-
         }
 
         public void Play(IPlayable playable, PlayType type) {
@@ -43,52 +41,32 @@ namespace Zargess.VHKPlayer.PlayManaging {
             PlayQueue();
         }
 
+        public void AddObserver(IPlayObserver observer) {
+            Observers.Add(observer);
+        }
+
+        public void SetCurrentFile(IFile file) {
+            Observers.ForEach(x => x.SetCurrentFile(file));
+        }
+
         public void Play(FileType type) {
-            RaisePlayerFunction(PlayFunction, PlayerFunctionType.Play, GetCurrentFile(type));
+            Observers.ForEach(x => x.Play(type));
         }
 
         public void Pause(FileType type) {
-            RaisePlayerFunction(PauseFunction, PlayerFunctionType.Pause, GetCurrentFile(type));
+            Observers.ForEach(x => x.Pause(type));
         }
 
         public void Stop(FileType type) {
-            RaisePlayerFunction(StopFunction, PlayerFunctionType.Stop, GetCurrentFile(type));
+            Observers.ForEach(x => x.Stop(type));
         }
 
         public void Mute(FileType type) {
-            RaisePlayerFunction(MuteFunction, PlayerFunctionType.Mute, GetCurrentFile(type));
+            Observers.ForEach(x => x.Mute(type));
         }
 
         public void Resume(FileType type) {
-            RaisePlayerFunction(ResumeFunction, PlayerFunctionType.Resume, GetCurrentFile(type));
-        }
-
-        // TODO : Consider moving this method to a strategy
-        /// <summary>
-        /// Finds the wanted File from the currently active files from each type.
-        /// Precondition: Parameter must be either Video, Music or Picture
-        /// </summary>
-        /// <param name="type">The wanted file type</param>
-        /// <returns>The wanted file</returns>
-        private IFile GetCurrentFile(FileType type) {
-            IFile res = null;
-            switch (type) {
-                case FileType.Music:
-                    res = App.PlayerViewModel.CurrentMusicFile;
-                    break;
-                case FileType.Video:
-                    res = App.PlayerViewModel.CurrentVideoFile;
-                    break;
-                case FileType.Picture:
-                    res = App.PlayerViewModel.CurrentPictureFile;
-                    break;
-            }
-            return res;
-        }
-
-        private void RaisePlayerFunction(PlayerFunctionHandler handler, PlayerFunctionType type, IFile file) {
-            if (handler == null) return;
-            handler(this, new PlayerFunctionEventArgs(type, file));
+            Observers.ForEach(x => x.Resume(type));
         }
     }
 }

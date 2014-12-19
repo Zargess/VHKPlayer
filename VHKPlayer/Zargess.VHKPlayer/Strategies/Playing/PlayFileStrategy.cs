@@ -15,13 +15,9 @@ namespace Zargess.VHKPlayer.Strategies.Playing {
         /// <param name="file">The file that should be played</param>
         /// <param name="type">The wanted PlayType</param>
         public void Play(IFile file, PlayType type) {
-            if (file.Type == FileType.Video) {
-                App.PlayerViewModel.CurrentVideoFile = file;
-            } else if (file.Type == FileType.Music) {
-                App.PlayerViewModel.CurrentMusicFile = file;
-            }
+            App.PlayManager.SetCurrentFile(file);
 
-            App.PlayerViewModel.Manager.Play(file.Type);
+            App.PlayManager.Play(file.Type);
         }
     }
 }

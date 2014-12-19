@@ -114,7 +114,7 @@
                     <!--<metro:DropDownButton HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding NotifiContainer.Content}" Icon="{x:Null}" Content="{Binding NotifiContainer.Content.Count}" Style="{DynamicResource IldStyle}" />-->
                     <!--<user:NotificationControl />-->
                     <MediaElement Name="Viewer" LoadedBehavior="Manual" IsMuted="True" />
-                    <MediaElement Name="Audio" LoadedBehavior="Manual" IsMuted="True" />
+                    <MediaElement Name="Audio" LoadedBehavior="Manual" IsMuted="True" Visibility="Collapsed" />
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="0">

@@ -6,7 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Zargess.VHKPlayer.Factories.ViewModels;
+using Zargess.VHKPlayer.Interfaces;
+using Zargess.VHKPlayer.PlayManaging;
 using Zargess.VHKPlayer.Settings;
+using Zargess.VHKPlayer.Strategies.Playing;
 using Zargess.VHKPlayer.ViewModels;
 
 namespace Zargess.VHKPlayer {
@@ -27,6 +30,14 @@ namespace Zargess.VHKPlayer {
             get {
                 if (_videoplayerviewmodel == null) _videoplayerviewmodel = new VideoPlayerViewModel(new VideoPlayerFactory());
                 return _videoplayerviewmodel;
+            }
+        }
+
+        private static IPlayManager _playManager;
+        public static IPlayManager PlayManager {
+            get {
+                if (_playManager == null) _playManager = new PlayManager(new GeneralPlayStrategy(new PlayFileStrategy(), new ShowImageStrategy(), new PlayPlayerStatStrategy()));
+                return _playManager;
             }
         }
     }

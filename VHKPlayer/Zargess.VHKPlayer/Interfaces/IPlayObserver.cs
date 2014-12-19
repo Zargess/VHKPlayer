@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zargess.VHKPlayer.Enums;
-using Zargess.VHKPlayer.EventHandlers;
 
 namespace Zargess.VHKPlayer.Interfaces {
-    public interface IPlayController {
+    public interface IPlayObserver {
         void Play(FileType type);
         void Pause(FileType type);
         void Stop(FileType type);
         void Mute(FileType type);
         void Resume(FileType type);
+        void SetCurrentFile(IFile file);
     }
 }

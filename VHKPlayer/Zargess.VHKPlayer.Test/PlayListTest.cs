@@ -103,7 +103,7 @@ namespace Zargess.VHKPlayer.Test {
         public void PlayListShouldHaveOneElementWhenSortedLoadingStrategyUsesIndex2InVhkRekFolder() {
             IFolder folder = new FolderNode(_folder.FullPath + @"\rek");
             IPlayList playlist = new PlayList(new AllFilesSortedPlayListFactory("{Test;" + folder.FullPath + ";2;false}"));
-            Assert.AreEqual(1, playlist.Content.Count);
+            Assert.AreEqual(2, playlist.Content.Count);
         }
 
         [TestMethod]

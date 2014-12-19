@@ -32,7 +32,7 @@ namespace Zargess.VHKPlayer.Strategies.Selection.IPlayers {
             var pic = content.FirstOrDefault(x => statPicFolder.ContainsFile(x));
             var mus = content.FirstOrDefault(x => statMusicFolder.ContainsFile(x));
             var vid = content.FirstOrDefault(x => statVideoFolder.ContainsFile(x));
-            //if (mus != null) res.Enqueue(mus);
+            if (mus != null) res.Enqueue(mus);
             if (vid == null) {
                 vid = PicSelection.SelectFiles(playable, type).Dequeue();
             }

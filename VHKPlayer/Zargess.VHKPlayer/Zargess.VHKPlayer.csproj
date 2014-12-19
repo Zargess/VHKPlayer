@@ -94,6 +94,7 @@
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Interfaces\ISingleItemPlayableFactory.cs" />
     <Compile Include="Interfaces\IVideoPlayerFactory.cs" />
+    <Compile Include="Interfaces\IPlayObserver.cs" />
     <Compile Include="Model\FileNode.cs" />
     <Compile Include="Model\FolderNode.cs" />
     <Compile Include="Model\MusicFolderContainer.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Model\PlayListContainer.cs" />
     <Compile Include="Model\SingleItemContainer.cs" />
     <Compile Include="Model\SingleItemPlayable.cs" />
+    <Compile Include="Observers\PlayObserver.cs" />
     <Compile Include="PlayerWindow.xaml.cs">
       <DependentUpon>PlayerWindow.xaml</DependentUpon>
     </Compile>
