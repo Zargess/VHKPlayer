@@ -93,6 +93,10 @@
 
     <Grid>
         <DockPanel>
+            <Menu DockPanel.Dock="Top" Height="28">
+                <MenuItem Header="Test" />
+                <MenuItem Header="Test" />
+            </Menu>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="256*"/>
@@ -111,8 +115,6 @@
                 <GridSplitter IsEnabled="False" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
                 <Grid Grid.Row="2" Grid.Column="0">
-                    <!--<metro:DropDownButton HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding NotifiContainer.Content}" Icon="{x:Null}" Content="{Binding NotifiContainer.Content.Count}" Style="{DynamicResource IldStyle}" />-->
-                    <!--<user:NotificationControl />-->
                     <MediaElement Name="Viewer" LoadedBehavior="Manual" IsMuted="True" />
                     <MediaElement Name="Audio" LoadedBehavior="Manual" IsMuted="True" Visibility="Collapsed" />
                 </Grid>

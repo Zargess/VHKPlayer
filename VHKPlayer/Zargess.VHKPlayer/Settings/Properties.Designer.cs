@@ -182,5 +182,29 @@ namespace Zargess.VHKPlayer.Settings {
                 this["requiredFolders"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool auto10Sek {
+            get {
+                return ((bool)(this["auto10Sek"]));
+            }
+            set {
+                this["auto10Sek"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{10sek;root\\10sek;true;IteratedFolder}")]
+        public string auto10SekPlayList {
+            get {
+                return ((string)(this["auto10SekPlayList"]));
+            }
+            set {
+                this["auto10SekPlayList"] = value;
+            }
+        }
     }
 }

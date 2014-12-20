@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.EventHandlers;
 using Zargess.VHKPlayer.Interfaces;
+using Zargess.VHKPlayer.Model;
+using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer.PlayManaging {
     public class PlayManager : IPlayManager {
@@ -15,19 +17,25 @@ namespace Zargess.VHKPlayer.PlayManaging {
         public IPlayStrategy PlayStrategy { get; private set; }
         public IFileSelectionStrategy QueueEmptyStrategy { get; private set; }
         private List<IPlayObserver> Observers { get; set; }
+        private IPlayList Auto10SekPlayList { get; set; }
 
         public PlayManager(IPlayStrategy playStrategy) {
             PlayStrategy = playStrategy;
             Observers = new List<IPlayObserver>();
+            Auto10SekPlayList = GeneralFunctions.ConstructPlayList(App.ConfigService.GetString("auto10SekPlayList"));
         }
 
-        // TODO : Handle Music Queue
         public void PlayQueue() {
             if (Queue == null) return;
             if (CurrentPlayable.Repeat && Queue.Count == 0) {
                 Queue = CurrentPlayable.Play(CurrentType);
             }
-            if (Queue.Count == 0) return; // TODO : Handle Auto 10 sek
+            var auto10sek = (bool)App.ConfigService.Get("auto10Sek");
+            if (Queue.Count == 0 && auto10sek) {
+                CurrentType = PlayType.PlayList;
+                Queue = Auto10SekPlayList.Play(CurrentType);
+            }
+            if (Queue.Count == 0) return;
             var file = Queue.Dequeue();
             PlayStrategy.Play(file, CurrentType);
             if (file.Type != FileType.Music || CurrentPlayable.SelectionStrategy.HintNext(Queue, CurrentPlayable, CurrentType).Type == FileType.Music) return;

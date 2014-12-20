@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zargess.VHKPlayer.Factories.IPlayLists;
+using Zargess.VHKPlayer.Interfaces;
+using Zargess.VHKPlayer.Model;
 
 namespace Zargess.VHKPlayer.Utility {
     public class GeneralFunctions {
@@ -17,6 +20,26 @@ namespace Zargess.VHKPlayer.Utility {
             s = s.Replace("}", "");
             var res = s.Split(';');
             return res;
+        }
+
+        public static IPlayList ConstructPlayList(string constructionString) {
+            var type = ConstructElements(constructionString).Last().ToLower();
+            switch (type) {
+                case "allfilesfolder":
+                    return new PlayList(new AllFilesFolderPlayListFactory(constructionString));
+                case "allfilesnoloading":
+                    return new PlayList(new AllFilesNoLoadingFactory(constructionString));
+                case "allfilessorted":
+                    return new PlayList(new AllFilesSortedPlayListFactory(constructionString));
+                case "iteratedfolder":
+                    return new PlayList(new IteratedFolderPlayListFactory(constructionString));
+                case "iteratednoloading":
+                    return new PlayList(new IteratedNoLoadingFactory(constructionString));
+                case "iteratedsorted":
+                    return new PlayList(new IteratedSortedPlayListFactory(constructionString));
+            }
+
+            return null;
         }
     }
 }
