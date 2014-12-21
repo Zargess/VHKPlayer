@@ -81,7 +81,7 @@ namespace Zargess.VHKPlayer.ViewModels {
 
 
         public VideoPlayerViewModel(IVideoPlayerFactory factory) {
-            // TODO : Implement a refresh function
+            // TODO : test the refresh function
             MusicContainer = factory.CreateMusicContainer();
             PlayerContainer = factory.CreatePlayerContainer();
             PlayListContainer = factory.CreatePlayListContainer();
