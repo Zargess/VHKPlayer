@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.EventHandlers;
 using Zargess.VHKPlayer.Interfaces;
@@ -17,12 +18,20 @@ namespace Zargess.VHKPlayer.PlayManaging {
         public IPlayStrategy PlayStrategy { get; private set; }
         public IFileSelectionStrategy QueueEmptyStrategy { get; private set; }
         private List<IPlayObserver> Observers { get; set; }
-        private IPlayList Auto10SekPlayList { get; set; }
+        public IPlayList Auto10SekPlayList { get; private set; }
+        public Action ReloadAction { get; private set; }
 
         public PlayManager(IPlayStrategy playStrategy) {
             PlayStrategy = playStrategy;
             Observers = new List<IPlayObserver>();
+            App.ConfigService.PropertyChanged += SettingsChanged;
+            ReloadAction = new Action(() => Auto10SekPlayList = GeneralFunctions.ConstructPlayList(App.ConfigService.GetString("auto10SekPlayList")));
             Auto10SekPlayList = GeneralFunctions.ConstructPlayList(App.ConfigService.GetString("auto10SekPlayList"));
+        }
+
+        private void SettingsChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) {
+            Action action = new Action(() => ReloadAction());
+            Application.Current.Dispatcher.BeginInvoke(action);
         }
 
         public void PlayQueue() {

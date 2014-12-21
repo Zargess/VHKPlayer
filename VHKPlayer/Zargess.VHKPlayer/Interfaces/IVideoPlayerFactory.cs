@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zargess.VHKPlayer.ViewModels;
 
 namespace Zargess.VHKPlayer.Interfaces {
     public interface IVideoPlayerFactory {
@@ -12,5 +13,6 @@ namespace Zargess.VHKPlayer.Interfaces {
         IContainer<IPlayable> CreateCardContainer();
         IContainer<IPlayable> CreateMiscContainer();
         IContainer<IPlayable> CreatePlayerOut();
+        Action<VideoPlayerViewModel> CreateReloadPolicy();
     }
 }

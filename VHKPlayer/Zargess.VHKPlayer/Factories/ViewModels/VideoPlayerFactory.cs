@@ -9,6 +9,7 @@ using Zargess.VHKPlayer.PlayManaging;
 using Zargess.VHKPlayer.Strategies.Loading.IContainers;
 using Zargess.VHKPlayer.Strategies.Playing;
 using Zargess.VHKPlayer.Utility;
+using Zargess.VHKPlayer.ViewModels;
 
 namespace Zargess.VHKPlayer.Factories.ViewModels {
     public class VideoPlayerFactory : IVideoPlayerFactory {
@@ -54,6 +55,18 @@ namespace Zargess.VHKPlayer.Factories.ViewModels {
         private IFolder CreateFolderFromSetting(string key) {
             var path = App.ConfigService.GetString(key);
             return new FolderNode(PathHandler.AbsolutePath(path));
+        }
+
+        public Action<VideoPlayerViewModel> CreateReloadPolicy() {
+            return new Action<VideoPlayerViewModel>(ReloadViewModel);
+        }
+
+        private void ReloadViewModel(VideoPlayerViewModel vm) {
+            vm.MusicContainer = CreateMusicContainer();
+            vm.PlayerContainer = CreatePlayerContainer();
+            vm.PlayListContainer = CreatePlayListContainer();
+            vm.CardContainer = CreateCardContainer();
+            vm.MiscContainer = CreateMiscContainer();
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Zargess.VHKPlayer.Interfaces {
     public interface IPlayManager : IPlayController {
         Queue<IFile> Queue { get; }
         IPlayable CurrentPlayable { get; }
+        IPlayList Auto10SekPlayList { get; }
 
         void PlayQueue();
         void Play(IPlayable playable, PlayType type);
