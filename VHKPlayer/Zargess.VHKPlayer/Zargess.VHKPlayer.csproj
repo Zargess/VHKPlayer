@@ -128,7 +128,6 @@
     <Compile Include="Strategies\Playing\GeneralPlayStrategy.cs" />
     <Compile Include="Strategies\Playing\PlayFileStrategy.cs" />
     <Compile Include="Strategies\Playing\PlayPlayerStatStrategy.cs" />
-    <Compile Include="Strategies\Playing\ShowImageStrategy.cs" />
     <Compile Include="Strategies\Selection\IPlayers\GeneralPlayerSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\IPlayers\PictureSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\IPlayers\StatSelectionStrategy.cs" />

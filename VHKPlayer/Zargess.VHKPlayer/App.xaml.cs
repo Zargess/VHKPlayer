@@ -36,7 +36,7 @@ namespace Zargess.VHKPlayer {
         private static IPlayManager _playManager;
         public static IPlayManager PlayManager {
             get {
-                if (_playManager == null) _playManager = new PlayManager(new GeneralPlayStrategy(new PlayFileStrategy(), new ShowImageStrategy(), new PlayPlayerStatStrategy()));
+                if (_playManager == null) _playManager = new PlayManager(new GeneralPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
                 return _playManager;
             }
         }

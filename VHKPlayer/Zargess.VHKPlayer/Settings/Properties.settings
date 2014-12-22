@@ -47,5 +47,8 @@
     <Setting Name="auto10SekPlayList" Type="System.String" Scope="User">
       <Value Profile="(Default)">{10sek;root\10sek;true;IteratedFolder}</Value>
     </Setting>
+    <Setting Name="timeStatShown" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

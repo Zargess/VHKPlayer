@@ -10,7 +10,8 @@ namespace Zargess.VHKPlayer.Strategies.Playing {
     public class PlayPlayerStatStrategy : IPlayStrategy {
         public void Play(IFile file, PlayType type) {
             if (file.Type == FileType.Picture) {
-                // TODO : Call ShowImageStrategy and handle stats
+                // TODO : Show stats and make a timer call PlayQueue after specified time
+
             }
             App.PlayManager.SetCurrentFile(file);
             App.PlayManager.Play(file.Type);

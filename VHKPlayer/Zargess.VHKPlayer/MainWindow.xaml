@@ -115,7 +115,7 @@
                 <GridSplitter IsEnabled="False" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
                 <Grid Grid.Row="2" Grid.Column="0">
-                    <MediaElement Name="Viewer" LoadedBehavior="Manual" IsMuted="True" />
+                    <MediaElement Name="Viewer" LoadedBehavior="Manual" IsMuted="True" Visibility="{Binding ViewerVisible}" />
                     <MediaElement Name="Audio" LoadedBehavior="Manual" IsMuted="True" Visibility="Collapsed" />
                 </Grid>
 

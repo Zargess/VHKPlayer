@@ -73,6 +73,18 @@ namespace Zargess.VHKPlayer.ViewModels {
             }
         }
 
+        // TODO : Consider moving this later on
+        private Visibility _viewerVisible;
+        public Visibility ViewerVisible {
+            get {
+                return _viewerVisible;
+            }
+            set {
+                _viewerVisible = value;
+                RaisePropertyChanged("ViewerVisible");
+            }
+        }
+
         public RelayCommand PlayablePressed { get; private set; }
         public RelayCommand Test { get; private set; }
         public INotificationContainer NotifiContainer { get; private set; }
@@ -82,6 +94,7 @@ namespace Zargess.VHKPlayer.ViewModels {
 
 
         public VideoPlayerViewModel(IVideoPlayerFactory factory) {
+            ViewerVisible = Visibility.Visible;
             // TODO : test the refresh function
             MusicContainer = factory.CreateMusicContainer();
             PlayerContainer = factory.CreatePlayerContainer();
