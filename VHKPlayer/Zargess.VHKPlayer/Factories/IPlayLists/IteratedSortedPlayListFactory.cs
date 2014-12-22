@@ -15,7 +15,7 @@ namespace Zargess.VHKPlayer.Factories.IPlayLists {
         private string[] Elements { get; set; }
 
         /*
-        Precondition: constructionString must be a string seperated into 2 parts by ;
+        Precondition: constructionString must be a string seperated into 4 parts by ;
         */
         public IteratedSortedPlayListFactory(string constructionString) {
             Elements = GeneralFunctions.ConstructElements(constructionString);

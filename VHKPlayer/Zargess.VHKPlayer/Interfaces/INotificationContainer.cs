@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Zargess.VHKPlayer.Interfaces {
     public interface INotificationContainer : INotifyPropertyChanged {
         ObservableCollection<INotification> Content { get; }
-        bool HasActiveNotification { get; }
         void Add(INotification item);
+        void Remove(INotification item);
     }
 }

@@ -24,14 +24,8 @@ namespace Zargess.VHKPlayer.PlayManaging {
         public PlayManager(IPlayStrategy playStrategy) {
             PlayStrategy = playStrategy;
             Observers = new List<IPlayObserver>();
-            App.ConfigService.PropertyChanged += SettingsChanged;
-            ReloadAction = new Action(() => Auto10SekPlayList = GeneralFunctions.ConstructPlayList(App.ConfigService.GetString("auto10SekPlayList")));
+            App.ConfigService.PropertyChanged += (sender, ee) => Auto10SekPlayList = GeneralFunctions.ConstructPlayList(App.ConfigService.GetString("auto10SekPlayList"));
             Auto10SekPlayList = GeneralFunctions.ConstructPlayList(App.ConfigService.GetString("auto10SekPlayList"));
-        }
-
-        private void SettingsChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) {
-            Action action = new Action(() => ReloadAction());
-            Application.Current.Dispatcher.BeginInvoke(action);
         }
 
         public void PlayQueue() {

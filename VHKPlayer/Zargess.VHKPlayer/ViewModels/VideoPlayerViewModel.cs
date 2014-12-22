@@ -14,6 +14,7 @@ using Zargess.VHKPlayer.Interfaces;
 using Zargess.VHKPlayer.Model;
 using Zargess.VHKPlayer.PlayManaging;
 using Zargess.VHKPlayer.Strategies.Playing;
+using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer.ViewModels {
     public class VideoPlayerViewModel : INotifyPropertyChanged {
@@ -88,17 +89,12 @@ namespace Zargess.VHKPlayer.ViewModels {
             CardContainer = factory.CreateCardContainer();
             MiscContainer = factory.CreateMiscContainer();
             ReloadAction = factory.CreateReloadPolicy();
-            App.ConfigService.PropertyChanged += SettingsChanged;
+            App.ConfigService.PropertyChanged += (sender, ee) => ReloadAction(this);
             // TODO : Move this to the factory
             PlayablePressed = new RelayCommand(PlayableClick);
             Test = new RelayCommand(TestClick);
             NotifiContainer = new NotificationContainer();
             NotifiContainer.Add(new Notification("Test"));
-        }
-
-        private void SettingsChanged(object sender, PropertyChangedEventArgs e) {
-            Action action = new Action(() => ReloadAction(this));
-            Application.Current.Dispatcher.BeginInvoke(action);
         }
 
         private void RaisePropertyChanged(string name) {
@@ -110,22 +106,7 @@ namespace Zargess.VHKPlayer.ViewModels {
             var item = (FindParameters)parameter;
             Console.WriteLine(item.ControlName);
             Console.WriteLine(item.Playable);
-            App.PlayManager.Play(item.Playable, GetPlayType(item.ControlName));
-        }
-
-        private PlayType GetPlayType(string controlName) {
-            switch(controlName) {
-                case "PlayList":
-                    return PlayType.PlayList;
-                case "PlayerPicture":
-                    return PlayType.PlayerPic;
-                case "PlayerVideo":
-                    return PlayType.PlayerVid;
-                case "PlayerVideoStat":
-                    return PlayType.PlayerStat;
-                default:
-                    return PlayType.Standard;
-            }
+            App.PlayManager.Play(item.Playable, GeneralFunctions.GetPlayType(item.ControlName));
         }
 
         private void TestClick(object parameter) {

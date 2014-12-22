@@ -25,7 +25,7 @@ namespace Zargess.VHKPlayer.Test {
             } else {
                 _folder = new FolderNode(@"c:\users\mfh\vhk");
             }
-            App.ConfigService.Update("root", _folder.FullPath);
+            if (App.ConfigService != null) App.ConfigService.Update("root", _folder.FullPath);
             _vm = new VideoPlayerViewModel(new VideoPlayerFactory());
         }
 

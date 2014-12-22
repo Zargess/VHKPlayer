@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.Factories.IPlayLists;
 using Zargess.VHKPlayer.Interfaces;
 using Zargess.VHKPlayer.Model;
@@ -40,6 +41,21 @@ namespace Zargess.VHKPlayer.Utility {
             }
 
             return null;
+        }
+
+        public static PlayType GetPlayType(string controlName) {
+            switch (controlName) {
+                case "PlayList":
+                    return PlayType.PlayList;
+                case "PlayerPicture":
+                    return PlayType.PlayerPic;
+                case "PlayerVideo":
+                    return PlayType.PlayerVid;
+                case "PlayerVideoStat":
+                    return PlayType.PlayerStat;
+                default:
+                    return PlayType.Standard;
+            }
         }
     }
 }

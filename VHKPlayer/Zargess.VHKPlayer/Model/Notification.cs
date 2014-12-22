@@ -10,12 +10,6 @@ namespace Zargess.VHKPlayer.Model {
     public class Notification : INotification {
         public string Message { get; private set; }
 
-        public bool Active {
-            get {
-                throw new NotImplementedException();
-            }
-        }
-
         public Notification(string message) {
             Message = message;
         }

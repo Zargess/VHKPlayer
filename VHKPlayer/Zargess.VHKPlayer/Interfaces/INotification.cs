@@ -8,6 +8,5 @@ using System.Threading.Tasks;
 namespace Zargess.VHKPlayer.Interfaces {
     public interface INotification : INotifyPropertyChanged {
         string Message { get; }
-        bool Active { get; }
     }
 }
