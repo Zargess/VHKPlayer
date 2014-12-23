@@ -22,17 +22,7 @@ namespace Zargess.VHKPlayer.Test {
 
         [TestInitialize()]
         public void Setup() {
-            var path = @"D:\Github";
-            if (Directory.Exists(path)) {
-                Environment.CurrentDirectory = @"D:\GitHub";
-                App.ConfigService.Update("statsFolder", @"D:\Github\VHKPlayer\DigiMatch");
-                _folder = new FolderNode(@"D:\Dropbox\Programmering\C#\damer 2013-2014");
-            } else {
-                Environment.CurrentDirectory = @"C:\Users\MFH\Documents\GitHub";
-                App.ConfigService.Update("statsFolder", @"C:\Users\MFH\Dropbox\Programmering\C#\DigiMatch");
-                _folder = new FolderNode(@"c:\users\mfh\vhk");
-            }
-            App.ConfigService.Update("root", _folder.FullPath);
+            _folder = Constants.GetRootFolder();
             var root = App.ConfigService.GetString("root");
             _playerFolder = new FolderNode(PathHandler.CombinePaths(_folder.FullPath, "spiller"));
             _file = new FileNode(PathHandler.CombinePaths(_playerFolder.FullPath, @"\001 - Chana de Souza Mason.png"));

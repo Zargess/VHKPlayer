@@ -15,12 +15,7 @@ namespace Zargess.VHKPlayer.Test {
     public class FileTest {
         [TestInitialize()]
         public void BeforeTests() {
-            var path = @"D:\Github";
-            if (Directory.Exists(path)) {
-                Environment.CurrentDirectory = @"D:\GitHub\VHKPlayer\Files for unit test";
-            } else {
-                Environment.CurrentDirectory = @"C:\Users\MFH\Documents\GitHub\VHKPlayer\Files for unit test";
-            }
+            Constants.GetRootFolder();
         }
 
         [TestMethod]

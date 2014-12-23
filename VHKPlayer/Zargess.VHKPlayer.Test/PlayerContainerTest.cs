@@ -18,12 +18,7 @@ namespace Zargess.VHKPlayer.Test {
         string path;
         [TestInitialize]
         public void Setup() {
-            var path = @"D:\Github";
-            if (Directory.Exists(path)) {
-                _folder = new FolderNode(@"D:\Dropbox\Programmering\C#\damer 2013-2014");
-            } else {
-                _folder = new FolderNode(@"c:\users\mfh\vhk");
-            }
+            _folder = Constants.GetRootFolder();
             App.ConfigService.Update("root", _folder.FullPath);
             this.path = PathHandler.AbsolutePath(App.ConfigService.GetPathString("playerFolders", 0));
             _container = new PlayerContainer("Spiller", new FolderNode(this.path));

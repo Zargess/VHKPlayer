@@ -19,12 +19,7 @@ namespace Zargess.VHKPlayer.Test {
 
         [TestInitialize()]
         public void BeforeTests() {
-            var path = @"D:\Github";
-            if (Directory.Exists(path)) {
-                _folder = new FolderNode(@"D:\Dropbox\Programmering\C#\damer 2013-2014");
-            } else {
-                _folder = new FolderNode(@"c:\users\mfh\vhk");
-            }
+            _folder = Constants.GetRootFolder();
             if (App.ConfigService != null) App.ConfigService.Update("root", _folder.FullPath);
             _vm = new VideoPlayerViewModel(new VideoPlayerFactory());
         }
