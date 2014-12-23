@@ -8,6 +8,7 @@ using Zargess.VHKPlayer.Model;
 using Zargess.VHKPlayer.Strategies.Loading.IPlayables;
 using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.Factories.ISingleItemPlayables;
+using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer.Test {
     /// <summary>
@@ -19,14 +20,8 @@ namespace Zargess.VHKPlayer.Test {
         private IFile _testFile;
         [TestInitialize]
         public void Setup() {
-            var path = @"D:\Github";
-            IFile file;
-            if (Directory.Exists(path)) {
-                file = new FileNode(@"D:\Dropbox\Programmering\C#\damer 2013-2014\musik\Andet\muse_2.mp3");
-                
-            } else {
-                file = new FileNode(@"C:\Users\MFH\vhk\musik\Andet\muse_2.mp3");
-            }
+            var folder = Constants.GetRootFolder();
+            IFile file = new FileNode(PathHandler.CombinePaths(folder.FullPath, @"musik\andet\muse_2.mp3"));
             _single = new SingleItemPlayable(new SingleItemPlayableFactory(file));
             _testFile = new FileNode(@"C:\Users\MFH\vhk\musik\Andet\Test.txt");
         }

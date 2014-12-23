@@ -17,26 +17,19 @@ namespace Zargess.VHKPlayer.Test {
 
         [TestInitialize()]
         public void BeforeTests() {
-            var path = @"D:\Github";
-            if (Directory.Exists(path)) {
-                Environment.CurrentDirectory = @"D:\GitHub";
-                _folder = new FolderNode(@"D:\Dropbox\Programmering\C#\damer 2013-2014");
-            } else {
-                Environment.CurrentDirectory = @"C:\Users\MFH\Documents\GitHub";
-                _folder = new FolderNode(@"c:\users\mfh\vhk");
-            }
+            _folder = Constants.GetRootFolder();
         }
 
         [TestMethod]
-        public void ProjectFolderNameShouldBeVHKPlayer() {
-            IFolder folder = new FolderNode(Environment.CurrentDirectory + @"\VHKPlayer");
-            Assert.AreEqual("VHKPlayer", folder.Name);
+        public void FolderNameShouldBeMoretests() {
+            IFolder folder = new FolderNode(Environment.CurrentDirectory + @"\more tests");
+            Assert.AreEqual("more tests", folder.Name);
         }
 
         [TestMethod]
-        public void FolderNameShouldBeGitHub() {
+        public void FolderNameShouldBeFilesForUnitTest() {
             IFolder folder = new FolderNode(Environment.CurrentDirectory);
-            Assert.AreEqual("GitHub", folder.Name);
+            Assert.AreEqual("Files for unit test", folder.Name);
         }
 
         [TestMethod]
@@ -47,38 +40,33 @@ namespace Zargess.VHKPlayer.Test {
 
         [TestMethod]
         public void FolderPathShouldBePathVHKPlayer() {
-            IFolder folder = new FolderNode(@"VHKPlayer");
-            Assert.AreEqual(Environment.CurrentDirectory + @"\VHKPlayer", folder.FullPath);
-        }
-
-        [TestMethod]
-        public void FolderSourceShouldGitHub() {
-            IFolder folder = new FolderNode(Environment.CurrentDirectory + @"\VHKPlayer");
-            Assert.AreEqual("GitHub", folder.Source);
+            var path = Environment.CurrentDirectory.Replace(@"\Files for unit test", "");
+            IFolder folder = new FolderNode(path);
+            Assert.AreEqual(path, folder.FullPath);
         }
 
         [TestMethod]
         public void FolderSourceShouldVHKPlayer() {
-            IFolder folder = new FolderNode(Environment.CurrentDirectory + @"\VHKPlayer\Files for unit test");
+            IFolder folder = new FolderNode(Environment.CurrentDirectory);
             Assert.AreEqual("VHKPlayer", folder.Source);
         }
 
         [TestMethod]
         public void FolderContentSizeShouldBeFour() {
-            IFolder folder = new FolderNode(Environment.CurrentDirectory + @"\VHKPlayer\Files for unit test");
+            IFolder folder = new FolderNode(Environment.CurrentDirectory);
             Assert.AreEqual(3, folder.Content.Count);
         }
 
         [TestMethod]
         public void FolderContentSizeShouldBeNine() {
-            IFolder folder = new FolderNode(Environment.CurrentDirectory + @"\VHKPlayer\Files for unit test\more tests");
+            IFolder folder = new FolderNode(Environment.CurrentDirectory + @"\more tests");
             Assert.AreEqual(1, folder.Content.Count);
         }
 
         [TestMethod]
         public void FolderShouldContainMuse_2_mp3FullPath() {
-            IFolder folder = new FolderNode(Environment.CurrentDirectory + @"\VHKPlayer\Files for unit test\more tests");
-            Assert.AreEqual(true, folder.ContainsFile(new FileNode(Environment.CurrentDirectory + @"\VHKPlayer\Files for unit test\more tests\muse_2.mp3")));
+            IFolder folder = new FolderNode(Environment.CurrentDirectory + @"\more tests");
+            Assert.AreEqual(true, folder.ContainsFile(new FileNode(Environment.CurrentDirectory + @"\more tests\muse_2.mp3")));
         }
 
         [TestMethod]
@@ -89,20 +77,22 @@ namespace Zargess.VHKPlayer.Test {
 
         [TestMethod]
         public void VHKPlayerFolderShouldContainFolderFiles_for_unit_test() {
-            IFolder folder = new FolderNode(Environment.CurrentDirectory + @"\VHKPlayer");
-            Assert.AreEqual(true, folder.ContainsFolder(new FolderNode(Environment.CurrentDirectory + @"\VHKPlayer\Files for unit test")));
+            var path = Environment.CurrentDirectory.Replace(@"\Files for unit test", "");
+            IFolder folder = new FolderNode(path);
+            Assert.AreEqual(true, folder.ContainsFolder(new FolderNode(path + @"\Files for unit test")));
         }
 
         [TestMethod]
         public void VHKPlayerFolderShouldContainFolderTemp() {
-            IFolder folder = new FolderNode(Environment.CurrentDirectory + @"\VHKPlayer");
-            Assert.AreEqual(false, folder.ContainsFolder(new FolderNode(Environment.CurrentDirectory + @"\VHKPlayer\Temp")));
+            var path = Environment.CurrentDirectory.Replace(@"\Files for unit test", "");
+            IFolder folder = new FolderNode(path);
+            Assert.AreEqual(false, folder.ContainsFolder(new FolderNode(Environment.CurrentDirectory + @"\Temp")));
         }
 
         [TestMethod]
-        public void VHKPlayerFolderShouldContainFiles_for_unit_test() {
-            IFolder folder = new FolderNode(Environment.CurrentDirectory + @"\VHKPlayer");
-            Assert.AreEqual(true, folder.ContainsFolder(new FolderNode(Environment.CurrentDirectory + @"\VHKPlayer\Files for unit test")));
+        public void Files_For_unit_testFolderShouldContainMore_Tests() {
+            IFolder folder = new FolderNode(Environment.CurrentDirectory);
+            Assert.AreEqual(true, folder.ContainsFolder(new FolderNode(Environment.CurrentDirectory + @"\more tests")));
         }
 
         [TestMethod]

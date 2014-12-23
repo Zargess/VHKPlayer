@@ -17,13 +17,7 @@ namespace Zargess.VHKPlayer.Test {
         IContainer<IPlayable> _container;
         [TestInitialize]
         public void Setup() {
-            var path = @"D:\Github";
-            if (Directory.Exists(path)) {
-                _folder = new FolderNode(@"D:\Dropbox\Programmering\C#\damer 2013-2014");
-            } else {
-                _folder = new FolderNode(@"c:\users\mfh\vhk");
-            }
-            App.ConfigService.Update("root", _folder.FullPath);
+            _folder = Constants.GetRootFolder();
             _container = new SingleItemContainer(new FolderNode(PathHandler.CombinePaths(_folder.FullPath, @"musik\andet")));
         }
 

@@ -50,16 +50,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="FileTest.cs" />
     <Compile Include="FolderTest.cs" />
     <Compile Include="PlayerContainerTest.cs" />
     <Compile Include="PlayerTest.cs" />
     <Compile Include="PlayListContainerTest.cs" />
     <Compile Include="PlayListTest.cs" />
+    <Compile Include="PlayManagerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingleItemContainerTest.cs" />
     <Compile Include="SingleItemPlayableTest.cs" />
     <Compile Include="StatsLoadingTest.cs" />
+    <Compile Include="TestClasses\TestObserver.cs" />
     <Compile Include="ViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>

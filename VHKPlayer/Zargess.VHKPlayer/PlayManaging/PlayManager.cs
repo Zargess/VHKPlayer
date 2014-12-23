@@ -33,15 +33,18 @@ namespace Zargess.VHKPlayer.PlayManaging {
             if (CurrentPlayable.Repeat && Queue.Count == 0) {
                 Queue = CurrentPlayable.Play(CurrentType);
             }
+            // TODO : Move to state pattern
             var auto10sek = (bool)App.ConfigService.Get("auto10Sek");
             if (Queue.Count == 0 && auto10sek) {
                 CurrentType = PlayType.PlayList;
                 Queue = Auto10SekPlayList.Play(CurrentType);
             }
+            // -------------------------------------------------------------------------
             if (Queue.Count == 0) return;
             var file = Queue.Dequeue();
             PlayStrategy.Play(file, CurrentType);
-            if (file.Type != FileType.Music || CurrentPlayable.SelectionStrategy.HintNext(Queue, CurrentPlayable, CurrentType).Type == FileType.Music) return;
+            var next = CurrentPlayable.SelectionStrategy.HintNext(Queue, CurrentPlayable, CurrentType);
+            if (file.Type != FileType.Music || next.Type == FileType.Music) return;
             PlayStrategy.Play(Queue.Dequeue(), CurrentType);
         }
 

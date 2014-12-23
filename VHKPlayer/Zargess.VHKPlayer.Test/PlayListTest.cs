@@ -20,12 +20,7 @@ namespace Zargess.VHKPlayer.Test {
 
         [TestInitialize]
         public void Setup() {
-            var path = @"D:\Github";
-            if (Directory.Exists(path)) {
-                _folder = new FolderNode(@"D:\Dropbox\Programmering\C#\damer 2013-2014");
-            } else {
-                _folder = new FolderNode(@"c:\users\mfh\vhk");
-            }
+            _folder = Constants.GetRootFolder();
             _file = new FileNode(@"c:\test.txt");
             _playlist = new PlayList(new AllFilesNoLoadingFactory("{Test;" + _folder.FullPath + ";false}"));
         }
