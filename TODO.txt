@@ -4,8 +4,18 @@
 Implement the playmanager
 	- Make it so that the playmanager knows when sound on a mediaelement should fade out and then does it.
 	- Try to make the mediaelement preload the files for smooth transition
+	- Make PlayObserver handle when Picture is shown
+	- When Auto 10 sek is enabled call strategy to handle this else call a null strategy
+	- Tests:
+		* Test the PlayManager by making a fake PlayObserver and add it to the PlayManager. Then test that each funtion is called
+		* Call Play and PlayQueue with some test data and watch for the right changes
+
+Test the PlayObserver
+	- Find a proper way to test the PlayObserver
 	
 Settings:
+	* Desgin a GUI where only 3 buttons are available to all pages: Apply, Ok, Annuller. Only when Anuller or Ok is pressed will the GUI close
+	* Remove the GUI's title bar
 	* Make a page where you can check for updates. Use the following guides: http://elbruno.com/2013/06/01/azure-howto-publish-a-clickonce-application-using-and-azure-website/ and http://msdn.microsoft.com/en-us/library/ms404263.aspx
 	* Only call Update in GlobalConfigService once either OK or Apply has been pressed
 	* Make two GlobalConfigServices with two different settings files
@@ -51,4 +61,4 @@ Lys avis:
 	- While showing the tweets have the bird nearby - requirement from twitter www.twitter.com/logo 
 
 Control Placement:
-	- Find a way to set the placement of a control
+	- Use the Thickness type as the Margin property can use this as a binding
