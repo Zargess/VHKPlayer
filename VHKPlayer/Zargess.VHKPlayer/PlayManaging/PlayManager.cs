@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Collections.Generic;
 using Zargess.VHKPlayer.Collections;
 using Zargess.VHKPlayer.Enums;
-using Zargess.VHKPlayer.EventHandlers;
 using Zargess.VHKPlayer.Interfaces;
-using Zargess.VHKPlayer.Model;
-using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer.PlayManaging {
     public class PlayManager : IPlayManager {
