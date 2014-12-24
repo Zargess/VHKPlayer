@@ -41,14 +41,8 @@
     <Setting Name="requiredFolders" Type="System.String" Scope="User">
       <Value Profile="(Default)">root\rek;root\10sek;root\spiller;root\spillervideo;root\spillervideostat;root\spillervideostat\mp3;root\spillervideostat\video</Value>
     </Setting>
-    <Setting Name="auto10Sek" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="auto10SekPlayList" Type="System.String" Scope="User">
       <Value Profile="(Default)">{10sek;root\10sek;true;IteratedFolder}</Value>
-    </Setting>
-    <Setting Name="timeStatShown" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">5</Value>
     </Setting>
   </Settings>
 </SettingsFile>

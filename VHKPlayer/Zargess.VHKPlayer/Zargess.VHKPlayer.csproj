@@ -60,6 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Collections\CustomQueue.cs" />
     <Compile Include="Collections\SortableCollection.cs" />
     <Compile Include="Commands\FindParameters.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Factories\IPlayLists\IteratedFolderPlayListFactory.cs" />
     <Compile Include="Factories\IPlayLists\IteratedNoLoadingFactory.cs" />
     <Compile Include="Factories\IPlayLists\IteratedSortedPlayListFactory.cs" />
+    <Compile Include="Factories\IPlayManagers\PlayManagerFactory.cs" />
     <Compile Include="Factories\ISingleItemPlayables\SingleItemPlayableFactory.cs" />
     <Compile Include="Factories\ViewModels\VideoPlayerFactory.cs" />
     <Compile Include="Interfaces\IGlobalConfigService.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="Interfaces\INotificationContainer.cs" />
     <Compile Include="Interfaces\IPlayController.cs" />
     <Compile Include="Interfaces\IPlayManager.cs" />
+    <Compile Include="Interfaces\IPlayManagerFactory.cs" />
     <Compile Include="Interfaces\IPlayStrategy.cs" />
     <Compile Include="Interfaces\IQueuePeekStrategy.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
@@ -113,6 +116,12 @@
     <Compile Include="PlayManaging\PlayManager.cs" />
     <Compile Include="Selectors\ListboxVisibilityStyleSelector.cs" />
     <Compile Include="Settings\GlobalConfigService.cs" />
+    <Compile Include="Settings\GUISettings.cs" />
+    <Compile Include="Settings\GuiSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>GuiSettings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Settings\Properties.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -135,7 +144,11 @@
     <Compile Include="Strategies\Selection\IPlayLists\AllFilesSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\IPlayLists\IteratedFileSelectionStrategy.cs" />
     <Compile Include="Strategies\Loading\StatisticsLoading\DigimatchStatsLoadingStrategy.cs" />
+    <Compile Include="Strategies\Selection\IPlayManager\Auto10SekSelectionStrategy.cs" />
+    <Compile Include="Strategies\Selection\IPlayManager\GeneralManagerSelectionStrategy.cs" />
+    <Compile Include="Strategies\Selection\IPlayManager\RepeatSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\ISingleItemPlayables\SingleItemPlayableSelectionStrategy.cs" />
+    <Compile Include="Strategies\Selection\NullSelectionStrategy.cs" />
     <Compile Include="Strategies\Utils\GeneralQueuePeekStrategy.cs" />
     <Compile Include="Strategies\Utils\IteratedQueuePeekStrategy.cs" />
     <Compile Include="Utility\GeneralFunctions.cs" />
@@ -203,6 +216,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Settings\GuiSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>GuiSettings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Settings\Properties.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Properties.Designer.cs</LastGenOutput>

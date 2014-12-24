@@ -185,18 +185,6 @@ namespace Zargess.VHKPlayer.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool auto10Sek {
-            get {
-                return ((bool)(this["auto10Sek"]));
-            }
-            set {
-                this["auto10Sek"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("{10sek;root\\10sek;true;IteratedFolder}")]
         public string auto10SekPlayList {
             get {
@@ -204,18 +192,6 @@ namespace Zargess.VHKPlayer.Settings {
             }
             set {
                 this["auto10SekPlayList"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public int timeStatShown {
-            get {
-                return ((int)(this["timeStatShown"]));
-            }
-            set {
-                this["timeStatShown"] = value;
             }
         }
     }
