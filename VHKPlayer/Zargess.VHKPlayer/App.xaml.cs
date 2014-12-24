@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Zargess.VHKPlayer.Factories.IPlayManagers;
 using Zargess.VHKPlayer.Factories.ViewModels;
 using Zargess.VHKPlayer.Interfaces;
 using Zargess.VHKPlayer.PlayManaging;
@@ -25,6 +26,14 @@ namespace Zargess.VHKPlayer {
             }
         }
 
+        private static GlobalConfigService _guiconfigservice;
+        public static GlobalConfigService GuiConfigService {
+            get {
+                if (_guiconfigservice == null) _guiconfigservice = new GlobalConfigService(new GUISettings());
+                return _guiconfigservice;
+            }
+        }
+
         private static VideoPlayerViewModel _videoplayerviewmodel;
         public static VideoPlayerViewModel PlayerViewModel {
             get {
@@ -36,7 +45,7 @@ namespace Zargess.VHKPlayer {
         private static IPlayManager _playManager;
         public static IPlayManager PlayManager {
             get {
-                if (_playManager == null) _playManager = new PlayManager(new GeneralPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
+                if (_playManager == null) _playManager = new PlayManager(new PlayManagerFactory());
                 return _playManager;
             }
         }

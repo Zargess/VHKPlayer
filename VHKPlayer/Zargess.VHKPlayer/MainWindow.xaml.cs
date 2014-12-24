@@ -18,6 +18,7 @@ using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.EventHandlers;
 using Zargess.VHKPlayer.Interfaces;
 using Zargess.VHKPlayer.Observers;
+using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer {
     /// <summary>
@@ -26,9 +27,19 @@ namespace Zargess.VHKPlayer {
     public partial class MainWindow : MetroWindow {
 
         public MainWindow() {
-            var root = @"D:\Dropbox\Programmering\C#\damer 2013-2014";
-            if (Directory.Exists(root)) App.ConfigService.Update("root", root);
-            else App.ConfigService.Update("root", @"C:\Users\MFH\vhk");
+            var path = @"D:\Dropbox\Programmering\C#";
+            var path2 = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Dropbox\Programmering\C#";
+            var root = "damer 2013-2014";
+            var statsFolder = "digimatch";
+            Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+            if (Directory.Exists(path)) {
+                App.ConfigService.Update("root", PathHandler.CombinePaths(path, root));
+                App.ConfigService.Update("statsFolder", PathHandler.CombinePaths(path, statsFolder));
+            } else {
+                App.ConfigService.Update("root", PathHandler.CombinePaths(path2, root));
+                App.ConfigService.Update("statsFolder", PathHandler.CombinePaths(path2, statsFolder));
+            }
+
             InitializeComponent();
             DataContext = App.PlayerViewModel;
             App.PlayManager.AddObserver(new PlayObserver(Viewer, Audio, false));

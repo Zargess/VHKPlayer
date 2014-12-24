@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Zargess.VHKPlayer.Collections;
 using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.EventHandlers;
 using Zargess.VHKPlayer.Interfaces;
@@ -13,33 +14,25 @@ using Zargess.VHKPlayer.Utility;
 namespace Zargess.VHKPlayer.PlayManaging {
     public class PlayManager : IPlayManager {
         public IPlayable CurrentPlayable { get; private set; }
-        public Queue<IFile> Queue { get; private set; }
+        public CustomQueue<IFile> Queue { get; private set; }
         private PlayType CurrentType { get; set; }
         public IPlayStrategy PlayStrategy { get; private set; }
         public IFileSelectionStrategy QueueEmptyStrategy { get; private set; }
         private List<IPlayObserver> Observers { get; set; }
         public IPlayList Auto10SekPlayList { get; private set; }
-        public Action ReloadAction { get; private set; }
 
-        public PlayManager(IPlayStrategy playStrategy) {
-            PlayStrategy = playStrategy;
-            Observers = new List<IPlayObserver>();
-            App.ConfigService.PropertyChanged += (sender, ee) => Auto10SekPlayList = GeneralFunctions.ConstructPlayList(App.ConfigService.GetString("auto10SekPlayList"));
-            Auto10SekPlayList = GeneralFunctions.ConstructPlayList(App.ConfigService.GetString("auto10SekPlayList"));
+        public PlayManager(IPlayManagerFactory factory) {
+            PlayStrategy = factory.CreatePlayStrategy();
+            Queue = factory.CreateQueue();
+            Observers = factory.CreateObserverList();
+            App.ConfigService.PropertyChanged += (sender, ee) => Auto10SekPlayList = factory.CreateAuto10SekPlayList();
+            Auto10SekPlayList = factory.CreateAuto10SekPlayList();
+            QueueEmptyStrategy = factory.CreateQueueEmptyStrategy();
         }
 
         public void PlayQueue() {
-            if (Queue == null) return;
-            if (CurrentPlayable.Repeat && Queue.Count == 0) {
-                Queue = CurrentPlayable.Play(CurrentType);
-            }
-            // TODO : Move to state pattern
-            var auto10sek = (bool)App.ConfigService.Get("auto10Sek");
-            if (Queue.Count == 0 && auto10sek) {
-                CurrentType = PlayType.PlayList;
-                Queue = Auto10SekPlayList.Play(CurrentType);
-            }
-            // -------------------------------------------------------------------------
+            var emptyCaseQueue = QueueEmptyStrategy.SelectFiles(CurrentPlayable, CurrentType);
+            if (emptyCaseQueue != null) Queue.SetQueue(emptyCaseQueue);
             if (Queue.Count == 0) return;
             var file = Queue.Dequeue();
             PlayStrategy.Play(file, CurrentType);
@@ -49,7 +42,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
         }
 
         public void Play(IPlayable playable, PlayType type) {
-            Queue = playable.Play(type);
+            Queue.SetQueue(playable.Play(type));
             CurrentPlayable = playable;
             CurrentType = type;
             PlayQueue();
