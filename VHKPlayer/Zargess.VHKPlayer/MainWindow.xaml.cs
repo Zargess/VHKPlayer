@@ -44,7 +44,7 @@ namespace Zargess.VHKPlayer {
             }
             // -------------------------------------------------------------------------------------
             InitializeComponent();
-            _vm = new MediaViewModel(Viewer, Audio, ViewPort, false, false);
+            _vm = new MediaViewModel(Viewer, Audio, ViewPort, false, true);
             DataContext = _vm;
             App.PlayManager.AddObserver(_vm.Observer);
         }
