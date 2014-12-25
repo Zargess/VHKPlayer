@@ -16,12 +16,14 @@ namespace Zargess.VHKPlayer.Observers {
         private IFile CurrentPictureFile { get; set; }
         private IFile CurrentVideoFile { get; set; }
         private bool AllowAudio { get; set; }
+        private bool AllowStat { get; set; }
 
-        public PlayObserver(MediaElement viewer, MediaElement audio, bool allowAudio) {
+        public PlayObserver(MediaElement viewer, MediaElement audio, bool allowAudio, bool allowStat) {
             Viewer = viewer;
             Audio = audio;
             Viewer.MediaEnded += Viewer_MediaEnded;
             AllowAudio = allowAudio;
+            AllowStat = allowStat;
         }
 
         private void Viewer_MediaEnded(object sender, RoutedEventArgs e) {
@@ -42,6 +44,7 @@ namespace Zargess.VHKPlayer.Observers {
             player.Pause();
         }
 
+        // TODO : At the start of this method unsubscribe from current players stats
         public void Play(FileType type) {
             var player = GetMediaElement(type);
             var file = GetFile(type);
@@ -87,6 +90,13 @@ namespace Zargess.VHKPlayer.Observers {
             } else if (type == FileType.Picture) {
                 return CurrentPictureFile;
             } else return null;
+        }
+
+        // TODO : Consider making an event method to bind to
+        public void ShowStats(IPlayable currentPlayable) {
+            if (!AllowStat) return;
+            App.PlayerViewModel.ViewPortVisibility = Visibility.Visible;
+            App.PlayerViewModel.ViewerVisible = Visibility.Collapsed;
         }
     }
 }

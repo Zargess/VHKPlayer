@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Zargess.VHKPlayer.Collections;
 using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.Interfaces;
@@ -66,6 +67,10 @@ namespace Zargess.VHKPlayer.PlayManaging {
 
         public void Resume(FileType type) {
             Observers.ForEach(x => x.Resume(type));
+        }
+
+        public void ShowStats() {
+            Observers.ForEach(x => x.ShowStats(CurrentPlayable));
         }
     }
 }
