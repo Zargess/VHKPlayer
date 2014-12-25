@@ -98,6 +98,7 @@
     <Compile Include="Interfaces\IQueuePeekStrategy.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Interfaces\ISingleItemPlayableFactory.cs" />
+    <Compile Include="Interfaces\ISoundStrategy.cs" />
     <Compile Include="Interfaces\IVideoPlayerFactory.cs" />
     <Compile Include="Interfaces\IPlayObserver.cs" />
     <Compile Include="Model\FileNode.cs" />
