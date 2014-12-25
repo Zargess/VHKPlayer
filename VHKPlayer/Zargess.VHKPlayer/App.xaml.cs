@@ -68,5 +68,13 @@ namespace Zargess.VHKPlayer {
 
             }
         }
+
+        private static INotificationContainer _notificationService;
+        public static INotificationContainer NotificationService {
+            get {
+                if (_notificationService == null) _notificationService = new NotificationContainer();
+                return _notificationService;
+            }
+        }
     }
 }
