@@ -34,7 +34,6 @@ namespace Zargess.VHKPlayer.Strategies.Playing {
             App.PlayManager.Play(file.Type);
             if (file.Type != FileType.Picture) return;
             StartTimer();
-            // TODO : Find a way to check in settings if this is the stat picture folder
             if (!App.StatPictureFolder.ContainsFile(file)) return;
             App.PlayManager.ShowStats();
         }

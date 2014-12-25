@@ -9,7 +9,7 @@
       <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="scoringPlacement" Type="System.String" Scope="User">
-      <Value Profile="(Default)">{0;0;0;0}</Value>
+      <Value Profile="(Default)">{0;20;0;0}</Value>
     </Setting>
     <Setting Name="penaltyPlacement" Type="System.String" Scope="User">
       <Value Profile="(Default)">{0;0;0;0}</Value>
