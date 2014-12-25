@@ -3,18 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
+using System.Windows;
 using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.Interfaces;
 
 namespace Zargess.VHKPlayer.Strategies.Playing {
     public class PlayPlayerStatStrategy : IPlayStrategy {
-        public void Play(IFile file, PlayType type) {
-            if (file.Type == FileType.Picture) {
-                // TODO : Show stats and make a timer call PlayQueue after specified time
+        private Timer PictureTimer { get; set; }
+        private int Counter { get; set; }
 
-            }
+        public PlayPlayerStatStrategy() {
+            PictureTimer = new Timer();
+            PictureTimer.Interval = 1000.0;
+            PictureTimer.Elapsed += TimerElapsed;
+        }
+
+        private void TimerElapsed(object sender, ElapsedEventArgs e) {
+            Counter++;
+            var showStat = (int)App.GuiConfigService.Get("timeStatShown");
+            var done = showStat <= Counter;
+            if (!done) return;
+            Action act = new Action(() => App.PlayManager.PlayQueue());
+            PictureTimer.Enabled = false;
+            PictureTimer.Stop();
+            Application.Current.Dispatcher.BeginInvoke(act);
+        }
+
+        public void Play(IFile file, PlayType type) {
             App.PlayManager.SetCurrentFile(file);
             App.PlayManager.Play(file.Type);
+            if (file.Type != FileType.Picture) return;
+            StartTimer();
+            if (file.Source != "SpillerVideoStat") return;
+            App.PlayManager.ShowStats();
+        }
+
+        private void StartTimer() {
+            PictureTimer.Enabled = true;
+            PictureTimer.Start();
         }
     }
 }

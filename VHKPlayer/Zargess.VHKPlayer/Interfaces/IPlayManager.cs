@@ -16,5 +16,6 @@ namespace Zargess.VHKPlayer.Interfaces {
         void Play(IPlayable playable, PlayType type);
         void SetCurrentFile(IFile file);
         void AddObserver(IPlayObserver observer);
+        void ShowStats();
     }
 }

@@ -85,6 +85,43 @@ namespace Zargess.VHKPlayer.ViewModels {
             }
         }
 
+        private Visibility _viewportvisibility;
+        public Visibility ViewPortVisibility {
+            get {
+                return _viewportvisibility;
+            }
+            set {
+                _viewportvisibility = value;
+                RaisePropertyChanged("ViewPortVisibility");
+            }
+        }
+
+        private string _scorings;
+        public string Scorings {
+            get {
+                if (_scorings == null) _scorings = null;
+                return _scorings;
+            }
+            set {
+                _scorings = value;
+                RaisePropertyChanged("Scorings");
+            }
+        }
+
+        private string _penalties;
+        public string Penalties {
+            get {
+                if (_penalties == null) _penalties = "";
+                return _penalties;
+            }
+            set {
+                _penalties = value;
+                RaisePropertyChanged("Penalties");
+            }
+        }
+
+        // TODO : Make thickness from settings at set it as a property. Make the get and set functions call to settings
+
         public RelayCommand PlayablePressed { get; private set; }
         public RelayCommand Test { get; private set; }
         public INotificationContainer NotifiContainer { get; private set; }
