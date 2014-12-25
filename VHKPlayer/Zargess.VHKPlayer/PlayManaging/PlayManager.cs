@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Zargess.VHKPlayer.Collections;
 using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.Interfaces;
+using Zargess.VHKPlayer.Strategies.Playing;
 
 namespace Zargess.VHKPlayer.PlayManaging {
     public class PlayManager : IPlayManager {
@@ -35,6 +36,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
         }
 
         public void Play(IPlayable playable, PlayType type) {
+            PlayPlayerStatStrategy.CancelTimer();
             Queue.SetQueue(playable.Play(type));
             CurrentPlayable = playable;
             CurrentType = type;
@@ -70,7 +72,9 @@ namespace Zargess.VHKPlayer.PlayManaging {
         }
 
         public void ShowStats() {
-            Observers.ForEach(x => x.ShowStats(CurrentPlayable));
+            if (!(CurrentPlayable is IPlayer)) return;
+            var player = (IPlayer)CurrentPlayable;
+            Observers.ForEach(x => x.ShowStats(player));
         }
     }
 }

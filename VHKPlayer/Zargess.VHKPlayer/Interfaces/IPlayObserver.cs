@@ -13,6 +13,6 @@ namespace Zargess.VHKPlayer.Interfaces {
         void Mute(FileType type);
         void Resume(FileType type);
         void SetCurrentFile(IFile file);
-        void ShowStats(IPlayable currentPlayable);
+        void ShowStats(IPlayer currentPlayable);
     }
 }

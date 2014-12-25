@@ -96,6 +96,17 @@ namespace Zargess.VHKPlayer.ViewModels {
             }
         }
 
+        private Visibility _statsVisibility;
+        public Visibility StatsVisibility {
+            get {
+                return _statsVisibility;
+            }
+            set {
+                _statsVisibility = value;
+                RaisePropertyChanged("StatsVisibility");
+            }
+        }
+
         private string _scorings;
         public string Scorings {
             get {
@@ -161,6 +172,26 @@ namespace Zargess.VHKPlayer.ViewModels {
 
         private void TestClick(object parameter) {
             NotifiContainer.Add(new Notification("Lolz"));
+        }
+
+        public void ShowPicture() {
+            ViewPortVisibility = Visibility.Visible;
+            ViewerVisible = Visibility.Collapsed;
+        }
+
+        public void HidePicture() {
+            ViewPortVisibility = Visibility.Collapsed;
+            ViewerVisible = Visibility.Visible;
+        }
+
+        public void ShowStats() {
+            ShowPicture();
+            StatsVisibility = Visibility.Visible;
+        }
+
+        public void HideStats() {
+            HidePicture();
+            StatsVisibility = Visibility.Collapsed;
         }
     }
 }
