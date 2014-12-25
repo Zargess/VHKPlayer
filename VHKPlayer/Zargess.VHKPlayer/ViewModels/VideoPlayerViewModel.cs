@@ -110,7 +110,7 @@ namespace Zargess.VHKPlayer.ViewModels {
         private string _scorings;
         public string Scorings {
             get {
-                if (_scorings == null) _scorings = null;
+                if (_scorings == null) _scorings = "";
                 return _scorings;
             }
             set {
@@ -132,6 +132,16 @@ namespace Zargess.VHKPlayer.ViewModels {
         }
 
         // TODO : Make thickness from settings at set it as a property. Make the get and set functions call to settings
+
+        public Thickness ScoringPlacement {
+            get {
+                return GeneralFunctions.StringToThickness(App.GuiConfigService.GetString("scoringPlacement"));
+            }
+            set {
+                App.GuiConfigService.Update("scoringPlacement", GeneralFunctions.ThicknessToString(value));
+                RaisePropertyChanged("ScoringPlacement");
+            }
+        }
 
         public RelayCommand PlayablePressed { get; private set; }
         public RelayCommand Test { get; private set; }

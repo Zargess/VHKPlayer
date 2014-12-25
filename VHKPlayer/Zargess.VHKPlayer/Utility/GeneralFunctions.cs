@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
 using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.Factories.IPlayLists;
@@ -65,6 +66,21 @@ namespace Zargess.VHKPlayer.Utility {
             res.UriSource = new Uri(file.FullPath);
             res.EndInit();
             return res;
+        }
+
+        public static Thickness StringToThickness(string s) {
+            s = s.Replace("{", "");
+            s = s.Replace("}", "");
+            var elements = s.Split(';');
+            var left = StringToInteger(elements[0]);
+            var top = StringToInteger(elements[1]);
+            var right = StringToInteger(elements[2]);
+            var bottom = StringToInteger(elements[3]);
+            return new Thickness(left, top, right, bottom);
+        }
+
+        public static string ThicknessToString(Thickness t) {
+            return "{" + t.Left + ";" + t.Top + ";" + t.Right + ";" + t.Bottom + "}";
         }
     }
 }

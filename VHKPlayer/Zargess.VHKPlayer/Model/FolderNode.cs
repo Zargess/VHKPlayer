@@ -67,7 +67,14 @@ namespace Zargess.VHKPlayer.Model {
         }
 
         public bool ContainsFile(IFile file) {
-            return Content.Any(f => string.Equals(f.FullPath, file.FullPath, StringComparison.CurrentCultureIgnoreCase));
+            foreach(var f in Content) {
+                var path = f.FullPath.ToLower();
+                var filepath = file.FullPath.ToLower();
+                if (filepath != path) continue;
+                return true;
+            }
+            return false;
+            //return Content.Any(f => string.Equals(f.FullPath, file.FullPath, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public bool ValidRootFolder() {

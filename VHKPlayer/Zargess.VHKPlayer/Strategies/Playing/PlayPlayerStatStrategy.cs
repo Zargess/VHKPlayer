@@ -11,7 +11,7 @@ using Zargess.VHKPlayer.Interfaces;
 namespace Zargess.VHKPlayer.Strategies.Playing {
     public class PlayPlayerStatStrategy : IPlayStrategy {
         private static Timer PictureTimer { get; set; }
-        private int Counter { get; set; }
+        private static int Counter { get; set; }
 
         public PlayPlayerStatStrategy() {
             PictureTimer = new Timer();
@@ -34,7 +34,8 @@ namespace Zargess.VHKPlayer.Strategies.Playing {
             App.PlayManager.Play(file.Type);
             if (file.Type != FileType.Picture) return;
             StartTimer();
-            if (file.Source != "SpillerVideoStat") return;
+            // TODO : Find a way to check in settings if this is the stat picture folder
+            if (!App.StatPictureFolder.ContainsFile(file)) return;
             App.PlayManager.ShowStats();
         }
 
@@ -46,6 +47,7 @@ namespace Zargess.VHKPlayer.Strategies.Playing {
         public static void CancelTimer() {
             PictureTimer.Enabled = false;
             PictureTimer.Stop();
+            Counter = 0;
         }
     }
 }

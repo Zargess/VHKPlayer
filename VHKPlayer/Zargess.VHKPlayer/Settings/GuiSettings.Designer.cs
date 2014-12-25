@@ -46,5 +46,29 @@ namespace Zargess.VHKPlayer.Settings {
                 this["timeStatShown"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0;0;0;0}")]
+        public string scoringPlacement {
+            get {
+                return ((string)(this["scoringPlacement"]));
+            }
+            set {
+                this["scoringPlacement"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0;0;0;0}")]
+        public string penaltyPlacement {
+            get {
+                return ((string)(this["penaltyPlacement"]));
+            }
+            set {
+                this["penaltyPlacement"] = value;
+            }
+        }
     }
 }

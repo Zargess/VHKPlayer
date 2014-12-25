@@ -8,9 +8,11 @@ using System.Windows;
 using Zargess.VHKPlayer.Factories.IPlayManagers;
 using Zargess.VHKPlayer.Factories.ViewModels;
 using Zargess.VHKPlayer.Interfaces;
+using Zargess.VHKPlayer.Model;
 using Zargess.VHKPlayer.PlayManaging;
 using Zargess.VHKPlayer.Settings;
 using Zargess.VHKPlayer.Strategies.Playing;
+using Zargess.VHKPlayer.Utility;
 using Zargess.VHKPlayer.ViewModels;
 
 namespace Zargess.VHKPlayer {
@@ -47,6 +49,23 @@ namespace Zargess.VHKPlayer {
             get {
                 if (_playManager == null) _playManager = new PlayManager(new PlayManagerFactory());
                 return _playManager;
+            }
+        }
+
+        private static IFolder _statPictureFolder;
+        public static IFolder StatPictureFolder {
+            get {
+                var path = PathHandler.AbsolutePath(ConfigService.GetPathString("playerFolders", 2));
+                if (_statPictureFolder == null) {
+                    _statPictureFolder = new FolderNode(path);
+                    _statPictureFolder.StopWatcher();
+                }
+                if (_statPictureFolder.FullPath != path) {
+                    _statPictureFolder = new FolderNode(path);
+                    _statPictureFolder.StopWatcher();
+                }
+                return _statPictureFolder;
+
             }
         }
     }

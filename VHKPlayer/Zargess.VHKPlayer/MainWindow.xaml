@@ -115,7 +115,9 @@
                 <GridSplitter IsEnabled="False" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
                 <Grid Grid.Row="2" Grid.Column="0">
-                    <Image Name="ViewPort" Source="{Binding Observer.CurrentPictureFile}" Visibility="{Binding ViewModel.ViewPortVisibility}" />
+                    <Image Name="ViewPort" Source="{Binding Observer.CurrentPictureFile}" Visibility="{Binding ViewModel.ViewPortVisibility}"/>
+                    <TextBlock Text="{Binding ViewModel.Scorings}" Visibility="{Binding ViewModel.StatsVisibility}" />
+                    <TextBlock Text="{Binding ViewModel.Penalties}" Visibility="{Binding ViewModel.StatsVisibility}" />
                     <MediaElement Name="Viewer" LoadedBehavior="Manual" IsMuted="True" Visibility="{Binding ViewModel.ViewerVisible}" />
                     <MediaElement Name="Audio" LoadedBehavior="Manual" IsMuted="True" Visibility="Collapsed" />
                 </Grid>

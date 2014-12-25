@@ -13,26 +13,16 @@ using Zargess.VHKPlayer.Model;
 using Zargess.VHKPlayer.Utility;
 
 namespace Zargess.VHKPlayer.Observers {
-    public class PlayObserver : IPlayObserver, IPlayerObserver, INotifyPropertyChanged {
+    public class PlayObserver : IPlayObserver, IPlayerObserver {
         private MediaElement Viewer { get; set; }
         private MediaElement Audio { get; set; }
         private Image ViewPort { get; set; }
         private IFile CurrentMusicFile { get; set; }
         private IFile CurrentVideoFile { get; set; }
+        private IFile CurrentPictureFile { get; set; }
         private IPlayer CurrentStatPlayer { get; set; }
         private bool AllowAudio { get; set; }
         private bool AllowStat { get; set; }
-        public event PropertyChangedEventHandler PropertyChanged;
-        private IFile _currentPictureFile;
-        public IFile CurrentPictureFile {
-            get {
-                return _currentPictureFile;
-            }
-            private set {
-                _currentPictureFile = value;
-                RaisePropertyChanged("CurrentPictureFile");
-            }
-        }        
 
         public PlayObserver(MediaElement viewer, MediaElement audio, Image viewport, bool allowAudio, bool allowStat) {
             Viewer = viewer;
@@ -135,11 +125,6 @@ namespace Zargess.VHKPlayer.Observers {
             var penalties = stat.Suspension + "";
             App.PlayerViewModel.Scorings = scorings;
             App.PlayerViewModel.Penalties = penalties;
-        }
-
-        private void RaisePropertyChanged(string name) {
-            if (PropertyChanged == null) return;
-            PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
     }
 }
