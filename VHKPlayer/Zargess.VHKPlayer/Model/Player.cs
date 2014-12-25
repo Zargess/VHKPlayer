@@ -19,7 +19,6 @@ namespace Zargess.VHKPlayer.Model {
         public bool Trainer { get; private set; }
         public int Number { get; private set; }
         public Statistics Stats { get; private set; }
-        public event StatsChangedHandler StatsChanged;
 
         public bool Repeat {
             get {
@@ -29,12 +28,14 @@ namespace Zargess.VHKPlayer.Model {
             set {}
         }
 
+        public List<IPlayerObserver> Observers { get; private set; }
 
         public Player(IPlayerFactory factory) {
             Number = factory.CreateNumber();
             Name = factory.CreateName();
             Trainer = factory.CreateTrainer();
             Content = new ObservableCollection<IFile>();
+            Observers = new List<IPlayerObserver>();
             LoadingStrategy = factory.CreateLoadingStrategy();
             LoadingStrategy.Load(Content);
             StatsLoadingStrategy = factory.CreateStatsLoadingStrategy();
@@ -58,13 +59,19 @@ namespace Zargess.VHKPlayer.Model {
 
         private void StatsFolderChanged(object sender, EventArgs e) {
             Stats = StatsLoadingStrategy.LoadStats(Number);
-            if (StatsChanged != null) {
-                StatsChanged.Invoke(this, new StatEventArgs(Stats.Clone()));
-            }
+            Observers.ForEach(x => x.StatsChanged(Stats.Clone()));
         }
 
         public override string ToString() {
             return Number + " " + Name;
+        }
+
+        public void AddObserver(IPlayerObserver observer) {
+            Observers.Add(observer);
+        }
+
+        public void RemoveObserver(IPlayerObserver observer) {
+            Observers.Remove(observer);
         }
     }
 }

@@ -43,7 +43,7 @@
                 <i:Interaction.Triggers>
                     <i:EventTrigger SourceObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}}" 
                                                 EventName="PreviewMouseLeftButtonDown">
-                        <i:InvokeCommandAction Command="{Binding DataContext.PlayablePressed, ElementName=MView}">
+                        <i:InvokeCommandAction Command="{Binding DataContext.ViewModel.PlayablePressed, ElementName=MView}">
                             <i:InvokeCommandAction.CommandParameter>
                                 <MultiBinding Converter="{StaticResource ParameterConverter}">
                                     <Binding />
@@ -82,8 +82,8 @@
 
     <metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands>
-            <Button Content="settings" Command="{Binding Test}"/>
-            <metro:DropDownButton Background="Green" Foreground="Green" ItemsSource="{Binding NotifiContainer.Content}"/>
+            <Button Content="settings" Command="{Binding ViewModel.Test}"/>
+            <metro:DropDownButton Background="Green" Foreground="Green" ItemsSource="{Binding ViewModel.NotifiContainer.Content}"/>
         </metro:WindowCommands>
     </metro:MetroWindow.RightWindowCommands>
     
@@ -115,12 +115,13 @@
                 <GridSplitter IsEnabled="False" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
                 <Grid Grid.Row="2" Grid.Column="0">
-                    <MediaElement Name="Viewer" LoadedBehavior="Manual" IsMuted="True" Visibility="{Binding ViewerVisible}" />
+                    <Image Name="ViewPort" Source="{Binding Observer.CurrentPictureFile}" Visibility="{Binding ViewModel.ViewPortVisibility}" />
+                    <MediaElement Name="Viewer" LoadedBehavior="Manual" IsMuted="True" Visibility="{Binding ViewModel.ViewerVisible}" />
                     <MediaElement Name="Audio" LoadedBehavior="Manual" IsMuted="True" Visibility="Collapsed" />
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="0">
-                    <TabControl Name="Music" Style="{StaticResource TabControlContent}" ItemsSource="{Binding MusicContainer.Content}"/>
+                    <TabControl Name="Music" Style="{StaticResource TabControlContent}" ItemsSource="{Binding ViewModel.MusicContainer.Content}"/>
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="2">
@@ -138,26 +139,26 @@
                                 <Grid Grid.Column="0">
                                     <TabControl>
                                         <TabItem Header="Spiller" metro:ControlsHelper.HeaderFontSize="16">
-                                            <ListBox Name="PlayerPicture" ItemsSource="{Binding PlayerContainer.Content}" ItemContainerStyle="{StaticResource GeneralVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}" />
+                                            <ListBox Name="PlayerPicture" ItemsSource="{Binding ViewModel.PlayerContainer.Content}" ItemContainerStyle="{StaticResource GeneralVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}" />
                                         </TabItem>
 
                                         <TabItem Header="SpillerVideo" metro:ControlsHelper.HeaderFontSize="16">
-                                            <ListBox Name="PlayerVideo" ItemsSource="{Binding PlayerContainer.Content}" ItemContainerStyle="{StaticResource PlayerVidVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}" />
+                                            <ListBox Name="PlayerVideo" ItemsSource="{Binding ViewModel.PlayerContainer.Content}" ItemContainerStyle="{StaticResource PlayerVidVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}" />
                                         </TabItem>
 
                                         <TabItem Header="SpillerVideoStat" metro:ControlsHelper.HeaderFontSize="16">
-                                            <ListBox Name="PlayerVideoStat" ItemsSource="{Binding PlayerContainer.Content}" ItemContainerStyle="{StaticResource PlayerStatVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}" />
+                                            <ListBox Name="PlayerVideoStat" ItemsSource="{Binding ViewModel.PlayerContainer.Content}" ItemContainerStyle="{StaticResource PlayerStatVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}" />
                                         </TabItem>
 
                                     </TabControl>
                                 </Grid>
 
-                                <ListBox Name="Video" Grid.Column="2" ItemsSource="{Binding CardContainer.Content}" ItemContainerStyle="{StaticResource GeneralVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}"/>
+                                <ListBox Name="Video" Grid.Column="2" ItemsSource="{Binding ViewModel.CardContainer.Content}" ItemContainerStyle="{StaticResource GeneralVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}"/>
                             </Grid>
                         </TabItem>
 
                         <TabItem Header="PlayLister" metro:ControlsHelper.HeaderFontSize="18">
-                            <ListBox Name="PlayList" ItemsSource="{Binding PlayListContainer.Content}" ItemContainerStyle="{StaticResource GeneralVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}"/>
+                            <ListBox Name="PlayList" ItemsSource="{Binding ViewModel.PlayListContainer.Content}" ItemContainerStyle="{StaticResource GeneralVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}"/>
                         </TabItem>
                     </TabControl>
                 </Grid>

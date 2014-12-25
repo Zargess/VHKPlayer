@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.Factories.IPlayLists;
 using Zargess.VHKPlayer.Interfaces;
@@ -56,6 +57,14 @@ namespace Zargess.VHKPlayer.Utility {
                 default:
                     return PlayType.Standard;
             }
+        }
+
+        public static BitmapImage ConstructImage(IFile file) {
+            BitmapImage res = new BitmapImage();
+            res.BeginInit();
+            res.UriSource = new Uri(file.FullPath);
+            res.EndInit();
+            return res;
         }
     }
 }

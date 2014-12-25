@@ -11,6 +11,8 @@ namespace Zargess.VHKPlayer.Interfaces {
         bool Trainer { get; }
         int Number { get; }
         Statistics Stats { get; }
-        event StatsChangedHandler StatsChanged;
+        List<IPlayerObserver> Observers { get; }
+        void AddObserver(IPlayerObserver observer);
+        void RemoveObserver(IPlayerObserver observer);
     }
 }

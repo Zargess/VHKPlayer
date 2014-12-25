@@ -19,14 +19,17 @@ using Zargess.VHKPlayer.EventHandlers;
 using Zargess.VHKPlayer.Interfaces;
 using Zargess.VHKPlayer.Observers;
 using Zargess.VHKPlayer.Utility;
+using Zargess.VHKPlayer.ViewModels;
 
 namespace Zargess.VHKPlayer {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : MetroWindow {
+        private IMediaViewModel _vm;
 
         public MainWindow() {
+            // TODO : Remove this code when functions have made it possible to set it your self
             var path = @"D:\Dropbox\Programmering\C#";
             var path2 = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Dropbox\Programmering\C#";
             var root = "damer 2013-2014";
@@ -39,10 +42,11 @@ namespace Zargess.VHKPlayer {
                 App.ConfigService.Update("root", PathHandler.CombinePaths(path2, root));
                 App.ConfigService.Update("statsFolder", PathHandler.CombinePaths(path2, statsFolder));
             }
-
+            // -------------------------------------------------------------------------------------
             InitializeComponent();
-            DataContext = App.PlayerViewModel;
-            App.PlayManager.AddObserver(new PlayObserver(Viewer, Audio, false));
+            _vm = new MediaViewModel(Viewer, Audio, ViewPort, false, false);
+            DataContext = _vm;
+            App.PlayManager.AddObserver(_vm.Observer);
         }
     }
 }

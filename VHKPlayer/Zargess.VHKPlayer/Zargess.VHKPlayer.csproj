@@ -87,9 +87,11 @@
     <Compile Include="Factories\ISingleItemPlayables\SingleItemPlayableFactory.cs" />
     <Compile Include="Factories\ViewModels\VideoPlayerFactory.cs" />
     <Compile Include="Interfaces\IGlobalConfigService.cs" />
+    <Compile Include="Interfaces\IMediaViewModel.cs" />
     <Compile Include="Interfaces\INotification.cs" />
     <Compile Include="Interfaces\INotificationContainer.cs" />
     <Compile Include="Interfaces\IPlayController.cs" />
+    <Compile Include="Interfaces\IPlayerObserver.cs" />
     <Compile Include="Interfaces\IPlayManager.cs" />
     <Compile Include="Interfaces\IPlayManagerFactory.cs" />
     <Compile Include="Interfaces\IPlayStrategy.cs" />
@@ -153,6 +155,7 @@
     <Compile Include="Strategies\Utils\IteratedQueuePeekStrategy.cs" />
     <Compile Include="Utility\GeneralFunctions.cs" />
     <Compile Include="Utility\PathHandler.cs" />
+    <Compile Include="ViewModels\MediaViewModel.cs" />
     <Compile Include="ViewModels\VideoPlayerViewModel.cs" />
     <Page Include="Controls\NotificationControl.xaml">
       <SubType>Designer</SubType>

@@ -10,7 +10,7 @@ using Zargess.VHKPlayer.Interfaces;
 
 namespace Zargess.VHKPlayer.Strategies.Playing {
     public class PlayPlayerStatStrategy : IPlayStrategy {
-        private Timer PictureTimer { get; set; }
+        private static Timer PictureTimer { get; set; }
         private int Counter { get; set; }
 
         public PlayPlayerStatStrategy() {
@@ -25,8 +25,7 @@ namespace Zargess.VHKPlayer.Strategies.Playing {
             var done = showStat <= Counter;
             if (!done) return;
             Action act = new Action(() => App.PlayManager.PlayQueue());
-            PictureTimer.Enabled = false;
-            PictureTimer.Stop();
+            CancelTimer();
             Application.Current.Dispatcher.BeginInvoke(act);
         }
 
@@ -42,6 +41,11 @@ namespace Zargess.VHKPlayer.Strategies.Playing {
         private void StartTimer() {
             PictureTimer.Enabled = true;
             PictureTimer.Start();
+        }
+
+        public static void CancelTimer() {
+            PictureTimer.Enabled = false;
+            PictureTimer.Stop();
         }
     }
 }
