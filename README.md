@@ -10,3 +10,6 @@ for the needs of the danish handball club Viborg.
 This is a C#/F# project and .net 4.5.1 is required for running this program.
 
 A list of features is pending.
+<ul>
+<li>test</li>
+</ul>
