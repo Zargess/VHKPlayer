@@ -49,7 +49,7 @@ namespace Zargess.VHKPlayer.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{0;0;0;0}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0;20;0;0}")]
         public string scoringPlacement {
             get {
                 return ((string)(this["scoringPlacement"]));
