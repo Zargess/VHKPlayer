@@ -12,6 +12,12 @@ This is a C#/F# project and .net 4.5.1 is required for running this program.
 <ul>
 <li>Show playlists</li>
 <li>Play music</li>
-<li>Showing players in 3 different ways(pidcure, video, and a collection of video, picture with stats and show advertiesments after</li>
+<li>Showing players in 3 different ways
+  <ul>
+  <li>pidcure</li> 
+  <li>video</li> 
+  <li>a collection of video, picture with stats and show advertiesments after</li>
+  </ul>
+</li>
 
 </ul>
