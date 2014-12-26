@@ -70,5 +70,41 @@ namespace Zargess.VHKPlayer.Settings {
                 this["penaltyPlacement"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double volume {
+            get {
+                return ((double)(this["volume"]));
+            }
+            set {
+                this["volume"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double minvolume {
+            get {
+                return ((double)(this["minvolume"]));
+            }
+            set {
+                this["minvolume"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double maxvolume {
+            get {
+                return ((double)(this["maxvolume"]));
+            }
+            set {
+                this["maxvolume"] = value;
+            }
+        }
     }
 }

@@ -66,7 +66,6 @@ namespace Zargess.VHKPlayer.Observers {
             Console.WriteLine("Playing {0}", file.Name);
         }
 
-        // TODO : Change the ViewPort picture from here. 
         private void ShowPicture() {
             ViewPort.Source = GeneralFunctions.ConstructImage(CurrentPictureFile);
             if (CurrentPictureFile.Source == "PlayerVideoStat") App.PlayerViewModel.ShowStats();

@@ -150,6 +150,32 @@ namespace Zargess.VHKPlayer.ViewModels {
             }
         }
 
+        // TODO : Fix the audio binding so that it works
+        public double Volume {
+            get {
+                return (double)App.GuiConfigService.Get("volume");
+            }
+            set {
+                var inInterval = value <= MaxVolume && value >= MinVolume;
+                if (!inInterval) return;
+                App.GuiConfigService.Update("volume", value);
+                RaisePropertyChanged("Volume");
+            }
+        }
+
+        // TODO : Make setters for these two properties
+        public double MinVolume {
+            get {
+                return (double)App.GuiConfigService.Get("minvolume");
+            }
+        }
+
+        public double MaxVolume {
+            get {
+                return (double)App.GuiConfigService.Get("maxvolume");
+            }
+        }
+
         public RelayCommand PlayablePressed { get; private set; }
         public RelayCommand Test { get; private set; }
         public INotificationContainer NotifiContainer { get; private set; }

@@ -152,6 +152,7 @@
     <Compile Include="Strategies\Selection\IPlayManager\RepeatSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\ISingleItemPlayables\SingleItemPlayableSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\NullSelectionStrategy.cs" />
+    <Compile Include="Strategies\Sound\BasicSoundStrategy.cs" />
     <Compile Include="Strategies\Utils\GeneralQueuePeekStrategy.cs" />
     <Compile Include="Strategies\Utils\IteratedQueuePeekStrategy.cs" />
     <Compile Include="Utility\GeneralFunctions.cs" />
