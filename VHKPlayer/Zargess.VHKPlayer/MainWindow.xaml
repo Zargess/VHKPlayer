@@ -121,6 +121,10 @@
                     <MediaElement Name="Viewer" LoadedBehavior="Manual" IsMuted="False" Visibility="{Binding ViewModel.ViewerVisible}" Volume="{Binding ViewModel.Volume}" />
                     <MediaElement Name="Audio" LoadedBehavior="Manual" IsMuted="True" Visibility="Collapsed" />
                 </Grid>
+                
+                <Grid Grid.Row="2" Grid.Column="2">
+                    <Slider Name="AudioSlider" ValueChanged="AudioSlider_ValueChanged" />
+                </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="0">
                     <TabControl Name="Music" Style="{StaticResource TabControlContent}" ItemsSource="{Binding ViewModel.MusicContainer.Content}"/>

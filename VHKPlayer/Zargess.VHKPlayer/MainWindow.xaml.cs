@@ -48,5 +48,14 @@ namespace Zargess.VHKPlayer {
             DataContext = _vm;
             App.PlayManager.AddObserver(_vm.Observer);
         }
+
+        // TODO : Check if this works
+        private void AudioSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
+            if (AudioSlider.Value < 0.0) _vm.ViewModel.Volume = 0.0;
+            else {
+                _vm.ViewModel.Volume = (AudioSlider.Value / 100) * -Math.Log(20);
+                Console.WriteLine(_vm.ViewModel.Volume);
+            }
+        }
     }
 }
