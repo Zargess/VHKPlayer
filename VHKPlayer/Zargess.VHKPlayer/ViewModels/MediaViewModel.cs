@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using Zargess.VHKPlayer.Interfaces;
 using Zargess.VHKPlayer.Observers;
+using Zargess.VHKPlayer.Strategies.Sound;
 
 namespace Zargess.VHKPlayer.ViewModels {
     public class MediaViewModel : IMediaViewModel { 
@@ -17,8 +18,9 @@ namespace Zargess.VHKPlayer.ViewModels {
             }
         }
 
-        public MediaViewModel(MediaElement video, MediaElement audio, Image viewport, bool allowAudio, bool allowStat) {
-            Observer = new PlayObserver(video, audio, viewport, allowAudio, allowStat);
+        public MediaViewModel(MediaElement video, MediaElement audio, Image viewport, Slider slider, bool allowAudio, bool allowStat) {
+            var general = new GeneralSoundStrategy(video, audio, new BasicSoundStrategy(), new FadeSoundStrategy(slider));
+            Observer = new PlayObserver(video, audio, viewport, allowAudio, allowStat, general);
         }
     }
 }

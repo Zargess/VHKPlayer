@@ -7,6 +7,7 @@ using Zargess.VHKPlayer.Enums;
 
 namespace Zargess.VHKPlayer.Interfaces {
     public interface IPlayObserver {
+        ISoundStrategy SoundStrategy { get; }
         void Play(FileType type);
         void Pause(FileType type);
         void Stop(FileType type);

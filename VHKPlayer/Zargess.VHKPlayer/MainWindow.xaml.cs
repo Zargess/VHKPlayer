@@ -18,6 +18,7 @@ using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.EventHandlers;
 using Zargess.VHKPlayer.Interfaces;
 using Zargess.VHKPlayer.Observers;
+using Zargess.VHKPlayer.Strategies.Sound;
 using Zargess.VHKPlayer.Utility;
 using Zargess.VHKPlayer.ViewModels;
 
@@ -44,16 +45,25 @@ namespace Zargess.VHKPlayer {
             }
             // -------------------------------------------------------------------------------------
             InitializeComponent();
-            _vm = new MediaViewModel(Viewer, Audio, ViewPort, false, true);
+            _vm = new MediaViewModel(Viewer, Audio, ViewPort, AudioSlider, false, true);
             DataContext = _vm;
             App.PlayManager.AddObserver(_vm.Observer);
+            Closing += MainWindow_Closing;
         }
 
-        // TODO : Check if this works
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
+            if (!(_vm.Observer.SoundStrategy is GeneralSoundStrategy)) return;
+            var soundstrategy = (GeneralSoundStrategy)_vm.Observer.SoundStrategy;
+            soundstrategy.StopFadeManagerThread();
+        }
+
+
+        // TODO : Move this to the viewmodel
         private void AudioSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            if (AudioSlider.Value < 0.0) _vm.ViewModel.Volume = 0.0;
-            else {
-                _vm.ViewModel.Volume = (AudioSlider.Value / 100) * -Math.Log(20);
+            if (AudioSlider.Value < 0.0) {
+                _vm.ViewModel.Volume = 0.0;
+            } else {
+                _vm.ViewModel.Volume = (AudioSlider.Value / 100);
                 Console.WriteLine(_vm.ViewModel.Volume);
             }
         }

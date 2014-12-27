@@ -7,74 +7,85 @@ using Zargess.VHKPlayer.Strategies.Playing;
 
 namespace Zargess.VHKPlayer.PlayManaging {
     public class PlayManager : IPlayManager {
+        private PlayType _currentType;
+        private List<IPlayObserver> _observers;
+        private IFileSelectionStrategy _emptyQueueStrategy;
+        private IPlayStrategy _playStrategy;
         public IPlayable CurrentPlayable { get; private set; }
         public CustomQueue<IFile> Queue { get; private set; }
-        private PlayType CurrentType { get; set; }
-        public IPlayStrategy PlayStrategy { get; private set; }
-        public IFileSelectionStrategy QueueEmptyStrategy { get; private set; }
-        private List<IPlayObserver> Observers { get; set; }
         public IPlayList Auto10SekPlayList { get; private set; }
 
         public PlayManager(IPlayManagerFactory factory) {
-            PlayStrategy = factory.CreatePlayStrategy();
+            _playStrategy = factory.CreatePlayStrategy();
             Queue = factory.CreateQueue();
-            Observers = factory.CreateObserverList();
+            _observers = factory.CreateObserverList();
             App.ConfigService.PropertyChanged += (sender, ee) => Auto10SekPlayList = factory.CreateAuto10SekPlayList();
             Auto10SekPlayList = factory.CreateAuto10SekPlayList();
-            QueueEmptyStrategy = factory.CreateQueueEmptyStrategy();
+            _emptyQueueStrategy = factory.CreateQueueEmptyStrategy();
         }
 
         public void PlayQueue() {
-            var emptyCaseQueue = QueueEmptyStrategy.SelectFiles(CurrentPlayable, CurrentType);
+            var emptyCaseQueue = _emptyQueueStrategy.SelectFiles(CurrentPlayable, _currentType);
             if (emptyCaseQueue != null) Queue.SetQueue(emptyCaseQueue);
             if (Queue.Count == 0) return;
             var file = Queue.Dequeue();
-            PlayStrategy.Play(file, CurrentType);
-            var next = CurrentPlayable.SelectionStrategy.HintNext(Queue, CurrentPlayable, CurrentType);
+            _playStrategy.Play(file, _currentType);
+            var next = CurrentPlayable.SelectionStrategy.HintNext(Queue, CurrentPlayable, _currentType);
             if (file.Type != FileType.Music || next.Type == FileType.Music) return;
-            PlayStrategy.Play(Queue.Dequeue(), CurrentType);
+            _playStrategy.Play(Queue.Dequeue(), _currentType);
         }
 
         public void Play(IPlayable playable, PlayType type) {
-            PlayPlayerStatStrategy.CancelTimer();
-            Queue.SetQueue(playable.Play(type));
-            CurrentPlayable = playable;
-            CurrentType = type;
-            PlayQueue();
+            if (type == PlayType.Music) {
+                PlayMusic(playable);
+            } else {
+                PlayPlayerStatStrategy.CancelTimer();
+                Queue.SetQueue(playable.Play(type));
+                CurrentPlayable = playable;
+                _currentType = type;
+                PlayQueue();
+            }
+        }
+
+        private void PlayMusic(IPlayable playable) {
+            var files = playable.Play(PlayType.Music);
+            if (files.Count != 1) return;
+            SetCurrentFile(files.Dequeue());
+            Play(FileType.Music);
         }
 
         public void AddObserver(IPlayObserver observer) {
-            Observers.Add(observer);
+            _observers.Add(observer);
         }
 
         public void SetCurrentFile(IFile file) {
-            Observers.ForEach(x => x.SetCurrentFile(file));
+            _observers.ForEach(x => x.SetCurrentFile(file));
         }
 
         public void Play(FileType type) {
-            Observers.ForEach(x => x.Play(type));
+            _observers.ForEach(x => x.Play(type));
         }
 
         public void Pause(FileType type) {
-            Observers.ForEach(x => x.Pause(type));
+            _observers.ForEach(x => x.Pause(type));
         }
 
         public void Stop(FileType type) {
-            Observers.ForEach(x => x.Stop(type));
+            _observers.ForEach(x => x.Stop(type));
         }
 
         public void Mute(FileType type) {
-            Observers.ForEach(x => x.Mute(type));
+            _observers.ForEach(x => x.Mute(type));
         }
 
         public void Resume(FileType type) {
-            Observers.ForEach(x => x.Resume(type));
+            _observers.ForEach(x => x.Resume(type));
         }
 
         public void ShowStats() {
             if (!(CurrentPlayable is IPlayer)) return;
             var player = (IPlayer)CurrentPlayable;
-            Observers.ForEach(x => x.ShowStats(player));
+            _observers.ForEach(x => x.ShowStats(player));
         }
     }
 }

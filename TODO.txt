@@ -1,6 +1,8 @@
 * Fix usage of FolderNode so that i use the ContainsFile method
 * Consider having to enable listening in FolderNode so that it's not enabled as a default as this results in many unnecessary updates of useless folders.
 
+Test the new fade function in depth
+
 Implement the playmanager
 	- Make it so that the playmanager knows when sound on a mediaelement should fade out and then does it.
 	- Try to make the mediaelement preload the files for smooth transition

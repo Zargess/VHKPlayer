@@ -69,7 +69,7 @@
 
         <DataTemplate x:Key="TabContent" DataType="{x:Type TabItem}">
             <DockPanel>
-                <ListBox Name="File" ItemsSource="{Binding Content}" HorizontalAlignment="Stretch" ItemContainerStyle="{StaticResource MusicOnlyVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}"/>
+                <ListBox Name="Music" ItemsSource="{Binding Content}" HorizontalAlignment="Stretch" ItemContainerStyle="{StaticResource MusicOnlyVisibilityStyle}" ItemTemplate="{StaticResource GeneralItemTemplate}"/>
             </DockPanel>
         </DataTemplate>
 
@@ -119,11 +119,11 @@
                     <TextBlock Text="{Binding ViewModel.Scorings}" Margin="{Binding ViewModel.ScoringPlacement}" Visibility="{Binding ViewModel.StatsVisibility}" />
                     <TextBlock Text="{Binding ViewModel.Penalties}" Margin="{Binding ViewModel.PenaltyPlacement}" Visibility="{Binding ViewModel.StatsVisibility}" />
                     <MediaElement Name="Viewer" LoadedBehavior="Manual" IsMuted="False" Visibility="{Binding ViewModel.ViewerVisible}" Volume="{Binding ViewModel.Volume}" />
-                    <MediaElement Name="Audio" LoadedBehavior="Manual" IsMuted="True" Visibility="Collapsed" />
+                    <MediaElement Name="Audio" LoadedBehavior="Manual" IsMuted="False" Visibility="Collapsed" Volume="{Binding ViewModel.Volume}" />
                 </Grid>
                 
                 <Grid Grid.Row="2" Grid.Column="2">
-                    <Slider Name="AudioSlider" ValueChanged="AudioSlider_ValueChanged" />
+                    <Slider Name="AudioSlider" ValueChanged="AudioSlider_ValueChanged" Minimum="0" Maximum="100" />
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="0">

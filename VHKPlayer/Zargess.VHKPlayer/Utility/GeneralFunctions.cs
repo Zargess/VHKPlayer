@@ -55,6 +55,8 @@ namespace Zargess.VHKPlayer.Utility {
                     return PlayType.PlayerVid;
                 case "PlayerVideoStat":
                     return PlayType.PlayerStat;
+                case "Music":
+                    return PlayType.Music;
                 default:
                     return PlayType.Standard;
             }

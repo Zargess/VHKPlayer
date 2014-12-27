@@ -216,6 +216,7 @@ namespace Zargess.VHKPlayer.ViewModels {
         private void TestClick(object parameter) {
             NotifiContainer.Add(new Notification("Lolz"));
             PenaltyPlacement = new Thickness(10, 10, 0, 0);
+            App.PlayManager.Stop(FileType.Video);
         }
 
         public void ShowPicture() {
