@@ -3,6 +3,8 @@
 
 Test the new fade function in depth
 
+Move strings for GUI text into the App.xaml file by using this tag: <x:String x:Key="some key">some text</x:String>. Or consider looking at how to define a language file so change of language will be possible
+
 Implement the playmanager
 	- Make it so that the playmanager knows when sound on a mediaelement should fade out and then does it.
 	- Try to make the mediaelement preload the files for smooth transition
