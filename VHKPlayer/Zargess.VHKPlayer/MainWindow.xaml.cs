@@ -44,6 +44,7 @@ namespace Zargess.VHKPlayer {
                 App.ConfigService.Update("statsFolder", PathHandler.CombinePaths(path2, statsFolder));
             }
             // -------------------------------------------------------------------------------------
+            InitializeComponent();
             _vm = new MediaViewModel(Viewer, Audio, ViewPort, AudioSlider, false, true);
             DataContext = _vm;
             App.PlayManager.AddObserver(_vm.Observer);

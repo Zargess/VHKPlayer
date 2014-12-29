@@ -237,25 +237,5 @@ namespace Zargess.VHKPlayer.ViewModels {
             HidePicture();
             StatsVisibility = Visibility.Collapsed;
         }
-
-        public void ShowPicture() {
-            ViewPortVisibility = Visibility.Visible;
-            ViewerVisible = Visibility.Collapsed;
-        }
-
-        public void HidePicture() {
-            ViewPortVisibility = Visibility.Collapsed;
-            ViewerVisible = Visibility.Visible;
-        }
-
-        public void ShowStats() {
-            ShowPicture();
-            StatsVisibility = Visibility.Visible;
-        }
-
-        public void HideStats() {
-            HidePicture();
-            StatsVisibility = Visibility.Collapsed;
-        }
     }
 }

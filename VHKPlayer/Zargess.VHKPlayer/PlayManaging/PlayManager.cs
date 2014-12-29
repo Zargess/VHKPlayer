@@ -87,11 +87,5 @@ namespace Zargess.VHKPlayer.PlayManaging {
             var player = (IPlayer)CurrentPlayable;
             _observers.ForEach(x => x.ShowStats(player));
         }
-
-        public void ShowStats() {
-            if (!(CurrentPlayable is IPlayer)) return;
-            var player = (IPlayer)CurrentPlayable;
-            Observers.ForEach(x => x.ShowStats(player));
-        }
     }
 }

@@ -218,3 +218,5 @@ pip-log.txt
 New Testable version/VHKPlayer/VHKPlayer.sln.ide/storage.ide
 VHKPlayer/VHKPlayer.sln.ide/storage.ide
 *.chk
+*.chk
+*.ide

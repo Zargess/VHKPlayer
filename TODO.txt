@@ -6,16 +6,16 @@ Test the new fade function in depth
 Move strings for GUI text into the App.xaml file by using this tag: <x:String x:Key="some key">some text</x:String>. Or consider looking at how to define a language file so change of language will be possible
 
 Implement the playmanager
-	- Make it so that the playmanager knows when sound on a mediaelement should fade out and then does it.
 	- Try to make the mediaelement preload the files for smooth transition
-	- Make PlayObserver handle when Picture is shown
-	- When Auto 10 sek is enabled call strategy to handle this else call a null strategy
 	- Tests:
 		* Test the PlayManager by making a fake PlayObserver and add it to the PlayManager. Then test that each funtion is called
 		* Call Play and PlayQueue with some test data and watch for the right changes
 
 Test the PlayObserver
 	- Find a proper way to test the PlayObserver
+	
+GeneralSoundStrategy
+	- The fade function should increase volume for playlists that do not have sound. Consider adding a HasAudio boolean to PlayList definitions
 	
 Settings:
 	* Desgin a GUI where only 3 buttons are available to all pages: Apply, Ok, Annuller. Only when Anuller or Ok is pressed will the GUI close
@@ -26,10 +26,6 @@ Settings:
 		- One with gui related settings
 		- One with folder related settings
 		- When folder settings change reload ViewModel and PlayManager. When gui settings change let the view update (use auto update with databindings)
-	
-PlayManager:
-	Use the following solution to handle when sound should fade: http://stackoverflow.com/questions/4058175/binding-a-progressbar-to-a-mediaelement-in-wpf
-	kombined with this guide: http://stackoverflow.com/questions/22500918/how-to-fade-in-out-between-songs-with-a-wpf-c-sharp-mediaelement
 	
 Twitter:
 	- Make it possible to enable and disable twitter
