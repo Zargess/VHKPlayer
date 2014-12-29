@@ -46,10 +46,12 @@ namespace Zargess.VHKPlayer.Strategies.Sound {
 
         private bool FilePlaying(MediaElement me) {
             if (me.Source == null) return false;
+            if (!me.NaturalDuration.HasTimeSpan) return true;
             var position = me.Position.Seconds;
-            var duration = me.NaturalDuration.TimeSpan.Seconds;
+            var duration = me.NaturalDuration.TimeSpan.Minutes * 60 + me.NaturalDuration.TimeSpan.Seconds;
             var fadetime = (int)App.GuiConfigService.Get("fadeDuration");
             var time = duration - position;
+            if (me.Name == "Audio") Console.WriteLine("Duration: " + duration);
             return time > fadetime;
         }
 

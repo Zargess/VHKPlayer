@@ -83,7 +83,7 @@ namespace Zargess.VHKPlayer.Observers {
         }
 
         private void PlayFile(FileType type) {
-            App.PlayerViewModel.HideStats();
+            if (type == FileType.Video) App.PlayerViewModel.HideStats();
             var player = GetMediaElement(type);
             var file = GetFile(type);
             player.Source = new Uri(file.FullPath);

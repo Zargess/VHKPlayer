@@ -64,7 +64,6 @@ namespace Zargess.VHKPlayer {
                 _vm.ViewModel.Volume = 0.0;
             } else {
                 _vm.ViewModel.Volume = (AudioSlider.Value / 100);
-                Console.WriteLine(_vm.ViewModel.Volume);
             }
         }
     }
