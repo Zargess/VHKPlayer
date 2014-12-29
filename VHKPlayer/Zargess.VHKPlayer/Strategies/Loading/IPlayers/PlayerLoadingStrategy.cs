@@ -25,9 +25,11 @@ namespace Zargess.VHKPlayer.Strategies.Loading.IPlayers {
                 content.Add(file);
             }
             foreach(var folder in folders) {
+                bool isStatFolder = folder.Name == App.StatPictureFolder.Name || folder.Source == App.StatPictureFolder.Name;
                 if(!content.Any(x => x.FullPath.Contains(folder.FullPath))) {
-                    // TODO : Make notification system instead of throwing exception
-                    //throw new FilesMissingException("Der mangler en fil i: " + folder.FullPath + " til " + _file.NameWithoutExtension);
+                    // TODO : Find a way to check if the player should have video or stat files
+                    var notification = new Notification("Der mangler en fil i: " + folder.FullPath + " til " + _file.NameWithoutExtension);
+                    App.NotificationService.Add(notification);
                 }
             }
         }

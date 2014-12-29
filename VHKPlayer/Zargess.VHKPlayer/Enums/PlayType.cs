@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace Zargess.VHKPlayer.Enums {
     public enum PlayType {
-        Standard, PlayerPic, PlayerVid, PlayerStat, PlayList
+        Standard, PlayerPic, PlayerVid, PlayerStat, PlayList, Music
     }
 }

@@ -14,6 +14,12 @@ namespace Zargess.VHKPlayer.Test.TestClasses {
         public IFile _music;
         public string _action = "";
 
+        public ISoundStrategy SoundStrategy {
+            get {
+                throw new NotImplementedException();
+            }
+        }
+
         public void Mute(FileType type) {
             _action = "mute";
         }
@@ -46,6 +52,10 @@ namespace Zargess.VHKPlayer.Test.TestClasses {
 
         public void Stop(FileType type) {
             _action = "stop";
+        }
+
+        public void ShowStats(IPlayer currentPlayable) {
+            throw new NotImplementedException();
         }
     }
 }

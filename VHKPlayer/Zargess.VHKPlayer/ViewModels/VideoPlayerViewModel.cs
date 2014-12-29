@@ -73,7 +73,6 @@ namespace Zargess.VHKPlayer.ViewModels {
             }
         }
 
-        // TODO : Consider moving this later on
         private Visibility _viewerVisible;
         public Visibility ViewerVisible {
             get {
@@ -130,9 +129,6 @@ namespace Zargess.VHKPlayer.ViewModels {
                 RaisePropertyChanged("Penalties");
             }
         }
-
-        // TODO : Make thickness from settings at set it as a property. Make the get and set functions call to settings
-
         public Thickness ScoringPlacement {
             get {
                 return GeneralFunctions.StringToThickness(App.GuiConfigService.GetString("scoringPlacement"));
@@ -140,6 +136,42 @@ namespace Zargess.VHKPlayer.ViewModels {
             set {
                 App.GuiConfigService.Update("scoringPlacement", GeneralFunctions.ThicknessToString(value));
                 RaisePropertyChanged("ScoringPlacement");
+            }
+        }
+
+        public Thickness PenaltyPlacement {
+            get {
+                return GeneralFunctions.StringToThickness(App.GuiConfigService.GetString("penaltyPlacement"));
+            }
+            set {
+                App.GuiConfigService.Update("penaltyPlacement", GeneralFunctions.ThicknessToString(value));
+                RaisePropertyChanged("PenaltyPlacement");
+            }
+        }
+
+        // TODO : Fix the audio binding so that it works
+        public double Volume {
+            get {
+                return (double)App.GuiConfigService.Get("volume");
+            }
+            set {
+                var inInterval = value <= MaxVolume && value >= MinVolume;
+                if (!inInterval) return;
+                App.GuiConfigService.Update("volume", value);
+                RaisePropertyChanged("Volume");
+            }
+        }
+
+        // TODO : Make setters for these two properties
+        public double MinVolume {
+            get {
+                return (double)App.GuiConfigService.Get("minvolume");
+            }
+        }
+
+        public double MaxVolume {
+            get {
+                return (double)App.GuiConfigService.Get("maxvolume");
             }
         }
 
@@ -161,10 +193,10 @@ namespace Zargess.VHKPlayer.ViewModels {
             MiscContainer = factory.CreateMiscContainer();
             ReloadAction = factory.CreateReloadPolicy();
             App.ConfigService.PropertyChanged += (sender, ee) => ReloadAction(this);
-            // TODO : Move this to the factory
+            // TODO : Make Dictionary or object which handles the construction of the commands and saves them
             PlayablePressed = new RelayCommand(PlayableClick);
             Test = new RelayCommand(TestClick);
-            NotifiContainer = new NotificationContainer();
+            NotifiContainer = App.NotificationService;
             NotifiContainer.Add(new Notification("Test"));
         }
 
@@ -182,6 +214,28 @@ namespace Zargess.VHKPlayer.ViewModels {
 
         private void TestClick(object parameter) {
             NotifiContainer.Add(new Notification("Lolz"));
+            PenaltyPlacement = new Thickness(10, 10, 0, 0);
+            App.PlayManager.Stop(FileType.Video);
+        }
+
+        public void ShowPicture() {
+            ViewPortVisibility = Visibility.Visible;
+            ViewerVisible = Visibility.Collapsed;
+        }
+
+        public void HidePicture() {
+            ViewPortVisibility = Visibility.Collapsed;
+            ViewerVisible = Visibility.Visible;
+        }
+
+        public void ShowStats() {
+            ShowPicture();
+            StatsVisibility = Visibility.Visible;
+        }
+
+        public void HideStats() {
+            HidePicture();
+            StatsVisibility = Visibility.Collapsed;
         }
 
         public void ShowPicture() {

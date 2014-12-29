@@ -15,6 +15,8 @@ local.properties
 .classpath
 .settings/
 .loadpath
+*.chk
+*.ide
 
 # External tool builders
 .externalToolBuilders/
@@ -215,3 +217,4 @@ pip-log.txt
 .mr.developer.cfg
 New Testable version/VHKPlayer/VHKPlayer.sln.ide/storage.ide
 VHKPlayer/VHKPlayer.sln.ide/storage.ide
+*.chk

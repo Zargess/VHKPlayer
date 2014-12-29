@@ -49,7 +49,7 @@ namespace Zargess.VHKPlayer.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{0;0;0;0}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0;20;0;0}")]
         public string scoringPlacement {
             get {
                 return ((string)(this["scoringPlacement"]));
@@ -68,6 +68,66 @@ namespace Zargess.VHKPlayer.Settings {
             }
             set {
                 this["penaltyPlacement"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double volume {
+            get {
+                return ((double)(this["volume"]));
+            }
+            set {
+                this["volume"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double minvolume {
+            get {
+                return ((double)(this["minvolume"]));
+            }
+            set {
+                this["minvolume"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double maxvolume {
+            get {
+                return ((double)(this["maxvolume"]));
+            }
+            set {
+                this["maxvolume"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int fadeDuration {
+            get {
+                return ((int)(this["fadeDuration"]));
+            }
+            set {
+                this["fadeDuration"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool fadeSound {
+            get {
+                return ((bool)(this["fadeSound"]));
+            }
+            set {
+                this["fadeSound"] = value;
             }
         }
     }

@@ -98,6 +98,7 @@
     <Compile Include="Interfaces\IQueuePeekStrategy.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Interfaces\ISingleItemPlayableFactory.cs" />
+    <Compile Include="Interfaces\ISoundStrategy.cs" />
     <Compile Include="Interfaces\IVideoPlayerFactory.cs" />
     <Compile Include="Interfaces\IPlayObserver.cs" />
     <Compile Include="Model\FileNode.cs" />
@@ -151,6 +152,9 @@
     <Compile Include="Strategies\Selection\IPlayManager\RepeatSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\ISingleItemPlayables\SingleItemPlayableSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\NullSelectionStrategy.cs" />
+    <Compile Include="Strategies\Sound\BasicSoundStrategy.cs" />
+    <Compile Include="Strategies\Sound\FadeSoundStrategy.cs" />
+    <Compile Include="Strategies\Sound\GeneralSoundStrategy.cs" />
     <Compile Include="Strategies\Utils\GeneralQueuePeekStrategy.cs" />
     <Compile Include="Strategies\Utils\IteratedQueuePeekStrategy.cs" />
     <Compile Include="Utility\GeneralFunctions.cs" />
