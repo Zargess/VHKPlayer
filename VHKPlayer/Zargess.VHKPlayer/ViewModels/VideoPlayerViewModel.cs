@@ -73,6 +73,7 @@ namespace Zargess.VHKPlayer.ViewModels {
             }
         }
 
+        // TODO : Consider moving this later on
         private Visibility _viewerVisible;
         public Visibility ViewerVisible {
             get {
@@ -130,6 +131,8 @@ namespace Zargess.VHKPlayer.ViewModels {
             }
         }
 
+        // TODO : Make thickness from settings at set it as a property. Make the get and set functions call to settings
+
         public Thickness ScoringPlacement {
             get {
                 return GeneralFunctions.StringToThickness(App.GuiConfigService.GetString("scoringPlacement"));
@@ -168,10 +171,10 @@ namespace Zargess.VHKPlayer.ViewModels {
             MiscContainer = factory.CreateMiscContainer();
             ReloadAction = factory.CreateReloadPolicy();
             App.ConfigService.PropertyChanged += (sender, ee) => ReloadAction(this);
-            // TODO : Make Dictionary or object which handles the construction of the commands and saves them
+            // TODO : Move this to the factory
             PlayablePressed = new RelayCommand(PlayableClick);
             Test = new RelayCommand(TestClick);
-            NotifiContainer = App.NotificationService;
+            NotifiContainer = new NotificationContainer();
             NotifiContainer.Add(new Notification("Test"));
         }
 
