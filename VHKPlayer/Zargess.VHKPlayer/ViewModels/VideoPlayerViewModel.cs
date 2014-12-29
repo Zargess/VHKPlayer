@@ -143,16 +143,6 @@ namespace Zargess.VHKPlayer.ViewModels {
             }
         }
 
-        public Thickness PenaltyPlacement {
-            get {
-                return GeneralFunctions.StringToThickness(App.GuiConfigService.GetString("penaltyPlacement"));
-            }
-            set {
-                App.GuiConfigService.Update("penaltyPlacement", GeneralFunctions.ThicknessToString(value));
-                RaisePropertyChanged("PenaltyPlacement");
-            }
-        }
-
         public RelayCommand PlayablePressed { get; private set; }
         public RelayCommand Test { get; private set; }
         public INotificationContainer NotifiContainer { get; private set; }
@@ -192,7 +182,6 @@ namespace Zargess.VHKPlayer.ViewModels {
 
         private void TestClick(object parameter) {
             NotifiContainer.Add(new Notification("Lolz"));
-            PenaltyPlacement = new Thickness(10, 10, 0, 0);
         }
 
         public void ShowPicture() {

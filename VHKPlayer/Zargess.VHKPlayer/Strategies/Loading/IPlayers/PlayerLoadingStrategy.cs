@@ -26,9 +26,8 @@ namespace Zargess.VHKPlayer.Strategies.Loading.IPlayers {
             }
             foreach(var folder in folders) {
                 if(!content.Any(x => x.FullPath.Contains(folder.FullPath))) {
-                    // TODO : Find way to add notifications without creating infinite loop. Consider moving the NotificationContainer too the App.xaml.cs file
-                    var notification = new Notification("Der mangler en fil i: " + folder.FullPath + " til " + _file.NameWithoutExtension);
-                    //App.PlayerViewModel.NotifiContainer.Add(notification);
+                    // TODO : Make notification system instead of throwing exception
+                    //throw new FilesMissingException("Der mangler en fil i: " + folder.FullPath + " til " + _file.NameWithoutExtension);
                 }
             }
         }
