@@ -14,6 +14,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
         public IPlayable CurrentPlayable { get; set; }
         public CustomQueue<IFile> Queue { get; private set; }
         public IPlayList Auto10SekPlayList { get; private set; }
+        public bool PlayingMusic { get; set; }
 
         public PlayManager(IPlayManagerFactory factory) {
             _playStrategy = factory.CreatePlayStrategy();
@@ -52,6 +53,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
             var files = playable.Play(PlayType.Music);
             if (files.Count != 1) return;
             SetCurrentFile(files.Dequeue());
+            PlayingMusic = true;
             Play(FileType.Music);
         }
 

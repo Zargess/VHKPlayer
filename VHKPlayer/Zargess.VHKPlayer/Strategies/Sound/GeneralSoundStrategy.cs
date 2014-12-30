@@ -22,6 +22,8 @@ namespace Zargess.VHKPlayer.Strategies.Sound {
         public GeneralSoundStrategy(MediaElement video, MediaElement audio, ISoundStrategy noFade, ISoundStrategy fade) {
             _video = video;
             _audio = audio;
+            _audio.MediaEnded += (sender, ee) => App.PlayManager.PlayingMusic = false;
+
             _noFadeStrategy = noFade;
             _fadeStrategy = fade;
             _currentStrategy = _noFadeStrategy;
@@ -75,13 +77,13 @@ namespace Zargess.VHKPlayer.Strategies.Sound {
         }
 
         private bool HasAudio() {
-            var res = true;
+            if (App.PlayManager.PlayingMusic) return true;
+            
             if (App.PlayManager.CurrentPlayable is IPlayList) {
                 var playlist = (IPlayList)App.PlayManager.CurrentPlayable;
-                res = playlist.HasAudio && !FilePlaying(_audio);
+                return playlist.HasAudio && !FilePlaying(_audio);
             }
-            Console.WriteLine(res);
-            return res;
+            return true;
         }
     }
 }
