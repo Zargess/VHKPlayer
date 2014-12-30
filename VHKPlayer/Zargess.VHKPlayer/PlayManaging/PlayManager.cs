@@ -11,7 +11,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
         private List<IPlayObserver> _observers;
         private IFileSelectionStrategy _emptyQueueStrategy;
         private IPlayStrategy _playStrategy;
-        public IPlayable CurrentPlayable { get; private set; }
+        public IPlayable CurrentPlayable { get; set; }
         public CustomQueue<IFile> Queue { get; private set; }
         public IPlayList Auto10SekPlayList { get; private set; }
 
@@ -47,6 +47,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
             }
         }
 
+        // TODO : Save the music file that should be played and set the property to null when it is done (find a place to manage this, could be done in a event for the Audio MediaElement)
         private void PlayMusic(IPlayable playable) {
             var files = playable.Play(PlayType.Music);
             if (files.Count != 1) return;

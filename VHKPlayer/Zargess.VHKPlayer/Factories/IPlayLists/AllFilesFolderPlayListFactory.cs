@@ -35,8 +35,16 @@ namespace Zargess.VHKPlayer.Factories.IPlayLists {
         }
 
         public bool CreateRepeat() {
+            return StringToBool(Elements[2]);
+        }
+
+        public bool CreateHasAudio() {
+            return StringToBool(Elements[3]);
+        }
+
+        private bool StringToBool(string s) {
             var res = false;
-            bool.TryParse(Elements[2], out res);
+            bool.TryParse(s, out res);
             return res;
         }
     }

@@ -21,6 +21,7 @@ namespace Zargess.VHKPlayer.Strategies.Selection.IPlayManager {
         }
 
         public Queue<IFile> SelectFiles(IPlayable playable, PlayType type) {
+            App.PlayManager.CurrentPlayable = App.PlayManager.Auto10SekPlayList;
             return Auto10SekPlayList.Play(type);
         }
     }

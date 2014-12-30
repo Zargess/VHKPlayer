@@ -50,7 +50,7 @@ namespace Zargess.VHKPlayer.Observers {
                 player.IsMuted = false;
                 SoundStrategy.Starting();
             } else {
-                SoundStrategy.Stoping(() => { /* Do nothing */ });
+                SoundStrategy.Stoping(() => { player.IsMuted = true; });
             }
         }
 
@@ -84,10 +84,14 @@ namespace Zargess.VHKPlayer.Observers {
 
         private void PlayFile(FileType type) {
             if (type == FileType.Video) App.PlayerViewModel.HideStats();
+            else if (type == FileType.Music) Mute(FileType.Video);
+
             var player = GetMediaElement(type);
             var file = GetFile(type);
+
             player.Source = new Uri(file.FullPath);
             player.Play();
+
             SoundStrategy.Starting();
             Console.WriteLine("Playing {0}", file.Name);
         }

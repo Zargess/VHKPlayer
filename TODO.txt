@@ -7,6 +7,7 @@ Move strings for GUI text into the App.xaml file by using this tag: <x:String x:
 
 Implement the playmanager
 	- Try to make the mediaelement preload the files for smooth transition
+	- When playing music while a video is playing then mute the video
 	- Tests:
 		* Test the PlayManager by making a fake PlayObserver and add it to the PlayManager. Then test that each funtion is called
 		* Call Play and PlayQueue with some test data and watch for the right changes
@@ -16,6 +17,7 @@ Test the PlayObserver
 	
 GeneralSoundStrategy
 	- The fade function should increase volume for playlists that do not have sound. Consider adding a HasAudio boolean to PlayList definitions
+	- Save current music file in PlayManager and set it to null when the music file ends then let HasAudio check if the variable is null6
 	
 Settings:
 	* Desgin a GUI where only 3 buttons are available to all pages: Apply, Ok, Annuller. Only when Anuller or Ok is pressed will the GUI close

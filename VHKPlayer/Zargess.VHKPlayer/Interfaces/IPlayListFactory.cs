@@ -11,5 +11,6 @@ namespace Zargess.VHKPlayer.Interfaces {
         IFileSelectionStrategy CreateSelectionStrategy();
         ILoadingStrategy<IFile> CreateLoadingStrategy();
         bool CreateRepeat();
+        bool CreateHasAudio();
     }
 }

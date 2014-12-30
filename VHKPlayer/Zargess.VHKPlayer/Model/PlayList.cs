@@ -16,6 +16,7 @@ namespace Zargess.VHKPlayer.Model {
         public ObservableCollection<IFile> Content { get; private set; }
         public bool Repeat { get; set; }
         private IFolder Folder { get; set; }
+        public bool HasAudio { get; private set; }
 
         public Dispatcher Disp { get; private set; }
 
@@ -28,6 +29,7 @@ namespace Zargess.VHKPlayer.Model {
             Folder = factory.CreateFolder();
             LoadingStrategy = factory.CreateLoadingStrategy();
             Repeat = factory.CreateRepeat();
+            HasAudio = factory.CreateHasAudio();
             LoadingStrategy.Load(Content);
             Disp = Dispatcher.CurrentDispatcher;
             Folder.InitWatcher();

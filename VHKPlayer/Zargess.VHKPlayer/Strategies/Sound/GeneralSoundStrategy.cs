@@ -41,7 +41,7 @@ namespace Zargess.VHKPlayer.Strategies.Sound {
             var audioPlaying = FilePlaying(_audio);
             if (videoPlaying || audioPlaying) return;
             _fadeOutActive = true;
-            Stoping(() => { _fadeOutActive = false; });
+            _fadeStrategy.Stoping(() => { _fadeOutActive = false; });
         }
 
         private bool FilePlaying(MediaElement me) {
@@ -51,8 +51,7 @@ namespace Zargess.VHKPlayer.Strategies.Sound {
             var duration = me.NaturalDuration.TimeSpan.Minutes * 60 + me.NaturalDuration.TimeSpan.Seconds;
             var fadetime = (int)App.GuiConfigService.Get("fadeDuration");
             var time = duration - position;
-            if (me.Name == "Audio") Console.WriteLine("Duration: " + duration);
-            return time > fadetime;
+            return time > fadetime && HasAudio();
         }
 
         public void Starting() {
@@ -67,11 +66,22 @@ namespace Zargess.VHKPlayer.Strategies.Sound {
 
         private void SetCurrent() {
             var fadeActive = (bool)App.GuiConfigService.Get("fadeSound");
-            _currentStrategy = fadeActive ? _fadeStrategy : _noFadeStrategy;
+
+            _currentStrategy = fadeActive && HasAudio() ? _fadeStrategy : _noFadeStrategy;
         }
 
         public void StopFadeManagerThread() {
             _timer.Stop();
+        }
+
+        private bool HasAudio() {
+            var res = true;
+            if (App.PlayManager.CurrentPlayable is IPlayList) {
+                var playlist = (IPlayList)App.PlayManager.CurrentPlayable;
+                res = playlist.HasAudio && !FilePlaying(_audio);
+            }
+            Console.WriteLine(res);
+            return res;
         }
     }
 }

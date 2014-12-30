@@ -9,7 +9,7 @@ using Zargess.VHKPlayer.Enums;
 namespace Zargess.VHKPlayer.Interfaces {
     public interface IPlayManager : IPlayController {
         CustomQueue<IFile> Queue { get; }
-        IPlayable CurrentPlayable { get; }
+        IPlayable CurrentPlayable { get; set; }
         IPlayList Auto10SekPlayList { get; }
 
         void PlayQueue();

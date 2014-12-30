@@ -21,7 +21,7 @@
       <Value Profile="(Default)">xml</Value>
     </Setting>
     <Setting Name="playLists" Type="System.String" Scope="User">
-      <Value Profile="(Default)">{RekFørKamp;root\Rek;1;false;AllFilesSorted},{RekHalvej1;root\Rek;2;false;AllFilesSorted},{10sek;root\10sek;true;IteratedFolder},{FørKamp;root\FoerKamp;true;IteratedFolder}</Value>
+      <Value Profile="(Default)">{RekFørKamp;root\Rek;1;false;true;AllFilesSorted},{RekHalvej1;root\Rek;2;false;true;AllFilesSorted},{10sek;root\10sek;true;false;IteratedFolder},{FørKamp;root\FoerKamp;true;false;IteratedFolder}</Value>
     </Setting>
     <Setting Name="playerFolders" Type="System.String" Scope="User">
       <Value Profile="(Default)">root\spiller;root\spillervideo;root\spillervideostat;root\spillervideostat\mp3;root\spillervideostat\video</Value>
