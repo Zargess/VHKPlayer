@@ -18,6 +18,7 @@ Test the PlayObserver
 GeneralSoundStrategy
 	- The fade function should increase volume for playlists that do not have sound. Consider adding a HasAudio boolean to PlayList definitions
 	- Save current music file in PlayManager and set it to null when the music file ends then let HasAudio check if the variable is null6
+	- Test this class properly
 	
 Settings:
 	* Desgin a GUI where only 3 buttons are available to all pages: Apply, Ok, Annuller. Only when Anuller or Ok is pressed will the GUI close
