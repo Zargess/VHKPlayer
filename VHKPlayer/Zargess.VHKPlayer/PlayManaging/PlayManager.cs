@@ -48,7 +48,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
             }
         }
 
-        // TODO : Save the music file that should be played and set the property to null when it is done (find a place to manage this, could be done in a event for the Audio MediaElement)
+        // TODO : Nake it so that this method mutes video. Consider making this a state pattern so that the might config iof they want this
         private void PlayMusic(IPlayable playable) {
             var files = playable.Play(PlayType.Music);
             if (files.Count != 1) return;

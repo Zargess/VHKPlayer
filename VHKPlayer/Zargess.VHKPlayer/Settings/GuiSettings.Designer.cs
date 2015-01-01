@@ -70,7 +70,7 @@ namespace Zargess.VHKPlayer.Settings {
                 this["penaltyPlacement"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
@@ -128,6 +128,18 @@ namespace Zargess.VHKPlayer.Settings {
             }
             set {
                 this["fadeSound"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool videoMute {
+            get {
+                return ((bool)(this["videoMute"]));
+            }
+            set {
+                this["videoMute"] = value;
             }
         }
     }

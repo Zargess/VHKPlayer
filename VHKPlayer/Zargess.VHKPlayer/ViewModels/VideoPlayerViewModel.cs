@@ -175,6 +175,13 @@ namespace Zargess.VHKPlayer.ViewModels {
             }
         }
 
+        
+        public bool VideoMute {
+            get {
+                return (bool)App.GuiConfigService.Get("videoMute");
+            }
+        }
+
         public RelayCommand PlayablePressed { get; private set; }
         public RelayCommand Test { get; private set; }
         public INotificationContainer NotifiContainer { get; private set; }
