@@ -54,7 +54,7 @@ namespace Zargess.VHKPlayer.Strategies.Sound {
             var duration = me.NaturalDuration.TimeSpan.Minutes * 60 + me.NaturalDuration.TimeSpan.Seconds;
             var fadetime = (int)App.GuiConfigService.Get("fadeDuration");
             var time = duration - position;
-            return time > fadetime && HasAudio();
+            return time > fadetime && RequiresAudio();
         }
 
         public void Starting() {
@@ -70,14 +70,14 @@ namespace Zargess.VHKPlayer.Strategies.Sound {
         private void SetCurrent() {
             var fadeActive = (bool)App.GuiConfigService.Get("fadeSound");
 
-            _currentStrategy = fadeActive && HasAudio() ? _fadeStrategy : _noFadeStrategy;
+            _currentStrategy = fadeActive && RequiresAudio() ? _fadeStrategy : _noFadeStrategy;
         }
 
         public void StopFadeManagerThread() {
             _timer.Stop();
         }
 
-        private bool HasAudio() {
+        private bool RequiresAudio() {
             if (App.PlayManager.PlayingMusic) return true;
             
             if (App.PlayManager.CurrentPlayable is IPlayList) {

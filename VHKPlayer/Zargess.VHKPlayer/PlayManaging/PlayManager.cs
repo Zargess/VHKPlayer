@@ -12,7 +12,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
         private IFileSelectionStrategy _emptyQueueStrategy;
         private IPlayStrategy _playStrategy;
         public IPlayable CurrentPlayable { get; set; }
-        public CustomQueue<IFile> Queue { get; private set; }
+        public CustomQueue<IFile> Queue { get; private set; } // TODO : Consider making a Queue for music
         public IPlayList Auto10SekPlayList { get; private set; }
         public bool PlayingMusic { get; set; }
 
@@ -36,6 +36,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
             _playStrategy.Play(Queue.Dequeue(), _currentType);
         }
 
+        // TODO : Consider making a state pattern
         public void Play(IPlayable playable, PlayType type) {
             if (type == PlayType.Music) {
                 PlayMusic(playable);

@@ -29,7 +29,7 @@ namespace Zargess.VHKPlayer.Observers {
         public PlayObserver(MediaElement viewer, MediaElement audio, Image viewport, bool allowAudio, bool allowStat, ISoundStrategy soundStrategy) {
             _viewer = viewer;
             _audio = audio;
-            this._viewport = viewport;
+            _viewport = viewport;
             _viewer.MediaEnded += Viewer_MediaEnded;
             _allowAudio = allowAudio;
             _allowStat = allowStat;
@@ -45,9 +45,7 @@ namespace Zargess.VHKPlayer.Observers {
             if (!_allowAudio) return;
             var player = GetMediaElement(type);
             
-            var muted = player.IsMuted;
-            
-            if(muted) {
+            if(player.IsMuted) {
                 player.IsMuted = false;
                 SoundStrategy.Starting();
             } else {
@@ -59,7 +57,6 @@ namespace Zargess.VHKPlayer.Observers {
             var player = GetMediaElement(type);
             if (player.Source == null) return;
             SoundStrategy.Stoping(player.Pause);
-            player.Pause();
         }
 		
         public void Stop(FileType type) {
@@ -77,6 +74,7 @@ namespace Zargess.VHKPlayer.Observers {
             App.PlayerViewModel.ViewerVisible = Visibility.Visible;
         }
 
+        // TODO : Consider making a state pattern
         public void Play(FileType type) {
             if (_currentStatPlayer != null) _currentStatPlayer.RemoveObserver(this);
             if (type == FileType.Picture) ShowPicture();
@@ -92,8 +90,8 @@ namespace Zargess.VHKPlayer.Observers {
 
             player.Source = new Uri(file.FullPath);
             player.Play();
-
             SoundStrategy.Starting();
+
             Console.WriteLine("Playing {0}", file.Name);
         }
 
