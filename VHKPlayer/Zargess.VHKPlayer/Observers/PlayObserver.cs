@@ -25,6 +25,7 @@ namespace Zargess.VHKPlayer.Observers {
         private bool _allowStat;
         public ISoundStrategy SoundStrategy { get; private set; }
 
+        // TODO : Have a SoundStrategy for video and one for audio
         public PlayObserver(MediaElement viewer, MediaElement audio, Image viewport, bool allowAudio, bool allowStat, ISoundStrategy soundStrategy) {
             _viewer = viewer;
             _audio = audio;
@@ -43,7 +44,7 @@ namespace Zargess.VHKPlayer.Observers {
         public void Mute(FileType type) {
             if (!_allowAudio) return;
             var player = GetMediaElement(type);
-            if (player.Source == null) return;
+            
             var muted = player.IsMuted;
             
             if(muted) {

@@ -48,7 +48,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
             }
         }
 
-        // TODO : Nake it so that this method mutes video. Consider making this a state pattern so that the might config iof they want this
+        // TODO : Make it so that this method mutes video. Consider making this a state pattern so that the might config iof they want this
         private void PlayMusic(IPlayable playable) {
             var files = playable.Play(PlayType.Music);
             if (files.Count != 1) return;

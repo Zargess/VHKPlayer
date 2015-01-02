@@ -19,6 +19,7 @@ namespace Zargess.VHKPlayer.Strategies.Sound {
         private DispatcherTimer _timer;
         private bool _fadeOutActive;
 
+        // TODO : Take a delegate in to determine if the current item being played needs audio
         public GeneralSoundStrategy(MediaElement video, MediaElement audio, ISoundStrategy noFade, ISoundStrategy fade) {
             _video = video;
             _audio = audio;
@@ -33,7 +34,7 @@ namespace Zargess.VHKPlayer.Strategies.Sound {
             _timer.Tick += ticktock;
 
             _fadeOutActive = false;
-            
+
             _timer.Start();
         }
 
