@@ -7,12 +7,12 @@ using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.Interfaces;
 
 namespace Zargess.VHKPlayer.Strategies.Playing {
-    public class GeneralPlayStrategy : IPlayStrategy {
-        private IPlayStrategy PlayFileStrategy { get; set; }
-        private IPlayStrategy PlayPlayerStatStrategy { get; set; }
-        private IPlayStrategy CurrentStrategy { get; set; }
+    public class GeneralPlayStrategy : IPlayFileStrategy {
+        private IPlayFileStrategy PlayFileStrategy { get; set; }
+        private IPlayFileStrategy PlayPlayerStatStrategy { get; set; }
+        private IPlayFileStrategy CurrentStrategy { get; set; }
 
-        public GeneralPlayStrategy(IPlayStrategy playFileStrategy, IPlayStrategy playPlayerStatStrategy) {
+        public GeneralPlayStrategy(IPlayFileStrategy playFileStrategy, IPlayFileStrategy playPlayerStatStrategy) {
             PlayFileStrategy = playFileStrategy;
             PlayPlayerStatStrategy = playPlayerStatStrategy;
         }

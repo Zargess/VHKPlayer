@@ -7,55 +7,39 @@ using Zargess.VHKPlayer.Strategies.Playing;
 
 namespace Zargess.VHKPlayer.PlayManaging {
     public class PlayManager : IPlayManager {
-        private PlayType _currentType;
         private List<IPlayObserver> _observers;
         private IFileSelectionStrategy _emptyQueueStrategy;
-        private IPlayStrategy _playStrategy;
+        private IPlayFileStrategy _playFileStrategy;
+        private IPlayablePlayStrategy _playPlayableStrategy;
         public IPlayable CurrentPlayable { get; set; }
         public CustomQueue<IFile> Queue { get; private set; } // TODO : Consider making a Queue for music
         public IPlayList Auto10SekPlayList { get; private set; }
         public bool PlayingMusic { get; set; }
+        public PlayType CurrentType { get; set; }
 
         public PlayManager(IPlayManagerFactory factory) {
-            _playStrategy = factory.CreatePlayStrategy();
+            _playFileStrategy = factory.CreatePlayFileStrategy();
             Queue = factory.CreateQueue();
             _observers = factory.CreateObserverList();
             App.ConfigService.PropertyChanged += (sender, ee) => Auto10SekPlayList = factory.CreateAuto10SekPlayList();
             Auto10SekPlayList = factory.CreateAuto10SekPlayList();
             _emptyQueueStrategy = factory.CreateQueueEmptyStrategy();
+            _playPlayableStrategy = factory.CreatePlayablePlayStrategy();
         }
 
         public void PlayQueue() {
-            var emptyCaseQueue = _emptyQueueStrategy.SelectFiles(CurrentPlayable, _currentType);
+            var emptyCaseQueue = _emptyQueueStrategy.SelectFiles(CurrentPlayable, CurrentType);
             if (emptyCaseQueue != null) Queue.SetQueue(emptyCaseQueue);
             if (Queue.Count == 0) return;
             var file = Queue.Dequeue();
-            _playStrategy.Play(file, _currentType);
-            var next = CurrentPlayable.SelectionStrategy.HintNext(Queue, CurrentPlayable, _currentType);
+            _playFileStrategy.Play(file, CurrentType);
+            var next = CurrentPlayable.SelectionStrategy.HintNext(Queue, CurrentPlayable, CurrentType);
             if (file.Type != FileType.Music || next.Type == FileType.Music) return;
-            _playStrategy.Play(Queue.Dequeue(), _currentType);
+            _playFileStrategy.Play(Queue.Dequeue(), CurrentType);
         }
 
-        // TODO : Consider making a state/strategy pattern
         public void Play(IPlayable playable, PlayType type) {
-            if (type == PlayType.Music) {
-                PlayMusic(playable);
-            } else {
-                PlayPlayerStatStrategy.CancelTimer();
-                Queue.SetQueue(playable.Play(type));
-                CurrentPlayable = playable;
-                _currentType = type;
-                PlayQueue();
-            }
-        }
-
-        // TODO : Make it so that this method mutes video. Consider making this a state pattern so that the might config iof they want this
-        public void PlayMusic(IPlayable playable) {
-            var files = playable.Play(PlayType.Music);
-            if (files.Count != 1) return;
-            SetCurrentFile(files.Dequeue());
-            PlayingMusic = true;
-            Play(FileType.Music);
+            _playPlayableStrategy.Play(this, playable, type);
         }
 
         public void AddObserver(IPlayObserver observer) {

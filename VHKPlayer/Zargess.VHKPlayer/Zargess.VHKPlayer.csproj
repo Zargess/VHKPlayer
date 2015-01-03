@@ -90,11 +90,12 @@
     <Compile Include="Interfaces\IMediaViewModel.cs" />
     <Compile Include="Interfaces\INotification.cs" />
     <Compile Include="Interfaces\INotificationContainer.cs" />
+    <Compile Include="Interfaces\IPlayablePlayStrategy.cs" />
     <Compile Include="Interfaces\IPlayController.cs" />
     <Compile Include="Interfaces\IPlayerObserver.cs" />
     <Compile Include="Interfaces\IPlayManager.cs" />
     <Compile Include="Interfaces\IPlayManagerFactory.cs" />
-    <Compile Include="Interfaces\IPlayStrategy.cs" />
+    <Compile Include="Interfaces\IPlayFileStrategy.cs" />
     <Compile Include="Interfaces\IQueuePeekStrategy.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Interfaces\ISingleItemPlayableFactory.cs" />
@@ -138,6 +139,9 @@
     <Compile Include="Strategies\Loading\IPlayables\SortedLoadingStrategy.cs" />
     <Compile Include="Strategies\Loading\IPlayers\PlayerLoadingStrategy.cs" />
     <Compile Include="Strategies\Playing\GeneralPlayStrategy.cs" />
+    <Compile Include="Strategies\Playing\Playable\PlayablePlayStrategy.cs" />
+    <Compile Include="Strategies\Playing\Playable\PlayMusicPlayableStrategy.cs" />
+    <Compile Include="Strategies\Playing\Playable\ViewablePlayablePlayStrategy.cs" />
     <Compile Include="Strategies\Playing\PlayFileStrategy.cs" />
     <Compile Include="Strategies\Playing\PlayPlayerStatStrategy.cs" />
     <Compile Include="Strategies\Selection\IPlayers\GeneralPlayerSelectionStrategy.cs" />

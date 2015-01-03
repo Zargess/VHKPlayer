@@ -116,6 +116,7 @@ namespace Zargess.VHKPlayer.Observers {
             return _viewer;
         }
 
+        // TODO : Consider moving this out of this object. Consider moving the current files to that object to
         private IFile GetFile(FileType type) {
             if (type == FileType.Video) {
                 return _currentVideo;

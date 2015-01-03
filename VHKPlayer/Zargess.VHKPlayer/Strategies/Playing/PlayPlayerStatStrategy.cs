@@ -9,7 +9,7 @@ using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.Interfaces;
 
 namespace Zargess.VHKPlayer.Strategies.Playing {
-    public class PlayPlayerStatStrategy : IPlayStrategy {
+    public class PlayPlayerStatStrategy : IPlayFileStrategy {
         private static Timer PictureTimer { get; set; }
         private static int Counter { get; set; }
 

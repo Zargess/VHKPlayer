@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Zargess.VHKPlayer.Collections;
 using Zargess.VHKPlayer.Interfaces;
 using Zargess.VHKPlayer.Strategies.Playing;
+using Zargess.VHKPlayer.Strategies.Playing.Playable;
 using Zargess.VHKPlayer.Strategies.Selection;
 using Zargess.VHKPlayer.Strategies.Selection.IPlayManager;
 using Zargess.VHKPlayer.Utility;
@@ -22,7 +23,11 @@ namespace Zargess.VHKPlayer.Factories.IPlayManagers {
             return new List<IPlayObserver>();
         }
 
-        public IPlayStrategy CreatePlayStrategy() {
+        public IPlayablePlayStrategy CreatePlayablePlayStrategy() {
+            return new PlayablePlayStrategy(new PlayMusicPlayableStrategy(), new ViewablePlayablePlayStrategy());
+        }
+
+        public IPlayFileStrategy CreatePlayFileStrategy() {
             return new GeneralPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy());
         }
 

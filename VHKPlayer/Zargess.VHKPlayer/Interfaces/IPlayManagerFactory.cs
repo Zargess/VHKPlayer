@@ -8,9 +8,10 @@ using Zargess.VHKPlayer.Collections;
 namespace Zargess.VHKPlayer.Interfaces {
     public interface IPlayManagerFactory {
         CustomQueue<IFile> CreateQueue();
-        IPlayStrategy CreatePlayStrategy();
+        IPlayFileStrategy CreatePlayFileStrategy();
         IFileSelectionStrategy CreateQueueEmptyStrategy();
         IPlayList CreateAuto10SekPlayList();
         List<IPlayObserver> CreateObserverList();
+        IPlayablePlayStrategy CreatePlayablePlayStrategy();
     }
 }

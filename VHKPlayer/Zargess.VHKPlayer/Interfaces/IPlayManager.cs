@@ -12,6 +12,7 @@ namespace Zargess.VHKPlayer.Interfaces {
         IPlayable CurrentPlayable { get; set; }
         IPlayList Auto10SekPlayList { get; }
         bool PlayingMusic { get; set; }
+        PlayType CurrentType { get; set; }
 
         void PlayQueue();
         void Play(IPlayable playable, PlayType type);

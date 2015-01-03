@@ -7,7 +7,7 @@ using Zargess.VHKPlayer.Enums;
 using Zargess.VHKPlayer.Interfaces;
 
 namespace Zargess.VHKPlayer.Strategies.Playing {
-    public class PlayFileStrategy : IPlayStrategy {
+    public class PlayFileStrategy : IPlayFileStrategy {
         /// <summary>
         /// Plays music and videos.
         /// Precondition FileType must be either Music or Video

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Zargess.VHKPlayer.Enums;
 
 namespace Zargess.VHKPlayer.Interfaces {
-    public interface IPlayStrategy {
+    public interface IPlayFileStrategy {
         void Play(IFile file, PlayType type);
     }
 }
