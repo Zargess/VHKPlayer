@@ -36,7 +36,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
             _playStrategy.Play(Queue.Dequeue(), _currentType);
         }
 
-        // TODO : Consider making a state pattern
+        // TODO : Consider making a state/strategy pattern
         public void Play(IPlayable playable, PlayType type) {
             if (type == PlayType.Music) {
                 PlayMusic(playable);
@@ -50,7 +50,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
         }
 
         // TODO : Make it so that this method mutes video. Consider making this a state pattern so that the might config iof they want this
-        private void PlayMusic(IPlayable playable) {
+        public void PlayMusic(IPlayable playable) {
             var files = playable.Play(PlayType.Music);
             if (files.Count != 1) return;
             SetCurrentFile(files.Dequeue());
