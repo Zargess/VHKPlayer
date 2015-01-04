@@ -1,5 +1,6 @@
 * Fix usage of FolderNode so that i use the ContainsFile method
 * Consider having to enable listening in FolderNode so that it's not enabled as a default as this results in many unnecessary updates of useless folders.
+* Overvej hvad ansvar PlayManager, PlayObserver og GeneralSoundStrategy har og hvad de rent faktisk bør have.
 
 Test the new fade function in depth
 
