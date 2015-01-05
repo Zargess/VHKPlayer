@@ -38,6 +38,7 @@ namespace Zargess.VHKPlayer.Strategies.Sound {
             _timer.Start();
         }
 
+        // TODO : Move out of here
         private void ticktock(object sender, EventArgs e) {
             if (_fadeOutActive) return;
             var videoPlaying = FilePlaying(_video);
