@@ -17,72 +17,11 @@ namespace VHKPlayer.Model {
         public string NameWithoutExtension { get; private set; }
 
         public FileNode(string path) {
-            Name = GetFileName(path);
-            FullPath = GetPath(path);
-            Source = GetSource(path);
-            Type = GetFileType();
-            NameWithoutExtension = GetNameWithoutExtension();
-        }
-
-        private string GetNameWithoutExtension() {
-            var temp = Name.Split('.');
-            var res = "";
-
-            for (int i = 0; i < temp.Length - 1; i++) {
-                res += temp[i];
-            }
-
-            return res;
-        }
-
-        private string GetFileName(string path) {
-            try {
-                return Path.GetFileName(path);
-            } catch (Exception) {
-                return "";
-            }
-        }
-
-        private string GetSource(string path) {
-            try {
-                return Path.GetFileName(Path.GetDirectoryName(path));
-            } catch (Exception) {
-                return "";
-            }
-        }
-
-        private FileType GetFileType() {
-            //var fullPath = FullPath.ToLower();
-            //var temp = fullPath.Split('.');
-            //var extension = temp[temp.Length - 1];
-            //var pics = App.ConfigService.GetString("supportedPicture").Split(';').ToList();
-            //var vids = App.ConfigService.GetString("supportedVideo").Split(';').ToList();
-            //var mus = App.ConfigService.GetString("supportedMusic").Split(';').ToList();
-            //var inf = App.ConfigService.GetString("supportedInfo").Split(';').ToList();
-
-            //if (pics.Contains(extension)) {
-            //    return FileType.Picture;
-            //}
-
-            //if (vids.Contains(extension)) {
-            //    return FileType.Video;
-            //}
-
-            //if (mus.Contains(extension)) {
-            //    return FileType.Music;
-            //}
-
-            //if (inf.Contains(extension)) {
-            //    return FileType.Info;
-            //}
-
-            return FileType.Unsupported;
-        }
-
-        private string GetPath(string path) {
-            if (!File.Exists(path)) return path;
-            var temp = PathHandler.SplitPath(path);
-            return temp.Length > 1 ? path : Path.Combine(Environment.CurrentDirectory, path);
+            Name = PathHandler.GetFileName(path);
+            FullPath = PathHandler.GetPath(path);
+            Source = PathHandler.GetSource(path);
+            Type = PathHandler.GetFileType(Name);
+            NameWithoutExtension = PathHandler.GetNameWithoutExtension(Name);
         }
 
         public bool Exists() {

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VHKPlayer.Enums;
 
 namespace VHKPlayer.Utility {
     public class PathHandler {
@@ -33,5 +34,68 @@ namespace VHKPlayer.Utility {
             //return path.ToLower();
             return "";
         }
+
+        public static FileType GetFileType(string filename) {
+            filename = filename.ToLower();
+            var temp = filename.Split('.');
+            var extension = temp[temp.Length - 1];
+
+            var pics = App.VHKPlayer.FolderConfigService.GetString("supportedPicture").Split(';').ToList();
+            var vids = App.VHKPlayer.FolderConfigService.GetString("supportedVideo").Split(';').ToList();
+            var mus = App.VHKPlayer.FolderConfigService.GetString("supportedMusic").Split(';').ToList();
+            var inf = App.VHKPlayer.FolderConfigService.GetString("supportedInfo").Split(';').ToList();
+
+            if (pics.Contains(extension)) {
+                return FileType.Picture;
+            }
+
+            if (vids.Contains(extension)) {
+                return FileType.Video;
+            }
+
+            if (mus.Contains(extension)) {
+                return FileType.Music;
+            }
+
+            if (inf.Contains(extension)) {
+                return FileType.Info;
+            }
+
+            return FileType.Unsupported;
+        }
+
+        public static string GetNameWithoutExtension(string name) {
+            var temp = name.Split('.');
+            var res = "";
+
+            for (int i = 0; i < temp.Length - 1; i++) {
+                res += temp[i];
+            }
+
+            return res;
+        }
+
+        public static string GetFileName(string path) {
+            try {
+                return Path.GetFileName(path);
+            } catch (Exception) {
+                return "";
+            }
+        }
+
+        public static string GetSource(string path) {
+            try {
+                return Path.GetFileName(Path.GetDirectoryName(path));
+            } catch (Exception) {
+                return "";
+            }
+        }
+
+        public static string GetPath(string path) {
+            if (!File.Exists(path)) return path;
+            var temp = PathHandler.SplitPath(path);
+            return temp.Length > 1 ? path : Path.Combine(Environment.CurrentDirectory, path);
+        }
+
     }
 }

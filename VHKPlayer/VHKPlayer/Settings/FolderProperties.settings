@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VHKPlayer.Settings" GeneratedClassName="FolderProperties">
+  <Profiles />
+  <Settings>
+    <Setting Name="supportedPicture" Type="System.String" Scope="User">
+      <Value Profile="(Default)">jpg;png</Value>
+    </Setting>
+    <Setting Name="supportedVideo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">avi;mp4</Value>
+    </Setting>
+    <Setting Name="supportedMusic" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mp3</Value>
+    </Setting>
+    <Setting Name="supportedInfo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">xml</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

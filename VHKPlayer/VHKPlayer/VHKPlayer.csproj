@@ -53,6 +53,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Facade\VHKPlayerImpl.cs" />
+    <Compile Include="Interfaces\IGlobalConfigService.cs" />
+    <Compile Include="Interfaces\ISettings.cs" />
+    <Compile Include="Interfaces\IVHKPlayer.cs" />
+    <Compile Include="Settings\FolderSettings.cs" />
+    <Compile Include="Settings\FolderProperties.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>FolderProperties.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\GlobalConfigService.cs" />
     <Compile Include="Utility\PathHandler.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -93,6 +104,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Settings\FolderProperties.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>FolderProperties.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
