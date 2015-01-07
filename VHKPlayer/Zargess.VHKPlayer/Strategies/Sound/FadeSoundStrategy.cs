@@ -15,10 +15,10 @@ namespace Zargess.VHKPlayer.Strategies.Sound {
         private Storyboard _fadeIn;
         private Storyboard _fadeOut;
         private Action _callback;
-        public Slider SoundSlider { get; private set; }
+        private Slider _slider;
         
         public FadeSoundStrategy(Slider soundslider) {
-            SoundSlider = soundslider;
+            _slider = soundslider;
             _fadeIn = CreateBoard(100.0);
             _fadeOut = CreateBoard(0.0);
         }
@@ -35,7 +35,7 @@ namespace Zargess.VHKPlayer.Strategies.Sound {
             res.Children.Add(animation);
             res.Completed += AnimationComplete;
 
-            Storyboard.SetTarget(animation, SoundSlider);
+            Storyboard.SetTarget(animation, _slider);
             Storyboard.SetTargetProperty(animation, new PropertyPath(RangeBase.ValueProperty));
             return res;
         }

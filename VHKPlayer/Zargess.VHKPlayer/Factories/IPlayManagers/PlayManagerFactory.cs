@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zargess.VHKPlayer.Collections;
+using Zargess.VHKPlayer.Factories.ISingleItemPlayables;
 using Zargess.VHKPlayer.Interfaces;
+using Zargess.VHKPlayer.Model;
 using Zargess.VHKPlayer.Strategies.Playing;
 using Zargess.VHKPlayer.Strategies.Playing.Playable;
 using Zargess.VHKPlayer.Strategies.Selection;
@@ -21,6 +23,10 @@ namespace Zargess.VHKPlayer.Factories.IPlayManagers {
 
         public List<IPlayObserver> CreateObserverList() {
             return new List<IPlayObserver>();
+        }
+
+        public IPlayable CreatePlayableFromFile(IFile file) {
+            return new SingleItemPlayable(new SingleItemPlayableFactory(file));
         }
 
         public IPlayablePlayStrategy CreatePlayablePlayStrategy() {
