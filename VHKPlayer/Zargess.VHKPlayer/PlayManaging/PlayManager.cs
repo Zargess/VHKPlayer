@@ -39,7 +39,6 @@ namespace Zargess.VHKPlayer.PlayManaging {
             var next = CurrentPlayable.SelectionStrategy.HintNext(Queue, CurrentPlayable, CurrentType);
             if (file.Type != FileType.Music || next.Type == FileType.Music) return;
             _playFileStrategy.Play(Queue.Dequeue(), CurrentType);
-            _playPlayableStrategy.Play(this, new SingleItemPlayable(new SingleItemPlayableFactory(Queue.Dequeue())), CurrentType);
         }
 
         public void Play(IPlayable playable, PlayType type) {
