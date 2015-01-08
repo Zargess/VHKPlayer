@@ -13,5 +13,6 @@ namespace Zargess.VHKPlayer.Interfaces {
         IPlayList CreateAuto10SekPlayList();
         List<IPlayObserver> CreateObserverList();
         IPlayablePlayStrategy CreatePlayablePlayStrategy();
+        IPlayable CreatePlayableFromFile(IFile file);
     }
 }

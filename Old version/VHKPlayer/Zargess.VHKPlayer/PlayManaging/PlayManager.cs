@@ -13,6 +13,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
         private IFileSelectionStrategy _emptyQueueStrategy;
         private IPlayFileStrategy _playFileStrategy;
         private IPlayablePlayStrategy _playPlayableStrategy;
+        private IPlayManagerFactory _factory;
         public IPlayable CurrentPlayable { get; set; }
         public CustomQueue<IFile> Queue { get; private set; } // TODO : Consider making a Queue for music
         public IPlayList Auto10SekPlayList { get; private set; }
@@ -20,13 +21,14 @@ namespace Zargess.VHKPlayer.PlayManaging {
         public PlayType CurrentType { get; set; }
 
         public PlayManager(IPlayManagerFactory factory) {
-            _playFileStrategy = factory.CreatePlayFileStrategy();
-            Queue = factory.CreateQueue();
-            _observers = factory.CreateObserverList();
-            App.ConfigService.PropertyChanged += (sender, ee) => Auto10SekPlayList = factory.CreateAuto10SekPlayList();
-            Auto10SekPlayList = factory.CreateAuto10SekPlayList();
-            _emptyQueueStrategy = factory.CreateQueueEmptyStrategy();
-            _playPlayableStrategy = factory.CreatePlayablePlayStrategy();
+            _factory = factory;
+            _playFileStrategy = _factory.CreatePlayFileStrategy();
+            Queue = _factory.CreateQueue();
+            _observers = _factory.CreateObserverList();
+            App.ConfigService.PropertyChanged += (sender, ee) => Auto10SekPlayList = _factory.CreateAuto10SekPlayList();
+            Auto10SekPlayList = _factory.CreateAuto10SekPlayList();
+            _emptyQueueStrategy = _factory.CreateQueueEmptyStrategy();
+            _playPlayableStrategy = _factory.CreatePlayablePlayStrategy();
         }
 
         // TODO : Consider move out of here or simplyfy
@@ -39,7 +41,6 @@ namespace Zargess.VHKPlayer.PlayManaging {
             var next = CurrentPlayable.SelectionStrategy.HintNext(Queue, CurrentPlayable, CurrentType);
             if (file.Type != FileType.Music || next.Type == FileType.Music) return;
             _playFileStrategy.Play(Queue.Dequeue(), CurrentType);
-            _playPlayableStrategy.Play(this, new SingleItemPlayable(new SingleItemPlayableFactory(Queue.Dequeue())), CurrentType);
         }
 
         public void Play(IPlayable playable, PlayType type) {
