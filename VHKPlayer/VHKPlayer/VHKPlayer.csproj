@@ -55,7 +55,13 @@
     </ApplicationDefinition>
     <Compile Include="Enums\PlayType.cs" />
     <Compile Include="Interfaces\IPlayable.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
+    <Compile Include="Interfaces\IPlayerObserver.cs" />
+    <Compile Include="Interfaces\IStatistics.cs" />
     <Compile Include="Models\FolderNode.cs" />
+    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\SinglePlayable.cs" />
+    <Compile Include="Utility\GeneralFunctions.cs" />
     <Compile Include="ViewModels\VideoPlayer.cs" />
     <Compile Include="Interfaces\IGlobalConfigService.cs" />
     <Compile Include="Interfaces\ISettings.cs" />

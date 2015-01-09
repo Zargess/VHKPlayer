@@ -16,7 +16,6 @@ namespace VHKPlayer.Models {
         public FileType Type { get; private set; }
 
         public FileNode(string path) {
-            path = path.ToLower();
             FullPath = path;
             Name = Path.GetFileName(path);
             NameWithoutExtension = Path.GetFileNameWithoutExtension(path);

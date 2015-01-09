@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using VHKPlayer.Enums;
+using VHKPlayer.Interfaces;
+
+namespace VHKPlayer.Models {
+    public class SinglePlayable : IPlayable {
+        public string Name { get; private set; }
+        public bool Repeat { get; private set; }
+        public List<IFile> Content { get; private set; }
+
+        public SinglePlayable(IFile file) {
+            Name = file.Name;
+            Repeat = false;
+            Content = new List<IFile>();
+            Content.Add(file);
+        }
+
+        public Queue<IFile> Play(PlayType type) {
+            var queue = new Queue<IFile>();
+            queue.Enqueue(Content[0]);
+            return queue;
+        }
+
+        public override string ToString() {
+            return Name;
+        }
+    }
+}

@@ -17,5 +17,23 @@
     <Setting Name="requiredFolders" Type="System.String" Scope="User">
       <Value Profile="(Default)">root\10sek;root\spiller;root\musik</Value>
     </Setting>
+    <Setting Name="root" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Marcus\Dropbox\Programmering\C#\vhk</Value>
+    </Setting>
+    <Setting Name="playerFolderPicture" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\spiller</Value>
+    </Setting>
+    <Setting Name="playerFolderVideo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\spillervideo</Value>
+    </Setting>
+    <Setting Name="playerFolderStatPicture" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\spillervideostat</Value>
+    </Setting>
+    <Setting Name="playerFolderStatVideo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\spillervideostat\video</Value>
+    </Setting>
+    <Setting Name="playerFolderStatMusic" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\spillervideostat\mp3</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -82,5 +82,77 @@ namespace VHKPlayer.Utility {
                 this["requiredFolders"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Marcus\\Dropbox\\Programmering\\C#\\vhk")]
+        public string root {
+            get {
+                return ((string)(this["root"]));
+            }
+            set {
+                this["root"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\spiller")]
+        public string playerFolderPicture {
+            get {
+                return ((string)(this["playerFolderPicture"]));
+            }
+            set {
+                this["playerFolderPicture"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\spillervideo")]
+        public string playerFolderVideo {
+            get {
+                return ((string)(this["playerFolderVideo"]));
+            }
+            set {
+                this["playerFolderVideo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\spillervideostat")]
+        public string playerFolderStatPicture {
+            get {
+                return ((string)(this["playerFolderStatPicture"]));
+            }
+            set {
+                this["playerFolderStatPicture"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\spillervideostat\\video")]
+        public string playerFolderStatVideo {
+            get {
+                return ((string)(this["playerFolderStatVideo"]));
+            }
+            set {
+                this["playerFolderStatVideo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\spillervideostat\\mp3")]
+        public string playerFolderStatMusic {
+            get {
+                return ((string)(this["playerFolderStatMusic"]));
+            }
+            set {
+                this["playerFolderStatMusic"] = value;
+            }
+        }
     }
 }

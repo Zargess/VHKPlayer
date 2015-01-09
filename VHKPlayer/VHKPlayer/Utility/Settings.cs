@@ -13,7 +13,6 @@ namespace VHKPlayer.Utility {
                 return _folderConfig;
             }
             set {
-                if (_folderConfig != null) return;
                 _folderConfig = value;
             }
         }
