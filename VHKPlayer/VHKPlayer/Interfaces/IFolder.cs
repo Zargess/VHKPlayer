@@ -8,7 +8,7 @@ namespace VHKPlayer.Interfaces {
 
         bool Exists();
         bool ContainsFile(IFile file);
-        bool ValidRooFolder();
+        bool ValidRootFolder();
         void AddObserver(IFolderObserver observer);
         void RemoveObserver(IFolderObserver observer);
     }

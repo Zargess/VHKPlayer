@@ -1,0 +1,69 @@
+* Fix usage of FolderNode so that i use the ContainsFile method
+* Consider having to enable listening in FolderNode so that it's not enabled as a default as this results in many unnecessary updates of useless folders.
+* Overvej hvad ansvar PlayManager, PlayObserver og GeneralSoundStrategy har og hvad de rent faktisk bør have.
+
+Test the new fade function in depth
+
+Move strings for GUI text into the App.xaml file by using this tag: <x:String x:Key="some key">some text</x:String>. Or consider looking at how to define a language file so change of language will be possible
+
+Implement the playmanager
+	- Try to make the mediaelement preload the files for smooth transition
+	- When playing music while a video is playing then mute the video
+	- Combine IPlayFileStrategy and IPlayPlayableStrategy into one IPlayStrategy
+	- Tests:
+		* Test the PlayManager by making a fake PlayObserver and add it to the PlayManager. Then test that each funtion is called
+		* Call Play and PlayQueue with some test data and watch for the right changes
+
+Test the PlayObserver
+	- Find a proper way to test the PlayObserver
+	
+GeneralSoundStrategy
+	- The fade function should increase volume for playlists that do not have sound. Consider adding a HasAudio boolean to PlayList definitions
+	- Save current music file in PlayManager and set it to null when the music file ends then let HasAudio check if the variable is null6
+	- Test this class properly
+	
+Settings:
+	* Desgin a GUI where only 3 buttons are available to all pages: Apply, Ok, Annuller. Only when Anuller or Ok is pressed will the GUI close
+	* Remove the GUI's title bar
+	* Make a page where you can check for updates. Use the following guides: http://elbruno.com/2013/06/01/azure-howto-publish-a-clickonce-application-using-and-azure-website/ and http://msdn.microsoft.com/en-us/library/ms404263.aspx
+	* Only call Update in GlobalConfigService once either OK or Apply has been pressed
+	* Make two GlobalConfigServices with two different settings files
+		- One with gui related settings
+		- One with folder related settings
+		- When folder settings change reload ViewModel and PlayManager. When gui settings change let the view update (use auto update with databindings)
+	
+Twitter:
+	- Make it possible to enable and disable twitter
+	- Make a login screen for twitter in the settings section which only appears when twitter is enabled
+	- After login the login screen should disappear and show settings for twitter
+	- Show user name and user image in the main window's title bar if you are logged in to twitter
+		- Make this clickable and when clicked take the user to the settings section of twitter
+		- When non are logged in show the twitter logo and the text "Login på twitter"
+		- Only show this if twitter is enabled
+	- Make a filter that removes all inappropriate tweets and let the user of the program modify the search keywords
+		- Make the option to disable and enable the filter
+		
+	Requirements:
+		- Include the Twitter bird www.twitter.com/logo  in close proximity to the Tweets for the duration that Tweets appear in your broadcast.
+		- Include the user’s name and Twitter handle (@username) with each Tweet.
+		- Use the full text of the Tweet. You may edit or revise Tweet text only as necessary due to technical or medium limitations (e.g., removing hyperlinks).
+		- Make sure that the Twitter logo or bird icon is a reasonable size in relation to the content. A little taller than a single line of text is a good guideline.
+	Don’t:
+		- Delete, obscure, or alter the identification of the user. You may show Tweets in anonymous form in exceptional cases such as concerns over user privacy.
+	
+	Showing unattributed data in aggregate or visualized form is permitted, but must still include the official Twitter bird.
+	
+	More information on requirements: https://support.twitter.com/articles/114233
+	
+	- Make sure to delete all tweets as soon as the application closes
+	
+	- More requirements: https://dev.twitter.com/overview/terms/policy
+		
+Lys avis:
+	- Make a tabitem in the lower section of the application for changing the message
+	- Make it possible to view the message in the bottom of the screen
+	- When twitter is enabled show the tweets here
+	- While showing the tweets have the bird nearby - requirement from twitter www.twitter.com/logo 
+
+Control Placement:
+	- Use the Thickness type as the Margin property can use this as a binding

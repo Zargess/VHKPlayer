@@ -53,6 +53,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Enums\PlayType.cs" />
+    <Compile Include="Interfaces\IPlayable.cs" />
+    <Compile Include="Models\FolderNode.cs" />
+    <Compile Include="ViewModels\VideoPlayer.cs" />
+    <Compile Include="Interfaces\IGlobalConfigService.cs" />
+    <Compile Include="Interfaces\ISettings.cs" />
+    <Compile Include="Utility\FolderProperties.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>FolderProperties.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\FolderSettings.cs" />
+    <Compile Include="Utility\GlobalConfigService.cs" />
+    <Compile Include="Utility\PathHandler.cs" />
+    <Compile Include="Utility\Settings.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -95,6 +110,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Utility\FolderProperties.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>FolderProperties.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

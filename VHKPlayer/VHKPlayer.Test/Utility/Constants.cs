@@ -8,13 +8,15 @@ namespace VHKPlayer.Test.Utility {
     public class Constants {
         public static string GithubPath {
             get {
-                return Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments) + @"\Github";
+                var s = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments) + @"\Github";
+                return s.ToLower();
             }
         }
 
         public static string RootFolderPath {
             get {
-                return Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Dropbox\Programmering\C#\damer 2013-2014";
+                var s = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Dropbox\Programmering\C#\vhk";
+                return s.ToLower();
             }
         }
     }
