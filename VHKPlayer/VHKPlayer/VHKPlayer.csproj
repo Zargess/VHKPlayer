@@ -54,6 +54,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Enums\PlayType.cs" />
+    <Compile Include="Interfaces\ILoadingStrategy.cs" />
     <Compile Include="Interfaces\IPlayable.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IPlayerObserver.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Models\FolderNode.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\SinglePlayable.cs" />
+    <Compile Include="Strategies\Loading\Players\PlayerLoadingStrategy.cs" />
     <Compile Include="Utility\GeneralFunctions.cs" />
     <Compile Include="ViewModels\VideoPlayer.cs" />
     <Compile Include="Interfaces\IGlobalConfigService.cs" />
