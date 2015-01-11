@@ -8,6 +8,9 @@ using System.IO;
 using VHKPlayer.Test.Utility;
 using VHKPlayer.ViewModels;
 using VHKPlayer.Utility;
+using VHKPlayer.Strategies.Loading.Players;
+using VHKPlayer.Enums;
+using VHKPlayer.Strategies.Selection.Players;
 
 namespace VHKPlayer.Test.Models {
     /// <summary>
@@ -16,7 +19,7 @@ namespace VHKPlayer.Test.Models {
     [TestClass]
     public class PlayerTest {
         IFolder _playerfolder;
-        IPlayer _player;
+        IPlayer _player, _dalmose;
         IFile _file;
 
         [TestInitialize]
@@ -24,7 +27,9 @@ namespace VHKPlayer.Test.Models {
             var videoplayer = new VideoPlayer(new FolderSettings());
             _playerfolder = new FolderNode(Path.Combine(Constants.RootFolderPath, "spiller"));
             _file = new FileNode(Path.Combine(_playerfolder.FullPath, "001 - Chana de Souza Mason.png"));
-            _player = new Player(_file);
+            IFile file = new FileNode(Path.Combine(Constants.RootFolderPath, "090 - Christian Dalmose.png"));
+            _player = new Player(_file, new PlayerLoadingStrategy(_file), new TypeDependendSelectionStrategy(new PictureSelectionStrategy(), new VideoSelectionStrategy()));
+            _dalmose = new Player(file, new PlayerLoadingStrategy(file), new TypeDependendSelectionStrategy(new PictureSelectionStrategy(), new VideoSelectionStrategy()));
         }
 
         [TestMethod]
@@ -44,9 +49,7 @@ namespace VHKPlayer.Test.Models {
 
         [TestMethod]
         public void PlayerTestDalmoseTrainerShouldBeTrue() {
-            IFile file = new FileNode(Path.Combine(Constants.RootFolderPath, "090 - Christian Dalmose.png"));
-            IPlayer player = new Player(file);
-            Assert.IsTrue(player.Trainer);
+            Assert.IsTrue(_dalmose.Trainer);
         }
 
         [TestMethod]
@@ -61,9 +64,29 @@ namespace VHKPlayer.Test.Models {
 
         [TestMethod]
         public void PlayerTestDalmoseContentCountShouldBe1() {
-            IFile file = new FileNode(Path.Combine(Constants.RootFolderPath, "090 - Christian Dalmose.png"));
-            IPlayer player = new Player(file);
-            Assert.AreEqual(1, player.Content.Count);
+            Assert.AreEqual(1, _dalmose.Content.Count);
+        }
+
+        [TestMethod]
+        public void PlayerTestPlayCallOnPlayerWithPlayerPictureTypeShouldResultInAQueueWith1File() {
+            Assert.AreEqual(1, _player.Play(PlayType.PlayerPicture).Count);
+        }
+
+        [TestMethod]
+        public void PlayerTestPlayCallOnPlayerWithPlayerVideoTypeShouldResultInQueueWith1File() {
+            Assert.AreEqual(1, _player.Play(PlayType.PlayerVideo).Count);
+        }
+
+        [TestMethod]
+        public void PlayerTestResultOfPlayCallOnPlayerWithPlayerVideoTypeShouldBeContainedInPlayerVideoFolder() {
+            var queue = _player.Play(PlayType.PlayerVideo);
+            var file = queue.Dequeue();
+            Assert.IsTrue(Settings.PlayerVideoFolder.ContainsFile(file));
+        }
+
+        [TestMethod]
+        public void PlayerTestPlayCallOnPlayerWithPlayerStatTypeShouldResultInQueueWith3File() {
+            Assert.AreEqual(3, _player.Play(PlayType.PlayerStat).Count);
         }
     }
 }

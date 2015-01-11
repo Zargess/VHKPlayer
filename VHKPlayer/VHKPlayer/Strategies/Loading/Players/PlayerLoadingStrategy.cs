@@ -4,11 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VHKPlayer.Interfaces;
+using VHKPlayer.Models;
+using VHKPlayer.Utility;
 
 namespace VHKPlayer.Strategies.Loading.Players {
     public class PlayerLoadingStrategy : ILoadingStrategy<IFile> {
-        public List<IFile> Load() {
-            throw new NotImplementedException();
+        private IFile _file;
+
+        public PlayerLoadingStrategy(IFile file) {
+            _file = file;
+        }
+
+        public List<IFile> Load(IPlayer player) {
+            var res = new List<IFile>();
+            var folders = GeneralFunctions.GetPlayerFolderPaths().Select(x => new FolderNode(x));
+
+            foreach (var folder in folders) {
+                var f = folder.Content.SingleOrDefault(x => x.NameWithoutExtension.ToLower() == _file.NameWithoutExtension.ToLower());
+                if (f == null) continue;
+                res.Add(f);
+            }
+
+            // TODO : Check if player is missing any files and create notification if he does
+
+            return res;
         }
     }
 }
