@@ -11,11 +11,13 @@ namespace VHKPlayer.Strategies.Selection.Players {
     public class TypeDependendSelectionStrategy : IFileSelectionStrategy {
         private IFileSelectionStrategy _pictureStrategy;
         private IFileSelectionStrategy _videoStrategy;
+        private IFileSelectionStrategy _statStrategy;
         private IFileSelectionStrategy _current;
 
-        public TypeDependendSelectionStrategy(IFileSelectionStrategy pictureStrategy, IFileSelectionStrategy videoStrategy) {
+        public TypeDependendSelectionStrategy(IFileSelectionStrategy pictureStrategy, IFileSelectionStrategy videoStrategy, IFileSelectionStrategy statStrategy) {
             _pictureStrategy = pictureStrategy;
             _videoStrategy = videoStrategy;
+            _statStrategy = statStrategy;
         }
 
         public Queue<IFile> SelectFiles(IPlayable playable, PlayType type) {
@@ -25,7 +27,8 @@ namespace VHKPlayer.Strategies.Selection.Players {
 
         private void SetCurrentStrategy(PlayType type) {
             if (type == PlayType.PlayerPicture) _current = _pictureStrategy;
-            else _current = _videoStrategy;
+            else if (type == PlayType.PlayerVideo) _current = _videoStrategy;
+            else _current = _statStrategy;
         }
     }
 }

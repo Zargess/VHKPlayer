@@ -21,6 +21,7 @@ namespace VHKPlayer.Test.Models {
         IFolder _playerfolder;
         IPlayer _player, _dalmose;
         IFile _file;
+        private Player _jackobsen;
 
         [TestInitialize]
         public void Setup() {
@@ -28,8 +29,10 @@ namespace VHKPlayer.Test.Models {
             _playerfolder = new FolderNode(Path.Combine(Constants.RootFolderPath, "spiller"));
             _file = new FileNode(Path.Combine(_playerfolder.FullPath, "001 - Chana de Souza Mason.png"));
             IFile file = new FileNode(Path.Combine(Constants.RootFolderPath, "090 - Christian Dalmose.png"));
-            _player = new Player(_file, new PlayerLoadingStrategy(_file), new TypeDependendSelectionStrategy(new PictureSelectionStrategy(), new VideoSelectionStrategy()));
-            _dalmose = new Player(file, new PlayerLoadingStrategy(file), new TypeDependendSelectionStrategy(new PictureSelectionStrategy(), new VideoSelectionStrategy()));
+            IFile jackobsenfile = new FileNode(Path.Combine(Constants.RootFolderPath, "012 - Astrid Jakobsen.png"));
+            _player = new Player(_file, new PlayerLoadingStrategy(_file), new TypeDependendSelectionStrategy(new PictureSelectionStrategy(), new VideoSelectionStrategy(), new StatSelectionStrategy()));
+            _dalmose = new Player(file, new PlayerLoadingStrategy(file), new TypeDependendSelectionStrategy(new PictureSelectionStrategy(), new VideoSelectionStrategy(), new StatSelectionStrategy()));
+            _jackobsen = new Player(jackobsenfile, new PlayerLoadingStrategy(jackobsenfile), new TypeDependendSelectionStrategy(new PictureSelectionStrategy(), new VideoSelectionStrategy(), new StatSelectionStrategy()));
         }
 
         [TestMethod]
@@ -85,8 +88,14 @@ namespace VHKPlayer.Test.Models {
         }
 
         [TestMethod]
-        public void PlayerTestPlayCallOnPlayerWithPlayerStatTypeShouldResultInQueueWith3File() {
+        public void PlayerTestPlayCallOnPlayerWithPlayerStatTypeShouldResultInQueueWith3Files() {
             Assert.AreEqual(3, _player.Play(PlayType.PlayerStat).Count);
+        }
+
+        [TestMethod]
+        public void PlayerTestPlayCallOnJackobsenWithPlayerStatTypeShouldResultInQueueWith1Files() {
+            var queue = _jackobsen.Play(PlayType.PlayerStat);
+            Assert.AreEqual(1, _jackobsen.Play(PlayType.PlayerStat).Count);
         }
     }
 }

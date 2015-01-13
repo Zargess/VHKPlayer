@@ -21,31 +21,43 @@ namespace VHKPlayer.Utility {
         private static IFolder _playerPictureFolder;
         public static IFolder PlayerPictureFolder {
             get {
-                var path = GeneralFunctions.AbsolutePath(FolderConfig.GetString("playerFolderPicture"));
-                if (_playerPictureFolder == null) _playerPictureFolder = new FolderNode(path);
-                if (_playerPictureFolder.FullPath != path) _playerPictureFolder = new FolderNode(path);
-                return _playerPictureFolder;
+                return GenerateFolderFromSetting("playerFolderPicture", _playerPictureFolder);
             }
         }
 
         private static IFolder _playerVideoFolder;
         public static IFolder PlayerVideoFolder {
             get {
-                var path = GeneralFunctions.AbsolutePath(FolderConfig.GetString("playerFolderVideo"));
-                if (_playerVideoFolder == null) _playerVideoFolder = new FolderNode(path);
-                if (_playerVideoFolder.FullPath != path) _playerVideoFolder = new FolderNode(path);
-                return _playerVideoFolder;
+                return GenerateFolderFromSetting("playerFolderVideo", _playerVideoFolder);
             }
         }
 
-        private static IFolder _playerStatFolder;
-        public static IFolder PlayerStatFolder {
+        private static IFolder _playerStatPictureFolder;
+        public static IFolder PlayerStatPictureFolder {
             get {
-                var path = GeneralFunctions.AbsolutePath(FolderConfig.GetString("playerFolderStat"));
-                if (_playerStatFolder == null) _playerStatFolder = new FolderNode(path);
-                if (_playerStatFolder.FullPath != path) _playerStatFolder = new FolderNode(path);
-                return _playerStatFolder;
+                return GenerateFolderFromSetting("playerFolderStatPicture", _playerStatPictureFolder);
             }
+        }
+
+        private static IFolder _playerStatVideoFolder;
+        public static IFolder PlayerStatVideoFolder {
+            get {
+                return GenerateFolderFromSetting("playerFolderStatVideo", _playerStatVideoFolder);
+            }
+        }
+
+        private static IFolder _playerStatMusicFolder;
+        public static IFolder PlayerStatMusicFolder {
+            get {
+                return GenerateFolderFromSetting("playerFolderStatMusic", _playerStatMusicFolder);
+            }
+        }
+
+        private static IFolder GenerateFolderFromSetting(string setting, IFolder folder) {
+            var path = GeneralFunctions.AbsolutePath(FolderConfig.GetString(setting));
+            if (folder == null) return new FolderNode(path);
+            if (folder.FullPath != path) return new FolderNode(path);
+            return folder;
         }
     }
 }

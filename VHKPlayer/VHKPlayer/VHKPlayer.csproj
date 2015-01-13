@@ -65,6 +65,7 @@
     <Compile Include="Models\SinglePlayable.cs" />
     <Compile Include="Strategies\Loading\Players\PlayerLoadingStrategy.cs" />
     <Compile Include="Strategies\Selection\Players\PictureSelectionStrategy.cs" />
+    <Compile Include="Strategies\Selection\Players\StatSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\Players\TypeDependendSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\Players\VideoSelectionStrategy.cs" />
     <Compile Include="Utility\GeneralFunctions.cs" />
