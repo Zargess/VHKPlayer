@@ -139,5 +139,7 @@ namespace VHKPlayer.Test.Models {
         public void PlayerTestDeSouzaStatsSavesShouldBe7() {
             Assert.AreEqual(7, _player.Stats.Saves);
         }
+
+
     }
 }
