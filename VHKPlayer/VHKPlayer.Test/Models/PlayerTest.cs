@@ -11,6 +11,8 @@ using VHKPlayer.Utility;
 using VHKPlayer.Strategies.Loading.Players;
 using VHKPlayer.Enums;
 using VHKPlayer.Strategies.Selection.Players;
+using VHKPlayer.Exceptions;
+using VHKPlayer.Factories.IPlayers;
 
 namespace VHKPlayer.Test.Models {
     /// <summary>
@@ -30,9 +32,9 @@ namespace VHKPlayer.Test.Models {
             _file = new FileNode(Path.Combine(_playerfolder.FullPath, "001 - Chana de Souza Mason.png"));
             IFile file = new FileNode(Path.Combine(Constants.RootFolderPath, "090 - Christian Dalmose.png"));
             IFile jackobsenfile = new FileNode(Path.Combine(Constants.RootFolderPath, "012 - Astrid Jakobsen.png"));
-            _player = new Player(_file, new PlayerLoadingStrategy(_file), new TypeDependendSelectionStrategy(new PictureSelectionStrategy(), new VideoSelectionStrategy(), new StatSelectionStrategy()));
-            _dalmose = new Player(file, new PlayerLoadingStrategy(file), new TypeDependendSelectionStrategy(new PictureSelectionStrategy(), new VideoSelectionStrategy(), new StatSelectionStrategy()));
-            _jackobsen = new Player(jackobsenfile, new PlayerLoadingStrategy(jackobsenfile), new TypeDependendSelectionStrategy(new PictureSelectionStrategy(), new VideoSelectionStrategy(), new StatSelectionStrategy()));
+            _player = new Player(new ViborgPlayerFactory(_file));
+            _dalmose = new Player(new ViborgPlayerFactory(file));
+            _jackobsen = new Player(new ViborgPlayerFactory(jackobsenfile));
         }
 
         [TestMethod]
@@ -93,9 +95,49 @@ namespace VHKPlayer.Test.Models {
         }
 
         [TestMethod]
-        public void PlayerTestPlayCallOnJackobsenWithPlayerStatTypeShouldResultInQueueWith1Files() {
+        public void PlayerTestPlayCallOnJackobsenWithPlayerStatTypeShouldResultInQueueWith2Files() {
             var queue = _jackobsen.Play(PlayType.PlayerStat);
-            Assert.AreEqual(1, _jackobsen.Play(PlayType.PlayerStat).Count);
+            Assert.AreEqual(2, _jackobsen.Play(PlayType.PlayerStat).Count);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTypeException), "Wrrong playtype for play call")]
+        public void PlayerTestPlayCallWithVideoPlayTypeShouldResultInInvalidTypeException() {
+            _player.Play(PlayType.Video);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTypeException), "Wrrong playtype for play call")]
+        public void PlayerTestPlayCallWithMusicPlayTypeShouldResultInInvalidTypeException() {
+            _player.Play(PlayType.Music);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTypeException), "Wrrong playtype for play call")]
+        public void PlayerTestPlayCallWithPlayListPlayTypeShouldResultInInvalidTypeException() {
+            _player.Play(PlayType.PlayList);
+        }
+
+        [TestMethod]
+        public void PlayerTestIfPlayCallWithPlayTypePlayerStatDoesNotFindAVideoItShouldFindPlayerPicture() {
+            var queue = _jackobsen.Play(PlayType.PlayerStat);
+            var file = queue.Dequeue();
+            Assert.IsTrue(Settings.PlayerPictureFolder.ContainsFile(file));
+        }
+
+        [TestMethod]
+        public void PlayerTestDeSouzaStatsShoulddNotBeNull() {
+            Assert.IsNotNull(_player.Stats);
+        }
+
+        [TestMethod]
+        public void PlayerTestDeSouzaStatsSaveAttemptsShouldBe21() {
+            Assert.AreEqual(21, _player.Stats.SaveAttempts);
+        }
+
+        [TestMethod]
+        public void PlayerTestDeSouzaStatsSavesShouldBe7() {
+            Assert.AreEqual(7, _player.Stats.Saves);
         }
     }
 }

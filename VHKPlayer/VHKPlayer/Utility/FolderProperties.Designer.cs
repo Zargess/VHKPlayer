@@ -154,5 +154,17 @@ namespace VHKPlayer.Utility {
                 this["playerFolderStatMusic"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Marcus\\Documents\\GitHub\\VHKPlayer\\DigiMatch")]
+        public string statFolder {
+            get {
+                return ((string)(this["statFolder"]));
+            }
+            set {
+                this["statFolder"] = value;
+            }
+        }
     }
 }

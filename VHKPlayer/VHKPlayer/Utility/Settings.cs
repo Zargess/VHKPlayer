@@ -21,35 +21,48 @@ namespace VHKPlayer.Utility {
         private static IFolder _playerPictureFolder;
         public static IFolder PlayerPictureFolder {
             get {
-                return GenerateFolderFromSetting("playerFolderPicture", _playerPictureFolder);
+                _playerPictureFolder = GenerateFolderFromSetting("playerFolderPicture", _playerPictureFolder);
+                return _playerPictureFolder;
             }
         }
 
         private static IFolder _playerVideoFolder;
         public static IFolder PlayerVideoFolder {
             get {
-                return GenerateFolderFromSetting("playerFolderVideo", _playerVideoFolder);
+                _playerVideoFolder = GenerateFolderFromSetting("playerFolderVideo", _playerVideoFolder);
+                return _playerVideoFolder;
             }
         }
 
         private static IFolder _playerStatPictureFolder;
         public static IFolder PlayerStatPictureFolder {
             get {
-                return GenerateFolderFromSetting("playerFolderStatPicture", _playerStatPictureFolder);
+                _playerStatPictureFolder = GenerateFolderFromSetting("playerFolderStatPicture", _playerStatPictureFolder);
+                return _playerStatPictureFolder;
             }
         }
 
         private static IFolder _playerStatVideoFolder;
         public static IFolder PlayerStatVideoFolder {
             get {
-                return GenerateFolderFromSetting("playerFolderStatVideo", _playerStatVideoFolder);
+                _playerStatVideoFolder = GenerateFolderFromSetting("playerFolderStatVideo", _playerStatVideoFolder);
+                return _playerStatVideoFolder;
             }
         }
 
         private static IFolder _playerStatMusicFolder;
         public static IFolder PlayerStatMusicFolder {
             get {
-                return GenerateFolderFromSetting("playerFolderStatMusic", _playerStatMusicFolder);
+                _playerStatMusicFolder = GenerateFolderFromSetting("playerFolderStatMusic", _playerStatMusicFolder);
+                return _playerStatMusicFolder;
+            }
+        }
+
+        private static IFolder _statFolder;
+        public static IFolder StatFolder {
+            get {
+                _statFolder = GenerateFolderFromSetting("statFolder", _statFolder);
+                return _statFolder;
             }
         }
 

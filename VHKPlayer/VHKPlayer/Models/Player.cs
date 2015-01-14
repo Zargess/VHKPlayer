@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VHKPlayer.Enums;
 using VHKPlayer.Interfaces;
+using VHKPlayer.Interfaces.Factories;
 using VHKPlayer.Utility;
 
 namespace VHKPlayer.Models {
@@ -12,6 +13,7 @@ namespace VHKPlayer.Models {
         private List<IPlayerObserver> _observers;
         private ILoadingStrategy<IFile> _loadingStrategy;
         private IFileSelectionStrategy _selectionStrategy;
+        private IStatsLoadingStrategy _statsLoadingStrategy;
 
         public string Name { get; private set; }
         public int Number { get; private set; }
@@ -20,18 +22,20 @@ namespace VHKPlayer.Models {
         public IStatistics Stats { get; private set; }
         public List<IFile> Content { get; private set; }
 
-        public Player(IFile file, ILoadingStrategy<IFile> loadingStrategy, IFileSelectionStrategy selectionStrategy) {
-            Name = file.NameWithoutExtension.Remove(0, 6);
-            Number = GeneralFunctions.StringToInteger(file.Name.Substring(0, 3));
-            Trainer = Number >= 90;
-            Repeat = false;
-            _observers = new List<IPlayerObserver>();
-            _loadingStrategy = loadingStrategy;
-            _selectionStrategy = selectionStrategy;
-            Content = LoadFiles(file);
+        public Player(IPlayerFactory factory) {
+            Name = factory.CreateName();
+            Number = factory.CreateNumber();
+            Trainer = factory.CreateTrainer();
+            Repeat = factory.CreateRepeat();
+            _observers = factory.CreatePlayerObserverList();
+            _loadingStrategy = factory.CreateLoadingStrategy();
+            _selectionStrategy = factory.CreateSelectionStrategy();
+            _statsLoadingStrategy = factory.CreateStatsLoadingStrategy();
+            Content = LoadFiles();
+            FolderChanged(null);
         }
 
-        private List<IFile> LoadFiles(IFile file) {
+        private List<IFile> LoadFiles() {
             return _loadingStrategy.Load(this);
         }
 
@@ -48,7 +52,8 @@ namespace VHKPlayer.Models {
         }
 
         public void FolderChanged(IFolder folder) {
-            throw new NotImplementedException();
+            Stats = _statsLoadingStrategy.LoadStats(Number);
+            _observers.ForEach(x => x.StatsChanged(Stats));
         }
     }
 }

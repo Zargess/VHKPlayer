@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VHKPlayer.Enums;
+using VHKPlayer.Exceptions;
 using VHKPlayer.Interfaces;
 using VHKPlayer.Utility;
 
@@ -28,7 +29,8 @@ namespace VHKPlayer.Strategies.Selection.Players {
         private void SetCurrentStrategy(PlayType type) {
             if (type == PlayType.PlayerPicture) _current = _pictureStrategy;
             else if (type == PlayType.PlayerVideo) _current = _videoStrategy;
-            else _current = _statStrategy;
+            else if (type == PlayType.PlayerStat) _current = _statStrategy;
+            else throw new InvalidTypeException("Wrong playtype for play call");
         }
     }
 }

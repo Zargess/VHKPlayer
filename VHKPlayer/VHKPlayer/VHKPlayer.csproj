@@ -54,16 +54,22 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Enums\PlayType.cs" />
+    <Compile Include="Exceptions\InvalidTypeException.cs" />
+    <Compile Include="Factories\IPlayers\ViborgPlayerFactory.cs" />
+    <Compile Include="Interfaces\Factories\IPlayerFactory.cs" />
     <Compile Include="Interfaces\IFileSelectionStrategy.cs" />
     <Compile Include="Interfaces\ILoadingStrategy.cs" />
     <Compile Include="Interfaces\IPlayable.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IPlayerObserver.cs" />
     <Compile Include="Interfaces\IStatistics.cs" />
+    <Compile Include="Interfaces\IStatsLoadingStrategy.cs" />
     <Compile Include="Models\FolderNode.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\SinglePlayable.cs" />
+    <Compile Include="Models\Statistics.cs" />
     <Compile Include="Strategies\Loading\Players\PlayerLoadingStrategy.cs" />
+    <Compile Include="Strategies\Loading\StatisticsLoading\DigimatchStatsLoadingStrategy.cs" />
     <Compile Include="Strategies\Selection\Players\PictureSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\Players\StatSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\Players\TypeDependendSelectionStrategy.cs" />
