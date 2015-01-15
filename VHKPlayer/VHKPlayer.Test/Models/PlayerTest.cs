@@ -140,6 +140,34 @@ namespace VHKPlayer.Test.Models {
             Assert.AreEqual(7, _player.Stats.Saves);
         }
 
+        [TestMethod]
+        public void PlayerTestDeSouzaStatsGoalsShouldBe0() {
+            Assert.AreEqual(0, _player.Stats.Goals);
+        }
 
+        [TestMethod]
+        public void PlayerTestDeSouzaStatsShotsShouldBe0() {
+            Assert.AreEqual(0, _player.Stats.Goals);
+        }
+
+        [TestMethod]
+        public void PlayerTestDeSouzaStatsYellowCardShouldBe0() {
+            Assert.AreEqual(0, _player.Stats.YellowCard);
+        }
+
+        [TestMethod]
+        public void PlayerTestDeSouzaStatsSuspensionShouldBe0() {
+            Assert.AreEqual(0, _player.Stats.Suspension);
+        }
+
+        [TestMethod]
+        public void PlayerTestDeSouzaStatsRedCardShouldBe0() {
+            Assert.AreEqual(0, _player.Stats.RedCard);
+        }
+
+        [TestMethod]
+        public void PlayerTestDeSouzaStatsCloneShouldBeEqualToOriginal() {
+            Assert.IsTrue(_player.Stats.Equals(_player.Stats.Clone()));
+        }
     }
 }

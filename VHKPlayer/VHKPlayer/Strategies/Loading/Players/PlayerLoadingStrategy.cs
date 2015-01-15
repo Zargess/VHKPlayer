@@ -15,19 +15,18 @@ namespace VHKPlayer.Strategies.Loading.Players {
             _file = file;
         }
 
-        public List<IFile> Load(IPlayer player) {
-            var res = new List<IFile>();
+        public void Load(ICollection<IFile> collection) {
+            collection.Clear();
             var folders = GeneralFunctions.GetPlayerFolderPaths().Select(x => new FolderNode(x));
 
             foreach (var folder in folders) {
                 var f = folder.Content.SingleOrDefault(x => x.NameWithoutExtension.ToLower() == _file.NameWithoutExtension.ToLower());
                 if (f == null) continue;
-                res.Add(f);
+                collection.Add(f);
             }
 
             // TODO : Check if player is missing any files and create notification if he does
 
-            return res;
         }
     }
 }

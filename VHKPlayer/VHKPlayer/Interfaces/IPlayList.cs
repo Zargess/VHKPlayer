@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VHKPlayer.Interfaces {
-    public interface ILoadingStrategy<T> {
-        void Load(ICollection<T> collection);
+    public interface IPlayList : IPlayable, IFolderObserver {
+        bool HasAudio { get; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace VHKPlayer.Models {
         public bool Trainer { get; private set; }
         public bool Repeat { get; private set; }
         public IStatistics Stats { get; private set; }
-        public List<IFile> Content { get; private set; }
+        public ObservableCollection<IFile> Content { get; private set; }
 
         public Player(IPlayerFactory factory) {
             Name = factory.CreateName();
@@ -31,12 +32,10 @@ namespace VHKPlayer.Models {
             _loadingStrategy = factory.CreateLoadingStrategy();
             _selectionStrategy = factory.CreateSelectionStrategy();
             _statsLoadingStrategy = factory.CreateStatsLoadingStrategy();
-            Content = LoadFiles();
+            Content = new ObservableCollection<IFile>();
+            _loadingStrategy.Load(Content);
+            Settings.StatFolder.AddObserver(this);
             FolderChanged(null);
-        }
-
-        private List<IFile> LoadFiles() {
-            return _loadingStrategy.Load(this);
         }
 
         public Queue<IFile> Play(PlayType type) {
@@ -54,6 +53,10 @@ namespace VHKPlayer.Models {
         public void FolderChanged(IFolder folder) {
             Stats = _statsLoadingStrategy.LoadStats(Number);
             _observers.ForEach(x => x.StatsChanged(Stats));
+        }
+
+        public override string ToString() {
+            return Number + " " + Name;
         }
     }
 }

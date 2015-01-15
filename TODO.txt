@@ -5,3 +5,4 @@ Implement FolderNode													Might be done
 Create Playable interfaces
 Implement PlayList
 Implement SingleItemPlayable (find new name for this)
+Implement Player and Statistics											DONE

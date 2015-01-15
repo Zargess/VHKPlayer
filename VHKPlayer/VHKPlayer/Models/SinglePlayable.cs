@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VHKPlayer.Enums;
 using VHKPlayer.Interfaces;
 
@@ -7,12 +8,12 @@ namespace VHKPlayer.Models {
     public class SinglePlayable : IPlayable {
         public string Name { get; private set; }
         public bool Repeat { get; private set; }
-        public List<IFile> Content { get; private set; }
+        public ObservableCollection<IFile> Content { get; private set; }
 
         public SinglePlayable(IFile file) {
             Name = file.Name;
             Repeat = false;
-            Content = new List<IFile>();
+            Content = new ObservableCollection<IFile>();
             Content.Add(file);
         }
 

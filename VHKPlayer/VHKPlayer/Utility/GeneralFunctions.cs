@@ -13,6 +13,13 @@ namespace VHKPlayer.Utility {
             return n;
         }
 
+        public static string[] ConstructElements(string s) {
+            s = s.Replace("{", "");
+            s = s.Replace("}", "");
+            var res = s.Split(';');
+            return res;
+        }
+
         public static List<string> GetPlayerFolderPaths() {
             var res = new List<string>();
 

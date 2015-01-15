@@ -1,0 +1,8 @@
+PlayList:
+	* Have name
+	* Load files
+	* A way to report what should be played
+	* Know if sound is necessary
+	* Automatic update content
+	
+	Use a construction string to define a playlist
