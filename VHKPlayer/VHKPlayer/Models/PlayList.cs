@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VHKPlayer.Collections;
 using VHKPlayer.Enums;
 using VHKPlayer.Interfaces;
 using VHKPlayer.Interfaces.Factories;
@@ -19,7 +20,7 @@ namespace VHKPlayer.Models {
         public bool Repeat { get; private set; }
 
         public PlayList(IPlayListFactory factory) {
-            Content = new ObservableCollection<IFile>();
+            Content = new SortableCollection<IFile>();
             Name = factory.CreateName();
             HasAudio = factory.CreateHasAudio();
             Repeat = factory.CreateRepeat();

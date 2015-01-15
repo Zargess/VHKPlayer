@@ -3,6 +3,6 @@ Make some methods for the facade
 Implement Settings system												Partialy done (Folder settings system is up)
 Implement FolderNode													Might be done
 Create Playable interfaces
-Implement PlayList
+Implement PlayList														DONE
 Implement SingleItemPlayable (find new name for this)
 Implement Player and Statistics											DONE

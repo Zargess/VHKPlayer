@@ -53,6 +53,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Collections\SortableCollection.cs" />
     <Compile Include="Enums\PlayType.cs" />
     <Compile Include="Exceptions\InvalidTypeException.cs" />
     <Compile Include="Factories\IPlayers\ViborgPlayerFactory.cs" />
