@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 using VHKPlayer.Enums;
 
 namespace VHKPlayer.Interfaces {
-    public interface IVideoPlayer {
-        Queue<IFile> Queue { get; }
-        void PlayQueue();
-        void PlayPlayable(IPlayable playable, PlayType type);
-        void AddObserver(IPlayController observer);
-        void Play(IFile file);
+    public interface IPlayController {
+        void Play(FileType type);
         void Resume(FileType type);
         void Stop(FileType type);
         void Pause(FileType type);
         void Mute(FileType type);
+        void ShowStats(IPlayer player);
+        void Update(IFile file);
     }
 }

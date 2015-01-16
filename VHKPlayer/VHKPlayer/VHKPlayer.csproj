@@ -69,6 +69,7 @@
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IPlayerObserver.cs" />
     <Compile Include="Interfaces\IPlayList.cs" />
+    <Compile Include="Interfaces\IPlayController.cs" />
     <Compile Include="Interfaces\IStatistics.cs" />
     <Compile Include="Interfaces\IStatsLoadingStrategy.cs" />
     <Compile Include="Models\FolderNode.cs" />

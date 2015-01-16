@@ -50,12 +50,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Facade\VideoPlayerTest.cs" />
     <Compile Include="Models\FileNodeTest.cs" />
     <Compile Include="Models\FolderNodeTest.cs" />
     <Compile Include="Models\PlayerTest.cs" />
     <Compile Include="Models\PlayListTest.cs" />
     <Compile Include="Models\SinglePlayableTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestClasses\TestPlayable.cs" />
+    <Compile Include="TestClasses\TestPlayController.cs" />
     <Compile Include="Utility\Constants.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -31,7 +31,7 @@ namespace Zargess.VHKPlayer.PlayManaging {
             _playPlayableStrategy = _factory.CreatePlayablePlayStrategy();
         }
 
-        // TODO : Consider move out of here or simplyfy
+        // TODO : Consider move out of here or simplify
         public void PlayQueue() {
             var emptyCaseQueue = _emptyQueueStrategy.SelectFiles(CurrentPlayable, CurrentType);
             if (emptyCaseQueue != null) Queue.SetQueue(emptyCaseQueue);
