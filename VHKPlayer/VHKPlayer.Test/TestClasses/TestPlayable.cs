@@ -30,8 +30,8 @@ namespace VHKPlayer.Test.TestClasses {
 
         public Queue<IFile> Play(PlayType type) {
             var res = new Queue<IFile>();
-            res.Enqueue(new FileNode("c:\test\temp.avi"));
-            res.Enqueue(new FileNode("c:\test\temp.avi"));
+            res.Enqueue(new FileNode(@"c:\test\temp.mp3"));
+            res.Enqueue(new FileNode(@"c:\test\temp.avi"));
             return res;
         }
     }

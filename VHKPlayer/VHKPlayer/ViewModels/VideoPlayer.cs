@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VHKPlayer.Collections;
 using VHKPlayer.Enums;
 using VHKPlayer.Interfaces;
 using VHKPlayer.Utility;
@@ -10,11 +11,12 @@ using VHKPlayer.Utility;
 namespace VHKPlayer.ViewModels {
     public class VideoPlayer : IVideoPlayer {
         private List<IPlayController> _controllers;
-        public Queue<IFile> Queue { get; private set; }
+        public CustomQueue<IFile> Queue { get; private set; }
 
         public VideoPlayer(ISettings folderSetting) {
             Settings.FolderConfig = new GlobalConfigService(folderSetting);
             _controllers = new List<IPlayController>();
+            Queue = new CustomQueue<IFile>();
         }
 
         public void AddObserver(IPlayController observer) {
@@ -30,11 +32,12 @@ namespace VHKPlayer.ViewModels {
         }
 
         public void Play(IFile file) {
+            _controllers.ForEach(x => x.Update(file));
             _controllers.ForEach(x => x.Play(FileType.Music));
         }
 
         public void PlayPlayable(IPlayable playable, PlayType type) {
-            throw new NotImplementedException();
+            if (type != PlayType.Music) Queue.SetQueue(playable.Play(type));
         }
 
         public void PlayQueue() {

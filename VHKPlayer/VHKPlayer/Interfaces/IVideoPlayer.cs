@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VHKPlayer.Collections;
 using VHKPlayer.Enums;
 
 namespace VHKPlayer.Interfaces {
     public interface IVideoPlayer {
-        Queue<IFile> Queue { get; }
+        CustomQueue<IFile> Queue { get; }
         void PlayQueue();
         void PlayPlayable(IPlayable playable, PlayType type);
         void AddObserver(IPlayController observer);
