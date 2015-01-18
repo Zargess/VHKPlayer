@@ -1,0 +1,10 @@
+* Make constants class to get the settings strings needed
+	- Consider making this a strategy that the user might implement and add to
+
+* Consider making a SupportedTypeStrategy for FileNode to use
+
+* VideoPlayer as independent framework without a GUI
+
+* Twitter client as a framework
+
+* Make a private project that uses the frameworks

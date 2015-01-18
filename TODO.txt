@@ -7,3 +7,5 @@ Implement PlayList														DONE
 Implement SingleItemPlayable (find new name for this)
 Implement Player and Statistics											DONE
 Implement VideoPlayer (Old PlayManager)
+Implement Twitter client
+Implement PlayObserver using TDD (somehow)
