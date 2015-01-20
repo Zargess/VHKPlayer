@@ -37,11 +37,19 @@ namespace VHKPlayer.ViewModels {
         }
 
         public void PlayPlayable(IPlayable playable, PlayType type) {
-            if (type != PlayType.Music) Queue.SetQueue(playable.Play(type));
+            var queue = playable.Play(type);
+            if (queue.Count == 0) return;
+
+            Play(queue.Dequeue());
+
+            if (queue.Count == 0) return;
+            if (type == PlayType.Music) return;
+
+            Queue.SetQueue(queue);
         }
 
         public void PlayQueue() {
-            throw new NotImplementedException();
+
         }
 
         public void Resume(FileType type) {

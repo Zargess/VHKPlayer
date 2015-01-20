@@ -84,12 +84,7 @@ namespace VHKPlayer.Test.Facade {
         [TestMethod]
         public void VideoPlayerTestPlayPlayableCallWithVideoPlayTypeShouldResultInQueueWith2Elements() {
             _videoplayer.PlayPlayable(_testplayable, PlayType.Video);
-            Assert.AreEqual(2, _videoplayer.Queue.Count);
-        }
-
-        [TestMethod]
-        public void MyTestMethod() {
-
+            Assert.AreEqual(1, _videoplayer.Queue.Count);
         }
     }
 }
