@@ -11,12 +11,16 @@ using VHKPlayer.Utility;
 namespace VHKPlayer.ViewModels {
     public class VideoPlayer : IVideoPlayer {
         private List<IPlayController> _controllers;
+        private PlayType _currentType;
+        private IPlayStrategy _playStrategy;
+
         public CustomQueue<IFile> Queue { get; private set; }
 
-        public VideoPlayer(ISettings folderSetting) {
+        public VideoPlayer(ISettings folderSetting, IPlayStrategy playstrategy) {
             Settings.FolderConfig = new GlobalConfigService(folderSetting);
             _controllers = new List<IPlayController>();
             Queue = new CustomQueue<IFile>();
+            _playStrategy = playstrategy;
         }
 
         public void AddObserver(IPlayController observer) {
@@ -39,7 +43,7 @@ namespace VHKPlayer.ViewModels {
         public void Play(IPlayable playable, PlayType type) {
             var queue = playable.Play(type);
             if (queue.Count == 0) return;
-
+            _currentType = type;
             Play(queue.Dequeue());
 
             if (type == PlayType.Music) return;
@@ -50,8 +54,8 @@ namespace VHKPlayer.ViewModels {
         public void PlayQueue() {
             if (Queue.Count == 0) return;
             var file = Queue.Dequeue();
-            
-            Play(file);
+
+            _playStrategy.Play(this, file, _currentType);
         }
 
         public void Resume(FileType type) {
@@ -60,6 +64,13 @@ namespace VHKPlayer.ViewModels {
 
         public void Stop(FileType type) {
             _controllers.ForEach(x => x.Stop(type));
+        }
+
+        public void Shutdown() {
+            foreach (var timer in Settings.Timers) {
+                timer.Enabled = false;
+                timer.Stop();
+            }
         }
     }
 }

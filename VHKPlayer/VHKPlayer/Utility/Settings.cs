@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using VHKPlayer.Interfaces;
 using VHKPlayer.Models;
 
@@ -63,6 +64,14 @@ namespace VHKPlayer.Utility {
             get {
                 _statFolder = GenerateFolderFromSetting("statFolder", _statFolder);
                 return _statFolder;
+            }
+        }
+
+        private static List<Timer> _timers;
+        public static List<Timer> Timers {
+            get {
+                if (_timers == null) _timers = new List<Timer>();
+                return _timers;
             }
         }
 

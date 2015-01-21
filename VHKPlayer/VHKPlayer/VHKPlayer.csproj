@@ -71,6 +71,7 @@
     <Compile Include="Interfaces\IPlayerObserver.cs" />
     <Compile Include="Interfaces\IPlayList.cs" />
     <Compile Include="Interfaces\IPlayController.cs" />
+    <Compile Include="Interfaces\IPlayStrategy.cs" />
     <Compile Include="Interfaces\IStatistics.cs" />
     <Compile Include="Interfaces\IStatsLoadingStrategy.cs" />
     <Compile Include="Models\FolderNode.cs" />
@@ -82,6 +83,9 @@
     <Compile Include="Strategies\Loading\PlayLists\FolderLoadingStrategy.cs" />
     <Compile Include="Strategies\Loading\PlayLists\SortedLoadingStrategy.cs" />
     <Compile Include="Strategies\Loading\StatisticsLoading\DigimatchStatsLoadingStrategy.cs" />
+    <Compile Include="Strategies\Playing\AlternatingPlayStrategy.cs" />
+    <Compile Include="Strategies\Playing\PlayFileStrategy.cs" />
+    <Compile Include="Strategies\Playing\PlayPlayerStatStrategy.cs" />
     <Compile Include="Strategies\Selection\Players\PictureSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\Players\StatSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\Players\TypeDependendSelectionStrategy.cs" />
