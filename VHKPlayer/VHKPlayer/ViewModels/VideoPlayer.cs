@@ -33,23 +33,25 @@ namespace VHKPlayer.ViewModels {
 
         public void Play(IFile file) {
             _controllers.ForEach(x => x.Update(file));
-            _controllers.ForEach(x => x.Play(FileType.Music));
+            _controllers.ForEach(x => x.Play(file.Type));
         }
 
-        public void PlayPlayable(IPlayable playable, PlayType type) {
+        public void Play(IPlayable playable, PlayType type) {
             var queue = playable.Play(type);
             if (queue.Count == 0) return;
 
             Play(queue.Dequeue());
 
-            if (queue.Count == 0) return;
             if (type == PlayType.Music) return;
 
             Queue.SetQueue(queue);
         }
 
         public void PlayQueue() {
-
+            if (Queue.Count == 0) return;
+            var file = Queue.Dequeue();
+            
+            Play(file);
         }
 
         public void Resume(FileType type) {

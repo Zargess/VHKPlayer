@@ -10,7 +10,7 @@ namespace VHKPlayer.Interfaces {
     public interface IVideoPlayer {
         CustomQueue<IFile> Queue { get; }
         void PlayQueue();
-        void PlayPlayable(IPlayable playable, PlayType type);
+        void Play(IPlayable playable, PlayType type);
         void AddObserver(IPlayController observer);
         void Play(IFile file);
         void Resume(FileType type);

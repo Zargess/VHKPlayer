@@ -58,33 +58,40 @@ namespace VHKPlayer.Test.Facade {
         }
 
         [TestMethod]
-        public void AfterManagerCallsSetCurrentFileWithFoo_aviTestObserverVideoIsNotNull() {
+        public void VideoPlayerTestAfterManagerCallsSetCurrentFileWithFoo_aviTestObserverVideoIsNotNull() {
             _videoplayer.Play(new FileNode("Foo.avi"));
             Assert.IsNotNull(_observer._video);
         }
 
         [TestMethod]
-        public void AfterManagerCallsSetCurrentFileWithLogo_pngTestObserverPictureIsNotNull() {
+        public void VideoPlayerTestAfterManagerCallsSetCurrentFileWithLogo_pngTestObserverPictureIsNotNull() {
             _videoplayer.Play(new FileNode("Logo.png"));
             Assert.IsNotNull(_observer._picture);
         }
 
         [TestMethod]
-        public void AfterManagerCallsSetCurrentFileWithMuse_2_mp3TestObserverMusicIsNotNull() {
+        public void VideoPlayerTestAfterManagerCallsSetCurrentFileWithMuse_2_mp3TestObserverMusicIsNotNull() {
             _videoplayer.Play(new FileNode("muse_2.mp3"));
             Assert.IsNotNull(_observer._music);
         }
 
         [TestMethod]
         public void VideoPlayerTestPlayPlayableCallWithMusicPlayTypeShouldResultInEmptyQueue() {
-            _videoplayer.PlayPlayable(_testplayable, PlayType.Music);
+            _videoplayer.Play(_testplayable, PlayType.Music);
             Assert.AreEqual(0, _videoplayer.Queue.Count);
         }
 
         [TestMethod]
         public void VideoPlayerTestPlayPlayableCallWithVideoPlayTypeShouldResultInQueueWith2Elements() {
-            _videoplayer.PlayPlayable(_testplayable, PlayType.Video);
+            _videoplayer.Play(_testplayable, PlayType.Video);
             Assert.AreEqual(1, _videoplayer.Queue.Count);
+        }
+
+        [TestMethod]
+        public void VideoPlayerTestCallingPlayQueueWhenQueueHasOneElementShouldResultInAnEmptyQueue() {
+            _videoplayer.Play(_testplayable, PlayType.Video);
+            _videoplayer.PlayQueue();
+            Assert.AreEqual(0, _videoplayer.Queue.Count);
         }
     }
 }
