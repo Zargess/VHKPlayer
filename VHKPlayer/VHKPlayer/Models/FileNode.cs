@@ -32,7 +32,9 @@ namespace VHKPlayer.Models {
             if (obj == null) return false;
             if (!(obj is FileNode)) return false;
             var other = obj as FileNode;
-            return FullPath == other.FullPath;
+            var path = FullPath.ToLower();
+            var otherpath = other.FullPath.ToLower();
+            return FullPath.ToLower() == other.FullPath.ToLower();
         }
     }
 }

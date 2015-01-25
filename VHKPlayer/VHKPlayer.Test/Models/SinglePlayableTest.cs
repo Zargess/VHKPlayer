@@ -8,6 +8,7 @@ using VHKPlayer.Interfaces;
 using VHKPlayer.Models;
 using VHKPlayer.Test.Utility;
 using VHKPlayer.Enums;
+using VHKPlayer.Strategies.Playing;
 
 namespace VHKPlayer.Test.Models {
     /// <summary>
@@ -19,7 +20,7 @@ namespace VHKPlayer.Test.Models {
         IPlayable _playable;
         [TestInitialize]
         public void Setup() {
-            var videoplayer = new VideoPlayer(new FolderSettings());
+            var videoplayer = new VideoPlayer(new FolderSettings(), new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
             _file = new FileNode(Constants.RootFolderPath + @"\Logo.png");
             _playable = new SinglePlayable(_file);
         }

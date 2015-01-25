@@ -8,20 +8,22 @@ using VHKPlayer.ViewModels;
 using VHKPlayer.Test.TestClasses;
 using VHKPlayer.Enums;
 using VHKPlayer.Models;
+using VHKPlayer.Strategies.Playing;
+using VHKPlayer.Test.Utility;
 
 namespace VHKPlayer.Test.Facade {
     /// <summary>
     /// Summary description for VideoPlayerTest
     /// </summary>
     [TestClass]
-    public class VideoPlayerTest {
+    public class VideoPlayerTests {
         private TestPlayController _observer;
-        private IVideoPlayer _videoplayer;
         private IPlayable _testplayable;
+        private IVideoPlayer _videoplayer;
 
         [TestInitialize]
         public void Setup() {
-            _videoplayer = new VideoPlayer(new FolderSettings());
+            _videoplayer = new VideoPlayer(new FolderSettings(), new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
             _observer = new TestPlayController();
             _videoplayer.AddObserver(_observer);
             _testplayable = new TestPlayable();
@@ -82,9 +84,9 @@ namespace VHKPlayer.Test.Facade {
         }
 
         [TestMethod]
-        public void VideoPlayerTestPlayPlayableCallWithVideoPlayTypeShouldResultInQueueWith2Elements() {
+        public void VideoPlayerTestPlayPlayableCallWithVideoPlayTypeShouldResultInQueueWith0ElementsWhenFirstElementIsMusic() {
             _videoplayer.Play(_testplayable, PlayType.Video);
-            Assert.AreEqual(1, _videoplayer.Queue.Count);
+            Assert.AreEqual(0, _videoplayer.Queue.Count);
         }
 
         [TestMethod]
@@ -92,6 +94,31 @@ namespace VHKPlayer.Test.Facade {
             _videoplayer.Play(_testplayable, PlayType.Video);
             _videoplayer.PlayQueue();
             Assert.AreEqual(0, _videoplayer.Queue.Count);
+        }
+
+        [TestMethod]
+        public void VideoPlayerTestCallingShowStatsWhenTestPlayerWasLastPlayableCalledShouldResultInTestControllerHavingAStatObjectWith2Scorings() {
+            TestPlayController controller = new TestPlayController();
+            _videoplayer.AddObserver(controller);
+            _videoplayer.Play(new TestPlayer(), PlayType.PlayerPicture);
+            _videoplayer.ShowStats();
+            Assert.AreEqual(2, controller.Stats.Goals);
+        }
+
+        // TODO : Make some tests over PlayPlayerStatStrategy
+
+        [TestMethod]
+        public void VideoPlayerTestCallingPlayWithAPlayerAndPlayTypePlayerStatShouldResultInStatsShowingWith2Goals() {
+            TestPlayController controller = new TestPlayController();
+            _videoplayer.AddObserver(controller);
+            _videoplayer.Play(new TestPlayer(), PlayType.PlayerStat);
+            Assert.AreEqual(2, controller.Stats.Goals);
+        }
+
+        [TestMethod]
+        public void VideoPlayerTestCallingPlayWithAPlayerAndPlayTypePlayerStatAndCurrentFileIsAPictureShouldResultInPlayerStatTimerIsEnabled() {
+            _videoplayer.Play(new TestPlayer(), PlayType.PlayerStat);
+            Assert.IsTrue(Settings.PlayerStatTimer.IsEnabled);
         }
     }
 }

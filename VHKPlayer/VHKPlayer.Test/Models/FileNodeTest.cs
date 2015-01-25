@@ -8,6 +8,7 @@ using VHKPlayer.Models;
 using VHKPlayer.Enums;
 using VHKPlayer.ViewModels;
 using VHKPlayer.Utility;
+using VHKPlayer.Strategies.Playing;
 
 namespace VHKPlayer.Test.Models {
     /// <summary>
@@ -18,7 +19,7 @@ namespace VHKPlayer.Test.Models {
         private IFile _file;
         [TestInitialize]
         public void Setup() {
-            IVideoPlayer videoplayer = new VideoPlayer(new FolderSettings());
+            IVideoPlayer videoplayer = new VideoPlayer(new FolderSettings(), new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
             _file = new FileNode(Constants.RootFolderPath + @"\dong.mp3");
         }
 

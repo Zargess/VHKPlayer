@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Windows.Threading;
 using VHKPlayer.Interfaces;
 using VHKPlayer.Models;
 
@@ -73,6 +74,13 @@ namespace VHKPlayer.Utility {
                 if (_timers == null) _timers = new List<Timer>();
                 return _timers;
             }
+        }
+
+        public static DispatcherTimer PlayerStatTimer { get; set; }
+
+        public static void CancelStatTimer() {
+            if (PlayerStatTimer == null) return;
+            PlayerStatTimer.Stop();
         }
 
         private static IFolder GenerateFolderFromSetting(string setting, IFolder folder) {

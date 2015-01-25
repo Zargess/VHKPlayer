@@ -17,9 +17,9 @@ namespace VHKPlayer.Strategies.Playing {
             _playerStatStrategy = playstatstrategy;
         }
 
-        public void Play(IVideoPlayer videoplayer, IFile file, PlayType type) {
+        public void Play(IVideoPlayer videoplayer, Queue<IFile> queue, IPlayable playable, PlayType type) {
             SetCurrent(type);
-            _currentStrategy.Play(videoplayer, file, type);
+            _currentStrategy.Play(videoplayer, queue, playable, type);
         }
 
         private void SetCurrent(PlayType type) {

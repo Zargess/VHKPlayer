@@ -7,6 +7,6 @@ using VHKPlayer.Enums;
 
 namespace VHKPlayer.Interfaces {
     public interface IPlayStrategy {
-        void Play(IVideoPlayer videoplayer, IFile file, PlayType type);
+        void Play(IVideoPlayer videoplayer, Queue<IFile> queue, IPlayable playable, PlayType type);
     }
 }

@@ -13,6 +13,8 @@ namespace VHKPlayer.Test.TestClasses {
         public IFile _music;
         public string _action = "";
 
+        public IStatistics Stats { get; private set; }
+
         public void Mute(FileType type) {
             _action = "mute";
         }
@@ -46,9 +48,10 @@ namespace VHKPlayer.Test.TestClasses {
         public void Stop(FileType type) {
             _action = "stop";
         }
-
+        public bool Test { get; set; }
         public void ShowStats(IPlayer currentPlayable) {
-            throw new NotImplementedException();
+            Stats = currentPlayable.Stats;
+            Test = Stats == null;
         }
     }
 }

@@ -10,6 +10,7 @@ using System.IO;
 using VHKPlayer.Test.Utility;
 using VHKPlayer.Factories.IPlayLists;
 using VHKPlayer.Enums;
+using VHKPlayer.Strategies.Playing;
 
 namespace VHKPlayer.Test.Models {
     /// <summary>
@@ -22,7 +23,7 @@ namespace VHKPlayer.Test.Models {
 
         [TestInitialize]
         public void Setup() {
-            var videoplayer = new VideoPlayer(new FolderSettings());
+            var videoplayer = new VideoPlayer(new FolderSettings(), new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
             _folder = new FolderNode(Path.Combine(Constants.RootFolderPath, "10sek"));
             _playlist = new PlayList(new AllFilesSortedPlayListFactory("{10sek;" + _folder.FullPath + ";2;true;true}"));
         }

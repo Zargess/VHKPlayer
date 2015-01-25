@@ -8,8 +8,12 @@ using VHKPlayer.Interfaces;
 
 namespace VHKPlayer.Strategies.Playing {
     public class PlayFileStrategy : IPlayStrategy {
-        public void Play(IVideoPlayer videoplayer, IFile file, PlayType type) {
+        public void Play(IVideoPlayer videoplayer, Queue<IFile> queue, IPlayable playable, PlayType type) {
+            var file = queue.Dequeue();
             videoplayer.Play(file);
+            if (file.Type != FileType.Music) return;
+            if (queue.Count == 0) return;
+            videoplayer.Play(queue.Dequeue());
         }
     }
 }

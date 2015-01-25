@@ -13,6 +13,7 @@ using VHKPlayer.Enums;
 using VHKPlayer.Strategies.Selection.Players;
 using VHKPlayer.Exceptions;
 using VHKPlayer.Factories.IPlayers;
+using VHKPlayer.Strategies.Playing;
 
 namespace VHKPlayer.Test.Models {
     /// <summary>
@@ -27,7 +28,7 @@ namespace VHKPlayer.Test.Models {
 
         [TestInitialize]
         public void Setup() {
-            var videoplayer = new VideoPlayer(new FolderSettings());
+            var videoplayer = new VideoPlayer(new FolderSettings(), new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
             _playerfolder = new FolderNode(Path.Combine(Constants.RootFolderPath, "spiller"));
             _file = new FileNode(Path.Combine(_playerfolder.FullPath, "001 - Chana de Souza Mason.png"));
             IFile file = new FileNode(Path.Combine(Constants.RootFolderPath, "090 - Christian Dalmose.png"));

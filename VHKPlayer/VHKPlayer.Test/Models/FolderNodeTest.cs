@@ -7,6 +7,7 @@ using VHKPlayer.ViewModels;
 using VHKPlayer.Utility;
 using VHKPlayer.Models;
 using VHKPlayer.Test.Utility;
+using VHKPlayer.Strategies.Playing;
 
 namespace VHKPlayer.Test.Models {
     /// <summary>
@@ -18,7 +19,7 @@ namespace VHKPlayer.Test.Models {
 
         [TestInitialize]
         public void Setup() {
-            IVideoPlayer videoplayer = new VideoPlayer(new FolderSettings());
+            IVideoPlayer videoplayer = new VideoPlayer(new FolderSettings(), new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
             _folder = new FolderNode(Constants.RootFolderPath);
         }
 

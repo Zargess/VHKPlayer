@@ -13,6 +13,7 @@ namespace VHKPlayer.ViewModels {
         private List<IPlayController> _controllers;
         private PlayType _currentType;
         private IPlayStrategy _playStrategy;
+        private IPlayable _currentPlayable;
 
         public CustomQueue<IFile> Queue { get; private set; }
 
@@ -44,7 +45,8 @@ namespace VHKPlayer.ViewModels {
             var queue = playable.Play(type);
             if (queue.Count == 0) return;
             _currentType = type;
-            Play(queue.Dequeue());
+            _currentPlayable = playable;
+            _playStrategy.Play(this, queue, playable, type);
 
             if (type == PlayType.Music) return;
 
@@ -53,9 +55,7 @@ namespace VHKPlayer.ViewModels {
 
         public void PlayQueue() {
             if (Queue.Count == 0) return;
-            var file = Queue.Dequeue();
-
-            _playStrategy.Play(this, file, _currentType);
+            _playStrategy.Play(this, Queue, _currentPlayable, _currentType);
         }
 
         public void Resume(FileType type) {
@@ -71,6 +71,12 @@ namespace VHKPlayer.ViewModels {
                 timer.Enabled = false;
                 timer.Stop();
             }
+        }
+
+        public void ShowStats() {
+            if (!(_currentPlayable is IPlayer)) return;
+            var player = (IPlayer)_currentPlayable;
+            _controllers.ForEach(x => x.ShowStats(player));
         }
     }
 }
