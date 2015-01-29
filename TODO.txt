@@ -9,3 +9,4 @@ Implement Player and Statistics											DONE
 Implement VideoPlayer (Old PlayManager)
 Implement Twitter client
 Implement PlayObserver using TDD (somehow)
+Implement a command library that controls can link to
