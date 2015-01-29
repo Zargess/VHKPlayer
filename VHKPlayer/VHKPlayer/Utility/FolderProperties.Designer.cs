@@ -85,7 +85,7 @@ namespace VHKPlayer.Utility {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Marcus\\Dropbox\\Programmering\\C#\\vhk")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string root {
             get {
                 return ((string)(this["root"]));
@@ -157,7 +157,7 @@ namespace VHKPlayer.Utility {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Marcus\\Documents\\GitHub\\VHKPlayer\\DigiMatch")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string statFolder {
             get {
                 return ((string)(this["statFolder"]));

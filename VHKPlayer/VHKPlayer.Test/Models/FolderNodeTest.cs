@@ -19,7 +19,9 @@ namespace VHKPlayer.Test.Models {
 
         [TestInitialize]
         public void Setup() {
-            IVideoPlayer videoplayer = new VideoPlayer(new FolderSettings(), new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
+            var settings = new FolderSettings();
+            settings["root"] = Constants.RootFolderPath;
+            IVideoPlayer videoplayer = new VideoPlayer(settings, new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
             _folder = new FolderNode(Constants.RootFolderPath);
         }
 

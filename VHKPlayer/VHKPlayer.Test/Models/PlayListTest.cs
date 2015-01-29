@@ -23,7 +23,9 @@ namespace VHKPlayer.Test.Models {
 
         [TestInitialize]
         public void Setup() {
-            var videoplayer = new VideoPlayer(new FolderSettings(), new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
+            var settings = new FolderSettings();
+            settings["root"] = Constants.RootFolderPath;
+            var videoplayer = new VideoPlayer(settings, new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
             _folder = new FolderNode(Path.Combine(Constants.RootFolderPath, "10sek"));
             _playlist = new PlayList(new AllFilesSortedPlayListFactory("{10sek;" + _folder.FullPath + ";2;true;true}"));
         }

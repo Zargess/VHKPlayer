@@ -18,8 +18,11 @@ namespace VHKPlayer.Test.Models {
     public class FileNodeTest {
         private IFile _file;
         [TestInitialize]
+
         public void Setup() {
-            IVideoPlayer videoplayer = new VideoPlayer(new FolderSettings(), new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
+            var settings = new FolderSettings();
+            settings["root"] = Constants.RootFolderPath;
+            IVideoPlayer videoplayer = new VideoPlayer(settings, new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
             _file = new FileNode(Constants.RootFolderPath + @"\dong.mp3");
         }
 

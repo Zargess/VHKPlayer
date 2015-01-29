@@ -18,7 +18,7 @@
       <Value Profile="(Default)">root\10sek;root\spiller;root\musik</Value>
     </Setting>
     <Setting Name="root" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Marcus\Dropbox\Programmering\C#\vhk</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="playerFolderPicture" Type="System.String" Scope="User">
       <Value Profile="(Default)">root\spiller</Value>
@@ -36,7 +36,7 @@
       <Value Profile="(Default)">root\spillervideostat\mp3</Value>
     </Setting>
     <Setting Name="statFolder" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Marcus\Documents\GitHub\VHKPlayer\DigiMatch</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="timeStatShown" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>

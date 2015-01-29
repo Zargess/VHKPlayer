@@ -28,7 +28,10 @@ namespace VHKPlayer.Test.Models {
 
         [TestInitialize]
         public void Setup() {
-            var videoplayer = new VideoPlayer(new FolderSettings(), new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
+            var settings = new FolderSettings();
+            settings["root"] = Constants.RootFolderPath;
+            settings["statFolder"] = Constants.GithubPath + @"\VHKPlayer\DigiMatch";
+            var videoplayer = new VideoPlayer(settings, new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
             _playerfolder = new FolderNode(Path.Combine(Constants.RootFolderPath, "spiller"));
             _file = new FileNode(Path.Combine(_playerfolder.FullPath, "001 - Chana de Souza Mason.png"));
             IFile file = new FileNode(Path.Combine(Constants.RootFolderPath, "090 - Christian Dalmose.png"));

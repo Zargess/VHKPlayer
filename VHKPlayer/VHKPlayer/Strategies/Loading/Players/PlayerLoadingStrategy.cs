@@ -20,7 +20,13 @@ namespace VHKPlayer.Strategies.Loading.Players {
             var folders = GeneralFunctions.GetPlayerFolderPaths().Select(x => new FolderNode(x));
 
             foreach (var folder in folders) {
-                var f = folder.Content.SingleOrDefault(x => x.NameWithoutExtension.ToLower() == _file.NameWithoutExtension.ToLower());
+                //var f = folder.Content.SingleOrDefault(x => x.NameWithoutExtension.ToLower() == _file.NameWithoutExtension.ToLower());
+                IFile f = null;
+                foreach (var file in folder.Content) {
+                    if (_file.NameWithoutExtension.ToLower() != file.NameWithoutExtension.ToLower()) continue;
+                    f = file;
+                    break;
+                }
                 if (f == null) continue;
                 collection.Add(f);
             }
