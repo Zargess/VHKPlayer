@@ -17,8 +17,8 @@ namespace VHKPlayer.Test.Models {
     [TestClass]
     public class FileNodeTest {
         private IFile _file;
-        [TestInitialize]
 
+        [TestInitialize]
         public void Setup() {
             var settings = new FolderSettings();
             settings["root"] = Constants.RootFolderPath;
