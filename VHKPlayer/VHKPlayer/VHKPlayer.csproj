@@ -92,6 +92,7 @@
     <Compile Include="Strategies\Selection\Players\VideoSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\PlayLists\AllFilesSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\PlayLists\IteratedFileSelectionStrategy.cs" />
+    <Compile Include="Utility\Constants.cs" />
     <Compile Include="Utility\GeneralFunctions.cs" />
     <Compile Include="ViewModels\VideoPlayer.cs" />
     <Compile Include="Interfaces\IGlobalConfigService.cs" />

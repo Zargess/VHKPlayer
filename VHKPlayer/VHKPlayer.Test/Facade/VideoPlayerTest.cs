@@ -105,8 +105,6 @@ namespace VHKPlayer.Test.Facade {
             Assert.AreEqual(2, controller.Stats.Goals);
         }
 
-        // TODO : Make some tests over PlayPlayerStatStrategy
-
         [TestMethod]
         public void VideoPlayerTestCallingPlayWithAPlayerAndPlayTypePlayerStatShouldResultInStatsShowingWith2Goals() {
             TestPlayController controller = new TestPlayController();
