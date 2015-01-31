@@ -9,8 +9,8 @@ namespace VHKPlayer.Test.Utility {
     public class TestConstants {
         public static string GithubPath {
             get {
-                var s = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Github";
-				if (!Directory.Exists(s)) s = @"D:\Github";
+                var s = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Github\VHKPlayer";
+				if (!Directory.Exists(s)) s = @"D:\Github\VHKPlayer";
                 return s.ToLower();
             }
         }

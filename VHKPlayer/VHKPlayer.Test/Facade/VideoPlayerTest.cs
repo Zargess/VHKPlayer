@@ -23,7 +23,10 @@ namespace VHKPlayer.Test.Facade {
 
         [TestInitialize]
         public void Setup() {
-            _videoplayer = new VideoPlayer(new FolderSettings(), new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
+            var settings = new FolderSettings();
+            settings["root"] = TestConstants.RootFolderPath;
+            settings["statFolder"] = TestConstants.GithubPath + @"\DigiMatch";
+            _videoplayer = new VideoPlayer(settings, new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
             _observer = new TestPlayController();
             _videoplayer.AddObserver(_observer);
             _testplayable = new TestPlayable();
