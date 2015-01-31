@@ -20,14 +20,14 @@ namespace VHKPlayer.Test.Models {
         [TestInitialize]
         public void Setup() {
             var settings = new FolderSettings();
-            settings["root"] = Constants.RootFolderPath;
+            settings["root"] = TestConstants.RootFolderPath;
             IVideoPlayer videoplayer = new VideoPlayer(settings, new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
-            _folder = new FolderNode(Constants.RootFolderPath);
+            _folder = new FolderNode(TestConstants.RootFolderPath);
         }
 
         [TestMethod]
         public void FolderNodeTestFolderPathShouldBeRootFolderPath() {
-            Assert.AreEqual(Constants.RootFolderPath, _folder.FullPath);
+            Assert.AreEqual(TestConstants.RootFolderPath, _folder.FullPath);
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace VHKPlayer.Test.Models {
 
         [TestMethod]
         public void FolderNodeTestTempFolderShouldNotExistInRoot() {
-            IFolder folder = new FolderNode(Constants.RootFolderPath + @"\temp");
+            IFolder folder = new FolderNode(TestConstants.RootFolderPath + @"\temp");
             Assert.IsFalse(folder.Exists());
         }
 
@@ -53,13 +53,13 @@ namespace VHKPlayer.Test.Models {
 
         [TestMethod]
         public void FolderNodeTestRootFolderShouldContainLogo_png() {
-            IFile file = new FileNode(Constants.RootFolderPath + @"\Logo.png");
+            IFile file = new FileNode(TestConstants.RootFolderPath + @"\Logo.png");
             Assert.IsTrue(_folder.ContainsFile(file));
         }
 
         [TestMethod]
         public void FolderNodeTestRootFolderShouldNotContainTemp_txt() {
-            IFile file = new FileNode(Constants.RootFolderPath + @"\temp.txt");
+            IFile file = new FileNode(TestConstants.RootFolderPath + @"\temp.txt");
             Assert.IsFalse(_folder.ContainsFile(file));
         }
 

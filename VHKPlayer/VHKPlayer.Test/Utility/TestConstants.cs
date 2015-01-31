@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VHKPlayer.Test.Utility {
-    public class Constants {
+    public class TestConstants {
         public static string GithubPath {
             get {
                 var s = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Github";

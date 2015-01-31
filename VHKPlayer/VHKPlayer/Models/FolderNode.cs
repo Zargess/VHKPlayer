@@ -48,8 +48,7 @@ namespace VHKPlayer.Models {
         }
 
         public bool ValidRootFolder() {
-            var temp = Settings.FolderConfig.GetString("requiredFolders").Split(';');
-            var paths = temp.Select(x => x.Replace("root", FullPath));
+            var paths = Settings.RequiredFolders.Select(x => x.Replace("root", FullPath));
 
             foreach (var path in paths) {
                 if (!Directory.Exists(path)) return false;

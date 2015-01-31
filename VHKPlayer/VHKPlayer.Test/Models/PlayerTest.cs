@@ -29,14 +29,14 @@ namespace VHKPlayer.Test.Models {
         [TestInitialize]
         public void Setup() {
             var settings = new FolderSettings();
-            settings["root"] = Constants.RootFolderPath;
-            settings["statFolder"] = Constants.GithubPath + @"\VHKPlayer\DigiMatch";
-			var path = Constants.GithubPath + @"\VHKPlayer\DigiMatch";
+            settings["root"] = TestConstants.RootFolderPath;
+            settings["statFolder"] = TestConstants.GithubPath + @"\VHKPlayer\DigiMatch";
+			var path = TestConstants.GithubPath + @"\VHKPlayer\DigiMatch";
             var videoplayer = new VideoPlayer(settings, new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
-            _playerfolder = new FolderNode(Path.Combine(Constants.RootFolderPath, "spiller"));
+            _playerfolder = new FolderNode(Path.Combine(TestConstants.RootFolderPath, "spiller"));
             _file = new FileNode(Path.Combine(_playerfolder.FullPath, "001 - Chana de Souza Mason.png"));
-            IFile file = new FileNode(Path.Combine(Constants.RootFolderPath, "090 - Christian Dalmose.png"));
-            IFile jackobsenfile = new FileNode(Path.Combine(Constants.RootFolderPath, "012 - Astrid Jakobsen.png"));
+            IFile file = new FileNode(Path.Combine(TestConstants.RootFolderPath, "090 - Christian Dalmose.png"));
+            IFile jackobsenfile = new FileNode(Path.Combine(TestConstants.RootFolderPath, "012 - Astrid Jakobsen.png"));
             _player = new Player(new ViborgPlayerFactory(_file));
             _dalmose = new Player(new ViborgPlayerFactory(file));
             _jackobsen = new Player(new ViborgPlayerFactory(jackobsenfile));

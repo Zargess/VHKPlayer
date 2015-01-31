@@ -21,9 +21,9 @@ namespace VHKPlayer.Test.Models {
         [TestInitialize]
         public void Setup() {
             var settings = new FolderSettings();
-            settings["root"] = Constants.RootFolderPath;
+            settings["root"] = TestConstants.RootFolderPath;
             var videoplayer = new VideoPlayer(settings, new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
-            _file = new FileNode(Constants.RootFolderPath + @"\Logo.png");
+            _file = new FileNode(TestConstants.RootFolderPath + @"\Logo.png");
             _playable = new SinglePlayable(_file);
         }
 

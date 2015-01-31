@@ -21,14 +21,14 @@ namespace VHKPlayer.Test.Models {
         [TestInitialize]
         public void Setup() {
             var settings = new FolderSettings();
-            settings["root"] = Constants.RootFolderPath;
+            settings["root"] = TestConstants.RootFolderPath;
             IVideoPlayer videoplayer = new VideoPlayer(settings, new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
-            _file = new FileNode(Constants.RootFolderPath + @"\dong.mp3");
+            _file = new FileNode(TestConstants.RootFolderPath + @"\dong.mp3");
         }
 
         [TestMethod]
         public void FileNodeTestDong_mp3FullPathShouldBeRootFolderPathDong_mp3() {
-            Assert.AreEqual(Constants.RootFolderPath + @"\dong.mp3", _file.FullPath);
+            Assert.AreEqual(TestConstants.RootFolderPath + @"\dong.mp3", _file.FullPath);
         }
 
         [TestMethod]
@@ -48,25 +48,25 @@ namespace VHKPlayer.Test.Models {
 
         [TestMethod]
         public void FileNodeTestLogo_pngTypeShouldBePicture() {
-            IFile file = new FileNode(Constants.RootFolderPath + @"\Logo.png");
+            IFile file = new FileNode(TestConstants.RootFolderPath + @"\Logo.png");
             Assert.AreEqual(FileType.Picture, file.Type);
         }
 
         [TestMethod]
         public void FileNodeTestTemp_aviTypeShouldBeVideo() {
-            IFile file = new FileNode(Constants.RootFolderPath + @"\temp.avi");
+            IFile file = new FileNode(TestConstants.RootFolderPath + @"\temp.avi");
             Assert.AreEqual(FileType.Video, file.Type);
         }
 
         [TestMethod]
         public void FileNodeTestTemp_xmlTypeShouldBeInfo() {
-            IFile file = new FileNode(Constants.RootFolderPath + @"\temp.xml");
+            IFile file = new FileNode(TestConstants.RootFolderPath + @"\temp.xml");
             Assert.AreEqual(FileType.Info, file.Type);
         }
 
         [TestMethod]
         public void FileNodeTestTemp_txtTypeShouldBeUnsupported() {
-            IFile file = new FileNode(Constants.RootFolderPath + @"\temp.txt");
+            IFile file = new FileNode(TestConstants.RootFolderPath + @"\temp.txt");
             Assert.AreEqual(FileType.Unsupported, file.Type);
         }
 
@@ -77,7 +77,7 @@ namespace VHKPlayer.Test.Models {
 
         [TestMethod]
         public void FileNodeTestTemp_aviShouldNotExist() {
-            IFile file = new FileNode(Constants.RootFolderPath + @"\temp.avi");
+            IFile file = new FileNode(TestConstants.RootFolderPath + @"\temp.avi");
             Assert.IsFalse(file.Exists());
         }
     }

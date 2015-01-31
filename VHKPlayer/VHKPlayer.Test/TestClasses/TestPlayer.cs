@@ -56,7 +56,7 @@ namespace VHKPlayer.Test.TestClasses {
 
         public Queue<IFile> Play(PlayType type) {
             var queue = new Queue<IFile>();
-            queue.Enqueue(new FileNode(Path.Combine(Constants.RootFolderPath, @"spillervideostat\002 - Rikke Skov.png")));
+            queue.Enqueue(new FileNode(Path.Combine(TestConstants.RootFolderPath, @"spillervideostat\002 - Rikke Skov.png")));
             return queue;
         }
 

@@ -89,5 +89,35 @@ namespace VHKPlayer.Utility {
             if (folder.FullPath != path) return new FolderNode(path);
             return folder;
         }
+
+        public static List<string> RequiredFolders {
+            get {
+                return FolderConfig.GetString("requiredFolders").Split(';').ToList();
+            }
+        }
+
+        public static List<string> SupportedMusic {
+            get {
+                return FolderConfig.GetString("supportedMusic").Split(';').ToList();
+            }
+        }
+
+        public static List<string> SupportedPicture {
+            get {
+                return FolderConfig.GetString("supportedPicture").Split(';').ToList();
+            }
+        }
+
+        public static List<string> SupportedVideo {
+            get {
+                return FolderConfig.GetString("supportedVideo").Split(';').ToList();
+            }
+        }
+
+        public static List<string> SupportedInfo {
+            get {
+                return FolderConfig.GetString("supportedInfo").Split(';').ToList();
+            }
+        }
     }
 }

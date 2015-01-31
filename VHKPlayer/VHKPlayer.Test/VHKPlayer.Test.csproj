@@ -61,7 +61,7 @@
     <Compile Include="TestClasses\TestPlayable.cs" />
     <Compile Include="TestClasses\TestPlayController.cs" />
     <Compile Include="TestClasses\TestPlayer.cs" />
-    <Compile Include="Utility\Constants.cs" />
+    <Compile Include="Utility\TestConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VHKPlayer\VHKPlayer.csproj">

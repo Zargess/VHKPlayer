@@ -20,19 +20,11 @@ namespace VHKPlayer.Strategies.Loading.Players {
             var folders = GeneralFunctions.GetPlayerFolderPaths().Select(x => new FolderNode(x));
 
             foreach (var folder in folders) {
-                //var f = folder.Content.SingleOrDefault(x => x.NameWithoutExtension.ToLower() == _file.NameWithoutExtension.ToLower());
-                IFile f = null;
-                foreach (var file in folder.Content) {
-                    if (_file.NameWithoutExtension.ToLower() != file.NameWithoutExtension.ToLower()) continue;
-                    f = file;
-                    break;
-                }
+                var f = folder.Content.SingleOrDefault(x => x.NameWithoutExtension.ToLower() == _file.NameWithoutExtension.ToLower());
                 if (f == null) continue;
                 collection.Add(f);
             }
-
             // TODO : Check if player is missing any files and create notification if he does
-
         }
     }
 }

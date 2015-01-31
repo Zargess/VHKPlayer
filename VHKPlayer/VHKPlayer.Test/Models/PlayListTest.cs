@@ -24,9 +24,9 @@ namespace VHKPlayer.Test.Models {
         [TestInitialize]
         public void Setup() {
             var settings = new FolderSettings();
-            settings["root"] = Constants.RootFolderPath;
+            settings["root"] = TestConstants.RootFolderPath;
             var videoplayer = new VideoPlayer(settings, new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy()));
-            _folder = new FolderNode(Path.Combine(Constants.RootFolderPath, "10sek"));
+            _folder = new FolderNode(Path.Combine(TestConstants.RootFolderPath, "10sek"));
             _playlist = new PlayList(new AllFilesSortedPlayListFactory("{10sek;" + _folder.FullPath + ";2;true;true}"));
         }
 
@@ -59,42 +59,42 @@ namespace VHKPlayer.Test.Models {
 
         [TestMethod]
         public void PlayListTestShouldHaveOneElementWhenSortedLoadingStrategyUsesIndex2InVhkRekFolder() {
-            IFolder folder = new FolderNode(Path.Combine(Constants.RootFolderPath,"rek"));
+            IFolder folder = new FolderNode(Path.Combine(TestConstants.RootFolderPath,"rek"));
             IPlayList playlist = new PlayList(new AllFilesSortedPlayListFactory("{Test;" + folder.FullPath + ";2;false;false}"));
             Assert.AreEqual(2, playlist.Content.Count);
         }
 
         [TestMethod]
         public void PlayListTestShouldHaveTwoElementsWhenSortedLoadingStrategyUsesIndex3InVhkRekFolder() {
-            IFolder folder = new FolderNode(Path.Combine(Constants.RootFolderPath, "rek"));
+            IFolder folder = new FolderNode(Path.Combine(TestConstants.RootFolderPath, "rek"));
             IPlayList playlist = new PlayList(new AllFilesSortedPlayListFactory("{Test;" + folder.FullPath + ";3;false;false}"));
             Assert.AreEqual(2, playlist.Content.Count);
         }
 
         [TestMethod]
         public void PlayListTestShouldHave18ElementsWhenFolderLoadingStrategyLoads10sekFolder() {
-            IFolder folder = new FolderNode(Path.Combine(Constants.RootFolderPath, "10sek"));
+            IFolder folder = new FolderNode(Path.Combine(TestConstants.RootFolderPath, "10sek"));
             IPlayList playlist = new PlayList(new IteratedFolderPlayListFactory("{Test;" + folder.FullPath + ";true;true}"));
             Assert.AreEqual(18, playlist.Content.Count);
         }
 
         [TestMethod]
         public void PlayListTestShouldHave6ElementsWhenFolderLoadingStrategyLoadsScorRekkFolder() {
-            IFolder folder = new FolderNode(Path.Combine(Constants.RootFolderPath, "ScorRek"));
+            IFolder folder = new FolderNode(Path.Combine(TestConstants.RootFolderPath, "ScorRek"));
             IPlayList playlist = new PlayList(new IteratedFolderPlayListFactory("{Test;" + folder.FullPath + ";true;true}"));
             Assert.AreEqual(6, playlist.Content.Count);
         }
 
         [TestMethod]
         public void PlayListTestShouldGive6FilesWhenPlayCallWithPlayTypePlayListIsUsedWithAllFilesSelectionStrategy() {
-            IFolder folder = new FolderNode(Path.Combine(Constants.RootFolderPath, "ScorRek"));
+            IFolder folder = new FolderNode(Path.Combine(TestConstants.RootFolderPath, "ScorRek"));
             IPlayList playlist = new PlayList(new AllFilesFolderPlayListFactory("{Test;" + folder.FullPath + ";true;true}"));
             Assert.AreEqual(6, playlist.Play(PlayType.PlayList).Count);
         }
 
         [TestMethod]
         public void PlayListTestShouldGive1FilesWhenPlayCallWithPlayTypePlayListIsUsedWithIteratedSelectionStrategy() {
-            IFolder folder = new FolderNode(Path.Combine(Constants.RootFolderPath, "ScorRek"));
+            IFolder folder = new FolderNode(Path.Combine(TestConstants.RootFolderPath, "ScorRek"));
             IPlayList playlist = new PlayList(new IteratedSortedPlayListFactory("{Test;" + folder.FullPath + ";3;true;true}"));
             Assert.AreEqual(1, playlist.Play(PlayType.PlayList).Count);
         }
