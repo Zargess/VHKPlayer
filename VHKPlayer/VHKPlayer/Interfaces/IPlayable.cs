@@ -12,6 +12,6 @@ namespace VHKPlayer.Interfaces {
         bool Repeat { get; }
         ObservableCollection<IFile> Content { get; }
         Queue<IFile> Play(PlayType type);
-        IFile HintNext(Queue<IFile> queue, int index);
+        IFile HintNext(Queue<IFile> queue);
     }
 }

@@ -81,7 +81,7 @@ namespace VHKPlayer.ViewModels {
 
         public IFile HintNext() {
             if (_currentPlayable == null) return null;
-            return _currentPlayable.HintNext();
+            return _currentPlayable.HintNext(Queue);
         }
     }
 }
