@@ -78,5 +78,10 @@ namespace VHKPlayer.ViewModels {
             var player = (IPlayer)_currentPlayable;
             _controllers.ForEach(x => x.ShowStats(player));
         }
+
+        public IFile HintNext() {
+            if (_currentPlayable == null) return null;
+            return _currentPlayable.HintNext();
+        }
     }
 }

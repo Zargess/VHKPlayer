@@ -19,5 +19,6 @@ namespace VHKPlayer.Interfaces {
         void Mute(FileType type);
         void ShowStats();
         void Shutdown();
+        IFile HintNext();
     }
 }

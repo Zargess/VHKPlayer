@@ -58,5 +58,10 @@ namespace VHKPlayer.Models {
         public override string ToString() {
             return Number + " " + Name;
         }
+
+        public IFile HintNext(Queue<IFile> queue, int index) {
+            // TODO : Make this shit work.....
+            throw new NotImplementedException();
+        }
     }
 }
