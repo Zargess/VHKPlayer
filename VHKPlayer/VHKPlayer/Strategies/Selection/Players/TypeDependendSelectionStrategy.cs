@@ -32,5 +32,10 @@ namespace VHKPlayer.Strategies.Selection.Players {
             else if (type == PlayType.PlayerStat) _current = _statStrategy;
             else throw new InvalidTypeException("Wrong playtype for play call");
         }
+
+        public IFile HintNext(IPlayable playable, Queue<IFile> queue) {
+            if (_current == null) return null;
+            return _current.HintNext(playable, queue);
+        }
     }
 }

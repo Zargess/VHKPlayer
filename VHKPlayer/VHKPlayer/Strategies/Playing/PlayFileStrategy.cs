@@ -13,6 +13,10 @@ namespace VHKPlayer.Strategies.Playing {
             videoplayer.Play(file);
             if (file.Type != FileType.Music) return;
             if (queue.Count == 0) return;
+
+            var next = playable.HintNext(queue);
+            if (next.Type == FileType.Music) return;
+
             videoplayer.Play(queue.Dequeue());
         }
     }

@@ -9,10 +9,16 @@ using VHKPlayer.Utility;
 
 namespace VHKPlayer.Strategies.Selection.Players {
     public class StatSelectionStrategy : IFileSelectionStrategy {
+        private IPeekStrategy _peekStrategy;
         private IFileSelectionStrategy _pictureStrategy;
 
-        public StatSelectionStrategy(IFileSelectionStrategy pictureStrategy) {
+        public StatSelectionStrategy(IFileSelectionStrategy pictureStrategy, IPeekStrategy peekstrategy) {
             _pictureStrategy = pictureStrategy;
+            _peekStrategy = peekstrategy;
+        }
+
+        public IFile HintNext(IPlayable playable, Queue<IFile> queue) {
+            return _peekStrategy.Peek(playable, queue, 0);
         }
 
         public Queue<IFile> SelectFiles(IPlayable playable, PlayType type) {

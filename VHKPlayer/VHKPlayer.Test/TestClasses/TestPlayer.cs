@@ -54,6 +54,10 @@ namespace VHKPlayer.Test.TestClasses {
             throw new NotImplementedException();
         }
 
+        public IFile HintNext(Queue<IFile> queue) {
+            throw new NotImplementedException();
+        }
+
         public Queue<IFile> Play(PlayType type) {
             var queue = new Queue<IFile>();
             queue.Enqueue(new FileNode(Path.Combine(TestConstants.RootFolderPath, @"spillervideostat\002 - Rikke Skov.png")));

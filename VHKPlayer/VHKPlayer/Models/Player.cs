@@ -59,9 +59,8 @@ namespace VHKPlayer.Models {
             return Number + " " + Name;
         }
 
-        public IFile HintNext(Queue<IFile> queue, int index) {
-            // TODO : Make this shit work.....
-            throw new NotImplementedException();
+        public IFile HintNext(Queue<IFile> queue) {
+            return _selectionStrategy.HintNext(this, queue);
         }
     }
 }

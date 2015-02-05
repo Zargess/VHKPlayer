@@ -84,6 +84,8 @@
     <Compile Include="Strategies\Loading\PlayLists\FolderLoadingStrategy.cs" />
     <Compile Include="Strategies\Loading\PlayLists\SortedLoadingStrategy.cs" />
     <Compile Include="Strategies\Loading\StatisticsLoading\DigimatchStatsLoadingStrategy.cs" />
+    <Compile Include="Strategies\Peeking\NextInQueuePeekStrategy.cs" />
+    <Compile Include="Strategies\Peeking\NextItemInContentPeekStrategy.cs" />
     <Compile Include="Strategies\Playing\AlternatingPlayStrategy.cs" />
     <Compile Include="Strategies\Playing\PlayFileStrategy.cs" />
     <Compile Include="Strategies\Playing\PlayPlayerStatStrategy.cs" />
@@ -156,9 +158,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Strategies\Peeking\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -7,6 +7,7 @@ using VHKPlayer.Interfaces;
 using VHKPlayer.Interfaces.Factories;
 using VHKPlayer.Strategies.Loading.Players;
 using VHKPlayer.Strategies.Loading.StatisticsLoading;
+using VHKPlayer.Strategies.Peeking;
 using VHKPlayer.Strategies.Selection.Players;
 using VHKPlayer.Utility;
 
@@ -39,7 +40,7 @@ namespace VHKPlayer.Factories.IPlayers {
         }
 
         public IFileSelectionStrategy CreateSelectionStrategy() {
-            return new TypeDependendSelectionStrategy(new PictureSelectionStrategy(), new VideoSelectionStrategy(), new StatSelectionStrategy(new PictureSelectionStrategy()));
+            return new TypeDependendSelectionStrategy(new PictureSelectionStrategy(), new VideoSelectionStrategy(), new StatSelectionStrategy(new PictureSelectionStrategy(), new NextInQueuePeekStrategy()));
         }
 
         public IStatsLoadingStrategy CreateStatsLoadingStrategy() {

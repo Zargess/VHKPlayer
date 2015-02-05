@@ -26,5 +26,9 @@ namespace VHKPlayer.Models {
         public override string ToString() {
             return Name;
         }
+
+        public IFile HintNext(Queue<IFile> queue) {
+            return null;
+        }
     }
 }

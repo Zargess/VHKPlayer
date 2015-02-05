@@ -8,5 +8,6 @@ using VHKPlayer.Enums;
 namespace VHKPlayer.Interfaces {
     public interface IFileSelectionStrategy {
         Queue<IFile> SelectFiles(IPlayable playable, PlayType type);
+        IFile HintNext(IPlayable playable, Queue<IFile> queue);
     }
 }

@@ -7,6 +7,7 @@ using VHKPlayer.Interfaces;
 using VHKPlayer.Interfaces.Factories;
 using VHKPlayer.Models;
 using VHKPlayer.Strategies.Loading.PlayLists;
+using VHKPlayer.Strategies.Peeking;
 using VHKPlayer.Strategies.Selection.PlayLists;
 using VHKPlayer.Utility;
 
@@ -31,7 +32,7 @@ namespace VHKPlayer.Factories.IPlayLists {
         }
 
         public IFileSelectionStrategy CreateSelectionStrategy() {
-            return new AllFilesSelectionStrategy();
+            return new AllFilesSelectionStrategy(new NextInQueuePeekStrategy());
         }
 
         public bool CreateRepeat() {

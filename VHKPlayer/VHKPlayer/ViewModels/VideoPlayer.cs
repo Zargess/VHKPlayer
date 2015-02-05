@@ -81,6 +81,7 @@ namespace VHKPlayer.ViewModels {
 
         public IFile HintNext() {
             if (_currentPlayable == null) return null;
+            // TODO : When auto playlist is created then check if it is enabled if the the current playable does not have a next item
             return _currentPlayable.HintNext(Queue);
         }
     }

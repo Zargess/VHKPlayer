@@ -28,6 +28,10 @@ namespace VHKPlayer.Test.TestClasses {
             }
         }
 
+        public IFile HintNext(Queue<IFile> queue) {
+            throw new NotImplementedException();
+        }
+
         public Queue<IFile> Play(PlayType type) {
             var res = new Queue<IFile>();
             res.Enqueue(new FileNode(@"c:\test\temp.mp3"));

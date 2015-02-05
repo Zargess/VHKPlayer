@@ -9,9 +9,15 @@ using VHKPlayer.Interfaces;
 namespace VHKPlayer.Strategies.Selection.PlayLists {
     public class IteratedFileSelectionStrategy : IFileSelectionStrategy {
         private int _index;
+        private IPeekStrategy _peekStrategy;
 
-        public IteratedFileSelectionStrategy() {
+        public IteratedFileSelectionStrategy(IPeekStrategy peekstrategy) {
             _index = 0;
+            _peekStrategy = peekstrategy;
+        }
+
+        public IFile HintNext(IPlayable playable, Queue<IFile> queue) {
+            return _peekStrategy.Peek(playable, queue, _index);
         }
 
         public Queue<IFile> SelectFiles(IPlayable playable, PlayType type) {

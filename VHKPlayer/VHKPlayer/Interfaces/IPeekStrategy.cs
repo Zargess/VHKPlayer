@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace VHKPlayer.Interfaces {
     public interface IPeekStrategy {
-        IFile HintNext(Queue<IFile> queue, int index);
+        IFile Peek(IPlayable playable, Queue<IFile> queue, int index);
     }
 }

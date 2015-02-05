@@ -9,6 +9,10 @@ using VHKPlayer.Utility;
 
 namespace VHKPlayer.Strategies.Selection.Players {
     public class PictureSelectionStrategy : IFileSelectionStrategy {
+        public IFile HintNext(IPlayable playable, Queue<IFile> queue) {
+            return null;
+        }
+
         public Queue<IFile> SelectFiles(IPlayable playable, PlayType type) {
             var res = new Queue<IFile>();
             var file = playable.Content.SingleOrDefault(x => Settings.PlayerPictureFolder.ContainsFile(x));
