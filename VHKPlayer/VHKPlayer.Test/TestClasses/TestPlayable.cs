@@ -29,7 +29,8 @@ namespace VHKPlayer.Test.TestClasses {
         }
 
         public IFile HintNext(Queue<IFile> queue) {
-            throw new NotImplementedException();
+            if (queue.Count == 0) return null;
+            return queue.Peek();
         }
 
         public Queue<IFile> Play(PlayType type) {

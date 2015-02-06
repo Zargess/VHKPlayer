@@ -1,12 +1,13 @@
 Implement FileNode 														DONE
-Make some methods for the facade
+Make some methods for the facade										DONE
 Implement Settings system												Partialy done (Folder settings system is up)
 Implement FolderNode													Might be done
-Create Playable interfaces
+Create Playable interfaces												DONE
 Implement PlayList														DONE
-Implement SingleItemPlayable (find new name for this)
+Implement SingleItemPlayable (find new name for this)					DONE
 Implement Player and Statistics											DONE
 Implement VideoPlayer (Old PlayManager)
 Implement Twitter client
-Implement PlayObserver using TDD (somehow)
+Implement PlayObserver using TDD (somehow)								
 Implement a command library that controls can link to
+Implement auto playlist in videoplayer									Next in line

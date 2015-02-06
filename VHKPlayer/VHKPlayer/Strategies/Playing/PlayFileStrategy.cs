@@ -15,7 +15,7 @@ namespace VHKPlayer.Strategies.Playing {
             if (queue.Count == 0) return;
 
             var next = playable.HintNext(queue);
-            if (next.Type == FileType.Music) return;
+            if (next == null || next.Type == FileType.Music) return;
 
             videoplayer.Play(queue.Dequeue());
         }
