@@ -62,8 +62,8 @@
     <Compile Include="Factories\IPlayLists\AllFilesSortedPlayListFactory.cs" />
     <Compile Include="Factories\IPlayLists\IteratedFolderPlayListFactory.cs" />
     <Compile Include="Factories\IPlayLists\IteratedSortedPlayListFactory.cs" />
-    <Compile Include="Interfaces\Factories\IPlayerFactory.cs" />
-    <Compile Include="Interfaces\Factories\IPlayListFactory.cs" />
+    <Compile Include="Interfaces\IPlayerFactory.cs" />
+    <Compile Include="Interfaces\IPlayListFactory.cs" />
     <Compile Include="Interfaces\IFileSelectionStrategy.cs" />
     <Compile Include="Interfaces\ILoadingStrategy.cs" />
     <Compile Include="Interfaces\IPeekStrategy.cs" />
