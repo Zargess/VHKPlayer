@@ -178,5 +178,31 @@ namespace VHKPlayer.Utility {
                 this["timeStatShown"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{10sek;root\\10sek;true;false;IteratedFolder}")]
+        public string autoPlayList {
+            get {
+                return ((string)(this["autoPlayList"]));
+            }
+            set {
+                this["autoPlayList"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{RekFørKamp;root\\Rek;1;false;true;AllFilesSorted},{RekHalvej1;root\\Rek;2;false;tr" +
+            "ue;AllFilesSorted},{10sek;root\\10sek;true;false;IteratedFolder},{FørKamp;root\\Fo" +
+            "erKamp;true;false;IteratedFolder}")]
+        public string playlists {
+            get {
+                return ((string)(this["playlists"]));
+            }
+            set {
+                this["playlists"] = value;
+            }
+        }
     }
 }

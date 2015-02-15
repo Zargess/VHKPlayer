@@ -10,6 +10,7 @@ using VHKPlayer.Models;
 
 namespace VHKPlayer.Utility {
     public class Settings {
+        // TODO : Bind to FolderConfig update event to set all fields to null so everything is reloaded when called again
         private static IGlobalConfigService _folderConfig;
         public static IGlobalConfigService FolderConfig {
             get {
@@ -117,6 +118,14 @@ namespace VHKPlayer.Utility {
         public static List<string> SupportedInfo {
             get {
                 return FolderConfig.GetString("supportedInfo").Split(';').ToList();
+            }
+        }
+
+        private static IPlayList _autoplaylist;
+        public static IPlayList AutoPlayList {
+            get {
+                if (_autoplaylist == null) _autoplaylist = GeneralFunctions.ConstructPlayList(FolderConfig.GetString("autoPlayList"));
+                return _autoplaylist;
             }
         }
     }

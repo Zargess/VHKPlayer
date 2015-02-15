@@ -41,5 +41,11 @@
     <Setting Name="timeStatShown" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
+    <Setting Name="autoPlayList" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{10sek;root\10sek;true;false;IteratedFolder}</Value>
+    </Setting>
+    <Setting Name="playlists" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{RekFørKamp;root\Rek;1;false;true;AllFilesSorted},{RekHalvej1;root\Rek;2;false;true;AllFilesSorted},{10sek;root\10sek;true;false;IteratedFolder},{FørKamp;root\FoerKamp;true;false;IteratedFolder}</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

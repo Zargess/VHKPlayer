@@ -4,6 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VHKPlayer.Exceptions;
+using VHKPlayer.Factories.IPlayLists;
+using VHKPlayer.Interfaces;
+using VHKPlayer.Interfaces.Factories;
+using VHKPlayer.Models;
 
 namespace VHKPlayer.Utility {
     public class GeneralFunctions {
@@ -40,6 +45,29 @@ namespace VHKPlayer.Utility {
             if (relativepath.Contains(@"root\")) relativepath = relativepath.Replace(@"root\", "");
             var path = Path.Combine(root, relativepath);
             return path.ToLower();
+        }
+
+        public static IPlayList ConstructPlayList(string v) {
+            IPlayList res;
+            var factory = FindPlayListFactory(v);
+            res = new PlayList(factory);
+            return res;
+        }
+
+        private static IPlayListFactory FindPlayListFactory(string v) {
+            var elements = ConstructElements(v);
+            switch (elements.Last()) {
+                case "AllFilesFolder":
+                    return new AllFilesFolderPlayListFactory(v);
+                case "AllFilesSorted":
+                    return new AllFilesSortedPlayListFactory(v);
+                case "IteratedFolder":
+                    return new IteratedFolderPlayListFactory(v);
+                case "IteratedSorted":
+                    return new IteratedSortedPlayListFactory(v);
+                default:
+                    throw new NoSuchPlayListTypeException("Playlisten du prøver at skabe bruger en ukendt type.");
+            }
         }
     }
 }
