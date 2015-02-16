@@ -76,6 +76,7 @@
     <Compile Include="Interfaces\IPlayStrategy.cs" />
     <Compile Include="Interfaces\IStatistics.cs" />
     <Compile Include="Interfaces\IStatsLoadingStrategy.cs" />
+    <Compile Include="Interfaces\IViewModel.cs" />
     <Compile Include="Models\FolderNode.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayList.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Strategies\Peeking\NextInQueuePeekStrategy.cs" />
     <Compile Include="Strategies\Peeking\NextItemInContentPeekStrategy.cs" />
     <Compile Include="Strategies\Playing\AlternatingPlayStrategy.cs" />
+    <Compile Include="Strategies\Playing\AutoPlayListPlayStrategy.cs" />
     <Compile Include="Strategies\Playing\PlayFileStrategy.cs" />
     <Compile Include="Strategies\Playing\PlayPlayerStatStrategy.cs" />
     <Compile Include="Strategies\Selection\Players\PictureSelectionStrategy.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="Utility\FolderSettings.cs" />
     <Compile Include="Utility\GlobalConfigService.cs" />
     <Compile Include="Utility\Settings.cs" />
+    <Compile Include="ViewModels\ViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
