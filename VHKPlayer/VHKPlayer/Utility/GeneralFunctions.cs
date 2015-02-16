@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VHKPlayer.Enums;
 using VHKPlayer.Exceptions;
 using VHKPlayer.Factories.IPlayLists;
 using VHKPlayer.Interfaces;
@@ -68,6 +69,14 @@ namespace VHKPlayer.Utility {
                 default:
                     throw new NoSuchPlayListTypeException("Playlisten du prøver at skabe bruger en ukendt type.");
             }
+        }
+
+        public static FileType GetFileType(string extension) {
+            if (Settings.SupportedMusic.Contains(extension)) return FileType.Music;
+            if (Settings.SupportedPicture.Contains(extension)) return FileType.Picture;
+            if (Settings.SupportedVideo.Contains(extension)) return FileType.Video;
+            if (Settings.SupportedInfo.Contains(extension)) return FileType.Info;
+            return FileType.Unsupported;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace VHKPlayer.Models {
             FullPath = path;
             Name = Path.GetFileName(path);
             NameWithoutExtension = Path.GetFileNameWithoutExtension(path);
-            Type = PathHandler.GetFileType(Path.GetExtension(path));
+            Type = GeneralFunctions.GetFileType(Path.GetExtension(path));
         }
 
 

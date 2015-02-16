@@ -57,6 +57,7 @@
     <Compile Include="Collections\SortableCollection.cs" />
     <Compile Include="Enums\PlayType.cs" />
     <Compile Include="Exceptions\InvalidTypeException.cs" />
+    <Compile Include="Exceptions\NoSuchPlayListTypeException.cs" />
     <Compile Include="Factories\IPlayers\ViborgPlayerFactory.cs" />
     <Compile Include="Factories\IPlayLists\AllFilesFolderPlayListFactory.cs" />
     <Compile Include="Factories\IPlayLists\AllFilesSortedPlayListFactory.cs" />
@@ -106,7 +107,6 @@
     </Compile>
     <Compile Include="Utility\FolderSettings.cs" />
     <Compile Include="Utility\GlobalConfigService.cs" />
-    <Compile Include="Utility\PathHandler.cs" />
     <Compile Include="Utility\Settings.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
