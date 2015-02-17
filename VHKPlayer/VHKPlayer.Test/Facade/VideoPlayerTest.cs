@@ -20,7 +20,6 @@ namespace VHKPlayer.Test.Facade {
         private TestPlayController _observer;
         private IPlayable _testplayable;
         private IVideoPlayer _videoplayer;
-        private IViewModel _viewmodel;
 
         [TestInitialize]
         public void Setup() {
@@ -31,7 +30,6 @@ namespace VHKPlayer.Test.Facade {
             _observer = new TestPlayController();
             _videoplayer.AddObserver(_observer);
             _testplayable = new TestPlayable();
-            _viewmodel = new ViewModel();
         }
 
         [TestMethod]
@@ -123,15 +121,15 @@ namespace VHKPlayer.Test.Facade {
             _videoplayer.Play(new TestPlayer(), PlayType.PlayerStat);
             Assert.IsTrue(Settings.PlayerStatTimer.IsEnabled);
         }
-
+        
         [TestMethod]
         public void VideoPlayerTestWhenAutoPlayListElementIsTrueTheAfterLastElementInQueueHasBeenPlayedTheFirstElementInTheAutoPlayListShouldBePlayedNext() {
-            _viewmodel.AutoPlayListEnabled = true;
+            App.ViewModel.AutoPlayListEnabled = true;
             TestPlayController controller = new TestPlayController();
             _videoplayer.AddObserver(controller);
             _videoplayer.Play(new TestPlayer(), PlayType.PlayerVideo);
             _videoplayer.PlayQueue();
-            Assert.AreEqual(controller._video, Settings.AutoPlayList.Content[0]);
+            Assert.AreEqual(Settings.AutoPlayList.Content[0], controller._video);
         }
     }
 }

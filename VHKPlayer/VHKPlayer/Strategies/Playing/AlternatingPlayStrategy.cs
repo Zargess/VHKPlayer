@@ -30,9 +30,13 @@ namespace VHKPlayer.Strategies.Playing {
         // TODO : Test this new strategy and consider making a better way of getting the viewmodel
         // TODO : Check if this even works
         private void SetCurrent(Queue<IFile> queue, IPlayable playable, PlayType type) {
-            if (playable.HintNext(queue) == null && App.ViewModel.AutoPlayListEnabled) _currentStrategy = _autoplaylistStrategy;
+            var next = playable.HintNext(queue);
+            var enabled = App.ViewModel.AutoPlayListEnabled;
+            var empty = queue.Count == 0;
+
+            if (next == null && enabled && empty) _currentStrategy = _autoplaylistStrategy;
             else if (type == PlayType.PlayerStat) _currentStrategy = _playerStatStrategy;
-            else if (queue.Count > 0) _currentStrategy = _fileStrategy;
+            else if (!empty) _currentStrategy = _fileStrategy;
             else _currentStrategy = _donothingStrategy;
         }
     }

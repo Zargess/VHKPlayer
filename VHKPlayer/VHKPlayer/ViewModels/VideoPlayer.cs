@@ -78,10 +78,14 @@ namespace VHKPlayer.ViewModels {
             _controllers.ForEach(x => x.ShowStats(player));
         }
 
+        // TODO : Test this code
         public IFile HintNext() {
             if (_currentPlayable == null) return null;
-            // TODO : When auto playlist is created then check if it is enabled if the the current playable does not have a next item
-            return _currentPlayable.HintNext(Queue);
+            var next = _currentPlayable.HintNext(Queue);
+            var enabled = App.ViewModel.AutoPlayListEnabled;
+
+            if (next == null && enabled) return Settings.AutoPlayList.HintNext(Queue);
+            else return _currentPlayable.HintNext(Queue);
         }
     }
 }
