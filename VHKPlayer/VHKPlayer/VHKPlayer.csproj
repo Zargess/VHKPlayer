@@ -90,6 +90,7 @@
     <Compile Include="Strategies\Peeking\NextItemInContentPeekStrategy.cs" />
     <Compile Include="Strategies\Playing\AlternatingPlayStrategy.cs" />
     <Compile Include="Strategies\Playing\AutoPlayListPlayStrategy.cs" />
+    <Compile Include="Strategies\Playing\DoNothingPlayStrategy.cs" />
     <Compile Include="Strategies\Playing\PlayFileStrategy.cs" />
     <Compile Include="Strategies\Playing\PlayPlayerStatStrategy.cs" />
     <Compile Include="Strategies\Selection\Players\PictureSelectionStrategy.cs" />

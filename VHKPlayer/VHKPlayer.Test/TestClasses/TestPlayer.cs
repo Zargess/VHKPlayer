@@ -55,7 +55,7 @@ namespace VHKPlayer.Test.TestClasses {
         }
 
         public IFile HintNext(Queue<IFile> queue) {
-            throw new NotImplementedException();
+            return null;
         }
 
         public Queue<IFile> Play(PlayType type) {

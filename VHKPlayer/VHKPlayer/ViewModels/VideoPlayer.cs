@@ -54,7 +54,6 @@ namespace VHKPlayer.ViewModels {
         }
 
         public void PlayQueue() {
-            if (Queue.Count == 0) return;
             _playStrategy.Play(this, Queue, _currentPlayable, _currentType);
         }
 

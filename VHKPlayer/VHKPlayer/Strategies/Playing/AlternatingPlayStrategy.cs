@@ -12,24 +12,28 @@ namespace VHKPlayer.Strategies.Playing {
         private IPlayStrategy _fileStrategy;
         private IPlayStrategy _playerStatStrategy;
         private IPlayStrategy _currentStrategy;
-        private IPlayStrategy _autoplayliststrategy;
+        private IPlayStrategy _autoplaylistStrategy;
+        private IPlayStrategy _donothingStrategy;
 
-        public AlternatingPlayStrategy(IPlayStrategy filestrategy, IPlayStrategy playstatstrategy, IPlayStrategy autoplayliststrategy) {
+        public AlternatingPlayStrategy(IPlayStrategy filestrategy, IPlayStrategy playstatstrategy, IPlayStrategy autoplayliststrategy, IPlayStrategy donothingstrategy) {
             _fileStrategy = filestrategy;
             _playerStatStrategy = playstatstrategy;
-            _autoplayliststrategy = autoplayliststrategy;
+            _autoplaylistStrategy = autoplayliststrategy;
+            _donothingStrategy = donothingstrategy;
         }
 
         public void Play(IVideoPlayer videoplayer, Queue<IFile> queue, IPlayable playable, PlayType type) {
-            SetCurrent(queue, type);
+            SetCurrent(queue, playable, type);
             _currentStrategy.Play(videoplayer, queue, playable, type);
         }
 
         // TODO : Test this new strategy and consider making a better way of getting the viewmodel
-        private void SetCurrent(Queue<IFile> queue, PlayType type) {
-            if (queue.Count == 0 && App.ViewModel.AutoPlayListEnabled) _currentStrategy = _autoplayliststrategy;
-            if (type == PlayType.PlayerStat) _currentStrategy = _playerStatStrategy;
-            else _currentStrategy = _fileStrategy;
+        // TODO : Check if this even works
+        private void SetCurrent(Queue<IFile> queue, IPlayable playable, PlayType type) {
+            if (playable.HintNext(queue) == null && App.ViewModel.AutoPlayListEnabled) _currentStrategy = _autoplaylistStrategy;
+            else if (type == PlayType.PlayerStat) _currentStrategy = _playerStatStrategy;
+            else if (queue.Count > 0) _currentStrategy = _fileStrategy;
+            else _currentStrategy = _donothingStrategy;
         }
     }
 }
