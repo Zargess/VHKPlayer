@@ -8,7 +8,7 @@ using VHKPlayer.Enums;
 using VHKPlayer.Interfaces;
 using VHKPlayer.Utility;
 
-namespace VHKPlayer.ViewModels {
+namespace VHKPlayer.Facades {
     public class VideoPlayer : IVideoPlayer {
         private List<IPlayController> _controllers;
         private PlayType _currentType;
@@ -85,7 +85,7 @@ namespace VHKPlayer.ViewModels {
             var enabled = App.ViewModel.AutoPlayListEnabled;
 
             if (next == null && enabled) return Settings.AutoPlayList.HintNext(Queue);
-            else return _currentPlayable.HintNext(Queue);
+            else return next;
         }
     }
 }

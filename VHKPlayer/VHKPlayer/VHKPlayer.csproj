@@ -55,6 +55,7 @@
     </ApplicationDefinition>
     <Compile Include="Collections\CustomQueue.cs" />
     <Compile Include="Collections\SortableCollection.cs" />
+    <Compile Include="Controllers\PlayController.cs" />
     <Compile Include="Enums\PlayType.cs" />
     <Compile Include="Exceptions\InvalidTypeException.cs" />
     <Compile Include="Exceptions\NoSuchPlayListTypeException.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Interfaces\IPlayList.cs" />
     <Compile Include="Interfaces\IPlayController.cs" />
     <Compile Include="Interfaces\IPlayStrategy.cs" />
+    <Compile Include="Interfaces\ISoundStrategy.cs" />
     <Compile Include="Interfaces\IStatistics.cs" />
     <Compile Include="Interfaces\IStatsLoadingStrategy.cs" />
     <Compile Include="Interfaces\IViewModel.cs" />
@@ -100,7 +102,7 @@
     <Compile Include="Strategies\Selection\PlayLists\AllFilesSelectionStrategy.cs" />
     <Compile Include="Strategies\Selection\PlayLists\IteratedFileSelectionStrategy.cs" />
     <Compile Include="Utility\GeneralFunctions.cs" />
-    <Compile Include="ViewModels\VideoPlayer.cs" />
+    <Compile Include="Facade\VideoPlayer.cs" />
     <Compile Include="Interfaces\IGlobalConfigService.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Utility\FolderProperties.Designer.cs">

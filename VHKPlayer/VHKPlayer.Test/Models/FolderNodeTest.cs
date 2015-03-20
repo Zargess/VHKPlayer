@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VHKPlayer.Interfaces;
-using VHKPlayer.ViewModels;
+using VHKPlayer.Facades;
 using VHKPlayer.Utility;
 using VHKPlayer.Models;
 using VHKPlayer.Test.Utility;

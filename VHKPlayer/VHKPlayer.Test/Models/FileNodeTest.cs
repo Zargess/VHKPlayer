@@ -6,7 +6,7 @@ using VHKPlayer.Interfaces;
 using VHKPlayer.Test.Utility;
 using VHKPlayer.Models;
 using VHKPlayer.Enums;
-using VHKPlayer.ViewModels;
+using VHKPlayer.Facades;
 using VHKPlayer.Utility;
 using VHKPlayer.Strategies.Playing;
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VHKPlayer.Interfaces;
 using VHKPlayer.Utility;
-using VHKPlayer.ViewModels;
+using VHKPlayer.Facades;
 using VHKPlayer.Test.TestClasses;
 using VHKPlayer.Enums;
 using VHKPlayer.Models;
