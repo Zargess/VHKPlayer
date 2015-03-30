@@ -7,7 +7,7 @@ using VHKPlayer.Enums;
 
 namespace VHKPlayer.Interfaces {
     public interface IPlayController {
-        void Play(FileType type);
+        void Play(IFile file);
         void Resume(FileType type);
         void Stop(FileType type);
         void Pause(FileType type);

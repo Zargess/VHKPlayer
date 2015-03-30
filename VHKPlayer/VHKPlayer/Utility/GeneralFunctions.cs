@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using VHKPlayer.Enums;
 using VHKPlayer.Exceptions;
 using VHKPlayer.Factories.IPlayLists;
@@ -46,6 +48,14 @@ namespace VHKPlayer.Utility {
             if (relativepath.Contains(@"root\")) relativepath = relativepath.Replace(@"root\", "");
             var path = Path.Combine(root, relativepath);
             return path.ToLower();
+        }
+
+        public static ImageSource ConstructImage(IFile file) {
+            BitmapImage res = new BitmapImage();
+            res.BeginInit();
+            res.UriSource = new Uri(file.FullPath);
+            res.EndInit();
+            return res;
         }
 
         public static IPlayList ConstructPlayList(string v) {

@@ -37,8 +37,8 @@ namespace VHKPlayer.Facades {
         }
 
         public void Play(IFile file) {
-            _controllers.ForEach(x => x.Update(file));
-            _controllers.ForEach(x => x.Play(file.Type));
+            if (!file.Exists()) return;
+            _controllers.ForEach(x => x.Play(file));
         }
 
         public void Play(IPlayable playable, PlayType type) {
