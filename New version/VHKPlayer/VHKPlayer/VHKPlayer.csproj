@@ -62,13 +62,24 @@
     <Compile Include="Commands\Logic\CommandProcessor.cs" />
     <Compile Include="Commands\Logic\CreateFile\CreateFileCommand.cs" />
     <Compile Include="Commands\Logic\CreateFile\CreateFileCommandHandler.cs" />
+    <Compile Include="Commands\Logic\CreatePlayer\CreatePlayerCommand.cs" />
+    <Compile Include="Commands\Logic\CreatePlayer\CreatePlayerCommandHandler.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommandHandler.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommandProcessor.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommand.cs" />
+    <Compile Include="Infrastructure\Extensions.cs" />
+    <Compile Include="Models\DataCenter.cs" />
     <Compile Include="Models\FolderNode.cs" />
-    <Compile Include="Models\Interfaces\IFolderObserver.cs" />
+    <Compile Include="Models\Interfaces\IVHKObserver.cs" />
+    <Compile Include="Models\Interfaces\IPlayable.cs" />
+    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Statistics.cs" />
     <Compile Include="Utility\FindFileType\Interfaces\IFindFileTypeStrategy.cs" />
+    <Compile Include="Utility\GetPlayerFolders\Interfaces\IGetPlayerFoldersStrategy.cs" />
     <Compile Include="Utility\IsValidRootFolder\Interfaces\IValidRootFolderStrategy.cs" />
+    <Compile Include="Utility\PlayStrategy\Interfaces\IPlayStrategy.cs" />
+    <Compile Include="Utility\StatsLoading\Interfaces\IStatsLoadingStrategy.cs" />
+    <Compile Include="Utility\StatsLoading\StatsLoadingStrategy.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -118,7 +129,6 @@
     <Folder Include="Commands\Logic\CreateFolderStructure\" />
     <Folder Include="Commands\Logic\CreateFolder\" />
     <Folder Include="Commands\Logic\CreatePlayableFile\" />
-    <Folder Include="Commands\Logic\CreatePlayer\" />
     <Folder Include="Commands\Logic\CreatePlayList\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

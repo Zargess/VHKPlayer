@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace VHKPlayer.Models.Interfaces
 {
-    public interface IFolderObserver
+    public interface IVHKObserver<T>
     {
-        void FolderUpdated(FolderNode note);
+        void SubjectUpdated(T subject);
     }
 }

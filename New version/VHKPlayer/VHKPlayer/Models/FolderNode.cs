@@ -11,11 +11,12 @@ using VHKPlayer.Utility.IsValidRootFolder.Interfaces;
 
 namespace VHKPlayer.Models
 {
+    // TODO : Do some cleaning in this class and test it
     public class FolderNode
     {
         private IValidRootFolderStrategy validRootFolder;
         private FileSystemWatcher watcher;
-        private List<IFolderObserver> observers;
+        private List<IVHKObserver<FolderNode>> observers;
         public List<FileNode> Content { get; private set; }
         private string fullPath;
         private ICommandProcessor processor;
@@ -38,7 +39,7 @@ namespace VHKPlayer.Models
         public FolderNode(IValidRootFolderStrategy validRootFolder, ICommandProcessor processor)
         {
             this.validRootFolder = validRootFolder;
-            observers = new List<IFolderObserver>();
+            observers = new List<IVHKObserver<FolderNode>>();
             this.processor = processor;
             Content = new List<FileNode>();
         }
@@ -90,12 +91,12 @@ namespace VHKPlayer.Models
             return watcher;
         }
 
-        public void AddObserver(IFolderObserver observer)
+        public void AddObserver(IVHKObserver<FolderNode> observer)
         {
             observers.Add(observer);
         }
 
-        public void RemoveObserver(IFolderObserver observer)
+        public void RemoveObserver(IVHKObserver<FolderNode> observer)
         {
             observers.Remove(observer);
         }
@@ -104,7 +105,7 @@ namespace VHKPlayer.Models
         {
             Content.Clear();
             CreateFiles(FullPath);
-            observers.ForEach(x => x.FolderUpdated(this));
+            observers.ForEach(x => x.SubjectUpdated(this));
         }
     }
 }

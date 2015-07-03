@@ -19,6 +19,12 @@ namespace VHKPlayer.Test
     public class CommandTests : TestBase
     {
         [TestMethod]
+        public void CreatePlayer()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
         public void CreateFile()
         {
             //path
