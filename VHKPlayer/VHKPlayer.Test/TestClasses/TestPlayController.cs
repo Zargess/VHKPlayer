@@ -53,5 +53,10 @@ namespace VHKPlayer.Test.TestClasses {
             Stats = currentPlayable.Stats;
             Test = Stats == null;
         }
+
+        public void Play(IFile file)
+        {
+            
+        }
     }
 }
