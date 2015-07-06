@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VHKPlayer.Commands.Logic.CreateFile;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Models.Interfaces;
@@ -14,7 +10,7 @@ namespace VHKPlayer.Models
     // TODO : Do some cleaning in this class and test it
     public class FolderNode
     {
-        private IValidRootFolderStrategy validRootFolder;
+        public IValidRootFolderStrategy ValidRootFolder { get; set; }
         private FileSystemWatcher watcher;
         private List<IVHKObserver<FolderNode>> observers;
         public List<FileNode> Content { get; private set; }
@@ -36,9 +32,8 @@ namespace VHKPlayer.Models
 
         public string Name { get; private set; }
 
-        public FolderNode(IValidRootFolderStrategy validRootFolder, ICommandProcessor processor)
+        public FolderNode(ICommandProcessor processor)
         {
-            this.validRootFolder = validRootFolder;
             observers = new List<IVHKObserver<FolderNode>>();
             this.processor = processor;
             Content = new List<FileNode>();

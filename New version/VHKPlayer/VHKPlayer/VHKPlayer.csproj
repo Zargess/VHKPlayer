@@ -62,24 +62,43 @@
     <Compile Include="Commands\Logic\CommandProcessor.cs" />
     <Compile Include="Commands\Logic\CreateFile\CreateFileCommand.cs" />
     <Compile Include="Commands\Logic\CreateFile\CreateFileCommandHandler.cs" />
+    <Compile Include="Commands\Logic\CreateFolderStructure\CreateFolderStructureCommand.cs" />
+    <Compile Include="Commands\Logic\CreateFolderStructure\CreateFolderStructureCommandHandler.cs" />
+    <Compile Include="Commands\Logic\CreateFolder\CreateFolderCommand.cs" />
+    <Compile Include="Commands\Logic\CreateFolder\CreateFolderCommandHandler.cs" />
+    <Compile Include="Commands\Logic\CreatePlayableFile\CreatePlayableFileCommand.cs" />
+    <Compile Include="Commands\Logic\CreatePlayableFile\CreatePlayableFileCommandHandler.cs" />
     <Compile Include="Commands\Logic\CreatePlayer\CreatePlayerCommand.cs" />
     <Compile Include="Commands\Logic\CreatePlayer\CreatePlayerCommandHandler.cs" />
+    <Compile Include="Commands\Logic\CreatePlayList\CreatePlayListCommand.cs" />
+    <Compile Include="Commands\Logic\CreatePlayList\CreatePlayListCommandHandler.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommandHandler.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommandProcessor.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommand.cs" />
+    <Compile Include="Controllers\Interfaces\IPlayController.cs" />
+    <Compile Include="Controllers\Interfaces\IVideoPlayer.cs" />
+    <Compile Include="Controllers\VideoPlayer.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />
     <Compile Include="Models\DataCenter.cs" />
     <Compile Include="Models\FolderNode.cs" />
     <Compile Include="Models\Interfaces\IVHKObserver.cs" />
     <Compile Include="Models\Interfaces\IPlayable.cs" />
+    <Compile Include="Models\PlayableFile.cs" />
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\PlayList.cs" />
     <Compile Include="Models\Statistics.cs" />
+    <Compile Include="Queries\Interfaces\IQuery.cs" />
+    <Compile Include="Queries\Interfaces\IQueryHandler.cs" />
+    <Compile Include="Queries\Interfaces\IQueryProcessor.cs" />
+    <Compile Include="Queries\QueryProcessor.cs" />
     <Compile Include="Utility\FindFileType\Interfaces\IFindFileTypeStrategy.cs" />
     <Compile Include="Utility\GetPlayerFolders\Interfaces\IGetPlayerFoldersStrategy.cs" />
     <Compile Include="Utility\IsValidRootFolder\Interfaces\IValidRootFolderStrategy.cs" />
+    <Compile Include="Utility\LoadingStrategy\Interfaces\ILoadingStrategy.cs" />
+    <Compile Include="Utility\LoadingStrategy\PlayListLoading\FolderLoadingStrategy.cs" />
+    <Compile Include="Utility\LoadingStrategy\PlayListLoading\SortedLoadingStrategy.cs" />
+    <Compile Include="Utility\LoadingStrategy\StatisticsLoading\StatisticsLoadingStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\Interfaces\IPlayStrategy.cs" />
-    <Compile Include="Utility\StatsLoading\Interfaces\IStatsLoadingStrategy.cs" />
-    <Compile Include="Utility\StatsLoading\StatsLoadingStrategy.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -126,10 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\GUI\" />
-    <Folder Include="Commands\Logic\CreateFolderStructure\" />
-    <Folder Include="Commands\Logic\CreateFolder\" />
-    <Folder Include="Commands\Logic\CreatePlayableFile\" />
-    <Folder Include="Commands\Logic\CreatePlayList\" />
+    <Folder Include="Utility\LoadingStrategy\PlayerLoading\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

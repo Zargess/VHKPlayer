@@ -64,7 +64,11 @@
   <ItemGroup>
     <Compile Include="CommandTests.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Models\FileNodeTest.cs" />
     <Compile Include="Models\FolderNodeTest.cs" />
+    <Compile Include="Models\PlayableFileTest.cs" />
+    <Compile Include="Models\PlayerTest.cs" />
+    <Compile Include="Models\PlayListTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="TestHelper.cs" />
@@ -77,6 +81,9 @@
       <Project>{a78bdf5a-b4fb-40ea-bfc5-109a3af97487}</Project>
       <Name>VHKPlayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utility\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

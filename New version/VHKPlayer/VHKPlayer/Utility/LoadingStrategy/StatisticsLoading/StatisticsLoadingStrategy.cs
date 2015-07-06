@@ -6,20 +6,22 @@ using System.Threading.Tasks;
 using System.Xml;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Models;
-using VHKPlayer.Utility.StatsLoading.Interfaces;
+using VHKPlayer.Utility.LoadingStrategy.Interfaces;
 
-namespace VHKPlayer.Utility.StatsLoading
+namespace VHKPlayer.Utility.LoadingStrategy.Stats
 {
-    public class StatsLoadingStrategy : IStatsLoadingStrategy
+    public class StatisticsLoadingStrategy : ILoadingStrategy<Statistics>
     {
         private readonly FolderNode folder;
+        private readonly int number;
 
-        public StatsLoadingStrategy(FolderNode folder)
+        public StatisticsLoadingStrategy(int number, FolderNode folder)
         {
+            this.number = number;
             this.folder = folder;
         }
 
-        public Statistics LoadStats(int number)
+        public Statistics Load()
         {
             var res = new Statistics();
             var file = folder.Content.FirstOrDefault(x => x.Name.ToLower() == "vhk_" + number + "player.xml");

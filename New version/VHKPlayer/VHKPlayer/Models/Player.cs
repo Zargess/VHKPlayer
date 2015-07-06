@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VHKPlayer.Models.Interfaces;
+using VHKPlayer.Utility.LoadingStrategy.Interfaces;
 using VHKPlayer.Utility.PlayStrategy.Interfaces;
-using VHKPlayer.Utility.StatsLoading.Interfaces;
 
 namespace VHKPlayer.Models
 {
@@ -19,7 +19,7 @@ namespace VHKPlayer.Models
         public bool Trainer { get; set; }
         public ObservableCollection<FileNode> Content { get; set; }
         public Statistics Stats { get; private set; }
-        public IStatsLoadingStrategy StatsLoadingStrategy { get; set; }
+        public ILoadingStrategy<Statistics> StatsLoadingStrategy { get; set; }
 
         public Player()
         {
@@ -33,7 +33,7 @@ namespace VHKPlayer.Models
 
         public void SubjectUpdated(FolderNode subject)
         {
-            Stats = StatsLoadingStrategy.LoadStats(Number);
+            Stats = StatsLoadingStrategy.Load();
             observers.ForEach(x => x.SubjectUpdated(this));
         }
 
@@ -45,6 +45,11 @@ namespace VHKPlayer.Models
         public void RemoveObserver(IVHKObserver<Player> observer)
         {
             observers.Remove(observer);
+        }
+
+        public override string ToString()
+        {
+            return Number + " - " + Name; 
         }
     }
 }

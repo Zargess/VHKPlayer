@@ -19,6 +19,30 @@ namespace VHKPlayer.Test
     public class CommandTests : TestBase
     {
         [TestMethod]
+        public void CreateFolderStructure()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public void CreatePlayableFile()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public void CreateFolderNode()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public void CreatePlayList()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
         public void CreatePlayer()
         {
             throw new NotImplementedException();
@@ -45,9 +69,10 @@ namespace VHKPlayer.Test
 
             var processor = container.Resolve<ICommandProcessor>();
 
-            var folder = new FolderNode(isvalidrootstrategy, processor)
+            var folder = new FolderNode(processor)
             {
-                FullPath = "c:\\test"
+                FullPath = "c:\\test",
+                ValidRootFolder = isvalidrootstrategy
             };
 
             processor.Process(new CreateFileCommand()
