@@ -17,7 +17,7 @@ namespace VHKPlayer.Controllers.Interfaces
         void Mute(FileType type);
         void Pause(FileType type);
         void Play(IPlayable playable, IPlayStrategy strategy);
-        void PlayQUeue();
+        void PlayQueue();
         void Resume(FileType type);
         void Stop(FileType type);
         void Shutdown();

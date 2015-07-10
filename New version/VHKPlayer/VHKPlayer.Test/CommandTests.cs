@@ -19,37 +19,37 @@ namespace VHKPlayer.Test
     public class CommandTests : TestBase
     {
         [TestMethod]
-        public void CreateFolderStructure()
+        public void TestCreateFolderStructure()
         {
             throw new NotImplementedException();
         }
 
         [TestMethod]
-        public void CreatePlayableFile()
+        public void TestCreatePlayableFile()
         {
             throw new NotImplementedException();
         }
 
         [TestMethod]
-        public void CreateFolderNode()
+        public void TestCreateFolderNode()
         {
             throw new NotImplementedException();
         }
 
         [TestMethod]
-        public void CreatePlayList()
+        public void TestCreatePlayList()
         {
             throw new NotImplementedException();
         }
 
         [TestMethod]
-        public void CreatePlayer()
+        public void TestCreatePlayer()
         {
             throw new NotImplementedException();
         }
 
         [TestMethod]
-        public void CreateFile()
+        public void TestCreateFile()
         {
             //path
             var path = "c:\\test\\myfile.avi";

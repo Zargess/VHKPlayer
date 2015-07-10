@@ -49,7 +49,7 @@ namespace VHKPlayer.Controllers
             throw new NotImplementedException();
         }
 
-        public void PlayQUeue()
+        public void PlayQueue()
         {
             throw new NotImplementedException();
         }
