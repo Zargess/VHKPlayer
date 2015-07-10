@@ -14,5 +14,10 @@ namespace VHKPlayer.Infrastructure
             int.TryParse(s, out n);
             return n;
         }
+
+        public static bool IsEmpty<T>(this Queue<T> queue)
+        {
+            return queue.Count == 0;
+        }
     }
 }

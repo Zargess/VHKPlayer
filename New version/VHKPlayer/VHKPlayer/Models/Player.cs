@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Utility.LoadingStrategy.Interfaces;
 using VHKPlayer.Utility.PlayStrategy.Interfaces;
@@ -26,9 +27,9 @@ namespace VHKPlayer.Models
             observers = new List<IVHKObserver<Player>>();
         }
 
-        public void Play(IPlayStrategy strategy)
+        public void Play(IPlayStrategy strategy, IVideoPlayer videoPlayer)
         {
-            strategy.Play(Content);
+            strategy.Play(Content, videoPlayer);
         }
 
         public void SubjectUpdated(FolderNode subject)

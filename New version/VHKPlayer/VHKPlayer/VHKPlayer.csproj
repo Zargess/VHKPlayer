@@ -87,10 +87,17 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayList.cs" />
     <Compile Include="Models\Statistics.cs" />
+    <Compile Include="Queries\GetFolderByName\GetFolderByNameQuery.cs" />
+    <Compile Include="Queries\GetFolderByName\GetFoldersByNameQueryHandler.cs" />
+    <Compile Include="Queries\GetFolders\GetFoldersQuery.cs" />
+    <Compile Include="Queries\GetFolders\GetFoldersQueryProcessor.cs" />
     <Compile Include="Queries\Interfaces\IQuery.cs" />
     <Compile Include="Queries\Interfaces\IQueryHandler.cs" />
     <Compile Include="Queries\Interfaces\IQueryProcessor.cs" />
+    <Compile Include="Queries\IsStatFile\IsStatFileQuery.cs" />
+    <Compile Include="Queries\IsStatFile\IsStatFileQueryHandler.cs" />
     <Compile Include="Queries\QueryProcessor.cs" />
+    <Compile Include="Utility\Constants.cs" />
     <Compile Include="Utility\FindFileType\Interfaces\IFindFileTypeStrategy.cs" />
     <Compile Include="Utility\GetPlayerFolders\Interfaces\IGetPlayerFoldersStrategy.cs" />
     <Compile Include="Utility\IsValidRootFolder\Interfaces\IValidRootFolderStrategy.cs" />
