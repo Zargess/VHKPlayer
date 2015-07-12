@@ -19,7 +19,7 @@ namespace VHKPlayer.Commands.Logic.CreatePlayableFile
 
         public void Handle(CreatePlayableFileCommand command)
         {
-            center.AddPlayableFile(new PlayableFile()
+            center.PlayableFiles.Add(new PlayableFile()
             {
                 Name = command.File.Name,
                 File = command.File

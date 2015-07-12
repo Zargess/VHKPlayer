@@ -24,6 +24,12 @@ namespace VHKPlayer.Test
         }
 
         [TestMethod]
+        public void TestGetPlayerFolders()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
         public void TestIsStatFile()
         {
             throw new NotImplementedException();

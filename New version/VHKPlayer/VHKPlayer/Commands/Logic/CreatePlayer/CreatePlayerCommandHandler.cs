@@ -44,7 +44,7 @@ namespace VHKPlayer.Commands.Logic.CreatePlayer
 
             command.Folder.AddObserver(player);
 
-            center.AddPlayer(player);
+            center.Players.Add(player);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace VHKPlayer.Commands.Logic.CreateFolder
 
         public void Handle(CreateFolderCommand command)
         {
-            center.AddFolder(new FolderNode(processor)
+            center.Folders.Add(new FolderNode(processor)
             {
                 FullPath = command.Path,
                 ValidRootFolder = strategy

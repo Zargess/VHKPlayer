@@ -27,7 +27,7 @@ namespace VHKPlayer.Commands.Logic.CreatePlayList
 
             command.Folder.AddObserver(playlist);
 
-            center.AddPlayList(playlist);
+            center.PlayLists.Add(playlist);
         }
     }
 }

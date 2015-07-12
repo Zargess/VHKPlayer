@@ -58,5 +58,42 @@ namespace VHKPlayer.Properties {
                 this["supportedPicture"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\spiller;root\\spillervideo;root\\spillervideostat\\root\\spillervideostat\\mp3;ro" +
+            "ot\\spillervideostat\\video")]
+        public string playerFolders {
+            get {
+                return ((string)(this["playerFolders"]));
+            }
+            set {
+                this["playerFolders"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string root {
+            get {
+                return ((string)(this["root"]));
+            }
+            set {
+                this["root"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\spillervideostat")]
+        public string statPictureFolder {
+            get {
+                return ((string)(this["statPictureFolder"]));
+            }
+            set {
+                this["statPictureFolder"] = value;
+            }
+        }
     }
 }

@@ -21,25 +21,5 @@ namespace VHKPlayer.Models
             Folders = new List<FolderNode>();
             PlayableFiles = new List<PlayableFile>();
         }
-
-        public  void AddPlayableFile(PlayableFile pf)
-        {
-            PlayableFiles.Add(pf);
-        }
-
-        public void AddPlayer(Player p)
-        {
-            Players.Add(p);
-        }
-
-        public void AddFolder(FolderNode folderNode)
-        {
-            Folders.Add(folderNode);
-        }
-
-        public void AddPlayList(PlayList p)
-        {
-            PlayLists.Add(p);
-        }
     }
 }

@@ -50,10 +50,38 @@ namespace VHKPlayer.Controllers
             observers.ForEach(x => x.Pause(type));
         }
 
-        // TODO : Consider how Play should work now.
+        public void Play(FileNode file)
+        {
+            var isStatFile = processor.Process(new IsStatFileQuery()
+            {
+                File = file
+            });
+
+            if (isStatFile) ShowStats();
+
+            observers.ForEach(x => x.Play(file));
+        }
+
         public void Play(IPlayable playable, IPlayStrategy strategy)
         {
-            throw new NotImplementedException();
+            if (playable is PlayableFile)
+            {
+                var playableFile = playable as PlayableFile;
+                if (playableFile.File.Type == FileType.Audio)
+                {
+                    previousMusicPlayable = playableFile;
+                } else
+                {
+                    previousVideoPlayable = playableFile;
+                    videoPlayStrategy = strategy;
+                }
+            } else
+            {
+                previousVideoPlayable = playable;
+                videoPlayStrategy = strategy;
+            }
+
+            playable.Play(strategy, this);
         }
 
         public void PlayQueue()
@@ -61,17 +89,7 @@ namespace VHKPlayer.Controllers
             if (!Queue.IsEmpty())
             {
                 var file = Queue.Dequeue();
-                var isStatFile = processor.Process(new IsStatFileQuery()
-                {
-                    File = file
-                });
-
-                observers.ForEach(x => x.Play(file));
-
-                if (isStatFile)
-                {
-                    ShowStats();
-                }
+                Play(file);
             } else if (!videoPlayStrategy.Done || videoPlayStrategy.Repeat)
             {
                 previousVideoPlayable.Play(videoPlayStrategy, this);
