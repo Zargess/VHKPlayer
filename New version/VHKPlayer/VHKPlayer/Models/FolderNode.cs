@@ -3,19 +3,19 @@ using System.IO;
 using VHKPlayer.Commands.Logic.CreateFile;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Models.Interfaces;
-using VHKPlayer.Utility.IsValidRootFolder.Interfaces;
 
 namespace VHKPlayer.Models
 {
     // TODO : Do some cleaning in this class and test it
     public class FolderNode
     {
-        public IValidRootFolderStrategy ValidRootFolder { get; set; }
         private FileSystemWatcher watcher;
         private List<IVHKObserver<FolderNode>> observers;
-        public List<FileNode> Content { get; private set; }
         private string fullPath;
         private ICommandProcessor processor;
+
+        public string Name { get; private set; }
+        public List<FileNode> Content { get; private set; }
 
         public string FullPath
         {
@@ -26,11 +26,10 @@ namespace VHKPlayer.Models
             set
             {
                 fullPath = value;
-                updateFolderInfo(value);
+                UpdateFolderInfo(value);
             }
         }
 
-        public string Name { get; private set; }
 
         public FolderNode(ICommandProcessor processor)
         {
@@ -39,15 +38,19 @@ namespace VHKPlayer.Models
             Content = new List<FileNode>();
         }
 
-        private void updateFolderInfo(string value)
+        private void UpdateFolderInfo(string value)
         {
             Name = Path.GetDirectoryName(value);
+
+            if (watcher != null) watcher.Dispose();
+
             watcher = CreateWatcher(value);
             CreateFiles(value);
         }
 
         private void CreateFiles(string value)
         {
+            Content.Clear();
             if (!Exists()) return;
             var paths = Directory.EnumerateFiles(value);
             foreach (var path in paths)

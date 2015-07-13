@@ -78,6 +78,7 @@
     <Compile Include="Controllers\Interfaces\IPlayController.cs" />
     <Compile Include="Controllers\Interfaces\IVideoPlayer.cs" />
     <Compile Include="Controllers\VideoPlayer.cs" />
+    <Compile Include="Events\DataCenterUpdatedEventArgs.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />
     <Compile Include="Models\DataCenter.cs" />
     <Compile Include="Models\FolderNode.cs" />
@@ -89,6 +90,8 @@
     <Compile Include="Models\Statistics.cs" />
     <Compile Include="Queries\GetFolderByName\GetFolderByNameQuery.cs" />
     <Compile Include="Queries\GetFolderByName\GetFoldersByNameQueryHandler.cs" />
+    <Compile Include="Queries\GetFolderByPathSubscript\GetFolderByPathSubscriptQuery.cs" />
+    <Compile Include="Queries\GetFolderByPathSubscript\GetFolderByPathSubscriptQueryHandler.cs" />
     <Compile Include="Queries\GetFolders\GetFoldersQuery.cs" />
     <Compile Include="Queries\GetFolders\GetFoldersQueryProcessor.cs" />
     <Compile Include="Queries\GetPlayerFolders\GetPlayerFoldersQuery.cs" />
@@ -101,15 +104,15 @@
     <Compile Include="Queries\QueryProcessor.cs" />
     <Compile Include="Utility\Constants.cs" />
     <Compile Include="Utility\FindFileType\Interfaces\IFindFileTypeStrategy.cs" />
-    <Compile Include="Utility\GetPlayerFolders\Interfaces\IGetPlayerFoldersStrategy.cs" />
-    <Compile Include="Utility\IsValidRootFolder\Interfaces\IValidRootFolderStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\Interfaces\ILoadingStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\PlayListLoading\FolderLoadingStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\PlayListLoading\SortedLoadingStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\StatisticsLoading\StatisticsLoadingStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\Interfaces\IPlayStrategy.cs" />
+    <Compile Include="Utility\Settings\GlobalConfigService.cs" />
     <Compile Include="Utility\Settings\Interfaces\IGlobalConfigService.cs" />
-    <Compile Include="Utility\Settings\Interfaces\ISettings.cs" />
+    <Compile Include="Utility\Settings\Interfaces\ISetting.cs" />
+    <Compile Include="Utility\Settings\Setting.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

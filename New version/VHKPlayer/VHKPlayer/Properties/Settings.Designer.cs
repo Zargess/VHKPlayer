@@ -26,73 +26,120 @@ namespace VHKPlayer.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("avi;mp4")]
-        public string supportedVideo {
+        public string folder_supportedVideo {
             get {
-                return ((string)(this["supportedVideo"]));
+                return ((string)(this["folder_supportedVideo"]));
             }
             set {
-                this["supportedVideo"] = value;
+                this["folder_supportedVideo"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("mp3")]
-        public string supportedAudio {
+        public string folder_supportedAudio {
             get {
-                return ((string)(this["supportedAudio"]));
+                return ((string)(this["folder_supportedAudio"]));
             }
             set {
-                this["supportedAudio"] = value;
+                this["folder_supportedAudio"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("png;")]
-        public string supportedPicture {
+        public string folder_supportedPicture {
             get {
-                return ((string)(this["supportedPicture"]));
+                return ((string)(this["folder_supportedPicture"]));
             }
             set {
-                this["supportedPicture"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("root\\spiller;root\\spillervideo;root\\spillervideostat\\root\\spillervideostat\\mp3;ro" +
-            "ot\\spillervideostat\\video")]
-        public string playerFolders {
-            get {
-                return ((string)(this["playerFolders"]));
-            }
-            set {
-                this["playerFolders"] = value;
+                this["folder_supportedPicture"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string root {
+        public string folder_root {
             get {
-                return ((string)(this["root"]));
+                return ((string)(this["folder_root"]));
             }
             set {
-                this["root"] = value;
+                this["folder_root"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("root\\spillervideostat")]
-        public string statPictureFolder {
+        public string folder_playerStatPictureFolder {
             get {
-                return ((string)(this["statPictureFolder"]));
+                return ((string)(this["folder_playerStatPictureFolder"]));
             }
             set {
-                this["statPictureFolder"] = value;
+                this["folder_playerStatPictureFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\spiller")]
+        public string folder_playerPictureFolder {
+            get {
+                return ((string)(this["folder_playerPictureFolder"]));
+            }
+            set {
+                this["folder_playerPictureFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\spillervideo")]
+        public string folder_playerVideoFolder {
+            get {
+                return ((string)(this["folder_playerVideoFolder"]));
+            }
+            set {
+                this["folder_playerVideoFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\spillervideostat\\video")]
+        public string folder_playerStatVideoFolder {
+            get {
+                return ((string)(this["folder_playerStatVideoFolder"]));
+            }
+            set {
+                this["folder_playerStatVideoFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\spillervideostat\\mp3")]
+        public string folder_playerStatMusicFolder {
+            get {
+                return ((string)(this["folder_playerStatMusicFolder"]));
+            }
+            set {
+                this["folder_playerStatMusicFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string folder_ignore {
+            get {
+                return ((string)(this["folder_ignore"]));
+            }
+            set {
+                this["folder_ignore"] = value;
             }
         }
     }

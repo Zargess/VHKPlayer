@@ -1,6 +1,5 @@
 ﻿using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Models;
-using VHKPlayer.Utility.IsValidRootFolder.Interfaces;
 
 namespace VHKPlayer.Commands.Logic.CreateFolder
 {
@@ -8,21 +7,18 @@ namespace VHKPlayer.Commands.Logic.CreateFolder
     {
         private readonly DataCenter center;
         private readonly ICommandProcessor processor;
-        private readonly IValidRootFolderStrategy strategy;
 
-        public CreateFolderCommandHandler(DataCenter center, ICommandProcessor processor, IValidRootFolderStrategy strategy)
+        public CreateFolderCommandHandler(DataCenter center, ICommandProcessor processor)
         {
             this.center = center;
             this.processor = processor;
-            this.strategy = strategy;
         }
 
         public void Handle(CreateFolderCommand command)
         {
             center.Folders.Add(new FolderNode(processor)
             {
-                FullPath = command.Path,
-                ValidRootFolder = strategy
+                FullPath = command.Path
             });
         }
     }

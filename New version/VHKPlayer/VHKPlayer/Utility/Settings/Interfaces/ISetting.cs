@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VHKPlayer.Utility.Settings.Interfaces
 {
-    public interface ISettings
+    public interface ISetting
     {
         object this[string propertyName] { get; set; }
 

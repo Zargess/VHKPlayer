@@ -4,18 +4,19 @@ using System.Linq;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Models;
-using VHKPlayer.Utility.GetPlayerFolders.Interfaces;
+using VHKPlayer.Queries.GetPlayerFolders;
+using VHKPlayer.Queries.Interfaces;
 
 namespace VHKPlayer.Commands.Logic.CreatePlayer
 {
     class CreatePlayerCommandHandler : ICommandHandler<CreatePlayerCommand>
     {
         private readonly DataCenter center;
-        private readonly IGetPlayerFoldersStrategy strategy;
+        private readonly IQueryProcessor processor;
 
-        public CreatePlayerCommandHandler(IGetPlayerFoldersStrategy strategy, DataCenter center)
+        public CreatePlayerCommandHandler(IQueryProcessor processor, DataCenter center)
         {
-            this.strategy = strategy;
+            this.processor = processor;
             this.center = center;
         }
 
@@ -27,7 +28,9 @@ namespace VHKPlayer.Commands.Logic.CreatePlayer
 
             var content = new List<FileNode>();
 
-            foreach (var folder in strategy.GetFolders())
+            var folders = processor.Process(new GetPlayerFoldersQuery());
+
+            foreach (var folder in folders)
             {
                 var file = folder.Content.SingleOrDefault(x => x.NameWithoutExtension.ToLower() == command.File.NameWithoutExtension.ToLower());
                 if (file == null) continue;
@@ -39,7 +42,7 @@ namespace VHKPlayer.Commands.Logic.CreatePlayer
                 Number = number,
                 Trainer = trainer,
                 Content = new ObservableCollection<FileNode>(content),
-                StatsLoadingStrategy = command.LoadingStrategy
+                StatsLoadingStrategy = command.StatLoadingStrategy
             };
 
             command.Folder.AddObserver(player);

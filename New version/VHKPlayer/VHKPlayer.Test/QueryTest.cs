@@ -30,6 +30,12 @@ namespace VHKPlayer.Test
         }
 
         [TestMethod]
+        public void TestGetFolderByPathSubscript()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
         public void TestIsStatFile()
         {
             throw new NotImplementedException();

@@ -3,7 +3,6 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using VHKPlayer.Utility.IsValidRootFolder.Interfaces;
 using Autofac;
 using Ploeh.AutoFixture;
 
@@ -18,7 +17,7 @@ namespace VHKPlayer.Test.Models
         [TestMethod]
         public void ValidRootFolderTest()
         {
-           
+            throw new NotImplementedException();
         }
     }
 }

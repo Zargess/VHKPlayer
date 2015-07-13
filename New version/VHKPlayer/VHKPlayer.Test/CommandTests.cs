@@ -8,7 +8,6 @@ using VHKPlayer.Models;
 using Autofac;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Commands.Logic.CreateFile;
-using VHKPlayer.Utility.IsValidRootFolder.Interfaces;
 
 namespace VHKPlayer.Test
 {

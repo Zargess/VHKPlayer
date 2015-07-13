@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VHKPlayer.Models;
+using VHKPlayer.Queries.GetFolderByPathSubscript;
 using VHKPlayer.Queries.Interfaces;
+using VHKPlayer.Utility;
 
 namespace VHKPlayer.Queries.GetPlayerFolders
 {
@@ -12,7 +14,6 @@ namespace VHKPlayer.Queries.GetPlayerFolders
     {
         private readonly IQueryProcessor processor;
 
-        // TODO : Make a way to get information from settings in an easy way
         public GetPlayerFoldersQueryHandler(IQueryProcessor processor)
         {
             this.processor = processor;
@@ -20,7 +21,27 @@ namespace VHKPlayer.Queries.GetPlayerFolders
 
         public IQueryable<FolderNode> Handle(GetPlayerFoldersQuery query)
         {
-            throw new NotImplementedException();
+            var settingNames = new[] {
+                Constants.PlayerPictureFolderSettingName,
+                Constants.PlayerVideoFolderSettingName,
+                Constants.PlayerStatPictureFolderSettingName,
+                Constants.PlayerStatVideoFolderSettingName,
+                Constants.PlayerStatMusicFolderSettingName
+            };
+
+            var res = new List<FolderNode>();
+
+            foreach (var setting in settingNames)
+            {
+                var relativePath = App.Config.GetString(setting);
+                var partialPath = relativePath.Replace("root\\", "");
+                res.Add(processor.Process(new GetFolderByPathSubscriptQuery()
+                {
+                    PartialPath = partialPath
+                }));
+            }
+
+            return res.AsQueryable();
         }
     }
 }

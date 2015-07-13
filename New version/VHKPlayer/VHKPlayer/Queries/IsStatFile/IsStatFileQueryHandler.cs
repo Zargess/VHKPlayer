@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using VHKPlayer.Queries.GetFolderByName;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility;
@@ -22,7 +18,7 @@ namespace VHKPlayer.Queries.IsStatFile
         {
             var folder = processor.Process(new GetFolderByNameQuery()
             {
-                Name = Constants.StatFolderName
+                Name = Constants.PlayerStatPictureFolderSettingName
             });
 
             return folder.Content.Any(x => x.FullPath == query.File.FullPath);

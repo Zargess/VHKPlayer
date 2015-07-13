@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using VHKPlayer.Utility.Settings;
+using VHKPlayer.Utility.Settings.Interfaces;
 
 namespace VHKPlayer
 {
@@ -13,5 +15,6 @@ namespace VHKPlayer
     /// </summary>
     public partial class App : Application
     {
+        public static IGlobalConfigService Config = new GlobalConfigService();
     }
 }

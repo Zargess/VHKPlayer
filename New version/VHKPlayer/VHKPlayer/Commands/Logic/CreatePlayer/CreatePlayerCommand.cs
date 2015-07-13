@@ -13,6 +13,6 @@ namespace VHKPlayer.Commands.Logic.CreatePlayer
     {
         public FileNode File { get; set; }
         public FolderNode Folder { get; set; }
-        public ILoadingStrategy<Statistics> LoadingStrategy { get; set; }
+        public ILoadingStrategy<Statistics> StatLoadingStrategy { get; set; }
     }
 }
