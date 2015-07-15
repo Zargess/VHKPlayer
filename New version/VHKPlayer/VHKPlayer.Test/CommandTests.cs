@@ -58,20 +58,13 @@ namespace VHKPlayer.Test
                 c.RegisterFake<IFindFileTypeStrategy>()
                     .FindType(Arg.Any<string>())
                     .Returns(FileType.Video);
-
-                c.RegisterFake<IValidRootFolderStrategy>()
-                    .IsValidRootFolder(Arg.Any<FolderNode>())
-                    .Returns(false);
             });
-
-            var isvalidrootstrategy = container.Resolve<IValidRootFolderStrategy>();
 
             var processor = container.Resolve<ICommandProcessor>();
 
             var folder = new FolderNode(processor)
             {
-                FullPath = "c:\\test",
-                ValidRootFolder = isvalidrootstrategy
+                FullPath = "c:\\test"
             };
 
             processor.Process(new CreateFileCommand()

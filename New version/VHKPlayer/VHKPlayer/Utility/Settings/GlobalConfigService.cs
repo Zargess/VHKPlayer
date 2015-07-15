@@ -12,7 +12,7 @@ namespace VHKPlayer.Utility.Settings
     {
         private Setting setting = new Setting();
 
-        public event PropertyChangedEventHandler FolderChanged;
+        public event PropertyChangedEventHandler FolderSettingsUpdated;
         public event PropertyChangedEventHandler PlayerChanged;
 
         public object GetObject(string settingName)
@@ -49,9 +49,9 @@ namespace VHKPlayer.Utility.Settings
             {
                 this.setting[settingName] = value;
                 this.setting.Save();
-                if (settingName.StartsWith("folder") && FolderChanged != null)
+                if (settingName.StartsWith("folder") && FolderSettingsUpdated != null)
                 {
-                    FolderChanged.Invoke(this, new PropertyChangedEventArgs(settingName));
+                    FolderSettingsUpdated.Invoke(this, new PropertyChangedEventArgs(settingName));
                 } else if (PlayerChanged != null)
                 {
                     PlayerChanged.Invoke(this, new PropertyChangedEventArgs(settingName));

@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using VHKPlayer.Models;
 using VHKPlayer.Utility.Settings;
 using VHKPlayer.Utility.Settings.Interfaces;
 
@@ -16,5 +17,6 @@ namespace VHKPlayer
     public partial class App : Application
     {
         public static IGlobalConfigService Config = new GlobalConfigService();
+        public static DataCenter DataCenter = new DataCenter();
     }
 }

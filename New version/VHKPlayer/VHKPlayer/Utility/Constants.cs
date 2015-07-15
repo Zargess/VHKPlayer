@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VHKPlayer.Utility
+﻿namespace VHKPlayer.Utility
 {
     public class Constants
     {
@@ -13,5 +7,8 @@ namespace VHKPlayer.Utility
         public const string PlayerStatPictureFolderSettingName = "folder_playerStatPictureFolder";
         public const string PlayerStatVideoFolderSettingName = "folder_playerStatVideoFolder";
         public const string PlayerStatMusicFolderSettingName = "folder_playerStatMusicFolder";
+        public const string PlayerStatisticInformation = "folder_playerStatisticInformation";
+        public const string RootFolderPath = "folder_root";
+        public const string IgnoredFolderPath = "folder_ignore";
     }
 }

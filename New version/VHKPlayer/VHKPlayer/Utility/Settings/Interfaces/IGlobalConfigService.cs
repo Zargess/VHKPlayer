@@ -12,5 +12,8 @@ namespace VHKPlayer.Utility.Settings.Interfaces
         object GetObject(string settingName);
         string GetString(string settingName);
         void Update(string settingName, object value);
+
+        event PropertyChangedEventHandler FolderSettingsUpdated;
+        event PropertyChangedEventHandler PlayerChanged;
     }
 }

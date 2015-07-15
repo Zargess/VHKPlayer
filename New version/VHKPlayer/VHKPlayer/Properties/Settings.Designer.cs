@@ -142,5 +142,43 @@ namespace VHKPlayer.Properties {
                 this["folder_ignore"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string folder_playerStatisticInformation {
+            get {
+                return ((string)(this["folder_playerStatisticInformation"]));
+            }
+            set {
+                this["folder_playerStatisticInformation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root\\musik\\andet;root\\musik\\langtmusik;root\\musik\\opvarmning;root\\musik\\pausemusi" +
+            "k;root\\musik\\scor;root\\musik\\scorud;root\\musik\\spilstop;root\\musik\\stemning;root" +
+            "\\musik\\timeout;root\\blandet;root\\superhero;root\\")]
+        public string folder_playableFileFolders {
+            get {
+                return ((string)(this["folder_playableFileFolders"]));
+            }
+            set {
+                this["folder_playableFileFolders"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("TODO : Write script that defines playlists")]
+        public string folder_playlists {
+            get {
+                return ((string)(this["folder_playlists"]));
+            }
+            set {
+                this["folder_playlists"] = value;
+            }
+        }
     }
 }

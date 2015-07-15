@@ -11,9 +11,8 @@ namespace VHKPlayer.Utility.PlayStrategy.Interfaces
 {
     public interface IPlayStrategy
     {
-        bool Repeat { get; }
-        bool Done { get; }
-        void Play(ICollection content, IVideoPlayer videoPlayer);
-        FileNode PeekNext();
+        bool Repeat { get; set; }
+        void Play(IEnumerable<FileNode> content, IVideoPlayer videoPlayer);
+        FileNode PeekNext(IVideoPlayer videoPlayer);
     }
 }

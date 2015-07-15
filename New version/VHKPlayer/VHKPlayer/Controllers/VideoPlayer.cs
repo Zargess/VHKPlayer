@@ -1,9 +1,5 @@
-﻿using Autofac;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Models;
@@ -21,7 +17,9 @@ namespace VHKPlayer.Controllers
         private IPlayable previousMusicPlayable, previousVideoPlayable;
         private IQueryProcessor processor;
 
+        public bool AutoPlayList { get; set; }
         public Queue<FileNode> Queue { get; private set; }
+
 
         public VideoPlayer(IQueryProcessor processor)
         {
@@ -37,7 +35,7 @@ namespace VHKPlayer.Controllers
 
         public FileNode HintNext()
         {
-            return videoPlayStrategy.PeekNext();
+            return videoPlayStrategy.PeekNext(this);
         }
 
         public void Mute(FileType type)
@@ -90,10 +88,10 @@ namespace VHKPlayer.Controllers
             {
                 var file = Queue.Dequeue();
                 Play(file);
-            } else if (!videoPlayStrategy.Done || videoPlayStrategy.Repeat)
+            } else if (videoPlayStrategy.Repeat)
             {
                 previousVideoPlayable.Play(videoPlayStrategy, this);
-            } else
+            } else if (AutoPlayList)
             {
                 // TODO : Make an option if auto advertisements is enabled
             }

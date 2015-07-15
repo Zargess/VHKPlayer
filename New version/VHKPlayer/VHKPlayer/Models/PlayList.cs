@@ -22,7 +22,7 @@ namespace VHKPlayer.Models
 
         public void Play(IPlayStrategy strategy, IVideoPlayer videoPlayer)
         {
-            strategy.Play(Content, videoPlayer);
+            PlayStrategy.Play(Content, videoPlayer);
         }
 
         public void SubjectUpdated(FolderNode subject)
