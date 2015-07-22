@@ -15,7 +15,7 @@ namespace VHKPlayer.Models
         private ICommandProcessor processor;
 
         public string Name { get; private set; }
-        public List<FileNode> Content { get; private set; }
+        public List<FileNode> Content { get; set; }
 
         public string FullPath
         {
@@ -70,6 +70,19 @@ namespace VHKPlayer.Models
         public bool Exists()
         {
             return Directory.Exists(FullPath);
+        }
+
+        public bool Contains(FileNode file)
+        {
+            foreach (var f in Content)
+            {
+                if (f.FullPath.ToLower().Equals(file.FullPath.ToLower()))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private FileSystemWatcher CreateWatcher(string path)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VHKPlayer.Models;
 using VHKPlayer.Queries.GetFolderByPathSubscript;
+using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility;
 
@@ -33,7 +34,10 @@ namespace VHKPlayer.Queries.GetPlayerFolders
 
             foreach (var setting in settingNames)
             {
-                var relativePath = App.Config.GetString(setting);
+                var relativePath = processor.Process(new GetStringSettingQuery()
+                {
+                    SettingName = setting
+                });
                 var partialPath = relativePath.Replace("root\\", "");
                 res.Add(processor.Process(new GetFolderByPathSubscriptQuery()
                 {

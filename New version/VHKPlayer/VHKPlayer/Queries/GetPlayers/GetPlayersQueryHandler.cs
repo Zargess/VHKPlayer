@@ -7,20 +7,20 @@ using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.Interfaces;
 
-namespace VHKPlayer.Queries.GetFolders
+namespace VHKPlayer.Queries.GetPlayers
 {
-    class GetFoldersQueryHandler : IQueryHandler<GetFoldersQuery, IQueryable<FolderNode>>
+    class GetPlayersQueryHandler : IQueryHandler<GetPlayersQuery, IQueryable<Player>>
     {
         private readonly IDataCenter center;
 
-        public GetFoldersQueryHandler(IDataCenter center)
+        public GetPlayersQueryHandler(IDataCenter center)
         {
             this.center = center;
         }
 
-        public IQueryable<FolderNode> Handle(GetFoldersQuery query)
+        public IQueryable<Player> Handle(GetPlayersQuery query)
         {
-            return center.Folders.AsQueryable();
+            return center.Players.AsQueryable();
         }
     }
 }

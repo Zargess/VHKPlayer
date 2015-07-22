@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 using VHKPlayer.Models;
 using VHKPlayer.Queries.Interfaces;
 
-namespace VHKPlayer.Queries.GetFolderByName
+namespace VHKPlayer.Queries.GetPlayers
 {
-    public class GetFolderByNameQuery : IQuery<FolderNode>
+    public class GetPlayersQuery : IQuery<IQueryable<Player>>
     {
-        public string Name { get; set; }
     }
 }

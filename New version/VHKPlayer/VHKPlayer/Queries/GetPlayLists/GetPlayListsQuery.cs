@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using VHKPlayer.Models;
 using VHKPlayer.Queries.Interfaces;
 
-namespace VHKPlayer.Queries.GetFolders
+namespace VHKPlayer.Queries.GetPlayLists
 {
-    public class GetFoldersQuery : IQuery<IQueryable<FolderNode>>
+    public class GetPlayListsQuery : IQuery<IQueryable<PlayList>>
     {
     }
 }

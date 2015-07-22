@@ -1,10 +1,13 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using VHKPlayer.Events;
+using VHKPlayer.Models.Interfaces;
 
 namespace VHKPlayer.Models
 {
-    public class DataCenter
+    public class DataCenter : IDataCenter
     {
         public ObservableCollection<Player> Players { get; private set; }
         public ObservableCollection<PlayList> PlayLists { get; private set; }

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
-using VHKPlayer.Queries.GetFolderByName;
+using VHKPlayer.Queries.GetFolderByPathSubscript;
+using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility;
 
@@ -16,12 +17,15 @@ namespace VHKPlayer.Queries.IsStatFile
 
         public bool Handle(IsStatFileQuery query)
         {
-            var folder = processor.Process(new GetFolderByNameQuery()
+            var folder = processor.Process(new GetFolderByPathSubscriptQuery()
             {
-                Name = Constants.PlayerStatPictureFolderSettingName
+                PartialPath = processor.Process(new GetStringSettingQuery()
+                {
+                    SettingName = Constants.PlayerStatPictureFolderSettingName
+                }).Replace("root\\", "")
             });
 
-            return folder.Content.Any(x => x.FullPath == query.File.FullPath);
+            return folder.Content.Any(x => query.File.FullPath.ToLower() == x.FullPath.ToLower());
         }
     }
 }
