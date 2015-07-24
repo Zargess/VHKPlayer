@@ -5,13 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Models;
-using VHKPlayer.Utility.LoadingStrategy.Interfaces;
 
-namespace VHKPlayer.Commands.Logic.CreatePlayer
+namespace VHKPlayer.Commands.Logic.CreatePlayableFilesFromFilesInFolder
 {
-    public class CreatePlayerCommand : ICommand
+    public class CreatePlayableFilesFromFilesInFolderCommand : ICommand
     {
-        public FileNode File { get; set; }
         public FolderNode Folder { get; set; }
     }
 }

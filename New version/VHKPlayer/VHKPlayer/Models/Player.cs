@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Models.Interfaces;
+using VHKPlayer.Queries.GetPlayerStats;
+using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility.LoadingStrategy.Interfaces;
 using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
@@ -20,7 +22,7 @@ namespace VHKPlayer.Models
         public bool Trainer { get; set; }
         public ObservableCollection<FileNode> Content { get; set; }
         public Statistics Stats { get; private set; }
-        public ILoadingStrategy<Statistics> StatsLoadingStrategy { get; set; }
+        public IQueryProcessor Processor { get; set; }
 
         public Player()
         {
@@ -34,7 +36,10 @@ namespace VHKPlayer.Models
 
         public void SubjectUpdated(FolderNode subject)
         {
-            Stats = StatsLoadingStrategy.Load();
+            Stats = Processor.Process(new GetPlayerStatsQuery()
+            {
+                Player = this
+            });
             observers.ForEach(x => x.SubjectUpdated(this));
         }
 

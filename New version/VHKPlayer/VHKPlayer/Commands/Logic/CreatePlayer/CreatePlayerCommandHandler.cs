@@ -42,7 +42,7 @@ namespace VHKPlayer.Commands.Logic.CreatePlayer
                 Number = number,
                 Trainer = trainer,
                 Content = new ObservableCollection<FileNode>(content),
-                StatsLoadingStrategy = command.StatLoadingStrategy
+                Processor = processor
             };
 
             command.Folder.AddObserver(player);

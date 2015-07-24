@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using VHKPlayer.Models;
+using VHKPlayer.Models.Interfaces;
 
 namespace VHKPlayer.Infrastructure.Modules
 {
@@ -25,7 +26,7 @@ namespace VHKPlayer.Infrastructure.Modules
                     .AsImplementedInterfaces();
             }
 
-            builder.Register(c => new DataCenter());
+            builder.Register(c => App.DataCenter).As<IDataCenter>();
         }
     }
 }

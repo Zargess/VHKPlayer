@@ -18,6 +18,9 @@ using VHKPlayer.Queries.GetStringSetting;
 using System.Collections.ObjectModel;
 using VHKPlayer.Utility.FindFileType.Interfaces;
 using VHKPlayer.Models.Interfaces;
+using Ploeh.AutoFixture;
+using VHKPlayer.Queries.GetPlayers;
+using VHKPlayer.Queries.GetPlayLists;
 
 namespace VHKPlayer.Test
 {
@@ -28,9 +31,126 @@ namespace VHKPlayer.Test
     public class QueryTest : TestBase
     {
         [TestMethod]
+        public void TestGetPlayLists()
+        {
+            var name1 = fixture.Create<string>();
+            var name2 = fixture.Create<string>();
+            var name3 = fixture.Create<string>();
+
+            var container = CreateContainer(c =>
+            {
+                c.RegisterFake<IDataCenter>()
+                    .PlayLists
+                    .Returns(new ObservableCollection<PlayList>()
+                    {
+                        new PlayList()
+                        {
+                            Name = name1
+                        },
+                        new PlayList()
+                        {
+                            Name = name2
+                        },
+                        new PlayList()
+                        {
+                            Name = name3
+                        }
+                    });
+            });
+
+            var processor = container.Resolve<IQueryProcessor>();
+
+            var playlists = processor.Process(new GetPlayListsQuery());
+
+            Assert.IsNotNull(playlists);
+
+            Assert.AreEqual(3, playlists.Count());
+
+            Assert.IsTrue(playlists.Any(x => x.Name == name1));
+            Assert.IsTrue(playlists.Any(x => x.Name == name2));
+            Assert.IsTrue(playlists.Any(x => x.Name == name3));
+        }
+
+        [TestMethod]
+        public void TestGetPlayers()
+        {
+            var playerName1 = fixture.Create<string>();
+            var playerName2 = fixture.Create<string>();
+            var playerName3 = fixture.Create<string>();
+
+            var container = CreateContainer(c =>
+            {
+                c.RegisterFake<IDataCenter>()
+                    .Players
+                    .Returns(new ObservableCollection<Player>()
+                    {
+                        new Player()
+                        {
+                            Name = playerName1
+                        },
+                        new Player()
+                        {
+                            Name = playerName2
+                        },
+                        new Player()
+                        {
+                            Name = playerName3
+                        }
+                    });
+            });
+
+            var processor = container.Resolve<IQueryProcessor>();
+
+            var players = processor.Process(new GetPlayersQuery());
+
+            Assert.IsNotNull(players);
+
+            Assert.AreEqual(3, players.Count());
+
+            Assert.IsTrue(players.Any(x => x.Name == playerName1));
+            Assert.IsTrue(players.Any(x => x.Name == playerName2));
+            Assert.IsTrue(players.Any(x => x.Name == playerName3));
+        }
+
+        [TestMethod]
         public void TestGetPlayableFiles()
         {
+            var name1 = fixture.Create<string>();
+            var name2 = fixture.Create<string>();
+            var name3 = fixture.Create<string>();
 
+            var container = CreateContainer(c =>
+            {
+                c.RegisterFake<IDataCenter>()
+                    .PlayableFiles
+                    .Returns(new ObservableCollection<PlayableFile>()
+                    {
+                        new PlayableFile()
+                        {
+                            Name = name1
+                        }.RandomizeTheRest(),
+                        new PlayableFile()
+                        {
+                            Name = name2
+                        }.RandomizeTheRest(),
+                        new PlayableFile()
+                        {
+                            Name = name3
+                        }.RandomizeTheRest()
+                    });
+            });
+
+            var processor = container.Resolve<IQueryProcessor>();
+
+            var playableFiles = processor.Process(new GetPlayableFilesQuery());
+
+            Assert.IsNotNull(playableFiles);
+
+            Assert.AreEqual(3, playableFiles.Count());
+
+            Assert.IsTrue(playableFiles.Any(x => x.Name == name1));
+            Assert.IsTrue(playableFiles.Any(x => x.Name == name2));
+            Assert.IsTrue(playableFiles.Any(x => x.Name == name3));
         }
 
         [TestMethod]
@@ -241,7 +361,7 @@ namespace VHKPlayer.Test
 
             var queryProcessor = container.Resolve<IQueryProcessor>();
 
-            var center = container.Resolve<DataCenter>();
+            var center = container.Resolve<IDataCenter>();
 
             var playables = queryProcessor.Process(new GetPlayablesAffectedByFolderQuery()
             {
