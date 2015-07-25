@@ -19,9 +19,6 @@ namespace VHKPlayer
     /// </summary>
     public partial class App : Application
     {
-        public static IGlobalConfigService Config = new GlobalConfigService();
-        public static IDataCenter DataCenter = new DataCenter();
-
         private static IContainer container;
         public static IContainer Container
         {

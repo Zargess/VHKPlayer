@@ -12,9 +12,11 @@ using VHKPlayer.Commands.Logic.RemovePlayableFile;
 using VHKPlayer.Commands.Logic.RemovePlayer;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
+using VHKPlayer.Queries.GetFolders;
 using VHKPlayer.Queries.GetPlayablesAffectedByFolder;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility;
+using VHKPlayer.Utility.Settings.Interfaces;
 
 namespace VHKPlayer.DataManagement
 {
@@ -22,25 +24,29 @@ namespace VHKPlayer.DataManagement
     {
         private readonly ICommandProcessor commandProcessor;
         private readonly IQueryProcessor queryProcessor;
+        private readonly IGlobalConfigService configService;
 
-        public DataMonitor(ICommandProcessor commandProcessor, IQueryProcessor queryProcessor)
+        public DataMonitor(ICommandProcessor commandProcessor, IQueryProcessor queryProcessor, IGlobalConfigService configService)
         {
             this.commandProcessor = commandProcessor;
             this.queryProcessor = queryProcessor;
+            this.configService = configService;
             InitEventListeners();
             
         }
 
         private void InitEventListeners()
         {
-            App.Config.FolderSettingsUpdated += Config_FolderSettingsUpdated;
+            configService.FolderSettingsUpdated += Config_FolderSettingsUpdated;
 
             commandProcessor.Process(new CreateFolderStructureCommand()
             {
-                RootFolderPath = App.Config.GetString(Constants.RootFolderPathSettingName)
+                RootFolderPath = configService.GetString(Constants.RootFolderPathSettingName)
             });
 
-            foreach (var folder in App.DataCenter.Folders)
+            var folders = queryProcessor.Process(new GetFoldersQuery());
+
+            foreach (var folder in folders)
             {
                 folder.AddObserver(this);
             }

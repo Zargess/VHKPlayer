@@ -118,6 +118,8 @@
     <Compile Include="Queries\GetPlayablesAffectedByFolder\GetPlayablesAffectedByFolderQueryHandler.cs" />
     <Compile Include="Queries\GetPlayerFolders\GetPlayerFoldersQuery.cs" />
     <Compile Include="Queries\GetPlayerFolders\GetPlayerFoldersQueryHandler.cs" />
+    <Compile Include="Queries\GetPlayersExcludeTrainers\GetPlayersExcludeTrainersQuery.cs" />
+    <Compile Include="Queries\GetPlayersExcludeTrainers\GetPlayersExcludeTrainersQueryHandler.cs" />
     <Compile Include="Queries\GetPlayerStats\GetPlayerStatsQuery.cs" />
     <Compile Include="Queries\GetPlayerStats\GetPlayerStatsQueryHandler.cs" />
     <Compile Include="Queries\GetPlayers\GetPlayersQuery.cs" />
