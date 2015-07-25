@@ -41,5 +41,8 @@
     <Setting Name="folder_playlists" Type="System.String" Scope="User">
       <Value Profile="(Default)">TODO : Write script that defines playlists</Value>
     </Setting>
+    <Setting Name="folder_supportedInfoFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">xml;txt</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

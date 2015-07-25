@@ -23,6 +23,7 @@ namespace VHKPlayer.Commands.Logic.CreatePlayableFilesFromFilesInFolder
             foreach (var file in command.Folder.Content)
             {
                 if (file.Type == FileType.Unsupported) continue;
+                if (file.Type == FileType.Info) continue;
 
                 processor.Process(new CreatePlayableFileCommand()
                 {

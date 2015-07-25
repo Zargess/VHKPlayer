@@ -31,6 +31,12 @@ namespace VHKPlayer.Test
     public class QueryTest : TestBase
     {
         [TestMethod]
+        public void TestGetPlayableFileFolders()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
         public void TestGetPlayLists()
         {
             var name1 = fixture.Create<string>();

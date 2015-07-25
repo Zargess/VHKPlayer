@@ -110,6 +110,8 @@
     <Compile Include="Queries\GetFolderFromStringSetting\GetFolderFromStringSettingQueryHandler.cs" />
     <Compile Include="Queries\GetFolders\GetFoldersQuery.cs" />
     <Compile Include="Queries\GetFolders\GetFoldersQueryProcessor.cs" />
+    <Compile Include="Queries\GetPlayableFileFolders\GetPlayableFileFoldersQuery.cs" />
+    <Compile Include="Queries\GetPlayableFileFolders\GetPlayableFileFoldersQueryHandler.cs" />
     <Compile Include="Queries\GetPlayableFiles\GetPlayableFilesQuery.cs" />
     <Compile Include="Queries\GetPlayableFiles\GetPlayableFilesQueryHandler.cs" />
     <Compile Include="Queries\GetPlayablesAffectedByFolder\GetPlayablesAffectedByFolderQuery.cs" />
@@ -190,9 +192,6 @@
   <ItemGroup>
     <Folder Include="Commands\GUI\" />
     <Folder Include="Commands\Logic\CreateAllPlayables\" />
-    <Folder Include="Queries\GetPlayableFileFolders\" />
-    <Folder Include="Queries\GetRootFolder\" />
-    <Folder Include="Queries\IsPlayerFolder\" />
     <Folder Include="Queries\IsValidRootFolder\" />
     <Folder Include="Utility\LoadingStrategy\PlayerLoading\" />
   </ItemGroup>

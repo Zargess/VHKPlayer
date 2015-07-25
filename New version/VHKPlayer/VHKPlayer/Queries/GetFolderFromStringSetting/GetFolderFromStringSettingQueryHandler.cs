@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,11 +27,13 @@ namespace VHKPlayer.Queries.GetFolderFromStringSetting
                 SettingName = query.SettingName
             });
 
-            var partialPath = setting.Replace("root\\", "");
+            var path = setting.Replace("root\\", "");
+
+            if (Directory.Exists(setting)) path = setting;
 
             var folder = processor.Process(new GetFolderByPathSubscriptQuery()
             {
-                PartialPath = partialPath
+                PartialPath = path
             });
 
             return folder;

@@ -29,7 +29,7 @@ namespace VHKPlayer.Commands.Logic.CreateFolderStructure
 
             var temp = queryProcessor.Process(new GetStringSettingQuery()
             {
-                SettingName = Constants.IgnoredFolderPath
+                SettingName = Constants.IgnoredFolderPathSettingName
             }).Split(';');
 
             foreach (var path in temp)

@@ -8,7 +8,8 @@
         public const string PlayerStatVideoFolderSettingName = "folder_playerStatVideoFolder";
         public const string PlayerStatMusicFolderSettingName = "folder_playerStatMusicFolder";
         public const string PlayerStatisticInformation = "folder_playerStatisticInformation";
-        public const string RootFolderPath = "folder_root";
-        public const string IgnoredFolderPath = "folder_ignore";
+        public const string RootFolderPathSettingName = "folder_root";
+        public const string IgnoredFolderPathSettingName = "folder_ignore";
+        public const string PlayableFileFoldersSettingName = "folder_playableFileFolders";
     }
 }

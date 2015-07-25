@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VHKPlayer.Commands.Logic.CreateAllPlayers;
 using VHKPlayer.Commands.Logic.CreateFolderStructure;
 using VHKPlayer.Commands.Logic.CreatePlayableFilesFromFilesInFolder;
 using VHKPlayer.Commands.Logic.Interfaces;
@@ -36,7 +37,7 @@ namespace VHKPlayer.DataManagement
 
             commandProcessor.Process(new CreateFolderStructureCommand()
             {
-                RootFolderPath = App.Config.GetString(Constants.RootFolderPath)
+                RootFolderPath = App.Config.GetString(Constants.RootFolderPathSettingName)
             });
 
             foreach (var folder in App.DataCenter.Folders)
@@ -64,7 +65,7 @@ namespace VHKPlayer.DataManagement
 
             if (players.Count() > 0)
             {
-
+                commandProcessor.Process(new CreateAllPlayersCommand());
             }
 
             var playableFiles = playables.Where(x => x is PlayableFile).Select(x => x as PlayableFile);
