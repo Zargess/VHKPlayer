@@ -10,12 +10,12 @@ namespace VHKPlayer.Models
     public class FolderNode
     {
         private FileSystemWatcher watcher;
-        private List<IVHKObserver<FolderNode>> observers;
         private string fullPath;
         private ICommandProcessor processor;
 
         public string Name { get; private set; }
         public List<FileNode> Content { get; set; }
+        public List<IVHKObserver<FolderNode>> Observers { get; private set; }
 
         public string FullPath
         {
@@ -33,7 +33,7 @@ namespace VHKPlayer.Models
 
         public FolderNode(ICommandProcessor processor)
         {
-            observers = new List<IVHKObserver<FolderNode>>();
+            Observers = new List<IVHKObserver<FolderNode>>();
             this.processor = processor;
             Content = new List<FileNode>();
         }
@@ -104,19 +104,19 @@ namespace VHKPlayer.Models
 
         public void AddObserver(IVHKObserver<FolderNode> observer)
         {
-            observers.Add(observer);
+            Observers.Add(observer);
         }
 
         public void RemoveObserver(IVHKObserver<FolderNode> observer)
         {
-            observers.Remove(observer);
+            Observers.Remove(observer);
         }
 
         private void Changed(object sender, FileSystemEventArgs e)
         {
             Content.Clear();
             CreateFiles(FullPath);
-            observers.ForEach(x => x.SubjectUpdated(this));
+            Observers.ForEach(x => x.SubjectUpdated(this));
         }
     }
 }

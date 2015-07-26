@@ -19,6 +19,8 @@ namespace VHKPlayer.Commands.Logic.RemoveFolder
 
         public void Handle(RemoveFolderCommand command)
         {
+            command.Folder.Observers.ForEach(x => command.Folder.RemoveObserver(x));
+
             center.Folders.Remove(command.Folder);
         }
     }
