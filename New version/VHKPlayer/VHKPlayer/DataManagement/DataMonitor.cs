@@ -10,10 +10,13 @@ using VHKPlayer.Commands.Logic.CreatePlayableFilesFromFilesInFolder;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Commands.Logic.RemovePlayableFile;
 using VHKPlayer.Commands.Logic.RemovePlayer;
+using VHKPlayer.Commands.Logic.ResetDataCenter;
+using VHKPlayer.Commands.Logic.UpdateDataCenterByFolder;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.GetFolders;
 using VHKPlayer.Queries.GetPlayablesAffectedByFolder;
+using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility;
 using VHKPlayer.Utility.Settings.Interfaces;
@@ -41,7 +44,9 @@ namespace VHKPlayer.DataManagement
 
             commandProcessor.Process(new CreateFolderStructureCommand()
             {
-                RootFolderPath = configService.GetString(Constants.RootFolderPathSettingName)
+                RootFolderPath = queryProcessor.Process(new GetStringSettingQuery() {
+                    SettingName = Constants.RootFolderPathSettingName
+                })
             });
 
             var folders = queryProcessor.Process(new GetFoldersQuery());
@@ -54,37 +59,7 @@ namespace VHKPlayer.DataManagement
 
         public void SubjectUpdated(FolderNode subject)
         {
-            var playables = queryProcessor.Process(new GetPlayablesAffectedByFolderQuery()
-            {
-                Folder = subject
-            });
-
-            var players = playables.Where(x => x is Player).Select(x => x as Player);
-
-            foreach (var player in players)
-            {
-                commandProcessor.Process(new RemovePlayerCommand()
-                {
-                    Player = player
-                });
-            }
-
-            if (players.Count() > 0)
-            {
-                commandProcessor.Process(new CreateAllPlayersCommand());
-            }
-
-            var playableFiles = playables.Where(x => x is PlayableFile).Select(x => x as PlayableFile);
-
-            foreach (var playablefile in playableFiles)
-            {
-                commandProcessor.Process(new RemovePlayableFileCommand()
-                {
-                    PlayableFile = playablefile
-                });
-            }
-
-            commandProcessor.Process(new CreatePlayableFilesFromFilesInFolderCommand()
+            commandProcessor.Process(new UpdateDataCenterByFolderCommand()
             {
                 Folder = subject
             });
@@ -92,7 +67,7 @@ namespace VHKPlayer.DataManagement
 
         private void Config_FolderSettingsUpdated(object sender, PropertyChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            commandProcessor.Process(new ResetDataCenterCommand());
         }
     }
 }

@@ -98,6 +98,8 @@
     <Compile Include="Commands\Logic\Interfaces\ICommandHandler.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommandProcessor.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommand.cs" />
+    <Compile Include="Commands\Logic\ReloadPlayablesAffectedByFolder\ReloadPlayablesAffectedByFolderCommand.cs" />
+    <Compile Include="Commands\Logic\ReloadPlayablesAffectedByFolder\ReloadPlayablesAffectedByFolderCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemoveFolder\RemoveFolderCommand.cs" />
     <Compile Include="Commands\Logic\RemoveFolder\RemoveFolderCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemovePlayableFile\RemovePlayableFileCommand.cs" />
@@ -108,6 +110,8 @@
     <Compile Include="Commands\Logic\RemovePlayList\RemovePlayListCommandHandler.cs" />
     <Compile Include="Commands\Logic\ResetDataCenter\ResetDataCenterCommand.cs" />
     <Compile Include="Commands\Logic\ResetDataCenter\ResetDataCenterCommandHandler.cs" />
+    <Compile Include="Commands\Logic\UpdateDataCenterByFolder\UpdateDataCenterByFolderCommand.cs" />
+    <Compile Include="Commands\Logic\UpdateDataCenterByFolder\UpdateDataCenterByFolderCommandHandler.cs" />
     <Compile Include="Controllers\Interfaces\IPlayController.cs" />
     <Compile Include="Controllers\Interfaces\IVideoPlayer.cs" />
     <Compile Include="Controllers\VideoPlayer.cs" />
