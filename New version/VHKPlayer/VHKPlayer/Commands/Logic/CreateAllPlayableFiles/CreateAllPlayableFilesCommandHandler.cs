@@ -24,7 +24,7 @@ namespace VHKPlayer.Commands.Logic.CreateAllPlayableFiles
         public void Handle(CreateAllPlayableFilesCommand command)
         {
             var playableFileFolders = queryProcessor.Process(new GetPlayableFileFoldersQuery());
-
+            if (playableFileFolders.Count() == 0) return;
             foreach (var folder in playableFileFolders)
             {
                 commandProcessor.Process(new CreatePlayableFilesFromFilesInFolderCommand()

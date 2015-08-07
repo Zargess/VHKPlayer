@@ -57,6 +57,7 @@ namespace VHKPlayer.Models
             {
                 processor.Process(new CreateFileCommand()
                 {
+                    Folder = this,
                     Path = path
                 });
             }

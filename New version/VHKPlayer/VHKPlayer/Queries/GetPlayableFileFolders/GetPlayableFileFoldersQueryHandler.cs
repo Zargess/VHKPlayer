@@ -40,6 +40,8 @@ namespace VHKPlayer.Queries.GetPlayableFileFolders
                     PartialPath = partialPath
                 });
 
+                if (folder == null) continue;
+
                 res.Add(folder);
             }
 

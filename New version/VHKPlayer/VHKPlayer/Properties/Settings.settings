@@ -36,7 +36,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="folder_playableFileFolders" Type="System.String" Scope="User">
-      <Value Profile="(Default)">root\musik\andet;root\musik\langtmusik;root\musik\opvarmning;root\musik\pausemusik;root\musik\scor;root\musik\scorud;root\musik\spilstop;root\musik\stemning;root\musik\timeout;root\blandet;root\superhero;root\</Value>
+      <Value Profile="(Default)">root\musik\andet;root\musik\langtmusik;root\musik\opvarmning;root\musik\pausemusik;root\musik\scor;root\musik\scorud;root\musik\spilstop;root\musik\stemning;root\musik\timeout;root\blandet;root\superhero;root</Value>
     </Setting>
     <Setting Name="folder_playlists" Type="System.String" Scope="User">
       <Value Profile="(Default)">TODO : Write script that defines playlists</Value>

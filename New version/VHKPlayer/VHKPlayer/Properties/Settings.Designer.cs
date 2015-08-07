@@ -159,7 +159,7 @@ namespace VHKPlayer.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("root\\musik\\andet;root\\musik\\langtmusik;root\\musik\\opvarmning;root\\musik\\pausemusi" +
             "k;root\\musik\\scor;root\\musik\\scorud;root\\musik\\spilstop;root\\musik\\stemning;root" +
-            "\\musik\\timeout;root\\blandet;root\\superhero;root\\")]
+            "\\musik\\timeout;root\\blandet;root\\superhero;root")]
         public string folder_playableFileFolders {
             get {
                 return ((string)(this["folder_playableFileFolders"]));

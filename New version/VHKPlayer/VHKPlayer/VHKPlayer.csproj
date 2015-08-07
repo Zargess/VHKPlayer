@@ -74,6 +74,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\Logic\ChangeSetting\ChangeSettingCommand.cs" />
+    <Compile Include="Commands\Logic\ChangeSetting\ChangeSettingCommandHandler.cs" />
     <Compile Include="Commands\Logic\CommandProcessor.cs" />
     <Compile Include="Commands\Logic\CreateAllPlayableFiles\CreateAllPlayableFilesCommand.cs" />
     <Compile Include="Commands\Logic\CreateAllPlayableFiles\CreateAllPlayableFilesCommandHandler.cs" />
@@ -98,8 +100,6 @@
     <Compile Include="Commands\Logic\Interfaces\ICommandHandler.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommandProcessor.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommand.cs" />
-    <Compile Include="Commands\Logic\ReloadPlayablesAffectedByFolder\ReloadPlayablesAffectedByFolderCommand.cs" />
-    <Compile Include="Commands\Logic\ReloadPlayablesAffectedByFolder\ReloadPlayablesAffectedByFolderCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemoveFolder\RemoveFolderCommand.cs" />
     <Compile Include="Commands\Logic\RemoveFolder\RemoveFolderCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemovePlayableFile\RemovePlayableFileCommand.cs" />
@@ -160,6 +160,7 @@
     <Compile Include="Queries\IsStatFile\IsStatFileQueryHandler.cs" />
     <Compile Include="Queries\QueryProcessor.cs" />
     <Compile Include="Utility\Constants.cs" />
+    <Compile Include="Utility\FindFileType\FindFileTypeStrategy.cs" />
     <Compile Include="Utility\FindFileType\Interfaces\IFindFileTypeStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\Interfaces\ILoadingStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\PlayListLoading\FolderLoadingStrategy.cs" />

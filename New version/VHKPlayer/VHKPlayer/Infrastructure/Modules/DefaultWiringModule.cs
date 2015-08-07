@@ -25,6 +25,8 @@ namespace VHKPlayer.Infrastructure.Modules
                     .RegisterAssemblyTypes(assembly)
                     .AsImplementedInterfaces();
             }
+
+            builder.Register<IDataCenter>(c => new DataCenter()).SingleInstance();
         }
     }
 }

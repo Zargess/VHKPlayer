@@ -4,6 +4,7 @@ using System.Linq;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Models;
+using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.GetPlayerFolders;
 using VHKPlayer.Queries.Interfaces;
 
@@ -11,10 +12,10 @@ namespace VHKPlayer.Commands.Logic.CreatePlayer
 {
     class CreatePlayerCommandHandler : ICommandHandler<CreatePlayerCommand>
     {
-        private readonly DataCenter center;
+        private readonly IDataCenter center;
         private readonly IQueryProcessor processor;
 
-        public CreatePlayerCommandHandler(IQueryProcessor processor, DataCenter center)
+        public CreatePlayerCommandHandler(IQueryProcessor processor, IDataCenter center)
         {
             this.processor = processor;
             this.center = center;

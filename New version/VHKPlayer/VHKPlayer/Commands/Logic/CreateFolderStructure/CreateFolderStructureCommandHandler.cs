@@ -3,6 +3,7 @@ using System.Linq;
 using VHKPlayer.Commands.Logic.CreateFolder;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Models;
+using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility;
@@ -11,11 +12,11 @@ namespace VHKPlayer.Commands.Logic.CreateFolderStructure
 {
     class CreateFolderStructureCommandHandler : ICommandHandler<CreateFolderStructureCommand>
     {
-        private readonly DataCenter center;
+        private readonly IDataCenter center;
         private readonly ICommandProcessor commandProcessor;
         private readonly IQueryProcessor queryProcessor;
 
-        public CreateFolderStructureCommandHandler(DataCenter center, ICommandProcessor commandProcessor, IQueryProcessor queryProcessor)
+        public CreateFolderStructureCommandHandler(IDataCenter center, ICommandProcessor commandProcessor, IQueryProcessor queryProcessor)
         {
             this.center = center;
             this.commandProcessor = commandProcessor;
@@ -46,7 +47,7 @@ namespace VHKPlayer.Commands.Logic.CreateFolderStructure
             {
                 commandProcessor.Process(new CreateFolderCommand()
                 {
-                    Path = command.RootFolderPath
+                    Path = path
                 });
             }
 

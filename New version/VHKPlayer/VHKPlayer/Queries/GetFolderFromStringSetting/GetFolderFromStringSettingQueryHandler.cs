@@ -8,6 +8,7 @@ using VHKPlayer.Models;
 using VHKPlayer.Queries.GetFolderByPathSubscript;
 using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.Queries.Interfaces;
+using VHKPlayer.Utility;
 
 namespace VHKPlayer.Queries.GetFolderFromStringSetting
 {
@@ -27,7 +28,12 @@ namespace VHKPlayer.Queries.GetFolderFromStringSetting
                 SettingName = query.SettingName
             });
 
-            var path = setting.Replace("root\\", "");
+            var rootPath = processor.Process(new GetStringSettingQuery()
+            {
+                SettingName = Constants.RootFolderPathSettingName
+            });
+
+            var path = setting.Replace("root", "");
 
             if (Directory.Exists(setting)) path = setting;
 
