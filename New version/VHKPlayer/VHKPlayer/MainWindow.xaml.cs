@@ -25,6 +25,7 @@ using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility;
 using VHKPlayer.Models;
 using VHKPlayer.Commands.Logic.AddDataObserver;
+using VHKPlayer.Queries.GetPlayers;
 
 namespace VHKPlayer
 {
@@ -100,9 +101,11 @@ namespace VHKPlayer
                 Value = path
             });
 
+            // Creates inifinte loop as the creation of a playable calls DataUpdated again
             cprocessor.Process(new CreateAllPlayablesCommand());
 
-            var playables = qprocessor.Process(new GetPlayableFilesQuery()).ToList();
+            //var playables = qprocessor.Process(new GetPlayableFilesQuery()).ToList();
+            var playables = qprocessor.Process(new GetPlayersQuery()).ToList();
             foreach (var playable in playables)
             {
                 Test.Add(playable);
