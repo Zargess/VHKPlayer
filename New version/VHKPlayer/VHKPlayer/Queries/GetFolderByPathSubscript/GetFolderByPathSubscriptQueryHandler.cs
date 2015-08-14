@@ -21,7 +21,8 @@ namespace VHKPlayer.Queries.GetFolderByPathSubscript
         public FolderNode Handle(GetFolderByPathSubscriptQuery query)
         {
             var folders = processor.Process(new GetFoldersQuery()).ToList();
-            return folders.SingleOrDefault(x => x.FullPath.EndsWith(query.PartialPath));
+            var folder = folders.SingleOrDefault(x => x.FullPath.ToLower().EndsWith(query.PartialPath.ToLower()));
+            return folder;
         }
     }
 }

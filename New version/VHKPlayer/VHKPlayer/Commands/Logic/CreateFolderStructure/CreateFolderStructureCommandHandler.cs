@@ -51,12 +51,14 @@ namespace VHKPlayer.Commands.Logic.CreateFolderStructure
                 });
             }
 
+            var statFolder = queryProcessor.Process(new GetStringSettingQuery()
+            {
+                SettingName = Constants.PlayerStatisticInformation
+            });
+
             commandProcessor.Process(new CreateFolderCommand()
             {
-                Path = queryProcessor.Process(new GetStringSettingQuery()
-                {
-                    SettingName = Constants.PlayerStatisticInformation
-                })
+                Path = statFolder
             });
         }
     }

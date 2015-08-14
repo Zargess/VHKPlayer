@@ -5,14 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Models;
+using VHKPlayer.Models.Interfaces;
 
 namespace VHKPlayer.Commands.Logic.CreatePlayableFile
 {
     class CreatePlayableFileCommandHandler : ICommandHandler<CreatePlayableFileCommand>
     {
-        private readonly DataCenter center;
+        private readonly IDataCenter center;
 
-        public CreatePlayableFileCommandHandler(DataCenter center)
+        public CreatePlayableFileCommandHandler(IDataCenter center)
         {
             this.center = center;
         }

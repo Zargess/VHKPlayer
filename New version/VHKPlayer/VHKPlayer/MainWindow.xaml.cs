@@ -23,6 +23,8 @@ using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.GetPlayableFiles;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility;
+using VHKPlayer.Models;
+using VHKPlayer.Commands.Logic.AddDataObserver;
 
 namespace VHKPlayer
 {
@@ -31,16 +33,62 @@ namespace VHKPlayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<IPlayable> Content { get; set; }
-
+        public Data Data { get; set; }
         public MainWindow()
         {
-            Content = new ObservableCollection<IPlayable>();
+            Data = new Data();
             InitializeComponent();
+            this.DataContext = Data;
+            this.Loaded += MainWindow_Loaded;
+            
+
+            SampleData.Add(42);
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            Data.DataUpdated(PlayableType.PlayableFile);
+        }
+
+        ObservableCollection<int> sampleData = new ObservableCollection<int>();
+        public ObservableCollection<int> SampleData
+        {
+            get
+            {
+                if (sampleData.Count <= 0)
+                {
+                    sampleData.Add(1);
+                    sampleData.Add(2);
+                    sampleData.Add(3);
+                    sampleData.Add(4);
+                }
+                return sampleData;
+            }
+        }
+
+    }
+
+    public class Data : IDataObserver
+    {
+        public ObservableCollection<IPlayable> Test { get; set; }
+        private IContainer container;
+        public Data()
+        {
+            Test = new ObservableCollection<IPlayable>();
 
             var builder = new ContainerBuilder();
             builder.RegisterModule(new DefaultWiringModule());
-            var container = builder.Build();
+            container = builder.Build();
+
+            var cprocessor = container.Resolve<ICommandProcessor>();
+            cprocessor.Process(new AddDataObserverCommand()
+            {
+                Observer = this
+            });
+        }
+
+        public void DataUpdated(PlayableType type)
+        {
 
             var cprocessor = container.Resolve<ICommandProcessor>();
             var qprocessor = container.Resolve<IQueryProcessor>();
@@ -52,18 +100,12 @@ namespace VHKPlayer
                 Value = path
             });
 
-            cprocessor.Process(new CreateFolderStructureCommand()
-            {
-                RootFolderPath = path
-            });
-
             cprocessor.Process(new CreateAllPlayablesCommand());
 
-            var playables = qprocessor.Process(new GetPlayableFilesQuery());
-            // TODO : Implement a FindFileTypeStrategy
+            var playables = qprocessor.Process(new GetPlayableFilesQuery()).ToList();
             foreach (var playable in playables)
             {
-                Content.Add(playable);
+                Test.Add(playable);
             }
         }
     }

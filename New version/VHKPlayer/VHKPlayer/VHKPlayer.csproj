@@ -74,6 +74,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\Logic\AddDataObserver\AddDataObserverCommandHandler.cs" />
+    <Compile Include="Commands\Logic\AddDataObserver\AddDataObserverCommand.cs" />
     <Compile Include="Commands\Logic\ChangeSetting\ChangeSettingCommand.cs" />
     <Compile Include="Commands\Logic\ChangeSetting\ChangeSettingCommandHandler.cs" />
     <Compile Include="Commands\Logic\CommandProcessor.cs" />
@@ -100,6 +102,8 @@
     <Compile Include="Commands\Logic\Interfaces\ICommandHandler.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommandProcessor.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommand.cs" />
+    <Compile Include="Commands\Logic\RemoveDataObserver\RemoveDataObserverCommand.cs" />
+    <Compile Include="Commands\Logic\RemoveDataObserver\RemoveDataObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemoveFolder\RemoveFolderCommand.cs" />
     <Compile Include="Commands\Logic\RemoveFolder\RemoveFolderCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemovePlayableFile\RemovePlayableFileCommand.cs" />
@@ -123,9 +127,11 @@
     <Compile Include="Models\DataCenter.cs" />
     <Compile Include="Models\FolderNode.cs" />
     <Compile Include="Models\Interfaces\IDataCenter.cs" />
+    <Compile Include="Models\Interfaces\IDataObserver.cs" />
     <Compile Include="Models\Interfaces\IVHKObserver.cs" />
     <Compile Include="Models\Interfaces\IPlayable.cs" />
     <Compile Include="Models\PlayableFile.cs" />
+    <Compile Include="Models\PlayableType.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayList.cs" />
     <Compile Include="Models\Statistics.cs" />

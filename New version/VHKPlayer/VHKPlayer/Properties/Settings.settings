@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="folder_supportedVideo" Type="System.String" Scope="User">
-      <Value Profile="(Default)">avi;mp4</Value>
+      <Value Profile="(Default)">.avi;.mp4</Value>
     </Setting>
     <Setting Name="folder_supportedAudio" Type="System.String" Scope="User">
-      <Value Profile="(Default)">mp3</Value>
+      <Value Profile="(Default)">.mp3</Value>
     </Setting>
     <Setting Name="folder_supportedPicture" Type="System.String" Scope="User">
-      <Value Profile="(Default)">png;</Value>
+      <Value Profile="(Default)">.png;</Value>
     </Setting>
     <Setting Name="folder_root" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -33,7 +33,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="folder_playerStatisticInformation" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">C:\Users\Marcus\Documents\GitHub\VHKPlayer\DigiMatch</Value>
     </Setting>
     <Setting Name="folder_playableFileFolders" Type="System.String" Scope="User">
       <Value Profile="(Default)">root\musik\andet;root\musik\langtmusik;root\musik\opvarmning;root\musik\pausemusik;root\musik\scor;root\musik\scorud;root\musik\spilstop;root\musik\stemning;root\musik\timeout;root\blandet;root\superhero;root</Value>

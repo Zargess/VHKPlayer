@@ -25,7 +25,7 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("avi;mp4")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".avi;.mp4")]
         public string folder_supportedVideo {
             get {
                 return ((string)(this["folder_supportedVideo"]));
@@ -37,7 +37,7 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("mp3")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".mp3")]
         public string folder_supportedAudio {
             get {
                 return ((string)(this["folder_supportedAudio"]));
@@ -49,7 +49,7 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("png;")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".png;")]
         public string folder_supportedPicture {
             get {
                 return ((string)(this["folder_supportedPicture"]));
@@ -145,7 +145,7 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Marcus\\Documents\\GitHub\\VHKPlayer\\DigiMatch")]
         public string folder_playerStatisticInformation {
             get {
                 return ((string)(this["folder_playerStatisticInformation"]));

@@ -13,5 +13,8 @@ namespace VHKPlayer.Models.Interfaces
         ObservableCollection<PlayList> PlayLists { get; }
         ObservableCollection<FolderNode> Folders { get; }
         ObservableCollection<PlayableFile> PlayableFiles { get; }
+
+        void AddObserver(IDataObserver observer);
+        void RemoveObserver(IDataObserver observer);
     }
 }

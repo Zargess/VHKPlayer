@@ -40,6 +40,7 @@ namespace VHKPlayer.Models
 
         private void UpdateFolderInfo(string value)
         {
+            if (!Exists()) return;
             Name = Path.GetDirectoryName(value);
 
             if (watcher != null) watcher.Dispose();

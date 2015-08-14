@@ -32,5 +32,15 @@ namespace VHKPlayer.Infrastructure
                 queue.Enqueue(item);
             }
         }
+
+        public static List<T> AsList<T>(this IEnumerable<T> collection)
+        {
+            var res = new List<T>();
+            foreach (var item in collection)
+            {
+                res.Add(item);
+            }
+            return res;
+        }
     }
 }

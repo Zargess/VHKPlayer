@@ -9,12 +9,11 @@ namespace VHKPlayer.Models
 {
     public class DataCenter : IDataCenter
     {
+        private List<IDataObserver> observers;
         public ObservableCollection<Player> Players { get; private set; }
         public ObservableCollection<PlayList> PlayLists { get; private set; }
         public ObservableCollection<FolderNode> Folders { get; private set; }
         public ObservableCollection<PlayableFile> PlayableFiles { get; set; }
-
-        public event DataCenterUpdatedEventHandler CenterUpdated;
 
         public DataCenter()
         {
@@ -22,7 +21,7 @@ namespace VHKPlayer.Models
             PlayLists = new ObservableCollection<PlayList>();
             Folders = new ObservableCollection<FolderNode>();
             PlayableFiles = new ObservableCollection<PlayableFile>();
-
+            observers = new List<IDataObserver>();
             Players.CollectionChanged += DataChanged;
             PlayLists.CollectionChanged += DataChanged;
             Folders.CollectionChanged += DataChanged;
@@ -31,8 +30,27 @@ namespace VHKPlayer.Models
 
         private void DataChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (CenterUpdated == null) return;
-            CenterUpdated.Invoke(this, new DataCenterUpdatedEventArgs());
+            var type = PlayableType.PlayableFile;
+
+            if (sender == Players) type = PlayableType.Player;
+            else if (sender == PlayLists) type = PlayableType.PlayList;
+            else if (sender == PlayableFiles) type = PlayableType.PlayableFile;
+            else return;
+
+            foreach (var observer in observers)
+            {
+                observer.DataUpdated(type);
+            }
+        }
+
+        public void AddObserver(IDataObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        public void RemoveObserver(IDataObserver observer)
+        {
+            observers.Remove(observer);
         }
     }
 }
