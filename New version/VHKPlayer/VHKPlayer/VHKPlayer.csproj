@@ -84,6 +84,8 @@
     <Compile Include="Commands\Logic\CreateAllPlayables\CreateAllPlayablesCommand.cs" />
     <Compile Include="Commands\Logic\CreateAllPlayables\CreateAllPlayablesCommandHandler.cs" />
     <Compile Include="Commands\Logic\CreateAllPlayers\CreateAllPlayersCommand.cs" />
+    <Compile Include="Commands\Logic\CreateAllPlayLists\CreateAllPlayListsCommand.cs" />
+    <Compile Include="Commands\Logic\CreateAllPlayLists\CreateAllPlayListsCommandHandler.cs" />
     <Compile Include="Commands\Logic\CreateFile\CreateFileCommand.cs" />
     <Compile Include="Commands\Logic\CreateFile\CreateFileCommandHandler.cs" />
     <Compile Include="Commands\Logic\CreateFolderStructure\CreateFolderStructureCommand.cs" />
@@ -120,6 +122,7 @@
     <Compile Include="Controllers\Interfaces\IVideoPlayer.cs" />
     <Compile Include="Controllers\VideoPlayer.cs" />
     <Compile Include="DataManagement\DataMonitor.cs" />
+    <Compile Include="DataManagement\Interfaces\IDataMonitor.cs" />
     <Compile Include="Events\DataCenterUpdatedEventArgs.cs" />
     <Compile Include="Exceptions\SyntaxErrorException.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />

@@ -12,6 +12,7 @@ using VHKPlayer.Commands.Logic.RemovePlayableFile;
 using VHKPlayer.Commands.Logic.RemovePlayer;
 using VHKPlayer.Commands.Logic.ResetDataCenter;
 using VHKPlayer.Commands.Logic.UpdateDataCenterByFolder;
+using VHKPlayer.DataManagement.Interfaces;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.GetFolders;
@@ -23,7 +24,7 @@ using VHKPlayer.Utility.Settings.Interfaces;
 
 namespace VHKPlayer.DataManagement
 {
-    public class DataMonitor : IVHKObserver<FolderNode>
+    public class DataMonitor : IDataMonitor, IVHKObserver<FolderNode>
     {
         private readonly ICommandProcessor commandProcessor;
         private readonly IQueryProcessor queryProcessor;

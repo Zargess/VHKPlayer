@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using VHKPlayer.DataManagement;
+using VHKPlayer.DataManagement.Interfaces;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 
