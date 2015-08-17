@@ -11,6 +11,7 @@
         public const string RootFolderPathSettingName = "folder_root";
         public const string IgnoredFolderPathSettingName = "folder_ignore";
         public const string PlayableFileFoldersSettingName = "folder_playableFileFolders";
+        public const string PlayListsSettingName = "folder_playlists";
 
         public const string SupportedVideoSettingName = "folder_supportedVideo";
         public const string SupportedAudioSettingName = "folder_supportedAudio";

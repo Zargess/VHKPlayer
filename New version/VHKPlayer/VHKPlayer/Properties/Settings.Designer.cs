@@ -171,7 +171,8 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("TODO : Write script that defines playlists")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{RekFørKamp;root\\Rek;false;1;Sorted;AllFiles},{RekFørKamp;root\\Rek;false;1;Sorted" +
+            ";AllFiles}")]
         public string folder_playlists {
             get {
                 return ((string)(this["folder_playlists"]));

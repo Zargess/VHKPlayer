@@ -26,6 +26,8 @@ using VHKPlayer.Utility;
 using VHKPlayer.Models;
 using VHKPlayer.Commands.Logic.AddDataObserver;
 using VHKPlayer.Queries.GetPlayers;
+using VHKPlayer.Commands.Logic.RemoveDataObserver;
+using VHKPlayer.Queries.GetPlayLists;
 
 namespace VHKPlayer
 {
@@ -41,32 +43,12 @@ namespace VHKPlayer
             InitializeComponent();
             this.DataContext = Data;
             this.Loaded += MainWindow_Loaded;
-            
-
-            SampleData.Add(42);
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Data.DataUpdated(PlayableType.PlayableFile);
         }
-
-        ObservableCollection<int> sampleData = new ObservableCollection<int>();
-        public ObservableCollection<int> SampleData
-        {
-            get
-            {
-                if (sampleData.Count <= 0)
-                {
-                    sampleData.Add(1);
-                    sampleData.Add(2);
-                    sampleData.Add(3);
-                    sampleData.Add(4);
-                }
-                return sampleData;
-            }
-        }
-
     }
 
     public class Data : IDataObserver
@@ -90,9 +72,14 @@ namespace VHKPlayer
 
         public void DataUpdated(PlayableType type)
         {
-
+            Test.Clear();
             var cprocessor = container.Resolve<ICommandProcessor>();
             var qprocessor = container.Resolve<IQueryProcessor>();
+
+            cprocessor.Process(new RemoveDataObserverCommand()
+            {
+                Observer = this
+            });
 
             var path = @"C:\Users\Marcus\Dropbox\Programmering\C#\vhk";
             cprocessor.Process(new ChangeSettingCommand()
@@ -100,16 +87,21 @@ namespace VHKPlayer
                 SettingName = Constants.RootFolderPathSettingName,
                 Value = path
             });
-
-            // Creates inifinte loop as the creation of a playable calls DataUpdated again
+            
             cprocessor.Process(new CreateAllPlayablesCommand());
 
-            //var playables = qprocessor.Process(new GetPlayableFilesQuery()).ToList();
-            var playables = qprocessor.Process(new GetPlayersQuery()).ToList();
+            //var playables = qprocessor.Process(new GetPlayableFilesQuery()).Where(x => x.File.Type == FileType.Video).ToList();
+            //var playables = qprocessor.Process(new GetPlayersQuery()).ToList();
+            var playables = qprocessor.Process(new GetPlayListsQuery());
             foreach (var playable in playables)
             {
                 Test.Add(playable);
             }
+
+            cprocessor.Process(new AddDataObserverCommand()
+            {
+                Observer = this
+            });
         }
     }
 }

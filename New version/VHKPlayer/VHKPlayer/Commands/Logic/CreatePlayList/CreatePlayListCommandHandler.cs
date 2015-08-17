@@ -1,14 +1,15 @@
 ﻿using System.Collections.ObjectModel;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Models;
+using VHKPlayer.Models.Interfaces;
 
 namespace VHKPlayer.Commands.Logic.CreatePlayList
 {
     class CreatePlayListCommandHandler : ICommandHandler<CreatePlayListCommand>
     {
-        private readonly DataCenter center;
+        private readonly IDataCenter center;
 
-        public CreatePlayListCommandHandler(DataCenter center)
+        public CreatePlayListCommandHandler(IDataCenter center)
         {
             this.center = center;
         }

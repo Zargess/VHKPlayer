@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VHKPlayer.Models;
 using VHKPlayer.Queries.GetFolders;
+using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.Queries.Interfaces;
+using VHKPlayer.Utility;
 
 namespace VHKPlayer.Queries.GetFolderByPathSubscript
 {
@@ -21,7 +24,16 @@ namespace VHKPlayer.Queries.GetFolderByPathSubscript
         public FolderNode Handle(GetFolderByPathSubscriptQuery query)
         {
             var folders = processor.Process(new GetFoldersQuery()).ToList();
-            var folder = folders.SingleOrDefault(x => x.FullPath.ToLower().EndsWith(query.PartialPath.ToLower()));
+            var test = folders.Where(x => x.Name == "Reklamer");
+
+            var rootpath = processor.Process(new GetStringSettingQuery()
+            {
+                SettingName = Constants.RootFolderPathSettingName
+            });
+
+            var path = Path.Combine(rootpath, query.PartialPath);
+
+            var folder = folders.SingleOrDefault(x => x.FullPath.ToLower() == path.ToLower());
             return folder;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using VHKPlayer.Commands.Logic.CreateAllPlayableFiles;
 using VHKPlayer.Commands.Logic.CreateAllPlayers;
+using VHKPlayer.Commands.Logic.CreateAllPlayLists;
 using VHKPlayer.Commands.Logic.CreateFolderStructure;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Queries.GetStringSetting;
@@ -32,7 +33,7 @@ namespace VHKPlayer.Commands.Logic.CreateAllPlayables
             commandProcessor.Process(new CreateAllPlayableFilesCommand());
 
             // TODO : Make a way to create playlists
-
+            commandProcessor.Process(new CreateAllPlayListsCommand());
 
             commandProcessor.Process(new CreateAllPlayersCommand());
         }

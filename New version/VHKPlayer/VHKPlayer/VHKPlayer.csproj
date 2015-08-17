@@ -124,6 +124,8 @@
     <Compile Include="DataManagement\DataMonitor.cs" />
     <Compile Include="DataManagement\Interfaces\IDataMonitor.cs" />
     <Compile Include="Events\DataCenterUpdatedEventArgs.cs" />
+    <Compile Include="Exceptions\NoSuchLoadingStrategyException.cs" />
+    <Compile Include="Exceptions\NoSuchPlayStrategyException.cs" />
     <Compile Include="Exceptions\SyntaxErrorException.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />
     <Compile Include="Interpreter\ScriptInterpreter.cs" />
@@ -158,8 +160,12 @@
     <Compile Include="Queries\GetPlayerStats\GetPlayerStatsQueryHandler.cs" />
     <Compile Include="Queries\GetPlayers\GetPlayersQuery.cs" />
     <Compile Include="Queries\GetPlayers\GetPlayersQueryHandler.cs" />
+    <Compile Include="Queries\GetPlayListLoadingStrategy\GetPlayListLoadingStrategyQuery.cs" />
+    <Compile Include="Queries\GetPlayListLoadingStrategy\GetPlayListLoadingStrategyQueryHandler.cs" />
     <Compile Include="Queries\GetPlayLists\GetPlayListsQuery.cs" />
     <Compile Include="Queries\GetPlayLists\GetPlayListsQueryHandler.cs" />
+    <Compile Include="Queries\GetPlayStrategy\GetPlayStrategyQuery.cs" />
+    <Compile Include="Queries\GetPlayStrategy\GetPlayStrategyQueryHandler.cs" />
     <Compile Include="Queries\GetStringSetting\GetStringSettingQuery.cs" />
     <Compile Include="Queries\GetStringSetting\GetStringSettingQueryHandler.cs" />
     <Compile Include="Queries\Interfaces\IQuery.cs" />
@@ -167,6 +173,8 @@
     <Compile Include="Queries\Interfaces\IQueryProcessor.cs" />
     <Compile Include="Queries\IsStatFile\IsStatFileQuery.cs" />
     <Compile Include="Queries\IsStatFile\IsStatFileQueryHandler.cs" />
+    <Compile Include="Queries\ParsePlayListString\ParsePlayListStringQuery.cs" />
+    <Compile Include="Queries\ParsePlayListString\ParsePlayListStringQueryHandler.cs" />
     <Compile Include="Queries\QueryProcessor.cs" />
     <Compile Include="Utility\Constants.cs" />
     <Compile Include="Utility\FindFileType\FindFileTypeStrategy.cs" />
@@ -230,6 +238,7 @@
     <Folder Include="Commands\GUI\" />
     <Folder Include="Queries\IsValidRootFolder\" />
     <Folder Include="Utility\LoadingStrategy\PlayerLoading\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Interpreter\TODO.txt" />

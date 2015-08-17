@@ -31,6 +31,24 @@ namespace VHKPlayer.Test
     public class QueryTest : TestBase
     {
         [TestMethod]
+        public void TestGetPlayStrategy()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public void TestGetPlayListLoadingStrategy()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public void TestParsePlayListString()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
         public void TestGetPlayableFileFolders()
         {
             throw new NotImplementedException();
@@ -249,10 +267,15 @@ namespace VHKPlayer.Test
         public void TestGetFolderByPathSubscript()
         {
             var folderpath = "c:\\test\\humus\\carl";
+            var root = "c:\\test";
             var subscript = "humus\\carl";
 
             var container = CreateContainer(c => 
             {
+                c.RegisterFake<IQueryHandler<GetStringSettingQuery, string>>()
+                    .Handle(Arg.Any<GetStringSettingQuery>())
+                    .Returns(root);
+
                 c.RegisterFake<IQueryHandler<GetFoldersQuery, IQueryable<FolderNode>>>()
                     .Handle(Arg.Any<GetFoldersQuery>())
                     .Returns(new[]

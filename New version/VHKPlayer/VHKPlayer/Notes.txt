@@ -1,2 +1,6 @@
 ﻿Link to publish guide:
 	http://elbruno.com/2013/06/01/azure-howto-publish-a-clickonce-application-using-and-azure-website/
+
+{RekFørKamp;root\Rek;1;false;true;AllFilesSorted}
+
+{Name;path;has_audio;index;loading;play}
