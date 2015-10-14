@@ -43,7 +43,7 @@ namespace VHKPlayer.DataManagement
         {
             configService.FolderSettingsUpdated += Config_FolderSettingsUpdated;
 
-            commandProcessor.Process(new CreateFolderStructureCommand()
+            commandProcessor.ProcessTransaction(new CreateFolderStructureCommand()
             {
                 RootFolderPath = queryProcessor.Process(new GetStringSettingQuery() {
                     SettingName = Constants.RootFolderPathSettingName
@@ -60,7 +60,7 @@ namespace VHKPlayer.DataManagement
 
         public void SubjectUpdated(FolderNode subject)
         {
-            commandProcessor.Process(new UpdateDataCenterByFolderCommand()
+            commandProcessor.ProcessTransaction(new UpdateDataCenterByFolderCommand()
             {
                 Folder = subject
             });
@@ -68,7 +68,7 @@ namespace VHKPlayer.DataManagement
 
         private void Config_FolderSettingsUpdated(object sender, PropertyChangedEventArgs e)
         {
-            commandProcessor.Process(new ResetDataCenterCommand());
+            commandProcessor.ProcessTransaction(new ResetDataCenterCommand());
         }
     }
 }

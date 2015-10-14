@@ -29,7 +29,7 @@ namespace VHKPlayer.Queries.GetPlayablesAffectedByFolder
 
             foreach (var playableFile in playableFiles)
             {
-                if (query.Folder.Contains(playableFile.File))
+                if (query.Folder.Contains(playableFile.File) || playableFile.File.FullPath.ToLower().Contains(query.Folder.FullPath.ToLower()))
                 {
                     res.Add(playableFile);
                 }

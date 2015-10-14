@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VHKPlayer.Models.Interfaces
+namespace VHKPlayer.Commands.Logic.Interfaces
 {
-    public interface IDataObserver
+    public interface ITransaction
     {
-        void DataUpdated();
+        void Process(IEnumerable<ICommand> commands);
     }
 }

@@ -43,6 +43,7 @@ namespace Zargess.VHKPlayer {
                 App.ConfigService.Update("root", PathHandler.CombinePaths(path2, root));
                 App.ConfigService.Update("statsFolder", PathHandler.CombinePaths(path2, statsFolder));
             }
+            App.ConfigService.Update("root", @"C:\Users\Marcus\Dropbox\Programmering\C#\vhk");
             // -------------------------------------------------------------------------------------
             InitializeComponent();
             _vm = new MediaViewModel(Viewer, Audio, ViewPort, AudioSlider, false, true);

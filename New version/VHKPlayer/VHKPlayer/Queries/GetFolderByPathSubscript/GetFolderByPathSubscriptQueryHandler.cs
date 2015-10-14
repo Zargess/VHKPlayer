@@ -24,7 +24,6 @@ namespace VHKPlayer.Queries.GetFolderByPathSubscript
         public FolderNode Handle(GetFolderByPathSubscriptQuery query)
         {
             var folders = processor.Process(new GetFoldersQuery()).ToList();
-            var test = folders.Where(x => x.Name == "Reklamer");
 
             var rootpath = processor.Process(new GetStringSettingQuery()
             {

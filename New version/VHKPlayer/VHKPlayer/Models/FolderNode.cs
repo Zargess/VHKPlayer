@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Windows.Threading;
 using VHKPlayer.Commands.Logic.CreateFile;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Models.Interfaces;
@@ -118,7 +120,8 @@ namespace VHKPlayer.Models
         {
             Content.Clear();
             CreateFiles(FullPath);
-            Observers.ForEach(x => x.SubjectUpdated(this));
+            // TODO : Crashes when multiple files are deleted
+            App.Dispatch.BeginInvoke(new Action(() => Observers.ForEach(x => x.SubjectUpdated(this))));
         }
     }
 }

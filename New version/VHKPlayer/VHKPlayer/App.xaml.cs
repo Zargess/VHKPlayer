@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using VHKPlayer.Infrastructure.Modules;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
@@ -33,5 +34,7 @@ namespace VHKPlayer
                 return container;
             }
         }
+
+        public static Dispatcher Dispatch { get; set; }
     }
 }

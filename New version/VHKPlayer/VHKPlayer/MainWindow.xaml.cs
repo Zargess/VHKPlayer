@@ -28,6 +28,10 @@ using VHKPlayer.Commands.Logic.AddDataObserver;
 using VHKPlayer.Queries.GetPlayers;
 using VHKPlayer.Commands.Logic.RemoveDataObserver;
 using VHKPlayer.Queries.GetPlayLists;
+using VHKPlayer.Infrastructure;
+using VHKPlayer.DataManagement;
+using VHKPlayer.DataManagement.Interfaces;
+using VHKPlayer.Commands.Logic;
 
 namespace VHKPlayer
 {
@@ -43,18 +47,23 @@ namespace VHKPlayer
             InitializeComponent();
             this.DataContext = Data;
             this.Loaded += MainWindow_Loaded;
+            App.Dispatch = this.Dispatcher;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            Data.DataUpdated(PlayableType.PlayableFile);
+            Data.InitialiseData();
         }
     }
 
     public class Data : IDataObserver
     {
         public ObservableCollection<IPlayable> Test { get; set; }
+        private IDataMonitor monitor;
         private IContainer container;
+        private readonly ICommandProcessor cprocessor;
+        private readonly IQueryProcessor qprocessor;
+
         public Data()
         {
             Test = new ObservableCollection<IPlayable>();
@@ -63,45 +72,45 @@ namespace VHKPlayer
             builder.RegisterModule(new DefaultWiringModule());
             container = builder.Build();
 
-            var cprocessor = container.Resolve<ICommandProcessor>();
-            cprocessor.Process(new AddDataObserverCommand()
+            monitor = container.Resolve<IDataMonitor>();
+
+            this.cprocessor = container.Resolve<ICommandProcessor>();
+            this.qprocessor = container.Resolve<IQueryProcessor>();
+
+            cprocessor.ProcessTransaction(new AddDataObserverCommand()
             {
                 Observer = this
             });
         }
 
-        public void DataUpdated(PlayableType type)
+        public void InitialiseData()
         {
-            Test.Clear();
-            var cprocessor = container.Resolve<ICommandProcessor>();
-            var qprocessor = container.Resolve<IQueryProcessor>();
-
-            cprocessor.Process(new RemoveDataObserverCommand()
-            {
-                Observer = this
-            });
+            this.cprocessor.ProcessTransaction(new CreateAllPlayablesCommand());
 
             var path = @"C:\Users\Marcus\Dropbox\Programmering\C#\vhk";
-            cprocessor.Process(new ChangeSettingCommand()
+            cprocessor.ProcessTransaction(new ChangeSettingCommand()
             {
                 SettingName = Constants.RootFolderPathSettingName,
                 Value = path
             });
-            
-            cprocessor.Process(new CreateAllPlayablesCommand());
+        }
 
-            //var playables = qprocessor.Process(new GetPlayableFilesQuery()).Where(x => x.File.Type == FileType.Video).ToList();
-            //var playables = qprocessor.Process(new GetPlayersQuery()).ToList();
-            var playables = qprocessor.Process(new GetPlayListsQuery());
-            foreach (var playable in playables)
-            {
-                Test.Add(playable);
-            }
+        public void DataUpdated()
+        {
+            Test.Clear();
+            // TODO : Y dis no work?
+            var videos = qprocessor.Process(new GetPlayableFilesQuery()).Where(x => x.File.Type == FileType.Video);
+            var players = qprocessor.Process(new GetPlayersQuery());
+            var playlists = qprocessor.Process(new GetPlayListsQuery());
 
-            cprocessor.Process(new AddDataObserverCommand()
-            {
-                Observer = this
-            });
+            //foreach (var playable in playables)
+            //{
+            //    Test.Add(playable);
+            //}
+
+            //Test.AddAll(playlists);
+            //Test.AddAll(players);
+            Test.AddAll(videos);
         }
     }
 }

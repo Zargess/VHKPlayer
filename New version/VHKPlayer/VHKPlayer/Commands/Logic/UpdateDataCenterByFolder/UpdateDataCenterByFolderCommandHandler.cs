@@ -47,7 +47,7 @@ namespace VHKPlayer.Commands.Logic.UpdateDataCenterByFolder
                 commandProcessor.Process(new CreateAllPlayersCommand());
             }
 
-            var playableFiles = playables.Where(x => x is PlayableFile).Select(x => x as PlayableFile);
+            var playableFiles = playables.Where(x => x is PlayableFile).Select(x => x as PlayableFile).ToList();
 
             if (playableFiles.Count() > 0)
             {

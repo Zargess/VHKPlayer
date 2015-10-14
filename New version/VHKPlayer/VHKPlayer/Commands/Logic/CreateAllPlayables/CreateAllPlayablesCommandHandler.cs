@@ -31,8 +31,7 @@ namespace VHKPlayer.Commands.Logic.CreateAllPlayables
             });
 
             commandProcessor.Process(new CreateAllPlayableFilesCommand());
-
-            // TODO : Make a way to create playlists
+            
             commandProcessor.Process(new CreateAllPlayListsCommand());
 
             commandProcessor.Process(new CreateAllPlayersCommand());

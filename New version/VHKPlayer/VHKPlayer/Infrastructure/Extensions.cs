@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using VHKPlayer.Models.Interfaces;
 
 namespace VHKPlayer.Infrastructure
 {
@@ -41,6 +43,14 @@ namespace VHKPlayer.Infrastructure
                 res.Add(item);
             }
             return res;
+        }
+
+        public static void AddAll<T>(this ICollection<T> collection, IEnumerable<T> input)
+        {
+            foreach (var item in input)
+            {
+                collection.Add(item);
+            }
         }
     }
 }

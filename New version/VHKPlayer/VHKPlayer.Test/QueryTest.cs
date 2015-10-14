@@ -31,6 +31,24 @@ namespace VHKPlayer.Test
     public class QueryTest : TestBase
     {
         [TestMethod]
+        public void TestGetRequiredFolderPaths()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public void TestGetAllPlayables()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public void TestIsValidRootFolder()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
         public void TestGetPlayStrategy()
         {
             throw new NotImplementedException();

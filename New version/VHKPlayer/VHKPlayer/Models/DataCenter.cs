@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using VHKPlayer.Events;
+using System.Linq;
 using VHKPlayer.Models.Interfaces;
 
 namespace VHKPlayer.Models
@@ -14,6 +13,7 @@ namespace VHKPlayer.Models
         public ObservableCollection<PlayList> PlayLists { get; private set; }
         public ObservableCollection<FolderNode> Folders { get; private set; }
         public ObservableCollection<PlayableFile> PlayableFiles { get; set; }
+        public bool UncommitedChanges { get; set; }
 
         public DataCenter()
         {
@@ -30,17 +30,7 @@ namespace VHKPlayer.Models
 
         private void DataChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            var type = PlayableType.PlayableFile;
-
-            if (sender == Players) type = PlayableType.Player;
-            else if (sender == PlayLists) type = PlayableType.PlayList;
-            else if (sender == PlayableFiles) type = PlayableType.PlayableFile;
-            else return;
-
-            foreach (var observer in observers)
-            {
-                observer.DataUpdated(type);
-            }
+            UncommitedChanges = true;
         }
 
         public void AddObserver(IDataObserver observer)
@@ -51,6 +41,18 @@ namespace VHKPlayer.Models
         public void RemoveObserver(IDataObserver observer)
         {
             observers.Remove(observer);
+        }
+
+        public void Commit()
+        {
+            PlayableFiles.OrderBy(x => x.Name);
+            Players.OrderBy(x => x.Name);
+            PlayLists.OrderBy(x => x.Name);
+            foreach (var observer in observers)
+            {
+                observer.DataUpdated();
+            }
+            UncommitedChanges = false;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace VHKPlayer.Utility
+﻿using System.Collections.Generic;
+
+namespace VHKPlayer.Utility
 {
     public class Constants
     {
@@ -16,5 +18,14 @@
         public const string SupportedVideoSettingName = "folder_supportedVideo";
         public const string SupportedAudioSettingName = "folder_supportedAudio";
         public const string SupportedPictureSettingName = "folder_supportedPicture";
+
+        public static List<string> PlayerFolderPathSettingNames = new List<string>()
+        {
+            PlayerPictureFolderSettingName,
+            PlayerVideoFolderSettingName,
+            PlayerStatMusicFolderSettingName,
+            PlayerStatPictureFolderSettingName,
+            PlayerStatVideoFolderSettingName
+        };
     }
 }

@@ -104,6 +104,7 @@
     <Compile Include="Commands\Logic\Interfaces\ICommandHandler.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommandProcessor.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommand.cs" />
+    <Compile Include="Commands\Logic\Interfaces\ITransaction.cs" />
     <Compile Include="Commands\Logic\RemoveDataObserver\RemoveDataObserverCommand.cs" />
     <Compile Include="Commands\Logic\RemoveDataObserver\RemoveDataObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemoveFolder\RemoveFolderCommand.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Commands\Logic\RemovePlayList\RemovePlayListCommandHandler.cs" />
     <Compile Include="Commands\Logic\ResetDataCenter\ResetDataCenterCommand.cs" />
     <Compile Include="Commands\Logic\ResetDataCenter\ResetDataCenterCommandHandler.cs" />
+    <Compile Include="Commands\Logic\Transaction.cs" />
     <Compile Include="Commands\Logic\UpdateDataCenterByFolder\UpdateDataCenterByFolderCommand.cs" />
     <Compile Include="Commands\Logic\UpdateDataCenterByFolder\UpdateDataCenterByFolderCommandHandler.cs" />
     <Compile Include="Controllers\Interfaces\IPlayController.cs" />
@@ -140,8 +142,12 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayList.cs" />
     <Compile Include="Models\Statistics.cs" />
+    <Compile Include="Queries\GetAllPlayables\GetAllPlayablesQuery.cs" />
+    <Compile Include="Queries\GetAllPlayables\GetAllPlayablesQueryHandler.cs" />
     <Compile Include="Queries\GetFolderByPathSubscript\GetFolderByPathSubscriptQuery.cs" />
     <Compile Include="Queries\GetFolderByPathSubscript\GetFolderByPathSubscriptQueryHandler.cs" />
+    <Compile Include="Queries\GetFolderFromPath\GetFolderFromPathQuery.cs" />
+    <Compile Include="Queries\GetFolderFromPath\GetFolderFromPathQueryHandler.cs" />
     <Compile Include="Queries\GetFolderFromStringSetting\GetFolderFromStringSettingQuery.cs" />
     <Compile Include="Queries\GetFolderFromStringSetting\GetFolderFromStringSettingQueryHandler.cs" />
     <Compile Include="Queries\GetFolders\GetFoldersQuery.cs" />
@@ -166,6 +172,8 @@
     <Compile Include="Queries\GetPlayLists\GetPlayListsQueryHandler.cs" />
     <Compile Include="Queries\GetPlayStrategy\GetPlayStrategyQuery.cs" />
     <Compile Include="Queries\GetPlayStrategy\GetPlayStrategyQueryHandler.cs" />
+    <Compile Include="Queries\GetRequiredFolderPaths\GetRequiredFolderPathsQuery.cs" />
+    <Compile Include="Queries\GetRequiredFolderPaths\GetRequiredFolderPathsQueryHandler.cs" />
     <Compile Include="Queries\GetStringSetting\GetStringSettingQuery.cs" />
     <Compile Include="Queries\GetStringSetting\GetStringSettingQueryHandler.cs" />
     <Compile Include="Queries\Interfaces\IQuery.cs" />
@@ -173,6 +181,8 @@
     <Compile Include="Queries\Interfaces\IQueryProcessor.cs" />
     <Compile Include="Queries\IsStatFile\IsStatFileQuery.cs" />
     <Compile Include="Queries\IsStatFile\IsStatFileQueryHandler.cs" />
+    <Compile Include="Queries\IsValidRootFolder\IsValidRootFolderQuery.cs" />
+    <Compile Include="Queries\IsValidRootFolder\IsValidRootFolderQueryHandler.cs" />
     <Compile Include="Queries\ParsePlayListString\ParsePlayListStringQuery.cs" />
     <Compile Include="Queries\ParsePlayListString\ParsePlayListStringQueryHandler.cs" />
     <Compile Include="Queries\QueryProcessor.cs" />
@@ -190,6 +200,7 @@
     <Compile Include="Utility\Settings\Interfaces\IGlobalConfigService.cs" />
     <Compile Include="Utility\Settings\Interfaces\ISetting.cs" />
     <Compile Include="Utility\Settings\Setting.cs" />
+    <Compile Include="ViewModels\PlayerViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -236,9 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\GUI\" />
-    <Folder Include="Queries\IsValidRootFolder\" />
     <Folder Include="Utility\LoadingStrategy\PlayerLoading\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Interpreter\TODO.txt" />
