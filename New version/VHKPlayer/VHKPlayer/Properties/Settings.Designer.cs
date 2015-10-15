@@ -193,5 +193,17 @@ namespace VHKPlayer.Properties {
                 this["folder_supportedInfoFile"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string application_autoPlaylist {
+            get {
+                return ((string)(this["application_autoPlaylist"]));
+            }
+            set {
+                this["application_autoPlaylist"] = value;
+            }
+        }
     }
 }

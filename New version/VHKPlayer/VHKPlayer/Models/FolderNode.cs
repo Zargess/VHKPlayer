@@ -120,7 +120,6 @@ namespace VHKPlayer.Models
         {
             Content.Clear();
             CreateFiles(FullPath);
-            // TODO : Crashes when multiple files are deleted
             App.Dispatch.BeginInvoke(new Action(() => Observers.ForEach(x => x.SubjectUpdated(this))));
         }
     }

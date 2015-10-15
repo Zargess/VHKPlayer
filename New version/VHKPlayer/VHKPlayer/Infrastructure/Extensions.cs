@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using VHKPlayer.Models.Interfaces;
 
@@ -51,6 +52,13 @@ namespace VHKPlayer.Infrastructure
             {
                 collection.Add(item);
             }
+        }
+
+        public static void SetCollection<T>(this ICollection<T> original, IEnumerable<T> newCollection)
+        {
+            var temp = newCollection.ToList();
+            original.Clear();
+            original.AddAll(temp);
         }
     }
 }

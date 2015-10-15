@@ -35,8 +35,7 @@ namespace VHKPlayer.DataManagement
             this.commandProcessor = commandProcessor;
             this.queryProcessor = queryProcessor;
             this.configService = configService;
-            InitEventListeners();
-            
+            InitEventListeners();    
         }
 
         private void InitEventListeners()

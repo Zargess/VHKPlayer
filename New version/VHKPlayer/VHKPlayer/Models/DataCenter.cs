@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using VHKPlayer.Infrastructure;
 using VHKPlayer.Models.Interfaces;
 
 namespace VHKPlayer.Models
@@ -45,9 +46,9 @@ namespace VHKPlayer.Models
 
         public void Commit()
         {
-            PlayableFiles.OrderBy(x => x.Name);
-            Players.OrderBy(x => x.Name);
-            PlayLists.OrderBy(x => x.Name);
+            PlayableFiles.SetCollection(PlayableFiles.OrderBy(x => x.Name));
+            Players.SetCollection(Players.OrderBy(x => x.Number));
+            PlayLists.SetCollection(PlayLists.OrderBy(x => x.Name));
             foreach (var observer in observers)
             {
                 observer.DataUpdated();

@@ -98,19 +98,14 @@ namespace VHKPlayer
         public void DataUpdated()
         {
             Test.Clear();
-            // TODO : Y dis no work?
+
             var videos = qprocessor.Process(new GetPlayableFilesQuery()).Where(x => x.File.Type == FileType.Video);
             var players = qprocessor.Process(new GetPlayersQuery());
             var playlists = qprocessor.Process(new GetPlayListsQuery());
 
-            //foreach (var playable in playables)
-            //{
-            //    Test.Add(playable);
-            //}
-
-            //Test.AddAll(playlists);
-            //Test.AddAll(players);
+            Test.AddAll(playlists);
             Test.AddAll(videos);
+            Test.AddAll(players);
         }
     }
 }
