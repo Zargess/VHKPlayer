@@ -72,10 +72,17 @@ namespace VHKPlayer
             builder.RegisterModule(new DefaultWiringModule());
             container = builder.Build();
 
-            monitor = container.Resolve<IDataMonitor>();
-
             this.cprocessor = container.Resolve<ICommandProcessor>();
             this.qprocessor = container.Resolve<IQueryProcessor>();
+
+            var path = @"C:\Users\Marcus\Dropbox\Programmering\C#\vhk";
+            cprocessor.ProcessTransaction(new ChangeSettingCommand()
+            {
+                SettingName = Constants.RootFolderPathSettingName,
+                Value = path
+            });
+
+            monitor = container.Resolve<IDataMonitor>();
 
             cprocessor.ProcessTransaction(new AddDataObserverCommand()
             {
@@ -86,13 +93,6 @@ namespace VHKPlayer
         public void InitialiseData()
         {
             this.cprocessor.ProcessTransaction(new CreateAllPlayablesCommand());
-
-            var path = @"C:\Users\Marcus\Dropbox\Programmering\C#\vhk";
-            cprocessor.ProcessTransaction(new ChangeSettingCommand()
-            {
-                SettingName = Constants.RootFolderPathSettingName,
-                Value = path
-            });
         }
 
         public void DataUpdated()
@@ -101,7 +101,7 @@ namespace VHKPlayer
 
             var videos = qprocessor.Process(new GetPlayableFilesQuery()).Where(x => x.File.Type == FileType.Video);
             var players = qprocessor.Process(new GetPlayersQuery());
-            var playlists = qprocessor.Process(new GetPlayListsQuery());
+            var playlists = qprocessor.Process(new GetPlayListsQuery()).ToList();
 
             Test.AddAll(playlists);
             Test.AddAll(videos);

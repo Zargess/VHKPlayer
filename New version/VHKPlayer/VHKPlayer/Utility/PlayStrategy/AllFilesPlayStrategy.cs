@@ -16,13 +16,13 @@ namespace VHKPlayer.Utility.PlayStrategy
         public bool Done { get; private set; }
         public bool Repeat { get; set; }
 
-        public FileNode PeekNext(IVideoPlayer videoPlayer)
+        public FileNode PeekNext(IVideoPlayerController videoPlayer)
         {
             if (videoPlayer.Queue.IsEmpty()) return null;
             return videoPlayer.Queue.Peek();
         }
 
-        public void Play(IEnumerable<FileNode> content, IVideoPlayer videoPlayer)
+        public void Play(IEnumerable<FileNode> content, IVideoPlayerController videoPlayer)
         {
             videoPlayer.Queue.SetQueue(content);
             videoPlayer.PlayQueue();

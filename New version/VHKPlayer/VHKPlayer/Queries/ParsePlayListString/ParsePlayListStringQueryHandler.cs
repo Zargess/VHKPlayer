@@ -37,9 +37,12 @@ namespace VHKPlayer.Queries.ParsePlayListString
                 var variables = temp.Split(';');
 
                 var command = new CreatePlayListCommand();
+
                 command.Name = variables[0];
 
                 var partialPath = variables[1].Replace("root\\", "");
+
+
                 var folder = processor.Process(new GetFolderByPathSubscriptQuery()
                 {
                     PartialPath = partialPath

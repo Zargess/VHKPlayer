@@ -14,7 +14,7 @@ namespace VHKPlayer.Models
         public string Name { get; set; }
         public FileNode File { get; set; }
 
-        public void Play(IPlayStrategy strategy, IVideoPlayer videoPlayer)
+        public void Play(IPlayStrategy strategy, IVideoPlayerController videoPlayer)
         {
             strategy.Play(new List<FileNode>() { File }, videoPlayer);
         }

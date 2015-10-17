@@ -6,26 +6,29 @@ using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Queries.IsStatFile;
+using VHKPlayer.Utility.PlayQueueStrategy.Interfaces;
 using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
 namespace VHKPlayer.Controllers
 {
-    public class VideoPlayer : IVideoPlayer
+    public class VideoPlayerController : IVideoPlayerController
     {
         private List<IPlayController> observers;
         private IPlayStrategy videoPlayStrategy;
         private IPlayable previousMusicPlayable, previousVideoPlayable;
         private IQueryProcessor processor;
+        private IPlayQueueStrategy playQueue;
 
         public bool AutoPlayList { get; set; }
         public Queue<FileNode> Queue { get; private set; }
 
 
-        public VideoPlayer(IQueryProcessor processor)
+        public VideoPlayerController(IQueryProcessor processor, IPlayQueueStrategy playQueue)
         {
             this.processor = processor;
             observers = new List<IPlayController>();
             Queue = new Queue<FileNode>();
+            this.playQueue = playQueue;
         }
 
         public void AddObserver(IPlayController observer)
@@ -84,17 +87,7 @@ namespace VHKPlayer.Controllers
 
         public void PlayQueue()
         {
-            if (!Queue.IsEmpty())
-            {
-                var file = Queue.Dequeue();
-                Play(file);
-            } else if (videoPlayStrategy.Repeat)
-            {
-                previousVideoPlayable.Play(videoPlayStrategy, this);
-            } else if (AutoPlayList)
-            {
-                // TODO : Make an option if auto advertisements is enabled
-            }
+            playQueue.PlayNextItem(Queue, this, videoPlayStrategy, previousVideoPlayable);
         }
 
         public void Resume(FileType type)

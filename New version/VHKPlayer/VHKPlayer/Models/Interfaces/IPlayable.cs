@@ -11,6 +11,6 @@ namespace VHKPlayer.Models.Interfaces
     public interface IPlayable
     {
         string Name { get; }
-        void Play(IPlayStrategy strategy, IVideoPlayer videoPlayer);
+        void Play(IPlayStrategy strategy, IVideoPlayerController videoPlayer);
     }
 }

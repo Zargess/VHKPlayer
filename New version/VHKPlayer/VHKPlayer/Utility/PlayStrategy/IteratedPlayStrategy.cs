@@ -13,14 +13,14 @@ namespace VHKPlayer.Utility.PlayStrategy
 
         public bool Repeat { get; set; }
 
-        public FileNode PeekNext(IVideoPlayer videoPlayer)
+        public FileNode PeekNext(IVideoPlayerController videoPlayer)
         {
             if (content == null) return null;
             if (counter >= content.Count) counter = 0;
             return content[counter];
         }
 
-        public void Play(IEnumerable<FileNode> content, IVideoPlayer videoPlayer)
+        public void Play(IEnumerable<FileNode> content, IVideoPlayerController videoPlayer)
         {
             this.content = new List<FileNode>(content);
 

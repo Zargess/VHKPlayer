@@ -37,7 +37,7 @@ namespace VHKPlayer.Commands.Logic.CreateAllPlayLists
             var commands = qprocessor.Process(new ParsePlayListStringQuery()
             {
                 ConstructString = constructString
-            });
+            }).ToList();
 
             foreach (var command in commands)
             {

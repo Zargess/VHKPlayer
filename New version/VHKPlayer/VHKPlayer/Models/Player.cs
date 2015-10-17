@@ -29,7 +29,7 @@ namespace VHKPlayer.Models
             observers = new List<IVHKObserver<Player>>();
         }
 
-        public void Play(IPlayStrategy strategy, IVideoPlayer videoPlayer)
+        public void Play(IPlayStrategy strategy, IVideoPlayerController videoPlayer)
         {
             strategy.Play(Content, videoPlayer);
         }

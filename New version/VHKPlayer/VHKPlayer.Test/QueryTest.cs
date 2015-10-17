@@ -31,6 +31,18 @@ namespace VHKPlayer.Test
     public class QueryTest : TestBase
     {
         [TestMethod]
+        public void TestGetAutoPlayList()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public void TestGetPlayListByName()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
         public void TestGetRequiredFolderPaths()
         {
             throw new NotImplementedException();

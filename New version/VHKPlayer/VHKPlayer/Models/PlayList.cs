@@ -20,7 +20,7 @@ namespace VHKPlayer.Models
         public ILoadingStrategy<ICollection<FileNode>> LoadingStrategy { get; set; }
         public IPlayStrategy PlayStrategy { get; set; }
 
-        public void Play(IPlayStrategy strategy, IVideoPlayer videoPlayer)
+        public void Play(IPlayStrategy strategy, IVideoPlayerController videoPlayer)
         {
             PlayStrategy.Play(Content, videoPlayer);
         }

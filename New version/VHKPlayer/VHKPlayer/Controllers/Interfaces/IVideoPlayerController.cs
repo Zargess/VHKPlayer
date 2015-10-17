@@ -5,7 +5,7 @@ using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
 namespace VHKPlayer.Controllers.Interfaces
 {
-    public interface IVideoPlayer
+    public interface IVideoPlayerController
     {
         bool AutoPlayList { get; set; }
         Queue<FileNode> Queue { get; }

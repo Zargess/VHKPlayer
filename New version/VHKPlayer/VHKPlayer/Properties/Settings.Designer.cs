@@ -171,8 +171,8 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{RekFørKamp;root\\Rek;false;1;Sorted;AllFiles},{RekFørKamp;root\\Rek;false;1;Sorted" +
-            ";AllFiles}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{RekFørKamp;root\\Rek;false;1;Sorted;AllFiles},{RekHalvej1;root\\Rek;false;2;Sorted" +
+            ";AllFiles},{10Sek;root\\10Sek;false;0;Folder;Iterated}")]
         public string folder_playlists {
             get {
                 return ((string)(this["folder_playlists"]));
@@ -196,7 +196,7 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10Sek")]
         public string application_autoPlaylist {
             get {
                 return ((string)(this["application_autoPlaylist"]));

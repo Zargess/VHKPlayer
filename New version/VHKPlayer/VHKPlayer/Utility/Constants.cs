@@ -19,6 +19,8 @@ namespace VHKPlayer.Utility
         public const string SupportedAudioSettingName = "folder_supportedAudio";
         public const string SupportedPictureSettingName = "folder_supportedPicture";
 
+        public const string AutoPlayListSettingName = "application_autoPlaylist";
+
         public static List<string> PlayerFolderPathSettingNames = new List<string>()
         {
             PlayerPictureFolderSettingName,

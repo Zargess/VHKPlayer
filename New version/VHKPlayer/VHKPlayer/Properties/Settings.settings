@@ -39,13 +39,13 @@
       <Value Profile="(Default)">root\musik\andet;root\musik\langtmusik;root\musik\opvarmning;root\musik\pausemusik;root\musik\scor;root\musik\scorud;root\musik\spilstop;root\musik\stemning;root\musik\timeout;root\blandet;root\superhero;root</Value>
     </Setting>
     <Setting Name="folder_playlists" Type="System.String" Scope="User">
-      <Value Profile="(Default)">{RekFørKamp;root\Rek;false;1;Sorted;AllFiles},{RekFørKamp;root\Rek;false;1;Sorted;AllFiles}</Value>
+      <Value Profile="(Default)">{RekFørKamp;root\Rek;false;1;Sorted;AllFiles},{RekHalvej1;root\Rek;false;2;Sorted;AllFiles},{10Sek;root\10Sek;false;0;Folder;Iterated}</Value>
     </Setting>
     <Setting Name="folder_supportedInfoFile" Type="System.String" Scope="User">
       <Value Profile="(Default)">xml;txt</Value>
     </Setting>
     <Setting Name="application_autoPlaylist" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">10Sek</Value>
     </Setting>
   </Settings>
 </SettingsFile>
