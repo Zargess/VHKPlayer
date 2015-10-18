@@ -257,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\GUI\" />
+    <Folder Include="Controlls\" />
     <Folder Include="Converters\" />
     <Folder Include="Utility\LoadingStrategy\PlayerLoading\" />
   </ItemGroup>
