@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace VHKPlayer.Models.Interfaces
 {
@@ -13,6 +14,7 @@ namespace VHKPlayer.Models.Interfaces
         ObservableCollection<PlayList> PlayLists { get; }
         ObservableCollection<FolderNode> Folders { get; }
         ObservableCollection<PlayableFile> PlayableFiles { get; }
+        ICollection<Timer> Timers { get; }
         bool UncommitedChanges { get; set; }
 
         void AddObserver(IDataObserver observer);

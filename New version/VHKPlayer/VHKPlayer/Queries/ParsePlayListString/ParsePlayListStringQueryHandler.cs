@@ -23,6 +23,7 @@ namespace VHKPlayer.Queries.ParsePlayListString
             this.processor = processor;
         }
 
+        // TODO : Make this an interpreter for a script language that defines playlists instead of makeing it this hardcoded
         public IQueryable<CreatePlayListCommand> Handle(ParsePlayListStringQuery query)
         {
             var playlistDefinitions = query.ConstructString.Split(',');

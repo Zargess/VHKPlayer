@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Timers;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Models.Interfaces;
 
@@ -16,6 +18,9 @@ namespace VHKPlayer.Models
         public ObservableCollection<PlayableFile> PlayableFiles { get; set; }
         public bool UncommitedChanges { get; set; }
 
+        // TODO : Make this a dictionary
+        public ICollection<Timer> Timers { get; set; }
+
         public DataCenter()
         {
             Players = new ObservableCollection<Player>();
@@ -23,6 +28,7 @@ namespace VHKPlayer.Models
             Folders = new ObservableCollection<FolderNode>();
             PlayableFiles = new ObservableCollection<PlayableFile>();
             observers = new List<IDataObserver>();
+            Timers = new List<Timer>();
             Players.CollectionChanged += DataChanged;
             PlayLists.CollectionChanged += DataChanged;
             Folders.CollectionChanged += DataChanged;
