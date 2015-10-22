@@ -56,6 +56,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -127,6 +129,9 @@
     <Compile Include="Controllers\Interfaces\IPlayController.cs" />
     <Compile Include="Controllers\Interfaces\IVideoPlayerController.cs" />
     <Compile Include="Controllers\VideoPlayerController.cs" />
+    <Compile Include="Controls\CustomListbox.xaml.cs">
+      <DependentUpon>CustomListbox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataManagement\DataMonitor.cs" />
     <Compile Include="DataManagement\Interfaces\IDataMonitor.cs" />
     <Compile Include="Events\DataCenterUpdatedEventArgs.cs" />
@@ -211,6 +216,10 @@
     <Compile Include="Utility\Settings\Interfaces\ISetting.cs" />
     <Compile Include="Utility\Settings\Setting.cs" />
     <Compile Include="ViewModels\PlayerViewModel.cs" />
+    <Page Include="Controls\CustomListbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -257,8 +266,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\GUI\" />
-    <Folder Include="Controlls\" />
-    <Folder Include="Converters\" />
     <Folder Include="Utility\LoadingStrategy\PlayerLoading\" />
   </ItemGroup>
   <ItemGroup>

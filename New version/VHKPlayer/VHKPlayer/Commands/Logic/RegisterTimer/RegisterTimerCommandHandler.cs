@@ -19,7 +19,7 @@ namespace VHKPlayer.Commands.Logic.RegisterTimer
 
         public void Handle(RegisterTimerCommand command)
         {
-            center.Timers.Add(command.Timer);
+            throw new NotImplementedException();
         }
     }
 }
