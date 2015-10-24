@@ -1,24 +1,40 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using VHKPlayer.Interfaces;
-using VHKPlayer.ViewModels;
+using System.Windows.Threading;
+using VHKPlayer.Infrastructure.Modules;
+using VHKPlayer.Models;
+using VHKPlayer.Models.Interfaces;
+using VHKPlayer.Utility.Settings;
+using VHKPlayer.Utility.Settings.Interfaces;
 
-namespace VHKPlayer {
+namespace VHKPlayer
+{
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application {
-        private static IViewModel _viewmodel;
-        public static IViewModel ViewModel {
-            get {
-                if (_viewmodel == null) _viewmodel = new ViewModel();
-                return _viewmodel;
+    public partial class App : Application
+    {
+        private static IContainer container;
+        public static IContainer Container
+        {
+            get
+            {
+                if (container == null)
+                {
+                    var builder = new ContainerBuilder();
+                    builder.RegisterModule(new DefaultWiringModule());
+                    container = builder.Build();
+                }
+                return container;
             }
         }
+
+        public static Dispatcher Dispatch { get; set; }
     }
 }

@@ -4,63 +4,58 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VHKPlayer.Enums;
-using VHKPlayer.Interfaces;
-using VHKPlayer.Interfaces.Factories;
-using VHKPlayer.Utility;
+using VHKPlayer.Controllers.Interfaces;
+using VHKPlayer.Models.Interfaces;
+using VHKPlayer.Queries.GetPlayerStats;
+using VHKPlayer.Queries.Interfaces;
+using VHKPlayer.Utility.LoadingStrategy.Interfaces;
+using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
-namespace VHKPlayer.Models {
-    public class Player : IPlayer, IFolderObserver {
-        private List<IPlayerObserver> _observers;
-        private ILoadingStrategy<IFile> _loadingStrategy;
-        private IFileSelectionStrategy _selectionStrategy;
-        private IStatsLoadingStrategy _statsLoadingStrategy;
+namespace VHKPlayer.Models
+{
+    public class Player : IVHKObserver<FolderNode>, IPlayable
+    {
+        private List<IVHKObserver<Player>> observers;
 
-        public string Name { get; private set; }
-        public int Number { get; private set; }
-        public bool Trainer { get; private set; }
-        public bool Repeat { get; private set; }
-        public IStatistics Stats { get; private set; }
-        public ObservableCollection<IFile> Content { get; private set; }
+        public string Name { get; set; }
+        public int Number { get; set; }
+        public bool Trainer { get; set; }
+        public ObservableCollection<FileNode> Content { get; set; }
+        public Statistics Stats { get; private set; }
+        public IQueryProcessor Processor { get; set; }
 
-        public Player(IPlayerFactory factory) {
-            Name = factory.CreateName();
-            Number = factory.CreateNumber();
-            Trainer = factory.CreateTrainer();
-            Repeat = factory.CreateRepeat();
-            _observers = factory.CreatePlayerObserverList();
-            _loadingStrategy = factory.CreateLoadingStrategy();
-            _selectionStrategy = factory.CreateSelectionStrategy();
-            _statsLoadingStrategy = factory.CreateStatsLoadingStrategy();
-            Content = new ObservableCollection<IFile>();
-            _loadingStrategy.Load(Content);
-            Settings.StatFolder.AddObserver(this);
-            FolderChanged(null);
+        public Player()
+        {
+            observers = new List<IVHKObserver<Player>>();
         }
 
-        public Queue<IFile> Play(PlayType type) {
-            return _selectionStrategy.SelectFiles(this, type);
+        public void Play(IPlayStrategy strategy, IVideoPlayerController videoPlayer)
+        {
+            strategy.Play(Content, videoPlayer);
         }
 
-        public void AddObserver(IPlayerObserver observer) {
-            _observers.Add(observer);
+        public void SubjectUpdated(FolderNode subject)
+        {
+            Stats = Processor.Process(new GetPlayerStatsQuery()
+            {
+                Player = this
+            });
+            observers.ForEach(x => x.SubjectUpdated(this));
         }
 
-        public void RemoveObserver(IPlayerObserver observer) {
-            _observers.Remove(observer);
+        public void AddObserver(IVHKObserver<Player> observer)
+        {
+            observers.Add(observer);
         }
 
-        public void FolderChanged(IFolder folder) {
-            Stats = _statsLoadingStrategy.LoadStats(Number);
-            _observers.ForEach(x => x.StatsChanged(Stats));
+        public void RemoveObserver(IVHKObserver<Player> observer)
+        {
+            observers.Remove(observer);
         }
 
-        public override string ToString() {
-            return Number + " " + Name;
-        }
-
-        public IFile HintNext(Queue<IFile> queue) {
-            return _selectionStrategy.HintNext(this, queue);
+        public override string ToString()
+        {
+            return Number + " - " + Name; 
         }
     }
 }

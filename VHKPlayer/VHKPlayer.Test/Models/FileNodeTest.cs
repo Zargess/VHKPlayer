@@ -2,83 +2,68 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VHKPlayer.Interfaces;
-using VHKPlayer.Test.Utility;
-using VHKPlayer.Models;
-using VHKPlayer.Enums;
-using VHKPlayer.Facades;
-using VHKPlayer.Utility;
-using VHKPlayer.Strategies.Playing;
 
-namespace VHKPlayer.Test.Models {
+namespace VHKPlayer.Test.Models
+{
     /// <summary>
     /// Summary description for FileNodeTest
     /// </summary>
     [TestClass]
-    public class FileNodeTest {
-        private IFile _file;
-
-        [TestInitialize]
-        public void Setup() {
-            var settings = new FolderSettings();
-            settings["root"] = TestConstants.RootFolderPath;
-            IVideoPlayer videoplayer = new VideoPlayer(settings, new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy(), new AutoPlayListPlayStrategy(), new DoNothingPlayStrategy()));
-            _file = new FileNode(TestConstants.RootFolderPath + @"\dong.mp3");
+    public class FileNodeTest
+    {
+        public FileNodeTest()
+        {
+            //
+            // TODO: Add constructor logic here
+            //
         }
 
-        [TestMethod]
-        public void FileNodeTestDong_mp3FullPathShouldBeRootFolderPathDong_mp3() {
-            Assert.AreEqual(TestConstants.RootFolderPath + @"\dong.mp3", _file.FullPath);
+        private TestContext testContextInstance;
+
+        /// <summary>
+        ///Gets or sets the test context which provides
+        ///information about and functionality for the current test run.
+        ///</summary>
+        public TestContext TestContext
+        {
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
         }
 
-        [TestMethod]
-        public void FileNodeTestDong_mp3NameShouldBeDong_mp3() {
-            Assert.AreEqual("dong.mp3", _file.Name);
-        }
+        #region Additional test attributes
+        //
+        // You can use the following additional attributes as you write your tests:
+        //
+        // Use ClassInitialize to run code before running the first test in the class
+        // [ClassInitialize()]
+        // public static void MyClassInitialize(TestContext testContext) { }
+        //
+        // Use ClassCleanup to run code after all tests in a class have run
+        // [ClassCleanup()]
+        // public static void MyClassCleanup() { }
+        //
+        // Use TestInitialize to run code before running each test 
+        // [TestInitialize()]
+        // public void MyTestInitialize() { }
+        //
+        // Use TestCleanup to run code after each test has run
+        // [TestCleanup()]
+        // public void MyTestCleanup() { }
+        //
+        #endregion
 
         [TestMethod]
-        public void FileNodeTestDong_mp3NameWithoutExtensionShouldBeDong() {
-            Assert.AreEqual("dong", _file.NameWithoutExtension);
-        }
-
-        [TestMethod]
-        public void FileNodeTestDong_mp3TypeShouldBeFileType_Music() {
-            Assert.AreEqual(FileType.Music, _file.Type);
-        }
-
-        [TestMethod]
-        public void FileNodeTestLogo_pngTypeShouldBePicture() {
-            IFile file = new FileNode(TestConstants.RootFolderPath + @"\Logo.png");
-            Assert.AreEqual(FileType.Picture, file.Type);
-        }
-
-        [TestMethod]
-        public void FileNodeTestTemp_aviTypeShouldBeVideo() {
-            IFile file = new FileNode(TestConstants.RootFolderPath + @"\temp.avi");
-            Assert.AreEqual(FileType.Video, file.Type);
-        }
-
-        [TestMethod]
-        public void FileNodeTestTemp_xmlTypeShouldBeInfo() {
-            IFile file = new FileNode(TestConstants.RootFolderPath + @"\temp.xml");
-            Assert.AreEqual(FileType.Info, file.Type);
-        }
-
-        [TestMethod]
-        public void FileNodeTestTemp_txtTypeShouldBeUnsupported() {
-            IFile file = new FileNode(TestConstants.RootFolderPath + @"\temp.txt");
-            Assert.AreEqual(FileType.Unsupported, file.Type);
-        }
-
-        [TestMethod]
-        public void FileNodeTestDong_mp3ShouldExist() {
-            Assert.IsTrue(_file.Exists());
-        }
-
-        [TestMethod]
-        public void FileNodeTestTemp_aviShouldNotExist() {
-            IFile file = new FileNode(TestConstants.RootFolderPath + @"\temp.avi");
-            Assert.IsFalse(file.Exists());
+        public void TestMethod1()
+        {
+            //
+            // TODO: Add test logic here
+            //
         }
     }
 }

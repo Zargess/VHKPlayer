@@ -2,101 +2,68 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VHKPlayer.Facades;
-using VHKPlayer.Utility;
-using VHKPlayer.Interfaces;
-using VHKPlayer.Models;
-using System.IO;
-using VHKPlayer.Test.Utility;
-using VHKPlayer.Factories.IPlayLists;
-using VHKPlayer.Enums;
-using VHKPlayer.Strategies.Playing;
 
-namespace VHKPlayer.Test.Models {
+namespace VHKPlayer.Test.Models
+{
     /// <summary>
     /// Summary description for PlayListTest
     /// </summary>
     [TestClass]
-    public class PlayListTest {
-        private IPlayList _playlist;
-        private FolderNode _folder;
-
-        [TestInitialize]
-        public void Setup() {
-            var settings = new FolderSettings();
-            settings["root"] = TestConstants.RootFolderPath;
-            var videoplayer = new VideoPlayer(settings, new AlternatingPlayStrategy(new PlayFileStrategy(), new PlayPlayerStatStrategy(), new AutoPlayListPlayStrategy(), new DoNothingPlayStrategy()));
-            _folder = new FolderNode(Path.Combine(TestConstants.RootFolderPath, "10sek"));
-            _playlist = new PlayList(new AllFilesSortedPlayListFactory("{10sek;" + _folder.FullPath + ";2;true;true;AllFilesSorted}"));
+    public class PlayListTest
+    {
+        public PlayListTest()
+        {
+            //
+            // TODO: Add constructor logic here
+            //
         }
 
-        [TestMethod]
-        public void PlayListTestNameShouldBe10Sek() {
-            Assert.AreEqual("10sek", _playlist.Name);
+        private TestContext testContextInstance;
+
+        /// <summary>
+        ///Gets or sets the test context which provides
+        ///information about and functionality for the current test run.
+        ///</summary>
+        public TestContext TestContext
+        {
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
         }
 
-        [TestMethod]
-        public void PlayListTestHasAudioShouldBeTrue() {
-            Assert.IsTrue(_playlist.HasAudio);
-        }
+        #region Additional test attributes
+        //
+        // You can use the following additional attributes as you write your tests:
+        //
+        // Use ClassInitialize to run code before running the first test in the class
+        // [ClassInitialize()]
+        // public static void MyClassInitialize(TestContext testContext) { }
+        //
+        // Use ClassCleanup to run code after all tests in a class have run
+        // [ClassCleanup()]
+        // public static void MyClassCleanup() { }
+        //
+        // Use TestInitialize to run code before running each test 
+        // [TestInitialize()]
+        // public void MyTestInitialize() { }
+        //
+        // Use TestCleanup to run code after each test has run
+        // [TestCleanup()]
+        // public void MyTestCleanup() { }
+        //
+        #endregion
 
         [TestMethod]
-        public void PlayListTestHasAudioShouldBeFalse() {
-            _playlist = new PlayList(new AllFilesSortedPlayListFactory("{10sek;" + _folder.FullPath + ";2;false;false;AllFilesSorted}"));
-            Assert.IsFalse(_playlist.HasAudio);
-        }
-
-        [TestMethod]
-        public void PlayListTestRepeatShouldBeFalse() {
-            _playlist = new PlayList(new AllFilesSortedPlayListFactory("{10sek;" + _folder.FullPath + ";2;false;false;AllFilesSorted}"));
-            Assert.IsFalse(_playlist.Repeat);
-        }
-
-        [TestMethod]
-        public void PlayListTestRepeatShouldBeTrue() {
-            Assert.IsTrue(_playlist.Repeat);
-        }
-
-        [TestMethod]
-        public void PlayListTestShouldHaveOneElementWhenSortedLoadingStrategyUsesIndex2InVhkRekFolder() {
-            IFolder folder = new FolderNode(Path.Combine(TestConstants.RootFolderPath,"rek"));
-            IPlayList playlist = new PlayList(new AllFilesSortedPlayListFactory("{Test;" + folder.FullPath + ";2;false;false;AllFilesSorted}"));
-            Assert.AreEqual(2, playlist.Content.Count);
-        }
-
-        [TestMethod]
-        public void PlayListTestShouldHaveTwoElementsWhenSortedLoadingStrategyUsesIndex3InVhkRekFolder() {
-            IFolder folder = new FolderNode(Path.Combine(TestConstants.RootFolderPath, "rek"));
-            IPlayList playlist = new PlayList(new AllFilesSortedPlayListFactory("{Test;" + folder.FullPath + ";3;false;false;AllFilesSorted}"));
-            Assert.AreEqual(2, playlist.Content.Count);
-        }
-
-        [TestMethod]
-        public void PlayListTestShouldHave18ElementsWhenFolderLoadingStrategyLoads10sekFolder() {
-            IFolder folder = new FolderNode(Path.Combine(TestConstants.RootFolderPath, "10sek"));
-            IPlayList playlist = new PlayList(new IteratedFolderPlayListFactory("{Test;" + folder.FullPath + ";true;true;IteratedFolder}"));
-            Assert.AreEqual(18, playlist.Content.Count);
-        }
-
-        [TestMethod]
-        public void PlayListTestShouldHave6ElementsWhenFolderLoadingStrategyLoadsScorRekkFolder() {
-            IFolder folder = new FolderNode(Path.Combine(TestConstants.RootFolderPath, "ScorRek"));
-            IPlayList playlist = new PlayList(new IteratedFolderPlayListFactory("{Test;" + folder.FullPath + ";true;true;IteratedFolder}"));
-            Assert.AreEqual(6, playlist.Content.Count);
-        }
-
-        [TestMethod]
-        public void PlayListTestShouldGive6FilesWhenPlayCallWithPlayTypePlayListIsUsedWithAllFilesSelectionStrategy() {
-            IFolder folder = new FolderNode(Path.Combine(TestConstants.RootFolderPath, "ScorRek"));
-            IPlayList playlist = new PlayList(new AllFilesFolderPlayListFactory("{Test;" + folder.FullPath + ";true;true;AllFilesSorted}"));
-            Assert.AreEqual(6, playlist.Play(PlayType.PlayList).Count);
-        }
-
-        [TestMethod]
-        public void PlayListTestShouldGive1FilesWhenPlayCallWithPlayTypePlayListIsUsedWithIteratedSelectionStrategy() {
-            IFolder folder = new FolderNode(Path.Combine(TestConstants.RootFolderPath, "ScorRek"));
-            IPlayList playlist = new PlayList(new IteratedSortedPlayListFactory("{Test;" + folder.FullPath + ";3;true;true;IteratedFolder}"));
-            Assert.AreEqual(1, playlist.Play(PlayType.PlayList).Count);
+        public void TestMethod1()
+        {
+            //
+            // TODO: Add test logic here
+            //
         }
     }
 }

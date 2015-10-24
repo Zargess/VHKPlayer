@@ -1,7 +1,51 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VHKPlayer.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="folder_supportedVideo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.avi;.mp4</Value>
+    </Setting>
+    <Setting Name="folder_supportedAudio" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.mp3</Value>
+    </Setting>
+    <Setting Name="folder_supportedPicture" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.png;</Value>
+    </Setting>
+    <Setting Name="folder_root" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="folder_playerStatPictureFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\spillervideostat</Value>
+    </Setting>
+    <Setting Name="folder_playerPictureFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\spiller</Value>
+    </Setting>
+    <Setting Name="folder_playerVideoFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\spillervideo</Value>
+    </Setting>
+    <Setting Name="folder_playerStatVideoFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\spillervideostat\video</Value>
+    </Setting>
+    <Setting Name="folder_playerStatMusicFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\spillervideostat\mp3</Value>
+    </Setting>
+    <Setting Name="folder_ignore" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="folder_playerStatisticInformation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Marcus\Documents\GitHub\VHKPlayer\DigiMatch</Value>
+    </Setting>
+    <Setting Name="folder_playableFileFolders" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root\musik\andet;root\musik\langtmusik;root\musik\opvarmning;root\musik\pausemusik;root\musik\scor;root\musik\scorud;root\musik\spilstop;root\musik\stemning;root\musik\timeout;root\blandet;root\superhero;root</Value>
+    </Setting>
+    <Setting Name="folder_playlists" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{RekFørKamp;root\Rek;false;1;Sorted;AllFiles},{RekHalvej1;root\Rek;false;2;Sorted;AllFiles},{10Sek;root\10Sek;false;0;Folder;Iterated}</Value>
+    </Setting>
+    <Setting Name="folder_supportedInfoFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">xml;txt</Value>
+    </Setting>
+    <Setting Name="application_autoPlaylist" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10Sek</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

@@ -1,89 +1,126 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VHKPlayer.Enums;
-using VHKPlayer.Interfaces;
-using VHKPlayer.Utility;
+using System.Windows.Threading;
+using VHKPlayer.Commands.Logic.CreateFile;
+using VHKPlayer.Commands.Logic.Interfaces;
+using VHKPlayer.Models.Interfaces;
 
-namespace VHKPlayer.Models {
-    public class FolderNode : IFolder {
-        private List<IFolderObserver> _observers;
-        private FileSystemWatcher _watcher;
-        public List<IFile> Content { get; private set; }
-        public string FullPath { get; private set; }
+namespace VHKPlayer.Models
+{
+    // TODO : Do some cleaning in this class and test it
+    public class FolderNode
+    {
+        private FileSystemWatcher watcher;
+        private string fullPath;
+        private ICommandProcessor processor;
+
         public string Name { get; private set; }
+        public List<FileNode> Content { get; set; }
+        public List<IVHKObserver<FolderNode>> Observers { get; private set; }
 
-        public FolderNode(string path) {
-            FullPath = path;
-            Name = Path.GetFileName(path);
-            Content = GetFiles();
-            _observers = new List<IFolderObserver>();
-            InitWatcher();
-        }
-
-        private List<IFile> GetFiles() {
-            var res = new List<IFile>();
-            if (!Exists()) return res;
-            var paths = Directory.EnumerateFiles(FullPath);
-            foreach (var path in paths) {
-                var file = new FileNode(path);
-                if (file.Type == FileType.Unsupported) continue;
-                res.Add(file);
+        public string FullPath
+        {
+            get
+            {
+                return fullPath;
             }
-            return res;
-        }
-
-        public bool ContainsFile(IFile file) {
-            foreach (var f in Content) {
-                if (f.Equals(file)) return true;
+            set
+            {
+                fullPath = value;
+                UpdateFolderInfo(value);
             }
-            return false;
         }
 
-        public bool Exists() {
+
+        public FolderNode(ICommandProcessor processor)
+        {
+            Observers = new List<IVHKObserver<FolderNode>>();
+            this.processor = processor;
+            Content = new List<FileNode>();
+        }
+
+        private void UpdateFolderInfo(string value)
+        {
+            if (!Exists()) return;
+            Name = Path.GetDirectoryName(value);
+
+            if (watcher != null) watcher.Dispose();
+
+            watcher = CreateWatcher(value);
+            CreateFiles(value);
+        }
+
+        private void CreateFiles(string value)
+        {
+            Content.Clear();
+            if (!Exists()) return;
+            var paths = Directory.EnumerateFiles(value);
+            foreach (var path in paths)
+            {
+                processor.Process(new CreateFileCommand()
+                {
+                    Folder = this,
+                    Path = path
+                });
+            }
+        }
+
+        public void AddFile(FileNode node)
+        {
+            Content.Add(node);
+        }
+
+        public bool Exists()
+        {
             return Directory.Exists(FullPath);
         }
 
-        public bool ValidRootFolder() {
-            var paths = Settings.RequiredFolders.Select(x => x.Replace("root", FullPath));
-
-            foreach (var path in paths) {
-                if (!Directory.Exists(path)) return false;
+        public bool Contains(FileNode file)
+        {
+            foreach (var f in Content)
+            {
+                if (f.FullPath.ToLower().Equals(file.FullPath.ToLower()))
+                {
+                    return true;
+                }
             }
 
-            return true;
+            return false;
         }
 
-        public void AddObserver(IFolderObserver observer) {
-            _observers.Add(observer);
-        }
-
-        public void RemoveObserver(IFolderObserver observer) {
-            _observers.Remove(observer);
-        }
-
-        private void InitWatcher() {
-            if (_watcher != null) return;
-            if (!Exists()) return;
-            _watcher = new FileSystemWatcher {
+        private FileSystemWatcher CreateWatcher(string path)
+        {
+            if (!Exists()) return null;
+            var watcher = new FileSystemWatcher
+            {
                 Path = FullPath,
                 NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastAccess
                     | NotifyFilters.LastWrite | NotifyFilters.DirectoryName,
                 Filter = "*"
             };
-            _watcher.Created += Changed;
-            _watcher.Deleted += Changed;
-            _watcher.Renamed += Changed;
-            _watcher.EnableRaisingEvents = true;
+            watcher.Created += Changed;
+            watcher.Deleted += Changed;
+            watcher.Renamed += Changed;
+            watcher.EnableRaisingEvents = true;
+            return watcher;
         }
 
-        private void Changed(object sender, FileSystemEventArgs e) {
+        public void AddObserver(IVHKObserver<FolderNode> observer)
+        {
+            Observers.Add(observer);
+        }
+
+        public void RemoveObserver(IVHKObserver<FolderNode> observer)
+        {
+            Observers.Remove(observer);
+        }
+
+        private void Changed(object sender, FileSystemEventArgs e)
+        {
             Content.Clear();
-            Content.AddRange(GetFiles());
-            _observers.ForEach(x => x.FolderChanged(this));
+            CreateFiles(FullPath);
+            App.Dispatch.BeginInvoke(new Action(() => Observers.ForEach(x => x.SubjectUpdated(this))));
         }
     }
 }
