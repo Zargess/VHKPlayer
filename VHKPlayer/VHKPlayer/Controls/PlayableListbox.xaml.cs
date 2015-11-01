@@ -31,6 +31,7 @@ namespace VHKPlayer.Controls
         public static readonly DependencyProperty CommandProperty = DependencyProperty.Register("Command", typeof(ICommand), typeof(PlayableListbox), new PropertyMetadata(new DoNothingCommand()));
         public static readonly DependencyProperty DataProperty = DependencyProperty.Register("Data", typeof(ICollection<IPlayable>), typeof(PlayableListbox), new PropertyMetadata(new ObservableCollection<IPlayable>()));
         public static readonly DependencyProperty ConverterProperty = DependencyProperty.Register("Converter", typeof(IValueConverter), typeof(PlayableListbox));
+        public static readonly DependencyProperty ConverterParameterProperty = DependencyProperty.Register("ConverterParameter", typeof(object), typeof(PlayableListbox));
 
         public ICommand Command
         {
@@ -65,6 +66,18 @@ namespace VHKPlayer.Controls
             set
             {
                 SetValue(ConverterProperty, value);
+            }
+        }
+
+        public object ConverterParameter
+        {
+            get
+            {
+                return (object)GetValue(ConverterParameterProperty);
+            }
+            set
+            {
+                SetValue(ConverterParameterProperty, value);
             }
         }
     }

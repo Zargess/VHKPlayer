@@ -4,9 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:VHKPlayer.Controls"
+        xmlns:converters="clr-namespace:VHKPlayer.Converters"
         xmlns:local="clr-namespace:VHKPlayer"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" Name="Main">
+    
+    <Window.Resources>
+        <converters:UniversalVisibilityConverter x:Key="UniversalConverter"/>
+    </Window.Resources>
+    
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" Height="25">
@@ -30,6 +36,9 @@
                 <GridSplitter IsEnabled="False" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
                 <Grid Grid.Row="0" Grid.Column="0">
+                    <TabControl>
+                        
+                    </TabControl>
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="2">
@@ -37,7 +46,7 @@
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="0">
-                    <controls:PlayableListbox Command="{Binding DummyCommand}" Data="{Binding Playables}" />
+                    <controls:PlayableListbox Command="{Binding DummyCommand}" Data="{Binding Playables}" Converter="{StaticResource UniversalConverter}" />
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="2">

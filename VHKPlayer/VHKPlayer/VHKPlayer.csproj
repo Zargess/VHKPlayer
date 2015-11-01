@@ -135,6 +135,7 @@
     <Compile Include="Controls\PlayableListbox.xaml.cs">
       <DependentUpon>PlayableListbox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\UniversalVisibilityConverter.cs" />
     <Compile Include="DataManagement\DataMonitor.cs" />
     <Compile Include="DataManagement\Interfaces\IDataMonitor.cs" />
     <Compile Include="Events\DataCenterUpdatedEventArgs.cs" />
