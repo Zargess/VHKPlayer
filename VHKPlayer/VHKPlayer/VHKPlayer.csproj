@@ -143,6 +143,7 @@
     <Compile Include="Exceptions\NoSuchPlayStrategyException.cs" />
     <Compile Include="Exceptions\SyntaxErrorException.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />
+    <Compile Include="Interpreter\Interfaces\IScriptInterpreter.cs" />
     <Compile Include="Interpreter\ScriptInterpreter.cs" />
     <Compile Include="MessageBoxes\AlertBox.xaml.cs">
       <DependentUpon>AlertBox.xaml</DependentUpon>
