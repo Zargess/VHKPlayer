@@ -205,5 +205,17 @@ namespace VHKPlayer.Properties {
                 this["application_autoPlaylist"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("tab{\"Andet\";(folderSelection \"root\\musik\\andet\")}")]
+        public string application_leftBlockTabs {
+            get {
+                return ((string)(this["application_leftBlockTabs"]));
+            }
+            set {
+                this["application_leftBlockTabs"] = value;
+            }
+        }
     }
 }

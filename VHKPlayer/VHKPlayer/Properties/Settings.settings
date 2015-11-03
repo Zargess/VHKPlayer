@@ -47,5 +47,8 @@
     <Setting Name="application_autoPlaylist" Type="System.String" Scope="User">
       <Value Profile="(Default)">10Sek</Value>
     </Setting>
+    <Setting Name="application_leftBlockTabs" Type="System.String" Scope="User">
+      <Value Profile="(Default)">tab{"Andet";(folderSelection "root\musik\andet")}</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
