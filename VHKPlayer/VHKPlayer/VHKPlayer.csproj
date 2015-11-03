@@ -165,6 +165,8 @@
     <Compile Include="Queries\GetAutoPlayList\GetAutoPlayListQueryHandler.cs" />
     <Compile Include="Queries\GetFolderByPathSubscript\GetFolderByPathSubscriptQuery.cs" />
     <Compile Include="Queries\GetFolderByPathSubscript\GetFolderByPathSubscriptQueryHandler.cs" />
+    <Compile Include="Queries\GetFolderByRelativePath\GetFolderByRelativePathQuery.cs" />
+    <Compile Include="Queries\GetFolderByRelativePath\GetFolderByRelativePathQueryHandler.cs" />
     <Compile Include="Queries\GetFolderFromPath\GetFolderFromPathQuery.cs" />
     <Compile Include="Queries\GetFolderFromPath\GetFolderFromPathQueryHandler.cs" />
     <Compile Include="Queries\GetFolderFromStringSetting\GetFolderFromStringSettingQuery.cs" />
