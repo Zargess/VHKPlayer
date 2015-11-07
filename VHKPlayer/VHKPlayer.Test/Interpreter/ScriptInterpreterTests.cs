@@ -13,6 +13,8 @@ using NSubstitute;
 using Ploeh.AutoFixture;
 using Autofac;
 using VHKPlayer.Interpreter.Interfaces;
+using VHKPlayer.Queries.GetFolders;
+using VHKPlayer.Queries.GetStringSetting;
 
 namespace VHKPlayer.Interpreter.Tests
 {
@@ -20,9 +22,20 @@ namespace VHKPlayer.Interpreter.Tests
     public class ScriptInterpreterTests : TestBase
     {
         [TestMethod]
+        public void TestEvaluatePropertySelector()
+        {
+            var script = "TODO : Make a property selector script and test if it works!";
+            var container = CreateContainer();
+            var interpreter = container.Resolve<IScriptInterpreter>();
+
+            Assert.IsTrue(interpreter.Evaluate(script, new FileNode()));
+            Assert.IsFalse(interpreter.Evaluate(script, new FolderNode(null)));
+        }
+
+        [TestMethod]
         public void TestEvaluateTypeSelector()
         {
-            var script = "(type FileNode)";
+            var script = "(type name:FileNode)";
             var container = CreateContainer();
             var interpreter = container.Resolve<IScriptInterpreter>();
 
@@ -33,10 +46,12 @@ namespace VHKPlayer.Interpreter.Tests
         [TestMethod()]
         public void TestEvaluateFolderSelector()
         {
-            var script = "(folder \"root\\blandet\")";
+            var script = "(folder path:\"root\\blandet\")";
+            var root = fixture.Create<string>();
+            var path = root + "\\blandet";
             var file = new FileNode()
             {
-                FullPath = fixture.Create<string>()
+                FullPath = path + @"\test.png"
             };
             var playablefile1 = new PlayableFile()
             {
@@ -52,16 +67,22 @@ namespace VHKPlayer.Interpreter.Tests
 
             var container = CreateContainer(c =>
             {
-                c.RegisterFake<IQueryHandler<GetFolderByRelativePathQuery, FolderNode>>()
-                    .Handle(Arg.Any<GetFolderByRelativePathQuery>())
-                    .Returns(
-                        new FolderNode(null)
-                        {
-                            Content = new List<FileNode>()
+                c.RegisterFake<IQueryHandler<GetStringSettingQuery, string>>()
+                    .Handle(Arg.Any<GetStringSettingQuery>())
+                    .Returns(root);
+
+                c.RegisterFake<IQueryHandler<GetFoldersQuery, IQueryable<FolderNode>>>()
+                    .Handle(Arg.Any<GetFoldersQuery>())
+                    .Returns(new[] {
+                            new FolderNode(null)
                             {
-                                file
+                                FullPath = path,
+                                Content = new List<FileNode>()
+                                {
+                                    file
+                                }
                             }
-                        });
+                        }.AsQueryable());
             });
 
             var interpreter = container.Resolve<IScriptInterpreter>();

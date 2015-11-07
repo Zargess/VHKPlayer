@@ -19,9 +19,14 @@ namespace VHKPlayer.Interpreter
     public class ScriptInterpreter : IScriptInterpreter
     {
         private readonly IQueryProcessor processor;
-        private const string FOLDERSELECTOR = "(folder *)";
-        private const string TYPESELECTOR = "(type *)";
-        private const string PROPERTYSELECTOR = "(property * *)";
+        private const string IDENTIFIERPATTERN = "[_a-zA-z][a-zA-Z0-9]*";
+        private const string STRINGPATTERN = "\".*?\"";
+        private const string INTEGERPATTERN = @"\d+";
+        private const string BOOLEANPATTERN = "[True|False]";
+        private const string VALUEPATTERN = "[" + STRINGPATTERN + "|" + INTEGERPATTERN + "|" + BOOLEANPATTERN + "]";
+        private const string FOLDERSELECTOR = "(folder path:*)";
+        private const string TYPESELECTOR = "(type name:*)";
+        private const string PROPERTYSELECTOR = "(property name:" + IDENTIFIERPATTERN + " value:" + VALUEPATTERN + ")";
 
         public ScriptInterpreter(IQueryProcessor processor)
         {
@@ -47,26 +52,29 @@ namespace VHKPlayer.Interpreter
 
         private bool HandlePropertyScript(string script, object input)
         {
+            var identifierMatch = Regex.Match(script, "name:" + IDENTIFIERPATTERN);
+            var valueMatch = Regex.Match(script, "value:" + VALUEPATTERN);
+            if (!identifierMatch.Success) throw new SyntaxErrorException("A Property selector must have a legal property name!\n" + IDENTIFIERPATTERN + "\n" + script);
+            if (!valueMatch.Success) throw new SyntaxErrorException("A Property selector must have a legal value!\n" + VALUEPATTERN + "\n" + script);
+
             throw new NotImplementedException();
         }
 
         private bool HandleTypeScript(string script, object input)
         {
-            var parameter = script.Replace(")", "").Split(' ');
-            if (parameter.Length != 1 && !Regex.IsMatch(parameter[0], "[a-zA-z][a-zA-Z0-9]*"))
-            {
-                throw new SyntaxErrorException("Type must not be seperated by space and should not allow special characters or allow starting with number.\n" + script);
-            }
+            var match = Regex.Match(script, "name:" + IDENTIFIERPATTERN);
+            if (!match.Success) throw new SyntaxErrorException("Type must not be seperated by space and should not allow special characters or allow starting with number.\n" + script);
 
+            var parameter = match.Value.Replace("name:", "");
             try
             {
-                var t = Type.GetType("VHKPlayer.Models." + parameter[1]);
+                var t = Type.GetType("VHKPlayer.Models." + parameter);
                 var temp = t == input.GetType();
                 return t == input.GetType();
             }
             catch (TypeLoadException ex)
             {
-                Console.WriteLine("Type {0} was not recognised as a type.\n{1}", parameter[1], ex.StackTrace);
+                Console.WriteLine("Type {0} was not recognised as a type.\n{1}", parameter, ex.StackTrace);
             }
 
             return false;
@@ -74,7 +82,7 @@ namespace VHKPlayer.Interpreter
 
         private bool HandleFolderScript(string script, object input)
         {
-            var match = Regex.Match(script, "\".*?\"");
+            var match = Regex.Match(script, STRINGPATTERN);
             if (!match.Success) throw new SyntaxErrorException("A folder selector must have the path in quotes!\n" + script);
 
             var playablefile = input as PlayableFile;
