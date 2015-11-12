@@ -300,6 +300,12 @@
   <ItemGroup>
     <Resource Include="Notes.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ScriptParser\ScriptParser.fsproj">
+      <Project>{f6823436-a7b5-4364-ac8f-60899e80a518}</Project>
+      <Name>ScriptParser</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

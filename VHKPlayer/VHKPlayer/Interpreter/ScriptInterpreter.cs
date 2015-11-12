@@ -22,11 +22,15 @@ namespace VHKPlayer.Interpreter
         private const string IDENTIFIERPATTERN = "[_a-zA-z][a-zA-Z0-9]*";
         private const string STRINGPATTERN = "\".*?\"";
         private const string INTEGERPATTERN = @"\d+";
-        private const string BOOLEANPATTERN = "[True|False]";
-        private const string VALUEPATTERN = "[" + STRINGPATTERN + "|" + INTEGERPATTERN + "|" + BOOLEANPATTERN + "]";
+        private const string BOOLEANPATTERN = "True|False";
+        private const string VALUEPATTERN = "(?:" + STRINGPATTERN + "|" + INTEGERPATTERN + "|" + BOOLEANPATTERN + ")";
         private const string FOLDERSELECTOR = "(folder path:*)";
         private const string TYPESELECTOR = "(type name:*)";
-        private const string PROPERTYSELECTOR = "(property name:" + IDENTIFIERPATTERN + " value:" + VALUEPATTERN + ")";
+        private const string PROPERTYSELECTOR = "(property * *)";
+        private const string MULTISELECTOR = "(multi * *)";
+        //private const string SCRIPTPATTERN = "[?:\b" + FOLDERSELECTOR + "\b|\b" + TYPESELECTOR + "\b|\b" + PROPERTYSELECTOR + "\b|\b" + MULTISELECTOR + "\b]";
+        //private const string SCRIPTPATTERN = "(?:\bfolder\b|\btype\b|\bproperty\b|\bmulti\b)";
+        private const string SCRIPTPATTERN = @"(?<=\().+?(?=\))";
 
         public ScriptInterpreter(IQueryProcessor processor)
         {
@@ -35,7 +39,11 @@ namespace VHKPlayer.Interpreter
 
         public bool Evaluate(string script, object input)
         {
-            if (Regex.IsMatch(script, FOLDERSELECTOR))
+            if (Regex.IsMatch(script, MULTISELECTOR))
+            {
+                return HandleMultiScript(script, input);
+            }
+            else if (Regex.IsMatch(script, FOLDERSELECTOR))
             {
                 return HandleFolderScript(script, input);
             }
@@ -50,6 +58,17 @@ namespace VHKPlayer.Interpreter
             throw new SyntaxErrorException("Script is not recognised\n" + script);
         }
 
+        private bool HandleMultiScript(string script, object input)
+        {
+            var leftMatch = Regex.Match(script, SCRIPTPATTERN);
+            var rightMatch = Regex.Match(script.Remove(0,7), "right:*");
+            
+            if (!leftMatch.Success) throw new SyntaxErrorException("The left script is not valid!\n" + script);
+            if (!rightMatch.Success) throw new SyntaxErrorException("The right script is not valid!\n" + script);
+
+            throw new NotImplementedException();
+        }
+
         private bool HandlePropertyScript(string script, object input)
         {
             var identifierMatch = Regex.Match(script, "name:" + IDENTIFIERPATTERN);
@@ -57,7 +76,43 @@ namespace VHKPlayer.Interpreter
             if (!identifierMatch.Success) throw new SyntaxErrorException("A Property selector must have a legal property name!\n" + IDENTIFIERPATTERN + "\n" + script);
             if (!valueMatch.Success) throw new SyntaxErrorException("A Property selector must have a legal value!\n" + VALUEPATTERN + "\n" + script);
 
-            throw new NotImplementedException();
+            var identifier = identifierMatch.Value.Replace("name:", "");
+            var value = valueMatch.Value.Replace("value:", "");
+
+            var property = input.GetType().GetProperty(identifier);
+            if (property == null) return false;
+
+            var propertyType = property.PropertyType;
+            var propertyIsString = propertyType == typeof(string);
+            var propertyIsInt = propertyType == typeof(int);
+            var propertyIsBool = propertyType == typeof(bool);
+            var stringMatch = Regex.IsMatch(value, STRINGPATTERN);
+            var intMatch = Regex.IsMatch(value, INTEGERPATTERN);
+            var boolMatch = Regex.IsMatch(value, BOOLEANPATTERN);
+
+            if (propertyIsString && stringMatch)
+            {
+                var temp = value.Replace("\"", "");
+                var inputValue = property.GetValue(input) as string;
+                return temp.Equals(inputValue);
+            }
+
+            if (propertyIsInt && intMatch)
+            {
+                var temp = value.ToInteger();
+                var inputValue = (int)property.GetValue(input);
+                return temp == inputValue;
+            }
+
+            if (propertyIsBool && boolMatch)
+            {
+                var temp = value.ToBool();
+                var test = property.GetValue(input);
+                var inputValue = (bool)property.GetValue(input);
+                return temp == inputValue;
+            }
+
+            throw new SyntaxErrorException("Value is not of legal type. Only string, int and bool are supported!\n" + value);
         }
 
         private bool HandleTypeScript(string script, object input)

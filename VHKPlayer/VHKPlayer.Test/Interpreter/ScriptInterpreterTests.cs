@@ -15,6 +15,7 @@ using Autofac;
 using VHKPlayer.Interpreter.Interfaces;
 using VHKPlayer.Queries.GetFolders;
 using VHKPlayer.Queries.GetStringSetting;
+using ScriptParser;
 
 namespace VHKPlayer.Interpreter.Tests
 {
@@ -22,14 +23,81 @@ namespace VHKPlayer.Interpreter.Tests
     public class ScriptInterpreterTests : TestBase
     {
         [TestMethod]
-        public void TestEvaluatePropertySelector()
-        {
-            var script = "TODO : Make a property selector script and test if it works!";
+        public void TestEvaluateMultiSelector()
+        { 
+            var intScript = "(property name:Number value:42)";
+            var boolScript = "(property name:Trainer value:True)";
+            var typeScript = "(type name:Player)";
+            
+            var script = "(mulit left:" + intScript + " right:(multi left:" + intScript + " right:" + boolScript + "))";
+
+            var player1 = new Player()
+            {
+                Trainer = true,
+                Number = 42
+            };
+            var player2 = new Player()
+            {
+                Trainer = false,
+                Number = 21
+            };
+            var player3 = new Player()
+            {
+                Trainer = true,
+                Number = 21
+            };
+            var file = new FileNode().RandomizeTheRest();
+
             var container = CreateContainer();
             var interpreter = container.Resolve<IScriptInterpreter>();
 
-            Assert.IsTrue(interpreter.Evaluate(script, new FileNode()));
-            Assert.IsFalse(interpreter.Evaluate(script, new FolderNode(null)));
+            Assert.IsTrue(interpreter.Evaluate(script, player1));
+            Assert.IsFalse(interpreter.Evaluate(script, player2));
+            Assert.IsFalse(interpreter.Evaluate(script, player3));
+            Assert.IsFalse(interpreter.Evaluate(script, file));
+        }
+
+        [TestMethod]
+        public void TestEvaluatePropertySelector()
+        {
+            var path = @"test";
+            var file1 = new FileNode()
+            {
+                FullPath = path
+            }.RandomizeTheRest();
+            var file2 = new FileNode()
+            {
+                FullPath = fixture.Create<string>()
+            }.RandomizeTheRest();
+            var player1 = new Player()
+            {
+                Trainer = false,
+                Number = 42
+            };
+            var player2 = new Player()
+            {
+                Trainer = true,
+                Number = 21
+            };
+
+            var stringScript = "(property name:FullPath value:\"" + path + "\")";
+            var intScript = "(property name:Number value:42)";
+            var boolScript = "(property name:Trainer value:True)";
+
+            var container = CreateContainer();
+            var interpreter = container.Resolve<IScriptInterpreter>();
+
+            Assert.IsTrue(interpreter.Evaluate(stringScript, file1));
+            Assert.IsFalse(interpreter.Evaluate(stringScript, file2));
+            Assert.IsFalse(interpreter.Evaluate(stringScript, player1));
+
+            Assert.IsTrue(interpreter.Evaluate(intScript, player1));
+            Assert.IsFalse(interpreter.Evaluate(intScript, player2));
+            Assert.IsFalse(interpreter.Evaluate(intScript, file1));
+
+            Assert.IsTrue(interpreter.Evaluate(boolScript, player2));
+            Assert.IsFalse(interpreter.Evaluate(boolScript, player1));
+            Assert.IsFalse(interpreter.Evaluate(boolScript, file1));
         }
 
         [TestMethod]
