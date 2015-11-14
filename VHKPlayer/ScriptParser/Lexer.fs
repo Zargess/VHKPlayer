@@ -69,7 +69,6 @@
 
         let getTokens (input : string) : Token list = 
             let rec constructList (input : string) resList =
-                printfn "%A" input
                 match getNextToken input with
                 | (END, "") -> END::resList
                 | (token, rest) -> constructList rest (token::resList)
