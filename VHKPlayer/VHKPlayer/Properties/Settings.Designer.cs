@@ -208,13 +208,49 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("tab{\"Andet\";(folderSelection \"root\\musik\\andet\")}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("tab{\"Andet\";(folder \"root\\musik\\andet\")}")]
         public string application_leftBlockTabs {
             get {
                 return ((string)(this["application_leftBlockTabs"]));
             }
             set {
                 this["application_leftBlockTabs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string application_duringMatchTabs {
+            get {
+                return ((string)(this["application_duringMatchTabs"]));
+            }
+            set {
+                this["application_duringMatchTabs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string application_duringMatchRightContent {
+            get {
+                return ((string)(this["application_duringMatchRightContent"]));
+            }
+            set {
+                this["application_duringMatchRightContent"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string application_rightBlockTabs {
+            get {
+                return ((string)(this["application_rightBlockTabs"]));
+            }
+            set {
+                this["application_rightBlockTabs"] = value;
             }
         }
     }

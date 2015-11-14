@@ -1,36 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using VHKPlayer.Commands.Logic.CreatePlayList;
+﻿using ScriptParser;
+using System;
 using VHKPlayer.Exceptions;
-using VHKPlayer.Infrastructure;
 using VHKPlayer.Interpreter.Interfaces;
 using VHKPlayer.Models;
-using VHKPlayer.Queries.GetFolderByPathSubscript;
 using VHKPlayer.Queries.GetFolderByRelativePath;
 using VHKPlayer.Queries.Interfaces;
-using VHKPlayer.Utility.LoadingStrategy.Interfaces;
-using VHKPlayer.Utility.LoadingStrategy.PlayListLoading;
-using VHKPlayer.Utility.PlayStrategy;
-using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
 namespace VHKPlayer.Interpreter
 {
     public class ScriptInterpreter : IScriptInterpreter
     {
         private readonly IQueryProcessor processor;
-        private const string IDENTIFIERPATTERN = "[_a-zA-z][a-zA-Z0-9]*";
-        private const string STRINGPATTERN = "\".*?\"";
-        private const string INTEGERPATTERN = @"\d+";
-        private const string BOOLEANPATTERN = "True|False";
-        private const string VALUEPATTERN = "(?:" + STRINGPATTERN + "|" + INTEGERPATTERN + "|" + BOOLEANPATTERN + ")";
-        private const string FOLDERSELECTOR = "(folder path:*)";
-        private const string TYPESELECTOR = "(type name:*)";
-        private const string PROPERTYSELECTOR = "(property * *)";
-        private const string MULTISELECTOR = "(multi * *)";
-        //private const string SCRIPTPATTERN = "[?:\b" + FOLDERSELECTOR + "\b|\b" + TYPESELECTOR + "\b|\b" + PROPERTYSELECTOR + "\b|\b" + MULTISELECTOR + "\b]";
-        //private const string SCRIPTPATTERN = "(?:\bfolder\b|\btype\b|\bproperty\b|\bmulti\b)";
-        private const string SCRIPTPATTERN = @"(?<=\().+?(?=\))";
 
         public ScriptInterpreter(IQueryProcessor processor)
         {
@@ -39,45 +19,38 @@ namespace VHKPlayer.Interpreter
 
         public bool Evaluate(string script, object input)
         {
-            if (Regex.IsMatch(script, MULTISELECTOR))
-            {
-                return HandleMultiScript(script, input);
-            }
-            else if (Regex.IsMatch(script, FOLDERSELECTOR))
-            {
-                return HandleFolderScript(script, input);
-            }
-            else if (Regex.IsMatch(script, TYPESELECTOR))
-            {
-                return HandleTypeScript(script, input);
-            }
-            else if (Regex.IsMatch(script, PROPERTYSELECTOR))
-            {
-                return HandlePropertyScript(script, input);
-            }
-            throw new SyntaxErrorException("Script is not recognised\n" + script);
+            return Evaluate(Parser.Parse(script), input);
         }
 
-        private bool HandleMultiScript(string script, object input)
+        private bool Evaluate(Program program, object input)
         {
-            var leftMatch = Regex.Match(script, SCRIPTPATTERN);
-            var rightMatch = Regex.Match(script.Remove(0,7), "right:*");
-            
-            if (!leftMatch.Success) throw new SyntaxErrorException("The left script is not valid!\n" + script);
-            if (!rightMatch.Success) throw new SyntaxErrorException("The right script is not valid!\n" + script);
+            if (program.IsFolder) return HandleFolderScript(program, input);
+            if (program.IsType) return HandleTypeScript(program, input);
+            if (program.IsProperty) return HandlePropertyScript(program, input);
+            if (program.IsMulti) return HandleMultiScript(program, input);
+            if (program.IsError) return HandleErrorScript(program, input);
 
-            throw new NotImplementedException();
+            throw new SyntaxErrorException("Script not recognised\n" + program.ToString());
         }
 
-        private bool HandlePropertyScript(string script, object input)
+        private bool HandleErrorScript(Program program, object input)
         {
-            var identifierMatch = Regex.Match(script, "name:" + IDENTIFIERPATTERN);
-            var valueMatch = Regex.Match(script, "value:" + VALUEPATTERN);
-            if (!identifierMatch.Success) throw new SyntaxErrorException("A Property selector must have a legal property name!\n" + IDENTIFIERPATTERN + "\n" + script);
-            if (!valueMatch.Success) throw new SyntaxErrorException("A Property selector must have a legal value!\n" + VALUEPATTERN + "\n" + script);
+            var errorScript = (Program.Error)program;
+            throw new SyntaxErrorException(errorScript.Item);
+        }
 
-            var identifier = identifierMatch.Value.Replace("name:", "");
-            var value = valueMatch.Value.Replace("value:", "");
+        private bool HandleMultiScript(Program script, object input)
+        {
+            var multiScript = (Program.Multi)script;
+            return Evaluate(multiScript.Item1, input) && Evaluate(multiScript.Item2, input);
+        }
+
+        private bool HandlePropertyScript(Program script, object input)
+        {
+            var propertyScript = (Program.Property)script;
+
+            var identifier = propertyScript.Item1;
+            var value = propertyScript.Item2;
 
             var property = input.GetType().GetProperty(identifier);
             if (property == null) return false;
@@ -86,27 +59,27 @@ namespace VHKPlayer.Interpreter
             var propertyIsString = propertyType == typeof(string);
             var propertyIsInt = propertyType == typeof(int);
             var propertyIsBool = propertyType == typeof(bool);
-            var stringMatch = Regex.IsMatch(value, STRINGPATTERN);
-            var intMatch = Regex.IsMatch(value, INTEGERPATTERN);
-            var boolMatch = Regex.IsMatch(value, BOOLEANPATTERN);
+            var stringMatch = value.GetType() == typeof(string);
+            var intMatch = value.GetType() ==  typeof(int);
+            var boolMatch = value.GetType() == typeof(bool);
 
             if (propertyIsString && stringMatch)
             {
-                var temp = value.Replace("\"", "");
+                var temp = (string)value;
                 var inputValue = property.GetValue(input) as string;
                 return temp.Equals(inputValue);
             }
 
             if (propertyIsInt && intMatch)
             {
-                var temp = value.ToInteger();
+                var temp = (int)value;
                 var inputValue = (int)property.GetValue(input);
                 return temp == inputValue;
             }
 
             if (propertyIsBool && boolMatch)
             {
-                var temp = value.ToBool();
+                var temp = (bool)value;
                 var test = property.GetValue(input);
                 var inputValue = (bool)property.GetValue(input);
                 return temp == inputValue;
@@ -115,12 +88,10 @@ namespace VHKPlayer.Interpreter
             throw new SyntaxErrorException("Value is not of legal type. Only string, int and bool are supported!\n" + value);
         }
 
-        private bool HandleTypeScript(string script, object input)
+        private bool HandleTypeScript(Program script, object input)
         {
-            var match = Regex.Match(script, "name:" + IDENTIFIERPATTERN);
-            if (!match.Success) throw new SyntaxErrorException("Type must not be seperated by space and should not allow special characters or allow starting with number.\n" + script);
-
-            var parameter = match.Value.Replace("name:", "");
+            var typeScript = (Program.Type)script;
+            var parameter = typeScript.Item;
             try
             {
                 var t = Type.GetType("VHKPlayer.Models." + parameter);
@@ -135,15 +106,13 @@ namespace VHKPlayer.Interpreter
             return false;
         }
 
-        private bool HandleFolderScript(string script, object input)
+        private bool HandleFolderScript(Program script, object input)
         {
-            var match = Regex.Match(script, STRINGPATTERN);
-            if (!match.Success) throw new SyntaxErrorException("A folder selector must have the path in quotes!\n" + script);
-
+            var folderScript = (Program.Folder)script;
             var playablefile = input as PlayableFile;
             if (playablefile == null) return false; // Not a playable file!
 
-            var relativePath = match.Value.Replace("\"", "");
+            var relativePath = folderScript.Item.Replace("\"", "");
 
             var folder = processor.Process(new GetFolderByRelativePathQuery()
             {

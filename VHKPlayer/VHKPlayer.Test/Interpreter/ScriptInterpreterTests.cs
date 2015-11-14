@@ -29,7 +29,7 @@ namespace VHKPlayer.Interpreter.Tests
             var boolScript = "(property name:Trainer value:True)";
             var typeScript = "(type name:Player)";
             
-            var script = "(mulit left:" + intScript + " right:(multi left:" + intScript + " right:" + boolScript + "))";
+            var script = "(multi left:" + intScript + " right:(multi left:" + typeScript + " right:" + boolScript + "))";
 
             var player1 = new Player()
             {

@@ -48,7 +48,16 @@
       <Value Profile="(Default)">10Sek</Value>
     </Setting>
     <Setting Name="application_leftBlockTabs" Type="System.String" Scope="User">
-      <Value Profile="(Default)">tab{"Andet";(folderSelection "root\musik\andet")}</Value>
+      <Value Profile="(Default)">tab{"Andet";(folder "root\musik\andet")}</Value>
+    </Setting>
+    <Setting Name="application_duringMatchTabs" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="application_duringMatchRightContent" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="application_rightBlockTabs" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
