@@ -10,7 +10,7 @@
                 None
 
         let (|Integer|_|) (p:string) =
-            let test = p.Split(' ').[0]
+            let test = p.Split(')').[0]
             let mutable intvalue = 0
             if System.Int32.TryParse(test, &intvalue) then Some(intvalue)
             else None
@@ -69,8 +69,10 @@
 
         let getTokens (input : string) : Token list = 
             let rec constructList (input : string) resList =
+                printfn "%A" input
                 match getNextToken input with
                 | (END, "") -> END::resList
                 | (token, rest) -> constructList rest (token::resList)
             constructList input []
             |> List.rev
+
