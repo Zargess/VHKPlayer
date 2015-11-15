@@ -3,6 +3,7 @@ using System;
 using VHKPlayer.Exceptions;
 using VHKPlayer.Interpreter.Interfaces;
 using VHKPlayer.Models;
+using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.GetFolderByRelativePath;
 using VHKPlayer.Queries.Interfaces;
 
@@ -17,9 +18,9 @@ namespace VHKPlayer.Interpreter
             this.processor = processor;
         }
 
-        public bool Evaluate(string script, object input)
+        public bool Evaluate(IScript script, object input)
         {
-            return Evaluate(Parser.Parse(script), input);
+            return Evaluate(Parser.Parse(script.Code), input);
         }
 
         private bool Evaluate(Program program, object input)

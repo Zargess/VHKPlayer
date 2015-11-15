@@ -24,9 +24,7 @@ namespace VHKPlayer.ViewModels
 
         public PlayerViewModel()
         {
-            var builder = new ContainerBuilder();
-            builder.RegisterModule(new DefaultWiringModule());
-            container = builder.Build();
+            container = App.Container;
             cprocessor = container.Resolve<ICommandProcessor>();
             qprocessor = container.Resolve<IQueryProcessor>();
 

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using VHKPlayer.Models.Interfaces;
 
 namespace VHKPlayer.Interpreter.Interfaces
 {
     public interface IScriptInterpreter
     {
-        bool Evaluate(string script, object parameter);
+        bool Evaluate(IScript script, object parameter);
     }
 }

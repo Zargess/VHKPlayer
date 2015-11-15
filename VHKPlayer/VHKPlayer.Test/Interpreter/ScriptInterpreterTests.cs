@@ -29,7 +29,7 @@ namespace VHKPlayer.Interpreter.Tests
             var boolScript = "(property name:Trainer value:True)";
             var typeScript = "(type name:Player)";
             
-            var script = "(multi left:" + intScript + " right:(multi left:" + typeScript + " right:" + boolScript + "))";
+            var script = new Script("(multi left:" + intScript + " right:(multi left:" + typeScript + " right:" + boolScript + "))");
 
             var player1 = new Player()
             {
@@ -80,9 +80,9 @@ namespace VHKPlayer.Interpreter.Tests
                 Number = 21
             };
 
-            var stringScript = "(property name:FullPath value:\"" + path + "\")";
-            var intScript = "(property name:Number value:42)";
-            var boolScript = "(property name:Trainer value:True)";
+            var stringScript = new Script("(property name:FullPath value:\"" + path + "\")");
+            var intScript = new Script("(property name:Number value:42)");
+            var boolScript = new Script("(property name:Trainer value:True)");
 
             var container = CreateContainer();
             var interpreter = container.Resolve<IScriptInterpreter>();
@@ -103,7 +103,7 @@ namespace VHKPlayer.Interpreter.Tests
         [TestMethod]
         public void TestEvaluateTypeSelector()
         {
-            var script = "(type name:FileNode)";
+            var script = new Script("(type name:FileNode)");
             var container = CreateContainer();
             var interpreter = container.Resolve<IScriptInterpreter>();
 
@@ -114,7 +114,7 @@ namespace VHKPlayer.Interpreter.Tests
         [TestMethod()]
         public void TestEvaluateFolderSelector()
         {
-            var script = "(folder path:\"root\\blandet\")";
+            var script = new Script("(folder path:\"root\\blandet\")");
             var root = fixture.Create<string>();
             var path = root + "\\blandet";
             var file = new FileNode()

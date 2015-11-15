@@ -152,12 +152,14 @@
     <Compile Include="Models\FolderNode.cs" />
     <Compile Include="Models\Interfaces\IDataCenter.cs" />
     <Compile Include="Models\Interfaces\IDataObserver.cs" />
+    <Compile Include="Models\Interfaces\IScript.cs" />
     <Compile Include="Models\Interfaces\IVHKObserver.cs" />
     <Compile Include="Models\Interfaces\IPlayable.cs" />
     <Compile Include="Models\PlayableFile.cs" />
     <Compile Include="Models\PlayableType.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayList.cs" />
+    <Compile Include="Models\Script.cs" />
     <Compile Include="Models\Statistics.cs" />
     <Compile Include="Queries\GetAllPlayables\GetAllPlayablesQuery.cs" />
     <Compile Include="Queries\GetAllPlayables\GetAllPlayablesQueryHandler.cs" />
