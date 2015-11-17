@@ -25,9 +25,9 @@ namespace VHKPlayer.Converters
 
             var script = parameter as IScript;
             var interpreter = App.Container.Resolve<IScriptInterpreter>();
-            if (interpreter.Evaluate(script, value)) return Visibility.Visible;
+            if (!interpreter.Evaluate(script, value)) return Visibility.Hidden;
 
-            return Visibility.Hidden;
+            return Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

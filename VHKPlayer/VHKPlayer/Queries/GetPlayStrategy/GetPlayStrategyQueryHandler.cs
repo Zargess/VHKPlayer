@@ -22,6 +22,10 @@ namespace VHKPlayer.Queries.GetPlayStrategy
             {
                 return new IteratedPlayStrategy();
             }
+            if (query.StrategyName == "SingleFile")
+            {
+                return new SingleFilePlayStrategy();
+            }
 
             throw new NoSuchPlayStrategyException();
         }
