@@ -7,6 +7,7 @@ using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.DataManagement.Interfaces;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Infrastructure.Modules;
+using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.GetAllPlayables;
 using VHKPlayer.Queries.Interfaces;
@@ -21,6 +22,8 @@ namespace VHKPlayer.ViewModels
         private readonly IDataMonitor monitor;
 
         public ObservableCollection<IPlayable> Playables { get; private set; }
+        public IScript Script { get; set; } = new Script("(type name:Player)");
+
 
         public PlayerViewModel()
         {

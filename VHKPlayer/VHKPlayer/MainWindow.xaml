@@ -46,7 +46,7 @@
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="0">
-                    <controls:PlayableListbox Command="{Binding DummyCommand}" Data="{Binding Playables}" Converter="{StaticResource UniversalConverter}" />
+                    <controls:PlayableListbox Command="{Binding DummyCommand}" Data="{Binding Playables}" ConverterParam="{Binding Script}" />
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="2">

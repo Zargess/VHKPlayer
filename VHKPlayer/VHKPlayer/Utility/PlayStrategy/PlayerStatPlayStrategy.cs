@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Models;
+using VHKPlayer.Queries.GetFolderFromStringSetting;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
@@ -40,10 +41,29 @@ namespace VHKPlayer.Utility.PlayStrategy
 
             return videoPlayer.Queue.Peek();
         }
-
+        
         public void Play(IEnumerable<FileNode> content, IVideoPlayerController videoPlayer)
         {
-            throw new NotImplementedException();
+            var statMusicFolder = processor.Process(new GetFolderFromStringSettingQuery()
+            {
+                SettingName = Constants.PlayerStatMusicFolderSettingName
+            });
+
+            var statVideoFolder = processor.Process(new GetFolderFromStringSettingQuery()
+            {
+                SettingName = Constants.PlayerStatVideoFolderSettingName
+            });
+
+            var statPictureFolder = processor.Process(new GetFolderFromStringSettingQuery()
+            {
+                SettingName = Constants.PlayerStatPictureFolderSettingName
+            });
+
+            var music = content.AsParallel().SingleOrDefault(x => statMusicFolder.Contains(x));
+            var video = content.AsParallel().SingleOrDefault(x => statVideoFolder.Contains(x));
+            var picture = content.AsParallel().SingleOrDefault(x => statPictureFolder.Contains(x));
+
+            // TODO : Figure out a way for the video player to know when to start the timer
         }
     }
 }

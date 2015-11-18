@@ -18,8 +18,7 @@ namespace VHKPlayer.Models
         public ObservableCollection<PlayableFile> PlayableFiles { get; set; }
         public bool UncommitedChanges { get; set; }
 
-        // TODO : Make this a dictionary
-        public ICollection<Timer> Timers { get; set; }
+        public Dictionary<object, Timer> Timers { get; set; }
 
         public DataCenter()
         {
@@ -28,7 +27,7 @@ namespace VHKPlayer.Models
             Folders = new ObservableCollection<FolderNode>();
             PlayableFiles = new ObservableCollection<PlayableFile>();
             observers = new List<IDataObserver>();
-            Timers = new List<Timer>();
+            Timers = new Dictionary<object, Timer>();
             Players.CollectionChanged += DataChanged;
             PlayLists.CollectionChanged += DataChanged;
             Folders.CollectionChanged += DataChanged;
@@ -50,6 +49,7 @@ namespace VHKPlayer.Models
             observers.Remove(observer);
         }
 
+        // TODO : Make it possiple to revert if fail
         public void Commit()
         {
             PlayableFiles.SetCollection(PlayableFiles.OrderBy(x => x.Name));

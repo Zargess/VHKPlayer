@@ -13,24 +13,29 @@ using VHKPlayer.Models.Interfaces;
 
 namespace VHKPlayer.Converters
 {
-    public class UniversalVisibilityConverter : IValueConverter
+    public class UniversalVisibilityConverter : IMultiValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (parameter.GetType() != typeof(Script))
+            if (values.Length != 2) return Visibility.Hidden;
+
+            var script = values.SingleOrDefault(x => x is IScript) as IScript;
+
+            if (script == null)
             {
                 throw new NotImplementedException(); // TODO : Show a notifycation that a script was not inserted correctly into the converter
-                return Visibility.Visible;
+                return Visibility.Hidden;
             }
 
-            var script = parameter as IScript;
+            var value = values.SingleOrDefault(x => !(x is IScript));
+
             var interpreter = App.Container.Resolve<IScriptInterpreter>();
-            if (!interpreter.Evaluate(script, value)) return Visibility.Hidden;
+            if (!interpreter.Evaluate(script, value)) return Visibility.Collapsed;
 
             return Visibility.Visible;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

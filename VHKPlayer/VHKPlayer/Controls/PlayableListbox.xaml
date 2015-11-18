@@ -5,10 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:VHKPlayer.Controls"
+             xmlns:converters="clr-namespace:VHKPlayer.Converters"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:UniversalVisibilityConverter x:Key="converter" />
+        <System:String x:Key="script">(type name:Player)</System:String>
+
+        <Style x:Key="VisibilityStyle" TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Visibility">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource converter}">
+                        <Binding Path="ConverterParam" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}"/>
+                        <Binding />
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    
     <Grid>
-        <ListBox ItemsSource="{Binding Data, RelativeSource={RelativeSource AncestorType=UserControl}}" Name="Box">
+        <ListBox ItemsSource="{Binding Data, RelativeSource={RelativeSource AncestorType=UserControl}}" ItemContainerStyle="{StaticResource VisibilityStyle}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <ContentControl>
