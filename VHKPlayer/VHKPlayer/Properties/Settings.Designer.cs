@@ -208,7 +208,8 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{Andet;(folder \"root\\musik\\andet\");SingleFile}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{Andet;(folder path:\"root\\musik\\andet\");SingleFile},{Opvarmning;(folder path:\"roo" +
+            "t\\musik\\Opvarmning\");SingleFile}")]
         public string application_leftBlockTabs {
             get {
                 return ((string)(this["application_leftBlockTabs"]));

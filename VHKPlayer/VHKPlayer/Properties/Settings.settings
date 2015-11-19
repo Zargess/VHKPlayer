@@ -48,7 +48,7 @@
       <Value Profile="(Default)">10Sek</Value>
     </Setting>
     <Setting Name="application_leftBlockTabs" Type="System.String" Scope="User">
-      <Value Profile="(Default)">{Andet;(folder "root\musik\andet");SingleFile}</Value>
+      <Value Profile="(Default)">{Andet;(folder path:"root\musik\andet");SingleFile},{Opvarmning;(folder path:"root\musik\Opvarmning");SingleFile}</Value>
     </Setting>
     <Setting Name="application_duringMatchTabs" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
