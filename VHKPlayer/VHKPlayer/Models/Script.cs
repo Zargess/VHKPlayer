@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScriptParser;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,10 @@ namespace VHKPlayer.Models
 {
     public class Script : IScript
     {
-        public string Code { get; private set; }
+        public Program Code { get; private set; }
         public Script(string script)
         {
-            Code = script;
+            Code = Parser.Parse(script);
         }
     }
 }

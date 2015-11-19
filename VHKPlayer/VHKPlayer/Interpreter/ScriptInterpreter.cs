@@ -20,7 +20,7 @@ namespace VHKPlayer.Interpreter
 
         public bool Evaluate(IScript script, object input)
         {
-            return Evaluate(Parser.Parse(script.Code), input);
+            return Evaluate(script.Code, input);
         }
 
         private bool Evaluate(Program program, object input)

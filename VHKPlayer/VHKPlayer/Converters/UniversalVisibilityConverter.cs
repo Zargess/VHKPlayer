@@ -15,6 +15,7 @@ namespace VHKPlayer.Converters
 {
     public class UniversalVisibilityConverter : IMultiValueConverter
     {
+        private int counter = 0;
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values.Length != 2) return Visibility.Hidden;
@@ -24,15 +25,19 @@ namespace VHKPlayer.Converters
             if (script == null)
             {
                 throw new NotImplementedException(); // TODO : Show a notifycation that a script was not inserted correctly into the converter
-                return Visibility.Hidden;
+                return Visibility.Collapsed;
             }
 
-            var value = values.SingleOrDefault(x => !(x is IScript));
+            var value = values.SingleOrDefault(x => x is IPlayable);
 
             var interpreter = App.Container.Resolve<IScriptInterpreter>();
-            if (!interpreter.Evaluate(script, value)) return Visibility.Collapsed;
-
-            return Visibility.Visible;
+            //if (!interpreter.Evaluate(script, value)) return Visibility.Collapsed;
+            // TODO : Compile script once when created
+            var test = interpreter.Evaluate(script, value);
+            Console.WriteLine("The interpreter evaluates to {0}", test);
+            var res = true ? Visibility.Visible : Visibility.Collapsed;
+            counter++;
+            return res;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
