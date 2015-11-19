@@ -49,9 +49,7 @@ module Parser =
             | car::cdr -> findFunction cdr nestingLevel (res@[car])
         try
             let (left, rest) = findFunction (removeFirstXItems tokens 4) 0 []
-            printfn "%A" left |> ignore 
             let (right, _) = findFunction (removeFirstXItems rest 2) 0 []
-            printfn "%A" right |> ignore
             (left@[END], right@[END])
         with
         | SyntaxException msg -> ([ERROR(msg)], [ERROR(msg)])

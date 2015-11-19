@@ -31,13 +31,9 @@ namespace VHKPlayer.Converters
             var value = values.SingleOrDefault(x => x is IPlayable);
 
             var interpreter = App.Container.Resolve<IScriptInterpreter>();
-            //if (!interpreter.Evaluate(script, value)) return Visibility.Collapsed;
-            // TODO : Compile script once when created
-            var test = interpreter.Evaluate(script, value);
-            Console.WriteLine("The interpreter evaluates to {0}", test);
-            var res = true ? Visibility.Visible : Visibility.Collapsed;
-            counter++;
-            return res;
+            if (!interpreter.Evaluate(script, value)) return Visibility.Collapsed;
+
+            return Visibility.Visible;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

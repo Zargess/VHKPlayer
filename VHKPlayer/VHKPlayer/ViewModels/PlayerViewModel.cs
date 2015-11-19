@@ -22,7 +22,7 @@ namespace VHKPlayer.ViewModels
         private readonly IDataMonitor monitor;
 
         public ObservableCollection<IPlayable> Playables { get; private set; }
-        public IScript Script { get; set; } = new Script("(multi left:(property name:Trainer value:False) right:(property name:Number value:2))");
+        public IScript Script { get; set; } = new Script("(property name:Name value:\"Ladioo - 40 sek.mp3\")");
 
 
         public PlayerViewModel()
