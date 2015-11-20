@@ -141,6 +141,7 @@
     <Compile Include="Events\DataCenterUpdatedEventArgs.cs" />
     <Compile Include="Exceptions\NoSuchLoadingStrategyException.cs" />
     <Compile Include="Exceptions\NoSuchPlayStrategyException.cs" />
+    <Compile Include="Exceptions\NoSuchTabException.cs" />
     <Compile Include="Exceptions\SyntaxErrorException.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />
     <Compile Include="Interpreter\Interfaces\IScriptInterpreter.cs" />
@@ -149,12 +150,15 @@
       <DependentUpon>AlertBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DataCenter.cs" />
+    <Compile Include="Models\DuringMatchTab.cs" />
     <Compile Include="Models\FolderNode.cs" />
     <Compile Include="Models\Interfaces\IDataCenter.cs" />
     <Compile Include="Models\Interfaces\IDataObserver.cs" />
     <Compile Include="Models\Interfaces\IScript.cs" />
+    <Compile Include="Models\Interfaces\ITab.cs" />
     <Compile Include="Models\Interfaces\IVHKObserver.cs" />
     <Compile Include="Models\Interfaces\IPlayable.cs" />
+    <Compile Include="Models\PlayableContentTab.cs" />
     <Compile Include="Models\PlayableFile.cs" />
     <Compile Include="Models\PlayableType.cs" />
     <Compile Include="Models\Player.cs" />
@@ -200,6 +204,8 @@
     <Compile Include="Queries\GetRequiredFolderPaths\GetRequiredFolderPathsQueryHandler.cs" />
     <Compile Include="Queries\GetStringSetting\GetStringSettingQuery.cs" />
     <Compile Include="Queries\GetStringSetting\GetStringSettingQueryHandler.cs" />
+    <Compile Include="Queries\GetTabsFromStringSetting\GetTabsFromStringSettingQuery.cs" />
+    <Compile Include="Queries\GetTabsFromStringSetting\GetTabsFromStringSettingQueryHandler.cs" />
     <Compile Include="Queries\Interfaces\IQuery.cs" />
     <Compile Include="Queries\Interfaces\IQueryHandler.cs" />
     <Compile Include="Queries\Interfaces\IQueryProcessor.cs" />
@@ -213,6 +219,8 @@
     <Compile Include="Utility\Constants.cs" />
     <Compile Include="Utility\FindFileType\FindFileTypeStrategy.cs" />
     <Compile Include="Utility\FindFileType\Interfaces\IFindFileTypeStrategy.cs" />
+    <Compile Include="Utility\GetSpecialTab\GetSpecialTabStrategy.cs" />
+    <Compile Include="Utility\GetSpecialTab\Interfaces\IGetSpecialTabStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\Interfaces\ILoadingStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\PlayListLoading\FolderLoadingStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\PlayListLoading\SortedLoadingStrategy.cs" />
@@ -226,7 +234,6 @@
     <Compile Include="Utility\PlayStrategy\PlayerPicturePlayStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\PlayerStatPlayStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\PlayerVideoPlayStrategy.cs" />
-    <Compile Include="Utility\PlayStrategy\PlayMusicPlayStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\SingleFilePlayStrategy.cs" />
     <Compile Include="Utility\Settings\GlobalConfigService.cs" />
     <Compile Include="Utility\Settings\Interfaces\IGlobalConfigService.cs" />

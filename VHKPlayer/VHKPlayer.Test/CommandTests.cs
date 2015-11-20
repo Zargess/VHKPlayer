@@ -152,6 +152,8 @@ namespace VHKPlayer.Test
                         }
                     }.AsQueryable());
             });
+
+            throw new NotImplementedException();
         }
 
         [TestMethod]

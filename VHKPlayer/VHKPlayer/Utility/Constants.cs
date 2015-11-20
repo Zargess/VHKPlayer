@@ -21,10 +21,10 @@ namespace VHKPlayer.Utility
 
         public const string AutoPlayListSettingName = "application_autoPlaylist";
 
-        public const string LeftBlockTabs = "application_leftBlockTabs";
-        public const string DuringMatchTabs = "application_duringMatchTabs";
-        public const string DuringMatchRightContent = "application_duringMatchRightContent";
-        public const string RightBlockTabs = "application_rightBlockTabs";
+        public const string LeftBlockTabsSettingName = "application_leftBlockTabs";
+        public const string DuringMatchTabsSettingName = "application_duringMatchTabs";
+        public const string DuringMatchRightContentSettingName = "application_duringMatchRightContent";
+        public const string RightBlockTabsSettingName = "application_rightBlockTabs";
 
         public static List<string> PlayerFolderPathSettingNames = new List<string>()
         {

@@ -15,7 +15,7 @@ namespace VHKPlayer.Models
         public ObservableCollection<Player> Players { get; private set; }
         public ObservableCollection<PlayList> PlayLists { get; private set; }
         public ObservableCollection<FolderNode> Folders { get; private set; }
-        public ObservableCollection<PlayableFile> PlayableFiles { get; set; }
+        public ObservableCollection<PlayableFile> PlayableFiles { get; private set; }
         public bool UncommitedChanges { get; set; }
 
         public Dictionary<object, Timer> Timers { get; set; }

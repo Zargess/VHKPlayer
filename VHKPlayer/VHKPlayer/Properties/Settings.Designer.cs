@@ -208,8 +208,8 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{Andet;(folder path:\"root\\musik\\andet\");SingleFile},{Opvarmning;(folder path:\"roo" +
-            "t\\musik\\Opvarmning\");SingleFile}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{Andet;(folder path:\"root\\musik\\andet\");False;SingleFile},{Opvarmning;(folder pat" +
+            "h:\"root\\musik\\Opvarmning\");False;SingleFile}")]
         public string application_leftBlockTabs {
             get {
                 return ((string)(this["application_leftBlockTabs"]));
@@ -221,7 +221,9 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{PlayerPicture;(type name:Player);False;PlayerPicture},{PlayerVideo;(property nam" +
+            "e:Trainer value:False);False;PlayerVideo},{PlayerStat;(property name:Trainer val" +
+            "ue:False);False;PlayerStat}")]
         public string application_duringMatchTabs {
             get {
                 return ((string)(this["application_duringMatchTabs"]));
@@ -233,7 +235,7 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("(folder path:\"root\\SuperHero\")")]
         public string application_duringMatchRightContent {
             get {
                 return ((string)(this["application_duringMatchRightContent"]));
@@ -245,7 +247,8 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("duringmatch,{Blandet;(folder path:\\\"root\\\\blandet\\\");False;SingleFile},{Play List" +
+            "er;(type name:PlayList);True;SingleFile}")]
         public string application_rightBlockTabs {
             get {
                 return ((string)(this["application_rightBlockTabs"]));

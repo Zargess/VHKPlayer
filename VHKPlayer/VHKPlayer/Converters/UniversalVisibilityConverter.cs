@@ -15,7 +15,6 @@ namespace VHKPlayer.Converters
 {
     public class UniversalVisibilityConverter : IMultiValueConverter
     {
-        private int counter = 0;
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values.Length != 2) return Visibility.Hidden;

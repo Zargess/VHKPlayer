@@ -63,6 +63,7 @@ namespace VHKPlayer.Utility.PlayStrategy
             var video = content.AsParallel().SingleOrDefault(x => statVideoFolder.Contains(x));
             var picture = content.AsParallel().SingleOrDefault(x => statPictureFolder.Contains(x));
 
+            throw new NotImplementedException();
             // TODO : Figure out a way for the video player to know when to start the timer
         }
     }
