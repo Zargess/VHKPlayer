@@ -209,7 +209,8 @@ namespace VHKPlayer.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("{Andet;(folder path:\"root\\musik\\andet\");False;SingleFile},{Opvarmning;(folder pat" +
-            "h:\"root\\musik\\Opvarmning\");False;SingleFile}")]
+            "h:\"root\\musik\\Opvarmning\");False;SingleFile},{Scor;(property name:Trainer value:" +
+            "False);False;SingleFile}")]
         public string application_leftBlockTabs {
             get {
                 return ((string)(this["application_leftBlockTabs"]));
@@ -247,8 +248,8 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("duringmatch,{Blandet;(folder path:\\\"root\\\\blandet\\\");False;SingleFile},{Play List" +
-            "er;(type name:PlayList);True;SingleFile}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("duringmatch,{Blandet;(folder path:\"root\\blandet\");False;SingleFile},{Play Lister;" +
+            "(type name:PlayList);True;SingleFile}")]
         public string application_rightBlockTabs {
             get {
                 return ((string)(this["application_rightBlockTabs"]));

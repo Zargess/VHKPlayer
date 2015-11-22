@@ -12,6 +12,8 @@ using System.IO;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Queries.GetPlayerFolders;
 using System.Linq;
+using VHKPlayer.Commands.Logic.CreatePlayer;
+using VHKPlayer.Models.Interfaces;
 
 namespace VHKPlayer.Test
 {
@@ -133,6 +135,15 @@ namespace VHKPlayer.Test
         public void TestCreatePlayer()
         {
             var filename = "001 - Chana de Souza Mason.png";
+            var playername = "Chana de Souza Mason";
+            var number = 1;
+            var file = new FileNode()
+            {
+                Name = filename,
+                NameWithoutExtension = "001 - Chana de Souza Mason",
+                FullPath = Path.Combine("stuff", filename)
+            };
+            var statFolder = new FolderNode(null);
 
             var container = CreateContainer(c =>
             {
@@ -144,16 +155,25 @@ namespace VHKPlayer.Test
                         {
                             Content = new List<FileNode>()
                             {
-                                new FileNode()
-                                {
-                                    FullPath = Path.Combine("stuff", filename)
-                                }
+                                file
                             }
                         }
                     }.AsQueryable());
             });
 
-            throw new NotImplementedException();
+            var processor = container.Resolve<ICommandProcessor>();
+            processor.Process(new CreatePlayerCommand()
+            {
+                File = file,
+                Folder = statFolder
+            });
+
+            var datacenter = container.Resolve<IDataCenter>();
+
+            Assert.AreEqual(playername, datacenter.Players[0].Name);
+            Assert.AreEqual(number, datacenter.Players[0].Number);
+            Assert.AreEqual(file, datacenter.Players[0].Content[0]);
+            Assert.IsFalse(datacenter.Players[0].Trainer);
         }
 
         [TestMethod]

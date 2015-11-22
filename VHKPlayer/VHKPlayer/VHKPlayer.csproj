@@ -79,6 +79,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\GUI\DoNothingCommand.cs" />
     <Compile Include="Commands\GUI\DummyCommand.cs" />
+    <Compile Include="Commands\GUI\RunPlayableStrategyCommand.cs" />
     <Compile Include="Commands\Logic\AddDataObserver\AddDataObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\AddDataObserver\AddDataObserverCommand.cs" />
     <Compile Include="Commands\Logic\ChangeSetting\ChangeSettingCommand.cs" />

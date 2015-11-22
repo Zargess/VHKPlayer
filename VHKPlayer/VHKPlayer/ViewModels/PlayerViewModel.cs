@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using System.Collections.ObjectModel;
+using System.Linq;
 using VHKPlayer.Commands.GUI;
 using VHKPlayer.Commands.Logic.AddDataObserver;
 using VHKPlayer.Commands.Logic.CreateAllPlayables;
@@ -10,7 +11,9 @@ using VHKPlayer.Infrastructure.Modules;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.GetAllPlayables;
+using VHKPlayer.Queries.GetTabsFromStringSetting;
 using VHKPlayer.Queries.Interfaces;
+using VHKPlayer.Utility;
 
 namespace VHKPlayer.ViewModels
 {
@@ -22,6 +25,7 @@ namespace VHKPlayer.ViewModels
         private readonly IDataMonitor monitor;
 
         public ObservableCollection<IPlayable> Playables { get; private set; }
+        public ObservableCollection<ITab> Tabs { get; private set; }
         public IScript Script { get; set; } = new Script("(property name:Name value:\"Ladioo - 40 sek.mp3\")");
 
 
@@ -32,6 +36,13 @@ namespace VHKPlayer.ViewModels
             qprocessor = container.Resolve<IQueryProcessor>();
 
             Playables = new ObservableCollection<IPlayable>();
+
+            var tabs = qprocessor.Process(new GetTabsFromStringSettingQuery()
+            {
+                SettingName = Constants.RightBlockTabsSettingName
+            });
+
+            Tabs = new ObservableCollection<ITab>(tabs);
 
             monitor = container.Resolve<IDataMonitor>();
 

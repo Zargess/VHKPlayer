@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VHKPlayer.Commands.GUI;
 using VHKPlayer.Models.Interfaces;
+using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
 namespace VHKPlayer.Controls
 {
@@ -29,6 +30,7 @@ namespace VHKPlayer.Controls
         }
 
         public static readonly DependencyProperty CommandProperty = DependencyProperty.Register("Command", typeof(ICommand), typeof(PlayableListbox), new PropertyMetadata(new DoNothingCommand()));
+        public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register("CommandParameter", typeof(IPlayStrategy), typeof(PlayableListbox));
         public static readonly DependencyProperty DataProperty = DependencyProperty.Register("Data", typeof(ICollection<IPlayable>), typeof(PlayableListbox), new PropertyMetadata(new ObservableCollection<IPlayable>()));
         public static readonly DependencyProperty ConverterParameterProperty = DependencyProperty.Register("ConverterParam", typeof(object), typeof(PlayableListbox));
 
@@ -42,6 +44,12 @@ namespace VHKPlayer.Controls
             {
                 SetValue(CommandProperty, value);
             }
+        }
+
+        public IPlayStrategy CommandParameter
+        {
+            get { return (IPlayStrategy)GetValue(CommandParameterProperty); }
+            set { SetValue(CommandParameterProperty, value); }
         }
 
         public ICollection<IPlayable> Data

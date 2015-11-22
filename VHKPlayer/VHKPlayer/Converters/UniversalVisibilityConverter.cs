@@ -26,7 +26,7 @@ namespace VHKPlayer.Converters
                 throw new NotImplementedException(); // TODO : Show a notifycation that a script was not inserted correctly into the converter
                 return Visibility.Collapsed;
             }
-
+            
             var value = values.SingleOrDefault(x => x is IPlayable);
 
             var interpreter = App.Container.Resolve<IScriptInterpreter>();

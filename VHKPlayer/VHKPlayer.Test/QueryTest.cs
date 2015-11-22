@@ -25,6 +25,7 @@ using VHKPlayer.Utility.Settings.Interfaces;
 using VHKPlayer.Queries.GetTabsFromStringSetting;
 using VHKPlayer.Utility;
 using VHKPlayer.Utility.PlayStrategy;
+using ScriptParser;
 
 namespace VHKPlayer.Test
 {
@@ -42,7 +43,7 @@ namespace VHKPlayer.Test
             //var container = CreateContainer(c =>
             //{
             //    c.RegisterFake<IGlobalConfigService>()
-            //        .GetString(Arg.Any<string>())
+            //        .GetString(Arg.Any<string>)
             //        .Returns(definitions);
             //});
 
@@ -54,12 +55,14 @@ namespace VHKPlayer.Test
                 SettingName = Constants.RightBlockTabsSettingName
             }).ToList();
 
+
             Assert.IsTrue(tabs[0] is DuringMatchTab);
             Assert.AreEqual(tabs[1].Name, "Blandet");
             Assert.IsFalse(tabs[1].PlayListTab);
             Assert.IsTrue(tabs[1].PlayStrategy is SingleFilePlayStrategy);
             Assert.AreEqual(tabs[2].Name, "Play Lister");
             Assert.IsTrue(tabs[2].PlayListTab);
+            Assert.AreEqual(Program.NewType("PlayList"), tabs[2].Script.Code);
         }
 
         [TestMethod]
