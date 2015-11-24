@@ -11,16 +11,16 @@ namespace VHKPlayer.Commands.Logic.CreatePlayableFile
 {
     class CreatePlayableFileCommandHandler : ICommandHandler<CreatePlayableFileCommand>
     {
-        private readonly IDataCenter center;
+        private readonly IDataCenter _center;
 
         public CreatePlayableFileCommandHandler(IDataCenter center)
         {
-            this.center = center;
+            this._center = center;
         }
 
         public void Handle(CreatePlayableFileCommand command)
         {
-            center.PlayableFiles.Add(new PlayableFile()
+            _center.PlayableFiles.Add(new PlayableFile()
             {
                 Name = command.File.Name,
                 File = command.File

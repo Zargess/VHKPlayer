@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VHKPlayer.Models.Interfaces
 {
-    public interface IVHKObserver<T>
+    public interface IVhkObserver<T>
     {
         void SubjectUpdated(T subject);
     }

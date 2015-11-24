@@ -16,18 +16,18 @@ namespace VHKPlayer.Commands.Logic.UpdateDataCenterByFolder
 {
     class UpdateDataCenterByFolderCommandHandler : ICommandHandler<UpdateDataCenterByFolderCommand>
     {
-        private readonly ICommandProcessor commandProcessor;
-        private readonly IQueryProcessor queryProcessor;
+        private readonly ICommandProcessor _commandProcessor;
+        private readonly IQueryProcessor _queryProcessor;
 
         public UpdateDataCenterByFolderCommandHandler(ICommandProcessor commandProcessor, IQueryProcessor queryProcessor)
         {
-            this.commandProcessor = commandProcessor;
-            this.queryProcessor = queryProcessor;
+            this._commandProcessor = commandProcessor;
+            this._queryProcessor = queryProcessor;
         }
 
         public void Handle(UpdateDataCenterByFolderCommand command)
         {
-            var playables = queryProcessor.Process(new GetPlayablesAffectedByFolderQuery()
+            var playables = _queryProcessor.Process(new GetPlayablesAffectedByFolderQuery()
             {
                 Folder = command.Folder
             });
@@ -38,13 +38,13 @@ namespace VHKPlayer.Commands.Logic.UpdateDataCenterByFolder
             {
                 foreach (var player in players)
                 {
-                    commandProcessor.Process(new RemovePlayerCommand()
+                    _commandProcessor.Process(new RemovePlayerCommand()
                     {
                         Player = player
                     });
                 }
 
-                commandProcessor.Process(new CreateAllPlayersCommand());
+                _commandProcessor.Process(new CreateAllPlayersCommand());
             }
 
             var playableFiles = playables.Where(x => x is PlayableFile).Select(x => x as PlayableFile).ToList();
@@ -53,13 +53,13 @@ namespace VHKPlayer.Commands.Logic.UpdateDataCenterByFolder
             {
                 foreach (var playablefile in playableFiles)
                 {
-                    commandProcessor.Process(new RemovePlayableFileCommand()
+                    _commandProcessor.Process(new RemovePlayableFileCommand()
                     {
                         PlayableFile = playablefile
                     });
                 }
 
-                commandProcessor.Process(new CreatePlayableFilesFromFilesInFolderCommand()
+                _commandProcessor.Process(new CreatePlayableFilesFromFilesInFolderCommand()
                 {
                     Folder = command.Folder
                 });

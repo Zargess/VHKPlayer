@@ -136,6 +136,7 @@
     <Compile Include="Controls\PlayableListbox.xaml.cs">
       <DependentUpon>PlayableListbox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\ParameterConverter.cs" />
     <Compile Include="Converters\UniversalVisibilityConverter.cs" />
     <Compile Include="DataManagement\DataMonitor.cs" />
     <Compile Include="DataManagement\Interfaces\IDataMonitor.cs" />
@@ -155,10 +156,12 @@
     <Compile Include="Models\FolderNode.cs" />
     <Compile Include="Models\Interfaces\IDataCenter.cs" />
     <Compile Include="Models\Interfaces\IDataObserver.cs" />
+    <Compile Include="Models\Interfaces\IMultiValueParameter.cs" />
     <Compile Include="Models\Interfaces\IScript.cs" />
     <Compile Include="Models\Interfaces\ITab.cs" />
     <Compile Include="Models\Interfaces\IVHKObserver.cs" />
     <Compile Include="Models\Interfaces\IPlayable.cs" />
+    <Compile Include="Models\MultiValueParameter.cs" />
     <Compile Include="Models\PlayableContentTab.cs" />
     <Compile Include="Models\PlayableFile.cs" />
     <Compile Include="Models\PlayableType.cs" />

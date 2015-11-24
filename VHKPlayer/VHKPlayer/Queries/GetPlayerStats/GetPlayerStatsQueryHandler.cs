@@ -14,16 +14,16 @@ namespace VHKPlayer.Queries.GetPlayerStats
 {
     class GetPlayerStatsQueryHandler : IQueryHandler<GetPlayerStatsQuery, Statistics>
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public GetPlayerStatsQueryHandler(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public Statistics Handle(GetPlayerStatsQuery query)
         {
-            var folder = processor.Process(new GetFolderFromStringSettingQuery()
+            var folder = _processor.Process(new GetFolderFromStringSettingQuery()
             {
                 SettingName = Constants.PlayerStatisticInformation
             });

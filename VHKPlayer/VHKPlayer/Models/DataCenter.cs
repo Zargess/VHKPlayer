@@ -11,7 +11,7 @@ namespace VHKPlayer.Models
 {
     public class DataCenter : IDataCenter
     {
-        private List<IDataObserver> observers;
+        private List<IDataObserver> _observers;
         public ObservableCollection<Player> Players { get; private set; }
         public ObservableCollection<PlayList> PlayLists { get; private set; }
         public ObservableCollection<FolderNode> Folders { get; private set; }
@@ -26,7 +26,7 @@ namespace VHKPlayer.Models
             PlayLists = new ObservableCollection<PlayList>();
             Folders = new ObservableCollection<FolderNode>();
             PlayableFiles = new ObservableCollection<PlayableFile>();
-            observers = new List<IDataObserver>();
+            _observers = new List<IDataObserver>();
             Timers = new Dictionary<object, Timer>();
             Players.CollectionChanged += DataChanged;
             PlayLists.CollectionChanged += DataChanged;
@@ -41,12 +41,12 @@ namespace VHKPlayer.Models
 
         public void AddObserver(IDataObserver observer)
         {
-            observers.Add(observer);
+            _observers.Add(observer);
         }
 
         public void RemoveObserver(IDataObserver observer)
         {
-            observers.Remove(observer);
+            _observers.Remove(observer);
         }
 
         // TODO : Make it possiple to revert if fail
@@ -55,7 +55,7 @@ namespace VHKPlayer.Models
             PlayableFiles.SetCollection(PlayableFiles.OrderBy(x => x.Name));
             Players.SetCollection(Players.OrderBy(x => x.Number));
             PlayLists.SetCollection(PlayLists.OrderBy(x => x.Name));
-            foreach (var observer in observers)
+            foreach (var observer in _observers)
             {
                 observer.DataUpdated();
             }

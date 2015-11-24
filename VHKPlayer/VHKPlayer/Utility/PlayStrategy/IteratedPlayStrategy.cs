@@ -8,24 +8,24 @@ namespace VHKPlayer.Utility.PlayStrategy
 {
     public class IteratedPlayStrategy : IPlayStrategy
     {
-        private int counter;
-        private List<FileNode> content;
+        private int _counter;
+        private List<FileNode> _content;
 
         public bool Repeat { get; set; }
 
         public FileNode PeekNext(IVideoPlayerController videoPlayer)
         {
-            if (content == null) return null;
-            if (counter >= content.Count) counter = 0;
-            return content[counter];
+            if (_content == null) return null;
+            if (_counter >= _content.Count) _counter = 0;
+            return _content[_counter];
         }
 
         public void Play(IEnumerable<FileNode> content, IVideoPlayerController videoPlayer)
         {
-            this.content = new List<FileNode>(content);
+            this._content = new List<FileNode>(content);
 
             var file = PeekNext(videoPlayer);
-            counter++;
+            _counter++;
 
             videoPlayer.Queue.SetQueue(new List<FileNode>() { file });
             videoPlayer.PlayQueue();

@@ -12,16 +12,16 @@ namespace VHKPlayer.Queries.IsValidRootFolder
 {
     class IsValidRootFolderQueryHandler : IQueryHandler<IsValidRootFolderQuery, bool>
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public IsValidRootFolderQueryHandler(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public bool Handle(IsValidRootFolderQuery query)
         {
-            var requiredPaths = processor.Process(new GetRequiredFolderPathsQuery());
+            var requiredPaths = _processor.Process(new GetRequiredFolderPathsQuery());
 
             foreach (var path in requiredPaths)
             {

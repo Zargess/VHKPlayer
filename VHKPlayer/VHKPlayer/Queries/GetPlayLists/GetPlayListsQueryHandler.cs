@@ -11,16 +11,16 @@ namespace VHKPlayer.Queries.GetPlayLists
 {
     class GetPlayListsQueryHandler : IQueryHandler<GetPlayListsQuery, IQueryable<PlayList>>
     {
-        private readonly IDataCenter center;
+        private readonly IDataCenter _center;
 
         public GetPlayListsQueryHandler(IDataCenter center)
         {
-            this.center = center;
+            this._center = center;
         }
 
         public IQueryable<PlayList> Handle(GetPlayListsQuery query)
         {
-            return center.PlayLists.AsQueryable();
+            return _center.PlayLists.AsQueryable();
         }
     }
 }

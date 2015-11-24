@@ -16,11 +16,11 @@ namespace VHKPlayer.Queries.ParsePlayListString
 {
     class ParsePlayListStringQueryHandler : IQueryHandler<ParsePlayListStringQuery, IQueryable<CreatePlayListCommand>>
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public ParsePlayListStringQueryHandler(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         // TODO : Make this an interpreter for a script language that defines playlists instead of makeing it this hardcoded
@@ -44,20 +44,20 @@ namespace VHKPlayer.Queries.ParsePlayListString
                 var partialPath = variables[1].Replace("root\\", "");
 
 
-                var folder = processor.Process(new GetFolderByPathSubscriptQuery()
+                var folder = _processor.Process(new GetFolderByPathSubscriptQuery()
                 {
                     PartialPath = partialPath
                 });
                 command.Folder = folder;
 
-                var has_audio = variables[2].ToBool();
-                command.HasAudio = has_audio;
+                var hasAudio = variables[2].ToBool();
+                command.HasAudio = hasAudio;
 
                 var index = variables[3].ToInteger();
                 
                 var loading = variables[4];
 
-                command.LoadingStrategy = processor.Process(new GetPlayListLoadingStrategyQuery()
+                command.LoadingStrategy = _processor.Process(new GetPlayListLoadingStrategyQuery()
                 {
                     Folder = folder,
                     Index = index,
@@ -66,7 +66,7 @@ namespace VHKPlayer.Queries.ParsePlayListString
 
                 var playing = variables[5];
 
-                command.PlayStrategy = processor.Process(new GetPlayStrategyQuery()
+                command.PlayStrategy = _processor.Process(new GetPlayStrategyQuery()
                 {
                     StrategyName = playing
                 });

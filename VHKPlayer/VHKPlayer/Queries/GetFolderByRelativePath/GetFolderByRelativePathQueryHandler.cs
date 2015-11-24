@@ -11,17 +11,17 @@ namespace VHKPlayer.Queries.GetFolderByRelativePath
 {
     class GetFolderByRelativePathQueryHandler : IQueryHandler<GetFolderByRelativePathQuery, FolderNode>
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public GetFolderByRelativePathQueryHandler(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public FolderNode Handle(GetFolderByRelativePathQuery query)
         {
             var partialpath = query.RelativePath.Replace("root\\", "");
-            return processor.Process(new GetFolderByPathSubscriptQuery()
+            return _processor.Process(new GetFolderByPathSubscriptQuery()
             {
                 PartialPath = partialpath
             });

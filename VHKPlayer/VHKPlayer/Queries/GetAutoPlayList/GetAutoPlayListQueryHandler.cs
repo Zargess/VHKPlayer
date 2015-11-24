@@ -13,20 +13,20 @@ namespace VHKPlayer.Queries.GetAutoPlayList
 {
     class GetAutoPlayListQueryHandler : IQueryHandler<GetAutoPlayListQuery, PlayList>
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public GetAutoPlayListQueryHandler(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public PlayList Handle(GetAutoPlayListQuery query)
         {
-            var name = processor.Process(new GetStringSettingQuery()
+            var name = _processor.Process(new GetStringSettingQuery()
             {
                 SettingName = Constants.AutoPlayListSettingName
             });
-            return processor.Process(new GetPlayListByNameQuery()
+            return _processor.Process(new GetPlayListByNameQuery()
             {
                 Name = name
             });

@@ -14,18 +14,18 @@ namespace VHKPlayer.Queries.GetFolderByPathSubscript
 {
     class GetFolderByPathSubscriptQueryHandler : IQueryHandler<GetFolderByPathSubscriptQuery, FolderNode>
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public GetFolderByPathSubscriptQueryHandler(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public FolderNode Handle(GetFolderByPathSubscriptQuery query)
         {
-            var folders = processor.Process(new GetFoldersQuery()).ToList();
+            var folders = _processor.Process(new GetFoldersQuery()).ToList();
 
-            var rootpath = processor.Process(new GetStringSettingQuery()
+            var rootpath = _processor.Process(new GetStringSettingQuery()
             {
                 SettingName = Constants.RootFolderPathSettingName
             });

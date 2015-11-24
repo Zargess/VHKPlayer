@@ -7,11 +7,11 @@ namespace VHKPlayer.Commands.Logic.CreatePlayList
 {
     class CreatePlayListCommandHandler : ICommandHandler<CreatePlayListCommand>
     {
-        private readonly IDataCenter center;
+        private readonly IDataCenter _center;
 
         public CreatePlayListCommandHandler(IDataCenter center)
         {
-            this.center = center;
+            this._center = center;
         }
 
         // TODO : Consider using the construction string approach
@@ -28,7 +28,7 @@ namespace VHKPlayer.Commands.Logic.CreatePlayList
 
             command.Folder.AddObserver(playlist);
 
-            center.PlayLists.Add(playlist);
+            _center.PlayLists.Add(playlist);
         }
     }
 }

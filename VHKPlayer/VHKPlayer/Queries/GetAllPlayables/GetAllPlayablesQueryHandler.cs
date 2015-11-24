@@ -13,19 +13,19 @@ namespace VHKPlayer.Queries.GetAllPlayables
 {
     class GetAllPlayablesQueryHandler : IQueryHandler<GetAllPlayablesQuery, IQueryable<IPlayable>>
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public GetAllPlayablesQueryHandler(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         } 
 
         public IQueryable<IPlayable> Handle(GetAllPlayablesQuery query)
         {
             var res = new List<IPlayable>();
-            res.AddRange(processor.Process(new GetPlayersQuery()));
-            res.AddRange(processor.Process(new GetPlayListsQuery()));
-            res.AddRange(processor.Process(new GetPlayableFilesQuery()));
+            res.AddRange(_processor.Process(new GetPlayersQuery()));
+            res.AddRange(_processor.Process(new GetPlayListsQuery()));
+            res.AddRange(_processor.Process(new GetPlayableFilesQuery()));
             return res.AsQueryable();
         }
     }

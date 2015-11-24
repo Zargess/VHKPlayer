@@ -11,16 +11,16 @@ namespace VHKPlayer.Queries.GetPlayers
 {
     class GetPlayersQueryHandler : IQueryHandler<GetPlayersQuery, IQueryable<Player>>
     {
-        private readonly IDataCenter center;
+        private readonly IDataCenter _center;
 
         public GetPlayersQueryHandler(IDataCenter center)
         {
-            this.center = center;
+            this._center = center;
         }
 
         public IQueryable<Player> Handle(GetPlayersQuery query)
         {
-            return center.Players.AsQueryable();
+            return _center.Players.AsQueryable();
         }
     }
 }

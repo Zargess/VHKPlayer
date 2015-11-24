@@ -19,25 +19,25 @@ namespace VHKPlayer.Commands.Logic.ResetDataCenter
 {
     class ResetDataCenterCommandHandler : ICommandHandler<ResetDataCenterCommand>
     {
-        private readonly ICommandProcessor commandProcessor;
-        private readonly IQueryProcessor queryProcessor;
+        private readonly ICommandProcessor _commandProcessor;
+        private readonly IQueryProcessor _queryProcessor;
 
         public ResetDataCenterCommandHandler(ICommandProcessor commandProcessor, IQueryProcessor queryProcessor)
         {
-            this.commandProcessor = commandProcessor;
-            this.queryProcessor = queryProcessor;
+            this._commandProcessor = commandProcessor;
+            this._queryProcessor = queryProcessor;
         }
 
         public void Handle(ResetDataCenterCommand command)
         {
-            var folders = queryProcessor.Process(new GetFoldersQuery());
-            var playableFiles = queryProcessor.Process(new GetPlayableFilesQuery());
-            var playLists = queryProcessor.Process(new GetPlayListsQuery());
-            var players = queryProcessor.Process(new GetPlayersQuery());
+            var folders = _queryProcessor.Process(new GetFoldersQuery());
+            var playableFiles = _queryProcessor.Process(new GetPlayableFilesQuery());
+            var playLists = _queryProcessor.Process(new GetPlayListsQuery());
+            var players = _queryProcessor.Process(new GetPlayersQuery());
 
             foreach (var folder in folders)
             {
-                commandProcessor.Process(new RemoveFolderCommand()
+                _commandProcessor.Process(new RemoveFolderCommand()
                 {
                     Folder = folder
                 });
@@ -45,7 +45,7 @@ namespace VHKPlayer.Commands.Logic.ResetDataCenter
 
             foreach (var playableFile in playableFiles)
             {
-                commandProcessor.Process(new RemovePlayableFileCommand()
+                _commandProcessor.Process(new RemovePlayableFileCommand()
                 {
                     PlayableFile = playableFile
                 });
@@ -53,7 +53,7 @@ namespace VHKPlayer.Commands.Logic.ResetDataCenter
 
             foreach (var playlist in playLists)
             {
-                commandProcessor.Process(new RemovePlayListCommand()
+                _commandProcessor.Process(new RemovePlayListCommand()
                 {
                     Playlist = playlist
                 });
@@ -61,13 +61,13 @@ namespace VHKPlayer.Commands.Logic.ResetDataCenter
 
             foreach (var player in players)
             {
-                commandProcessor.Process(new RemovePlayerCommand()
+                _commandProcessor.Process(new RemovePlayerCommand()
                 {
                     Player = player
                 });
             }
 
-            commandProcessor.Process(new CreateAllPlayablesCommand());
+            _commandProcessor.Process(new CreateAllPlayablesCommand());
         }
     }
 }

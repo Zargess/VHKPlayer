@@ -12,17 +12,17 @@ namespace VHKPlayer.Utility.PlayStrategy
 {
     public class SingleFilePlayStrategy : IPlayStrategy
     {
-        private bool repeat;
+        private bool _repeat;
         public bool Repeat
         {
             get
             {
-                return repeat;
+                return _repeat;
             }
 
             set
             {
-                repeat = value;
+                _repeat = value;
             }
         }
 

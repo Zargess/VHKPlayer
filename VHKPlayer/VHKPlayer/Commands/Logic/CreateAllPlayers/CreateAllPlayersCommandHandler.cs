@@ -16,23 +16,23 @@ namespace VHKPlayer.Commands.Logic.CreateAllPlayers
 {
     class CreateAllPlayersCommandHandler : ICommandHandler<CreateAllPlayersCommand>
     {
-        private readonly ICommandProcessor commandProcessor;
-        private readonly IQueryProcessor queryProcessor;
+        private readonly ICommandProcessor _commandProcessor;
+        private readonly IQueryProcessor _queryProcessor;
 
         public CreateAllPlayersCommandHandler(ICommandProcessor commandProcessor, IQueryProcessor queryProcessor)
         {
-            this.commandProcessor = commandProcessor;
-            this.queryProcessor = queryProcessor;
+            this._commandProcessor = commandProcessor;
+            this._queryProcessor = queryProcessor;
         }
 
         public void Handle(CreateAllPlayersCommand command)
         {
-            var folder = queryProcessor.Process(new GetFolderFromStringSettingQuery()
+            var folder = _queryProcessor.Process(new GetFolderFromStringSettingQuery()
             {
                 SettingName = Constants.PlayerPictureFolderSettingName
             });
 
-            var statFolder = queryProcessor.Process(new GetFolderFromStringSettingQuery()
+            var statFolder = _queryProcessor.Process(new GetFolderFromStringSettingQuery()
             {
                 SettingName = Constants.PlayerStatisticInformation
             });
@@ -41,7 +41,7 @@ namespace VHKPlayer.Commands.Logic.CreateAllPlayers
             {
                 if (file.Type != FileType.Picture) continue;
 
-                commandProcessor.Process(new CreatePlayerCommand()
+                _commandProcessor.Process(new CreatePlayerCommand()
                 {
                     File = file,
                     Folder = statFolder

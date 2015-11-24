@@ -11,23 +11,23 @@ namespace VHKPlayer.Models
     // TODO : Do some cleaning in this class and test it
     public class FolderNode
     {
-        private FileSystemWatcher watcher;
-        private string fullPath;
-        private ICommandProcessor processor;
+        private FileSystemWatcher _watcher;
+        private string _fullPath;
+        private ICommandProcessor _processor;
 
         public string Name { get; private set; }
         public List<FileNode> Content { get; set; }
-        public List<IVHKObserver<FolderNode>> Observers { get; private set; }
+        public List<IVhkObserver<FolderNode>> Observers { get; private set; }
 
         public string FullPath
         {
             get
             {
-                return fullPath;
+                return _fullPath;
             }
             set
             {
-                fullPath = value;
+                _fullPath = value;
                 UpdateFolderInfo(value);
             }
         }
@@ -35,8 +35,8 @@ namespace VHKPlayer.Models
 
         public FolderNode(ICommandProcessor processor)
         {
-            Observers = new List<IVHKObserver<FolderNode>>();
-            this.processor = processor;
+            Observers = new List<IVhkObserver<FolderNode>>();
+            this._processor = processor;
             Content = new List<FileNode>();
         }
 
@@ -45,9 +45,9 @@ namespace VHKPlayer.Models
             if (!Exists()) return;
             Name = Path.GetDirectoryName(value);
 
-            if (watcher != null) watcher.Dispose();
+            if (_watcher != null) _watcher.Dispose();
 
-            watcher = CreateWatcher(value);
+            _watcher = CreateWatcher(value);
             CreateFiles(value);
         }
 
@@ -58,7 +58,7 @@ namespace VHKPlayer.Models
             var paths = Directory.EnumerateFiles(value);
             foreach (var path in paths)
             {
-                processor.Process(new CreateFileCommand()
+                _processor.Process(new CreateFileCommand()
                 {
                     Folder = this,
                     Path = path
@@ -106,12 +106,12 @@ namespace VHKPlayer.Models
             return watcher;
         }
 
-        public void AddObserver(IVHKObserver<FolderNode> observer)
+        public void AddObserver(IVhkObserver<FolderNode> observer)
         {
             Observers.Add(observer);
         }
 
-        public void RemoveObserver(IVHKObserver<FolderNode> observer)
+        public void RemoveObserver(IVhkObserver<FolderNode> observer)
         {
             Observers.Remove(observer);
         }

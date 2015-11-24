@@ -13,9 +13,9 @@ using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
 namespace VHKPlayer.Models
 {
-    public class Player : IVHKObserver<FolderNode>, IPlayable
+    public class Player : IVhkObserver<FolderNode>, IPlayable
     {
-        private List<IVHKObserver<Player>> observers;
+        private List<IVhkObserver<Player>> _observers;
 
         public string Name { get; set; }
         public int Number { get; set; }
@@ -26,7 +26,7 @@ namespace VHKPlayer.Models
 
         public Player()
         {
-            observers = new List<IVHKObserver<Player>>();
+            _observers = new List<IVhkObserver<Player>>();
         }
 
         public void Play(IPlayStrategy strategy, IVideoPlayerController videoPlayer)
@@ -40,17 +40,17 @@ namespace VHKPlayer.Models
             {
                 Player = this
             });
-            observers.ForEach(x => x.SubjectUpdated(this));
+            _observers.ForEach(x => x.SubjectUpdated(this));
         }
 
-        public void AddObserver(IVHKObserver<Player> observer)
+        public void AddObserver(IVhkObserver<Player> observer)
         {
-            observers.Add(observer);
+            _observers.Add(observer);
         }
 
-        public void RemoveObserver(IVHKObserver<Player> observer)
+        public void RemoveObserver(IVhkObserver<Player> observer)
         {
-            observers.Remove(observer);
+            _observers.Remove(observer);
         }
 
         public override string ToString()

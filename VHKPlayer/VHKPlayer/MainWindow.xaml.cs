@@ -62,10 +62,10 @@ namespace VHKPlayer
     public class Data : IDataObserver
     {
         public ObservableCollection<IPlayable> Test { get; set; }
-        private IDataMonitor monitor;
-        private IContainer container;
-        private readonly ICommandProcessor cprocessor;
-        private readonly IQueryProcessor qprocessor;
+        private IDataMonitor _monitor;
+        private IContainer _container;
+        private readonly ICommandProcessor _cprocessor;
+        private readonly IQueryProcessor _qprocessor;
 
         public Data()
         {
@@ -73,21 +73,21 @@ namespace VHKPlayer
 
             var builder = new ContainerBuilder();
             builder.RegisterModule(new DefaultWiringModule());
-            container = builder.Build();
+            _container = builder.Build();
 
-            this.cprocessor = container.Resolve<ICommandProcessor>();
-            this.qprocessor = container.Resolve<IQueryProcessor>();
+            this._cprocessor = _container.Resolve<ICommandProcessor>();
+            this._qprocessor = _container.Resolve<IQueryProcessor>();
 
             var path = @"C:\Users\Marcus\Dropbox\Programmering\C#\vhk";
-            cprocessor.ProcessTransaction(new ChangeSettingCommand()
+            _cprocessor.ProcessTransaction(new ChangeSettingCommand()
             {
                 SettingName = Constants.RootFolderPathSettingName,
                 Value = path
             });
 
-            monitor = container.Resolve<IDataMonitor>();
+            _monitor = _container.Resolve<IDataMonitor>();
 
-            cprocessor.ProcessTransaction(new AddDataObserverCommand()
+            _cprocessor.ProcessTransaction(new AddDataObserverCommand()
             {
                 Observer = this
             });
@@ -95,16 +95,16 @@ namespace VHKPlayer
 
         public void InitialiseData()
         {
-            this.cprocessor.ProcessTransaction(new CreateAllPlayablesCommand());
+            this._cprocessor.ProcessTransaction(new CreateAllPlayablesCommand());
         }
 
         public void DataUpdated()
         {
             Test.Clear();
 
-            var videos = qprocessor.Process(new GetPlayableFilesQuery()).Where(x => x.File.Type == FileType.Video);
-            var players = qprocessor.Process(new GetPlayersQuery());
-            var playlists = qprocessor.Process(new GetPlayListsQuery()).ToList();
+            var videos = _qprocessor.Process(new GetPlayableFilesQuery()).Where(x => x.File.Type == FileType.Video);
+            var players = _qprocessor.Process(new GetPlayersQuery());
+            var playlists = _qprocessor.Process(new GetPlayListsQuery()).ToList();
 
             Test.AddAll(playlists);
             Test.AddAll(videos);

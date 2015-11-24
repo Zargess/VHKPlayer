@@ -11,7 +11,7 @@ namespace VHKPlayer.Test
 {
     public class TestBase
     {
-        protected Fixture fixture = TestHelper.CreateFixture();
+        protected Fixture Fixture = TestHelper.CreateFixture();
 
         protected IContainer CreateContainer(Action<ContainerBuilder> setupCallback = null)
         {

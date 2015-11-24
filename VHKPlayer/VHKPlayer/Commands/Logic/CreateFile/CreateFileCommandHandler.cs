@@ -12,16 +12,16 @@ namespace VHKPlayer.Commands.Logic.CreateFile
 {
     class CreateFileCommandHandler : ICommandHandler<CreateFileCommand>
     {
-        private readonly IFindFileTypeStrategy findFileType;
+        private readonly IFindFileTypeStrategy _findFileType;
 
         public CreateFileCommandHandler(IFindFileTypeStrategy findFileType)
         {
-            this.findFileType = findFileType;
+            this._findFileType = findFileType;
         }
 
         public void Handle(CreateFileCommand command)
         {
-            var type = findFileType.FindType(command.Path);
+            var type = _findFileType.FindType(command.Path);
             var name = Path.GetFileName(command.Path);
             var namewithoutextension = Path.GetFileNameWithoutExtension(command.Path);
 

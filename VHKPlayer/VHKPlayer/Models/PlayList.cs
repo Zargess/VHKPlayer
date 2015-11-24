@@ -11,7 +11,7 @@ using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
 namespace VHKPlayer.Models
 {
-    public class PlayList : IPlayable, IVHKObserver<FolderNode>
+    public class PlayList : IPlayable, IVhkObserver<FolderNode>
     {
         // TODO : Consider adding a Repeat bool here to indicate if the playlist should repeat it self
         public string Name { get; set; }

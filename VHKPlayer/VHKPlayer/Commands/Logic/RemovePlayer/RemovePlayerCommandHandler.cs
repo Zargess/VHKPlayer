@@ -10,16 +10,16 @@ namespace VHKPlayer.Commands.Logic.RemovePlayer
 {
     class RemovePlayerCommandHandler : ICommandHandler<RemovePlayerCommand>
     {
-        private readonly IDataCenter center;
+        private readonly IDataCenter _center;
 
         public RemovePlayerCommandHandler(IDataCenter center)
         {
-            this.center = center;
+            this._center = center;
         }
 
         public void Handle(RemovePlayerCommand command)
         {
-            center.Players.Remove(command.Player);
+            _center.Players.Remove(command.Player);
         }
     }
 }

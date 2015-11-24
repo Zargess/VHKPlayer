@@ -8,18 +8,18 @@ namespace VHKPlayer.Queries.IsStatFile
 {
     class IsStatFileQueryHandler : IQueryHandler<IsStatFileQuery, bool>
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public IsStatFileQueryHandler(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public bool Handle(IsStatFileQuery query)
         {
-            var folder = processor.Process(new GetFolderByPathSubscriptQuery()
+            var folder = _processor.Process(new GetFolderByPathSubscriptQuery()
             {
-                PartialPath = processor.Process(new GetStringSettingQuery()
+                PartialPath = _processor.Process(new GetStringSettingQuery()
                 {
                     SettingName = Constants.PlayerStatPictureFolderSettingName
                 }).Replace("root\\", "")

@@ -10,13 +10,13 @@ namespace VHKPlayer.Commands.Logic
 {
     public class Transaction : ITransaction
     {
-        private readonly ICommandProcessor processor;
-        private readonly IDataCenter center;
+        private readonly ICommandProcessor _processor;
+        private readonly IDataCenter _center;
 
         public Transaction(IDataCenter center, ICommandProcessor processor)
         {
-            this.center = center;
-            this.processor = processor;
+            this._center = center;
+            this._processor = processor;
         }
 
         public void Process(IEnumerable<ICommand> commands)
@@ -25,12 +25,12 @@ namespace VHKPlayer.Commands.Logic
 
             foreach (var command in commands)
             {
-                processor.Process(command);
+                _processor.Process(command);
             }
 
-            if (!center.UncommitedChanges) return;
+            if (!_center.UncommitedChanges) return;
 
-            center.Commit();
+            _center.Commit();
         }
     }
 }

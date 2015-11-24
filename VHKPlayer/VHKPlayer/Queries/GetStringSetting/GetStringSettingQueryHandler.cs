@@ -11,16 +11,16 @@ namespace VHKPlayer.Queries.GetStringSetting
 {
     class GetStringSettingQueryHandler : IQueryHandler<GetStringSettingQuery, string>
     {
-        private readonly IGlobalConfigService configService;
+        private readonly IGlobalConfigService _configService;
 
         public GetStringSettingQueryHandler(IGlobalConfigService configService)
         {
-            this.configService = configService;
+            this._configService = configService;
         }
 
         public string Handle(GetStringSettingQuery query)
         {
-            return configService.GetString(query.SettingName);
+            return _configService.GetString(query.SettingName);
         }
     }
 }

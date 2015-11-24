@@ -12,13 +12,13 @@ namespace VHKPlayer.Commands.Logic.CreatePlayer
 {
     class CreatePlayerCommandHandler : ICommandHandler<CreatePlayerCommand>
     {
-        private readonly IDataCenter center;
-        private readonly IQueryProcessor processor;
+        private readonly IDataCenter _center;
+        private readonly IQueryProcessor _processor;
 
         public CreatePlayerCommandHandler(IQueryProcessor processor, IDataCenter center)
         {
-            this.processor = processor;
-            this.center = center;
+            this._processor = processor;
+            this._center = center;
         }
 
         public void Handle(CreatePlayerCommand command)
@@ -29,7 +29,7 @@ namespace VHKPlayer.Commands.Logic.CreatePlayer
 
             var content = new List<FileNode>();
 
-            var folders = processor.Process(new GetPlayerFoldersQuery());
+            var folders = _processor.Process(new GetPlayerFoldersQuery());
 
             foreach (var folder in folders)
             {
@@ -43,12 +43,12 @@ namespace VHKPlayer.Commands.Logic.CreatePlayer
                 Number = number,
                 Trainer = trainer,
                 Content = new ObservableCollection<FileNode>(content),
-                Processor = processor
+                Processor = _processor
             };
 
             command.Folder.AddObserver(player);
 
-            center.Players.Add(player);
+            _center.Players.Add(player);
         }
     }
 }

@@ -15,22 +15,22 @@ namespace VHKPlayer.Queries.GetFolderFromStringSetting
 {
     class GetFolderFromStringSettingQueryHandler : IQueryHandler<GetFolderFromStringSettingQuery, FolderNode>
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public GetFolderFromStringSettingQueryHandler(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public FolderNode Handle(GetFolderFromStringSettingQuery query)
         {
             
-            var setting = processor.Process(new GetStringSettingQuery()
+            var setting = _processor.Process(new GetStringSettingQuery()
             {
                 SettingName = query.SettingName
             });
 
-            var rootPath = processor.Process(new GetStringSettingQuery()
+            var rootPath = _processor.Process(new GetStringSettingQuery()
             {
                 SettingName = Constants.RootFolderPathSettingName
             });
@@ -39,11 +39,11 @@ namespace VHKPlayer.Queries.GetFolderFromStringSetting
 
             if (Directory.Exists(setting))
             {
-                var folders = processor.Process(new GetFoldersQuery()).Where(x => x.FullPath.ToLower() == setting.ToLower()).ToList();
+                var folders = _processor.Process(new GetFoldersQuery()).Where(x => x.FullPath.ToLower() == setting.ToLower()).ToList();
                 return folders.Single(x => x.FullPath.ToLower() == setting.ToLower());
             }
 
-            var folder = processor.Process(new GetFolderByPathSubscriptQuery()
+            var folder = _processor.Process(new GetFolderByPathSubscriptQuery()
             {
                 PartialPath = path
             });

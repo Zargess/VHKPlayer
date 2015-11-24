@@ -10,16 +10,16 @@ namespace VHKPlayer.Commands.Logic.AddDataObserver
 {
     class AddDataObserverCommandHandler : ICommandHandler<AddDataObserverCommand>
     {
-        private readonly IDataCenter center;
+        private readonly IDataCenter _center;
 
         public AddDataObserverCommandHandler(IDataCenter center)
         {
-            this.center = center;
+            this._center = center;
         }
 
         public void Handle(AddDataObserverCommand command)
         {
-            this.center.AddObserver(command.Observer);
+            this._center.AddObserver(command.Observer);
         }
     }
 }

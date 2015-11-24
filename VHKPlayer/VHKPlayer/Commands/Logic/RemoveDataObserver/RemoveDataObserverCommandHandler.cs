@@ -10,16 +10,16 @@ namespace VHKPlayer.Commands.Logic.RemoveDataObserver
 {
     class RemoveDataObserverCommandHandler : ICommandHandler<RemoveDataObserverCommand>
     {
-        private readonly IDataCenter center;
+        private readonly IDataCenter _center;
 
         public RemoveDataObserverCommandHandler(IDataCenter center)
         {
-            this.center = center;
+            this._center = center;
         }
 
         public void Handle(RemoveDataObserverCommand command)
         {
-            this.center.RemoveObserver(command.Observer);
+            this._center.RemoveObserver(command.Observer);
         }
     }
 }

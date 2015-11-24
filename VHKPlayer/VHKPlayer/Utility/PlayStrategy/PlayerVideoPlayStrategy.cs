@@ -15,25 +15,25 @@ namespace VHKPlayer.Utility.PlayStrategy
 {
     public class PlayerVideoPlayStrategy : IPlayStrategy
     {
-        private bool repeat;
-        private readonly IQueryProcessor processor;
+        private bool _repeat;
+        private readonly IQueryProcessor _processor;
 
         public bool Repeat
         {
             get
             {
-                return repeat;
+                return _repeat;
             }
 
             set
             {
-                repeat = value;
+                _repeat = value;
             }
         }
 
         public PlayerVideoPlayStrategy()
         {
-            processor = App.Container.Resolve<IQueryProcessor>();
+            _processor = App.Container.Resolve<IQueryProcessor>();
         }
 
         public FileNode PeekNext(IVideoPlayerController videoPlayer)
@@ -45,7 +45,7 @@ namespace VHKPlayer.Utility.PlayStrategy
 
         public void Play(IEnumerable<FileNode> content, IVideoPlayerController videoPlayer)
         {
-            var folder = processor.Process(new GetFolderFromStringSettingQuery()
+            var folder = _processor.Process(new GetFolderFromStringSettingQuery()
             {
                 SettingName = Constants.PlayerVideoFolderSettingName
             });

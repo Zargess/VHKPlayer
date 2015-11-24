@@ -10,7 +10,7 @@ namespace VHKPlayer.Utility.Settings
 {
     public class GlobalConfigService : IGlobalConfigService
     {
-        private Setting setting = new Setting();
+        private Setting _setting = new Setting();
 
         public event PropertyChangedEventHandler FolderSettingsUpdated;
         public event PropertyChangedEventHandler ApplicationSettingsUpdated;
@@ -21,7 +21,7 @@ namespace VHKPlayer.Utility.Settings
             if (String.IsNullOrEmpty(settingName))
                 throw new ArgumentNullException("Setting name must be provided");
 
-            return setting[settingName];
+            return _setting[settingName];
         }
 
         public string GetString(string settingName)
@@ -36,11 +36,11 @@ namespace VHKPlayer.Utility.Settings
             if (String.IsNullOrEmpty(settingName))
                 throw new ArgumentNullException("Setting name must be provided");
 
-            var setting = this.setting[settingName];
+            var setting = this._setting[settingName];
 
             if (setting == null)
             {
-                throw new ArgumentException("Setting " + this.setting + " not found.");
+                throw new ArgumentException("Setting " + this._setting + " not found.");
             }
             else if (setting.GetType() != value.GetType())
             {
@@ -48,8 +48,8 @@ namespace VHKPlayer.Utility.Settings
             }
             else
             {
-                this.setting[settingName] = value;
-                this.setting.Save();
+                this._setting[settingName] = value;
+                this._setting.Save();
                 if (settingName.StartsWith("folder") && FolderSettingsUpdated != null)
                 {
                     FolderSettingsUpdated.Invoke(this, new PropertyChangedEventArgs(settingName));

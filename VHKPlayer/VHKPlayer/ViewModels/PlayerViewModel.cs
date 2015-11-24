@@ -5,6 +5,8 @@ using VHKPlayer.Commands.GUI;
 using VHKPlayer.Commands.Logic.AddDataObserver;
 using VHKPlayer.Commands.Logic.CreateAllPlayables;
 using VHKPlayer.Commands.Logic.Interfaces;
+using VHKPlayer.Controllers;
+using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.DataManagement.Interfaces;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Infrastructure.Modules;
@@ -19,34 +21,40 @@ namespace VHKPlayer.ViewModels
 {
     public class PlayerViewModel : IDataObserver
     {
-        private IContainer container;
-        private ICommandProcessor cprocessor;
-        private IQueryProcessor qprocessor;
-        private readonly IDataMonitor monitor;
+        private IContainer _container;
+        private ICommandProcessor _cprocessor;
+        private IQueryProcessor _qprocessor;
+        private readonly IDataMonitor _monitor;
 
         public ObservableCollection<IPlayable> Playables { get; private set; }
         public ObservableCollection<ITab> Tabs { get; private set; }
         public IScript Script { get; set; } = new Script("(property name:Name value:\"Ladioo - 40 sek.mp3\")");
 
+        public IVideoPlayerController Controller { get; set; }
+        public System.Windows.Input.ICommand PlayCommand { get; set; }
+
 
         public PlayerViewModel()
         {
-            container = App.Container;
-            cprocessor = container.Resolve<ICommandProcessor>();
-            qprocessor = container.Resolve<IQueryProcessor>();
+            _container = App.Container;
+            _cprocessor = _container.Resolve<ICommandProcessor>();
+            _qprocessor = _container.Resolve<IQueryProcessor>();
 
             Playables = new ObservableCollection<IPlayable>();
 
-            var tabs = qprocessor.Process(new GetTabsFromStringSettingQuery()
+            var tabs = _qprocessor.Process(new GetTabsFromStringSettingQuery()
             {
                 SettingName = Constants.RightBlockTabsSettingName
             });
 
             Tabs = new ObservableCollection<ITab>(tabs);
 
-            monitor = container.Resolve<IDataMonitor>();
+            Controller = _container.Resolve<IVideoPlayerController>();
+            PlayCommand = new RunPlayableStrategyCommand(Controller);
 
-            cprocessor.ProcessTransaction(new AddDataObserverCommand()
+            _monitor = _container.Resolve<IDataMonitor>();
+
+            _cprocessor.ProcessTransaction(new AddDataObserverCommand()
             {
                 Observer = this
             });
@@ -54,24 +62,13 @@ namespace VHKPlayer.ViewModels
 
         public void InitialiseData()
         {
-            cprocessor.ProcessTransaction(new CreateAllPlayablesCommand());
+            _cprocessor.ProcessTransaction(new CreateAllPlayablesCommand());
         }
 
         public void DataUpdated()
         {
             Playables.Clear();
-            Playables.AddAll(qprocessor.Process(new GetAllPlayablesQuery()));
-        }
-
-        public System.Windows.Input.ICommand DummyCommand
-        {
-            get
-            {
-                return new DummyCommand();
-            } set
-            {
-
-            }
+            Playables.AddAll(_qprocessor.Process(new GetAllPlayablesQuery()));
         }
     }
 }

@@ -11,16 +11,16 @@ namespace VHKPlayer.Queries.GetFolderFromPath
 {
     class GetFolderFromPathQueryHandler : IQueryHandler<GetFolderFromPathQuery, FolderNode>
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public GetFolderFromPathQueryHandler(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public FolderNode Handle(GetFolderFromPathQuery query)
         {
-            var folders = processor.Process(new GetFoldersQuery());
+            var folders = _processor.Process(new GetFoldersQuery());
             return folders.SingleOrDefault(x => x.FullPath.ToLower() == query.Path.ToLower());
         }
     }

@@ -11,11 +11,11 @@ namespace VHKPlayer.Interpreter
 {
     public class ScriptInterpreter : IScriptInterpreter
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public ScriptInterpreter(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public bool Evaluate(IScript script, object input)
@@ -115,7 +115,7 @@ namespace VHKPlayer.Interpreter
 
             var relativePath = folderScript.Item.Replace("\"", "");
 
-            var folder = processor.Process(new GetFolderByRelativePathQuery()
+            var folder = _processor.Process(new GetFolderByRelativePathQuery()
             {
                 RelativePath = relativePath
             });

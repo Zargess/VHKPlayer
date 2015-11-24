@@ -15,29 +15,29 @@ namespace VHKPlayer.Queries.GetTabsFromStringSetting
 {
     class GetTabsFromStringSettingQueryHandler : IQueryHandler<GetTabsFromStringSettingQuery, IQueryable<ITab>>
     {
-        private readonly IGlobalConfigService config;
-        private readonly IQueryProcessor processor;
-        private readonly IGetSpecialTabStrategy strategy;
+        private readonly IGlobalConfigService _config;
+        private readonly IQueryProcessor _processor;
+        private readonly IGetSpecialTabStrategy _strategy;
 
         public GetTabsFromStringSettingQueryHandler(IGlobalConfigService config, IQueryProcessor processor, IGetSpecialTabStrategy strategy)
         {
-            this.config = config;
-            this.processor = processor;
-            this.strategy = strategy;
+            this._config = config;
+            this._processor = processor;
+            this._strategy = strategy;
         }
 
         public IQueryable<ITab> Handle(GetTabsFromStringSettingQuery query)
         {
             var res = new List<ITab>();
 
-            var setting = config.GetString(query.SettingName);
+            var setting = _config.GetString(query.SettingName);
             var definitions = setting.Split(',');
 
             foreach (var def in definitions)
             {
-                if (strategy.IsSpecialTab(def))
+                if (_strategy.IsSpecialTab(def))
                 {
-                    res.Add(strategy.CreateSpecialTab(def));
+                    res.Add(_strategy.CreateSpecialTab(def));
                 }
                 else
                 {
@@ -48,7 +48,7 @@ namespace VHKPlayer.Queries.GetTabsFromStringSetting
                         Name = variables[0],
                         Script = script,
                         PlayListTab = variables[2].ToBool(),
-                        PlayStrategy = processor.Process(new GetPlayStrategyQuery()
+                        PlayStrategy = _processor.Process(new GetPlayStrategyQuery()
                         {
                             StrategyName = variables[3]
                         })

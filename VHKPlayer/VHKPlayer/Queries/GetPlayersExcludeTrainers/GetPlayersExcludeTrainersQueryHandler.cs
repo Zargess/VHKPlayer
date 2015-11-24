@@ -11,16 +11,16 @@ namespace VHKPlayer.Queries.GetPlayersExcludeTrainers
 {
     class GetPlayersExcludeTrainersQueryHandler : IQueryHandler<GetPlayersExcludeTrainersQuery, IQueryable<Player>>
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public GetPlayersExcludeTrainersQueryHandler(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public IQueryable<Player> Handle(GetPlayersExcludeTrainersQuery query)
         {
-            return processor.Process(new GetPlayersQuery()).Where(x => !x.Trainer);
+            return _processor.Process(new GetPlayersQuery()).Where(x => !x.Trainer);
         }
     }
 }

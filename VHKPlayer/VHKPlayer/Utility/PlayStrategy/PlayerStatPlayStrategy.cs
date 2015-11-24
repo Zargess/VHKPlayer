@@ -14,25 +14,25 @@ namespace VHKPlayer.Utility.PlayStrategy
 {
     public class PlayerStatPlayStrategy : IPlayStrategy
     {
-        private bool repeat;
-        private readonly IQueryProcessor processor;
+        private bool _repeat;
+        private readonly IQueryProcessor _processor;
 
         public bool Repeat
         {
             get
             {
-                return repeat;
+                return _repeat;
             }
 
             set
             {
-                repeat = value;
+                _repeat = value;
             }
         }
 
         public PlayerStatPlayStrategy()
         {
-            processor = App.Container.Resolve<IQueryProcessor>();
+            _processor = App.Container.Resolve<IQueryProcessor>();
         }
 
         public FileNode PeekNext(IVideoPlayerController videoPlayer)
@@ -44,17 +44,17 @@ namespace VHKPlayer.Utility.PlayStrategy
         
         public void Play(IEnumerable<FileNode> content, IVideoPlayerController videoPlayer)
         {
-            var statMusicFolder = processor.Process(new GetFolderFromStringSettingQuery()
+            var statMusicFolder = _processor.Process(new GetFolderFromStringSettingQuery()
             {
                 SettingName = Constants.PlayerStatMusicFolderSettingName
             });
 
-            var statVideoFolder = processor.Process(new GetFolderFromStringSettingQuery()
+            var statVideoFolder = _processor.Process(new GetFolderFromStringSettingQuery()
             {
                 SettingName = Constants.PlayerStatVideoFolderSettingName
             });
 
-            var statPictureFolder = processor.Process(new GetFolderFromStringSettingQuery()
+            var statPictureFolder = _processor.Process(new GetFolderFromStringSettingQuery()
             {
                 SettingName = Constants.PlayerStatPictureFolderSettingName
             });
@@ -64,7 +64,8 @@ namespace VHKPlayer.Utility.PlayStrategy
             var picture = content.AsParallel().SingleOrDefault(x => statPictureFolder.Contains(x));
 
             throw new NotImplementedException();
-            // TODO : Figure out a way for the video player to know when to start the timer
+            // TODO : Figure out a way for the video player to know when to start the timer. Raise a flag in the IPlayReceiver?
+            // TODO : Add a method to IPlayReceiver to set such a flag? And find a way to reset this flag?
         }
     }
 }

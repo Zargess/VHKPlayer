@@ -11,30 +11,30 @@ namespace VHKPlayer.Commands.Logic.CreateAllPlayables
 {
     class CreateAllPlayablesCommandHandler : ICommandHandler<CreateAllPlayablesCommand>
     {
-        private readonly ICommandProcessor commandProcessor;
-        private readonly IQueryProcessor queryProcessor;
+        private readonly ICommandProcessor _commandProcessor;
+        private readonly IQueryProcessor _queryProcessor;
 
         public CreateAllPlayablesCommandHandler(ICommandProcessor commandProcessor, IQueryProcessor queryProcessor)
         {
-            this.commandProcessor = commandProcessor;
-            this.queryProcessor = queryProcessor;
+            this._commandProcessor = commandProcessor;
+            this._queryProcessor = queryProcessor;
         }
 
         public void Handle(CreateAllPlayablesCommand command)
         {
-            commandProcessor.Process(new CreateFolderStructureCommand()
+            _commandProcessor.Process(new CreateFolderStructureCommand()
             {
-                RootFolderPath = queryProcessor.Process(new GetStringSettingQuery()
+                RootFolderPath = _queryProcessor.Process(new GetStringSettingQuery()
                 {
                     SettingName = Constants.RootFolderPathSettingName
                 })
             });
 
-            commandProcessor.Process(new CreateAllPlayableFilesCommand());
+            _commandProcessor.Process(new CreateAllPlayableFilesCommand());
             
-            commandProcessor.Process(new CreateAllPlayListsCommand());
+            _commandProcessor.Process(new CreateAllPlayListsCommand());
 
-            commandProcessor.Process(new CreateAllPlayersCommand());
+            _commandProcessor.Process(new CreateAllPlayersCommand());
         }
     }
 }

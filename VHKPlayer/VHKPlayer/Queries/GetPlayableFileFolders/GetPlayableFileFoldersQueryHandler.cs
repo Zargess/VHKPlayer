@@ -13,18 +13,18 @@ namespace VHKPlayer.Queries.GetPlayableFileFolders
 {
     class GetPlayableFileFoldersQueryHandler : IQueryHandler<GetPlayableFileFoldersQuery, IQueryable<FolderNode>>
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public GetPlayableFileFoldersQueryHandler(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public IQueryable<FolderNode> Handle(GetPlayableFileFoldersQuery query)
         {
             var res = new List<FolderNode>();
 
-            var setting = processor.Process(new GetStringSettingQuery()
+            var setting = _processor.Process(new GetStringSettingQuery()
             {
                 SettingName = Constants.PlayableFileFoldersSettingName
             });
@@ -35,7 +35,7 @@ namespace VHKPlayer.Queries.GetPlayableFileFolders
             {
                 var partialPath = relativePath.Replace("root\\", "");
 
-                var folder = processor.Process(new GetFolderByPathSubscriptQuery()
+                var folder = _processor.Process(new GetFolderByPathSubscriptQuery()
                 {
                     PartialPath = partialPath
                 });

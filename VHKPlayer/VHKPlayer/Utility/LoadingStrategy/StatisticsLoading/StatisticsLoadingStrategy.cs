@@ -12,19 +12,19 @@ namespace VHKPlayer.Utility.LoadingStrategy.Stats
 {
     public class StatisticsLoadingStrategy : ILoadingStrategy<Statistics>
     {
-        private readonly FolderNode folder;
-        private readonly int number;
+        private readonly FolderNode _folder;
+        private readonly int _number;
 
         public StatisticsLoadingStrategy(int number, FolderNode folder)
         {
-            this.number = number;
-            this.folder = folder;
+            this._number = number;
+            this._folder = folder;
         }
 
         public Statistics Load()
         {
             var res = new Statistics();
-            var file = folder.Content.FirstOrDefault(x => x.Name.ToLower() == "vhk_" + number + "player.xml");
+            var file = _folder.Content.FirstOrDefault(x => x.Name.ToLower() == "vhk_" + _number + "player.xml");
             if (file == null) return res;
 
             using (var reader = new XmlTextReader(file.FullPath))

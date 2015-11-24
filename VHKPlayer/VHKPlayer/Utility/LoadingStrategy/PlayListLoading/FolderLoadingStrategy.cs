@@ -6,18 +6,18 @@ namespace VHKPlayer.Utility.LoadingStrategy.PlayListLoading
 {
     public class FolderLoadingStrategy : ILoadingStrategy<ICollection<FileNode>>
     {
-        private readonly FolderNode folder;
+        private readonly FolderNode _folder;
 
         public FolderLoadingStrategy(FolderNode folder)
         {
-            this.folder = folder;
+            this._folder = folder;
         }
 
         public ICollection<FileNode> Load()
         {
             var res = new List<FileNode>();
 
-            foreach (var file in folder.Content)
+            foreach (var file in _folder.Content)
             {
                 if (!file.Exists()) continue;
                 if (file.Type == FileType.Unsupported) continue;

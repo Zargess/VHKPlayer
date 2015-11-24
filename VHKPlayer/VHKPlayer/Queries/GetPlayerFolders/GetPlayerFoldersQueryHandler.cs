@@ -13,11 +13,11 @@ namespace VHKPlayer.Queries.GetPlayerFolders
 {
     class GetPlayerFoldersQueryHandler : IQueryHandler<GetPlayerFoldersQuery, IQueryable<FolderNode>>
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public GetPlayerFoldersQueryHandler(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public IQueryable<FolderNode> Handle(GetPlayerFoldersQuery query)
@@ -34,12 +34,12 @@ namespace VHKPlayer.Queries.GetPlayerFolders
 
             foreach (var setting in settingNames)
             {
-                var relativePath = processor.Process(new GetStringSettingQuery()
+                var relativePath = _processor.Process(new GetStringSettingQuery()
                 {
                     SettingName = setting
                 });
                 var partialPath = relativePath.Replace("root\\", "");
-                res.Add(processor.Process(new GetFolderByPathSubscriptQuery()
+                res.Add(_processor.Process(new GetFolderByPathSubscriptQuery()
                 {
                     PartialPath = partialPath
                 }));

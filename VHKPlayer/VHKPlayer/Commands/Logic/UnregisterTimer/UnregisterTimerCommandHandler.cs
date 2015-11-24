@@ -10,11 +10,11 @@ namespace VHKPlayer.Commands.Logic.UnregisterTimer
 {
     class UnregisterTimerCommandHandler : ICommandHandler<UnregisterTimerCommand>
     {
-        private readonly IDataCenter center;
+        private readonly IDataCenter _center;
 
         public UnregisterTimerCommandHandler(IDataCenter center)
         {
-            this.center = center;
+            this._center = center;
         }
 
         public void Handle(UnregisterTimerCommand command)

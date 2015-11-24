@@ -12,22 +12,22 @@ namespace VHKPlayer.Commands.Logic.CreateAllPlayableFiles
 {
     class CreateAllPlayableFilesCommandHandler : ICommandHandler<CreateAllPlayableFilesCommand>
     {
-        private readonly ICommandProcessor commandProcessor;
-        private readonly IQueryProcessor queryProcessor;
+        private readonly ICommandProcessor _commandProcessor;
+        private readonly IQueryProcessor _queryProcessor;
 
         public CreateAllPlayableFilesCommandHandler(ICommandProcessor commandProcessor, IQueryProcessor queryProcessor)
         {
-            this.commandProcessor = commandProcessor;
-            this.queryProcessor = queryProcessor;
+            this._commandProcessor = commandProcessor;
+            this._queryProcessor = queryProcessor;
         }
 
         public void Handle(CreateAllPlayableFilesCommand command)
         {
-            var playableFileFolders = queryProcessor.Process(new GetPlayableFileFoldersQuery());
+            var playableFileFolders = _queryProcessor.Process(new GetPlayableFileFoldersQuery());
             if (playableFileFolders.Count() == 0) return;
             foreach (var folder in playableFileFolders)
             {
-                commandProcessor.Process(new CreatePlayableFilesFromFilesInFolderCommand()
+                _commandProcessor.Process(new CreatePlayableFilesFromFilesInFolderCommand()
                 {
                     Folder = folder
                 });

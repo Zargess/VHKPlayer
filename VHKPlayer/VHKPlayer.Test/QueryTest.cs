@@ -122,9 +122,9 @@ namespace VHKPlayer.Test
         [TestMethod]
         public void TestGetPlayLists()
         {
-            var name1 = fixture.Create<string>();
-            var name2 = fixture.Create<string>();
-            var name3 = fixture.Create<string>();
+            var name1 = Fixture.Create<string>();
+            var name2 = Fixture.Create<string>();
+            var name3 = Fixture.Create<string>();
 
             var container = CreateContainer(c =>
             {
@@ -163,9 +163,9 @@ namespace VHKPlayer.Test
         [TestMethod]
         public void TestGetPlayers()
         {
-            var playerName1 = fixture.Create<string>();
-            var playerName2 = fixture.Create<string>();
-            var playerName3 = fixture.Create<string>();
+            var playerName1 = Fixture.Create<string>();
+            var playerName2 = Fixture.Create<string>();
+            var playerName3 = Fixture.Create<string>();
 
             var container = CreateContainer(c =>
             {
@@ -204,9 +204,9 @@ namespace VHKPlayer.Test
         [TestMethod]
         public void TestGetPlayableFiles()
         {
-            var name1 = fixture.Create<string>();
-            var name2 = fixture.Create<string>();
-            var name3 = fixture.Create<string>();
+            var name1 = Fixture.Create<string>();
+            var name2 = Fixture.Create<string>();
+            var name3 = Fixture.Create<string>();
 
             var container = CreateContainer(c =>
             {

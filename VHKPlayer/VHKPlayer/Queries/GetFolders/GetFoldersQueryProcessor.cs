@@ -11,16 +11,16 @@ namespace VHKPlayer.Queries.GetFolders
 {
     class GetFoldersQueryHandler : IQueryHandler<GetFoldersQuery, IQueryable<FolderNode>>
     {
-        private readonly IDataCenter center;
+        private readonly IDataCenter _center;
 
         public GetFoldersQueryHandler(IDataCenter center)
         {
-            this.center = center;
+            this._center = center;
         }
 
         public IQueryable<FolderNode> Handle(GetFoldersQuery query)
         {
-            return center.Folders.AsQueryable();
+            return _center.Folders.AsQueryable();
         }
     }
 }

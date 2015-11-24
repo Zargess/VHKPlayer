@@ -18,30 +18,30 @@ namespace VHKPlayer.Commands.Logic.CreateAllPlayLists
 {
     class CreateAllPlayListsCommandHandler : ICommandHandler<CreateAllPlayListsCommand>
     {
-        private readonly ICommandProcessor cprocessor;
-        private readonly IQueryProcessor qprocessor;
+        private readonly ICommandProcessor _cprocessor;
+        private readonly IQueryProcessor _qprocessor;
 
         public CreateAllPlayListsCommandHandler(ICommandProcessor cprocessor, IQueryProcessor qprocessor)
         {
-            this.cprocessor = cprocessor;
-            this.qprocessor = qprocessor;
+            this._cprocessor = cprocessor;
+            this._qprocessor = qprocessor;
         }
 
         public void Handle(CreateAllPlayListsCommand com)
         {
-            var constructString = qprocessor.Process(new GetStringSettingQuery()
+            var constructString = _qprocessor.Process(new GetStringSettingQuery()
             {
                 SettingName = Constants.PlayListsSettingName
             });
 
-            var commands = qprocessor.Process(new ParsePlayListStringQuery()
+            var commands = _qprocessor.Process(new ParsePlayListStringQuery()
             {
                 ConstructString = constructString
             }).ToList();
 
             foreach (var command in commands)
             {
-                cprocessor.Process(command);
+                _cprocessor.Process(command);
             }
         }
     }

@@ -10,16 +10,16 @@ namespace VHKPlayer.Commands.Logic.RemovePlayList
 {
     class RemovePlayListCommandHandler : ICommandHandler<RemovePlayListCommand>
     {
-        private readonly IDataCenter center;
+        private readonly IDataCenter _center;
 
         public RemovePlayListCommandHandler(IDataCenter center)
         {
-            this.center = center;
+            this._center = center;
         }
 
         public void Handle(RemovePlayListCommand command)
         {
-            center.PlayLists.Remove(command.Playlist);
+            _center.PlayLists.Remove(command.Playlist);
         }
     }
 }

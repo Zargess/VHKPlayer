@@ -11,11 +11,11 @@ namespace VHKPlayer.Queries.GetRequiredFolderPaths
 {
     class GetRequiredFolderPathsQueryHandler : IQueryHandler<GetRequiredFolderPathsQuery, IQueryable<string>>
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public GetRequiredFolderPathsQueryHandler(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public IQueryable<string> Handle(GetRequiredFolderPathsQuery query)
@@ -24,20 +24,20 @@ namespace VHKPlayer.Queries.GetRequiredFolderPaths
 
             foreach (var setting in Constants.PlayerFolderPathSettingNames)
             {
-                paths.Add(processor.Process(new GetStringSettingQuery()
+                paths.Add(_processor.Process(new GetStringSettingQuery()
                 {
                     SettingName = setting
                 }));
             }
 
-            var playableFilesFolderPaths = processor.Process(new GetStringSettingQuery()
+            var playableFilesFolderPaths = _processor.Process(new GetStringSettingQuery()
             {
                 SettingName = Constants.PlayableFileFoldersSettingName
             }).Split(';');
 
             paths.AddRange(playableFilesFolderPaths);
 
-            var playlistConstructionStrings = processor.Process(new GetStringSettingQuery()
+            var playlistConstructionStrings = _processor.Process(new GetStringSettingQuery()
             {
                 SettingName = Constants.PlayListsSettingName
             }).Split(',');

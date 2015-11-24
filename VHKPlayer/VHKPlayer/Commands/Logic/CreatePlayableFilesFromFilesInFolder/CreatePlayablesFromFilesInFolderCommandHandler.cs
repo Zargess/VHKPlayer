@@ -11,11 +11,11 @@ namespace VHKPlayer.Commands.Logic.CreatePlayableFilesFromFilesInFolder
 {
     class CreatePlayablesFromFilesInFolderCommandHandler : ICommandHandler<CreatePlayableFilesFromFilesInFolderCommand>
     {
-        private readonly ICommandProcessor processor;
+        private readonly ICommandProcessor _processor;
 
         public CreatePlayablesFromFilesInFolderCommandHandler(ICommandProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public void Handle(CreatePlayableFilesFromFilesInFolderCommand command)
@@ -25,7 +25,7 @@ namespace VHKPlayer.Commands.Logic.CreatePlayableFilesFromFilesInFolder
                 if (file.Type == FileType.Unsupported) continue;
                 if (file.Type == FileType.Info) continue;
 
-                processor.Process(new CreatePlayableFileCommand()
+                _processor.Process(new CreatePlayableFileCommand()
                 {
                     File = file
                 });

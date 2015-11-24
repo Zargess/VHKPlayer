@@ -12,11 +12,11 @@ namespace VHKPlayer.Utility.PlayQueueStrategy
 {
     public class MusicVideoPlayQueueStrategy : IPlayQueueStrategy
     {
-        private IQueryProcessor processor;
+        private IQueryProcessor _processor;
 
         public MusicVideoPlayQueueStrategy(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public void PlayNextItem(Queue<FileNode> queue, VideoPlayerController controller, IPlayStrategy strategy, IPlayable previous)
@@ -36,7 +36,7 @@ namespace VHKPlayer.Utility.PlayQueueStrategy
             }
             else if (controller.AutoPlayList)
             {
-                var playlist = processor.Process(new GetAutoPlayListQuery());
+                var playlist = _processor.Process(new GetAutoPlayListQuery());
                 if (playlist == null) return;
                 playlist.Play(null, controller);
             }

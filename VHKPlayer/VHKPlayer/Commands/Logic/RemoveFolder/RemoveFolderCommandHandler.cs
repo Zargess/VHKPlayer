@@ -10,18 +10,18 @@ namespace VHKPlayer.Commands.Logic.RemoveFolder
 {
     class RemoveFolderCommandHandler : ICommandHandler<RemoveFolderCommand>
     {
-        private readonly IDataCenter center;
+        private readonly IDataCenter _center;
 
         public RemoveFolderCommandHandler(IDataCenter center)
         {
-            this.center = center;
+            this._center = center;
         }
 
         public void Handle(RemoveFolderCommand command)
         {
             command.Folder.Observers.ForEach(x => command.Folder.RemoveObserver(x));
 
-            center.Folders.Remove(command.Folder);
+            _center.Folders.Remove(command.Folder);
         }
     }
 }

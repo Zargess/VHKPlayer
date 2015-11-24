@@ -10,16 +10,16 @@ namespace VHKPlayer.Commands.Logic.RemovePlayableFile
 {
     class RemovePlayableFileCommandHandler : ICommandHandler<RemovePlayableFileCommand>
     {
-        private readonly IDataCenter center;
+        private readonly IDataCenter _center;
 
         public RemovePlayableFileCommandHandler(IDataCenter center)
         {
-            this.center = center;
+            this._center = center;
         }
 
         public void Handle(RemovePlayableFileCommand command)
         {
-            center.PlayableFiles.Remove(command.PlayableFile);
+            _center.PlayableFiles.Remove(command.PlayableFile);
         }
     }
 }

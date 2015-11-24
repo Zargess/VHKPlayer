@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
@@ -11,11 +12,11 @@ namespace VHKPlayer.Commands.GUI
 {
     public class RunPlayableStrategyCommand : ICommand
     {
-        private readonly IPlayStrategy strategy;
+        private readonly IVideoPlayerController _controller;
 
-        public RunPlayableStrategyCommand(IPlayStrategy strategy)
+        public RunPlayableStrategyCommand(IVideoPlayerController controller)
         {
-            this.strategy = strategy;
+            this._controller = controller;
         }
 
         public bool CanExecute(object parameter)
@@ -25,14 +26,24 @@ namespace VHKPlayer.Commands.GUI
 
         public void Execute(object parameter)
         {
-            var playable = parameter as IPlayable;
-
-            if (playable == null)
+            var parameters = parameter as IMultiValueParameter;
+            if (parameters == null)
             {
                 return;
             }
 
-            
+            var playable = parameters.Playable;
+            var strategy = parameters.Strategy;
+
+            if (playable == null || strategy == null)
+            {
+                return;
+            }
+
+            _controller.Play(playable, strategy);
+
+            // TODO : Remove this print
+            Console.WriteLine("Run Playable Strategy Command called with: {0}", playable.Name);
         }
 
         public event EventHandler CanExecuteChanged;

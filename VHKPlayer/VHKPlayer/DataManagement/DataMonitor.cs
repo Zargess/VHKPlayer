@@ -24,32 +24,32 @@ using VHKPlayer.Utility.Settings.Interfaces;
 
 namespace VHKPlayer.DataManagement
 {
-    public class DataMonitor : IDataMonitor, IVHKObserver<FolderNode>
+    public class DataMonitor : IDataMonitor, IVhkObserver<FolderNode>
     {
-        private readonly ICommandProcessor commandProcessor;
-        private readonly IQueryProcessor queryProcessor;
-        private readonly IGlobalConfigService configService;
+        private readonly ICommandProcessor _commandProcessor;
+        private readonly IQueryProcessor _queryProcessor;
+        private readonly IGlobalConfigService _configService;
 
         public DataMonitor(ICommandProcessor commandProcessor, IQueryProcessor queryProcessor, IGlobalConfigService configService)
         {
-            this.commandProcessor = commandProcessor;
-            this.queryProcessor = queryProcessor;
-            this.configService = configService;
+            this._commandProcessor = commandProcessor;
+            this._queryProcessor = queryProcessor;
+            this._configService = configService;
             InitEventListeners();    
         }
 
         private void InitEventListeners()
         {
-            configService.FolderSettingsUpdated += Config_FolderSettingsUpdated;
+            _configService.FolderSettingsUpdated += Config_FolderSettingsUpdated;
 
-            commandProcessor.ProcessTransaction(new CreateFolderStructureCommand()
+            _commandProcessor.ProcessTransaction(new CreateFolderStructureCommand()
             {
-                RootFolderPath = queryProcessor.Process(new GetStringSettingQuery() {
+                RootFolderPath = _queryProcessor.Process(new GetStringSettingQuery() {
                     SettingName = Constants.RootFolderPathSettingName
                 })
             });
 
-            var folders = queryProcessor.Process(new GetFoldersQuery());
+            var folders = _queryProcessor.Process(new GetFoldersQuery());
 
             foreach (var folder in folders)
             {
@@ -59,7 +59,7 @@ namespace VHKPlayer.DataManagement
 
         public void SubjectUpdated(FolderNode subject)
         {
-            commandProcessor.ProcessTransaction(new UpdateDataCenterByFolderCommand()
+            _commandProcessor.ProcessTransaction(new UpdateDataCenterByFolderCommand()
             {
                 Folder = subject
             });
@@ -67,7 +67,7 @@ namespace VHKPlayer.DataManagement
 
         private void Config_FolderSettingsUpdated(object sender, PropertyChangedEventArgs e)
         {
-            commandProcessor.ProcessTransaction(new ResetDataCenterCommand());
+            _commandProcessor.ProcessTransaction(new ResetDataCenterCommand());
         }
     }
 }

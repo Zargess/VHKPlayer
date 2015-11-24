@@ -20,18 +20,18 @@ namespace VHKPlayer
     /// </summary>
     public partial class App : Application
     {
-        private static IContainer container;
+        private static IContainer _container;
         public static IContainer Container
         {
             get
             {
-                if (container == null)
+                if (_container == null)
                 {
                     var builder = new ContainerBuilder();
                     builder.RegisterModule(new DefaultWiringModule());
-                    container = builder.Build();
+                    _container = builder.Build();
                 }
-                return container;
+                return _container;
             }
         }
 

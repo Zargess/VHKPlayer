@@ -10,16 +10,16 @@ namespace VHKPlayer.Commands.Logic.ChangeSetting
 {
     class ChangeSettingCommandHandler : ICommandHandler<ChangeSettingCommand>
     {
-        private readonly IGlobalConfigService config;
+        private readonly IGlobalConfigService _config;
 
         public ChangeSettingCommandHandler(IGlobalConfigService config)
         {
-            this.config = config;
+            this._config = config;
         }
 
         public void Handle(ChangeSettingCommand command)
         {
-            config.Update(command.SettingName, command.Value);
+            _config.Update(command.SettingName, command.Value);
         }
     }
 }

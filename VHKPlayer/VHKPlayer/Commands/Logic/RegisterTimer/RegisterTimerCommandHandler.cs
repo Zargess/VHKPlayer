@@ -10,11 +10,11 @@ namespace VHKPlayer.Commands.Logic.RegisterTimer
 {
     class RegisterTimerCommandHandler : ICommandHandler<RegisterTimerCommand>
     {
-        private readonly IDataCenter center;
+        private readonly IDataCenter _center;
 
         public RegisterTimerCommandHandler(IDataCenter center)
         {
-            this.center = center;
+            this._center = center;
         }
 
         public void Handle(RegisterTimerCommand command)

@@ -13,11 +13,11 @@ namespace VHKPlayer.Controllers
 {
     public class VideoPlayerController : IVideoPlayerController
     {
-        private List<IPlayController> observers;
-        private IPlayStrategy videoPlayStrategy;
-        private IPlayable previousMusicPlayable, previousVideoPlayable;
-        private IQueryProcessor processor;
-        private IPlayQueueStrategy playQueue;
+        private readonly List<IPlayController> _observers;
+        private IPlayStrategy _videoPlayStrategy;
+        private IPlayable _previousMusicPlayable, _previousVideoPlayable;
+        private readonly IQueryProcessor _processor;
+        private readonly IPlayQueueStrategy _playQueue;
 
         public bool AutoPlayList { get; set; }
         public Queue<FileNode> Queue { get; private set; }
@@ -25,42 +25,42 @@ namespace VHKPlayer.Controllers
 
         public VideoPlayerController(IQueryProcessor processor, IPlayQueueStrategy playQueue)
         {
-            this.processor = processor;
-            observers = new List<IPlayController>();
+            this._processor = processor;
+            _observers = new List<IPlayController>();
             Queue = new Queue<FileNode>();
-            this.playQueue = playQueue;
+            this._playQueue = playQueue;
         }
 
         public void AddObserver(IPlayController observer)
         {
-            observers.Add(observer);
+            _observers.Add(observer);
         }
 
         public FileNode HintNext()
         {
-            return videoPlayStrategy.PeekNext(this);
+            return _videoPlayStrategy.PeekNext(this);
         }
 
         public void Mute(FileType type)
         {
-            observers.ForEach(x => x.Mute(type));
+            _observers.ForEach(x => x.Mute(type));
         }
 
         public void Pause(FileType type)
         {
-            observers.ForEach(x => x.Pause(type));
+            _observers.ForEach(x => x.Pause(type));
         }
 
         public void Play(FileNode file)
         {
-            var isStatFile = processor.Process(new IsStatFileQuery()
+            var isStatFile = _processor.Process(new IsStatFileQuery()
             {
                 File = file
             });
 
             if (isStatFile) ShowStats();
 
-            observers.ForEach(x => x.Play(file));
+            _observers.ForEach(x => x.Play(file));
         }
 
         public void Play(IPlayable playable, IPlayStrategy strategy)
@@ -70,16 +70,16 @@ namespace VHKPlayer.Controllers
                 var playableFile = playable as PlayableFile;
                 if (playableFile.File.Type == FileType.Audio)
                 {
-                    previousMusicPlayable = playableFile;
+                    _previousMusicPlayable = playableFile;
                 } else
                 {
-                    previousVideoPlayable = playableFile;
-                    videoPlayStrategy = strategy;
+                    _previousVideoPlayable = playableFile;
+                    _videoPlayStrategy = strategy;
                 }
             } else
             {
-                previousVideoPlayable = playable;
-                videoPlayStrategy = strategy;
+                _previousVideoPlayable = playable;
+                _videoPlayStrategy = strategy;
             }
 
             playable.Play(strategy, this);
@@ -87,19 +87,19 @@ namespace VHKPlayer.Controllers
 
         public void PlayQueue()
         {
-            playQueue.PlayNextItem(Queue, this, videoPlayStrategy, previousVideoPlayable);
+            _playQueue.PlayNextItem(Queue, this, _videoPlayStrategy, _previousVideoPlayable);
         }
 
         public void Resume(FileType type)
         {
-            observers.ForEach(x => x.Resume(type));
+            _observers.ForEach(x => x.Resume(type));
         }
 
         public void ShowStats()
         {
-            if (!(previousVideoPlayable is Player)) return;
-            var player = previousVideoPlayable as Player;
-            observers.ForEach(x => x.ShowStats(player));
+            if (!(_previousVideoPlayable is Player)) return;
+            var player = _previousVideoPlayable as Player;
+            _observers.ForEach(x => x.ShowStats(player));
         }
 
         public void Shutdown()
@@ -109,7 +109,7 @@ namespace VHKPlayer.Controllers
 
         public void Stop(FileType type)
         {
-            observers.ForEach(x => x.Stop(type));
+            _observers.ForEach(x => x.Stop(type));
         }
     }
 }

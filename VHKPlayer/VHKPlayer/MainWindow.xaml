@@ -19,7 +19,7 @@
         <DataTemplate x:Key="TabContent" DataType="{x:Type TabItem}">
             <DockPanel>
                 <!--TODO : Find a way to bind to viewmodel playables here-->
-                <controls:PlayableListbox Command="{Binding DummyCommand}" Data="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Playables}" ConverterParam="{Binding Script}" />
+                <controls:PlayableListbox Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.PlayCommand}" CommandParameter="{Binding PlayStrategy}" Data="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Playables}" ConverterParam="{Binding Script}" />
             </DockPanel>
         </DataTemplate>
 

@@ -67,7 +67,7 @@ namespace VHKPlayer.Interpreter.Tests
             }.RandomizeTheRest();
             var file2 = new FileNode()
             {
-                FullPath = fixture.Create<string>()
+                FullPath = Fixture.Create<string>()
             }.RandomizeTheRest();
             var player1 = new Player()
             {
@@ -115,7 +115,7 @@ namespace VHKPlayer.Interpreter.Tests
         public void TestEvaluateFolderSelector()
         {
             var script = new Script("(folder path:\"root\\blandet\")");
-            var root = fixture.Create<string>();
+            var root = Fixture.Create<string>();
             var path = root + "\\blandet";
             var file = new FileNode()
             {
@@ -129,7 +129,7 @@ namespace VHKPlayer.Interpreter.Tests
             {
                 File = new FileNode()
                 {
-                    FullPath = fixture.Create<string>()
+                    FullPath = Fixture.Create<string>()
                 }
             };
 

@@ -13,24 +13,24 @@ namespace VHKPlayer.Utility.FindFileType
 {
     public class FindFileTypeStrategy : IFindFileTypeStrategy
     {
-        private readonly IQueryProcessor processor;
+        private readonly IQueryProcessor _processor;
 
         public FindFileTypeStrategy(IQueryProcessor processor)
         {
-            this.processor = processor;
+            this._processor = processor;
         }
 
         public FileType FindType(string path)
         {
-            var supportedVideo = processor.Process(new GetStringSettingQuery()
+            var supportedVideo = _processor.Process(new GetStringSettingQuery()
             {
                 SettingName = Constants.SupportedVideoSettingName
             }).Split(';').ToList();
-            var supportedAudio = processor.Process(new GetStringSettingQuery()
+            var supportedAudio = _processor.Process(new GetStringSettingQuery()
             {
                 SettingName = Constants.SupportedAudioSettingName
             }).Split(';').ToList();
-            var supportedPicture = processor.Process(new GetStringSettingQuery()
+            var supportedPicture = _processor.Process(new GetStringSettingQuery()
             {
                 SettingName = Constants.SupportedPictureSettingName
             }).Split(';').ToList();

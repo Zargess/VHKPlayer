@@ -8,19 +8,19 @@ namespace VHKPlayer.Commands.Logic.CreateFolder
 {
     class CreateFolderCommandHandler : ICommandHandler<CreateFolderCommand>
     {
-        private readonly ICommandProcessor processor;
-        private readonly IDataCenter center;
+        private readonly ICommandProcessor _processor;
+        private readonly IDataCenter _center;
 
         public CreateFolderCommandHandler(IDataCenter center, ICommandProcessor processor)
         {
-            this.center = center;
-            this.processor = processor;
+            this._center = center;
+            this._processor = processor;
         }
 
         public void Handle(CreateFolderCommand command)
         {
-            if (center.Folders.Any(x => x.FullPath.ToLower() == command.Path.ToLower())) return;
-            center.Folders.Add(new FolderNode(processor)
+            if (_center.Folders.Any(x => x.FullPath.ToLower() == command.Path.ToLower())) return;
+            _center.Folders.Add(new FolderNode(_processor)
             {
                 FullPath = command.Path
             });

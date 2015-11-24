@@ -18,7 +18,7 @@ namespace VHKPlayer.Test.Models
             //
         }
 
-        private TestContext testContextInstance;
+        private TestContext _testContextInstance;
 
         /// <summary>
         ///Gets or sets the test context which provides
@@ -28,11 +28,11 @@ namespace VHKPlayer.Test.Models
         {
             get
             {
-                return testContextInstance;
+                return _testContextInstance;
             }
             set
             {
-                testContextInstance = value;
+                _testContextInstance = value;
             }
         }
 
