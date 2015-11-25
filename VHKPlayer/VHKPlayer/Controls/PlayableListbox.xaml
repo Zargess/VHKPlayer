@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="VHKPlayer.Controls.PlayableListbox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:VHKPlayer.Controls"
+             xmlns:converters="clr-namespace:VHKPlayer.Converters"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:UniversalVisibilityConverter x:Key="Converter" />
+        <converters:ParameterConverter x:Key="ParameterConverter" />
+        
+        <Style x:Key="VisibilityStyle" TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Visibility">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource Converter}">
+                        <Binding Path="ConverterParam" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}"/>
+                        <Binding />
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    
+    <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+        <ListBox ScrollViewer.CanContentScroll="False" ItemsSource="{Binding Data, RelativeSource={RelativeSource AncestorType=UserControl}}" ItemContainerStyle="{StaticResource VisibilityStyle}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger SourceObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}}" EventName="PreviewMouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding Command, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                    <i:InvokeCommandAction.CommandParameter>
+                                        <MultiBinding Converter="{StaticResource ParameterConverter}">
+                                            <Binding RelativeSource="{RelativeSource AncestorType=UserControl}" Path="CommandParameter"/>
+                                            <Binding />
+                                        </MultiBinding>
+                                    </i:InvokeCommandAction.CommandParameter>
+                                </i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <StackPanel>
+                            <Label HorizontalAlignment="Stretch" FontSize="12" Height="30" Margin="-4,-1,-4,-1" Content="{Binding}"/>
+                        </StackPanel>
+                    </ContentControl>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </ScrollViewer>
+</UserControl>

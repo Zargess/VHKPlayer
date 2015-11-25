@@ -4,30 +4,24 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VHKPlayer.Enums;
-using VHKPlayer.Interfaces;
-using VHKPlayer.Utility;
+using VHKPlayer.Utility.FindFileType.Interfaces;
 
-namespace VHKPlayer.Models {
-    public class FileNode : IFile {
-        public string FullPath { get; private set; }
-        public string Name { get; private set; }
-        public string NameWithoutExtension { get; private set; }
-        public FileType Type { get; private set; }
+namespace VHKPlayer.Models
+{
+    public class FileNode
+    {
+        public string FullPath { get; set; }
+        public string Name { get; set; }
+        public string NameWithoutExtension { get; set; }
+        public FileType Type { get; set; }
 
-        public FileNode(string path) {
-            FullPath = path;
-            Name = Path.GetFileName(path);
-            NameWithoutExtension = Path.GetFileNameWithoutExtension(path);
-            Type = GeneralFunctions.GetFileType(Path.GetExtension(path));
-        }
-
-
-        public bool Exists() {
+        public bool Exists()
+        {
             return File.Exists(FullPath);
         }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == this) return true;
             if (obj == null) return false;
             if (!(obj is FileNode)) return false;
@@ -35,6 +29,11 @@ namespace VHKPlayer.Models {
             var path = FullPath.ToLower();
             var otherpath = other.FullPath.ToLower();
             return FullPath.ToLower() == other.FullPath.ToLower();
+        }
+
+        public override int GetHashCode()
+        {
+            return FullPath.GetHashCode();
         }
     }
 }

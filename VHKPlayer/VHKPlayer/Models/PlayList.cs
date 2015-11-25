@@ -4,47 +4,39 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VHKPlayer.Collections;
-using VHKPlayer.Enums;
-using VHKPlayer.Interfaces;
-using VHKPlayer.Interfaces.Factories;
+using VHKPlayer.Controllers.Interfaces;
+using VHKPlayer.Models.Interfaces;
+using VHKPlayer.Utility.LoadingStrategy.Interfaces;
+using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
-namespace VHKPlayer.Models {
-    public class PlayList : IPlayList {
-        private IFolder _folder;
-        private ILoadingStrategy<IFile> _loadingStrategy;
-        private IFileSelectionStrategy _selectionStrategy;
-        public ObservableCollection<IFile> Content { get; private set; }
-        public bool HasAudio { get; private set; }
-        public string Name { get; private set; }
-        public bool Repeat { get; private set; }
+namespace VHKPlayer.Models
+{
+    public class PlayList : IPlayable, IVhkObserver<FolderNode>
+    {
+        // TODO : Consider adding a Repeat bool here to indicate if the playlist should repeat it self
+        public string Name { get; set; }
+        public bool HasAudio { get; set; }
+        public ObservableCollection<FileNode> Content { get; set; }
+        public ILoadingStrategy<ICollection<FileNode>> LoadingStrategy { get; set; }
+        public IPlayStrategy PlayStrategy { get; set; }
 
-        public PlayList(IPlayListFactory factory) {
-            Content = new SortableCollection<IFile>();
-            Name = factory.CreateName();
-            HasAudio = factory.CreateHasAudio();
-            Repeat = factory.CreateRepeat();
-            _folder = factory.CreateFolder();
-            _loadingStrategy = factory.CreateLoadingStrategy();
-            _selectionStrategy = factory.CreateSelectionStrategy();
-            _loadingStrategy.Load(Content);
-            _folder.AddObserver(this);
+        public void Play(IPlayStrategy strategy, IVideoPlayerController videoPlayer)
+        {
+            PlayStrategy.Play(Content, videoPlayer);
         }
 
-        public void FolderChanged(IFolder folder) {
-            _loadingStrategy.Load(Content);
+        public void SubjectUpdated(FolderNode subject)
+        {
+            Content.Clear();
+            foreach (var file in LoadingStrategy.Load())
+            {
+                Content.Add(file);
+            }
         }
 
-        public Queue<IFile> Play(PlayType type) {
-            return _selectionStrategy.SelectFiles(this, type);
-        }
-
-        public override string ToString() {
+        public override string ToString()
+        {
             return Name;
-        }
-
-        public IFile HintNext(Queue<IFile> queue) {
-            return _selectionStrategy.HintNext(this, queue);
         }
     }
 }

@@ -1,1 +1,0 @@
-﻿Make a script language interpreter that interprets the settings into usable objects and changes in the program
