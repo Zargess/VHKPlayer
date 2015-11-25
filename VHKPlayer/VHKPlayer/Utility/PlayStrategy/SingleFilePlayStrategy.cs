@@ -51,6 +51,9 @@ namespace VHKPlayer.Utility.PlayStrategy
                 });
                 videoPlayer.PlayQueue();
             }
+
+            // TODO : Remove this print
+            Console.WriteLine("Single File Play Strategy");
         }
     }
 }

@@ -144,6 +144,7 @@
     <Compile Include="Exceptions\NoSuchLoadingStrategyException.cs" />
     <Compile Include="Exceptions\NoSuchPlayStrategyException.cs" />
     <Compile Include="Exceptions\NoSuchTabException.cs" />
+    <Compile Include="Exceptions\SettingIsNotOfExpectedTypeException.cs" />
     <Compile Include="Exceptions\SyntaxErrorException.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />
     <Compile Include="Interpreter\Interfaces\IScriptInterpreter.cs" />
@@ -183,6 +184,8 @@
     <Compile Include="Queries\GetFolderFromStringSetting\GetFolderFromStringSettingQueryHandler.cs" />
     <Compile Include="Queries\GetFolders\GetFoldersQuery.cs" />
     <Compile Include="Queries\GetFolders\GetFoldersQueryProcessor.cs" />
+    <Compile Include="Queries\GetIntSetting\GetIntSettingQuery.cs" />
+    <Compile Include="Queries\GetIntSetting\GetIntSettingQueryHandler.cs" />
     <Compile Include="Queries\GetPlayableFileFolders\GetPlayableFileFoldersQuery.cs" />
     <Compile Include="Queries\GetPlayableFileFolders\GetPlayableFileFoldersQueryHandler.cs" />
     <Compile Include="Queries\GetPlayableFiles\GetPlayableFilesQuery.cs" />
@@ -225,6 +228,8 @@
     <Compile Include="Utility\FindFileType\Interfaces\IFindFileTypeStrategy.cs" />
     <Compile Include="Utility\GetSpecialTab\GetSpecialTabStrategy.cs" />
     <Compile Include="Utility\GetSpecialTab\Interfaces\IGetSpecialTabStrategy.cs" />
+    <Compile Include="Utility\HandleStatFile\HandleStatFileStrategy.cs" />
+    <Compile Include="Utility\HandleStatFile\Interfaces\IHandleStatFileStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\Interfaces\ILoadingStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\PlayListLoading\FolderLoadingStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\PlayListLoading\SortedLoadingStrategy.cs" />

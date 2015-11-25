@@ -258,5 +258,17 @@ namespace VHKPlayer.Properties {
                 this["application_rightBlockTabs"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int application_statTimerDelay {
+            get {
+                return ((int)(this["application_statTimerDelay"]));
+            }
+            set {
+                this["application_statTimerDelay"] = value;
+            }
+        }
     }
 }

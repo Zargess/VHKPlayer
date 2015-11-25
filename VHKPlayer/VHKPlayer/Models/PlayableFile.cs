@@ -17,6 +17,8 @@ namespace VHKPlayer.Models
         public void Play(IPlayStrategy strategy, IVideoPlayerController videoPlayer)
         {
             strategy.Play(new List<FileNode>() { File }, videoPlayer);
+            // TODO : Remove this print
+            Console.WriteLine("Playable File: {0}", Name);
         }
 
         public override string ToString()

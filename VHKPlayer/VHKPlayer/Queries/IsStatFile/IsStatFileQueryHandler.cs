@@ -25,7 +25,7 @@ namespace VHKPlayer.Queries.IsStatFile
                 }).Replace("root\\", "")
             });
 
-            return folder.Content.Any(x => query.File.FullPath.ToLower() == x.FullPath.ToLower());
+            return folder.Contains(query.File);
         }
     }
 }

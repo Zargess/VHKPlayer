@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using VHKPlayer.Controllers.Interfaces;
-using VHKPlayer.Infrastructure;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Queries.IsStatFile;
+using VHKPlayer.Utility.HandleStatFile.Interfaces;
 using VHKPlayer.Utility.PlayQueueStrategy.Interfaces;
 using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
@@ -18,17 +18,19 @@ namespace VHKPlayer.Controllers
         private IPlayable _previousMusicPlayable, _previousVideoPlayable;
         private readonly IQueryProcessor _processor;
         private readonly IPlayQueueStrategy _playQueue;
+        private readonly IHandleStatFileStrategy _handleStatFile;
 
         public bool AutoPlayList { get; set; }
         public Queue<FileNode> Queue { get; private set; }
 
 
-        public VideoPlayerController(IQueryProcessor processor, IPlayQueueStrategy playQueue)
+        public VideoPlayerController(IQueryProcessor processor, IPlayQueueStrategy playQueue, IHandleStatFileStrategy handleStatFile)
         {
             this._processor = processor;
             _observers = new List<IPlayController>();
             Queue = new Queue<FileNode>();
             this._playQueue = playQueue;
+            _handleStatFile = handleStatFile;
         }
 
         public void AddObserver(IPlayController observer)
@@ -58,13 +60,19 @@ namespace VHKPlayer.Controllers
                 File = file
             });
 
-            if (isStatFile) ShowStats();
-
+            if (isStatFile)
+            {
+                ShowStats();
+                _handleStatFile.HandleFile(this, file);
+            }
+            Console.WriteLine(file.Name);
             _observers.ForEach(x => x.Play(file));
         }
 
         public void Play(IPlayable playable, IPlayStrategy strategy)
         {
+            _handleStatFile.StopTimer();
+
             if (playable is PlayableFile)
             {
                 var playableFile = playable as PlayableFile;
@@ -83,6 +91,9 @@ namespace VHKPlayer.Controllers
             }
 
             playable.Play(strategy, this);
+
+            // TODO : Remove this print
+            Console.WriteLine("Video Player Controller: {0}", playable.Name);
         }
 
         public void PlayQueue()

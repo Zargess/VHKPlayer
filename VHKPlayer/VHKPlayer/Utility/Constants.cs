@@ -20,6 +20,7 @@ namespace VHKPlayer.Utility
         public const string SupportedPictureSettingName = "folder_supportedPicture";
 
         public const string AutoPlayListSettingName = "application_autoPlaylist";
+        public const string StatTimerSettingName = "application_statTimerDelay";
 
         public const string LeftBlockTabsSettingName = "application_leftBlockTabs";
         public const string DuringMatchTabsSettingName = "application_duringMatchTabs";

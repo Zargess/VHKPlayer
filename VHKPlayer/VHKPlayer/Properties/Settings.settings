@@ -59,5 +59,8 @@
     <Setting Name="application_rightBlockTabs" Type="System.String" Scope="User">
       <Value Profile="(Default)">duringmatch,{Blandet;(folder path:"root\blandet");False;SingleFile},{Play Lister;(type name:PlayList);True;SingleFile}</Value>
     </Setting>
+    <Setting Name="application_statTimerDelay" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
