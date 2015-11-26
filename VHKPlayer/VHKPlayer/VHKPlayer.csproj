@@ -141,6 +141,7 @@
     <Compile Include="DataManagement\DataMonitor.cs" />
     <Compile Include="DataManagement\Interfaces\IDataMonitor.cs" />
     <Compile Include="Events\DataCenterUpdatedEventArgs.cs" />
+    <Compile Include="Exceptions\ItemIsNotATabException.cs" />
     <Compile Include="Exceptions\NoSuchLoadingStrategyException.cs" />
     <Compile Include="Exceptions\NoSuchPlayStrategyException.cs" />
     <Compile Include="Exceptions\NoSuchTabException.cs" />
@@ -223,6 +224,7 @@
     <Compile Include="Queries\ParsePlayListString\ParsePlayListStringQuery.cs" />
     <Compile Include="Queries\ParsePlayListString\ParsePlayListStringQueryHandler.cs" />
     <Compile Include="Queries\QueryProcessor.cs" />
+    <Compile Include="Selectors\TabDesignSelector.cs" />
     <Compile Include="Utility\Constants.cs" />
     <Compile Include="Utility\FindFileType\FindFileTypeStrategy.cs" />
     <Compile Include="Utility\FindFileType\Interfaces\IFindFileTypeStrategy.cs" />

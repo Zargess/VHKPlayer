@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:VHKPlayer.Controls"
-        xmlns:converters="clr-namespace:VHKPlayer.Converters"
+        xmlns:selectors="clr-namespace:VHKPlayer.Selectors"
         xmlns:local="clr-namespace:VHKPlayer"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" Name="Main">
@@ -16,17 +16,43 @@
             </StackPanel>
         </DataTemplate>
 
-        <DataTemplate x:Key="TabContent" DataType="{x:Type TabItem}">
+        <DataTemplate x:Key="DefaultTabDesign" DataType="{x:Type TabItem}">
             <DockPanel>
-                <!--TODO : Find a way to bind to viewmodel playables here-->
                 <controls:PlayableListbox Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.PlayCommand}" CommandParameter="{Binding PlayStrategy}" Data="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Playables}" ConverterParam="{Binding Script}" />
             </DockPanel>
         </DataTemplate>
+        
+        <DataTemplate x:Key="PlayListTabDesign" DataType="{x:Type TabItem}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="50*" />
+                </Grid.ColumnDefinitions>
+                
+                <Grid Column="0">
+                    <controls:PlayableListbox Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.PlayCommand}" CommandParameter="{Binding PlayStrategy}" Data="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Playables}" ConverterParam="{Binding Script}" />
+                </Grid>
+                
+                <GridSplitter Grid.Column="1" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                
+                <Grid Column="2"></Grid>
+            </Grid>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="DuringMatchTabDesign" DataType="{x:Type TabItem}">
+            <Grid>
+                <TextBlock Text="Din mor!" />
+            </Grid>
+        </DataTemplate>
+        
+        <selectors:TabDesignSelector x:Key="TabDesignSelector" DefaultDataTemplate="{StaticResource DefaultTabDesign}" DuringMaDataTemplate="{StaticResource DuringMatchTabDesign}" PlayListDataTemplate="{StaticResource PlayListTabDesign}" />
 
         <Style x:Key="TabControlContent" TargetType="{x:Type TabControl}">
             <Setter Property="FontSize" Value="12" />
             <Setter Property="ItemTemplate" Value="{StaticResource TabName}" />
-            <Setter Property="ContentTemplate" Value="{StaticResource TabContent}" />
+            <!--TODO : Make the following line use the selector!-->
+            <Setter Property="ContentTemplateSelector" Value="{StaticResource TabDesignSelector}" />
         </Style>
     </Window.Resources>
     
