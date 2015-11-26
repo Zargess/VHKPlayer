@@ -42,13 +42,6 @@ namespace VHKPlayer.ViewModels
 
             Playables = new ObservableCollection<IPlayable>();
 
-            var tabs = _qprocessor.Process(new GetTabsFromStringSettingQuery()
-            {
-                SettingName = Constants.RightBlockTabsSettingName
-            });
-
-            Tabs = new ObservableCollection<ITab>(tabs);
-
             Controller = _container.Resolve<IVideoPlayerController>();
             PlayCommand = new RunPlayableStrategyCommand(Controller);
 
@@ -58,6 +51,16 @@ namespace VHKPlayer.ViewModels
             {
                 Observer = this
             });
+
+            InitialiseData();
+
+            var tabs = _qprocessor.Process(new GetTabsFromStringSettingQuery()
+            {
+                SettingName = Constants.RightBlockTabsSettingName,
+                Playables = Playables
+            });
+
+            Tabs = new ObservableCollection<ITab>(tabs);
         }
 
         public void InitialiseData()

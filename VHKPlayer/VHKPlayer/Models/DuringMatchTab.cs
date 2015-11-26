@@ -12,11 +12,12 @@ namespace VHKPlayer.Models
     public class DuringMatchTab : ITab
     {
         public string Name { get; set; }
+        public ObservableCollection<IPlayable> Data { get; set; }
 
         public bool PlayListTab { get; set; }
 
         public IPlayStrategy PlayStrategy { get; set; }
 
-        public IScript Script { get; set; }
+        
     }
 }

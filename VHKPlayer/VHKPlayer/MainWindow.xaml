@@ -18,7 +18,7 @@
 
         <DataTemplate x:Key="DefaultTabDesign" DataType="{x:Type TabItem}">
             <DockPanel>
-                <controls:PlayableListbox Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.PlayCommand}" CommandParameter="{Binding PlayStrategy}" Data="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Playables}" ConverterParam="{Binding Script}" />
+                <controls:PlayableListbox Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.PlayCommand}" CommandParameter="{Binding PlayStrategy}" Data="{Binding Data}" ConverterParam="{Binding Script}" />
             </DockPanel>
         </DataTemplate>
         
@@ -31,7 +31,7 @@
                 </Grid.ColumnDefinitions>
                 
                 <Grid Column="0">
-                    <controls:PlayableListbox Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.PlayCommand}" CommandParameter="{Binding PlayStrategy}" Data="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Playables}" ConverterParam="{Binding Script}" />
+                    <controls:PlayableListbox Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.PlayCommand}" CommandParameter="{Binding PlayStrategy}" Data="{Binding Data}" ConverterParam="{Binding Script}" />
                 </Grid>
                 
                 <GridSplitter Grid.Column="1" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />

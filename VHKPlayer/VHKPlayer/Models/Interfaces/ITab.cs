@@ -11,7 +11,7 @@ namespace VHKPlayer.Models.Interfaces
     public interface ITab
     {
         string Name { get; set; }
-        IScript Script { get; set; }
+        ObservableCollection<IPlayable> Data { get; set; }
         IPlayStrategy PlayStrategy { get; set; }
         bool PlayListTab { get; set; }
     }

@@ -249,7 +249,8 @@ namespace VHKPlayer.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("duringmatch,{Blandet;(folder path:\"root\\blandet\");False;SingleFile},{Play Lister;" +
-            "(type name:PlayList);True;SingleFile}")]
+            "(type name:PlayList);True;SingleFile},{Player Stat;(property name:Trainer value:" +
+            "False);False;SingleFile}")]
         public string application_rightBlockTabs {
             get {
                 return ((string)(this["application_rightBlockTabs"]));

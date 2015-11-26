@@ -57,7 +57,7 @@
       <Value Profile="(Default)">(folder path:"root\SuperHero")</Value>
     </Setting>
     <Setting Name="application_rightBlockTabs" Type="System.String" Scope="User">
-      <Value Profile="(Default)">duringmatch,{Blandet;(folder path:"root\blandet");False;SingleFile},{Play Lister;(type name:PlayList);True;SingleFile}</Value>
+      <Value Profile="(Default)">duringmatch,{Blandet;(folder path:"root\blandet");False;SingleFile},{Play Lister;(type name:PlayList);True;SingleFile},{Player Stat;(property name:Trainer value:False);False;SingleFile}</Value>
     </Setting>
     <Setting Name="application_statTimerDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>

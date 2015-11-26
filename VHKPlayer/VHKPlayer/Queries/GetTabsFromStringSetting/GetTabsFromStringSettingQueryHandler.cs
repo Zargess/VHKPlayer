@@ -43,10 +43,9 @@ namespace VHKPlayer.Queries.GetTabsFromStringSetting
                 {
                     var variables = def.Replace("{", "").Replace("}", "").Split(';');
                     var script = new Script(variables[1]);
-                    var tab = new PlayableContentTab()
+                    var tab = new PlayableContentTab(query.Playables, script)
                     {
                         Name = variables[0],
-                        Script = script,
                         PlayListTab = variables[2].ToBool(),
                         PlayStrategy = _processor.Process(new GetPlayStrategyQuery()
                         {

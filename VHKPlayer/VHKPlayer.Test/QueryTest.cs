@@ -26,6 +26,7 @@ using VHKPlayer.Queries.GetTabsFromStringSetting;
 using VHKPlayer.Utility;
 using VHKPlayer.Utility.PlayStrategy;
 using ScriptParser;
+using VHKPlayer.Queries.GetAllPlayables;
 
 namespace VHKPlayer.Test
 {
@@ -40,19 +41,20 @@ namespace VHKPlayer.Test
         {
             var definitions = "duringmatch,{Blandet;(folder path:\"root\\blandet\");False;SingleFile},{Play Lister;(type name:PlayList);True;SingleFile}";
 
-            //var container = CreateContainer(c =>
-            //{
-            //    c.RegisterFake<IGlobalConfigService>()
-            //        .GetString(Arg.Any<string>)
-            //        .Returns(definitions);
-            //});
+            var container = CreateContainer(c =>
+            {
+                c.RegisterFake<IGlobalConfigService>()
+                    .GetString(Arg.Any<string>())
+                    .Returns(definitions);
+            });
 
-            var container = CreateContainer();
 
             var processor = container.Resolve<IQueryProcessor>();
+            var playables = processor.Process(new GetAllPlayablesQuery());
             var tabs = processor.Process(new GetTabsFromStringSettingQuery()
             {
-                SettingName = Constants.RightBlockTabsSettingName
+                SettingName = Constants.RightBlockTabsSettingName,
+                Playables = playables
             }).ToList();
 
 
@@ -62,7 +64,7 @@ namespace VHKPlayer.Test
             Assert.IsTrue(tabs[1].PlayStrategy is SingleFilePlayStrategy);
             Assert.AreEqual(tabs[2].Name, "Play Lister");
             Assert.IsTrue(tabs[2].PlayListTab);
-            Assert.AreEqual(Program.NewType("PlayList"), tabs[2].Script.Code);
+            //Assert.AreEqual(Program.NewType("PlayList"), tabs[2].Script.Code);
         }
 
         [TestMethod]
