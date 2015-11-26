@@ -65,6 +65,7 @@ namespace VHKPlayer.ViewModels
 
         public void InitialiseData()
         {
+            // TODO : Initialise the tabs down here, then call this method again if application settings changes
             _cprocessor.ProcessTransaction(new CreateAllPlayablesCommand());
         }
 

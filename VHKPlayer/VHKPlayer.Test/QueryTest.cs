@@ -64,7 +64,6 @@ namespace VHKPlayer.Test
             Assert.IsTrue(tabs[1].PlayStrategy is SingleFilePlayStrategy);
             Assert.AreEqual(tabs[2].Name, "Play Lister");
             Assert.IsTrue(tabs[2].PlayListTab);
-            //Assert.AreEqual(Program.NewType("PlayList"), tabs[2].Script.Code);
         }
 
         [TestMethod]
