@@ -14,7 +14,6 @@ namespace VHKPlayer.Models.Interfaces
         ObservableCollection<PlayList> PlayLists { get; }
         ObservableCollection<FolderNode> Folders { get; }
         ObservableCollection<PlayableFile> PlayableFiles { get; }
-        Dictionary<object, Timer> Timers { get; }
         bool UncommitedChanges { get; set; }
 
         void AddObserver(IDataObserver observer);

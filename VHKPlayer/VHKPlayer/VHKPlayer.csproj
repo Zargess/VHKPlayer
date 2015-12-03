@@ -212,8 +212,6 @@
     <Compile Include="Queries\GetRequiredFolderPaths\GetRequiredFolderPathsQueryHandler.cs" />
     <Compile Include="Queries\GetStringSetting\GetStringSettingQuery.cs" />
     <Compile Include="Queries\GetStringSetting\GetStringSettingQueryHandler.cs" />
-    <Compile Include="Queries\GetTabsFromStringSetting\GetTabsFromStringSettingQuery.cs" />
-    <Compile Include="Queries\GetTabsFromStringSetting\GetTabsFromStringSettingQueryHandler.cs" />
     <Compile Include="Queries\Interfaces\IQuery.cs" />
     <Compile Include="Queries\Interfaces\IQueryHandler.cs" />
     <Compile Include="Queries\Interfaces\IQueryProcessor.cs" />

@@ -27,13 +27,21 @@ namespace VHKPlayer.Utility
         public const string DuringMatchRightContentSettingName = "application_duringMatchRightContent";
         public const string RightBlockTabsSettingName = "application_rightBlockTabs";
 
-        public static List<string> PlayerFolderPathSettingNames = new List<string>()
+        public static readonly List<string> PlayerFolderPathSettingNames = new List<string>()
         {
             PlayerPictureFolderSettingName,
             PlayerVideoFolderSettingName,
             PlayerStatMusicFolderSettingName,
             PlayerStatPictureFolderSettingName,
             PlayerStatVideoFolderSettingName
+        };
+
+        public static List<string> TabSettingNames = new List<string>()
+        {
+            LeftBlockTabsSettingName,
+            DuringMatchTabsSettingName,
+            DuringMatchRightContentSettingName,
+            RightBlockTabsSettingName
         };
     }
 }

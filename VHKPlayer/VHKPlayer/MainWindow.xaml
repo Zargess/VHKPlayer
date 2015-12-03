@@ -87,7 +87,7 @@
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="0">
-                    <controls:PlayableListbox Command="{Binding DummyCommand}" Data="{Binding Playables}" ConverterParam="{Binding Script}" />
+                    <controls:PlayableListbox Command="{Binding DummyCommand}" Data="{Binding Playables}" />
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="2">

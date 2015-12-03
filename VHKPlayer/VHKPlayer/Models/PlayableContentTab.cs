@@ -13,18 +13,14 @@ namespace VHKPlayer.Models
 {
     public class PlayableContentTab : ITab
     {
+        public int Number { get; set; }
         public string Name { get; set; }
 
         public bool PlayListTab { get; set; }
 
+        public TabPlacement Placement { get; set; }
         public IPlayStrategy PlayStrategy { get; set; }
 
         public ObservableCollection<IPlayable> Data { get; set; }
-
-        public PlayableContentTab(IEnumerable<IPlayable> playables, IScript script)
-        {
-            var interpreter = App.Container.Resolve<IScriptInterpreter>();
-            Data = new ObservableCollection<IPlayable>(playables.AsParallel().Where(x => interpreter.Evaluate(script, x)));
-        }
     }
 }
