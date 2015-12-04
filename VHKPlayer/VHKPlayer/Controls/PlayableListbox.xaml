@@ -18,30 +18,27 @@
         </Style>
     </UserControl.Resources>
     
-    
-    <!--<ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">-->
-        <ListBox ItemsSource="{Binding Data, RelativeSource={RelativeSource AncestorType=UserControl}}" ItemContainerStyle="{StaticResource VisibilityStyle}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <ContentControl>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger SourceObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}}" EventName="PreviewMouseLeftButtonDown">
-                                <i:InvokeCommandAction Command="{Binding Command, RelativeSource={RelativeSource AncestorType=UserControl}}">
-                                    <i:InvokeCommandAction.CommandParameter>
-                                        <MultiBinding Converter="{StaticResource ParameterConverter}">
-                                            <Binding RelativeSource="{RelativeSource AncestorType=UserControl}" Path="CommandParameter"/>
-                                            <Binding />
-                                        </MultiBinding>
-                                    </i:InvokeCommandAction.CommandParameter>
-                                </i:InvokeCommandAction>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <StackPanel>
-                            <Label HorizontalAlignment="Stretch" FontSize="12" Height="30" Margin="-4,-1,-4,-1" Content="{Binding}"/>
-                        </StackPanel>
-                    </ContentControl>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    <!--</ScrollViewer>-->
+    <ListBox ItemsSource="{Binding Data, RelativeSource={RelativeSource AncestorType=UserControl}}" ItemContainerStyle="{StaticResource VisibilityStyle}">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <ContentControl>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger SourceObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}}" EventName="PreviewMouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Command, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                <i:InvokeCommandAction.CommandParameter>
+                                    <MultiBinding Converter="{StaticResource ParameterConverter}">
+                                        <Binding RelativeSource="{RelativeSource AncestorType=UserControl}" Path="CommandParameter"/>
+                                        <Binding />
+                                    </MultiBinding>
+                                </i:InvokeCommandAction.CommandParameter>
+                            </i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <StackPanel>
+                        <Label HorizontalAlignment="Stretch" FontSize="12" Height="30" Margin="-4,-1,-4,-1" Content="{Binding}"/>
+                    </StackPanel>
+                </ContentControl>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
 </UserControl>

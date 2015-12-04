@@ -11,11 +11,12 @@ namespace VHKPlayer.Models
 {
     public class DataCenter : IDataCenter
     {
-        private List<IDataObserver> _observers;
+        private readonly List<IDataObserver> _observers;
         public ObservableCollection<Player> Players { get; private set; }
         public ObservableCollection<PlayList> PlayLists { get; private set; }
         public ObservableCollection<FolderNode> Folders { get; private set; }
         public ObservableCollection<PlayableFile> PlayableFiles { get; private set; }
+        public ObservableCollection<ITab> Tabs { get; }
         public bool UncommitedChanges { get; set; }
 
         public Dictionary<object, Timer> Timers { get; set; }
@@ -26,6 +27,7 @@ namespace VHKPlayer.Models
             PlayLists = new ObservableCollection<PlayList>();
             Folders = new ObservableCollection<FolderNode>();
             PlayableFiles = new ObservableCollection<PlayableFile>();
+            Tabs = new ObservableCollection<ITab>();
             _observers = new List<IDataObserver>();
             Timers = new Dictionary<object, Timer>();
             Players.CollectionChanged += DataChanged;

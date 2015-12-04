@@ -15,20 +15,17 @@ namespace VHKPlayer.Queries.GetPlayStrategy
     {
         public IPlayStrategy Handle(GetPlayStrategyQuery query)
         {
-            if (query.StrategyName == "AllFiles")
+            switch (query.StrategyName)
             {
-                return new AllFilesPlayStrategy();
+                case "AllFiles":
+                    return new AllFilesPlayStrategy();
+                case "Iterated":
+                    return new IteratedPlayStrategy();
+                case "SingleFile":
+                    return new SingleFilePlayStrategy();
+                default:
+                    throw new NoSuchPlayStrategyException();
             }
-            if (query.StrategyName == "Iterated")
-            {
-                return new IteratedPlayStrategy();
-            }
-            if (query.StrategyName == "SingleFile")
-            {
-                return new SingleFilePlayStrategy();
-            }
-
-            throw new NoSuchPlayStrategyException();
         }
     }
 }

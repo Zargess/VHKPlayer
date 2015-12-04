@@ -21,14 +21,12 @@ namespace VHKPlayer.ViewModels
 {
     public class PlayerViewModel : IDataObserver
     {
-        private IContainer _container;
-        private ICommandProcessor _cprocessor;
-        private IQueryProcessor _qprocessor;
+        private readonly ICommandProcessor _cprocessor;
+        private readonly IQueryProcessor _qprocessor;
         private readonly IDataMonitor _monitor;
 
-        public ObservableCollection<IPlayable> Playables { get; private set; }
+        public ObservableCollection<IPlayable> Playables { get; private set; } // TODO : Is no longer needed
         public ObservableCollection<ITab> Tabs { get; private set; }
-        public IScript Script { get; set; } = new Script("(property name:Name value:\"Ladioo - 40 sek.mp3\")");
 
         public IVideoPlayerController Controller { get; set; }
         public System.Windows.Input.ICommand PlayCommand { get; set; }
@@ -36,16 +34,16 @@ namespace VHKPlayer.ViewModels
 
         public PlayerViewModel()
         {
-            _container = App.Container;
-            _cprocessor = _container.Resolve<ICommandProcessor>();
-            _qprocessor = _container.Resolve<IQueryProcessor>();
+            var container = App.Container;
+            _cprocessor = container.Resolve<ICommandProcessor>();
+            _qprocessor = container.Resolve<IQueryProcessor>();
 
             Playables = new ObservableCollection<IPlayable>();
 
-            Controller = _container.Resolve<IVideoPlayerController>();
+            Controller = container.Resolve<IVideoPlayerController>();
             PlayCommand = new RunPlayableStrategyCommand(Controller);
 
-            _monitor = _container.Resolve<IDataMonitor>();
+            _monitor = container.Resolve<IDataMonitor>();
 
             _cprocessor.ProcessTransaction(new AddDataObserverCommand()
             {
@@ -54,25 +52,25 @@ namespace VHKPlayer.ViewModels
 
             InitialiseData();
 
-            var tabs = _qprocessor.Process(new GetTabsFromStringSettingQuery()
-            {
-                SettingName = Constants.RightBlockTabsSettingName,
-                Playables = Playables
-            });
-
-            Tabs = new ObservableCollection<ITab>(tabs);
+            Tabs = new ObservableCollection<ITab>();
         }
 
         public void InitialiseData()
         {
-            // TODO : Initialise the tabs down here, then call this method again if application settings changes
             _cprocessor.ProcessTransaction(new CreateAllPlayablesCommand());
         }
 
+        // TODO : Optimize this such that it is not every tab that is updated everytime
         public void DataUpdated()
         {
             Playables.Clear();
+            Tabs.Clear();
             Playables.AddAll(_qprocessor.Process(new GetAllPlayablesQuery()));
+            Tabs.AddAll(_qprocessor.Process(new GetTabsFromStringSettingQuery() // TODO : Consider having the tabs in DataCenter and fetch them from there
+            {
+                SettingName = Constants.RightBlockTabsSettingName,
+                Playables = Playables
+            }));
         }
     }
 }

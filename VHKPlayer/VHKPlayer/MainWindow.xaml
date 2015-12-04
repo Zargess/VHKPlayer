@@ -51,7 +51,6 @@
         <Style x:Key="TabControlContent" TargetType="{x:Type TabControl}">
             <Setter Property="FontSize" Value="12" />
             <Setter Property="ItemTemplate" Value="{StaticResource TabName}" />
-            <!--TODO : Make the following line use the selector!-->
             <Setter Property="ContentTemplateSelector" Value="{StaticResource TabDesignSelector}" />
         </Style>
     </Window.Resources>
@@ -87,7 +86,7 @@
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="0">
-                    <controls:PlayableListbox Command="{Binding DummyCommand}" Data="{Binding Playables}" ConverterParam="{Binding Script}" />
+                    <controls:PlayableListbox Command="{Binding DummyCommand}" Data="{Binding Playables}" />
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="2">

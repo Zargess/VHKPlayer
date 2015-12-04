@@ -111,8 +111,6 @@
     <Compile Include="Commands\Logic\Interfaces\ICommandProcessor.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommand.cs" />
     <Compile Include="Commands\Logic\Interfaces\ITransaction.cs" />
-    <Compile Include="Commands\Logic\RegisterTimer\RegisterTimerCommand.cs" />
-    <Compile Include="Commands\Logic\RegisterTimer\RegisterTimerCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemoveDataObserver\RemoveDataObserverCommand.cs" />
     <Compile Include="Commands\Logic\RemoveDataObserver\RemoveDataObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemoveFolder\RemoveFolderCommand.cs" />
@@ -126,8 +124,6 @@
     <Compile Include="Commands\Logic\ResetDataCenter\ResetDataCenterCommand.cs" />
     <Compile Include="Commands\Logic\ResetDataCenter\ResetDataCenterCommandHandler.cs" />
     <Compile Include="Commands\Logic\Transaction.cs" />
-    <Compile Include="Commands\Logic\UnregisterTimer\UnregisterTimerCommand.cs" />
-    <Compile Include="Commands\Logic\UnregisterTimer\UnregisterTimerCommandHandler.cs" />
     <Compile Include="Commands\Logic\UpdateDataCenterByFolder\UpdateDataCenterByFolderCommand.cs" />
     <Compile Include="Commands\Logic\UpdateDataCenterByFolder\UpdateDataCenterByFolderCommandHandler.cs" />
     <Compile Include="Controllers\Interfaces\IPlayController.cs" />
