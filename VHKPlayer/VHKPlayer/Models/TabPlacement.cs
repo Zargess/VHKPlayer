@@ -8,8 +8,8 @@ namespace VHKPlayer.Models
 {
     public enum TabPlacement
     {
-        LeftMainBox,
-        RightMainBox,
+        LeftMain,
+        RightMain,
         LeftDuringMatch,
         RightDuringMatch
     }

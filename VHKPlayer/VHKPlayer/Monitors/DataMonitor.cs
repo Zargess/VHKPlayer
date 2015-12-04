@@ -1,31 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VHKPlayer.Commands.Logic.CreateAllPlayers;
 using VHKPlayer.Commands.Logic.CreateFolderStructure;
-using VHKPlayer.Commands.Logic.CreatePlayableFilesFromFilesInFolder;
 using VHKPlayer.Commands.Logic.Interfaces;
-using VHKPlayer.Commands.Logic.RemovePlayableFile;
-using VHKPlayer.Commands.Logic.RemovePlayer;
 using VHKPlayer.Commands.Logic.ResetDataCenter;
 using VHKPlayer.Commands.Logic.UpdateDataCenterByFolder;
-using VHKPlayer.DataManagement.Interfaces;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
+using VHKPlayer.Monitors.Interfaces;
 using VHKPlayer.Queries.GetFolders;
-using VHKPlayer.Queries.GetPlayablesAffectedByFolder;
 using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility;
 using VHKPlayer.Utility.Settings.Interfaces;
 
-namespace VHKPlayer.DataManagement
+namespace VHKPlayer.Monitors
 {
     public class DataMonitor : IDataMonitor, IVhkObserver<FolderNode>
     {
+        
         private readonly ICommandProcessor _commandProcessor;
         private readonly IQueryProcessor _queryProcessor;
         private readonly IGlobalConfigService _configService;
@@ -41,7 +33,6 @@ namespace VHKPlayer.DataManagement
         private void InitEventListeners()
         {
             _configService.FolderSettingsUpdated += Config_FolderSettingsUpdated;
-            _configService.ApplicationSettingsUpdated += _configService_ApplicationSettingsUpdated;
 
             _commandProcessor.ProcessTransaction(new CreateFolderStructureCommand()
             {
@@ -56,13 +47,6 @@ namespace VHKPlayer.DataManagement
             {
                 folder.AddObserver(this);
             }
-        }
-
-        private void _configService_ApplicationSettingsUpdated(object sender, PropertyChangedEventArgs e)
-        {
-            if (!Constants.TabSettingNames.Contains(e.PropertyName)) return;
-
-
         }
 
         public void SubjectUpdated(FolderNode subject)

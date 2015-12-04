@@ -8,7 +8,7 @@ using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
 namespace VHKPlayer.Models.Interfaces
 {
-    public interface ITab
+    public interface ITab : IDataObserver
     {
         int Number { get; set; }
         string Name { get; set; }
@@ -16,5 +16,6 @@ namespace VHKPlayer.Models.Interfaces
         TabPlacement Placement { get; set; }
         IPlayStrategy PlayStrategy { get; set; }
         bool PlayListTab { get; set; }
+        IScript Script { get; set; }
     }
 }

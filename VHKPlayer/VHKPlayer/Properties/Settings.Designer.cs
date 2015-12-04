@@ -208,55 +208,13 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{Andet;(folder path:\"root\\musik\\andet\");False;SingleFile},{Opvarmning;(folder pat" +
-            "h:\"root\\musik\\Opvarmning\");False;SingleFile},{Scor;(property name:Trainer value:" +
-            "False);False;SingleFile}")]
-        public string application_leftBlockTabs {
+        [global::System.Configuration.DefaultSettingValueAttribute(@"{Andet;LeftMain;1;(folder path:""root\musik\andet"");False;SingleFile},{Opvarmning;LeftMain;2;(folder path:""root\musikOpvarmning"");False;SingleFile},{Scor;LeftMain;3;(property name:Trainer value:False);False;SingleFile},{Player Picture;RightMain;1;(type name:Player);False;PlayerPicture}")]
+        public string application_tabs {
             get {
-                return ((string)(this["application_leftBlockTabs"]));
+                return ((string)(this["application_tabs"]));
             }
             set {
-                this["application_leftBlockTabs"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{PlayerPicture;(type name:Player);False;PlayerPicture},{PlayerVideo;(property nam" +
-            "e:Trainer value:False);False;PlayerVideo},{PlayerStat;(property name:Trainer val" +
-            "ue:False);False;PlayerStat}")]
-        public string application_duringMatchTabs {
-            get {
-                return ((string)(this["application_duringMatchTabs"]));
-            }
-            set {
-                this["application_duringMatchTabs"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("(folder path:\"root\\SuperHero\")")]
-        public string application_duringMatchRightContent {
-            get {
-                return ((string)(this["application_duringMatchRightContent"]));
-            }
-            set {
-                this["application_duringMatchRightContent"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("duringmatch,{Blandet;(folder path:\"root\\blandet\");False;SingleFile},{Play Lister;" +
-            "(type name:PlayList);True;SingleFile},{Player Stat;(property name:Trainer value:" +
-            "False);False;SingleFile}")]
-        public string application_rightBlockTabs {
-            get {
-                return ((string)(this["application_rightBlockTabs"]));
-            }
-            set {
-                this["application_rightBlockTabs"] = value;
+                this["application_tabs"] = value;
             }
         }
         

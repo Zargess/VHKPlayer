@@ -29,9 +29,8 @@ using VHKPlayer.Queries.GetPlayers;
 using VHKPlayer.Commands.Logic.RemoveDataObserver;
 using VHKPlayer.Queries.GetPlayLists;
 using VHKPlayer.Infrastructure;
-using VHKPlayer.DataManagement;
-using VHKPlayer.DataManagement.Interfaces;
 using VHKPlayer.Commands.Logic;
+using VHKPlayer.Monitors.Interfaces;
 using VHKPlayer.ViewModels;
 
 namespace VHKPlayer

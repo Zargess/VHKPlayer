@@ -8,6 +8,7 @@ namespace VHKPlayer.Models.Interfaces
 {
     public interface ITabContainer
     {
-        ICollection<ITab> Tabs { get; } 
+        void AddTab(ITab tab);
+        void RemoveTab(ITab tab);
     }
 }

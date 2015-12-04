@@ -26,7 +26,6 @@ namespace VHKPlayer.Models
             PlayLists = new ObservableCollection<PlayList>();
             Folders = new ObservableCollection<FolderNode>();
             PlayableFiles = new ObservableCollection<PlayableFile>();
-            Tabs = new ObservableCollection<ITab>();
             _observers = new List<IDataObserver>();
             Players.CollectionChanged += DataChanged;
             PlayLists.CollectionChanged += DataChanged;

@@ -2,30 +2,30 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using VHKPlayer.Commands.GUI;
+using VHKPlayer.Commands.Logic.AddApplicationObserver;
 using VHKPlayer.Commands.Logic.AddDataObserver;
 using VHKPlayer.Commands.Logic.CreateAllPlayables;
+using VHKPlayer.Commands.Logic.CreateAllTabs;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Controllers;
 using VHKPlayer.Controllers.Interfaces;
-using VHKPlayer.DataManagement.Interfaces;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Infrastructure.Modules;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
+using VHKPlayer.Monitors.Interfaces;
 using VHKPlayer.Queries.GetAllPlayables;
-using VHKPlayer.Queries.GetTabsFromStringSetting;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility;
 
 namespace VHKPlayer.ViewModels
 {
-    public class PlayerViewModel : IDataObserver
+    public class PlayerViewModel : ITabContainer, IApplicationObserver
     {
         private readonly ICommandProcessor _cprocessor;
         private readonly IQueryProcessor _qprocessor;
-        private readonly IDataMonitor _monitor;
-
-        public ObservableCollection<IPlayable> Playables { get; private set; } // TODO : Is no longer needed
+        private readonly IDataMonitor _dataMonitor;
+        
         public ObservableCollection<ITab> Tabs { get; private set; }
 
         public IVideoPlayerController Controller { get; set; }
@@ -38,14 +38,12 @@ namespace VHKPlayer.ViewModels
             _cprocessor = container.Resolve<ICommandProcessor>();
             _qprocessor = container.Resolve<IQueryProcessor>();
 
-            Playables = new ObservableCollection<IPlayable>();
-
             Controller = container.Resolve<IVideoPlayerController>();
             PlayCommand = new RunPlayableStrategyCommand(Controller);
 
-            _monitor = container.Resolve<IDataMonitor>();
+            _dataMonitor = container.Resolve<IDataMonitor>();
 
-            _cprocessor.ProcessTransaction(new AddDataObserverCommand()
+            _cprocessor.Process(new AddApplicationObserverCommand
             {
                 Observer = this
             });
@@ -53,6 +51,8 @@ namespace VHKPlayer.ViewModels
             InitialiseData();
 
             Tabs = new ObservableCollection<ITab>();
+            // TODO : Fix infinite loop. Created by the PlayerViewModel not being constant so an new one is created for each CreateTabCommand
+            _cprocessor.Process(new CreateAllTabsCommand());
         }
 
         public void InitialiseData()
@@ -60,17 +60,22 @@ namespace VHKPlayer.ViewModels
             _cprocessor.ProcessTransaction(new CreateAllPlayablesCommand());
         }
 
-        // TODO : Optimize this such that it is not every tab that is updated everytime
-        public void DataUpdated()
+        public void AddTab(ITab tab)
         {
-            Playables.Clear();
+            // TODO : Change this
+            Tabs.Add(tab);
+        }
+
+        public void RemoveTab(ITab tab)
+        {
+            Tabs.Remove(tab);
+        }
+
+        public void ApplicationChanged(string settingName)
+        {
+            if (settingName != Constants.TabsSettingName) return;
             Tabs.Clear();
-            Playables.AddAll(_qprocessor.Process(new GetAllPlayablesQuery()));
-            Tabs.AddAll(_qprocessor.Process(new GetTabsFromStringSettingQuery() // TODO : Consider having the tabs in DataCenter and fetch them from there
-            {
-                SettingName = Constants.RightBlockTabsSettingName,
-                Playables = Playables
-            }));
+            _cprocessor.Process(new CreateAllTabsCommand());
         }
     }
 }

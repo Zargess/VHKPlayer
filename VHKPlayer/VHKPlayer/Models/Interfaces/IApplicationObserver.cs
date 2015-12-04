@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VHKPlayer.DataManagement.Interfaces
+namespace VHKPlayer.Models.Interfaces
 {
-    public interface IDataMonitor
+    public interface IApplicationObserver
     {
+        void ApplicationChanged(string settingName);
     }
 }

@@ -34,20 +34,21 @@ namespace VHKPlayer.Commands.Logic.CreateTab
         {
             if (_strategy.IsSpecialTab(command.Name))
             {
-                _container.Tabs.Add(_strategy.CreateSpecialTab(command.Name));
+                _container.AddTab(_strategy.CreateSpecialTab(command.Name));
             }
             else
             {
                 var playables = _processor.Process(new GetAllPlayablesQuery());
                 var data = new ObservableCollection<IPlayable>(playables.AsParallel().Where(x => _interpreter.Evaluate(command.Script, x)));
-                _container.Tabs.Add(new PlayableContentTab
+                _container.AddTab(new PlayableContentTab(_interpreter, _processor)
                 {
                     Name = command.Name,
                     Number = command.Number,
                     Data = data,
                     Placement = command.Placement,
                     PlayListTab = command.PlayListTab,
-                    PlayStrategy = command.PlayStrategy
+                    PlayStrategy = command.PlayStrategy,
+                    Script = command.Script
                 });
             }
         }

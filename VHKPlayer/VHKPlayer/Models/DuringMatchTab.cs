@@ -17,9 +17,14 @@ namespace VHKPlayer.Models
         public TabPlacement Placement { get; set; }
 
         public bool PlayListTab { get; set; }
+        public IScript Script { get; set; }
 
         public IPlayStrategy PlayStrategy { get; set; }
 
-        
+
+        public void DataUpdated()
+        {
+            
+        }
     }
 }

@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VHKPlayer.Commands.Logic.Interfaces;
-using VHKPlayer.Models.Interfaces;
 
-namespace VHKPlayer.Commands.Logic.RemoveTab
+namespace VHKPlayer.Commands.Logic.CreateAllTabs
 {
-    public class RemoveTabCommand : ICommand
+    public class CreateAllTabsCommand : ICommand
     {
-        public ITab Tab { get; set; }
     }
 }

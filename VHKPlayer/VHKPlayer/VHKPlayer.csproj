@@ -80,6 +80,8 @@
     <Compile Include="Commands\GUI\DoNothingCommand.cs" />
     <Compile Include="Commands\GUI\DummyCommand.cs" />
     <Compile Include="Commands\GUI\RunPlayableStrategyCommand.cs" />
+    <Compile Include="Commands\Logic\AddApplicationObserver\AddApplicationObserverCommand.cs" />
+    <Compile Include="Commands\Logic\AddApplicationObserver\AddApplicationObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\AddDataObserver\AddDataObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\AddDataObserver\AddDataObserverCommand.cs" />
     <Compile Include="Commands\Logic\ChangeSetting\ChangeSettingCommand.cs" />
@@ -92,6 +94,8 @@
     <Compile Include="Commands\Logic\CreateAllPlayers\CreateAllPlayersCommand.cs" />
     <Compile Include="Commands\Logic\CreateAllPlayLists\CreateAllPlayListsCommand.cs" />
     <Compile Include="Commands\Logic\CreateAllPlayLists\CreateAllPlayListsCommandHandler.cs" />
+    <Compile Include="Commands\Logic\CreateAllTabs\CreateAllTabsCommand.cs" />
+    <Compile Include="Commands\Logic\CreateAllTabs\CreateAllTabsCommandHandler.cs" />
     <Compile Include="Commands\Logic\CreateFile\CreateFileCommand.cs" />
     <Compile Include="Commands\Logic\CreateFile\CreateFileCommandHandler.cs" />
     <Compile Include="Commands\Logic\CreateFolderStructure\CreateFolderStructureCommand.cs" />
@@ -113,6 +117,8 @@
     <Compile Include="Commands\Logic\Interfaces\ICommandProcessor.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommand.cs" />
     <Compile Include="Commands\Logic\Interfaces\ITransaction.cs" />
+    <Compile Include="Commands\Logic\RemoveApplicationObserver\RemoveApplicationObserverCommand.cs" />
+    <Compile Include="Commands\Logic\RemoveApplicationObserver\RemoveApplicationObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemoveDataObserver\RemoveDataObserverCommand.cs" />
     <Compile Include="Commands\Logic\RemoveDataObserver\RemoveDataObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemoveFolder\RemoveFolderCommand.cs" />
@@ -123,8 +129,6 @@
     <Compile Include="Commands\Logic\RemovePlayer\RemovePlayerCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemovePlayList\RemovePlayListCommand.cs" />
     <Compile Include="Commands\Logic\RemovePlayList\RemovePlayListCommandHandler.cs" />
-    <Compile Include="Commands\Logic\RemoveTab\RemoveTabCommand.cs" />
-    <Compile Include="Commands\Logic\RemoveTab\RemoveTabCommandHandler.cs" />
     <Compile Include="Commands\Logic\ResetDataCenter\ResetDataCenterCommand.cs" />
     <Compile Include="Commands\Logic\ResetDataCenter\ResetDataCenterCommandHandler.cs" />
     <Compile Include="Commands\Logic\Transaction.cs" />
@@ -138,8 +142,10 @@
     </Compile>
     <Compile Include="Converters\ParameterConverter.cs" />
     <Compile Include="Converters\UniversalVisibilityConverter.cs" />
-    <Compile Include="DataManagement\DataMonitor.cs" />
-    <Compile Include="DataManagement\Interfaces\IDataMonitor.cs" />
+    <Compile Include="Monitors\ApplicationMonitor.cs" />
+    <Compile Include="Monitors\DataMonitor.cs" />
+    <Compile Include="Monitors\Interfaces\IApplicationMonitor.cs" />
+    <Compile Include="Monitors\Interfaces\IDataMonitor.cs" />
     <Compile Include="Events\DataCenterUpdatedEventArgs.cs" />
     <Compile Include="Exceptions\ItemIsNotATabException.cs" />
     <Compile Include="Exceptions\NoSuchLoadingStrategyException.cs" />
@@ -156,6 +162,7 @@
     <Compile Include="Models\DataCenter.cs" />
     <Compile Include="Models\DuringMatchTab.cs" />
     <Compile Include="Models\FolderNode.cs" />
+    <Compile Include="Models\Interfaces\IApplicationObserver.cs" />
     <Compile Include="Models\Interfaces\IDataCenter.cs" />
     <Compile Include="Models\Interfaces\IDataObserver.cs" />
     <Compile Include="Models\Interfaces\IMultiValueParameter.cs" />
