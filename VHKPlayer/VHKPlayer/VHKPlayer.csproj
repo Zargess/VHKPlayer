@@ -107,6 +107,8 @@
     <Compile Include="Commands\Logic\CreatePlayer\CreatePlayerCommandHandler.cs" />
     <Compile Include="Commands\Logic\CreatePlayList\CreatePlayListCommand.cs" />
     <Compile Include="Commands\Logic\CreatePlayList\CreatePlayListCommandHandler.cs" />
+    <Compile Include="Commands\Logic\CreateTab\CreateTabCommand.cs" />
+    <Compile Include="Commands\Logic\CreateTab\CreateTabCommandHandler.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommandHandler.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommandProcessor.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommand.cs" />
@@ -121,6 +123,8 @@
     <Compile Include="Commands\Logic\RemovePlayer\RemovePlayerCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemovePlayList\RemovePlayListCommand.cs" />
     <Compile Include="Commands\Logic\RemovePlayList\RemovePlayListCommandHandler.cs" />
+    <Compile Include="Commands\Logic\RemoveTab\RemoveTabCommand.cs" />
+    <Compile Include="Commands\Logic\RemoveTab\RemoveTabCommandHandler.cs" />
     <Compile Include="Commands\Logic\ResetDataCenter\ResetDataCenterCommand.cs" />
     <Compile Include="Commands\Logic\ResetDataCenter\ResetDataCenterCommandHandler.cs" />
     <Compile Include="Commands\Logic\Transaction.cs" />
@@ -157,6 +161,7 @@
     <Compile Include="Models\Interfaces\IMultiValueParameter.cs" />
     <Compile Include="Models\Interfaces\IScript.cs" />
     <Compile Include="Models\Interfaces\ITab.cs" />
+    <Compile Include="Models\Interfaces\ITabContainer.cs" />
     <Compile Include="Models\Interfaces\IVHKObserver.cs" />
     <Compile Include="Models\Interfaces\IPlayable.cs" />
     <Compile Include="Models\MultiValueParameter.cs" />
@@ -167,6 +172,7 @@
     <Compile Include="Models\PlayList.cs" />
     <Compile Include="Models\Script.cs" />
     <Compile Include="Models\Statistics.cs" />
+    <Compile Include="Models\TabPlacement.cs" />
     <Compile Include="Queries\GetAllPlayables\GetAllPlayablesQuery.cs" />
     <Compile Include="Queries\GetAllPlayables\GetAllPlayablesQueryHandler.cs" />
     <Compile Include="Queries\GetAutoPlayList\GetAutoPlayListQuery.cs" />
@@ -208,8 +214,6 @@
     <Compile Include="Queries\GetRequiredFolderPaths\GetRequiredFolderPathsQueryHandler.cs" />
     <Compile Include="Queries\GetStringSetting\GetStringSettingQuery.cs" />
     <Compile Include="Queries\GetStringSetting\GetStringSettingQueryHandler.cs" />
-    <Compile Include="Queries\GetTabsFromStringSetting\GetTabsFromStringSettingQuery.cs" />
-    <Compile Include="Queries\GetTabsFromStringSetting\GetTabsFromStringSettingQueryHandler.cs" />
     <Compile Include="Queries\Interfaces\IQuery.cs" />
     <Compile Include="Queries\Interfaces\IQueryHandler.cs" />
     <Compile Include="Queries\Interfaces\IQueryProcessor.cs" />

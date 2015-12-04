@@ -41,6 +41,7 @@ namespace VHKPlayer.DataManagement
         private void InitEventListeners()
         {
             _configService.FolderSettingsUpdated += Config_FolderSettingsUpdated;
+            _configService.ApplicationSettingsUpdated += _configService_ApplicationSettingsUpdated;
 
             _commandProcessor.ProcessTransaction(new CreateFolderStructureCommand()
             {
@@ -55,6 +56,13 @@ namespace VHKPlayer.DataManagement
             {
                 folder.AddObserver(this);
             }
+        }
+
+        private void _configService_ApplicationSettingsUpdated(object sender, PropertyChangedEventArgs e)
+        {
+            if (!Constants.TabSettingNames.Contains(e.PropertyName)) return;
+
+
         }
 
         public void SubjectUpdated(FolderNode subject)
