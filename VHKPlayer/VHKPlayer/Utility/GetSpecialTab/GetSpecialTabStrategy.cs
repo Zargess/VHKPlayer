@@ -16,7 +16,11 @@ namespace VHKPlayer.Utility.GetSpecialTab
         {
             if (name == "duringmatch")
             {
-                return new DuringMatchTab();
+                return new DuringMatchTab
+                {
+                    Placement = TabPlacement.RightMain,
+                    Number = int.MinValue
+                };
             }
             else
             {

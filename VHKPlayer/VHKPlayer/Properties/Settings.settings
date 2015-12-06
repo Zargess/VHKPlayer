@@ -48,7 +48,7 @@
       <Value Profile="(Default)">10Sek</Value>
     </Setting>
     <Setting Name="application_tabs" Type="System.String" Scope="User">
-      <Value Profile="(Default)">{Andet;LeftMain;1;(folder path:"root\musik\andet");False;SingleFile},{Opvarmning;LeftMain;2;(folder path:"root\musikOpvarmning");False;SingleFile},{Scor;LeftMain;3;(property name:Trainer value:False);False;SingleFile},{Player Picture;RightMain;1;(type name:Player);False;PlayerPicture}</Value>
+      <Value Profile="(Default)">{Andet;LeftMain;1;(folder path:"root\musik\andet");False;SingleFile},{Opvarmning;LeftMain;2;(folder path:"root\musik\Opvarmning");False;SingleFile},{Scor;LeftMain;3;(property name:Trainer value:False);False;SingleFile},{Player Picture;RightMain;1;(type name:Player);False;PlayerPicture},duringmatch</Value>
     </Setting>
     <Setting Name="application_statTimerDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>

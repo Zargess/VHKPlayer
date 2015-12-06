@@ -7,6 +7,7 @@ using VHKPlayer.Commands.Logic.AddDataObserver;
 using VHKPlayer.Commands.Logic.CreateAllPlayables;
 using VHKPlayer.Commands.Logic.CreateAllTabs;
 using VHKPlayer.Commands.Logic.Interfaces;
+using VHKPlayer.Commands.Logic.ReloadTabs;
 using VHKPlayer.Controllers;
 using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Infrastructure;
@@ -20,13 +21,13 @@ using VHKPlayer.Utility;
 
 namespace VHKPlayer.ViewModels
 {
-    public class PlayerViewModel : ITabContainer, IApplicationObserver
+    public class PlayerViewModel : IApplicationObserver
     {
         private readonly ICommandProcessor _cprocessor;
         private readonly IQueryProcessor _qprocessor;
         private readonly IDataMonitor _dataMonitor;
         
-        public ObservableCollection<ITab> Tabs { get; private set; }
+        public ITabContainer TabContainer { get; }
 
         public IVideoPlayerController Controller { get; set; }
         public System.Windows.Input.ICommand PlayCommand { get; set; }
@@ -48,34 +49,21 @@ namespace VHKPlayer.ViewModels
                 Observer = this
             });
 
-            InitialiseData();
+            TabContainer = container.Resolve<ITabContainer>();
+            //_cprocessor.Process(new CreateAllTabsCommand());
 
-            Tabs = new ObservableCollection<ITab>();
-            // TODO : Fix infinite loop. Created by the PlayerViewModel not being constant so an new one is created for each CreateTabCommand
-            _cprocessor.Process(new CreateAllTabsCommand());
+            InitialiseData();
         }
 
         public void InitialiseData()
         {
             _cprocessor.ProcessTransaction(new CreateAllPlayablesCommand());
         }
-
-        public void AddTab(ITab tab)
-        {
-            // TODO : Change this
-            Tabs.Add(tab);
-        }
-
-        public void RemoveTab(ITab tab)
-        {
-            Tabs.Remove(tab);
-        }
-
+        
         public void ApplicationChanged(string settingName)
         {
             if (settingName != Constants.TabsSettingName) return;
-            Tabs.Clear();
-            _cprocessor.Process(new CreateAllTabsCommand());
+            _cprocessor.Process(new ReloadTabsCommand());
         }
     }
 }

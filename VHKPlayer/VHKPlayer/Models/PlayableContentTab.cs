@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VHKPlayer.Infrastructure;
 using VHKPlayer.Interpreter.Interfaces;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.GetAllPlayables;
@@ -37,10 +38,11 @@ namespace VHKPlayer.Models
 
         public void DataUpdated()
         {
-            Data.Clear();
-            var playables = _processor.Process(new GetAllPlayablesQuery()).AsParallel().Where(playable => _interpreter.Evaluate(Script, playable)).ToList();
-
-            playables.ForEach(Data.Add);
+            // TODO : Make each Playable implement Comparable
+            var playables =
+                _processor.Process(new GetAllPlayablesQuery())
+                    .Where(playable => _interpreter.Evaluate(Script, playable));
+            Data.SetCollection(playables);
         }
     }
 }

@@ -11,6 +11,7 @@ using VHKPlayer.Queries.GetPlayStrategy;
 using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility;
+using VHKPlayer.Utility.GetSpecialTab.Interfaces;
 
 namespace VHKPlayer.Commands.Logic.CreateAllTabs
 {
@@ -18,10 +19,12 @@ namespace VHKPlayer.Commands.Logic.CreateAllTabs
     {
         private readonly ICommandProcessor _cprocessor;
         private readonly IQueryProcessor _qprocessor;
+        private readonly IGetSpecialTabStrategy _strategy;
 
-        public CreateAllTabsCommandHandler(ICommandProcessor cprocessor, IQueryProcessor qprocessor)
+        public CreateAllTabsCommandHandler(ICommandProcessor cprocessor, IGetSpecialTabStrategy strategy, IQueryProcessor qprocessor)
         {
             _cprocessor = cprocessor;
+            _strategy = strategy;
             _qprocessor = qprocessor;
         }
 
@@ -31,23 +34,33 @@ namespace VHKPlayer.Commands.Logic.CreateAllTabs
             {
                 SettingName = Constants.TabsSettingName
             })
-            .Split(',')
-            .Select(def => def.Replace("{", "").Replace("}", "").Split(';'));
+            .Split(',');
 
-            foreach (var arguments in defs)
+            foreach (var def in defs)
             {
-                _cprocessor.Process(new CreateTabCommand()
+                if (_strategy.IsSpecialTab(def))
                 {
-                    Name = arguments[0],
-                    Placement = (TabPlacement)Enum.Parse(typeof(TabPlacement), arguments[1]),
-                    Number = arguments[2].ToInteger(),
-                    Script = new Script(arguments[3]),
-                    PlayListTab = arguments[4].ToBool(),
-                    PlayStrategy = _qprocessor.Process(new GetPlayStrategyQuery()
+                    _cprocessor.Process(new CreateTabCommand()
                     {
-                        StrategyName = arguments[5]
-                    })
-                });
+                        Name = def
+                    });
+                }
+                else
+                {
+                    var arguments = def.Replace("{", "").Replace("}", "").Split(';');
+                    _cprocessor.Process(new CreateTabCommand()
+                    {
+                        Name = arguments[0],
+                        Placement = (TabPlacement)Enum.Parse(typeof(TabPlacement), arguments[1]),
+                        Number = arguments[2].ToInteger(),
+                        Script = new Script(arguments[3]),
+                        PlayListTab = arguments[4].ToBool(),
+                        PlayStrategy = _qprocessor.Process(new GetPlayStrategyQuery()
+                        {
+                            StrategyName = arguments[5]
+                        })
+                    });
+                }
             }
         }
     }

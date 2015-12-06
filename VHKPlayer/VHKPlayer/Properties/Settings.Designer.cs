@@ -208,7 +208,7 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"{Andet;LeftMain;1;(folder path:""root\musik\andet"");False;SingleFile},{Opvarmning;LeftMain;2;(folder path:""root\musikOpvarmning"");False;SingleFile},{Scor;LeftMain;3;(property name:Trainer value:False);False;SingleFile},{Player Picture;RightMain;1;(type name:Player);False;PlayerPicture}")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"{Andet;LeftMain;1;(folder path:""root\musik\andet"");False;SingleFile},{Opvarmning;LeftMain;2;(folder path:""root\musik\Opvarmning"");False;SingleFile},{Scor;LeftMain;3;(property name:Trainer value:False);False;SingleFile},{Player Picture;RightMain;1;(type name:Player);False;PlayerPicture},duringmatch")]
         public string application_tabs {
             get {
                 return ((string)(this["application_tabs"]));

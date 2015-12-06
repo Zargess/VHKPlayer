@@ -58,7 +58,9 @@
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" Height="25">
-                <MenuItem Header="Test"/>
+                <MenuItem Header="Test" Click="MenuItem_OnClick"/>
+                <MenuItem Header="Remove Test" Click="MenuItem_OnClick2" />
+                <MenuItem Header="Fix Setting" Click="MenuItem_OnClick3" />
             </Menu>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -78,11 +80,11 @@
                 <GridSplitter IsEnabled="False" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
                 <Grid Grid.Row="0" Grid.Column="0">
-                    <TabControl Style="{StaticResource TabControlContent}" ItemsSource="{Binding Tabs}" />
+                    <TabControl Style="{StaticResource TabControlContent}" ItemsSource="{Binding TabContainer.LeftMain}" />
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="2">
-                    
+                    <TabControl Style="{StaticResource TabControlContent}" ItemsSource="{Binding TabContainer.RightMain}" />
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="0">

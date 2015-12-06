@@ -117,6 +117,10 @@
     <Compile Include="Commands\Logic\Interfaces\ICommandProcessor.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommand.cs" />
     <Compile Include="Commands\Logic\Interfaces\ITransaction.cs" />
+    <Compile Include="Commands\Logic\ReloadTabs\ReloadTabsCommand.cs" />
+    <Compile Include="Commands\Logic\ReloadTabs\ReloadTabsCommandHandler.cs" />
+    <Compile Include="Commands\Logic\RemoveAllTabs\RemoveAllTabsCommand.cs" />
+    <Compile Include="Commands\Logic\RemoveAllTabs\RemoveAllTabsCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemoveApplicationObserver\RemoveApplicationObserverCommand.cs" />
     <Compile Include="Commands\Logic\RemoveApplicationObserver\RemoveApplicationObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemoveDataObserver\RemoveDataObserverCommand.cs" />
@@ -142,6 +146,7 @@
     </Compile>
     <Compile Include="Converters\ParameterConverter.cs" />
     <Compile Include="Converters\UniversalVisibilityConverter.cs" />
+    <Compile Include="Models\TabContainer.cs" />
     <Compile Include="Monitors\ApplicationMonitor.cs" />
     <Compile Include="Monitors\DataMonitor.cs" />
     <Compile Include="Monitors\Interfaces\IApplicationMonitor.cs" />

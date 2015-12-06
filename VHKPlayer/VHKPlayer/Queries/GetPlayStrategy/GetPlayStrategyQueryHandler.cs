@@ -23,6 +23,8 @@ namespace VHKPlayer.Queries.GetPlayStrategy
                     return new IteratedPlayStrategy();
                 case "SingleFile":
                     return new SingleFilePlayStrategy();
+                case "PlayerPicture":
+                    return new PlayerPicturePlayStrategy();
                 default:
                     throw new NoSuchPlayStrategyException();
             }

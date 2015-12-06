@@ -33,6 +33,7 @@ namespace VHKPlayer.Infrastructure.Modules
             builder.Register<IDataCenter>(c => new DataCenter()).SingleInstance();
             builder.Register<IGlobalConfigService>(c => config).SingleInstance();
             builder.Register<IApplicationMonitor>(c => new ApplicationMonitor(config)).SingleInstance();
+            builder.Register<ITabContainer>(c => new TabContainer()).SingleInstance();
         }
     }
 }

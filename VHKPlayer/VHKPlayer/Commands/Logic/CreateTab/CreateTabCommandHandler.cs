@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using VHKPlayer.Commands.Logic.AddDataObserver;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Interpreter.Interfaces;
 using VHKPlayer.Models;
@@ -18,15 +19,17 @@ namespace VHKPlayer.Commands.Logic.CreateTab
     public class CreateTabCommandHandler : ICommandHandler<CreateTabCommand>
     {
         private readonly ITabContainer _container;
+        private readonly ICommandProcessor _cprocessor;
         private readonly IScriptInterpreter _interpreter;
-        private readonly IQueryProcessor _processor;
+        private readonly IQueryProcessor _qprocessor;
         private readonly IGetSpecialTabStrategy _strategy;
 
-        public CreateTabCommandHandler(ITabContainer container, IScriptInterpreter interpreter, IQueryProcessor processor, IGetSpecialTabStrategy strategy)
+        public CreateTabCommandHandler(ITabContainer container, IScriptInterpreter interpreter, ICommandProcessor cprocessor, IQueryProcessor qprocessor, IGetSpecialTabStrategy strategy)
         {
             _container = container;
             _interpreter = interpreter;
-            _processor = processor;
+            _cprocessor = cprocessor;
+            _qprocessor = qprocessor;
             _strategy = strategy;
         }
 
@@ -34,13 +37,13 @@ namespace VHKPlayer.Commands.Logic.CreateTab
         {
             if (_strategy.IsSpecialTab(command.Name))
             {
-                _container.AddTab(_strategy.CreateSpecialTab(command.Name));
+                _container.RightMain.Add(_strategy.CreateSpecialTab(command.Name));
             }
             else
             {
-                var playables = _processor.Process(new GetAllPlayablesQuery());
+                var playables = _qprocessor.Process(new GetAllPlayablesQuery());
                 var data = new ObservableCollection<IPlayable>(playables.AsParallel().Where(x => _interpreter.Evaluate(command.Script, x)));
-                _container.AddTab(new PlayableContentTab(_interpreter, _processor)
+                var tab = new PlayableContentTab(_interpreter, _qprocessor)
                 {
                     Name = command.Name,
                     Number = command.Number,
@@ -49,7 +52,14 @@ namespace VHKPlayer.Commands.Logic.CreateTab
                     PlayListTab = command.PlayListTab,
                     PlayStrategy = command.PlayStrategy,
                     Script = command.Script
+                };
+
+                _cprocessor.Process(new AddDataObserverCommand()
+                {
+                    Observer = tab
                 });
+
+                _container.GetCollectionFromPlacement(command.Placement).Add(tab);
             }
         }
     }
