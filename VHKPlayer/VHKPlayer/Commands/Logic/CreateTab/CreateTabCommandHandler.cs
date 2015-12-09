@@ -42,7 +42,7 @@ namespace VHKPlayer.Commands.Logic.CreateTab
             else
             {
                 var playables = _qprocessor.Process(new GetAllPlayablesQuery());
-                var data = new ObservableCollection<IPlayable>(playables.AsParallel().Where(x => _interpreter.Evaluate(command.Script, x)));
+                var data = new ObservableCollection<IPlayable>(playables.Where(x => _interpreter.Evaluate(command.Script, x)));
                 var tab = new PlayableContentTab(_interpreter, _qprocessor)
                 {
                     Name = command.Name,
