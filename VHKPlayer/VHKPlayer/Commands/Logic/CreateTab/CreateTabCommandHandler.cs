@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Autofac;
 using VHKPlayer.Commands.Logic.AddDataObserver;
 using VHKPlayer.Commands.Logic.Interfaces;
+using VHKPlayer.Infrastructure;
 using VHKPlayer.Interpreter.Interfaces;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
@@ -35,9 +36,18 @@ namespace VHKPlayer.Commands.Logic.CreateTab
 
         public void Handle(CreateTabCommand command)
         {
+            var tab = ConstructTab(command);
+
+            var collection = _container.GetCollectionFromPlacement(command.Placement);
+            collection.Add(tab);
+            collection.SetCollection(collection.OrderBy(x => x.Number));
+        }
+
+        private ITab ConstructTab(CreateTabCommand command)
+        {
             if (_strategy.IsSpecialTab(command.Name))
             {
-                _container.RightMain.Add(_strategy.CreateSpecialTab(command.Name));
+                return _strategy.CreateSpecialTab(command.Name);
             }
             else
             {
@@ -59,7 +69,7 @@ namespace VHKPlayer.Commands.Logic.CreateTab
                     Observer = tab
                 });
 
-                _container.GetCollectionFromPlacement(command.Placement).Add(tab);
+                return tab;
             }
         }
     }

@@ -50,7 +50,7 @@ namespace VHKPlayer.ViewModels
             });
 
             TabContainer = container.Resolve<ITabContainer>();
-            //_cprocessor.Process(new CreateAllTabsCommand());
+            _cprocessor.Process(new CreateAllTabsCommand());
 
             InitialiseData();
         }

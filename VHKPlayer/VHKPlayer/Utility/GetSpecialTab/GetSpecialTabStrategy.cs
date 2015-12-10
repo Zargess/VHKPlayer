@@ -19,7 +19,8 @@ namespace VHKPlayer.Utility.GetSpecialTab
                 return new DuringMatchTab
                 {
                     Placement = TabPlacement.RightMain,
-                    Number = int.MinValue
+                    Number = int.MinValue,
+                    Name = "Under Kamp"
                 };
             }
             else

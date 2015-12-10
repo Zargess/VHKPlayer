@@ -56,68 +56,6 @@ namespace VHKPlayer
         {
             this.DataContext = ViewModel;
         }
-
-        private void MenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            var cprocessor = App.Container.Resolve<ICommandProcessor>();
-            var qprocessor = App.Container.Resolve<IQueryProcessor>();
-            var tab = ",{Test;LeftMain;2;(type name:PlayList);True;SingleFile}";
-            var tabdefs = qprocessor.Process(new GetStringSettingQuery()
-            {
-                SettingName = Constants.TabsSettingName
-            });
-            cprocessor.Process(new ChangeSettingCommand()
-            {
-                SettingName = Constants.TabsSettingName,
-                Value = tabdefs + tab
-            });
-        }
-
-        private void MenuItem_OnClick2(object sender, RoutedEventArgs e)
-        {
-            var cprocessor = App.Container.Resolve<ICommandProcessor>();
-            var qprocessor = App.Container.Resolve<IQueryProcessor>();
-
-            var tabdefs = qprocessor.Process(new GetStringSettingQuery()
-            {
-                SettingName = Constants.TabsSettingName
-            }).Split(',');
-
-            if (tabdefs[tabdefs.Length - 1].StartsWith("{Test"))
-            {
-                var newDefs = "";
-                for (var i = 0; i < tabdefs.Length - 1; i++)
-                {
-                    newDefs += tabdefs[i] + ",";
-                }
-                newDefs = newDefs.TrimEnd(',');
-                cprocessor.Process(new ChangeSettingCommand()
-                {
-                    SettingName = Constants.TabsSettingName,
-                    Value = newDefs
-                });
-            }
-
-        }
-
-        private void MenuItem_OnClick3(object sender, RoutedEventArgs e)
-        {
-            var cprocessor = App.Container.Resolve<ICommandProcessor>();
-            var qprocessor = App.Container.Resolve<IQueryProcessor>();
-
-            var tabdefs = qprocessor.Process(new GetStringSettingQuery()
-            {
-                SettingName = Constants.TabsSettingName
-            }).Split('}');
-
-            var newDefs = tabdefs.Aggregate("", (current, tabdef) => current + (tabdef + "},")).TrimEnd(',');
-
-            cprocessor.Process(new ChangeSettingCommand()
-            {
-                SettingName = Constants.TabsSettingName,
-                Value = newDefs
-            });
-        }
     }
 
     public class Data : IDataObserver

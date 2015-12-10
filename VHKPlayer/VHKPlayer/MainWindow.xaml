@@ -42,7 +42,21 @@
         
         <DataTemplate x:Key="DuringMatchTabDesign" DataType="{x:Type TabItem}">
             <Grid>
-                <TextBlock Text="Din mor!" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Column="0">
+                    <TabControl FontSize="12" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.TabContainer.LeftDuringMatch}" ItemTemplate="{StaticResource TabName}" ContentTemplate="{StaticResource DefaultTabDesign}" />
+                </Grid>
+
+                <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+
+                <Grid Column="2">
+                    <TabControl FontSize="12" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.TabContainer.RightDuringMatch}" ItemTemplate="{StaticResource TabName}" ContentTemplate="{StaticResource DefaultTabDesign}" />
+                </Grid>
             </Grid>
         </DataTemplate>
         
@@ -58,9 +72,6 @@
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" Height="25">
-                <MenuItem Header="Test" Click="MenuItem_OnClick"/>
-                <MenuItem Header="Remove Test" Click="MenuItem_OnClick2" />
-                <MenuItem Header="Fix Setting" Click="MenuItem_OnClick3" />
             </Menu>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -88,7 +99,6 @@
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="0">
-                    <controls:PlayableListbox Command="{Binding DummyCommand}" Data="{Binding Playables}" />
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="2">

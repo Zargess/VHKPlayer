@@ -38,7 +38,6 @@ namespace VHKPlayer.Models
 
         public void DataUpdated()
         {
-            // TODO : Make each Playable implement Comparable
             var playables =
                 _processor.Process(new GetAllPlayablesQuery())
                     .Where(playable => _interpreter.Evaluate(Script, playable));
