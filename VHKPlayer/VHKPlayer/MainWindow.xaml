@@ -18,7 +18,7 @@
 
         <DataTemplate x:Key="DefaultTabDesign" DataType="{x:Type TabItem}">
             <DockPanel>
-                <controls:PlayableListbox Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.PlayCommand}" CommandParameter="{Binding PlayStrategy}" Data="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Playables}" ConverterParam="{Binding Script}" />
+                <controls:PlayableListbox Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.PlayCommand}" CommandParameter="{Binding PlayStrategy}" Data="{Binding Data}" />
             </DockPanel>
         </DataTemplate>
         
@@ -31,7 +31,7 @@
                 </Grid.ColumnDefinitions>
                 
                 <Grid Column="0">
-                    <controls:PlayableListbox Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.PlayCommand}" CommandParameter="{Binding PlayStrategy}" Data="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Playables}" ConverterParam="{Binding Script}" />
+                    <controls:PlayableListbox Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.PlayCommand}" CommandParameter="{Binding PlayStrategy}" Data="{Binding Data}" />
                 </Grid>
                 
                 <GridSplitter Grid.Column="1" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
@@ -42,7 +42,21 @@
         
         <DataTemplate x:Key="DuringMatchTabDesign" DataType="{x:Type TabItem}">
             <Grid>
-                <TextBlock Text="Din mor!" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Column="0">
+                    <TabControl FontSize="12" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.TabContainer.LeftDuringMatch}" ItemTemplate="{StaticResource TabName}" ContentTemplate="{StaticResource DefaultTabDesign}" />
+                </Grid>
+
+                <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+
+                <Grid Column="2">
+                    <TabControl FontSize="12" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.TabContainer.RightDuringMatch}" ItemTemplate="{StaticResource TabName}" ContentTemplate="{StaticResource DefaultTabDesign}" />
+                </Grid>
             </Grid>
         </DataTemplate>
         
@@ -51,7 +65,6 @@
         <Style x:Key="TabControlContent" TargetType="{x:Type TabControl}">
             <Setter Property="FontSize" Value="12" />
             <Setter Property="ItemTemplate" Value="{StaticResource TabName}" />
-            <!--TODO : Make the following line use the selector!-->
             <Setter Property="ContentTemplateSelector" Value="{StaticResource TabDesignSelector}" />
         </Style>
     </Window.Resources>
@@ -59,7 +72,6 @@
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" Height="25">
-                <MenuItem Header="Test"/>
             </Menu>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -79,15 +91,14 @@
                 <GridSplitter IsEnabled="False" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
                 <Grid Grid.Row="0" Grid.Column="0">
-                    <TabControl Style="{StaticResource TabControlContent}" ItemsSource="{Binding Tabs}" />
+                    <TabControl Style="{StaticResource TabControlContent}" ItemsSource="{Binding TabContainer.LeftMain}" />
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="2">
-                    
+                    <TabControl Style="{StaticResource TabControlContent}" ItemsSource="{Binding TabContainer.RightMain}" />
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="0">
-                    <controls:PlayableListbox Command="{Binding DummyCommand}" Data="{Binding Playables}" ConverterParam="{Binding Script}" />
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="2">

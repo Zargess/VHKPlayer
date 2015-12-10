@@ -22,12 +22,9 @@ namespace VHKPlayer.Utility
         public const string AutoPlayListSettingName = "application_autoPlaylist";
         public const string StatTimerSettingName = "application_statTimerDelay";
 
-        public const string LeftBlockTabsSettingName = "application_leftBlockTabs";
-        public const string DuringMatchTabsSettingName = "application_duringMatchTabs";
-        public const string DuringMatchRightContentSettingName = "application_duringMatchRightContent";
-        public const string RightBlockTabsSettingName = "application_rightBlockTabs";
+        public const string TabsSettingName = "application_tabs";
 
-        public static List<string> PlayerFolderPathSettingNames = new List<string>()
+        public static readonly List<string> PlayerFolderPathSettingNames = new List<string>()
         {
             PlayerPictureFolderSettingName,
             PlayerVideoFolderSettingName,

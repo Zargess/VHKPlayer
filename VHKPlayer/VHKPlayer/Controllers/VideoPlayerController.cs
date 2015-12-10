@@ -115,7 +115,9 @@ namespace VHKPlayer.Controllers
 
         public void Shutdown()
         {
-            throw new NotImplementedException();
+            Stop(FileType.Audio);
+            Stop(FileType.Video);
+            _handleStatFile.StopTimer();
         }
 
         public void Stop(FileType type)

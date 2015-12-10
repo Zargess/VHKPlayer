@@ -29,9 +29,9 @@ using VHKPlayer.Queries.GetPlayers;
 using VHKPlayer.Commands.Logic.RemoveDataObserver;
 using VHKPlayer.Queries.GetPlayLists;
 using VHKPlayer.Infrastructure;
-using VHKPlayer.DataManagement;
-using VHKPlayer.DataManagement.Interfaces;
 using VHKPlayer.Commands.Logic;
+using VHKPlayer.Monitors.Interfaces;
+using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.ViewModels;
 
 namespace VHKPlayer
@@ -55,7 +55,6 @@ namespace VHKPlayer
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             this.DataContext = ViewModel;
-            ViewModel.InitialiseData();
         }
     }
 

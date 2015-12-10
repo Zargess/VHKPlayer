@@ -2,33 +2,32 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using VHKPlayer.Commands.GUI;
+using VHKPlayer.Commands.Logic.AddApplicationObserver;
 using VHKPlayer.Commands.Logic.AddDataObserver;
 using VHKPlayer.Commands.Logic.CreateAllPlayables;
+using VHKPlayer.Commands.Logic.CreateAllTabs;
 using VHKPlayer.Commands.Logic.Interfaces;
+using VHKPlayer.Commands.Logic.ReloadTabs;
 using VHKPlayer.Controllers;
 using VHKPlayer.Controllers.Interfaces;
-using VHKPlayer.DataManagement.Interfaces;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Infrastructure.Modules;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
+using VHKPlayer.Monitors.Interfaces;
 using VHKPlayer.Queries.GetAllPlayables;
-using VHKPlayer.Queries.GetTabsFromStringSetting;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility;
 
 namespace VHKPlayer.ViewModels
 {
-    public class PlayerViewModel : IDataObserver
+    public class PlayerViewModel : IApplicationObserver
     {
-        private IContainer _container;
-        private ICommandProcessor _cprocessor;
-        private IQueryProcessor _qprocessor;
-        private readonly IDataMonitor _monitor;
-
-        public ObservableCollection<IPlayable> Playables { get; private set; }
-        public ObservableCollection<ITab> Tabs { get; private set; }
-        public IScript Script { get; set; } = new Script("(property name:Name value:\"Ladioo - 40 sek.mp3\")");
+        private readonly ICommandProcessor _cprocessor;
+        private readonly IQueryProcessor _qprocessor;
+        private readonly IDataMonitor _dataMonitor;
+        
+        public ITabContainer TabContainer { get; }
 
         public IVideoPlayerController Controller { get; set; }
         public System.Windows.Input.ICommand PlayCommand { get; set; }
@@ -36,39 +35,35 @@ namespace VHKPlayer.ViewModels
 
         public PlayerViewModel()
         {
-            _container = App.Container;
-            _cprocessor = _container.Resolve<ICommandProcessor>();
-            _qprocessor = _container.Resolve<IQueryProcessor>();
+            var container = App.Container;
+            _cprocessor = container.Resolve<ICommandProcessor>();
+            _qprocessor = container.Resolve<IQueryProcessor>();
 
-            Playables = new ObservableCollection<IPlayable>();
-
-            var tabs = _qprocessor.Process(new GetTabsFromStringSettingQuery()
-            {
-                SettingName = Constants.RightBlockTabsSettingName
-            });
-
-            Tabs = new ObservableCollection<ITab>(tabs);
-
-            Controller = _container.Resolve<IVideoPlayerController>();
+            Controller = container.Resolve<IVideoPlayerController>();
             PlayCommand = new RunPlayableStrategyCommand(Controller);
 
-            _monitor = _container.Resolve<IDataMonitor>();
+            _dataMonitor = container.Resolve<IDataMonitor>();
 
-            _cprocessor.ProcessTransaction(new AddDataObserverCommand()
+            _cprocessor.Process(new AddApplicationObserverCommand
             {
                 Observer = this
             });
+
+            TabContainer = container.Resolve<ITabContainer>();
+            _cprocessor.Process(new CreateAllTabsCommand());
+
+            InitialiseData();
         }
 
         public void InitialiseData()
         {
             _cprocessor.ProcessTransaction(new CreateAllPlayablesCommand());
         }
-
-        public void DataUpdated()
+        
+        public void ApplicationChanged(string settingName)
         {
-            Playables.Clear();
-            Playables.AddAll(_qprocessor.Process(new GetAllPlayablesQuery()));
+            if (settingName != Constants.TabsSettingName) return;
+            _cprocessor.Process(new ReloadTabsCommand());
         }
     }
 }
