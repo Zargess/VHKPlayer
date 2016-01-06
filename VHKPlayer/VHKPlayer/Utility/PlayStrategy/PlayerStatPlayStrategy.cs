@@ -71,6 +71,8 @@ namespace VHKPlayer.Utility.PlayStrategy
 
             videoPlayer.Queue.SetQueue(res);
 
+            Console.WriteLine("Using PlayerStatPlayStrategy");
+
             videoPlayer.PlayQueue();
         }
     }

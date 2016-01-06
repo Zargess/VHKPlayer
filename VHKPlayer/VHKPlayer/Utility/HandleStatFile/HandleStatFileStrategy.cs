@@ -29,7 +29,7 @@ namespace VHKPlayer.Utility.HandleStatFile
             {
                 SettingName = Constants.StatTimerSettingName
             });
-
+            // TODO : Fix timer!
             _timer.Interval = delay;
             _timer.Enabled = true;
             _timer.Start();
@@ -46,6 +46,7 @@ namespace VHKPlayer.Utility.HandleStatFile
             _controller.PlayQueue();
             _timer.Enabled = false;
             _timer.Stop();
+            Console.WriteLine("Stopping timer!");
         }
     }
 }

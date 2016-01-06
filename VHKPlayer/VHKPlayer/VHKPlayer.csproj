@@ -140,18 +140,25 @@
     <Compile Include="Commands\Logic\UpdateDataCenterByFolder\UpdateDataCenterByFolderCommandHandler.cs" />
     <Compile Include="Controllers\Interfaces\IPlayController.cs" />
     <Compile Include="Controllers\Interfaces\IVideoPlayerController.cs" />
+    <Compile Include="Controllers\PlayController.cs" />
     <Compile Include="Controllers\VideoPlayerController.cs" />
+    <Compile Include="Controls\MediaViewControl.xaml.cs">
+      <DependentUpon>MediaViewControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PlayableListbox.xaml.cs">
       <DependentUpon>PlayableListbox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PlayListControl.xaml.cs">
+      <DependentUpon>PlayListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\ParameterConverter.cs" />
     <Compile Include="Converters\UniversalVisibilityConverter.cs" />
+    <Compile Include="Models\Interfaces\IStatObserver.cs" />
     <Compile Include="Models\TabContainer.cs" />
     <Compile Include="Monitors\ApplicationMonitor.cs" />
     <Compile Include="Monitors\DataMonitor.cs" />
     <Compile Include="Monitors\Interfaces\IApplicationMonitor.cs" />
     <Compile Include="Monitors\Interfaces\IDataMonitor.cs" />
-    <Compile Include="Events\DataCenterUpdatedEventArgs.cs" />
     <Compile Include="Exceptions\ItemIsNotATabException.cs" />
     <Compile Include="Exceptions\NoSuchLoadingStrategyException.cs" />
     <Compile Include="Exceptions\NoSuchPlayStrategyException.cs" />
@@ -264,7 +271,15 @@
     <Compile Include="Utility\Settings\Setting.cs" />
     <Compile Include="ViewModels\PlayerViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
+    <Page Include="Controls\MediaViewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\PlayableListbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PlayListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -314,7 +329,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utility\LoadingStrategy\PlayerLoading\" />

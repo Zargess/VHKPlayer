@@ -38,7 +38,7 @@ namespace VHKPlayer.Commands.Logic.CreateTab
         {
             var tab = ConstructTab(command);
 
-            var collection = _container.GetCollectionFromPlacement(command.Placement);
+            var collection = _container.GetCollectionFromPlacement(tab.Placement);
             collection.Add(tab);
             collection.SetCollection(collection.OrderBy(x => x.Number));
         }

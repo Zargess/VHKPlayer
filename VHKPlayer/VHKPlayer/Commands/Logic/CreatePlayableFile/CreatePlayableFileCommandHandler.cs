@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,11 @@ namespace VHKPlayer.Commands.Logic.CreatePlayableFile
             _center.PlayableFiles.Add(new PlayableFile()
             {
                 Name = command.File.Name,
-                File = command.File
+                File = command.File,
+                Content = new ObservableCollection<FileNode>()
+                {
+                    command.File
+                }
             });
         }
     }

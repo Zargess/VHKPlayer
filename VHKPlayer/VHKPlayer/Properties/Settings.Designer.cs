@@ -208,7 +208,7 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"{Andet;LeftMain;2;(folder path:""root\musik\andet"");False;SingleFile},{Opvarmning;LeftMain;1;(folder path:""root\musik\Opvarmning"");False;SingleFile},{Scor;LeftMain;3;(property name:Trainer value:False);False;SingleFile},{Player Picture;RightMain;2;(type name:Player);False;PlayerPicture},duringmatch,{Player Picture;LeftDuringMatch;1;(type name:Player);False;PlayerPicture},{Player Stat;LeftDuringMatch;1;(multi left:(type name:Player) right:(property name:Trainer value:False));False;PlayerPicture}")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"{Andet;LeftMain;2;(folder path:""root\musik\andet"");False;SingleFile},{Opvarmning;LeftMain;1;(folder path:""root\musik\Opvarmning"");False;SingleFile},{Scor;LeftMain;3;(property name:Trainer value:False);False;PlayerStat},{Player Picture;RightMain;2;(type name:Player);False;PlayerPicture},duringmatch,{Player Picture;LeftDuringMatch;1;(type name:Player);False;PlayerPicture},{Player Stat;LeftDuringMatch;1;(multi left:(type name:Player) right:(property name:Trainer value:False));False;PlayerStat}")]
         public string application_tabs {
             get {
                 return ((string)(this["application_tabs"]));
@@ -220,7 +220,7 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10000")]
         public int application_statTimerDelay {
             get {
                 return ((int)(this["application_statTimerDelay"]));

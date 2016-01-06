@@ -15,18 +15,18 @@ namespace VHKPlayer.Models
 {
     public class Player : IVhkObserver<FolderNode>, IPlayable
     {
-        private List<IVhkObserver<Player>> _observers;
+        private List<IStatObserver> _observers;
 
         public string Name { get; set; }
         public int Number { get; set; }
         public bool Trainer { get; set; }
-        public ObservableCollection<FileNode> Content { get; set; }
+        public ICollection<FileNode> Content { get; set; }
         public Statistics Stats { get; private set; }
         public IQueryProcessor Processor { get; set; }
 
         public Player()
         {
-            _observers = new List<IVhkObserver<Player>>();
+            _observers = new List<IStatObserver>();
         }
 
         public void Play(IPlayStrategy strategy, IVideoPlayerController videoPlayer)
@@ -40,15 +40,15 @@ namespace VHKPlayer.Models
             {
                 Player = this
             });
-            _observers.ForEach(x => x.SubjectUpdated(this));
+            _observers.ForEach(x => x.Notify(Stats));
         }
 
-        public void AddObserver(IVhkObserver<Player> observer)
+        public void AddObserver(IStatObserver observer)
         {
             _observers.Add(observer);
         }
 
-        public void RemoveObserver(IVhkObserver<Player> observer)
+        public void RemoveObserver(IStatObserver observer)
         {
             _observers.Remove(observer);
         }

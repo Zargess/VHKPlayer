@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:VHKPlayer.Controls"
         xmlns:selectors="clr-namespace:VHKPlayer.Selectors"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:VHKPlayer"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" Name="Main">
@@ -21,7 +22,7 @@
                 <controls:PlayableListbox Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.PlayCommand}" CommandParameter="{Binding PlayStrategy}" Data="{Binding Data}" />
             </DockPanel>
         </DataTemplate>
-        
+
         <DataTemplate x:Key="PlayListTabDesign" DataType="{x:Type TabItem}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -29,17 +30,17 @@
                     <ColumnDefinition Width="5" />
                     <ColumnDefinition Width="50*" />
                 </Grid.ColumnDefinitions>
-                
+
                 <Grid Column="0">
                     <controls:PlayableListbox Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.PlayCommand}" CommandParameter="{Binding PlayStrategy}" Data="{Binding Data}" />
                 </Grid>
-                
+
                 <GridSplitter Grid.Column="1" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                
+
                 <Grid Column="2"></Grid>
             </Grid>
         </DataTemplate>
-        
+
         <DataTemplate x:Key="DuringMatchTabDesign" DataType="{x:Type TabItem}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -59,7 +60,7 @@
                 </Grid>
             </Grid>
         </DataTemplate>
-        
+
         <selectors:TabDesignSelector x:Key="TabDesignSelector" DefaultDataTemplate="{StaticResource DefaultTabDesign}" DuringMaDataTemplate="{StaticResource DuringMatchTabDesign}" PlayListDataTemplate="{StaticResource PlayListTabDesign}" />
 
         <Style x:Key="TabControlContent" TargetType="{x:Type TabControl}">
@@ -68,7 +69,7 @@
             <Setter Property="ContentTemplateSelector" Value="{StaticResource TabDesignSelector}" />
         </Style>
     </Window.Resources>
-    
+
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" Height="25">
@@ -99,6 +100,7 @@
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="0">
+                    <controls:MediaViewControl x:Name="View" SoundEnabled="True" StatsEnabled="True" />
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="2">

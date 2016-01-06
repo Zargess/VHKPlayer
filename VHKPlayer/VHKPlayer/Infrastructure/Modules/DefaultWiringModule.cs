@@ -20,8 +20,7 @@ namespace VHKPlayer.Infrastructure.Modules
         {
             base.Load(builder);
 
-            var assemblies = new List<Assembly>();
-            assemblies.Add(Assembly.GetExecutingAssembly());
+            var assemblies = new List<Assembly> {Assembly.GetExecutingAssembly()};
 
             foreach (var assembly in assemblies)
             {

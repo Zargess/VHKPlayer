@@ -98,6 +98,7 @@ namespace VHKPlayer.Controllers
 
         public void PlayQueue()
         {
+            Console.WriteLine("Playing next item");
             _playQueue.PlayNextItem(Queue, this, _videoPlayStrategy, _previousVideoPlayable);
         }
 

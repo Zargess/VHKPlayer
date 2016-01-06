@@ -24,14 +24,27 @@ namespace VHKPlayer.Controls
     /// </summary>
     public partial class PlayableListbox : UserControl
     {
-        public PlayableListbox()
-        {
-            InitializeComponent();
-        }
-
         public static readonly DependencyProperty CommandProperty = DependencyProperty.Register("Command", typeof(ICommand), typeof(PlayableListbox), new PropertyMetadata(new DoNothingCommand()));
         public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register("CommandParameter", typeof(IPlayStrategy), typeof(PlayableListbox));
         public static readonly DependencyProperty DataProperty = DependencyProperty.Register("Data", typeof(ICollection<IPlayable>), typeof(PlayableListbox), new PropertyMetadata(new ObservableCollection<IPlayable>()));
+        public static readonly RoutedEvent SelectionChangedProperty = EventManager.RegisterRoutedEvent("SelectionChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(PlayableListbox));
+
+        public PlayableListbox()
+        {
+            InitializeComponent();
+            Box.SelectionChanged += Box_SelectionChanged;
+        }
+
+        private void Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RoutedEventArgs newEventArgs = new RoutedEventArgs(SelectionChangedProperty);
+            RaiseEvent(newEventArgs);
+        }
+
+        public IPlayable SelectedItem()
+        {
+            return (IPlayable)Box.SelectedItem;
+        }
 
         public ICommand Command
         {
@@ -42,6 +55,18 @@ namespace VHKPlayer.Controls
             set
             {
                 SetValue(CommandProperty, value);
+            }
+        }
+
+        public event RoutedEventHandler SelectionChanged
+        {
+            add
+            {
+                AddHandler(SelectionChangedProperty, value);
+            }
+            remove
+            {
+                RemoveHandler(SelectionChangedProperty, value);
             }
         }
 

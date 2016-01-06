@@ -18,7 +18,7 @@
         </Style>
     </UserControl.Resources>
     
-    <ListBox ItemsSource="{Binding Data, RelativeSource={RelativeSource AncestorType=UserControl}}" ItemContainerStyle="{StaticResource VisibilityStyle}">
+    <ListBox x:Name="Box" ItemsSource="{Binding Data, RelativeSource={RelativeSource AncestorType=UserControl}}" ItemContainerStyle="{StaticResource VisibilityStyle}">
         <ListBox.ItemTemplate>
             <DataTemplate>
                 <ContentControl>

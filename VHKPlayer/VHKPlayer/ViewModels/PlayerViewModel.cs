@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using VHKPlayer.Commands.GUI;
 using VHKPlayer.Commands.Logic.AddApplicationObserver;
@@ -21,28 +22,25 @@ using VHKPlayer.Utility;
 
 namespace VHKPlayer.ViewModels
 {
-    public class PlayerViewModel : IApplicationObserver
+    public class PlayerViewModel : IApplicationObserver, INotifyPropertyChanged
     {
         private readonly ICommandProcessor _cprocessor;
-        private readonly IQueryProcessor _qprocessor;
-        private readonly IDataMonitor _dataMonitor;
         
         public ITabContainer TabContainer { get; }
 
         public IVideoPlayerController Controller { get; set; }
         public System.Windows.Input.ICommand PlayCommand { get; set; }
 
+        
+
 
         public PlayerViewModel()
         {
             var container = App.Container;
             _cprocessor = container.Resolve<ICommandProcessor>();
-            _qprocessor = container.Resolve<IQueryProcessor>();
 
             Controller = container.Resolve<IVideoPlayerController>();
             PlayCommand = new RunPlayableStrategyCommand(Controller);
-
-            _dataMonitor = container.Resolve<IDataMonitor>();
 
             _cprocessor.Process(new AddApplicationObserverCommand
             {
@@ -65,5 +63,7 @@ namespace VHKPlayer.ViewModels
             if (settingName != Constants.TabsSettingName) return;
             _cprocessor.Process(new ReloadTabsCommand());
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
