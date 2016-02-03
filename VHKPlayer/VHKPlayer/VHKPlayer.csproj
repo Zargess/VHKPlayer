@@ -153,6 +153,9 @@
     </Compile>
     <Compile Include="Converters\ParameterConverter.cs" />
     <Compile Include="Converters\UniversalVisibilityConverter.cs" />
+    <Compile Include="MediaViewer.xaml.cs">
+      <DependentUpon>MediaViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Interfaces\IStatObserver.cs" />
     <Compile Include="Models\TabContainer.cs" />
     <Compile Include="Monitors\ApplicationMonitor.cs" />
@@ -269,6 +272,7 @@
     <Compile Include="Utility\Settings\Interfaces\IGlobalConfigService.cs" />
     <Compile Include="Utility\Settings\Interfaces\ISetting.cs" />
     <Compile Include="Utility\Settings\Setting.cs" />
+    <Compile Include="ViewModels\Interfaces\IMediaViewerViewModel.cs" />
     <Compile Include="ViewModels\PlayerViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
     <Page Include="Controls\MediaViewControl.xaml">
@@ -296,6 +300,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MediaViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MessageBoxes\AlertBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -44,14 +44,19 @@ namespace VHKPlayer
     {
         public PlayerViewModel ViewModel { get; set; }
         public PlayController Controller { get; set; }
+
+        private MediaViewer _viewer;
+
         public MainWindow()
         {
             ViewModel = new PlayerViewModel();
+            _viewer = new MediaViewer(ViewModel);
             InitializeComponent();
             this.Loaded += MainWindow_Loaded;
             this.Closing += MainWindow_Closing;
             this.KeyUp += MainWindow_KeyUp;
             App.Dispatch = this.Dispatcher;
+            _viewer.Visibility = Visibility.Visible;
         }
 
         private void MainWindow_KeyUp(object sender, KeyEventArgs e)
@@ -64,13 +69,15 @@ namespace VHKPlayer
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             ViewModel.Controller.Shutdown();
+            _viewer.ShouldClose = true;
+            _viewer.Close();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             this.DataContext = ViewModel;
             View.Video.MediaEnded += (s, ee) => ViewModel.Controller.PlayQueue();
-            Controller = new PlayController(View);
+            Controller = new PlayController(_viewer.View);
             ViewModel.Controller.AddObserver(Controller);
             
         }

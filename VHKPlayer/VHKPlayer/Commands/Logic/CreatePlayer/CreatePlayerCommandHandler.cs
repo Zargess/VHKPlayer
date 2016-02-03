@@ -33,6 +33,7 @@ namespace VHKPlayer.Commands.Logic.CreatePlayer
 
             foreach (var folder in folders)
             {
+                if (folder == null) continue;
                 var file = folder.Content.SingleOrDefault(x => x.NameWithoutExtension.ToLower() == command.File.NameWithoutExtension.ToLower());
                 if (file == null) continue;
                 content.Add(file);

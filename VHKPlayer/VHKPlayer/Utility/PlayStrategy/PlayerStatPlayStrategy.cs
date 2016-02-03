@@ -60,6 +60,8 @@ namespace VHKPlayer.Utility.PlayStrategy
                 SettingName = Constants.PlayerStatPictureFolderSettingName
             });
 
+            // TODO : If folder is null then notify user
+
             var music = content.AsParallel().SingleOrDefault(x => statMusicFolder.Contains(x));
             var video = content.AsParallel().SingleOrDefault(x => statVideoFolder.Contains(x));
             var picture = content.AsParallel().SingleOrDefault(x => statPictureFolder.Contains(x));
