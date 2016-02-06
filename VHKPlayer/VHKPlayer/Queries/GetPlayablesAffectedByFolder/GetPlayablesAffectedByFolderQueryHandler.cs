@@ -36,7 +36,7 @@ namespace VHKPlayer.Queries.GetPlayablesAffectedByFolder
             }
 
             var playerFolders = _processor.Process(new GetPlayerFoldersQuery());
-            // TODO : Does not work if there is no players.....
+            
             foreach (var folder in playerFolders)
             {
                 if (query.Folder.FullPath.ToLower().Equals(folder.FullPath.ToLower()))
