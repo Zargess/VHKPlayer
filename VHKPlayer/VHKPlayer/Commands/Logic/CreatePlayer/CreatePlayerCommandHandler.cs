@@ -25,7 +25,7 @@ namespace VHKPlayer.Commands.Logic.CreatePlayer
         {
             var name = command.File.NameWithoutExtension.Remove(0, 6);
             var number = command.File.NameWithoutExtension.Substring(0, 3).ToInteger();
-            var trainer = number >= 90;
+            var trainer = number >= 100; // TODO : Make it so that the user can define a script that tells the program if the player is a trainer
 
             var content = new List<FileNode>();
 
