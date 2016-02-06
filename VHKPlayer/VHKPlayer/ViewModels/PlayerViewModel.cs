@@ -28,6 +28,7 @@ namespace VHKPlayer.ViewModels
     public class PlayerViewModel : IApplicationObserver, IMediaViewerViewModel
     {
         private readonly ICommandProcessor _cprocessor;
+        private readonly IDataMonitor _monitor;
         
         public ITabContainer TabContainer { get; }
 
@@ -173,7 +174,7 @@ namespace VHKPlayer.ViewModels
         {
             var container = App.Container;
             _cprocessor = container.Resolve<ICommandProcessor>();
-
+            _monitor = container.Resolve<IDataMonitor>();
             Controller = container.Resolve<IVideoPlayerController>();
             PlayCommand = new RunPlayableStrategyCommand(Controller);
 

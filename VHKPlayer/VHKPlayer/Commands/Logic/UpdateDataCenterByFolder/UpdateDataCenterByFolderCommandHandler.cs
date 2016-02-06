@@ -30,7 +30,7 @@ namespace VHKPlayer.Commands.Logic.UpdateDataCenterByFolder
             var playables = _queryProcessor.Process(new GetPlayablesAffectedByFolderQuery()
             {
                 Folder = command.Folder
-            });
+            }).ToList();
 
             var players = playables.OfType<Player>();
 
