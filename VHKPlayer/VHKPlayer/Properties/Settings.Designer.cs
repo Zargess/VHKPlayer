@@ -97,18 +97,6 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("root\\spillervideo")]
-        public string folder_playerVideoFolder {
-            get {
-                return ((string)(this["folder_playerVideoFolder"]));
-            }
-            set {
-                this["folder_playerVideoFolder"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("root\\spillervideostat\\video")]
         public string folder_playerStatVideoFolder {
             get {

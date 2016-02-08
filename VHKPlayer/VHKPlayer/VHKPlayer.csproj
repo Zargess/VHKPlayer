@@ -266,7 +266,6 @@
     <Compile Include="Utility\PlayStrategy\IteratedPlayStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\PlayerPicturePlayStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\PlayerStatPlayStrategy.cs" />
-    <Compile Include="Utility\PlayStrategy\PlayerVideoPlayStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\SingleFilePlayStrategy.cs" />
     <Compile Include="Utility\Settings\GlobalConfigService.cs" />
     <Compile Include="Utility\Settings\Interfaces\IGlobalConfigService.cs" />

@@ -66,6 +66,15 @@ namespace VHKPlayer.Utility.PlayStrategy
             var video = content.AsParallel().SingleOrDefault(x => statVideoFolder.Contains(x)); // TODO : Fix if no Video exists
             var picture = content.AsParallel().SingleOrDefault(x => statPictureFolder.Contains(x));
 
+            if (video == null)
+            {
+                var pictureFolder = _processor.Process(new GetFolderFromStringSettingQuery()
+                {
+                    SettingName = Constants.PlayerPictureFolderSettingName
+                });
+                video = content.AsParallel().SingleOrDefault(x => pictureFolder.Contains(x));
+            }
+
             var res = new List<FileNode>()
             {
                 music, video, picture
