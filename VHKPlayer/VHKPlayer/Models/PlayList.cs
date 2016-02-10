@@ -16,7 +16,7 @@ namespace VHKPlayer.Models
         // TODO : Consider adding a Repeat bool here to indicate if the playlist should repeat it self
         public string Name { get; set; }
         public bool HasAudio { get; set; }
-        public ObservableCollection<FileNode> Content { get; set; }
+        public ICollection<FileNode> Content { get; set; }
         public ILoadingStrategy<ICollection<FileNode>> LoadingStrategy { get; set; }
         public IPlayStrategy PlayStrategy { get; set; }
 

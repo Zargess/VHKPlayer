@@ -5,7 +5,6 @@ namespace VHKPlayer.Utility
     public class Constants
     {
         public const string PlayerPictureFolderSettingName = "folder_playerPictureFolder";
-        public const string PlayerVideoFolderSettingName = "folder_playerVideoFolder";
         public const string PlayerStatPictureFolderSettingName = "folder_playerStatPictureFolder";
         public const string PlayerStatVideoFolderSettingName = "folder_playerStatVideoFolder";
         public const string PlayerStatMusicFolderSettingName = "folder_playerStatMusicFolder";
@@ -22,15 +21,11 @@ namespace VHKPlayer.Utility
         public const string AutoPlayListSettingName = "application_autoPlaylist";
         public const string StatTimerSettingName = "application_statTimerDelay";
 
-        public const string LeftBlockTabsSettingName = "application_leftBlockTabs";
-        public const string DuringMatchTabsSettingName = "application_duringMatchTabs";
-        public const string DuringMatchRightContentSettingName = "application_duringMatchRightContent";
-        public const string RightBlockTabsSettingName = "application_rightBlockTabs";
+        public const string TabsSettingName = "application_tabs";
 
-        public static List<string> PlayerFolderPathSettingNames = new List<string>()
+        public static readonly List<string> PlayerFolderPathSettingNames = new List<string>()
         {
             PlayerPictureFolderSettingName,
-            PlayerVideoFolderSettingName,
             PlayerStatMusicFolderSettingName,
             PlayerStatPictureFolderSettingName,
             PlayerStatVideoFolderSettingName

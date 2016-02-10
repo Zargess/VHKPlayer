@@ -172,7 +172,7 @@ namespace VHKPlayer.Test
 
             Assert.AreEqual(playername, datacenter.Players[0].Name);
             Assert.AreEqual(number, datacenter.Players[0].Number);
-            Assert.AreEqual(file, datacenter.Players[0].Content[0]);
+            Assert.AreEqual(file, datacenter.Players[0].Content.ToList()[0]);
             Assert.IsFalse(datacenter.Players[0].Trainer);
         }
 

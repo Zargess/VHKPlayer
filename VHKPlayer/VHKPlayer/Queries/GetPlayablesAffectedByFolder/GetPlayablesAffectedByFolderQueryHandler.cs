@@ -36,12 +36,14 @@ namespace VHKPlayer.Queries.GetPlayablesAffectedByFolder
             }
 
             var playerFolders = _processor.Process(new GetPlayerFoldersQuery());
-
+            
             foreach (var folder in playerFolders)
             {
                 if (query.Folder.FullPath.ToLower().Equals(folder.FullPath.ToLower()))
                 {
-                    res.AddRange(_processor.Process(new GetPlayersQuery()));
+                    var players = _processor.Process(new GetPlayersQuery());
+                    if (players.Count() == 0) res.Add(new Player());
+                    else res.AddRange(players);
                     break;
                 }
             }

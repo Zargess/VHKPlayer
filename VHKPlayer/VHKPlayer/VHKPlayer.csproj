@@ -80,6 +80,8 @@
     <Compile Include="Commands\GUI\DoNothingCommand.cs" />
     <Compile Include="Commands\GUI\DummyCommand.cs" />
     <Compile Include="Commands\GUI\RunPlayableStrategyCommand.cs" />
+    <Compile Include="Commands\Logic\AddApplicationObserver\AddApplicationObserverCommand.cs" />
+    <Compile Include="Commands\Logic\AddApplicationObserver\AddApplicationObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\AddDataObserver\AddDataObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\AddDataObserver\AddDataObserverCommand.cs" />
     <Compile Include="Commands\Logic\ChangeSetting\ChangeSettingCommand.cs" />
@@ -92,6 +94,8 @@
     <Compile Include="Commands\Logic\CreateAllPlayers\CreateAllPlayersCommand.cs" />
     <Compile Include="Commands\Logic\CreateAllPlayLists\CreateAllPlayListsCommand.cs" />
     <Compile Include="Commands\Logic\CreateAllPlayLists\CreateAllPlayListsCommandHandler.cs" />
+    <Compile Include="Commands\Logic\CreateAllTabs\CreateAllTabsCommand.cs" />
+    <Compile Include="Commands\Logic\CreateAllTabs\CreateAllTabsCommandHandler.cs" />
     <Compile Include="Commands\Logic\CreateFile\CreateFileCommand.cs" />
     <Compile Include="Commands\Logic\CreateFile\CreateFileCommandHandler.cs" />
     <Compile Include="Commands\Logic\CreateFolderStructure\CreateFolderStructureCommand.cs" />
@@ -107,12 +111,18 @@
     <Compile Include="Commands\Logic\CreatePlayer\CreatePlayerCommandHandler.cs" />
     <Compile Include="Commands\Logic\CreatePlayList\CreatePlayListCommand.cs" />
     <Compile Include="Commands\Logic\CreatePlayList\CreatePlayListCommandHandler.cs" />
+    <Compile Include="Commands\Logic\CreateTab\CreateTabCommand.cs" />
+    <Compile Include="Commands\Logic\CreateTab\CreateTabCommandHandler.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommandHandler.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommandProcessor.cs" />
     <Compile Include="Commands\Logic\Interfaces\ICommand.cs" />
     <Compile Include="Commands\Logic\Interfaces\ITransaction.cs" />
-    <Compile Include="Commands\Logic\RegisterTimer\RegisterTimerCommand.cs" />
-    <Compile Include="Commands\Logic\RegisterTimer\RegisterTimerCommandHandler.cs" />
+    <Compile Include="Commands\Logic\ReloadTabs\ReloadTabsCommand.cs" />
+    <Compile Include="Commands\Logic\ReloadTabs\ReloadTabsCommandHandler.cs" />
+    <Compile Include="Commands\Logic\RemoveAllTabs\RemoveAllTabsCommand.cs" />
+    <Compile Include="Commands\Logic\RemoveAllTabs\RemoveAllTabsCommandHandler.cs" />
+    <Compile Include="Commands\Logic\RemoveApplicationObserver\RemoveApplicationObserverCommand.cs" />
+    <Compile Include="Commands\Logic\RemoveApplicationObserver\RemoveApplicationObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemoveDataObserver\RemoveDataObserverCommand.cs" />
     <Compile Include="Commands\Logic\RemoveDataObserver\RemoveDataObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\RemoveFolder\RemoveFolderCommand.cs" />
@@ -126,21 +136,33 @@
     <Compile Include="Commands\Logic\ResetDataCenter\ResetDataCenterCommand.cs" />
     <Compile Include="Commands\Logic\ResetDataCenter\ResetDataCenterCommandHandler.cs" />
     <Compile Include="Commands\Logic\Transaction.cs" />
-    <Compile Include="Commands\Logic\UnregisterTimer\UnregisterTimerCommand.cs" />
-    <Compile Include="Commands\Logic\UnregisterTimer\UnregisterTimerCommandHandler.cs" />
     <Compile Include="Commands\Logic\UpdateDataCenterByFolder\UpdateDataCenterByFolderCommand.cs" />
     <Compile Include="Commands\Logic\UpdateDataCenterByFolder\UpdateDataCenterByFolderCommandHandler.cs" />
     <Compile Include="Controllers\Interfaces\IPlayController.cs" />
     <Compile Include="Controllers\Interfaces\IVideoPlayerController.cs" />
+    <Compile Include="Controllers\PlayController.cs" />
     <Compile Include="Controllers\VideoPlayerController.cs" />
+    <Compile Include="Controls\MediaViewControl.xaml.cs">
+      <DependentUpon>MediaViewControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PlayableListbox.xaml.cs">
       <DependentUpon>PlayableListbox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PlayListControl.xaml.cs">
+      <DependentUpon>PlayListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\ParameterConverter.cs" />
     <Compile Include="Converters\UniversalVisibilityConverter.cs" />
-    <Compile Include="DataManagement\DataMonitor.cs" />
-    <Compile Include="DataManagement\Interfaces\IDataMonitor.cs" />
-    <Compile Include="Events\DataCenterUpdatedEventArgs.cs" />
+    <Compile Include="MediaViewer.xaml.cs">
+      <DependentUpon>MediaViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Interfaces\IStatObserver.cs" />
+    <Compile Include="Models\TabContainer.cs" />
+    <Compile Include="Monitors\ApplicationMonitor.cs" />
+    <Compile Include="Monitors\DataMonitor.cs" />
+    <Compile Include="Monitors\Interfaces\IApplicationMonitor.cs" />
+    <Compile Include="Monitors\Interfaces\IDataMonitor.cs" />
+    <Compile Include="Exceptions\ItemIsNotATabException.cs" />
     <Compile Include="Exceptions\NoSuchLoadingStrategyException.cs" />
     <Compile Include="Exceptions\NoSuchPlayStrategyException.cs" />
     <Compile Include="Exceptions\NoSuchTabException.cs" />
@@ -155,11 +177,13 @@
     <Compile Include="Models\DataCenter.cs" />
     <Compile Include="Models\DuringMatchTab.cs" />
     <Compile Include="Models\FolderNode.cs" />
+    <Compile Include="Models\Interfaces\IApplicationObserver.cs" />
     <Compile Include="Models\Interfaces\IDataCenter.cs" />
     <Compile Include="Models\Interfaces\IDataObserver.cs" />
     <Compile Include="Models\Interfaces\IMultiValueParameter.cs" />
     <Compile Include="Models\Interfaces\IScript.cs" />
     <Compile Include="Models\Interfaces\ITab.cs" />
+    <Compile Include="Models\Interfaces\ITabContainer.cs" />
     <Compile Include="Models\Interfaces\IVHKObserver.cs" />
     <Compile Include="Models\Interfaces\IPlayable.cs" />
     <Compile Include="Models\MultiValueParameter.cs" />
@@ -170,6 +194,7 @@
     <Compile Include="Models\PlayList.cs" />
     <Compile Include="Models\Script.cs" />
     <Compile Include="Models\Statistics.cs" />
+    <Compile Include="Models\TabPlacement.cs" />
     <Compile Include="Queries\GetAllPlayables\GetAllPlayablesQuery.cs" />
     <Compile Include="Queries\GetAllPlayables\GetAllPlayablesQueryHandler.cs" />
     <Compile Include="Queries\GetAutoPlayList\GetAutoPlayListQuery.cs" />
@@ -211,8 +236,6 @@
     <Compile Include="Queries\GetRequiredFolderPaths\GetRequiredFolderPathsQueryHandler.cs" />
     <Compile Include="Queries\GetStringSetting\GetStringSettingQuery.cs" />
     <Compile Include="Queries\GetStringSetting\GetStringSettingQueryHandler.cs" />
-    <Compile Include="Queries\GetTabsFromStringSetting\GetTabsFromStringSettingQuery.cs" />
-    <Compile Include="Queries\GetTabsFromStringSetting\GetTabsFromStringSettingQueryHandler.cs" />
     <Compile Include="Queries\Interfaces\IQuery.cs" />
     <Compile Include="Queries\Interfaces\IQueryHandler.cs" />
     <Compile Include="Queries\Interfaces\IQueryProcessor.cs" />
@@ -223,13 +246,16 @@
     <Compile Include="Queries\ParsePlayListString\ParsePlayListStringQuery.cs" />
     <Compile Include="Queries\ParsePlayListString\ParsePlayListStringQueryHandler.cs" />
     <Compile Include="Queries\QueryProcessor.cs" />
+    <Compile Include="Selectors\TabDesignSelector.cs" />
     <Compile Include="Utility\Constants.cs" />
+    <Compile Include="Utility\FileDelayStrategy\FileDelayStrategy.cs" />
+    <Compile Include="Utility\FileDelayStrategy\Interfaces\IFileDelayStrategy.cs" />
     <Compile Include="Utility\FindFileType\FindFileTypeStrategy.cs" />
     <Compile Include="Utility\FindFileType\Interfaces\IFindFileTypeStrategy.cs" />
     <Compile Include="Utility\GetSpecialTab\GetSpecialTabStrategy.cs" />
     <Compile Include="Utility\GetSpecialTab\Interfaces\IGetSpecialTabStrategy.cs" />
-    <Compile Include="Utility\HandleStatFile\HandleStatFileStrategy.cs" />
-    <Compile Include="Utility\HandleStatFile\Interfaces\IHandleStatFileStrategy.cs" />
+    <Compile Include="Utility\HandleFile\HandleFileStrategy.cs" />
+    <Compile Include="Utility\HandleFile\Interfaces\IHandleFileStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\Interfaces\ILoadingStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\PlayListLoading\FolderLoadingStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\PlayListLoading\SortedLoadingStrategy.cs" />
@@ -242,15 +268,23 @@
     <Compile Include="Utility\PlayStrategy\IteratedPlayStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\PlayerPicturePlayStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\PlayerStatPlayStrategy.cs" />
-    <Compile Include="Utility\PlayStrategy\PlayerVideoPlayStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\SingleFilePlayStrategy.cs" />
     <Compile Include="Utility\Settings\GlobalConfigService.cs" />
     <Compile Include="Utility\Settings\Interfaces\IGlobalConfigService.cs" />
     <Compile Include="Utility\Settings\Interfaces\ISetting.cs" />
     <Compile Include="Utility\Settings\Setting.cs" />
+    <Compile Include="ViewModels\Interfaces\IMediaViewerViewModel.cs" />
     <Compile Include="ViewModels\PlayerViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
+    <Page Include="Controls\MediaViewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\PlayableListbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PlayListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -267,6 +301,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MediaViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MessageBoxes\AlertBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -300,7 +338,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utility\LoadingStrategy\PlayerLoading\" />

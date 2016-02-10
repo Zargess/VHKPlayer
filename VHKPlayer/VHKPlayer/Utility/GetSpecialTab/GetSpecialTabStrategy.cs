@@ -12,15 +12,20 @@ namespace VHKPlayer.Utility.GetSpecialTab
 {
     public class GetSpecialTabStrategy : IGetSpecialTabStrategy
     {
-        public ITab CreateSpecialTab(string def)
+        public ITab CreateSpecialTab(string name)
         {
-            if (def == "duringmatch")
+            if (name == "duringmatch")
             {
-                return new DuringMatchTab();
+                return new DuringMatchTab
+                {
+                    Placement = TabPlacement.RightMain,
+                    Number = int.MinValue,
+                    Name = "Under Kamp"
+                };
             }
             else
             {
-                throw new NoSuchTabException("No such tab exists\n" + def);
+                throw new NoSuchTabException("No such tab exists\n" + name);
             }
         }
 

@@ -5,7 +5,9 @@ using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Queries.IsStatFile;
-using VHKPlayer.Utility.HandleStatFile.Interfaces;
+using VHKPlayer.Utility.FileDelayStrategy;
+using VHKPlayer.Utility.FileDelayStrategy.Interfaces;
+using VHKPlayer.Utility.HandleFile.Interfaces;
 using VHKPlayer.Utility.PlayQueueStrategy.Interfaces;
 using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
@@ -18,19 +20,21 @@ namespace VHKPlayer.Controllers
         private IPlayable _previousMusicPlayable, _previousVideoPlayable;
         private readonly IQueryProcessor _processor;
         private readonly IPlayQueueStrategy _playQueue;
-        private readonly IHandleStatFileStrategy _handleStatFile;
+        private readonly IHandleFileStrategy _handleFileStrategy;
+        private readonly IFileDelayStrategy _delayStrategy;
 
         public bool AutoPlayList { get; set; }
         public Queue<FileNode> Queue { get; private set; }
 
 
-        public VideoPlayerController(IQueryProcessor processor, IPlayQueueStrategy playQueue, IHandleStatFileStrategy handleStatFile)
+        public VideoPlayerController(IQueryProcessor processor, IPlayQueueStrategy playQueue, IHandleFileStrategy fileStrategy)
         {
             this._processor = processor;
             _observers = new List<IPlayController>();
             Queue = new Queue<FileNode>();
             this._playQueue = playQueue;
-            _handleStatFile = handleStatFile;
+            _delayStrategy = new FileDelayStrategy(_processor, this);
+            _handleFileStrategy = fileStrategy;
         }
 
         public void AddObserver(IPlayController observer)
@@ -55,23 +59,14 @@ namespace VHKPlayer.Controllers
 
         public void Play(FileNode file)
         {
-            var isStatFile = _processor.Process(new IsStatFileQuery()
-            {
-                File = file
-            });
-
-            if (isStatFile)
-            {
-                ShowStats();
-                _handleStatFile.HandleFile(this, file);
-            }
+            _handleFileStrategy.Handle(file, this, _videoPlayStrategy, _processor, _delayStrategy);
             Console.WriteLine(file.Name);
             _observers.ForEach(x => x.Play(file));
         }
 
         public void Play(IPlayable playable, IPlayStrategy strategy)
         {
-            _handleStatFile.StopTimer();
+            _delayStrategy.StopTimer();
 
             if (playable is PlayableFile)
             {
@@ -98,6 +93,7 @@ namespace VHKPlayer.Controllers
 
         public void PlayQueue()
         {
+            Console.WriteLine("Playing next item");
             _playQueue.PlayNextItem(Queue, this, _videoPlayStrategy, _previousVideoPlayable);
         }
 
@@ -115,7 +111,9 @@ namespace VHKPlayer.Controllers
 
         public void Shutdown()
         {
-            throw new NotImplementedException();
+            Stop(FileType.Audio);
+            Stop(FileType.Video);
+            _delayStrategy.StopTimer();
         }
 
         public void Stop(FileType type)

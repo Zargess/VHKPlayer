@@ -24,7 +24,6 @@ namespace VHKPlayer.Queries.GetPlayerFolders
         {
             var settingNames = new[] {
                 Constants.PlayerPictureFolderSettingName,
-                Constants.PlayerVideoFolderSettingName,
                 Constants.PlayerStatPictureFolderSettingName,
                 Constants.PlayerStatVideoFolderSettingName,
                 Constants.PlayerStatMusicFolderSettingName

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 
 namespace VHKPlayer.Models.Interfaces
@@ -14,7 +10,6 @@ namespace VHKPlayer.Models.Interfaces
         ObservableCollection<PlayList> PlayLists { get; }
         ObservableCollection<FolderNode> Folders { get; }
         ObservableCollection<PlayableFile> PlayableFiles { get; }
-        Dictionary<object, Timer> Timers { get; }
         bool UncommitedChanges { get; set; }
 
         void AddObserver(IDataObserver observer);

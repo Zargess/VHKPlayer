@@ -29,9 +29,10 @@ using VHKPlayer.Queries.GetPlayers;
 using VHKPlayer.Commands.Logic.RemoveDataObserver;
 using VHKPlayer.Queries.GetPlayLists;
 using VHKPlayer.Infrastructure;
-using VHKPlayer.DataManagement;
-using VHKPlayer.DataManagement.Interfaces;
 using VHKPlayer.Commands.Logic;
+using VHKPlayer.Controllers;
+using VHKPlayer.Monitors.Interfaces;
+using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.ViewModels;
 
 namespace VHKPlayer
@@ -41,74 +42,44 @@ namespace VHKPlayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Data Data { get; set; }
         public PlayerViewModel ViewModel { get; set; }
+        public PlayController Controller { get; set; }
+
+        private MediaViewer _viewer;
+
         public MainWindow()
         {
-            Data = new Data();
             ViewModel = new PlayerViewModel();
+            _viewer = new MediaViewer(ViewModel);
             InitializeComponent();
             this.Loaded += MainWindow_Loaded;
+            this.Closing += MainWindow_Closing;
+            this.KeyUp += MainWindow_KeyUp;
             App.Dispatch = this.Dispatcher;
+            _viewer.Visibility = Visibility.Visible;
+        }
+
+        private void MainWindow_KeyUp(object sender, KeyEventArgs e)
+        {
+            // TODO : Make a lookup in a command library of some sort contained inside the viewmodel and changeable inside settings
+
+            throw new NotImplementedException();
+        }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ViewModel.Controller.Shutdown();
+            _viewer.ShouldClose = true;
+            _viewer.Close();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             this.DataContext = ViewModel;
-            ViewModel.InitialiseData();
-        }
-    }
-
-    public class Data : IDataObserver
-    {
-        public ObservableCollection<IPlayable> Test { get; set; }
-        private IDataMonitor _monitor;
-        private IContainer _container;
-        private readonly ICommandProcessor _cprocessor;
-        private readonly IQueryProcessor _qprocessor;
-
-        public Data()
-        {
-            Test = new ObservableCollection<IPlayable>();
-
-            var builder = new ContainerBuilder();
-            builder.RegisterModule(new DefaultWiringModule());
-            _container = builder.Build();
-
-            this._cprocessor = _container.Resolve<ICommandProcessor>();
-            this._qprocessor = _container.Resolve<IQueryProcessor>();
-
-            var path = @"C:\Users\Marcus\Dropbox\Programmering\C#\vhk";
-            _cprocessor.ProcessTransaction(new ChangeSettingCommand()
-            {
-                SettingName = Constants.RootFolderPathSettingName,
-                Value = path
-            });
-
-            _monitor = _container.Resolve<IDataMonitor>();
-
-            _cprocessor.ProcessTransaction(new AddDataObserverCommand()
-            {
-                Observer = this
-            });
-        }
-
-        public void InitialiseData()
-        {
-            this._cprocessor.ProcessTransaction(new CreateAllPlayablesCommand());
-        }
-
-        public void DataUpdated()
-        {
-            Test.Clear();
-
-            var videos = _qprocessor.Process(new GetPlayableFilesQuery()).Where(x => x.File.Type == FileType.Video);
-            var players = _qprocessor.Process(new GetPlayersQuery());
-            var playlists = _qprocessor.Process(new GetPlayListsQuery()).ToList();
-
-            Test.AddAll(playlists);
-            Test.AddAll(videos);
-            Test.AddAll(players);
+            View.Video.MediaEnded += (s, ee) => ViewModel.Controller.PlayQueue();
+            Controller = new PlayController(_viewer.View);
+            ViewModel.Controller.AddObserver(Controller);
+            
         }
     }
 }

@@ -97,18 +97,6 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("root\\spillervideo")]
-        public string folder_playerVideoFolder {
-            get {
-                return ((string)(this["folder_playerVideoFolder"]));
-            }
-            set {
-                this["folder_playerVideoFolder"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("root\\spillervideostat\\video")]
         public string folder_playerStatVideoFolder {
             get {
@@ -208,60 +196,19 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{Andet;(folder path:\"root\\musik\\andet\");False;SingleFile},{Opvarmning;(folder pat" +
-            "h:\"root\\musik\\Opvarmning\");False;SingleFile},{Scor;(property name:Trainer value:" +
-            "False);False;SingleFile}")]
-        public string application_leftBlockTabs {
+        [global::System.Configuration.DefaultSettingValueAttribute(@"{Andet;LeftMain;2;(folder path:""root\musik\andet"");False;SingleFile},{Opvarmning;LeftMain;1;(folder path:""root\musik\Opvarmning"");False;SingleFile},{Scor;LeftMain;3;(property name:Trainer value:False);False;PlayerStat},{Player Picture;RightMain;2;(type name:Player);False;PlayerPicture},duringmatch,{Player Picture;LeftDuringMatch;1;(type name:Player);False;PlayerPicture},{Player Stat;LeftDuringMatch;1;(multi left:(type name:Player) right:(property name:Trainer value:False));False;PlayerStat}")]
+        public string application_tabs {
             get {
-                return ((string)(this["application_leftBlockTabs"]));
+                return ((string)(this["application_tabs"]));
             }
             set {
-                this["application_leftBlockTabs"] = value;
+                this["application_tabs"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{PlayerPicture;(type name:Player);False;PlayerPicture},{PlayerVideo;(property nam" +
-            "e:Trainer value:False);False;PlayerVideo},{PlayerStat;(property name:Trainer val" +
-            "ue:False);False;PlayerStat}")]
-        public string application_duringMatchTabs {
-            get {
-                return ((string)(this["application_duringMatchTabs"]));
-            }
-            set {
-                this["application_duringMatchTabs"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("(folder path:\"root\\SuperHero\")")]
-        public string application_duringMatchRightContent {
-            get {
-                return ((string)(this["application_duringMatchRightContent"]));
-            }
-            set {
-                this["application_duringMatchRightContent"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("duringmatch,{Blandet;(folder path:\"root\\blandet\");False;SingleFile},{Play Lister;" +
-            "(type name:PlayList);True;SingleFile}")]
-        public string application_rightBlockTabs {
-            get {
-                return ((string)(this["application_rightBlockTabs"]));
-            }
-            set {
-                this["application_rightBlockTabs"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10000")]
         public int application_statTimerDelay {
             get {
                 return ((int)(this["application_statTimerDelay"]));

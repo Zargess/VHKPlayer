@@ -13,6 +13,7 @@ namespace VHKPlayer.Models
     {
         public string Name { get; set; }
         public FileNode File { get; set; }
+        public ICollection<FileNode> Content { get; set; }
 
         public void Play(IPlayStrategy strategy, IVideoPlayerController videoPlayer)
         {

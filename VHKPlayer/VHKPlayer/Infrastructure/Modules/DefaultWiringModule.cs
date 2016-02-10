@@ -5,10 +5,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using VHKPlayer.DataManagement;
-using VHKPlayer.DataManagement.Interfaces;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
+using VHKPlayer.Monitors;
+using VHKPlayer.Monitors.Interfaces;
+using VHKPlayer.Utility.Settings;
+using VHKPlayer.Utility.Settings.Interfaces;
 
 namespace VHKPlayer.Infrastructure.Modules
 {
@@ -18,8 +20,7 @@ namespace VHKPlayer.Infrastructure.Modules
         {
             base.Load(builder);
 
-            var assemblies = new List<Assembly>();
-            assemblies.Add(Assembly.GetExecutingAssembly());
+            var assemblies = new List<Assembly> {Assembly.GetExecutingAssembly()};
 
             foreach (var assembly in assemblies)
             {
@@ -27,8 +28,11 @@ namespace VHKPlayer.Infrastructure.Modules
                     .RegisterAssemblyTypes(assembly)
                     .AsImplementedInterfaces();
             }
-
+            var config = new GlobalConfigService();
             builder.Register<IDataCenter>(c => new DataCenter()).SingleInstance();
+            builder.Register<IGlobalConfigService>(c => config).SingleInstance();
+            builder.Register<IApplicationMonitor>(c => new ApplicationMonitor(config)).SingleInstance();
+            builder.Register<ITabContainer>(c => new TabContainer()).SingleInstance();
         }
     }
 }

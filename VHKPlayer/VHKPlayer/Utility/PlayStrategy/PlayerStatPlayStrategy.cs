@@ -60,16 +60,29 @@ namespace VHKPlayer.Utility.PlayStrategy
                 SettingName = Constants.PlayerStatPictureFolderSettingName
             });
 
+            // TODO : If folder is null then notify user
+
             var music = content.AsParallel().SingleOrDefault(x => statMusicFolder.Contains(x));
-            var video = content.AsParallel().SingleOrDefault(x => statVideoFolder.Contains(x));
+            var video = content.AsParallel().SingleOrDefault(x => statVideoFolder.Contains(x)); // TODO : Fix if no Video exists
             var picture = content.AsParallel().SingleOrDefault(x => statPictureFolder.Contains(x));
+
+            if (video == null)
+            {
+                var pictureFolder = _processor.Process(new GetFolderFromStringSettingQuery()
+                {
+                    SettingName = Constants.PlayerPictureFolderSettingName
+                });
+                video = content.AsParallel().SingleOrDefault(x => pictureFolder.Contains(x));
+            }
 
             var res = new List<FileNode>()
             {
                 music, video, picture
-            };
+            }.Where(x => x != null);
 
             videoPlayer.Queue.SetQueue(res);
+
+            Console.WriteLine("Using PlayerStatPlayStrategy");
 
             videoPlayer.PlayQueue();
         }

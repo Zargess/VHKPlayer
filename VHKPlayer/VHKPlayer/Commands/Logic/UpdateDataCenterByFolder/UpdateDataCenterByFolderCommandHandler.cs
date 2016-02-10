@@ -30,11 +30,11 @@ namespace VHKPlayer.Commands.Logic.UpdateDataCenterByFolder
             var playables = _queryProcessor.Process(new GetPlayablesAffectedByFolderQuery()
             {
                 Folder = command.Folder
-            });
+            }).ToList();
 
-            var players = playables.Where(x => x is Player).Select(x => x as Player);
+            var players = playables.OfType<Player>();
 
-            if (players.Count() > 0)
+            if (players.Any())
             {
                 foreach (var player in players)
                 {
@@ -47,23 +47,21 @@ namespace VHKPlayer.Commands.Logic.UpdateDataCenterByFolder
                 _commandProcessor.Process(new CreateAllPlayersCommand());
             }
 
-            var playableFiles = playables.Where(x => x is PlayableFile).Select(x => x as PlayableFile).ToList();
+            var playableFiles = playables.OfType<PlayableFile>().ToList();
 
-            if (playableFiles.Count() > 0)
+            if (!playableFiles.Any()) return;
+            foreach (var playablefile in playableFiles)
             {
-                foreach (var playablefile in playableFiles)
+                _commandProcessor.Process(new RemovePlayableFileCommand()
                 {
-                    _commandProcessor.Process(new RemovePlayableFileCommand()
-                    {
-                        PlayableFile = playablefile
-                    });
-                }
-
-                _commandProcessor.Process(new CreatePlayableFilesFromFilesInFolderCommand()
-                {
-                    Folder = command.Folder
+                    PlayableFile = playablefile
                 });
             }
+
+            _commandProcessor.Process(new CreatePlayableFilesFromFilesInFolderCommand()
+            {
+                Folder = command.Folder
+            });
         }
     }
 }

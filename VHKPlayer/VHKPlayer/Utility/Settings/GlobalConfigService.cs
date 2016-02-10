@@ -10,7 +10,7 @@ namespace VHKPlayer.Utility.Settings
 {
     public class GlobalConfigService : IGlobalConfigService
     {
-        private Setting _setting = new Setting();
+        private readonly Setting _setting = new Setting();
 
         public event PropertyChangedEventHandler FolderSettingsUpdated;
         public event PropertyChangedEventHandler ApplicationSettingsUpdated;
@@ -42,26 +42,25 @@ namespace VHKPlayer.Utility.Settings
             {
                 throw new ArgumentException("Setting " + this._setting + " not found.");
             }
-            else if (setting.GetType() != value.GetType())
+            if (setting.GetType() != value.GetType())
             {
                 throw new InvalidCastException("Unable to cast value to " + setting.GetType());
             }
+
+            _setting[settingName] = value;
+            _setting.Save();
+
+            if (settingName.StartsWith("folder") && FolderSettingsUpdated != null)
+            {
+                FolderSettingsUpdated.Invoke(this, new PropertyChangedEventArgs(settingName));
+            }
+            else if (settingName.StartsWith("application") && ApplicationSettingsUpdated != null)
+            {
+                ApplicationSettingsUpdated.Invoke(this, new PropertyChangedEventArgs(settingName));
+            }
             else
             {
-                this._setting[settingName] = value;
-                this._setting.Save();
-                if (settingName.StartsWith("folder") && FolderSettingsUpdated != null)
-                {
-                    FolderSettingsUpdated.Invoke(this, new PropertyChangedEventArgs(settingName));
-                }
-                else if (settingName.StartsWith("application") && ApplicationSettingsUpdated != null)
-                {
-                    ApplicationSettingsUpdated.Invoke(this, new PropertyChangedEventArgs(settingName));
-                }
-                else if (PlayerChanged != null)
-                {
-                    PlayerChanged.Invoke(this, new PropertyChangedEventArgs(settingName));
-                }
+                PlayerChanged?.Invoke(this, new PropertyChangedEventArgs(settingName));
             }
         }
     }

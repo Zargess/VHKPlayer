@@ -78,6 +78,7 @@ namespace VHKPlayer.Models
 
         public bool Contains(FileNode file)
         {
+            if (file == null) return false;
             foreach (var f in Content)
             {
                 if (f.FullPath.ToLower().Equals(file.FullPath.ToLower()))
@@ -116,11 +117,17 @@ namespace VHKPlayer.Models
             Observers.Remove(observer);
         }
 
-        private void Changed(object sender, FileSystemEventArgs e)
+        private void UpdateFolder()
         {
             Content.Clear();
             CreateFiles(FullPath);
-            App.Dispatch.BeginInvoke(new Action(() => Observers.ForEach(x => x.SubjectUpdated(this))));
+            Observers.ForEach(x => x.SubjectUpdated(this));
+        }
+
+        private void Changed(object sender, FileSystemEventArgs e)
+        {
+            
+            App.Dispatch.BeginInvoke(new Action(() => UpdateFolder()));
         }
     }
 }
