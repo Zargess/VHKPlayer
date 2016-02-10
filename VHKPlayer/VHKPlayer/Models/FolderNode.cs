@@ -78,6 +78,7 @@ namespace VHKPlayer.Models
 
         public bool Contains(FileNode file)
         {
+            if (file == null) return false;
             foreach (var f in Content)
             {
                 if (f.FullPath.ToLower().Equals(file.FullPath.ToLower()))

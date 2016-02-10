@@ -248,12 +248,14 @@
     <Compile Include="Queries\QueryProcessor.cs" />
     <Compile Include="Selectors\TabDesignSelector.cs" />
     <Compile Include="Utility\Constants.cs" />
+    <Compile Include="Utility\FileDelayStrategy\FileDelayStrategy.cs" />
+    <Compile Include="Utility\FileDelayStrategy\Interfaces\IFileDelayStrategy.cs" />
     <Compile Include="Utility\FindFileType\FindFileTypeStrategy.cs" />
     <Compile Include="Utility\FindFileType\Interfaces\IFindFileTypeStrategy.cs" />
     <Compile Include="Utility\GetSpecialTab\GetSpecialTabStrategy.cs" />
     <Compile Include="Utility\GetSpecialTab\Interfaces\IGetSpecialTabStrategy.cs" />
-    <Compile Include="Utility\HandleStatFile\HandleStatFileStrategy.cs" />
-    <Compile Include="Utility\HandleStatFile\Interfaces\IHandleStatFileStrategy.cs" />
+    <Compile Include="Utility\HandleFile\HandleFileStrategy.cs" />
+    <Compile Include="Utility\HandleFile\Interfaces\IHandleFileStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\Interfaces\ILoadingStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\PlayListLoading\FolderLoadingStrategy.cs" />
     <Compile Include="Utility\LoadingStrategy\PlayListLoading\SortedLoadingStrategy.cs" />

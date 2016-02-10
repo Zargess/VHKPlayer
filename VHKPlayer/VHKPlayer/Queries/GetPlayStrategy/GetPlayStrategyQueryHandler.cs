@@ -27,8 +27,6 @@ namespace VHKPlayer.Queries.GetPlayStrategy
                     return new PlayerPicturePlayStrategy();
                 case "PlayerStat":
                     return new PlayerStatPlayStrategy();
-                case "PlayerVideo":
-                    return new PlayerVideoPlayStrategy();
                 default:
                     throw new NoSuchPlayStrategyException();
             }

@@ -1,30 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Timers;
 using VHKPlayer.Controllers.Interfaces;
-using VHKPlayer.Models;
 using VHKPlayer.Queries.GetIntSetting;
 using VHKPlayer.Queries.Interfaces;
-using VHKPlayer.Utility.HandleStatFile.Interfaces;
+using VHKPlayer.Utility.FileDelayStrategy.Interfaces;
 
-namespace VHKPlayer.Utility.HandleStatFile
+namespace VHKPlayer.Utility.FileDelayStrategy
 {
-    public class HandleStatFileStrategy : IHandleStatFileStrategy
+    public class FileDelayStrategy : IFileDelayStrategy
     {
         private IVideoPlayerController _controller;
         private readonly IQueryProcessor _processor;
         private readonly Timer _timer;
 
-        public HandleStatFileStrategy(IQueryProcessor processor)
+        public FileDelayStrategy(IQueryProcessor processor, IVideoPlayerController controller)
         {
             _processor = processor;
+            _controller = controller;
             _timer = new Timer();
             _timer.Elapsed += _timer_Elapsed;
         }
 
-        public void HandleFile(IVideoPlayerController controller, FileNode file)
+        public void StartTimer()
         {
-            _controller = controller;
-
             var delay = _processor.Process(new GetIntSettingQuery
             {
                 SettingName = Constants.StatTimerSettingName
@@ -43,7 +45,7 @@ namespace VHKPlayer.Utility.HandleStatFile
 
         private void _timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            _controller.PlayQueue();
+            App.Dispatch.BeginInvoke(new Action(() => _controller.PlayQueue()));
             _timer.Enabled = false;
             _timer.Stop();
             Console.WriteLine("Stopping timer!");

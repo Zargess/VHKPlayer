@@ -78,7 +78,7 @@ namespace VHKPlayer.Utility.PlayStrategy
             var res = new List<FileNode>()
             {
                 music, video, picture
-            };
+            }.Where(x => x != null);
 
             videoPlayer.Queue.SetQueue(res);
 
