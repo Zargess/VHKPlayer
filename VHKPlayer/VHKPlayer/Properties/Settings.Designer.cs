@@ -217,5 +217,17 @@ namespace VHKPlayer.Properties {
                 this["application_statTimerDelay"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10Sek")]
+        public string application_goalPlayList {
+            get {
+                return ((string)(this["application_goalPlayList"]));
+            }
+            set {
+                this["application_goalPlayList"] = value;
+            }
+        }
     }
 }

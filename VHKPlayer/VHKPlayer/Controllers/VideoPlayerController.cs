@@ -23,7 +23,7 @@ namespace VHKPlayer.Controllers
         private readonly IHandleFileStrategy _handleFileStrategy;
         private readonly IFileDelayStrategy _delayStrategy;
 
-        public bool AutoPlayList { get; set; }
+        public bool AutoPlayList { get; set; } = true;
         public Queue<FileNode> Queue { get; private set; }
 
 

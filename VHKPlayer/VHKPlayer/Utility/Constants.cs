@@ -20,6 +20,7 @@ namespace VHKPlayer.Utility
 
         public const string AutoPlayListSettingName = "application_autoPlaylist";
         public const string StatTimerSettingName = "application_statTimerDelay";
+        public const string GoalPlayList = "application_goalPlayList";
 
         public const string TabsSettingName = "application_tabs";
 

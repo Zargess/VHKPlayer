@@ -50,5 +50,8 @@
     <Setting Name="application_statTimerDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10000</Value>
     </Setting>
+    <Setting Name="application_goalPlayList" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10Sek</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

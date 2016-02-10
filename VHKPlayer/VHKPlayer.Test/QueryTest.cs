@@ -36,6 +36,12 @@ namespace VHKPlayer.Test
     public class QueryTest : TestBase
     {
         [TestMethod]
+        public void TestGetGoalPlayList()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
         public void TestGetAutoPlayList()
         {
             throw new NotImplementedException();

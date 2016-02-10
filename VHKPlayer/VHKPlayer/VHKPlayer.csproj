@@ -209,6 +209,8 @@
     <Compile Include="Queries\GetFolderFromStringSetting\GetFolderFromStringSettingQueryHandler.cs" />
     <Compile Include="Queries\GetFolders\GetFoldersQuery.cs" />
     <Compile Include="Queries\GetFolders\GetFoldersQueryProcessor.cs" />
+    <Compile Include="Queries\GetGoalPlayList\GetGoalPlayListQuery.cs" />
+    <Compile Include="Queries\GetGoalPlayList\GetGoalPlayListQueryHandler.cs" />
     <Compile Include="Queries\GetIntSetting\GetIntSettingQuery.cs" />
     <Compile Include="Queries\GetIntSetting\GetIntSettingQueryHandler.cs" />
     <Compile Include="Queries\GetPlayableFileFolders\GetPlayableFileFoldersQuery.cs" />
@@ -262,12 +264,13 @@
     <Compile Include="Utility\LoadingStrategy\StatisticsLoading\StatisticsLoadingStrategy.cs" />
     <Compile Include="Queries\GetPlayListByName\GetPlayListByNameQueryHandler.cs" />
     <Compile Include="Utility\PlayQueueStrategy\Interfaces\IPlayQueueStrategy.cs" />
-    <Compile Include="Utility\PlayQueueStrategy\MusicVideoPlayQueueStrategy.cs" />
+    <Compile Include="Utility\PlayQueueStrategy\VideoPlayQueueStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\AllFilesPlayStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\Interfaces\IPlayStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\IteratedPlayStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\PlayerPicturePlayStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\PlayerStatPlayStrategy.cs" />
+    <Compile Include="Utility\PlayStrategy\PlayListPlayStrategy.cs" />
     <Compile Include="Utility\PlayStrategy\SingleFilePlayStrategy.cs" />
     <Compile Include="Utility\Settings\GlobalConfigService.cs" />
     <Compile Include="Utility\Settings\Interfaces\IGlobalConfigService.cs" />
