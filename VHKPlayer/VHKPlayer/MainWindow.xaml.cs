@@ -78,8 +78,7 @@ namespace VHKPlayer
             this.DataContext = ViewModel;
             View.Video.MediaEnded += (s, ee) => ViewModel.Controller.PlayQueue();
             Controller = new PlayController(_viewer.View);
-            ViewModel.Controller.AddObserver(Controller);
-            
+            ViewModel.Controller.AddObserver(Controller);    
         }
     }
 }

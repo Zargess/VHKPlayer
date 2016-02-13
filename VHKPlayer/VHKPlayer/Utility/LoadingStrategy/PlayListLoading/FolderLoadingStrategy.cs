@@ -16,7 +16,7 @@ namespace VHKPlayer.Utility.LoadingStrategy.PlayListLoading
         public ICollection<FileNode> Load()
         {
             var res = new List<FileNode>();
-
+            if (_folder == null) return res;
             foreach (var file in _folder.Content)
             {
                 if (!file.Exists()) continue;

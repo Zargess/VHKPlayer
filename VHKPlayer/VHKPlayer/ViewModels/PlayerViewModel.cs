@@ -34,6 +34,8 @@ namespace VHKPlayer.ViewModels
 
         public IVideoPlayerController Controller { get; set; }
         public System.Windows.Input.ICommand PlayCommand { get; set; }
+        public System.Windows.Input.ICommand BrowseForRootFolderCommand { get; set; }
+        public System.Windows.Input.ICommand BrowseForStatFolderCommand { get; set; }
 
         private bool _statsEnabled;
         public bool StatsEnabled
@@ -177,6 +179,8 @@ namespace VHKPlayer.ViewModels
             _monitor = container.Resolve<IDataMonitor>();
             Controller = container.Resolve<IVideoPlayerController>();
             PlayCommand = new RunPlayableStrategyCommand(Controller);
+            BrowseForRootFolderCommand = new BrowseForRootFolderCommand();
+            BrowseForStatFolderCommand = new BrowseForStatFolderCommand();
 
             _cprocessor.Process(new AddApplicationObserverCommand
             {

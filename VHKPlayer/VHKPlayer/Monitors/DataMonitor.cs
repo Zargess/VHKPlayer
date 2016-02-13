@@ -59,6 +59,10 @@ namespace VHKPlayer.Monitors
 
         private void Config_FolderSettingsUpdated(object sender, PropertyChangedEventArgs e)
         {
+            foreach (var folder in _queryProcessor.Process(new GetFoldersQuery()))
+            {
+                folder.RemoveObserver(this);
+            }
             _commandProcessor.ProcessTransaction(new ResetDataCenterCommand());
         }
     }

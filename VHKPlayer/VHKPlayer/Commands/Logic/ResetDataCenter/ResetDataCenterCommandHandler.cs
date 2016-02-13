@@ -30,40 +30,40 @@ namespace VHKPlayer.Commands.Logic.ResetDataCenter
 
         public void Handle(ResetDataCenterCommand command)
         {
-            var folders = _queryProcessor.Process(new GetFoldersQuery());
-            var playableFiles = _queryProcessor.Process(new GetPlayableFilesQuery());
-            var playLists = _queryProcessor.Process(new GetPlayListsQuery());
-            var players = _queryProcessor.Process(new GetPlayersQuery());
+            var folders = _queryProcessor.Process(new GetFoldersQuery()).ToList();
+            var playableFiles = _queryProcessor.Process(new GetPlayableFilesQuery()).ToList();
+            var playLists = _queryProcessor.Process(new GetPlayListsQuery()).ToList();
+            var players = _queryProcessor.Process(new GetPlayersQuery()).ToList();
 
-            foreach (var folder in folders)
+            for(var i = 0; i < folders.Count; i++)
             {
                 _commandProcessor.Process(new RemoveFolderCommand()
                 {
-                    Folder = folder
+                    Folder = folders[i]
                 });
             }
 
-            foreach (var playableFile in playableFiles)
+            for (var i = 0; i < playableFiles.Count; i++)
             {
                 _commandProcessor.Process(new RemovePlayableFileCommand()
                 {
-                    PlayableFile = playableFile
+                    PlayableFile = playableFiles[i]
                 });
             }
 
-            foreach (var playlist in playLists)
+            for (var i = 0; i < playLists.Count; i++)
             {
                 _commandProcessor.Process(new RemovePlayListCommand()
                 {
-                    Playlist = playlist
+                    Playlist = playLists[i]
                 });
             }
 
-            foreach (var player in players)
+            for (var i = 0; i < players.Count; i++)
             {
                 _commandProcessor.Process(new RemovePlayerCommand()
                 {
-                    Player = player
+                    Player = players[i]
                 });
             }
 

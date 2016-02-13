@@ -48,7 +48,6 @@ namespace VHKPlayer.Models
             _observers.Remove(observer);
         }
 
-        // TODO : Make it possiple to revert if fail
         public void Commit()
         {
             PlayableFiles.SetCollection(PlayableFiles.OrderBy(x => x.Name));

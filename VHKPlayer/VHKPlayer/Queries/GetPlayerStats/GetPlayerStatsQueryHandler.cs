@@ -23,12 +23,16 @@ namespace VHKPlayer.Queries.GetPlayerStats
 
         public Statistics Handle(GetPlayerStatsQuery query)
         {
+            var res = new Statistics();
+            var statFolder = Constants.PlayerStatisticInformation;
+
+            if (String.IsNullOrEmpty(statFolder)) return res;
+            
+
             var folder = _processor.Process(new GetFolderFromStringSettingQuery()
             {
-                SettingName = Constants.PlayerStatisticInformation
+                SettingName = statFolder
             });
-
-            var res = new Statistics();
 
             var file = folder.Content.FirstOrDefault(x => x.Name.ToLower() == "vhk_" + query.Player.Number + "player.xml");
             if (file == null) return res;

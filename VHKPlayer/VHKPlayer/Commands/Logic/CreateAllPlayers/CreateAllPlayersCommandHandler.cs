@@ -37,6 +37,8 @@ namespace VHKPlayer.Commands.Logic.CreateAllPlayers
                 SettingName = Constants.PlayerStatisticInformation
             });
 
+            if (folder == null) return;
+
             foreach (var file in folder.Content)
             {
                 if (file.Type != FileType.Picture) continue;

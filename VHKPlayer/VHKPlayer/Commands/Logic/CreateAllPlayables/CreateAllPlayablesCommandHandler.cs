@@ -22,11 +22,15 @@ namespace VHKPlayer.Commands.Logic.CreateAllPlayables
 
         public void Handle(CreateAllPlayablesCommand command)
         {
+            var root = Constants.RootFolderPathSettingName;
+
+            if (string.IsNullOrEmpty(root)) return;
+
             _commandProcessor.Process(new CreateFolderStructureCommand()
             {
                 RootFolderPath = _queryProcessor.Process(new GetStringSettingQuery()
                 {
-                    SettingName = Constants.RootFolderPathSettingName
+                    SettingName = root
                 })
             });
 

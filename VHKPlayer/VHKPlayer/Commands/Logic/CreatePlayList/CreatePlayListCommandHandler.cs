@@ -26,7 +26,7 @@ namespace VHKPlayer.Commands.Logic.CreatePlayList
                 Content = new ObservableCollection<FileNode>(command.LoadingStrategy.Load())
             };
 
-            command.Folder.AddObserver(playlist);
+            if (command.Folder != null) command.Folder.AddObserver(playlist);
 
             _center.PlayLists.Add(playlist);
         }

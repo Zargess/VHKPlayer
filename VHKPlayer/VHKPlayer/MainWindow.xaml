@@ -73,6 +73,10 @@
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" Height="25">
+                <MenuItem Header="File">
+                    <MenuItem Header="Browse VHK mappe" Command="{Binding BrowseForRootFolderCommand}"/>
+                    <MenuItem Header="Browse Stats mappe" Command="{Binding BrowseForStatFolderCommand}"/>
+                </MenuItem>
             </Menu>
             <Grid>
                 <Grid.ColumnDefinitions>
