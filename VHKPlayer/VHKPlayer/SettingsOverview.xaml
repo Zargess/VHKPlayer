@@ -1,0 +1,38 @@
+﻿<Window x:Class="VHKPlayer.SettingsOverview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VHKPlayer"
+        mc:Ignorable="d"
+        Title="SettingsOverview" Height="600" Width="450">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0">
+            <TabItem Header="Understøttede fil typer">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="25*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" TextWrapping="Wrap">
+                        Her under kan du skrive, hvilke fil typer, der skal understøttes. Skriv dem på følgende måde: .mkv;.mp4
+                    </TextBlock>
+                    <StackPanel Grid.Row="1">
+                        <TextBlock Text="Video filer:"/>
+                        <TextBox Height="43" Margin="0,0,0.2,0"></TextBox>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="0,0,0,-0.4" Width="47">Apply</Button>
+            <Button Margin="0,0,0,-0.4" Width="47">Ok</Button>
+        </StackPanel>
+    </Grid>
+</Window>

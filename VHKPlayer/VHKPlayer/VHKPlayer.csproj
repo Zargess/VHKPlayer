@@ -251,6 +251,9 @@
     <Compile Include="Queries\ParsePlayListString\ParsePlayListStringQueryHandler.cs" />
     <Compile Include="Queries\QueryProcessor.cs" />
     <Compile Include="Selectors\TabDesignSelector.cs" />
+    <Compile Include="SettingsOverview.xaml.cs">
+      <DependentUpon>SettingsOverview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utility\Constants.cs" />
     <Compile Include="Utility\FileDelayStrategy\FileDelayStrategy.cs" />
     <Compile Include="Utility\FileDelayStrategy\Interfaces\IFileDelayStrategy.cs" />
@@ -311,6 +314,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MessageBoxes\AlertBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingsOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

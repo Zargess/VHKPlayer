@@ -46,11 +46,14 @@ namespace VHKPlayer
         public PlayController Controller { get; set; }
 
         private MediaViewer _viewer;
+        private SettingsOverview _set;
 
         public MainWindow()
         {
             ViewModel = new PlayerViewModel();
             _viewer = new MediaViewer(ViewModel);
+            _set = new SettingsOverview();
+            _set.Visibility = Visibility.Visible;
             InitializeComponent();
             this.Loaded += MainWindow_Loaded;
             this.Closing += MainWindow_Closing;
