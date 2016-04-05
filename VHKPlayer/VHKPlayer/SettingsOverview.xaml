@@ -31,8 +31,8 @@
             </TabItem>
         </TabControl>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Margin="0,0,0,-0.4" Width="47">Apply</Button>
-            <Button Margin="0,0,0,-0.4" Width="47">Ok</Button>
+            <Button Margin="0,0,0,-0.4" Width="60">Apply</Button>
+            <Button Margin="0,0,0,-0.4" Width="60">Ok</Button>
         </StackPanel>
     </Grid>
 </Window>
