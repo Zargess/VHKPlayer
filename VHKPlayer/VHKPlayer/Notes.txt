@@ -1,21 +1,10 @@
 ﻿Link to publish guide:
 	http://elbruno.com/2013/06/01/azure-howto-publish-a-clickonce-application-using-and-azure-website/
 
+PlayList:
 {RekFørKamp;root\Rek;1;false;true;AllFilesSorted}
-
 {Name;path;has_audio;index;loading;play}
 
-playlist		::= (playlist name:<string> path:<string> has_audio:<bool> loading:<loading_strategy> play:<play_strategy>)
-
-string			::= \"*\"
-
-bool			::=   true
-					| false
-
-loading_strategy::=   Folder
-					| Sorted(index:<integer>)
-
-integer			::= 0-9+
-
-play_strategy	::=   AllFiles
-					| Iterated
+Tab:
+{Andet;LeftMain;2;(folder path:"root\musik\andet");False;SingleFile}
+{Name;Position;Order;Content_Script;IsPlayListTab;PlayStrategy}
