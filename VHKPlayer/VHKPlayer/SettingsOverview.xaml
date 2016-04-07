@@ -15,24 +15,42 @@
             <TabItem Header="Understøttede fil typer">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="25*"/>
-                        <RowDefinition Height="25*"/>
-                        <RowDefinition Height="25*"/>
-                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="50*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" TextWrapping="Wrap">
                         Her under kan du skrive, hvilke fil typer, der skal understøttes. Skriv dem på følgende måde: .mkv;.mp4
                     </TextBlock>
-                    <StackPanel Grid.Row="1">
-                        <TextBlock Text="Video filer:"/>
-                        <TextBox Height="43" Margin="0,0,0.2,0"></TextBox>
-                    </StackPanel>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25*"/>
+                            <RowDefinition Height="25*"/>
+                            <RowDefinition Height="25*"/>
+                            <RowDefinition Height="25*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <TextBlock Text="Video filer:"/>
+                            <TextBox Height="43" Margin="0,0,0.2,0"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1">
+                            <TextBlock Text="Musik filer:"/>
+                            <TextBox Height="43" Margin="0,0,0.2,0"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2">
+                            <TextBlock Text="Billed filer:"/>
+                            <TextBox Height="43" Margin="0,0,0.2,0"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="3">
+                            <TextBlock Text="Informations filer (xml, txt):"/>
+                            <TextBox Height="43" Margin="0,0,0.2,0"></TextBox>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </TabItem>
         </TabControl>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Margin="0,0,0,-0.4" Width="60">Apply</Button>
-            <Button Margin="0,0,0,-0.4" Width="60">Ok</Button>
+            <Button Margin="0,0,0,-0.4" Width="60" Click="Ok_Click">Ok</Button>
         </StackPanel>
     </Grid>
 </Window>

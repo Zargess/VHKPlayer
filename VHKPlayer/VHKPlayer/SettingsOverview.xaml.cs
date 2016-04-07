@@ -19,9 +19,24 @@ namespace VHKPlayer
     /// </summary>
     public partial class SettingsOverview : Window
     {
+
+        public bool ShouldClose { get; set; }
+
         public SettingsOverview()
         {
             InitializeComponent();
+            ShouldClose = false;
+            this.Closing += MediaViewer_Closing;
+        }
+
+        private void MediaViewer_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = !ShouldClose;
+        }
+
+        private void Ok_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
         }
     }
 }

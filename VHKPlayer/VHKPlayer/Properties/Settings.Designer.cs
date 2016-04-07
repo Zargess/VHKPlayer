@@ -229,5 +229,29 @@ namespace VHKPlayer.Properties {
                 this["application_goalPlayList"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double application_musicVolume {
+            get {
+                return ((double)(this["application_musicVolume"]));
+            }
+            set {
+                this["application_musicVolume"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double application_videoVolume {
+            get {
+                return ((double)(this["application_videoVolume"]));
+            }
+            set {
+                this["application_videoVolume"] = value;
+            }
+        }
     }
 }

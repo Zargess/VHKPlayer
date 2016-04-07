@@ -53,7 +53,7 @@ namespace VHKPlayer
             ViewModel = new PlayerViewModel();
             _viewer = new MediaViewer(ViewModel);
             _set = new SettingsOverview();
-            _set.Visibility = Visibility.Visible;
+            _set.Visibility = Visibility.Hidden;
             InitializeComponent();
             this.Loaded += MainWindow_Loaded;
             this.Closing += MainWindow_Closing;
@@ -74,6 +74,8 @@ namespace VHKPlayer
             ViewModel.Controller.Shutdown();
             _viewer.ShouldClose = true;
             _viewer.Close();
+            _set.ShouldClose = true;
+            _set.Close();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -82,6 +84,11 @@ namespace VHKPlayer
             View.Video.MediaEnded += (s, ee) => ViewModel.Controller.PlayQueue();
             Controller = new PlayController(_viewer.View);
             ViewModel.Controller.AddObserver(Controller);    
+        }
+
+        private void Show_Settings(object sender, RoutedEventArgs e)
+        {
+            _set.Visibility = Visibility.Visible;
         }
     }
 }
