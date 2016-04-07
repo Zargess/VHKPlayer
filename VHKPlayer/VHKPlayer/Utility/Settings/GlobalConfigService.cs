@@ -14,7 +14,7 @@ namespace VHKPlayer.Utility.Settings
 
         public event PropertyChangedEventHandler FolderSettingsUpdated;
         public event PropertyChangedEventHandler ApplicationSettingsUpdated;
-        public event PropertyChangedEventHandler PlayerChanged;
+        public event PropertyChangedEventHandler SettingsUpdated;
 
         public object GetObject(string settingName)
         {
@@ -58,10 +58,7 @@ namespace VHKPlayer.Utility.Settings
             {
                 ApplicationSettingsUpdated.Invoke(this, new PropertyChangedEventArgs(settingName));
             }
-            else
-            {
-                PlayerChanged?.Invoke(this, new PropertyChangedEventArgs(settingName));
-            }
+            SettingsUpdated?.Invoke(this, new PropertyChangedEventArgs(settingName));
         }
     }
 }

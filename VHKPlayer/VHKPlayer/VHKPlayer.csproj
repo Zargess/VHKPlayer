@@ -86,6 +86,8 @@
     <Compile Include="Commands\Logic\AddApplicationObserver\AddApplicationObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\AddDataObserver\AddDataObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\AddDataObserver\AddDataObserverCommand.cs" />
+    <Compile Include="Commands\Logic\AddSettingsObserver\AddSettingsObserverCommand.cs" />
+    <Compile Include="Commands\Logic\AddSettingsObserver\AddSettingsObserverCommandHandler.cs" />
     <Compile Include="Commands\Logic\ChangeSetting\ChangeSettingCommand.cs" />
     <Compile Include="Commands\Logic\ChangeSetting\ChangeSettingCommandHandler.cs" />
     <Compile Include="Commands\Logic\CommandProcessor.cs" />
@@ -158,6 +160,7 @@
     <Compile Include="MediaViewer.xaml.cs">
       <DependentUpon>MediaViewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Interfaces\ISettingsObserver.cs" />
     <Compile Include="Models\Interfaces\IStatObserver.cs" />
     <Compile Include="Models\TabContainer.cs" />
     <Compile Include="Monitors\ApplicationMonitor.cs" />
@@ -197,6 +200,7 @@
     <Compile Include="Models\Script.cs" />
     <Compile Include="Models\Statistics.cs" />
     <Compile Include="Models\TabPlacement.cs" />
+    <Compile Include="Monitors\Interfaces\ISettingsMonitor.cs" />
     <Compile Include="Queries\GetAllPlayables\GetAllPlayablesQuery.cs" />
     <Compile Include="Queries\GetAllPlayables\GetAllPlayablesQueryHandler.cs" />
     <Compile Include="Queries\GetAutoPlayList\GetAutoPlayListQuery.cs" />

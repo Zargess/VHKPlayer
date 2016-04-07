@@ -15,6 +15,6 @@ namespace VHKPlayer.Utility.Settings.Interfaces
 
         event PropertyChangedEventHandler FolderSettingsUpdated;
         event PropertyChangedEventHandler ApplicationSettingsUpdated;
-        event PropertyChangedEventHandler PlayerChanged;
+        event PropertyChangedEventHandler SettingsUpdated;
     }
 }
