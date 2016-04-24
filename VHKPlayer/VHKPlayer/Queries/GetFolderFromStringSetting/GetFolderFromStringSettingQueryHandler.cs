@@ -35,6 +35,8 @@ namespace VHKPlayer.Queries.GetFolderFromStringSetting
                 SettingName = Constants.RootFolderPathSettingName
             });
 
+            if (String.IsNullOrEmpty(rootPath)) return null;
+
             var path = setting.Replace("root\\", "");
 
             if (Directory.Exists(setting))

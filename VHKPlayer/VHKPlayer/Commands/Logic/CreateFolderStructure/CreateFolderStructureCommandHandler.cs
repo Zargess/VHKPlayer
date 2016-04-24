@@ -26,6 +26,8 @@ namespace VHKPlayer.Commands.Logic.CreateFolderStructure
         // TODO : Consider using GetRootFolderQuery instead of giveng the root folder to the command
         public void Handle(CreateFolderStructureCommand command)
         {
+            if (!Directory.Exists(command.RootFolderPath)) return;
+
             var paths = Directory.EnumerateDirectories(command.RootFolderPath, "*", SearchOption.AllDirectories).ToList();
 
             var temp = _queryProcessor.Process(new GetStringSettingQuery()
