@@ -24,7 +24,7 @@ namespace VHKPlayer.ViewModels.Interfaces
         string Tabs { get; set; }
         int StatTimerDelay { get; set; }
         string GoalPlayList { get; set; }
-        double MusciVolume { get; set; }
+        double MusicVolume { get; set; }
         double VideoVolume { get; set; }
     }
 }

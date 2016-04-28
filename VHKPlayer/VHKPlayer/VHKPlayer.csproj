@@ -205,6 +205,8 @@
     <Compile Include="Queries\GetAllPlayables\GetAllPlayablesQueryHandler.cs" />
     <Compile Include="Queries\GetAutoPlayList\GetAutoPlayListQuery.cs" />
     <Compile Include="Queries\GetAutoPlayList\GetAutoPlayListQueryHandler.cs" />
+    <Compile Include="Queries\GetDoubleSetting\GetDoubleSettingQuery.cs" />
+    <Compile Include="Queries\GetDoubleSetting\GetDoubleSettingQueryHandler.cs" />
     <Compile Include="Queries\GetFolderByPathSubscript\GetFolderByPathSubscriptQuery.cs" />
     <Compile Include="Queries\GetFolderByPathSubscript\GetFolderByPathSubscriptQueryHandler.cs" />
     <Compile Include="Queries\GetFolderByRelativePath\GetFolderByRelativePathQuery.cs" />

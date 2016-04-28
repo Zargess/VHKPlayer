@@ -17,10 +17,14 @@ namespace VHKPlayer.Utility
         public const string SupportedVideoSettingName = "folder_supportedVideo";
         public const string SupportedAudioSettingName = "folder_supportedAudio";
         public const string SupportedPictureSettingName = "folder_supportedPicture";
+        public const string SupportedInfoFileSettingName = "folder_supportedInfoFile";
 
         public const string AutoPlayListSettingName = "application_autoPlaylist";
         public const string StatTimerSettingName = "application_statTimerDelay";
         public const string GoalPlayList = "application_goalPlayList";
+
+        public const string MusicVolumeSettingName = "application_musicVolume";
+        public const string VideoVolumeSettingName = "application_videoVolume";
 
         public const string TabsSettingName = "application_tabs";
 

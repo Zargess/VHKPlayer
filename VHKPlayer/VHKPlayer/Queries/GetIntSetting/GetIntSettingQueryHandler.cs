@@ -10,7 +10,7 @@ using VHKPlayer.Infrastructure;
 
 namespace VHKPlayer.Queries.GetIntSetting
 {
-    public class GetIntSettingQueryHandler : IQueryHandler<GetIntSettingQuery, int>
+    class GetIntSettingQueryHandler : IQueryHandler<GetIntSettingQuery, int>
     {
         private readonly IGlobalConfigService _config;
 
