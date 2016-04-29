@@ -290,6 +290,7 @@
     <Compile Include="ViewModels\Interfaces\IMediaViewerViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\ISettingsViewModel.cs" />
     <Compile Include="ViewModels\PlayerViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Page Include="Controls\MediaViewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

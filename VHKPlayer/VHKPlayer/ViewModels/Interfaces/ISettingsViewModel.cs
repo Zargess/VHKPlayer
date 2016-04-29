@@ -12,6 +12,7 @@ namespace VHKPlayer.ViewModels.Interfaces
         string SupportedAudio { get; set; }
         string SupportedPicture { get; set; }
         string SupportedInformation { get; set; }
+        string PlayerPictureFolder { get; set; }
         string PlayerStatPictureFolder { get; set; }
         string PlayerStatVideoFolder { get; set; }
         string PlayerStatMusicFolder { get; set; }

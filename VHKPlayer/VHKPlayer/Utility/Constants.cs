@@ -4,6 +4,7 @@ namespace VHKPlayer.Utility
 {
     public class Constants
     {
+        // NOTE: When adding new setting, remember to add it in the settings dictionary in SettingsViewModel
         public const string PlayerPictureFolderSettingName = "folder_playerPictureFolder";
         public const string PlayerStatPictureFolderSettingName = "folder_playerStatPictureFolder";
         public const string PlayerStatVideoFolderSettingName = "folder_playerStatVideoFolder";
