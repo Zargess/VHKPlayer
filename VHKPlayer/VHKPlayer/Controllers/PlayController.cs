@@ -18,9 +18,15 @@ namespace VHKPlayer.Controllers
         private readonly MediaViewControl _mediaView;
         private Player _watchedPlayer;
 
+        public MediaPlayerState VideoState { get; private set; }
+
+        public MediaPlayerState AudioState { get; private set; }
+
         public PlayController(MediaViewControl mediaView)
         {
             _mediaView = mediaView;
+            VideoState = MediaPlayerState.Stopped;
+            AudioState = MediaPlayerState.Stopped;
         }
 
         public void Mute(FileType type)
@@ -31,6 +37,7 @@ namespace VHKPlayer.Controllers
         public void Pause(FileType type)
         {
             GetMediaElement(type).Pause();
+            ChangeState(type, MediaPlayerState.Paused);
         }
 
         public void Play(FileNode file)
@@ -51,11 +58,13 @@ namespace VHKPlayer.Controllers
                 mediaelement.Play();
                 Console.WriteLine("PlayController playing: {0}", file.Name);
             }
+            ChangeState(file.Type, MediaPlayerState.Playing);
         }
 
         public void Resume(FileType type)
         {
             GetMediaElement(type).Play();
+            ChangeState(type, MediaPlayerState.Playing);
         }
 
         public void ShowStats(Player p)
@@ -73,6 +82,7 @@ namespace VHKPlayer.Controllers
         public void Stop(FileType type)
         {
             GetMediaElement(type).Stop();
+            ChangeState(type, MediaPlayerState.Stopped);
         }
 
         public void Notify(Statistics stats)
@@ -107,6 +117,17 @@ namespace VHKPlayer.Controllers
         private void UpdateLabels(Statistics stats)
         {
             throw new NotImplementedException();
+        }
+
+        private void ChangeState(FileType type, MediaPlayerState state)
+        {
+            if (type == FileType.Audio)
+            {
+                AudioState = state;
+            } else
+            {
+                VideoState = state;
+            }
         }
     }
 }

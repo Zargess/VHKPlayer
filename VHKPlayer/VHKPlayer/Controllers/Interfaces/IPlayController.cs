@@ -9,6 +9,8 @@ namespace VHKPlayer.Controllers.Interfaces
 {
     public interface IPlayController
     {
+        MediaPlayerState VideoState { get; }
+        MediaPlayerState AudioState { get; }
         void Mute(FileType type);
         void Pause(FileType type);
         void Play(FileNode file);

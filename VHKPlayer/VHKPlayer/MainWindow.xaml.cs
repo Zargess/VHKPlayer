@@ -34,6 +34,7 @@ using VHKPlayer.Controllers;
 using VHKPlayer.Monitors.Interfaces;
 using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.ViewModels;
+using VHKPlayer.Controllers.Interfaces;
 
 namespace VHKPlayer
 {
@@ -43,7 +44,7 @@ namespace VHKPlayer
     public partial class MainWindow : Window
     {
         public PlayerViewModel ViewModel { get; set; }
-        public PlayController Controller { get; set; }
+        public IPlayController Controller { get; set; }
 
         private MediaViewer _viewer;
         private SettingsOverview _set;
@@ -66,7 +67,14 @@ namespace VHKPlayer
         {
             // TODO : Make a lookup in a command library of some sort contained inside the viewmodel and changeable inside settings
 
-            throw new NotImplementedException();
+            if (e.Key != Key.F11) return;
+            if (Controller.AudioState == MediaPlayerState.Playing)
+            {
+                Controller.Pause(FileType.Audio);
+            } else
+            {
+                Controller.Resume(FileType.Audio);
+            }
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)

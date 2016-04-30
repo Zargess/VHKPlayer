@@ -162,6 +162,7 @@
     </Compile>
     <Compile Include="Models\Interfaces\ISettingsObserver.cs" />
     <Compile Include="Models\Interfaces\IStatObserver.cs" />
+    <Compile Include="Models\MediaPlayerState.cs" />
     <Compile Include="Models\TabContainer.cs" />
     <Compile Include="Monitors\ApplicationMonitor.cs" />
     <Compile Include="Monitors\DataMonitor.cs" />
