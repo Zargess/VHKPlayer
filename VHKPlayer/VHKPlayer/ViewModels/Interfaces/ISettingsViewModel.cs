@@ -27,5 +27,7 @@ namespace VHKPlayer.ViewModels.Interfaces
         string GoalPlayList { get; set; }
         double MusicVolume { get; set; }
         double VideoVolume { get; set; }
+        int Screen { get; set; }
+        bool FullScreen { get; set; }
     }
 }

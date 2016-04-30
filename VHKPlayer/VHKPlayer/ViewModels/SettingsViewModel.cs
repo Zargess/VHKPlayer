@@ -288,6 +288,32 @@ namespace VHKPlayer.ViewModels
                 RaisePropertyChanged(nameof(VideoVolume));
             }
         }
+
+        public int Screen
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public bool FullScreen
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -333,6 +359,8 @@ namespace VHKPlayer.ViewModels
             _settings.Add(Constants.MusicVolumeSettingName, nameof(MusicVolume));
             _settings.Add(Constants.VideoVolumeSettingName, nameof(VideoVolume));
             _settings.Add(Constants.TabsSettingName, nameof(Tabs));
+            _settings.Add(Constants.ScreenSettingName, nameof(Screen));
+            _settings.Add(Constants.FullScreenSettingName, nameof(FullScreen));
         }
         #endregion
 

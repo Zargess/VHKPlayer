@@ -253,5 +253,29 @@ namespace VHKPlayer.Properties {
                 this["application_videoVolume"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int application_screen {
+            get {
+                return ((int)(this["application_screen"]));
+            }
+            set {
+                this["application_screen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool application_fullscreen {
+            get {
+                return ((bool)(this["application_fullscreen"]));
+            }
+            set {
+                this["application_fullscreen"] = value;
+            }
+        }
     }
 }

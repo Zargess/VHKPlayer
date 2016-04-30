@@ -202,8 +202,11 @@ namespace VHKPlayer.ViewModels
         
         public void ApplicationChanged(string settingName)
         {
-            if (settingName != Constants.TabsSettingName) return;
-            _cprocessor.Process(new ReloadTabsCommand());
+            if (settingName == Constants.TabsSettingName)
+            {
+                _cprocessor.Process(new ReloadTabsCommand());
+            }
+            // TODO : Add Screen and FullScreen to settings
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

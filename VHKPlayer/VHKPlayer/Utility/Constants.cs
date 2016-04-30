@@ -29,6 +29,9 @@ namespace VHKPlayer.Utility
 
         public const string TabsSettingName = "application_tabs";
 
+        public const string ScreenSettingName = "application_screen";
+        public const string FullScreenSettingName = "application_fullscreen";
+
         public static readonly List<string> PlayerFolderPathSettingNames = new List<string>()
         {
             PlayerPictureFolderSettingName,
