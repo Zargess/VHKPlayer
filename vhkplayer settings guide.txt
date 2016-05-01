@@ -1,0 +1,82 @@
+NOTE: semikolon ; bruges til at seperere i definitionerne og må derfor ikke være i hverken stier eller navne!
+
+
+Lav ny tab:
+{Navn;Position;Order;Script;IsPlayListTab;PlayStrategy}
+
+Navn er bare tekst UDEN "" omkring
+
+Position skal være en af følgende 3 værdier:
+	LeftMain,
+    RightMain,
+    LeftDuringMatch,
+    RightDuringMatch
+	
+	LeftMain og RightMain er de to hoved containers man ser når programmet er startet.
+	LeftDuringMatch og RightDuringMatch er de to containers, der er i Under Kamp tabben.
+
+Order er en heltals værdi, der bruges til at styre sorteringen af tabsne.
+
+Script er den måde, man vælger, hvad man vil have i en tab. Der findes fire former for scripts:
+	* folder bruges til at vælge alle filer i en mappe. Et eksempel: (folder path:"root\musik\Opvarmning")
+		NOTE: Der skal være "" omkring stien til mappen og den skal starte med root\ hvor root henviser til den mappe, der er valgt som root folder
+	
+	* property bruges til at vælge elementer, der har en property med en bestemt værdi. Et eksempel: (property name:Trainer value:False)
+		NOTE: Indtil videre brug kun properties Trainer og HasAudio. value kan kun være True eller False indtil videre
+		
+	* type bruges til at vise elementer af en bestemt type. Et eksempel: (type name:Player)
+		NOTE: Her kan bruges værdierne Player PlayList og PlayableFile efter kolonet
+		
+	* multi bruges til at anvende flere scripts af gangen til at indsnævre endnu mere. 
+	  Et eksempel: (multi left:(type name:Player) right:(property name:Trainer value:False))
+	  
+IsPlayListTab forventer en boolean værdi, og beskriver om man vil have et design beregnet til PlayLists. Har ikke lavet det fædigt så sæt denne værdi til False
+
+PlayStrategy beskriver, hvordan alt andet end eventuelle PlayLists i tabben skal afspilles. Her er mulighederne:
+	* PlayerPicture
+	* SingleFile
+    * PlayerStat
+	
+Eksempeler på tabs:
+	* {Player Stat;LeftDuringMatch;1;(multi left:(type name:Player) right:(property name:Trainer value:False));False;PlayerStat}
+	* {Player Picture;LeftDuringMatch;1;(type name:Player);False;PlayerPicture}
+	* {Opvarmning;LeftMain;1;(folder path:"root\musik\Opvarmning");False;SingleFile}
+	
+Der skal være et ; mellem hver tab
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Lav ny PlayList:
+{Navn;path;has_audio;index;loading;play}
+
+Navn er bare tekst UDEN "" omkring
+
+path er stien til mappen, hvor filer er placeret. INGEN "" omkring
+
+has_audio er en boolean og beskriver om playlisten har lyd, der skal afspilles.
+
+index skal sættes til et tal, der er større eller lig 0. Bruges kun i en loading strategi men skal sættes alligevel.
+
+loading er, hvilken strategi, der skal bruges til at loade filer ind i playlisten. Der er 2 muligheder:
+	* Folder : denne loader alle filer i en mappe ind i playlisten
+	* Sorted : loader filer ind i en folder og sortere alt efter tal i fil navnet, der er på den placering som index beskriver.
+		Ignorerer filer, der har tallet 0 eller mindre på den placering.
+		
+play beskriver, hvordan playlisten skal afspilles. Dette kan være en af to metoder:
+	* AllFiles : afspiller alle filer i playlisten
+	* Iterated : afspiller en fil i playlisten og afspiller den næste fil næste gang playlisten afspilles.
+	
+Eksempeler på playlister:
+{RekFørKamp;root\Rek;false;1;Sorted;AllFiles}
+{RekHalvej1;root\Rek;false;2;Sorted;AllFiles}
+{10Sek;root\10Sek;false;0;Folder;Iterated}
+
+Der skal være et ; mellem hver playlist
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+folder_playableFileFolders er de mapper, hvor der er filer, der kan afspilles enkeltvis som musik. Sørg for at denne setting er opdateret!
+
+application_autoPlaylist beskriver, hvilken af de definerede playlister, der skal afspilles automatisk, når videoer er færdige
+
+application_goalPlayList beskriver, hvilken af de definerede playliste, der skal afspilles efter en spiller er blevet afspillet
+
+application_screen beskriver, hvilken skærm selve vieweren skal være på
+
+application_fullscreen beskriver om vieweren skal være i fullscreen mode
