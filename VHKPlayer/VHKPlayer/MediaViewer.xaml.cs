@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -37,11 +38,42 @@ namespace VHKPlayer
         private void SettingsChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             UpdateScreenProperties();
+            UpdateFullscreenMode();
+        }
+
+        private void UpdateFullscreenMode()
+        {
+            throw new NotImplementedException();
         }
 
         private void UpdateScreenProperties()
         {
-            throw new NotImplementedException();
+            var screen = GetScreen();
+
+            if (!this.IsLoaded)
+                this.WindowStartupLocation = WindowStartupLocation.Manual;
+
+            var workingArea = screen.WorkingArea;
+            this.Left = workingArea.Left;
+            this.Top = workingArea.Top;
+            this.Width = workingArea.Width;
+            this.Height = workingArea.Height;
+            // If window isn't loaded then maxmizing will result in the window displaying on the primary monitor
+            if (this.IsLoaded)
+                this.WindowState = WindowState.Maximized;
+
+        }
+
+        private Screen GetScreen()
+        {
+            if (_viewmodel.Screen <= 0) return Screen.PrimaryScreen;
+
+            var secondaryScreens = Screen.AllScreens.Where(s => !s.Primary).ToList();
+            if (secondaryScreens.Count == 0) return Screen.PrimaryScreen;
+
+            if (_viewmodel.Screen < secondaryScreens.Count) return secondaryScreens[_viewmodel.Screen];
+
+            return secondaryScreens[secondaryScreens.Count - 1];
         }
 
         private void MediaViewer_Loaded(object sender, RoutedEventArgs e)
