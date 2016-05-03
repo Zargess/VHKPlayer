@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using VHKPlayer.Commands.Logic.ChangeSetting;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Models.Interfaces;
+using VHKPlayer.Queries.GetBoolSetting;
 using VHKPlayer.Queries.GetDoubleSetting;
 using VHKPlayer.Queries.GetIntSetting;
 using VHKPlayer.Queries.GetStringSetting;
@@ -293,12 +294,13 @@ namespace VHKPlayer.ViewModels
         {
             get
             {
-                throw new NotImplementedException();
+                return GetIntSettingValue(Constants.ScreenSettingName);
             }
 
             set
             {
-                throw new NotImplementedException();
+                ChangeSetting(Constants.ScreenSettingName, value);
+                RaisePropertyChanged(nameof(Screen));
             }
         }
 
@@ -306,12 +308,13 @@ namespace VHKPlayer.ViewModels
         {
             get
             {
-                throw new NotImplementedException();
+                return GetBoolSettingValue(Constants.FullScreenSettingName);
             }
 
             set
             {
-                throw new NotImplementedException();
+                ChangeSetting(Constants.FullScreenSettingName, value);
+                RaisePropertyChanged(nameof(FullScreen));
             }
         }
         #endregion
@@ -384,6 +387,14 @@ namespace VHKPlayer.ViewModels
         private double GetDoubleSettingValue(string settingName)
         {
             return _qprocessor.Process(new GetDoubleSettingQuery
+            {
+                SettingName = settingName
+            });
+        }
+
+        private bool GetBoolSettingValue(string settingName)
+        {
+            return _qprocessor.Process(new GetBoolSettingQuery
             {
                 SettingName = settingName
             });
