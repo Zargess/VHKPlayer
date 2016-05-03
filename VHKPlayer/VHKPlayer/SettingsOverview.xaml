@@ -30,19 +30,19 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0">
                             <TextBlock Text="Video filer:"/>
-                            <TextBox Height="43" Margin="0,0,0.2,0"></TextBox>
+                            <TextBox Height="43" Margin="0,0,0.2,0" Text="{Binding SupportedVideo, Mode=TwoWay}"/>
                         </StackPanel>
                         <StackPanel Grid.Row="1">
                             <TextBlock Text="Musik filer:"/>
-                            <TextBox Height="43" Margin="0,0,0.2,0"></TextBox>
+                            <TextBox Height="43" Margin="0,0,0.2,0" Text="{Binding SupportedAudio, Mode=TwoWay}"/>
                         </StackPanel>
                         <StackPanel Grid.Row="2">
                             <TextBlock Text="Billed filer:"/>
-                            <TextBox Height="43" Margin="0,0,0.2,0"></TextBox>
+                            <TextBox Height="43" Margin="0,0,0.2,0" Text="{Binding SupportedPicture, Mode=TwoWay}"/>
                         </StackPanel>
                         <StackPanel Grid.Row="3">
                             <TextBlock Text="Informations filer (xml, txt):"/>
-                            <TextBox Height="43" Margin="0,0,0.2,0"></TextBox>
+                            <TextBox Height="43" Margin="0,0,0.2,0" Text="{Binding SupportedInformation, Mode=TwoWay}"/>
                         </StackPanel>
                     </Grid>
                 </Grid>

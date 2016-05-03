@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -321,10 +322,11 @@ namespace VHKPlayer.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public SettingsViewModel(ICommandProcessor cprocessor, IQueryProcessor qprocessor)
+        public SettingsViewModel()
         {
-            _cprocessor = cprocessor;
-            _qprocessor = qprocessor;
+            var container = App.Container;
+            _cprocessor = container.Resolve<ICommandProcessor>();
+            _qprocessor = container.Resolve<IQueryProcessor>();
             _settings = new Dictionary<string, string>();
             InitSettingsDictionary();
         }

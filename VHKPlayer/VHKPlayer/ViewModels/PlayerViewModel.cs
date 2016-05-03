@@ -27,7 +27,7 @@ namespace VHKPlayer.ViewModels
 {
     public class PlayerViewModel : IApplicationObserver, IMediaViewerViewModel
     {
-        private readonly ICommandProcessor _cprocessor;
+        private readonly ICommandProcessor _processor;
         private readonly IDataMonitor _monitor;
         
         public ITabContainer TabContainer { get; }
@@ -36,7 +36,7 @@ namespace VHKPlayer.ViewModels
         public System.Windows.Input.ICommand PlayCommand { get; set; }
         public System.Windows.Input.ICommand BrowseForRootFolderCommand { get; set; }
         public System.Windows.Input.ICommand BrowseForStatFolderCommand { get; set; }
-
+        #region Move to settings
         private bool _statsEnabled;
         public bool StatsEnabled
         {
@@ -171,18 +171,18 @@ namespace VHKPlayer.ViewModels
                 RaiseEvent(nameof(Screen));
             }
         }
-
+        #endregion
         public PlayerViewModel()
         {
             var container = App.Container;
-            _cprocessor = container.Resolve<ICommandProcessor>();
+            _processor = container.Resolve<ICommandProcessor>();
             _monitor = container.Resolve<IDataMonitor>();
             Controller = container.Resolve<IVideoPlayerController>();
             PlayCommand = new RunPlayableStrategyCommand(Controller);
             BrowseForRootFolderCommand = new BrowseForRootFolderCommand();
             BrowseForStatFolderCommand = new BrowseForStatFolderCommand();
 
-            _cprocessor.Process(new AddApplicationObserverCommand
+            _processor.Process(new AddApplicationObserverCommand
             {
                 Observer = this
             });
@@ -191,22 +191,21 @@ namespace VHKPlayer.ViewModels
 
             TabContainer = container.Resolve<ITabContainer>();
             InitialiseData();
-            _cprocessor.Process(new CreateAllTabsCommand());
+            _processor.Process(new CreateAllTabsCommand());
 
         }
 
         public void InitialiseData()
         {
-            _cprocessor.ProcessTransaction(new CreateAllPlayablesCommand());
+            _processor.ProcessTransaction(new CreateAllPlayablesCommand());
         }
         
         public void ApplicationChanged(string settingName)
         {
             if (settingName == Constants.TabsSettingName)
             {
-                _cprocessor.Process(new ReloadTabsCommand());
+                _processor.Process(new ReloadTabsCommand());
             }
-            // TODO : Add Screen and FullScreen to settings
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

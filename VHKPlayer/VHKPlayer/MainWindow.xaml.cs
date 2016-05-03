@@ -43,7 +43,8 @@ namespace VHKPlayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        public PlayerViewModel ViewModel { get; set; }
+        private PlayerViewModel _mainViewModel;
+        private SettingsViewModel _setViewModel;
         public IPlayController Controller { get; set; }
 
         private MediaViewer _viewer;
@@ -51,9 +52,10 @@ namespace VHKPlayer
 
         public MainWindow()
         {
-            ViewModel = new PlayerViewModel();
-            _viewer = new MediaViewer(ViewModel);
-            _set = new SettingsOverview();
+            _mainViewModel = new PlayerViewModel();
+            _setViewModel = new SettingsViewModel();
+            _viewer = new MediaViewer(_mainViewModel);
+            _set = new SettingsOverview(_setViewModel);
             _set.Visibility = Visibility.Hidden;
             InitializeComponent();
             this.Loaded += MainWindow_Loaded;
@@ -79,7 +81,7 @@ namespace VHKPlayer
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ViewModel.Controller.Shutdown();
+            _mainViewModel.Controller.Shutdown();
             _viewer.ShouldClose = true;
             _viewer.Close();
             _set.ShouldClose = true;
@@ -88,10 +90,10 @@ namespace VHKPlayer
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            this.DataContext = ViewModel;
-            View.Video.MediaEnded += (s, ee) => ViewModel.Controller.PlayQueue();
+            this.DataContext = _mainViewModel;
+            View.Video.MediaEnded += (s, ee) => _mainViewModel.Controller.PlayQueue();
             Controller = new PlayController(_viewer.View);
-            ViewModel.Controller.AddObserver(Controller);    
+            _mainViewModel.Controller.AddObserver(Controller);    
         }
 
         private void Show_Settings(object sender, RoutedEventArgs e)

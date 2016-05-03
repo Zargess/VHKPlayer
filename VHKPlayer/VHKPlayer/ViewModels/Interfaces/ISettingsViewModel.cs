@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace VHKPlayer.ViewModels.Interfaces
 {
-    public interface ISettingsViewModel
+    public interface ISettingsViewModel : INotifyPropertyChanged
     {
         string SupportedVideo { get; set; }
         string SupportedAudio { get; set; }

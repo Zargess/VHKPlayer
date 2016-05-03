@@ -20,17 +20,28 @@ namespace VHKPlayer
     /// </summary>
     public partial class MediaViewer : Window
     {
-        private readonly IMediaViewerViewModel _viewmodel;
+        private readonly ISettingsViewModel _viewmodel;
 
         public bool ShouldClose { get; set; }
 
-        public MediaViewer(IMediaViewerViewModel viewmodel)
+        public MediaViewer(ISettingsViewModel viewmodel)
         {
             InitializeComponent();
             ShouldClose = false;
             this.Closing += MediaViewer_Closing;
             this.Loaded += MediaViewer_Loaded;
             _viewmodel = viewmodel;
+            _viewmodel.PropertyChanged += SettingsChanged;
+        }
+
+        private void SettingsChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            UpdateScreenProperties();
+        }
+
+        private void UpdateScreenProperties()
+        {
+            throw new NotImplementedException();
         }
 
         private void MediaViewer_Loaded(object sender, RoutedEventArgs e)

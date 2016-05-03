@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using VHKPlayer.ViewModels.Interfaces;
 
 namespace VHKPlayer
 {
@@ -19,17 +20,25 @@ namespace VHKPlayer
     /// </summary>
     public partial class SettingsOverview : Window
     {
+        private readonly ISettingsViewModel _viewmodel;
 
         public bool ShouldClose { get; set; }
 
-        public SettingsOverview()
+        public SettingsOverview(ISettingsViewModel viewmodel)
         {
             InitializeComponent();
             ShouldClose = false;
-            this.Closing += MediaViewer_Closing;
+            _viewmodel = viewmodel;
+            this.Closing += SettingsOverview_Closing;
+            this.Loaded += SettingsOverview_Loaded;
         }
 
-        private void MediaViewer_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void SettingsOverview_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = _viewmodel;
+        }
+
+        private void SettingsOverview_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = !ShouldClose;
         }
