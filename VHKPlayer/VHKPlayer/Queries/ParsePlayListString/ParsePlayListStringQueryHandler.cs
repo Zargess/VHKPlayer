@@ -54,8 +54,10 @@ namespace VHKPlayer.Queries.ParsePlayListString
                 command.HasAudio = hasAudio;
 
                 var index = variables[3].ToInteger();
+
+                var repeat = variables[4].ToBool();
                 
-                var loading = variables[4];
+                var loading = variables[5];
 
                 command.LoadingStrategy = _processor.Process(new GetPlayListLoadingStrategyQuery()
                 {
@@ -64,12 +66,14 @@ namespace VHKPlayer.Queries.ParsePlayListString
                     StrategyName = loading
                 });
 
-                var playing = variables[5];
+                var playing = variables[6];
 
                 command.PlayStrategy = _processor.Process(new GetPlayStrategyQuery()
                 {
                     StrategyName = playing
                 });
+
+                command.PlayStrategy.Repeat = repeat;
 
                 commands.Add(command);
             }

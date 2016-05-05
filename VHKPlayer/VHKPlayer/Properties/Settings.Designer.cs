@@ -159,8 +159,8 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{RekFørKamp;root\\Rek;false;1;Sorted;AllFiles},{RekHalvej1;root\\Rek;false;2;Sorted" +
-            ";AllFiles},{10Sek;root\\10Sek;false;0;Folder;Iterated}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{RekFørKamp;root\\Rek;false;1;false;Sorted;AllFiles},{RekHalvej1;root\\Rek;false;2;" +
+            "false;Sorted;AllFiles},{10Sek;root\\10Sek;false;0;true;Folder;Iterated}")]
         public string folder_playlists {
             get {
                 return ((string)(this["folder_playlists"]));
@@ -196,7 +196,7 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"{Andet;LeftMain;2;(folder path:""root\musik\andet"");False;SingleFile},{Opvarmning;LeftMain;1;(folder path:""root\musik\Opvarmning"");False;SingleFile},{Scor;LeftMain;3;(property name:Trainer value:False);False;PlayerStat},{Player Picture;RightMain;2;(type name:Player);False;PlayerPicture},duringmatch,{Player Picture;LeftDuringMatch;1;(type name:Player);False;PlayerPicture},{Player Stat;LeftDuringMatch;1;(multi left:(type name:Player) right:(property name:Trainer value:False));False;PlayerStat}")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"{Andet;LeftMain;2;(folder path:""root\musik\andet"");False;SingleFile},{Opvarmning;LeftMain;1;(folder path:""root\musik\Opvarmning"");False;SingleFile},{Scor;LeftMain;3;(property name:Trainer value:False);False;PlayerStat},{Player Picture;RightMain;2;(type name:Player);False;PlayerPicture},duringmatch,{PlayLists;RightMain;10;(type name:PlayList);False;PlayerPicture},{Player Stat;LeftDuringMatch;1;(multi left:(type name:Player) right:(property name:Trainer value:False));False;PlayerStat}")]
         public string application_tabs {
             get {
                 return ((string)(this["application_tabs"]));
@@ -256,7 +256,7 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int application_screen {
             get {
                 return ((int)(this["application_screen"]));

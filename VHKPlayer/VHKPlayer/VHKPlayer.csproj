@@ -77,10 +77,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\GUI\AutoPlayListCommand.cs" />
     <Compile Include="Commands\GUI\BrowseForRootFolderCommand.cs" />
     <Compile Include="Commands\GUI\BrowseForStatFolderCommand.cs" />
     <Compile Include="Commands\GUI\DoNothingCommand.cs" />
     <Compile Include="Commands\GUI\DummyCommand.cs" />
+    <Compile Include="Commands\GUI\PlayAutoPlayListCommand.cs" />
     <Compile Include="Commands\GUI\RunPlayableStrategyCommand.cs" />
     <Compile Include="Commands\Logic\AddApplicationObserver\AddApplicationObserverCommand.cs" />
     <Compile Include="Commands\Logic\AddApplicationObserver\AddApplicationObserverCommandHandler.cs" />

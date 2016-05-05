@@ -1,5 +1,12 @@
-NOTE: semikolon ; bruges til at seperere i definitionerne og må derfor ikke være i hverken stier eller navne!
+NOTE: ; og , bruges til at seperere i definitionerne og må derfor ikke være i hverken stier eller navne!
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Genvejstaster:
+F11 -> Pause/resume musik.
+F10 -> Pause/resume video.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Lav ny tab:
 {Navn;Position;Order;Script;IsPlayListTab;PlayStrategy}
@@ -42,10 +49,10 @@ Eksempeler på tabs:
 	* {Player Picture;LeftDuringMatch;1;(type name:Player);False;PlayerPicture}
 	* {Opvarmning;LeftMain;1;(folder path:"root\musik\Opvarmning");False;SingleFile}
 	
-Der skal være et ; mellem hver tab
+Der skal være et , mellem hver tab
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Lav ny PlayList:
-{Navn;path;has_audio;index;loading;play}
+{Navn;path;has_audio;index;repeat;loading;play}
 
 Navn er bare tekst UDEN "" omkring
 
@@ -54,6 +61,8 @@ path er stien til mappen, hvor filer er placeret. INGEN "" omkring
 has_audio er en boolean og beskriver om playlisten har lyd, der skal afspilles.
 
 index skal sættes til et tal, der er større eller lig 0. Bruges kun i en loading strategi men skal sættes alligevel.
+
+repeat er en boolean og styrer om playlisten skal køre på repeat. Kan blandt andet bruges i playlister som 10sek og førkamp
 
 loading er, hvilken strategi, der skal bruges til at loade filer ind i playlisten. Der er 2 muligheder:
 	* Folder : denne loader alle filer i en mappe ind i playlisten
@@ -65,11 +74,11 @@ play beskriver, hvordan playlisten skal afspilles. Dette kan være en af to meto
 	* Iterated : afspiller en fil i playlisten og afspiller den næste fil næste gang playlisten afspilles.
 	
 Eksempeler på playlister:
-{RekFørKamp;root\Rek;false;1;Sorted;AllFiles}
-{RekHalvej1;root\Rek;false;2;Sorted;AllFiles}
-{10Sek;root\10Sek;false;0;Folder;Iterated}
+{RekFørKamp;root\Rek;false;1;false;Sorted;AllFiles}
+{RekHalvej1;root\Rek;false;2;false;Sorted;AllFiles}
+{10Sek;root\10Sek;false;0;true;Folder;Iterated}
 
-Der skal være et ; mellem hver playlist
+Der skal være et , mellem hver playlist
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 folder_playableFileFolders er de mapper, hvor der er filer, der kan afspilles enkeltvis som musik. Sørg for at denne setting er opdateret!
 
@@ -77,6 +86,8 @@ application_autoPlaylist beskriver, hvilken af de definerede playlister, der ska
 
 application_goalPlayList beskriver, hvilken af de definerede playliste, der skal afspilles efter en spiller er blevet afspillet
 
-application_screen beskriver, hvilken skærm selve vieweren skal være på
+application_screen beskriver, hvilken skærm selve vieweren skal være på. 0 eller der under er primær skærm. Alt over er andre skærme. Hvis tallet er større end
+antal sekundære skærme så finder den tager den det sidste element. Ellers tager den alt efter den rækkefølge som den finder dem i. Derfor er 1 ikke nødvendigvis
+skærm 2. Finder nok en bedre måde at beskrive skærm senere.
 
 application_fullscreen beskriver om vieweren skal være i fullscreen mode

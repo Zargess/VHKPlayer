@@ -36,6 +36,9 @@ namespace VHKPlayer.ViewModels
         public System.Windows.Input.ICommand PlayCommand { get; set; }
         public System.Windows.Input.ICommand BrowseForRootFolderCommand { get; set; }
         public System.Windows.Input.ICommand BrowseForStatFolderCommand { get; set; }
+        public System.Windows.Input.ICommand ToggleAutoPlayListCommand { get; set; }
+        public System.Windows.Input.ICommand PlayAutoPlayListCommand { get; set; }
+
         #region Move to settings
         private bool _statsEnabled;
         public bool StatsEnabled
@@ -181,6 +184,8 @@ namespace VHKPlayer.ViewModels
             PlayCommand = new RunPlayableStrategyCommand(Controller);
             BrowseForRootFolderCommand = new BrowseForRootFolderCommand();
             BrowseForStatFolderCommand = new BrowseForStatFolderCommand();
+            ToggleAutoPlayListCommand = new AutoPlayListCommand(Controller);
+            PlayAutoPlayListCommand = new PlayAutoPlayListCommand(container.Resolve<IQueryProcessor>(), Controller);
 
             _processor.Process(new AddApplicationObserverCommand
             {

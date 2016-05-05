@@ -68,6 +68,8 @@
             <Setter Property="ItemTemplate" Value="{StaticResource TabName}" />
             <Setter Property="ContentTemplateSelector" Value="{StaticResource TabDesignSelector}" />
         </Style>
+        <Style x:Key="TestStyle" x:Name="Test" TargetType="{x:Type MenuItem}"></Style>
+        
     </Window.Resources>
 
     <Grid>
@@ -78,6 +80,8 @@
                     <MenuItem Header="Browse Stats mappe" Command="{Binding BrowseForStatFolderCommand}"/>
                     <MenuItem Header="Indstillinger" Click="Show_Settings" />
                 </MenuItem>
+                <MenuItem Header="10sek" Command="{Binding PlayAutoPlayListCommand}" />
+                <MenuItem Header="Auto 10sek" x:Name="auto10Sek" Background="Red" Command="{Binding ToggleAutoPlayListCommand}" CommandParameter="{Binding ElementName=auto10Sek}"/>
             </Menu>
             <Grid>
                 <Grid.ColumnDefinitions>

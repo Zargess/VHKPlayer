@@ -23,7 +23,7 @@ namespace VHKPlayer.Controllers
         private readonly IHandleFileStrategy _handleFileStrategy;
         private readonly IFileDelayStrategy _delayStrategy;
 
-        public bool AutoPlayList { get; set; } = true;
+        public bool AutoPlayList { get; set; }
         public Queue<FileNode> Queue { get; private set; }
 
 
@@ -35,6 +35,7 @@ namespace VHKPlayer.Controllers
             this._playQueue = playQueue;
             _delayStrategy = new FileDelayStrategy(_processor, this);
             _handleFileStrategy = fileStrategy;
+            AutoPlayList = false;
         }
 
         public void AddObserver(IPlayController observer)
