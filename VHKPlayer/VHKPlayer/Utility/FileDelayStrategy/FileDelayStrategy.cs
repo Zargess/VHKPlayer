@@ -31,7 +31,7 @@ namespace VHKPlayer.Utility.FileDelayStrategy
             {
                 SettingName = Constants.StatTimerSettingName
             });
-            // TODO : Fix timer? - Might work.
+            
             _timer.Interval = delay;
             _timer.Enabled = true;
             _timer.Start();
