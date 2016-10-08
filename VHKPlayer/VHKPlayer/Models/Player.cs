@@ -55,7 +55,11 @@ namespace VHKPlayer.Models
 
         public override string ToString()
         {
-            var nr = Number < 10 ? "0" + Number : "" + Number;
+            var nr = "" + Number;
+
+            if (Number < 10) nr = "00" + Number;
+            else if (Number < 100) nr = "0" + Number;
+
             return nr + " - " + Name; 
         }
     }
