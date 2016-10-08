@@ -159,8 +159,9 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{RekFørKamp;root\\Rek;false;1;false;Sorted;AllFiles},{RekHalvej1;root\\Rek;false;2;" +
-            "false;Sorted;AllFiles},{10Sek;root\\10Sek;false;0;true;Folder;Iterated}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{RekFørKamp;root\\Rek;true;1;false;Sorted;AllFiles},{RekHalvej1;root\\Rek;true;2;fa" +
+            "lse;Sorted;AllFiles},{10Sek;root\\10Sek;false;0;true;Folder;Iterated},{Før Kamp;r" +
+            "oot\\foerkamp;false;0;true;Folder;AllFiles}")]
         public string folder_playlists {
             get {
                 return ((string)(this["folder_playlists"]));
@@ -196,7 +197,7 @@ namespace VHKPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"{Andet;LeftMain;2;(folder path:""root\musik\andet"");False;SingleFile},{Opvarmning;LeftMain;1;(folder path:""root\musik\Opvarmning"");False;SingleFile},{Scor;LeftMain;3;(property name:Trainer value:False);False;PlayerStat},{Player Picture;RightMain;2;(type name:Player);False;PlayerPicture},duringmatch,{PlayLists;RightMain;10;(type name:PlayList);False;PlayerPicture},{Player Stat;LeftDuringMatch;1;(multi left:(type name:Player) right:(property name:Trainer value:False));False;PlayerStat}")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"{Andet;LeftMain;1;(folder path:""root\musik\andet"");False;SingleFile},{LangtMusik;LeftMain;2;(folder path:""root\musik\LangtMusik"");False;SingleFile},{Opvarmning;LeftMain;3;(folder path:""root\musik\Opvarmning"");False;SingleFile},{PauseMusik;LeftMain;4;(folder path:""root\musik\PauseMusik"");False;SingleFile},{Scor;LeftMain;5;(folder path:""root\musik\scor"");False;SingleFile},{ScorUd;LeftMain;6;(folder path:""root\musik\scorud"");False;SingleFile},{SpilStop;LeftMain;7;(folder path:""root\musik\spilstop"");False;SingleFile},{Stemning;LeftMain;8;(folder path:""root\musik\stemning"");False;SingleFile},{Timeout;LeftMain;1;(folder path:""root\musik\timeout"");False;SingleFile},duringmatch,{Player Picture;LeftDuringMatch;1;(type name:Player);False;PlayerPicture},{Player Stat;LeftDuringMatch;2;(multi left:(type name:Player) right:(property name:Trainer value:False));False;PlayerStat},{Kort;RightDuringMatch;1;(folder path:""root\superhero"");False;SingleFile},{PlayLists;RightMain;2;(type name:PlayList);False;PlayerPicture}")]
         public string application_tabs {
             get {
                 return ((string)(this["application_tabs"]));

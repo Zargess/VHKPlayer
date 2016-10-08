@@ -36,7 +36,7 @@
       <Value Profile="(Default)">root\musik\andet;root\musik\langtmusik;root\musik\opvarmning;root\musik\pausemusik;root\musik\scor;root\musik\scorud;root\musik\spilstop;root\musik\stemning;root\musik\timeout;root\blandet;root\superhero;root</Value>
     </Setting>
     <Setting Name="folder_playlists" Type="System.String" Scope="User">
-      <Value Profile="(Default)">{RekFørKamp;root\Rek;false;1;false;Sorted;AllFiles},{RekHalvej1;root\Rek;false;2;false;Sorted;AllFiles},{10Sek;root\10Sek;false;0;true;Folder;Iterated}</Value>
+      <Value Profile="(Default)">{RekFørKamp;root\Rek;true;1;false;Sorted;AllFiles},{RekHalvej1;root\Rek;true;2;false;Sorted;AllFiles},{10Sek;root\10Sek;false;0;true;Folder;Iterated},{Før Kamp;root\foerkamp;false;0;true;Folder;AllFiles}</Value>
     </Setting>
     <Setting Name="folder_supportedInfoFile" Type="System.String" Scope="User">
       <Value Profile="(Default)">xml;txt</Value>
@@ -45,7 +45,7 @@
       <Value Profile="(Default)">10Sek</Value>
     </Setting>
     <Setting Name="application_tabs" Type="System.String" Scope="User">
-      <Value Profile="(Default)">{Andet;LeftMain;2;(folder path:"root\musik\andet");False;SingleFile},{Opvarmning;LeftMain;1;(folder path:"root\musik\Opvarmning");False;SingleFile},{Scor;LeftMain;3;(property name:Trainer value:False);False;PlayerStat},{Player Picture;RightMain;2;(type name:Player);False;PlayerPicture},duringmatch,{PlayLists;RightMain;10;(type name:PlayList);False;PlayerPicture},{Player Stat;LeftDuringMatch;1;(multi left:(type name:Player) right:(property name:Trainer value:False));False;PlayerStat}</Value>
+      <Value Profile="(Default)">{Andet;LeftMain;1;(folder path:"root\musik\andet");False;SingleFile},{LangtMusik;LeftMain;2;(folder path:"root\musik\LangtMusik");False;SingleFile},{Opvarmning;LeftMain;3;(folder path:"root\musik\Opvarmning");False;SingleFile},{PauseMusik;LeftMain;4;(folder path:"root\musik\PauseMusik");False;SingleFile},{Scor;LeftMain;5;(folder path:"root\musik\scor");False;SingleFile},{ScorUd;LeftMain;6;(folder path:"root\musik\scorud");False;SingleFile},{SpilStop;LeftMain;7;(folder path:"root\musik\spilstop");False;SingleFile},{Stemning;LeftMain;8;(folder path:"root\musik\stemning");False;SingleFile},{Timeout;LeftMain;1;(folder path:"root\musik\timeout");False;SingleFile},duringmatch,{Player Picture;LeftDuringMatch;1;(type name:Player);False;PlayerPicture},{Player Stat;LeftDuringMatch;2;(multi left:(type name:Player) right:(property name:Trainer value:False));False;PlayerStat},{Kort;RightDuringMatch;1;(folder path:"root\superhero");False;SingleFile},{PlayLists;RightMain;2;(type name:PlayList);False;PlayerPicture}</Value>
     </Setting>
     <Setting Name="application_statTimerDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10000</Value>
