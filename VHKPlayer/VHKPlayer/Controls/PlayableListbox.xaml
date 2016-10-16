@@ -35,7 +35,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <StackPanel>
-                        <Label HorizontalAlignment="Stretch" FontSize="12" Height="30" Margin="-4,-1,-4,-1" Content="{Binding}"/>
+                        <Label HorizontalAlignment="Stretch" FontSize="16" Height="30" Margin="-4,-1,-4,-1" Content="{Binding}"/>
                     </StackPanel>
                 </ContentControl>
             </DataTemplate>
