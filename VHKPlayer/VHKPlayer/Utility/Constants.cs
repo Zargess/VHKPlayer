@@ -32,6 +32,12 @@ namespace VHKPlayer.Utility
         public const string ScreenSettingName = "application_screen";
         public const string FullScreenSettingName = "application_fullscreen";
 
+        public const string TopSettingName = "application_top";
+        public const string LeftSettingName = "application_left";
+        public const string HeightSettingName = "application_height";
+        public const string WidthSettingName = "application_width";
+        public const string MaximizedSettingName = "application_maximized";
+
         public static readonly List<string> PlayerFolderPathSettingNames = new List<string>()
         {
             PlayerPictureFolderSettingName,

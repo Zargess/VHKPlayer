@@ -35,6 +35,7 @@ using VHKPlayer.Monitors.Interfaces;
 using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.ViewModels;
 using VHKPlayer.Controllers.Interfaces;
+using VHKPlayer.Commands.Logic.StoreWindowPosition;
 
 namespace VHKPlayer
 {
@@ -99,6 +100,19 @@ namespace VHKPlayer
             _viewer.Close();
             _set.ShouldClose = true;
             _set.Close();
+
+            App.Container.Resolve<ICommandProcessor>().Process(new StoreWindowPositionCommand
+            {
+                Position = new WindowPosition
+                {
+                    Top = this.Top,
+                    Left = this.Left,
+                    Height = this.Height,
+                    Width = this.Width,
+                    Maximized = this.WindowState == WindowState.Maximized
+                }
+            });
+
             Environment.Exit(0);
         }
 
@@ -108,6 +122,18 @@ namespace VHKPlayer
             View.Video.MediaEnded += (s, ee) => _mainViewModel.Controller.PlayQueue();
             Controller = new PlayController(_viewer.View);
             _mainViewModel.Controller.AddObserver(Controller);
+
+            if (_mainViewModel.WindowPosition.Height == 0 || _mainViewModel.WindowPosition.Width == 0) return;
+
+            this.Top = _mainViewModel.WindowPosition.Top;
+            this.Left = _mainViewModel.WindowPosition.Left;
+            this.Height = _mainViewModel.WindowPosition.Height;
+            this.Width = _mainViewModel.WindowPosition.Width;
+
+            if (_mainViewModel.WindowPosition.Maximized)
+            {
+                this.WindowState = WindowState.Maximized;
+            }
         }
 
         private void Show_Settings(object sender, RoutedEventArgs e)

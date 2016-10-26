@@ -22,6 +22,7 @@ using VHKPlayer.Utility;
 using VHKPlayer.ViewModels.Interfaces;
 using System;
 using System.Windows;
+using VHKPlayer.Queries.GetWindowPosition;
 
 namespace VHKPlayer.ViewModels
 {
@@ -38,6 +39,7 @@ namespace VHKPlayer.ViewModels
         public System.Windows.Input.ICommand BrowseForStatFolderCommand { get; set; }
         public System.Windows.Input.ICommand ToggleAutoPlayListCommand { get; set; }
         public System.Windows.Input.ICommand PlayAutoPlayListCommand { get; set; }
+        public WindowPosition WindowPosition { get; set; }
 
         #region Move to settings
         private bool _statsEnabled;
@@ -193,6 +195,7 @@ namespace VHKPlayer.ViewModels
             });
 
             // TODO : Initialise all settings
+            WindowPosition = container.Resolve<IQueryProcessor>().Process(new GetWindowPositionQuery());
 
             TabContainer = container.Resolve<ITabContainer>();
             InitialiseData();

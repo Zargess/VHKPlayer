@@ -141,6 +141,8 @@
     <Compile Include="Commands\Logic\RemovePlayList\RemovePlayListCommandHandler.cs" />
     <Compile Include="Commands\Logic\ResetDataCenter\ResetDataCenterCommand.cs" />
     <Compile Include="Commands\Logic\ResetDataCenter\ResetDataCenterCommandHandler.cs" />
+    <Compile Include="Commands\Logic\StoreWindowPosition\StoreWindowPositionCommand.cs" />
+    <Compile Include="Commands\Logic\StoreWindowPosition\StoreWindowPositionCommandHandler.cs" />
     <Compile Include="Commands\Logic\Transaction.cs" />
     <Compile Include="Commands\Logic\UpdateDataCenterByFolder\UpdateDataCenterByFolderCommand.cs" />
     <Compile Include="Commands\Logic\UpdateDataCenterByFolder\UpdateDataCenterByFolderCommandHandler.cs" />
@@ -166,6 +168,7 @@
     <Compile Include="Models\Interfaces\IStatObserver.cs" />
     <Compile Include="Models\MediaPlayerState.cs" />
     <Compile Include="Models\TabContainer.cs" />
+    <Compile Include="Models\WindowPosition.cs" />
     <Compile Include="Monitors\ApplicationMonitor.cs" />
     <Compile Include="Monitors\DataMonitor.cs" />
     <Compile Include="Monitors\Interfaces\IApplicationMonitor.cs" />
@@ -251,6 +254,8 @@
     <Compile Include="Queries\GetRequiredFolderPaths\GetRequiredFolderPathsQueryHandler.cs" />
     <Compile Include="Queries\GetStringSetting\GetStringSettingQuery.cs" />
     <Compile Include="Queries\GetStringSetting\GetStringSettingQueryHandler.cs" />
+    <Compile Include="Queries\GetWindowPosition\GetWindowPositionQuery.cs" />
+    <Compile Include="Queries\GetWindowPosition\GetWindowPositionQueryHandler.cs" />
     <Compile Include="Queries\Interfaces\IQuery.cs" />
     <Compile Include="Queries\Interfaces\IQueryHandler.cs" />
     <Compile Include="Queries\Interfaces\IQueryProcessor.cs" />

@@ -278,5 +278,65 @@ namespace VHKPlayer.Properties {
                 this["application_fullscreen"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double application_top {
+            get {
+                return ((double)(this["application_top"]));
+            }
+            set {
+                this["application_top"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double application_left {
+            get {
+                return ((double)(this["application_left"]));
+            }
+            set {
+                this["application_left"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double application_height {
+            get {
+                return ((double)(this["application_height"]));
+            }
+            set {
+                this["application_height"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double application_width {
+            get {
+                return ((double)(this["application_width"]));
+            }
+            set {
+                this["application_width"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool application_maximized {
+            get {
+                return ((bool)(this["application_maximized"]));
+            }
+            set {
+                this["application_maximized"] = value;
+            }
+        }
     }
 }
