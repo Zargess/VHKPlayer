@@ -68,11 +68,7 @@ namespace VHKPlayer.Utility.PlayStrategy
 
             if (video == null)
             {
-                var pictureFolder = _processor.Process(new GetFolderFromStringSettingQuery()
-                {
-                    SettingName = Constants.PlayerPictureFolderSettingName
-                });
-                video = content.AsParallel().SingleOrDefault(x => pictureFolder.Contains(x));
+                video = picture;
             }
 
             var res = new List<FileNode>()
