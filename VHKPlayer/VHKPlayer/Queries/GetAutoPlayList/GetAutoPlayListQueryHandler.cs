@@ -22,13 +22,9 @@ namespace VHKPlayer.Queries.GetAutoPlayList
 
         public PlayList Handle(GetAutoPlayListQuery query)
         {
-            var name = _processor.Process(new GetStringSettingQuery()
-            {
-                SettingName = Constants.AutoPlayListSettingName
-            });
             return _processor.Process(new GetPlayListByNameQuery()
             {
-                Name = name
+                Name = Constants.AutoPlayListName
             });
         }
     }

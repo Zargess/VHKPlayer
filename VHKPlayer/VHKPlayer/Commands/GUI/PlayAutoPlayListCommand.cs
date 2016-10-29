@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using VHKPlayer.Controllers.Interfaces;
+using VHKPlayer.Queries.GetAutoPlayList;
 using VHKPlayer.Queries.GetPlayListByName;
 using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.Queries.Interfaces;
@@ -32,13 +33,8 @@ namespace VHKPlayer.Commands.GUI
 
         public void Execute(object parameter)
         {
-            var playlist = _processor.Process(new GetPlayListByNameQuery
-            {
-                Name = _processor.Process(new GetStringSettingQuery
-                {
-                    SettingName = Constants.AutoPlayListSettingName
-                })
-            });
+            var playlist = _processor.Process(new GetAutoPlayListQuery());
+            if (playlist == null) return;
             _controller.Play(playlist, playlist.PlayStrategy);
         }
     }

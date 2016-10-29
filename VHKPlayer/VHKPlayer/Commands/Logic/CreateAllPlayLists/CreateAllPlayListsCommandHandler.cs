@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VHKPlayer.Commands.Logic.CreateAutoPlayList;
 using VHKPlayer.Commands.Logic.CreatePlayList;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Infrastructure;
@@ -43,6 +44,20 @@ namespace VHKPlayer.Commands.Logic.CreateAllPlayLists
             {
                 _cprocessor.Process(command);
             }
+
+            var autoListName = _qprocessor.Process(new GetStringSettingQuery()
+            {
+                SettingName = Constants.AutoPlayListSettingName
+            });
+
+            var autoListCommand = commands.FirstOrDefault(x => x.Name == autoListName);
+
+            if (autoListCommand == null) return; // TODO : Inform user?
+
+            _cprocessor.Process(new CreateAutoPlayListCommand()
+            {
+                Command = autoListCommand
+            });
         }
     }
 }

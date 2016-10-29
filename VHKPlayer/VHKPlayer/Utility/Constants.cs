@@ -38,6 +38,8 @@ namespace VHKPlayer.Utility
         public const string WidthSettingName = "application_width";
         public const string MaximizedSettingName = "application_maximized";
 
+        public const string AutoPlayListName = "auto-playlist";
+
         public static readonly List<string> PlayerFolderPathSettingNames = new List<string>()
         {
             PlayerPictureFolderSettingName,

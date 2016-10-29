@@ -102,6 +102,8 @@
     <Compile Include="Commands\Logic\CreateAllPlayLists\CreateAllPlayListsCommandHandler.cs" />
     <Compile Include="Commands\Logic\CreateAllTabs\CreateAllTabsCommand.cs" />
     <Compile Include="Commands\Logic\CreateAllTabs\CreateAllTabsCommandHandler.cs" />
+    <Compile Include="Commands\Logic\CreateAutoPlayList\CreateAutoPlayListCommand.cs" />
+    <Compile Include="Commands\Logic\CreateAutoPlayList\CreateAutoPlayListCommandHandler.cs" />
     <Compile Include="Commands\Logic\CreateFile\CreateFileCommand.cs" />
     <Compile Include="Commands\Logic\CreateFile\CreateFileCommandHandler.cs" />
     <Compile Include="Commands\Logic\CreateFolderStructure\CreateFolderStructureCommand.cs" />
