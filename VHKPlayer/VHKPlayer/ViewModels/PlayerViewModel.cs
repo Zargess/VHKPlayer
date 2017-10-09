@@ -30,7 +30,7 @@ namespace VHKPlayer.ViewModels
     {
         private readonly ICommandProcessor _processor;
         private readonly IDataMonitor _monitor;
-        
+
         public ITabContainer TabContainer { get; }
 
         public IVideoPlayerController Controller { get; set; }
@@ -207,7 +207,7 @@ namespace VHKPlayer.ViewModels
         {
             _processor.ProcessTransaction(new CreateAllPlayablesCommand());
         }
-        
+
         public void ApplicationChanged(string settingName)
         {
             if (settingName == Constants.TabsSettingName)
