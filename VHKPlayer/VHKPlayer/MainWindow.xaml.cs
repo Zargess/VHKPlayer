@@ -36,6 +36,7 @@ using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.ViewModels;
 using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Commands.Logic.StoreWindowPosition;
+using VHKPlayer.ViewModels.Interfaces;
 
 namespace VHKPlayer
 {
@@ -45,7 +46,7 @@ namespace VHKPlayer
     public partial class MainWindow : Window
     {
         private PlayerViewModel _mainViewModel;
-        private SettingsViewModel _setViewModel;
+        private ISettingsViewModel _setViewModel;
         public IPlayController Controller { get; set; }
 
         private MediaViewer _viewer;
