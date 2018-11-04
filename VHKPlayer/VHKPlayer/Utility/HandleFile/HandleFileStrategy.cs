@@ -30,7 +30,7 @@ namespace VHKPlayer.Utility.HandleFile
                 controller.ShowStats();
                 delay.StartTimer();
             }
-            else if (file.Type == FileType.Picture && isStatStrategy)
+            else if (file.Type == FileType.Picture && isStatStrategy) // Here there might be a problem when playing PlayerPicture
             {
                 delay.StartTimer();
             }

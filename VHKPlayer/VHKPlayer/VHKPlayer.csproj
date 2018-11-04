@@ -275,6 +275,8 @@
     <Compile Include="SettingsOverview.xaml.cs">
       <DependentUpon>SettingsOverview.xaml</DependentUpon>
     </Compile>
+      <Compile Include="Utility\Audio\FadeAudioStrategy.cs"/>
+      <Compile Include="Utility\Audio\Interfaces\IFadeAudioStrategy.cs"/>
     <Compile Include="Utility\Constants.cs" />
     <Compile Include="Utility\FileDelayStrategy\FileDelayStrategy.cs" />
     <Compile Include="Utility\FileDelayStrategy\Interfaces\IFileDelayStrategy.cs" />

@@ -177,6 +177,7 @@ namespace VHKPlayer.ViewModels
             }
         }
         #endregion
+
         public PlayerViewModel()
         {
             var container = App.Container;
@@ -200,7 +201,6 @@ namespace VHKPlayer.ViewModels
             TabContainer = container.Resolve<ITabContainer>();
             InitialiseData();
             _processor.Process(new CreateAllTabsCommand());
-            var test = container.Resolve<IQueryProcessor>().Process(new GetAllPlayablesQuery()).Where(x => x.GetType() == typeof(PlayList)).ToList();
         }
 
         public void InitialiseData()
