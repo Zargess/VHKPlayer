@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Queries.GetAutoPlayList;
-using VHKPlayer.Queries.GetPlayListByName;
-using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.Queries.Interfaces;
-using VHKPlayer.Utility;
 
 namespace VHKPlayer.Commands.GUI
 {

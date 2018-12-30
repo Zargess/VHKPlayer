@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Models.Interfaces;
-using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
 namespace VHKPlayer.Commands.GUI
 {

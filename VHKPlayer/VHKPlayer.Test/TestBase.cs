@@ -1,10 +1,6 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using Ploeh.AutoFixture;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VHKPlayer.Infrastructure.Modules;
 
 namespace VHKPlayer.Test
@@ -18,7 +14,7 @@ namespace VHKPlayer.Test
             var builder = new ContainerBuilder();
             builder.RegisterModule(new DefaultWiringModule());
 
-            if(setupCallback != null)
+            if (setupCallback != null)
             {
                 setupCallback(builder);
             }

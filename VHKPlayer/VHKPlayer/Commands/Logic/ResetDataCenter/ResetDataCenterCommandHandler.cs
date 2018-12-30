@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using VHKPlayer.Commands.Logic.CreateAllPlayables;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Commands.Logic.RemoveFolder;
@@ -35,7 +31,7 @@ namespace VHKPlayer.Commands.Logic.ResetDataCenter
             var playLists = _queryProcessor.Process(new GetPlayListsQuery()).ToList();
             var players = _queryProcessor.Process(new GetPlayersQuery()).ToList();
 
-            for(var i = 0; i < folders.Count; i++)
+            for (var i = 0; i < folders.Count; i++)
             {
                 _commandProcessor.Process(new RemoveFolderCommand()
                 {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VHKPlayer.Controllers.Interfaces;
+﻿using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Models;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Queries.IsStatFile;
@@ -16,7 +11,8 @@ namespace VHKPlayer.Utility.HandleFile
 {
     public class HandleFileStrategy : IHandleFileStrategy
     {
-        public void Handle(FileNode file, IVideoPlayerController controller, IPlayStrategy playStrategy, IQueryProcessor processor, IFileDelayStrategy delay)
+        public void Handle(FileNode file, IVideoPlayerController controller, IPlayStrategy playStrategy,
+            IQueryProcessor processor, IFileDelayStrategy delay)
         {
             var isStatFile = processor.Process(new IsStatFileQuery()
             {
@@ -30,7 +26,8 @@ namespace VHKPlayer.Utility.HandleFile
                 controller.ShowStats();
                 delay.StartTimer();
             }
-            else if (file.Type == FileType.Picture && isStatStrategy) // Here there might be a problem when playing PlayerPicture
+            else if (file.Type == FileType.Picture && isStatStrategy
+            ) // Here there might be a problem when playing PlayerPicture
             {
                 delay.StartTimer();
             }

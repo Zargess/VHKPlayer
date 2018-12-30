@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using VHKPlayer.Commands.Logic.Interfaces;
-using VHKPlayer.Infrastructure;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 

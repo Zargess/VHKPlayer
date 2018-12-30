@@ -1,11 +1,6 @@
-﻿using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
-using System.Windows.Input;
+using Autofac;
 using VHKPlayer.Commands.Logic.ChangeSetting;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Utility;

@@ -35,7 +35,7 @@ namespace VHKPlayer.Commands.Logic.CreateAllPlayables
             });
 
             _commandProcessor.Process(new CreateAllPlayableFilesCommand());
-            
+
             _commandProcessor.Process(new CreateAllPlayListsCommand());
 
             _commandProcessor.Process(new CreateAllPlayersCommand());

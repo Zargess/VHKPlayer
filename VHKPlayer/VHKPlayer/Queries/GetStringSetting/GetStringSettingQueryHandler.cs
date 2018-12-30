@@ -1,10 +1,4 @@
-﻿using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VHKPlayer.Queries.Interfaces;
+﻿using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility.Settings.Interfaces;
 
 namespace VHKPlayer.Queries.GetStringSetting

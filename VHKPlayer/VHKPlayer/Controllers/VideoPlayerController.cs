@@ -29,12 +29,10 @@ namespace VHKPlayer.Controllers
 
         public bool AutoPlayList { get; set; }
         public Queue<FileNode> Queue { get; private set; }
+
         public FileNode Next
         {
-            get
-            {
-                return _next;
-            }
+            get { return _next; }
             set
             {
                 _next = value;
@@ -43,7 +41,8 @@ namespace VHKPlayer.Controllers
         }
 
 
-        public VideoPlayerController(IQueryProcessor processor, IPlayQueueStrategy playQueue, IHandleFileStrategy fileStrategy)
+        public VideoPlayerController(IQueryProcessor processor, IPlayQueueStrategy playQueue,
+            IHandleFileStrategy fileStrategy)
         {
             this._processor = processor;
             _observers = new List<IPlayController>();
@@ -65,6 +64,7 @@ namespace VHKPlayer.Controllers
             {
                 return null;
             }
+
             return _videoPlayStrategy.PeekNext(this);
         }
 

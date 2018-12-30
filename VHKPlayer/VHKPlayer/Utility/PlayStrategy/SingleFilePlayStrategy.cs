@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Models;
@@ -13,17 +10,12 @@ namespace VHKPlayer.Utility.PlayStrategy
     public class SingleFilePlayStrategy : IPlayStrategy
     {
         private bool _repeat;
+
         public bool Repeat
         {
-            get
-            {
-                return _repeat;
-            }
+            get { return _repeat; }
 
-            set
-            {
-                _repeat = value;
-            }
+            set { _repeat = value; }
         }
 
         public FileNode PeekNext(IVideoPlayerController videoPlayer)

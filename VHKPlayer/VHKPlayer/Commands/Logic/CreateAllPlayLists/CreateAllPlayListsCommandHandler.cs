@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using VHKPlayer.Commands.Logic.CreateAutoPlayList;
-using VHKPlayer.Commands.Logic.CreatePlayList;
 using VHKPlayer.Commands.Logic.Interfaces;
-using VHKPlayer.Infrastructure;
-using VHKPlayer.Queries.GetFolderByPathSubscript;
 using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Queries.ParsePlayListString;
 using VHKPlayer.Utility;
-using VHKPlayer.Utility.LoadingStrategy.PlayListLoading;
-using VHKPlayer.Utility.PlayStrategy;
 
 namespace VHKPlayer.Commands.Logic.CreateAllPlayLists
 {

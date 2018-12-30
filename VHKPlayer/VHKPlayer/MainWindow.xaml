@@ -37,7 +37,7 @@
 
                 <GridSplitter Grid.Column="1" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
-                <Grid Column="2"></Grid>
+                <Grid Column="2" />
             </Grid>
         </DataTemplate>
 

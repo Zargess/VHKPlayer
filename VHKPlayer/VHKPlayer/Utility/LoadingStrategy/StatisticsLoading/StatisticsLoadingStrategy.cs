@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Xml;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Models;
@@ -49,6 +45,7 @@ namespace VHKPlayer.Utility.LoadingStrategy.Stats
                     }
                 }
             }
+
             return res;
         }
     }

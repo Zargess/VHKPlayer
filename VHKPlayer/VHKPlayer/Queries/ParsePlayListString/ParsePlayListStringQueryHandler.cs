@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VHKPlayer.Commands.Logic.CreatePlayList;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Queries.GetFolderByPathSubscript;
 using VHKPlayer.Queries.GetPlayListLoadingStrategy;
 using VHKPlayer.Queries.GetPlayStrategy;
 using VHKPlayer.Queries.Interfaces;
-using VHKPlayer.Utility.LoadingStrategy.PlayListLoading;
-using VHKPlayer.Utility.PlayStrategy;
 
 namespace VHKPlayer.Queries.ParsePlayListString
 {
@@ -56,7 +51,7 @@ namespace VHKPlayer.Queries.ParsePlayListString
                 var index = variables[3].ToInteger();
 
                 var repeat = variables[4].ToBool();
-                
+
                 var loading = variables[5];
 
                 command.LoadingStrategy = _processor.Process(new GetPlayListLoadingStrategyQuery()

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.GetPlayableFiles;
 using VHKPlayer.Queries.GetPlayers;
@@ -18,7 +15,7 @@ namespace VHKPlayer.Queries.GetAllPlayables
         public GetAllPlayablesQueryHandler(IQueryProcessor processor)
         {
             this._processor = processor;
-        } 
+        }
 
         public IQueryable<IPlayable> Handle(GetAllPlayablesQuery query)
         {

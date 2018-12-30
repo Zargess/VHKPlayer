@@ -1,10 +1,6 @@
-﻿using Autofac;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Autofac;
 using VHKPlayer.Commands.Logic.ChangeSetting;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Models.Interfaces;
@@ -25,12 +21,10 @@ namespace VHKPlayer.ViewModels
         private readonly Dictionary<string, string> _settings;
 
         #region Properties
+
         public string SupportedVideo
         {
-            get
-            {
-                return GetStringSettingValue(Constants.SupportedVideoSettingName);
-            }
+            get { return GetStringSettingValue(Constants.SupportedVideoSettingName); }
 
             set
             {
@@ -41,10 +35,7 @@ namespace VHKPlayer.ViewModels
 
         public string SupportedAudio
         {
-            get
-            {
-                return GetStringSettingValue(Constants.SupportedAudioSettingName);
-            }
+            get { return GetStringSettingValue(Constants.SupportedAudioSettingName); }
 
             set
             {
@@ -55,10 +46,7 @@ namespace VHKPlayer.ViewModels
 
         public string SupportedPicture
         {
-            get
-            {
-                return GetStringSettingValue(Constants.SupportedPictureSettingName);
-            }
+            get { return GetStringSettingValue(Constants.SupportedPictureSettingName); }
 
             set
             {
@@ -69,10 +57,7 @@ namespace VHKPlayer.ViewModels
 
         public string SupportedInformation
         {
-            get
-            {
-                return GetStringSettingValue(Constants.SupportedInfoFileSettingName);
-            }
+            get { return GetStringSettingValue(Constants.SupportedInfoFileSettingName); }
 
             set
             {
@@ -83,10 +68,7 @@ namespace VHKPlayer.ViewModels
 
         public string PlayerPictureFolder
         {
-            get
-            {
-                return GetStringSettingValue(Constants.PlayerPictureFolderSettingName);
-            }
+            get { return GetStringSettingValue(Constants.PlayerPictureFolderSettingName); }
 
             set
             {
@@ -97,10 +79,7 @@ namespace VHKPlayer.ViewModels
 
         public string PlayerStatPictureFolder
         {
-            get
-            {
-                return GetStringSettingValue(Constants.PlayerStatPictureFolderSettingName);
-            }
+            get { return GetStringSettingValue(Constants.PlayerStatPictureFolderSettingName); }
 
             set
             {
@@ -111,10 +90,7 @@ namespace VHKPlayer.ViewModels
 
         public string PlayerStatVideoFolder
         {
-            get
-            {
-                return GetStringSettingValue(Constants.PlayerStatVideoFolderSettingName);
-            }
+            get { return GetStringSettingValue(Constants.PlayerStatVideoFolderSettingName); }
 
             set
             {
@@ -125,10 +101,7 @@ namespace VHKPlayer.ViewModels
 
         public string PlayerStatMusicFolder
         {
-            get
-            {
-                return GetStringSettingValue(Constants.PlayerStatMusicFolderSettingName);
-            }
+            get { return GetStringSettingValue(Constants.PlayerStatMusicFolderSettingName); }
 
             set
             {
@@ -139,10 +112,7 @@ namespace VHKPlayer.ViewModels
 
         public string IgnoreFolders
         {
-            get
-            {
-                return GetStringSettingValue(Constants.IgnoredFolderPathSettingName);
-            }
+            get { return GetStringSettingValue(Constants.IgnoredFolderPathSettingName); }
 
             set
             {
@@ -153,10 +123,7 @@ namespace VHKPlayer.ViewModels
 
         public string PlayableFileFolders
         {
-            get
-            {
-                return GetStringSettingValue(Constants.PlayableFileFoldersSettingName);
-            }
+            get { return GetStringSettingValue(Constants.PlayableFileFoldersSettingName); }
 
             set
             {
@@ -167,10 +134,7 @@ namespace VHKPlayer.ViewModels
 
         public string PlayLists
         {
-            get
-            {
-                return GetStringSettingValue(Constants.PlayListsSettingName);
-            }
+            get { return GetStringSettingValue(Constants.PlayListsSettingName); }
 
             set
             {
@@ -181,10 +145,7 @@ namespace VHKPlayer.ViewModels
 
         public string AutoPlaylist
         {
-            get
-            {
-                return GetStringSettingValue(Constants.AutoPlayListSettingName);
-            }
+            get { return GetStringSettingValue(Constants.AutoPlayListSettingName); }
 
             set
             {
@@ -195,10 +156,7 @@ namespace VHKPlayer.ViewModels
 
         public string RootFolder
         {
-            get
-            {
-                return GetStringSettingValue(Constants.RootFolderPathSettingName);
-            }
+            get { return GetStringSettingValue(Constants.RootFolderPathSettingName); }
 
             set
             {
@@ -209,10 +167,7 @@ namespace VHKPlayer.ViewModels
 
         public string PlayerStatsInformationFolder
         {
-            get
-            {
-                return GetStringSettingValue(Constants.PlayerStatisticInformation);
-            }
+            get { return GetStringSettingValue(Constants.PlayerStatisticInformation); }
 
             set
             {
@@ -223,10 +178,7 @@ namespace VHKPlayer.ViewModels
 
         public string Tabs
         {
-            get
-            {
-                return GetStringSettingValue(Constants.TabsSettingName);
-            }
+            get { return GetStringSettingValue(Constants.TabsSettingName); }
 
             set
             {
@@ -237,10 +189,7 @@ namespace VHKPlayer.ViewModels
 
         public int StatTimerDelay
         {
-            get
-            {
-                return GetIntSettingValue(Constants.StatTimerSettingName);
-            }
+            get { return GetIntSettingValue(Constants.StatTimerSettingName); }
 
             set
             {
@@ -251,10 +200,7 @@ namespace VHKPlayer.ViewModels
 
         public string GoalPlayList
         {
-            get
-            {
-                return GetStringSettingValue(Constants.GoalPlayList);
-            }
+            get { return GetStringSettingValue(Constants.GoalPlayList); }
 
             set
             {
@@ -265,10 +211,7 @@ namespace VHKPlayer.ViewModels
 
         public double MusicVolume
         {
-            get
-            {
-                return GetDoubleSettingValue(Constants.MusicVolumeSettingName);
-            }
+            get { return GetDoubleSettingValue(Constants.MusicVolumeSettingName); }
 
             set
             {
@@ -279,10 +222,7 @@ namespace VHKPlayer.ViewModels
 
         public double VideoVolume
         {
-            get
-            {
-                return GetDoubleSettingValue(Constants.VideoVolumeSettingName);
-            }
+            get { return GetDoubleSettingValue(Constants.VideoVolumeSettingName); }
 
             set
             {
@@ -293,10 +233,7 @@ namespace VHKPlayer.ViewModels
 
         public int Screen
         {
-            get
-            {
-                return GetIntSettingValue(Constants.ScreenSettingName);
-            }
+            get { return GetIntSettingValue(Constants.ScreenSettingName); }
 
             set
             {
@@ -307,10 +244,7 @@ namespace VHKPlayer.ViewModels
 
         public bool FullScreen
         {
-            get
-            {
-                return GetBoolSettingValue(Constants.FullScreenSettingName);
-            }
+            get { return GetBoolSettingValue(Constants.FullScreenSettingName); }
 
             set
             {
@@ -318,6 +252,7 @@ namespace VHKPlayer.ViewModels
                 RaisePropertyChanged(nameof(FullScreen));
             }
         }
+
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -343,6 +278,7 @@ namespace VHKPlayer.ViewModels
         }
 
         #region Initiate settings dictionary
+
         private void InitSettingsDictionary()
         {
             _settings.Add(Constants.PlayerPictureFolderSettingName, nameof(PlayerPictureFolder));
@@ -367,9 +303,11 @@ namespace VHKPlayer.ViewModels
             _settings.Add(Constants.ScreenSettingName, nameof(Screen));
             _settings.Add(Constants.FullScreenSettingName, nameof(FullScreen));
         }
+
         #endregion
 
         #region Settings command and queries
+
         private string GetStringSettingValue(string settingName)
         {
             return _qprocessor.Process(new GetStringSettingQuery
@@ -410,6 +348,7 @@ namespace VHKPlayer.ViewModels
                 Value = value
             });
         }
+
         #endregion
     }
 }

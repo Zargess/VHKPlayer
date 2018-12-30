@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Queries.GetIntSetting;
@@ -31,7 +27,7 @@ namespace VHKPlayer.Utility.FileDelayStrategy
             {
                 SettingName = Constants.StatTimerSettingName
             });
-            
+
             _timer.Interval = delay;
             _timer.Enabled = true;
             _timer.Start();

@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VHKPlayer.Utility.FindFileType.Interfaces;
-using NSubstitute;
-using VHKPlayer.Models;
-using Autofac;
-using VHKPlayer.Commands.Logic.Interfaces;
-using VHKPlayer.Commands.Logic.CreateFile;
 using System.IO;
-using VHKPlayer.Queries.Interfaces;
-using VHKPlayer.Queries.GetPlayerFolders;
 using System.Linq;
+using Autofac;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
+using VHKPlayer.Commands.Logic.CreateFile;
 using VHKPlayer.Commands.Logic.CreatePlayer;
+using VHKPlayer.Commands.Logic.Interfaces;
+using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
+using VHKPlayer.Queries.GetPlayerFolders;
+using VHKPlayer.Queries.Interfaces;
+using VHKPlayer.Utility.FindFileType.Interfaces;
 
 namespace VHKPlayer.Test
 {

@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.ViewModels.Interfaces;
 
@@ -71,7 +60,8 @@ namespace VHKPlayer
                 this.Height = _originalHeight;
                 this.WindowState = WindowState.Normal;
                 this.WindowStyle = WindowStyle.SingleBorderWindow;
-            } else
+            }
+            else
             {
                 this.Width = workingArea.Width;
                 this.Height = workingArea.Height;

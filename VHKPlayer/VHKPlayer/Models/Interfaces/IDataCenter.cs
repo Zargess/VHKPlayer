@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Timers;
+﻿using System.Collections.ObjectModel;
 
 namespace VHKPlayer.Models.Interfaces
 {

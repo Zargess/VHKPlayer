@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VHKPlayer.Commands.Logic.CreateTab;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Infrastructure;
@@ -21,7 +17,8 @@ namespace VHKPlayer.Commands.Logic.CreateAllTabs
         private readonly IQueryProcessor _qprocessor;
         private readonly IGetSpecialTabStrategy _strategy;
 
-        public CreateAllTabsCommandHandler(ICommandProcessor cprocessor, IGetSpecialTabStrategy strategy, IQueryProcessor qprocessor)
+        public CreateAllTabsCommandHandler(ICommandProcessor cprocessor, IGetSpecialTabStrategy strategy,
+            IQueryProcessor qprocessor)
         {
             _cprocessor = cprocessor;
             _strategy = strategy;
@@ -31,10 +28,10 @@ namespace VHKPlayer.Commands.Logic.CreateAllTabs
         public void Handle(CreateAllTabsCommand command)
         {
             var defs = _qprocessor.Process(new GetStringSettingQuery()
-            {
-                SettingName = Constants.TabsSettingName
-            })
-            .Split(',');
+                {
+                    SettingName = Constants.TabsSettingName
+                })
+                .Split(',');
 
             foreach (var def in defs)
             {
@@ -51,7 +48,7 @@ namespace VHKPlayer.Commands.Logic.CreateAllTabs
                     _cprocessor.Process(new CreateTabCommand()
                     {
                         Name = arguments[0],
-                        Placement = (TabPlacement)Enum.Parse(typeof(TabPlacement), arguments[1]),
+                        Placement = (TabPlacement) Enum.Parse(typeof(TabPlacement), arguments[1]),
                         Number = arguments[2].ToInteger(),
                         Script = new Script(arguments[3]),
                         PlayListTab = arguments[4].ToBool(),

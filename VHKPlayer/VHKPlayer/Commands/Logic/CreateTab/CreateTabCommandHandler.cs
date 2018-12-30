@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
 using VHKPlayer.Commands.Logic.AddDataObserver;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Infrastructure;
@@ -25,7 +20,8 @@ namespace VHKPlayer.Commands.Logic.CreateTab
         private readonly IQueryProcessor _qprocessor;
         private readonly IGetSpecialTabStrategy _strategy;
 
-        public CreateTabCommandHandler(ITabContainer container, IScriptInterpreter interpreter, ICommandProcessor cprocessor, IQueryProcessor qprocessor, IGetSpecialTabStrategy strategy)
+        public CreateTabCommandHandler(ITabContainer container, IScriptInterpreter interpreter,
+            ICommandProcessor cprocessor, IQueryProcessor qprocessor, IGetSpecialTabStrategy strategy)
         {
             _container = container;
             _interpreter = interpreter;
@@ -52,7 +48,8 @@ namespace VHKPlayer.Commands.Logic.CreateTab
             else
             {
                 var playables = _qprocessor.Process(new GetAllPlayablesQuery());
-                var data = new ObservableCollection<IPlayable>(playables.Where(x => _interpreter.Evaluate(command.Script, x)));
+                var data = new ObservableCollection<IPlayable>(playables.Where(x =>
+                    _interpreter.Evaluate(command.Script, x)));
                 var tab = new PlayableContentTab(_interpreter, _qprocessor)
                 {
                     Name = command.Name,

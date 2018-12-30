@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using VHKPlayer.Commands.Logic.CreateFolderStructure;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Commands.Logic.ResetDataCenter;
@@ -17,17 +16,17 @@ namespace VHKPlayer.Monitors
 {
     public class DataMonitor : IDataMonitor, IVhkObserver<FolderNode>
     {
-        
         private readonly ICommandProcessor _commandProcessor;
         private readonly IQueryProcessor _queryProcessor;
         private readonly IGlobalConfigService _configService;
 
-        public DataMonitor(ICommandProcessor commandProcessor, IQueryProcessor queryProcessor, IGlobalConfigService configService)
+        public DataMonitor(ICommandProcessor commandProcessor, IQueryProcessor queryProcessor,
+            IGlobalConfigService configService)
         {
             this._commandProcessor = commandProcessor;
             this._queryProcessor = queryProcessor;
             this._configService = configService;
-            InitEventListeners();    
+            InitEventListeners();
         }
 
         private void InitEventListeners()
@@ -36,7 +35,8 @@ namespace VHKPlayer.Monitors
 
             _commandProcessor.ProcessTransaction(new CreateFolderStructureCommand()
             {
-                RootFolderPath = _queryProcessor.Process(new GetStringSettingQuery() {
+                RootFolderPath = _queryProcessor.Process(new GetStringSettingQuery()
+                {
                     SettingName = Constants.RootFolderPathSettingName
                 })
             });
@@ -63,6 +63,7 @@ namespace VHKPlayer.Monitors
             {
                 folder.RemoveObserver(this);
             }
+
             _commandProcessor.ProcessTransaction(new ResetDataCenterCommand());
         }
     }

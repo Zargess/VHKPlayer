@@ -1,21 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VHKPlayer.Interpreter;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VHKPlayer.Models;
-using VHKPlayer.Test;
-using VHKPlayer.Queries.GetFolderByRelativePath;
-using VHKPlayer.Queries.Interfaces;
+using Autofac;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Ploeh.AutoFixture;
-using Autofac;
 using VHKPlayer.Interpreter.Interfaces;
+using VHKPlayer.Models;
 using VHKPlayer.Queries.GetFolders;
 using VHKPlayer.Queries.GetStringSetting;
-using ScriptParser;
+using VHKPlayer.Queries.Interfaces;
+using VHKPlayer.Test;
 
 namespace VHKPlayer.Interpreter.Tests
 {
@@ -24,12 +18,13 @@ namespace VHKPlayer.Interpreter.Tests
     {
         [TestMethod]
         public void TestEvaluateMultiSelector()
-        { 
+        {
             var intScript = "(property name:Number value:42)";
             var boolScript = "(property name:Trainer value:True)";
             var typeScript = "(type name:Player)";
-            
-            var script = new Script("(multi left:" + intScript + " right:(multi left:" + typeScript + " right:" + boolScript + "))");
+
+            var script = new Script("(multi left:" + intScript + " right:(multi left:" + typeScript + " right:" +
+                                    boolScript + "))");
 
             var player1 = new Player()
             {
@@ -141,16 +136,17 @@ namespace VHKPlayer.Interpreter.Tests
 
                 c.RegisterFake<IQueryHandler<GetFoldersQuery, IQueryable<FolderNode>>>()
                     .Handle(Arg.Any<GetFoldersQuery>())
-                    .Returns(new[] {
-                            new FolderNode(null)
+                    .Returns(new[]
+                    {
+                        new FolderNode(null)
+                        {
+                            FullPath = path,
+                            Content = new List<FileNode>()
                             {
-                                FullPath = path,
-                                Content = new List<FileNode>()
-                                {
-                                    file
-                                }
+                                file
                             }
-                        }.AsQueryable());
+                        }
+                    }.AsQueryable());
             });
 
             var interpreter = container.Resolve<IScriptInterpreter>();

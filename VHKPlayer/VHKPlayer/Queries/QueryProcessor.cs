@@ -1,5 +1,5 @@
-﻿using Autofac;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Autofac;
 using VHKPlayer.Queries.Interfaces;
 
 namespace VHKPlayer.Queries
@@ -18,7 +18,7 @@ namespace VHKPlayer.Queries
             var handlerType = typeof(IQueryHandler<,>).MakeGenericType(query.GetType(), typeof(TResult));
             dynamic handler = _context.Resolve(handlerType);
 
-            return handler.Handle((dynamic)query);
+            return handler.Handle((dynamic) query);
         }
 
         public async Task<TResult> ProcessAsync<TResult>(IQuery<TResult> query)

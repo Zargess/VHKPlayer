@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Timers;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Models.Interfaces;
 
@@ -12,7 +10,7 @@ namespace VHKPlayer.Models
     public class DataCenter : IDataCenter
     {
         private readonly List<IDataObserver> _observers;
-		
+
         public ObservableCollection<Player> Players { get; private set; }
         public ObservableCollection<PlayList> PlayLists { get; private set; }
         public ObservableCollection<FolderNode> Folders { get; private set; }
@@ -57,6 +55,7 @@ namespace VHKPlayer.Models
             {
                 observer.DataUpdated();
             }
+
             UncommitedChanges = false;
         }
     }

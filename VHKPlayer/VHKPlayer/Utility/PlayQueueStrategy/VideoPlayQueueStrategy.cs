@@ -21,7 +21,8 @@ namespace VHKPlayer.Utility.PlayQueueStrategy
             this._processor = processor;
         }
 
-        public void PlayNextItem(Queue<FileNode> queue, VideoPlayerController controller, IPlayStrategy strategy, IPlayable previous)
+        public void PlayNextItem(Queue<FileNode> queue, VideoPlayerController controller, IPlayStrategy strategy,
+            IPlayable previous)
         {
             if (!controller.Queue.IsEmpty())
             {

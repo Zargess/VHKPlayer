@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using VHKPlayer.Commands.Logic.CreateAllPlayers;
 using VHKPlayer.Commands.Logic.CreatePlayableFilesFromFilesInFolder;
 using VHKPlayer.Commands.Logic.Interfaces;
@@ -19,7 +15,8 @@ namespace VHKPlayer.Commands.Logic.UpdateDataCenterByFolder
         private readonly ICommandProcessor _commandProcessor;
         private readonly IQueryProcessor _queryProcessor;
 
-        public UpdateDataCenterByFolderCommandHandler(ICommandProcessor commandProcessor, IQueryProcessor queryProcessor)
+        public UpdateDataCenterByFolderCommandHandler(ICommandProcessor commandProcessor,
+            IQueryProcessor queryProcessor)
         {
             this._commandProcessor = commandProcessor;
             this._queryProcessor = queryProcessor;

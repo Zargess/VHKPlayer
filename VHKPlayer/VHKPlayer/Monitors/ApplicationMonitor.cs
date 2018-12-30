@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Monitors.Interfaces;
 using VHKPlayer.Utility.Settings.Interfaces;

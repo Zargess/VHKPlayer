@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Threading;
 using VHKPlayer.Commands.Logic.CreateFile;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Models.Interfaces;
@@ -21,10 +20,7 @@ namespace VHKPlayer.Models
 
         public string FullPath
         {
-            get
-            {
-                return _fullPath;
-            }
+            get { return _fullPath; }
             set
             {
                 _fullPath = value;
@@ -97,7 +93,7 @@ namespace VHKPlayer.Models
             {
                 Path = FullPath,
                 NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastAccess
-                    | NotifyFilters.LastWrite | NotifyFilters.DirectoryName,
+                                                      | NotifyFilters.LastWrite | NotifyFilters.DirectoryName,
                 Filter = "*"
             };
             watcher.Created += Changed;
@@ -126,7 +122,6 @@ namespace VHKPlayer.Models
 
         private void Changed(object sender, FileSystemEventArgs e)
         {
-            
             App.Dispatch.BeginInvoke(new Action(() => UpdateFolder()));
         }
     }

@@ -1,28 +1,21 @@
-﻿using Autofac;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
+using System.Windows;
+using Autofac;
 using VHKPlayer.Commands.GUI;
 using VHKPlayer.Commands.Logic.AddApplicationObserver;
-using VHKPlayer.Commands.Logic.AddDataObserver;
 using VHKPlayer.Commands.Logic.CreateAllPlayables;
 using VHKPlayer.Commands.Logic.CreateAllTabs;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Commands.Logic.ReloadTabs;
-using VHKPlayer.Controllers;
 using VHKPlayer.Controllers.Interfaces;
-using VHKPlayer.Infrastructure;
-using VHKPlayer.Infrastructure.Modules;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Monitors.Interfaces;
-using VHKPlayer.Queries.GetAllPlayables;
+using VHKPlayer.Queries.GetWindowPosition;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility;
 using VHKPlayer.ViewModels.Interfaces;
-using System;
-using System.Windows;
-using VHKPlayer.Queries.GetWindowPosition;
+using ICommand = System.Windows.Input.ICommand;
 
 namespace VHKPlayer.ViewModels
 {
@@ -31,24 +24,23 @@ namespace VHKPlayer.ViewModels
         private readonly ICommandProcessor _processor;
         private readonly IDataMonitor _monitor;
 
-        public ITabContainer TabContainer { get; }
+        private ITabContainer TabContainer { get; }
 
         public IVideoPlayerController Controller { get; set; }
-        public System.Windows.Input.ICommand PlayCommand { get; set; }
-        public System.Windows.Input.ICommand BrowseForRootFolderCommand { get; set; }
-        public System.Windows.Input.ICommand BrowseForStatFolderCommand { get; set; }
-        public System.Windows.Input.ICommand ToggleAutoPlayListCommand { get; set; }
-        public System.Windows.Input.ICommand PlayAutoPlayListCommand { get; set; }
+        private ICommand PlayCommand { get; set; }
+        private ICommand BrowseForRootFolderCommand { get; set; }
+        private ICommand BrowseForStatFolderCommand { get; set; }
+        private ICommand ToggleAutoPlayListCommand { get; set; }
+        private ICommand PlayAutoPlayListCommand { get; set; }
         public WindowPosition WindowPosition { get; set; }
 
         #region Move to settings
+
         private bool _statsEnabled;
+
         public bool StatsEnabled
         {
-            get
-            {
-                return _statsEnabled;
-            }
+            get => _statsEnabled;
 
             set
             {
@@ -58,12 +50,10 @@ namespace VHKPlayer.ViewModels
         }
 
         private bool _soundEnabled;
+
         public bool SoundEnabled
         {
-            get
-            {
-                return _soundEnabled;
-            }
+            get => _soundEnabled;
 
             set
             {
@@ -73,12 +63,10 @@ namespace VHKPlayer.ViewModels
         }
 
         private Thickness _savingPlacement = new Thickness(0.0, 0.0, 0.0, 0.0);
+
         public Thickness SavingPlacement
         {
-            get
-            {
-                return _savingPlacement;
-            }
+            get => _savingPlacement;
 
             set
             {
@@ -88,12 +76,10 @@ namespace VHKPlayer.ViewModels
         }
 
         private Thickness _scoringPlacement = new Thickness(0.0, 0.0, 0.0, 0.0);
+
         public Thickness ScoringPlacement
         {
-            get
-            {
-                return _scoringPlacement;
-            }
+            get => _scoringPlacement;
 
             set
             {
@@ -103,12 +89,10 @@ namespace VHKPlayer.ViewModels
         }
 
         private Thickness _penaltyPlacement = new Thickness(0.0, 0.0, 0.0, 0.0);
+
         public Thickness PenaltyPlacement
         {
-            get
-            {
-                return _penaltyPlacement;
-            }
+            get => _penaltyPlacement;
 
             set
             {
@@ -118,12 +102,10 @@ namespace VHKPlayer.ViewModels
         }
 
         private Thickness _textBlockPlacement = new Thickness(0.0, 0.0, 0.0, 0.0);
+
         public Thickness TextBlockPlacement
         {
-            get
-            {
-                return _textBlockPlacement;
-            }
+            get => _textBlockPlacement;
 
             set
             {
@@ -133,12 +115,10 @@ namespace VHKPlayer.ViewModels
         }
 
         private double _textSize;
+
         public double TextSize
         {
-            get
-            {
-                return _textSize;
-            }
+            get => _textSize;
 
             set
             {
@@ -148,12 +128,10 @@ namespace VHKPlayer.ViewModels
         }
 
         private bool _fullscreen;
+
         public bool FullScreen
         {
-            get
-            {
-                return _fullscreen;
-            }
+            get => _fullscreen;
 
             set
             {
@@ -163,12 +141,10 @@ namespace VHKPlayer.ViewModels
         }
 
         private int _screen;
+
         public int Screen
         {
-            get
-            {
-                return _screen;
-            }
+            get => _screen;
 
             set
             {
@@ -176,6 +152,7 @@ namespace VHKPlayer.ViewModels
                 RaiseEvent(nameof(Screen));
             }
         }
+
         #endregion
 
         public PlayerViewModel()
@@ -203,7 +180,7 @@ namespace VHKPlayer.ViewModels
             _processor.Process(new CreateAllTabsCommand());
         }
 
-        public void InitialiseData()
+        private void InitialiseData()
         {
             _processor.ProcessTransaction(new CreateAllPlayablesCommand());
         }
@@ -220,8 +197,7 @@ namespace VHKPlayer.ViewModels
 
         private void RaiseEvent(string name)
         {
-            if (PropertyChanged == null) return;
-            PropertyChanged(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

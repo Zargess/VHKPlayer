@@ -2,7 +2,6 @@
 using System.Linq;
 using VHKPlayer.Commands.Logic.CreateFolder;
 using VHKPlayer.Commands.Logic.Interfaces;
-using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.Queries.Interfaces;
@@ -16,7 +15,8 @@ namespace VHKPlayer.Commands.Logic.CreateFolderStructure
         private readonly ICommandProcessor _commandProcessor;
         private readonly IQueryProcessor _queryProcessor;
 
-        public CreateFolderStructureCommandHandler(IDataCenter center, ICommandProcessor commandProcessor, IQueryProcessor queryProcessor)
+        public CreateFolderStructureCommandHandler(IDataCenter center, ICommandProcessor commandProcessor,
+            IQueryProcessor queryProcessor)
         {
             this._center = center;
             this._commandProcessor = commandProcessor;
@@ -28,7 +28,8 @@ namespace VHKPlayer.Commands.Logic.CreateFolderStructure
         {
             if (!Directory.Exists(command.RootFolderPath)) return;
 
-            var paths = Directory.EnumerateDirectories(command.RootFolderPath, "*", SearchOption.AllDirectories).ToList();
+            var paths = Directory.EnumerateDirectories(command.RootFolderPath, "*", SearchOption.AllDirectories)
+                .ToList();
 
             var temp = _queryProcessor.Process(new GetStringSettingQuery()
             {

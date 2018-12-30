@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -58,6 +54,7 @@ namespace VHKPlayer.Controllers
                 mediaelement.Play();
                 Console.WriteLine("PlayController playing: {0}", file.Name);
             }
+
             ChangeState(file.Type, MediaPlayerState.Playing);
         }
 
@@ -124,7 +121,8 @@ namespace VHKPlayer.Controllers
             if (type == FileType.Audio)
             {
                 AudioState = state;
-            } else
+            }
+            else
             {
                 VideoState = state;
             }

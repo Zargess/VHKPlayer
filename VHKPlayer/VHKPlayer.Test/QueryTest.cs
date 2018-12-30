@@ -1,31 +1,24 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VHKPlayer.Models;
-using VHKPlayer.Queries.GetPlayableFiles;
-using VHKPlayer.Queries.Interfaces;
+using System.Collections.ObjectModel;
 using System.Linq;
-using NSubstitute;
 using Autofac;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
+using Ploeh.AutoFixture;
 using VHKPlayer.Commands.Logic.Interfaces;
+using VHKPlayer.Models;
+using VHKPlayer.Models.Interfaces;
+using VHKPlayer.Queries.GetFolderByPathSubscript;
+using VHKPlayer.Queries.GetFolders;
+using VHKPlayer.Queries.GetPlayableFiles;
 using VHKPlayer.Queries.GetPlayablesAffectedByFolder;
 using VHKPlayer.Queries.GetPlayerFolders;
-using VHKPlayer.Queries.GetFolderByPathSubscript;
-using VHKPlayer.Queries.IsStatFile;
-using VHKPlayer.Queries.GetFolders;
-using VHKPlayer.Queries.GetStringSetting;
-using System.Collections.ObjectModel;
-using VHKPlayer.Utility.FindFileType.Interfaces;
-using VHKPlayer.Models.Interfaces;
-using Ploeh.AutoFixture;
 using VHKPlayer.Queries.GetPlayers;
 using VHKPlayer.Queries.GetPlayLists;
-using VHKPlayer.Utility.Settings.Interfaces;
-using VHKPlayer.Utility;
-using VHKPlayer.Utility.PlayStrategy;
-using ScriptParser;
-using VHKPlayer.Queries.GetAllPlayables;
+using VHKPlayer.Queries.GetStringSetting;
+using VHKPlayer.Queries.Interfaces;
+using VHKPlayer.Queries.IsStatFile;
 
 namespace VHKPlayer.Test
 {
@@ -311,7 +304,7 @@ namespace VHKPlayer.Test
             var root = "c:\\test";
             var subscript = "humus\\carl";
 
-            var container = CreateContainer(c => 
+            var container = CreateContainer(c =>
             {
                 c.RegisterFake<IQueryHandler<GetStringSettingQuery, string>>()
                     .Handle(Arg.Any<GetStringSettingQuery>())
@@ -411,7 +404,7 @@ namespace VHKPlayer.Test
 
                 c.RegisterFake<IQueryHandler<GetPlayerFoldersQuery, IQueryable<FolderNode>>>()
                     .Handle(Arg.Any<GetPlayerFoldersQuery>())
-                    .Returns(new[] 
+                    .Returns(new[]
                     {
                         new FolderNode(null)
                         {

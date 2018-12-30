@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Models;
 using VHKPlayer.Utility.PlayStrategy.Interfaces;
@@ -20,7 +16,6 @@ namespace VHKPlayer.Utility.PlayStrategy
 
         public void Play(IEnumerable<FileNode> content, IVideoPlayerController videoPlayer)
         {
-            
         }
     }
 }
