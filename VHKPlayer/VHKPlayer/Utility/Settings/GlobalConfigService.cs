@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VHKPlayer.Utility.Settings.Interfaces;
 
 namespace VHKPlayer.Utility.Settings
@@ -33,7 +29,7 @@ namespace VHKPlayer.Utility.Settings
 
         public void Update(string settingName, object value)
         {
-            if (String.IsNullOrEmpty(settingName))
+            if (string.IsNullOrEmpty(settingName))
                 throw new ArgumentNullException("Setting name must be provided");
 
             var setting = this._setting[settingName];
@@ -42,6 +38,7 @@ namespace VHKPlayer.Utility.Settings
             {
                 throw new ArgumentException("Setting " + this._setting + " not found.");
             }
+
             if (setting.GetType() != value.GetType())
             {
                 throw new InvalidCastException("Unable to cast value to " + setting.GetType());
@@ -58,6 +55,7 @@ namespace VHKPlayer.Utility.Settings
             {
                 ApplicationSettingsUpdated.Invoke(this, new PropertyChangedEventArgs(settingName));
             }
+
             SettingsUpdated?.Invoke(this, new PropertyChangedEventArgs(settingName));
         }
     }
