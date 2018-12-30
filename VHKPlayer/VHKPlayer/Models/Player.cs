@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.GetPlayerStats;
 using VHKPlayer.Queries.Interfaces;
-using VHKPlayer.Utility.LoadingStrategy.Interfaces;
 using VHKPlayer.Utility.PlayStrategy.Interfaces;
 
 namespace VHKPlayer.Models
@@ -56,7 +50,7 @@ namespace VHKPlayer.Models
         public override string ToString()
         {
             var nr = Number < 10 ? "0" + Number : "" + Number;
-            return nr + " - " + Name; 
+            return nr + " - " + Name;
         }
     }
 }

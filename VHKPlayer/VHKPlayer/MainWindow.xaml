@@ -37,7 +37,7 @@
 
                 <GridSplitter Grid.Column="1" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
-                <Grid Column="2"></Grid>
+                <Grid Column="2" />
             </Grid>
         </DataTemplate>
 
@@ -68,8 +68,8 @@
             <Setter Property="ItemTemplate" Value="{StaticResource TabName}" />
             <Setter Property="ContentTemplateSelector" Value="{StaticResource TabDesignSelector}" />
         </Style>
-        <Style x:Key="TestStyle" x:Name="Test" TargetType="{x:Type MenuItem}"></Style>
-        
+        <Style x:Key="TestStyle" x:Name="Test" TargetType="{x:Type MenuItem}" />
+
     </Window.Resources>
 
     <Grid>
@@ -112,8 +112,7 @@
                     <controls:MediaViewControl x:Name="View" SoundEnabled="True" StatsEnabled="True" />
                 </Grid>
 
-                <Grid Grid.Row="2" Grid.Column="2">
-                </Grid>
+                <Grid Grid.Row="2" Grid.Column="2" />
             </Grid>
         </DockPanel>
     </Grid>

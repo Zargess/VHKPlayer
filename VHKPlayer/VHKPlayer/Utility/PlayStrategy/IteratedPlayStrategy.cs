@@ -27,7 +27,7 @@ namespace VHKPlayer.Utility.PlayStrategy
             var file = PeekNext(videoPlayer);
             _counter++;
 
-            videoPlayer.Queue.SetQueue(new List<FileNode>() { file });
+            videoPlayer.Queue.SetQueue(new List<FileNode>() {file});
             videoPlayer.PlayQueue();
         }
     }

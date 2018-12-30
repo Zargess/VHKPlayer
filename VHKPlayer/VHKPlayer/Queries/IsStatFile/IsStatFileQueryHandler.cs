@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using VHKPlayer.Queries.GetFolderByPathSubscript;
+﻿using VHKPlayer.Queries.GetFolderByPathSubscript;
 using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility;

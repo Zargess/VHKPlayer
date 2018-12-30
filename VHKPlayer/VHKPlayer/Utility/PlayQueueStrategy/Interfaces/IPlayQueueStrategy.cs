@@ -8,6 +8,7 @@ namespace VHKPlayer.Utility.PlayQueueStrategy.Interfaces
 {
     public interface IPlayQueueStrategy
     {
-        void PlayNextItem(Queue<FileNode> queue, VideoPlayerController controller, IPlayStrategy strategy, IPlayable previous);
+        void PlayNextItem(Queue<FileNode> queue, VideoPlayerController controller, IPlayStrategy strategy,
+            IPlayable previous);
     }
 }

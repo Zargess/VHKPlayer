@@ -1,6 +1,6 @@
 ﻿namespace ScriptParser
     open System
-    type Token = LPAREN
+    type Token = | LPAREN
                | RPAREN
                | COLON
                | MULTI
@@ -19,7 +19,7 @@
                | ERROR of string
                | END
 
-    type Program = Folder of string
+    type Program = | Folder of string
                  | Type of string
                  | Property of string * Object
                  | Multi of Program * Program

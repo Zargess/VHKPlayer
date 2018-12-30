@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VHKPlayer.Exceptions
 {
@@ -10,7 +6,6 @@ namespace VHKPlayer.Exceptions
     {
         public SyntaxErrorException(string message) : base(message)
         {
-
         }
     }
 }

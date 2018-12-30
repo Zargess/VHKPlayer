@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VHKPlayer.Commands.Logic.CreatePlayer;
+﻿using VHKPlayer.Commands.Logic.CreatePlayer;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Models;
-using VHKPlayer.Queries.GetFolderByPathSubscript;
 using VHKPlayer.Queries.GetFolderFromStringSetting;
-using VHKPlayer.Queries.GetStringSetting;
 using VHKPlayer.Queries.Interfaces;
 using VHKPlayer.Utility;
 

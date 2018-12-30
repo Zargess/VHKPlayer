@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
-using Autofac;
-using Ploeh.AutoFixture;
 
 namespace VHKPlayer.Test.Models
 {

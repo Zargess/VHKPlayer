@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.GetPlayableFiles;
@@ -12,7 +9,8 @@ using VHKPlayer.Queries.Interfaces;
 
 namespace VHKPlayer.Queries.GetPlayablesAffectedByFolder
 {
-    class GetPlayablesAffectedByFolderQueryHandler : IQueryHandler<GetPlayablesAffectedByFolderQuery, IQueryable<IPlayable>>
+    class GetPlayablesAffectedByFolderQueryHandler : IQueryHandler<GetPlayablesAffectedByFolderQuery,
+        IQueryable<IPlayable>>
     {
         private readonly IQueryProcessor _processor;
 
@@ -29,14 +27,15 @@ namespace VHKPlayer.Queries.GetPlayablesAffectedByFolder
 
             foreach (var playableFile in playableFiles)
             {
-                if (query.Folder.Contains(playableFile.File) || playableFile.File.FullPath.ToLower().Contains(query.Folder.FullPath.ToLower()))
+                if (query.Folder.Contains(playableFile.File) ||
+                    playableFile.File.FullPath.ToLower().Contains(query.Folder.FullPath.ToLower()))
                 {
                     res.Add(playableFile);
                 }
             }
 
             var playerFolders = _processor.Process(new GetPlayerFoldersQuery());
-            
+
             foreach (var folder in playerFolders)
             {
                 if (query.Folder.FullPath.ToLower().Equals(folder.FullPath.ToLower()))

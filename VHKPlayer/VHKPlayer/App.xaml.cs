@@ -1,17 +1,7 @@
-﻿using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Threading;
+using Autofac;
 using VHKPlayer.Infrastructure.Modules;
-using VHKPlayer.Models;
-using VHKPlayer.Models.Interfaces;
-using VHKPlayer.Utility.Settings;
-using VHKPlayer.Utility.Settings.Interfaces;
 
 namespace VHKPlayer
 {
@@ -21,6 +11,7 @@ namespace VHKPlayer
     public partial class App : Application
     {
         private static IContainer _container;
+
         public static IContainer Container
         {
             get
@@ -31,6 +22,7 @@ namespace VHKPlayer
                     builder.RegisterModule(new DefaultWiringModule());
                     _container = builder.Build();
                 }
+
                 return _container;
             }
         }

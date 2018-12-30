@@ -1,14 +1,10 @@
-﻿using Autofac;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using Autofac;
 using VHKPlayer.Interpreter.Interfaces;
-using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 
 namespace VHKPlayer.Converters
@@ -23,10 +19,11 @@ namespace VHKPlayer.Converters
 
             if (script == null)
             {
-                throw new NotImplementedException(); // TODO : Show a notifycation that a script was not inserted correctly into the converter
+                throw
+                    new NotImplementedException(); // TODO : Show a notifycation that a script was not inserted correctly into the converter
                 return Visibility.Collapsed;
             }
-            
+
             var value = values.SingleOrDefault(x => x is IPlayable);
 
             var interpreter = App.Container.Resolve<IScriptInterpreter>();

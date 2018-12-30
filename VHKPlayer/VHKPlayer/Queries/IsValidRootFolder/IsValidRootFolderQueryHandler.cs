@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VHKPlayer.Queries.GetFolderFromPath;
+﻿using System.IO;
 using VHKPlayer.Queries.GetRequiredFolderPaths;
 using VHKPlayer.Queries.Interfaces;
 

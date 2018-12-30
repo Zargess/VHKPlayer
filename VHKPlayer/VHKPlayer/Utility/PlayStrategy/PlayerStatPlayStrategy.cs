@@ -1,9 +1,7 @@
-﻿using Autofac;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Autofac;
 using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Models;
@@ -20,15 +18,9 @@ namespace VHKPlayer.Utility.PlayStrategy
 
         public bool Repeat
         {
-            get
-            {
-                return _repeat;
-            }
+            get { return _repeat; }
 
-            set
-            {
-                _repeat = value;
-            }
+            set { _repeat = value; }
         }
 
         public PlayerStatPlayStrategy()
@@ -63,7 +55,8 @@ namespace VHKPlayer.Utility.PlayStrategy
             // TODO : If folder is null then notify user
 
             var music = content.AsParallel().SingleOrDefault(x => statMusicFolder.Contains(x));
-            var video = content.AsParallel().SingleOrDefault(x => statVideoFolder.Contains(x)); // TODO : Fix if no Video exists
+            var video = content.AsParallel()
+                .SingleOrDefault(x => statVideoFolder.Contains(x)); // TODO : Fix if no Video exists
             var picture = content.AsParallel().SingleOrDefault(x => statPictureFolder.Contains(x));
 
             if (video == null)

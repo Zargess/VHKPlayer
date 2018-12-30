@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VHKPlayer.Models
+﻿namespace VHKPlayer.Models
 {
     public class Statistics
     {
@@ -16,7 +10,9 @@ namespace VHKPlayer.Models
         public int Suspension { get; set; }
         public int YellowCard { get; set; }
 
-        public Statistics() : this(0, 0, 0, 0, 0, 0, 0) { }
+        public Statistics() : this(0, 0, 0, 0, 0, 0, 0)
+        {
+        }
 
         private Statistics(int g, int s, int sa, int savea, int y, int sus, int r)
         {
@@ -38,18 +34,18 @@ namespace VHKPlayer.Models
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((Statistics)obj);
+            return obj.GetType() == GetType() && Equals((Statistics) obj);
         }
 
         private bool Equals(Statistics other)
         {
             return Goals == other.Goals &&
-                Shots == other.Shots &&
-                Saves == other.Saves &&
-                SaveAttempts == other.SaveAttempts &&
-                YellowCard == other.YellowCard &&
-                Suspension == other.Suspension &&
-                RedCard == other.RedCard;
+                   Shots == other.Shots &&
+                   Saves == other.Saves &&
+                   SaveAttempts == other.SaveAttempts &&
+                   YellowCard == other.YellowCard &&
+                   Suspension == other.Suspension &&
+                   RedCard == other.RedCard;
         }
 
         public override int GetHashCode()

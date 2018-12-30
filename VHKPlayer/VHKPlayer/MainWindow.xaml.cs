@@ -1,40 +1,10 @@
-﻿using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using VHKPlayer.Commands.Logic.ChangeSetting;
-using VHKPlayer.Commands.Logic.CreateAllPlayables;
-using VHKPlayer.Commands.Logic.CreateFolderStructure;
-using VHKPlayer.Commands.Logic.Interfaces;
-using VHKPlayer.Infrastructure.Modules;
-using VHKPlayer.Models.Interfaces;
-using VHKPlayer.Queries.GetPlayableFiles;
-using VHKPlayer.Queries.Interfaces;
-using VHKPlayer.Utility;
-using VHKPlayer.Models;
-using VHKPlayer.Commands.Logic.AddDataObserver;
-using VHKPlayer.Queries.GetPlayers;
-using VHKPlayer.Commands.Logic.RemoveDataObserver;
-using VHKPlayer.Queries.GetPlayLists;
-using VHKPlayer.Infrastructure;
-using VHKPlayer.Commands.Logic;
 using VHKPlayer.Controllers;
-using VHKPlayer.Monitors.Interfaces;
-using VHKPlayer.Queries.GetStringSetting;
-using VHKPlayer.ViewModels;
 using VHKPlayer.Controllers.Interfaces;
+using VHKPlayer.Models;
+using VHKPlayer.ViewModels;
 
 namespace VHKPlayer
 {
@@ -79,7 +49,8 @@ namespace VHKPlayer
                 {
                     Controller.Resume(FileType.Audio);
                 }
-            } else if (e.Key == Key.F10 || e.SystemKey == Key.F10)
+            }
+            else if (e.Key == Key.F10 || e.SystemKey == Key.F10)
             {
                 if (Controller.VideoState == MediaPlayerState.Playing)
                 {

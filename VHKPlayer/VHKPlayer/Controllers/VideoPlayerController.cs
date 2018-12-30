@@ -4,7 +4,6 @@ using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Queries.Interfaces;
-using VHKPlayer.Queries.IsStatFile;
 using VHKPlayer.Utility.FileDelayStrategy;
 using VHKPlayer.Utility.FileDelayStrategy.Interfaces;
 using VHKPlayer.Utility.HandleFile.Interfaces;
@@ -27,7 +26,8 @@ namespace VHKPlayer.Controllers
         public Queue<FileNode> Queue { get; private set; }
 
 
-        public VideoPlayerController(IQueryProcessor processor, IPlayQueueStrategy playQueue, IHandleFileStrategy fileStrategy)
+        public VideoPlayerController(IQueryProcessor processor, IPlayQueueStrategy playQueue,
+            IHandleFileStrategy fileStrategy)
         {
             this._processor = processor;
             _observers = new List<IPlayController>();
@@ -75,12 +75,14 @@ namespace VHKPlayer.Controllers
                 if (playableFile.File.Type == FileType.Audio)
                 {
                     _previousMusicPlayable = playableFile;
-                } else
+                }
+                else
                 {
                     _previousVideoPlayable = playableFile;
                     _videoPlayStrategy = strategy;
                 }
-            } else
+            }
+            else
             {
                 _previousVideoPlayable = playable;
                 _videoPlayStrategy = strategy;

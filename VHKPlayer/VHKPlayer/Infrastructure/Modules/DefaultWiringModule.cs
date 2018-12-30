@@ -1,10 +1,6 @@
-﻿using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using Autofac;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
 using VHKPlayer.Monitors;
@@ -28,6 +24,7 @@ namespace VHKPlayer.Infrastructure.Modules
                     .RegisterAssemblyTypes(assembly)
                     .AsImplementedInterfaces();
             }
+
             var config = new GlobalConfigService();
             builder.Register<IDataCenter>(c => new DataCenter()).SingleInstance();
             builder.Register<IGlobalConfigService>(c => config).SingleInstance();

@@ -3,13 +3,13 @@
 
     exception LexerException of string
     module Lexer =
-        let (|Prefix|_|) (p:string) (s:string) =
+        let (|Prefix|_|) (p : string) (s : string) =
             if s.StartsWith(p) then
                 Some(s.Substring(p.Length))
             else
                 None
 
-        let (|Integer|_|) (p:string) =
+        let (|Integer|_|) (p : string) =
             let test = p.Split(')').[0]
             let mutable intvalue = 0
             if System.Int32.TryParse(test, &intvalue) then Some(intvalue)
@@ -30,11 +30,11 @@
             match identifier.Success with
             | true -> identifier.Value
             | false -> ""
-            
+
         let rec getNextToken (input : string) : Token * string =
                 match input with
                 | "" -> (END, "")
-                | Prefix "\"" rest -> 
+                | Prefix "\"" rest ->
                     try
                         let (res, cdr) = getNextString rest ""
                         (STRING(res), cdr)
@@ -64,14 +64,14 @@
                     if (x = "")
                     then (ERROR("Symbol(s) not recognised:" + input), input)
                     else
-                        let rest = input.Remove(0, x.Length) 
+                        let rest = input.Remove(0, x.Length)
                         (ID(x), rest)
 
-        let getTokens (input : string) : Token list = 
+        let getTokens (input : string) : Token list =
             let rec constructList (input : string) resList =
                 match getNextToken input with
-                | (END, "") -> END::resList
-                | (token, rest) -> constructList rest (token::resList)
+                | (END, "") -> END :: resList
+                | (token, rest) -> constructList rest (token :: resList)
             constructList input []
             |> List.rev
 

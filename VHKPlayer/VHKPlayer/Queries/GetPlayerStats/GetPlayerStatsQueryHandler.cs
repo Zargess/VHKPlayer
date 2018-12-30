@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Models;
@@ -27,14 +24,15 @@ namespace VHKPlayer.Queries.GetPlayerStats
             var statFolder = Constants.PlayerStatisticInformation;
 
             if (String.IsNullOrEmpty(statFolder)) return res;
-            
+
 
             var folder = _processor.Process(new GetFolderFromStringSettingQuery()
             {
                 SettingName = statFolder
             });
 
-            var file = folder.Content.FirstOrDefault(x => x.Name.ToLower() == "vhk_" + query.Player.Number + "player.xml");
+            var file = folder.Content.FirstOrDefault(x =>
+                x.Name.ToLower() == "vhk_" + query.Player.Number + "player.xml");
             if (file == null) return res;
 
             using (var reader = new XmlTextReader(file.FullPath))
@@ -59,6 +57,7 @@ namespace VHKPlayer.Queries.GetPlayerStats
                     }
                 }
             }
+
             return res;
         }
     }

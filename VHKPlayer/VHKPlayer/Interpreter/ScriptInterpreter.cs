@@ -1,5 +1,5 @@
-﻿using ScriptParser;
-using System;
+﻿using System;
+using ScriptParser;
 using VHKPlayer.Exceptions;
 using VHKPlayer.Interpreter.Interfaces;
 using VHKPlayer.Models;
@@ -36,19 +36,19 @@ namespace VHKPlayer.Interpreter
 
         private bool HandleErrorScript(Program program, object input)
         {
-            var errorScript = (Program.Error)program;
+            var errorScript = (Program.Error) program;
             throw new SyntaxErrorException(errorScript.Item);
         }
 
         private bool HandleMultiScript(Program script, object input)
         {
-            var multiScript = (Program.Multi)script;
+            var multiScript = (Program.Multi) script;
             return Evaluate(multiScript.Item1, input) && Evaluate(multiScript.Item2, input);
         }
 
         private bool HandlePropertyScript(Program script, object input)
         {
-            var propertyScript = (Program.Property)script;
+            var propertyScript = (Program.Property) script;
 
             var identifier = propertyScript.Item1;
             var value = propertyScript.Item2;
@@ -61,37 +61,38 @@ namespace VHKPlayer.Interpreter
             var propertyIsInt = propertyType == typeof(int);
             var propertyIsBool = propertyType == typeof(bool);
             var stringMatch = value.GetType() == typeof(string);
-            var intMatch = value.GetType() ==  typeof(int);
+            var intMatch = value.GetType() == typeof(int);
             var boolMatch = value.GetType() == typeof(bool);
 
             if (propertyIsString && stringMatch)
             {
-                var temp = (string)value;
+                var temp = (string) value;
                 var inputValue = property.GetValue(input) as string;
                 return temp.Equals(inputValue);
             }
 
             if (propertyIsInt && intMatch)
             {
-                var temp = (int)value;
-                var inputValue = (int)property.GetValue(input);
+                var temp = (int) value;
+                var inputValue = (int) property.GetValue(input);
                 return temp == inputValue;
             }
 
             if (propertyIsBool && boolMatch)
             {
-                var temp = (bool)value;
+                var temp = (bool) value;
                 var test = property.GetValue(input);
-                var inputValue = (bool)property.GetValue(input);
+                var inputValue = (bool) property.GetValue(input);
                 return temp == inputValue;
             }
 
-            throw new SyntaxErrorException("Value is not of legal type. Only string, int and bool are supported!\n" + value);
+            throw new SyntaxErrorException("Value is not of legal type. Only string, int and bool are supported!\n" +
+                                           value);
         }
 
         private bool HandleTypeScript(Program script, object input)
         {
-            var typeScript = (Program.Type)script;
+            var typeScript = (Program.Type) script;
             var parameter = typeScript.Item;
             try
             {
@@ -109,7 +110,7 @@ namespace VHKPlayer.Interpreter
 
         private bool HandleFolderScript(Program script, object input)
         {
-            var folderScript = (Program.Folder)script;
+            var folderScript = (Program.Folder) script;
             var playablefile = input as PlayableFile;
             if (playablefile == null) return false; // Not a playable file!
 

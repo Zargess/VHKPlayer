@@ -1,7 +1,6 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using Autofac;
 using VHKPlayer.Commands.Logic.Interfaces;
-using System.Collections.Generic;
 
 namespace VHKPlayer.Commands.Logic
 {
@@ -19,7 +18,7 @@ namespace VHKPlayer.Commands.Logic
             var handlerType = typeof(ICommandHandler<>).MakeGenericType(command.GetType());
             dynamic handler = _context.Resolve(handlerType);
 
-            handler.Handle((dynamic)command);
+            handler.Handle((dynamic) command);
         }
 
         public void ProcessTransaction(IEnumerable<ICommand> commands)

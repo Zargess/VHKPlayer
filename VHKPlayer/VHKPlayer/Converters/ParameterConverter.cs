@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using VHKPlayer.Models;
 using VHKPlayer.Models.Interfaces;
@@ -15,11 +11,12 @@ namespace VHKPlayer.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            var res = new MultiValueParameter();;
+            var res = new MultiValueParameter();
+            ;
 
             foreach (var item in values)
             {
-                if (item is IPlayStrategy) res.Strategy = (IPlayStrategy)item;
+                if (item is IPlayStrategy) res.Strategy = (IPlayStrategy) item;
                 else if (item is IPlayable) res.Playable = (IPlayable) item;
             }
 

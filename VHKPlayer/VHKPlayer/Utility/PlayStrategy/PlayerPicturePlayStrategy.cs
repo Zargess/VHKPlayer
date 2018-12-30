@@ -1,9 +1,6 @@
-﻿using Autofac;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Autofac;
 using VHKPlayer.Controllers.Interfaces;
 using VHKPlayer.Infrastructure;
 using VHKPlayer.Models;
@@ -20,15 +17,9 @@ namespace VHKPlayer.Utility.PlayStrategy
 
         public bool Repeat
         {
-            get
-            {
-                return _repeat;
-            }
+            get { return _repeat; }
 
-            set
-            {
-                _repeat = value;
-            }
+            set { _repeat = value; }
         }
 
         public PlayerPicturePlayStrategy()

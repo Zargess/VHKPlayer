@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VHKPlayer.Models;
 using VHKPlayer.Queries.GetFolderByPathSubscript;
 using VHKPlayer.Queries.GetStringSetting;
@@ -22,7 +19,8 @@ namespace VHKPlayer.Queries.GetPlayerFolders
 
         public IQueryable<FolderNode> Handle(GetPlayerFoldersQuery query)
         {
-            var settingNames = new[] {
+            var settingNames = new[]
+            {
                 Constants.PlayerPictureFolderSettingName,
                 Constants.PlayerStatPictureFolderSettingName,
                 Constants.PlayerStatVideoFolderSettingName,

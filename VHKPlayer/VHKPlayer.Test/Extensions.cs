@@ -1,13 +1,12 @@
-﻿using Autofac;
-using NSubstitute;
-using Ploeh.AutoFixture;
-using Ploeh.AutoFixture.Kernel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
+using Autofac;
+using NSubstitute;
+using Ploeh.AutoFixture;
+using Ploeh.AutoFixture.Kernel;
 
 namespace VHKPlayer.Test
 {
@@ -23,12 +22,11 @@ namespace VHKPlayer.Test
 
         public static void IgnoreAwait(this Task task)
         {
-
         }
 
         public static T RandomizeTheRest<T>(this T element) where T : class
         {
-            return (T)RandomizeTheRest(element, new Type[0]);
+            return (T) RandomizeTheRest(element, new Type[0]);
         }
 
         public static object RandomizeTheRest(this object element, params Type[] excludedTypes)
@@ -48,11 +46,13 @@ namespace VHKPlayer.Test
                     {
                         var firstArgument = arguments[0];
                         var secondArgument = arguments[1];
-                        if (firstArgument.ParameterType == typeof(ISpecimenBuilder) && secondArgument.ParameterType.IsGenericParameter)
+                        if (firstArgument.ParameterType == typeof(ISpecimenBuilder) &&
+                            secondArgument.ParameterType.IsGenericParameter)
                         {
                             if (fixtureCreateMethod != null)
                             {
-                                throw new InvalidOperationException("Multiple create methods were found. Use better conditions for finding the create method.");
+                                throw new InvalidOperationException(
+                                    "Multiple create methods were found. Use better conditions for finding the create method.");
                             }
 
                             fixtureCreateMethod = method;
@@ -63,7 +63,8 @@ namespace VHKPlayer.Test
 
             if (fixtureCreateMethod == null)
             {
-                throw new InvalidOperationException("No create methods were found. Use better conditions for finding the create method.");
+                throw new InvalidOperationException(
+                    "No create methods were found. Use better conditions for finding the create method.");
             }
 
             var type = element.GetType();
@@ -79,17 +80,22 @@ namespace VHKPlayer.Test
                         var firstArgument = arguments[0];
                         var argumentType = firstArgument.ParameterType;
 
-                        var argumentTypeDefaultValue = argumentType.IsValueType ? Activator.CreateInstance(argumentType) : null;
+                        var argumentTypeDefaultValue =
+                            argumentType.IsValueType ? Activator.CreateInstance(argumentType) : null;
 
-                        var isSimpleType = argumentTypeDefaultValue != null || argumentType == typeof(string) || (argumentType.IsGenericType && argumentType.GetGenericTypeDefinition() == typeof(Nullable<>));
+                        var isSimpleType = argumentTypeDefaultValue != null || argumentType == typeof(string) ||
+                                           (argumentType.IsGenericType && argumentType.GetGenericTypeDefinition() ==
+                                            typeof(Nullable<>));
 
                         var currentValue = getMethod.Invoke(element, new object[0]);
-                        if ((currentValue == argumentTypeDefaultValue || !isSimpleType || currentValue == null || currentValue.Equals(argumentTypeDefaultValue)) && !excludedTypes.Contains(argumentType))
+                        if ((currentValue == argumentTypeDefaultValue || !isSimpleType || currentValue == null ||
+                             currentValue.Equals(argumentTypeDefaultValue)) && !excludedTypes.Contains(argumentType))
                         {
                             if (isSimpleType)
                             {
                                 var genericFixtureCreateMethod = fixtureCreateMethod.MakeGenericMethod(argumentType);
-                                setMethod.Invoke(element, new[] { genericFixtureCreateMethod.Invoke(null, new[] { fixture, null }) });
+                                setMethod.Invoke(element,
+                                    new[] {genericFixtureCreateMethod.Invoke(null, new[] {fixture, null})});
                             }
                             else if (!argumentType.IsInterface)
                             {

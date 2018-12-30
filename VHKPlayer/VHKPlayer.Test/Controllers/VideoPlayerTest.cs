@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace VHKPlayer.Test.Controllers
 {
@@ -11,6 +8,5 @@ namespace VHKPlayer.Test.Controllers
     [TestClass]
     public class VideoPlayerTest
     {
-        
     }
 }
