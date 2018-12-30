@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
@@ -29,9 +25,9 @@ namespace VHKPlayer.Utility.Audio
 
         public void Fadein(MediaElement element)
         {
-            int duration = processor.Process(new GetIntSettingQuery { SettingName = FADEINKEY });
-            int min = processor.Process(new GetIntSettingQuery { SettingName = MINVOLUMEKEY });
-            int max = processor.Process(new GetIntSettingQuery { SettingName = MAXVOLUMEKEY });
+            int duration = processor.Process(new GetIntSettingQuery {SettingName = FADEINKEY});
+            int min = processor.Process(new GetIntSettingQuery {SettingName = MINVOLUMEKEY});
+            int max = processor.Process(new GetIntSettingQuery {SettingName = MAXVOLUMEKEY});
 
             currentAnimation = new DoubleAnimation(min, max, new Duration(TimeSpan.FromSeconds(duration)));
 
@@ -40,9 +36,9 @@ namespace VHKPlayer.Utility.Audio
 
         public void Fadeout(MediaElement element)
         {
-            int duration = processor.Process(new GetIntSettingQuery { SettingName = FADEOUTKEY });
-            int min = processor.Process(new GetIntSettingQuery { SettingName = MINVOLUMEKEY });
-            int max = processor.Process(new GetIntSettingQuery { SettingName = MAXVOLUMEKEY });
+            int duration = processor.Process(new GetIntSettingQuery {SettingName = FADEOUTKEY});
+            int min = processor.Process(new GetIntSettingQuery {SettingName = MINVOLUMEKEY});
+            int max = processor.Process(new GetIntSettingQuery {SettingName = MAXVOLUMEKEY});
 
             currentAnimation = new DoubleAnimation(max, min, new Duration(TimeSpan.FromSeconds(duration)));
 

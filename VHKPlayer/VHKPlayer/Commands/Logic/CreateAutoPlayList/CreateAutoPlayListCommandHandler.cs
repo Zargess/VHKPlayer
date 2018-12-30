@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VHKPlayer.Commands.Logic.CreatePlayList;
 using VHKPlayer.Commands.Logic.Interfaces;
 using VHKPlayer.Utility;
@@ -21,7 +17,7 @@ namespace VHKPlayer.Commands.Logic.CreateAutoPlayList
 
         public void Handle(CreateAutoPlayListCommand command)
         {
-            var playstrategy = (IPlayStrategy)Activator.CreateInstance(command.Command.PlayStrategy.GetType());
+            var playstrategy = (IPlayStrategy) Activator.CreateInstance(command.Command.PlayStrategy.GetType());
             playstrategy.Repeat = false;
 
             var playlistcommand = new CreatePlayListCommand()

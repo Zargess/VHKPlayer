@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VHKPlayer.Models;
+﻿using VHKPlayer.Models;
 using VHKPlayer.Queries.GetBoolSetting;
 using VHKPlayer.Queries.GetDoubleSetting;
 using VHKPlayer.Queries.Interfaces;
