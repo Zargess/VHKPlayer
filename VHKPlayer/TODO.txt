@@ -1,3 +1,0 @@
-Fix playlist regarding construction, HasAudio and Repeat
-
-Check if it is only PlayList that needs Repeat
