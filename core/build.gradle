@@ -1,9 +1,3 @@
-plugins {
-    id 'application'
-}
-
-mainClassName = 'com.vhkplayer.main.Main'
-
 test {
     useJUnitPlatform()
 }

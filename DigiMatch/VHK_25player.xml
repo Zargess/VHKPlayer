@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<sendfrom user="VHK" level="1" type="PLAYER">
-  <player nr="25" name="FISKER Maria" id="901003" team="Viborg HK" teamshort="VHK" teamid="262" mep="3,8">
-    <shot goalfield="6" shotfield="11" percentfield="54,55" goalseven="0" shotseven="0" percentseven="0" goaltot="6" shottot="11" percenttot="54,55" />
-    <foul rulefault="0" passmiss="0" lostball="1" techfault="1" />
-    <penalty yellowcard="0" suspension="0" redcard="0" />
-    <mvshot savefield="0" shotfield="0" percentfield="0" saveseven="0" shotseven="0" percentseven="0" savetot="0" shottot="0" percenttot="0" />
-  </player>
-</sendfrom>

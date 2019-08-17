@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<sendfrom user="VHK" level="1" type="PLAYER">
-  <player nr="1" name="MASSON DE SOUZA Chana Franciela" id="781218" team="Viborg HK" teamshort="VHK" teamid="262" mep="0,2">
-    <shot goalfield="0" shotfield="0" percentfield="0" goalseven="0" shotseven="0" percentseven="0" goaltot="0" shottot="0" percenttot="0" />
-    <foul rulefault="0" passmiss="1" lostball="0" techfault="1" />
-    <penalty yellowcard="0" suspension="0" redcard="0" />
-    <mvshot savefield="7" shotfield="19" percentfield="36,84" saveseven="0" shotseven="2" percentseven="0" savetot="7" shottot="21" percenttot="33,33" />
-  </player>
-</sendfrom>

@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<sendfrom user="VHK" level="1" type="PLAYER">
-  <player nr="24" name="DARLEUX Cleopatre" id="890701" team="Viborg HK" teamshort="VHK" teamid="262" mep="1,7">
-    <shot goalfield="0" shotfield="0" percentfield="0" goalseven="0" shotseven="0" percentseven="0" goaltot="0" shottot="0" percenttot="0" />
-    <foul rulefault="0" passmiss="1" lostball="0" techfault="1" />
-    <penalty yellowcard="0" suspension="0" redcard="0" />
-    <mvshot savefield="6" shotfield="9" percentfield="66,67" saveseven="0" shotseven="1" percentseven="0" savetot="6" shottot="10" percenttot="60" />
-  </player>
-</sendfrom>

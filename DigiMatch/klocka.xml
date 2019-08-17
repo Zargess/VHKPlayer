@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<sendfrom user="VHK" level="1" type="CLOCK">
-  <klocka min="60" sek="0" tid="60:00" rullar="False" hscore="24" bscore="18" />
-</sendfrom>

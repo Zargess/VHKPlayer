@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<sendfrom user="VHK" level="1" type="PLAYER">
-  <player nr="29" name="FANGEL Camilla" id="920229" team="Nykøbing F Håndboldklub" teamshort="NYK" teamid="626" mep="-0,2">
-    <shot goalfield="0" shotfield="0" percentfield="0" goalseven="0" shotseven="0" percentseven="0" goaltot="0" shottot="0" percenttot="0" />
-    <foul rulefault="0" passmiss="0" lostball="0" techfault="0" />
-    <penalty yellowcard="0" suspension="1" redcard="0" />
-    <mvshot savefield="0" shotfield="0" percentfield="0" saveseven="0" shotseven="0" percentseven="0" savetot="0" shottot="0" percenttot="0" />
-  </player>
-</sendfrom>
