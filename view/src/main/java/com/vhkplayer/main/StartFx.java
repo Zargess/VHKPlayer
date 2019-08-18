@@ -1,6 +1,6 @@
 package com.vhkplayer.main;
 
-
+import com.vhkplayer.bridge.JavaBridge;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -14,7 +14,6 @@ import netscape.javascript.JSObject;
 import java.net.URL;
 
 public class StartFx extends Application {
-
     private static final String INDEX = "myapp://client/index.html";
 
     public void start(Stage stage) {
@@ -38,11 +37,10 @@ public class StartFx extends Application {
         stage.setScene(scene);
         stage.show();
         JSObject window = (JSObject) webEngine.executeScript("window");
-        window.setMember("app", this);
-
+        window.setMember("javabridge", new JavaBridge());
     }
 
-    public void log(String msg){
+    public void log(String msg) {
         System.out.println(msg);
     }
 
@@ -51,7 +49,7 @@ public class StartFx extends Application {
     }
 
     @Override
-    public void stop () {
+    public void stop() {
         System.out.println("exiting");
     }
 }
