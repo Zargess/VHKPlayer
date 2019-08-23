@@ -6,7 +6,7 @@ wrapper {
 
 allprojects {
     group 'com.vhkplayer'
-    version '3.0-SNAPSHOT'
+    version '6.0-SNAPSHOT'
 }
 
 subprojects {
