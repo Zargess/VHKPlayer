@@ -52,18 +52,17 @@ node {
 
     // Set the work directory where node_modules should be located
     nodeModulesDir = file("${clientLocation}")
-    workDir = file("${clientLocation}")
 }
 
 // Change detection for our npm build
 npm_run_build {
     // make sure the build task is executed only when appropriate files change
-    //inputs.files fileTree("${clientLocation}/src")
+    inputs.files fileTree("${clientLocation}/src")
 
     // 'node_modules' appeared not reliable for dependency change detection (the task was rerun without changes)
     // though 'package.json' and 'package-lock.json' should be enough anyway
-//    inputs.file "${clientLocation}/package.json"
-//    inputs.file "${clientLocation}/package-lock.json"
+    inputs.file "${clientLocation}/package.json"
+    inputs.file "${clientLocation}/package-lock.json"
 
     outputs.dir 'build'
 }

@@ -21,6 +21,10 @@ public class FileNode implements Serializable {
         return Files.getNameWithoutExtension(path);
     }
 
+    public String getPath() {
+        return path;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

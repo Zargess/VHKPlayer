@@ -1,5 +1,6 @@
 package com.vhkplayer.main;
 
+import com.sun.javafx.webkit.WebConsoleListener;
 import com.vhkplayer.bridge.JavaBridge;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -32,16 +33,16 @@ public class StartFx extends Application {
         root.getChildren().add(webView);
         System.setProperty("sun.net.http.allowRestrictedHeaders", "true");
         webEngine.load(INDEX);
+        webEngine.executeScript("console.log = function(message)\n" +
+                "{\n" +
+                "    javabridge.log(message);\n" +
+                "};");
         scene.setRoot(root);
 
         stage.setScene(scene);
         stage.show();
         JSObject window = (JSObject) webEngine.executeScript("window");
         window.setMember("javabridge", new JavaBridge());
-    }
-
-    public void log(String msg) {
-        System.out.println(msg);
     }
 
     public static void main(String[] args) {
