@@ -18,7 +18,7 @@ public class StartFx extends Application {
 
     public void start(Stage stage) {
         URL.setURLStreamHandlerFactory(new MyURLStreamHandlerFactory());
-        stage.setTitle("HTML");
+        stage.setTitle("VHK Player");
 
         stage.setMaximized(true);
         Scene scene = new Scene(new Group(), Color.TRANSPARENT);
