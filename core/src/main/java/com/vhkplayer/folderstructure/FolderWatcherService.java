@@ -78,7 +78,7 @@ public class FolderWatcherService {
             WatchKey key = dir.register(watcher, ENTRY_CREATE, ENTRY_DELETE);
             Path prev = keys.get(key);
             if (prev == null) {
-                System.out.format("register: %s\n", dir);
+//                System.out.format("register: %s\n", dir);
             } else {
                 if (!dir.equals(prev)) {
                     System.out.format("update: %s -> %s\n", prev, dir);
