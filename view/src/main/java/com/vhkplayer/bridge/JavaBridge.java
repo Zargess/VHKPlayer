@@ -1,6 +1,6 @@
 package com.vhkplayer.bridge;
 
-import com.vhkplayer.models.FileNode;
+import com.vhkplayer.folderstructure.FileNode;
 import netscape.javascript.JSObject;
 
 import java.util.logging.Level;

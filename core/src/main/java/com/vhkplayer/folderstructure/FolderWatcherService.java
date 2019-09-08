@@ -10,30 +10,31 @@ import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.HashMap;
+import java.util.function.Consumer;
 
 import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 import static java.nio.file.StandardWatchEventKinds.OVERFLOW;
 
 public class FolderWatcherService {
     private final WatchService watcher;
-    private final HashMap<WatchKey, Path> keys;
     private boolean running;
     private Thread thread;
-    private Path path;
+    private Path dir;
+    private final Consumer<Path> onCreate;
+    private final Consumer<Path> onDelete;
 
-    public FolderWatcherService(Path path) throws IOException {
-        this.path = path;
+    public FolderWatcherService(Path dir, Consumer<Path> onCreate, Consumer<Path> onDelete) throws IOException {
+        this.dir = dir;
+        this.onCreate = onCreate;
+        this.onDelete = onDelete;
         this.watcher = FileSystems.getDefault().newWatchService();
-        this.keys = new HashMap<>();
+        dir.register(watcher, ENTRY_CREATE, ENTRY_DELETE);
     }
 
     public void start() {
         if (!running) {
             this.running = true;
-            registerAllDirectories(path);
             thread = new Thread(this::run);
             thread.setDaemon(true);
             thread.start();
@@ -49,44 +50,6 @@ public class FolderWatcherService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            keys.clear();
-        }
-    }
-
-    private void registerAllDirectories(Path root) {
-        try {
-            Files.walkFileTree(root, new SimpleFileVisitor<>() {
-                @Override
-                public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
-                    registerDirectory(dir);
-                    return FileVisitResult.CONTINUE;
-                }
-
-                @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                    System.out.println("Found: " + file.toAbsolutePath().toString());
-                    return FileVisitResult.CONTINUE;
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void registerDirectory(Path dir) {
-        try {
-            WatchKey key = dir.register(watcher, ENTRY_CREATE, ENTRY_DELETE);
-            Path prev = keys.get(key);
-            if (prev == null) {
-//                System.out.format("register: %s\n", dir);
-            } else {
-                if (!dir.equals(prev)) {
-                    System.out.format("update: %s -> %s\n", prev, dir);
-                }
-            }
-            keys.put(key, dir);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -99,34 +62,22 @@ public class FolderWatcherService {
                 continue;
             }
 
-            Path dir = keys.get(key);
-            if (dir == null) {
-                System.err.println("WatchKey not recognized");
-                continue;
-            }
-
             key.pollEvents().forEach(event -> {
                 WatchEvent.Kind kind = event.kind();
-                if (kind != OVERFLOW) {
-                    Path name = (Path) event.context();
-                    Path child = dir.resolve(name);
-
-                    // print out event
+                Path name = (Path) event.context();
+                Path child = dir.resolve(name);
+                if (kind != OVERFLOW && !Files.isDirectory(child)) {
                     System.out.format("%s: %s\n", event.kind().name(), child);
-
                     if (kind == ENTRY_CREATE) {
-                        if (Files.isDirectory(child)) {
-                            registerAllDirectories(child);
-                        }
+                        onCreate.accept(child);
+                    } else if (kind == ENTRY_DELETE) {
+                        onDelete.accept(child);
                     }
                 }
             });
             boolean valid = key.reset();
             if (!valid) {
-                keys.remove(key);
-                if (keys.isEmpty()) {
-                    return;
-                }
+                stop();
             }
         }
     }

@@ -1,7 +1,7 @@
 package com.vhkplayer.main;
 
 import com.vhkplayer.bridge.JavaBridge;
-import com.vhkplayer.models.FileNode;
+import com.vhkplayer.folderstructure.FileNode;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Group;

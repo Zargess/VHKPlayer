@@ -1,4 +1,4 @@
-package com.vhkplayer.models;
+package com.vhkplayer.folderstructure;
 
 import com.google.common.io.Files;
 
