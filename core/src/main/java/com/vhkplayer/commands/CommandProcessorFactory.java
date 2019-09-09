@@ -9,7 +9,7 @@ import java.util.Map;
 
 class CommandProcessorFactory {
     static CommandProcessor createCommandProcessor() {
-        DataContainer container = new DataContainer();
+        DataContainer container = DataContainer.getInstance();
 
         Map<Class, CommandHandlerCreationStrategy> handlerOptions = new HashMap<>();
 

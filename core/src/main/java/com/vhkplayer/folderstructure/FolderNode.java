@@ -65,4 +65,11 @@ public class FolderNode {
         createFiles();
         observers.forEach(observer -> observer.folderUpdated(this));
     }
+
+    @Override
+    public String toString() {
+        return "FolderNode{" +
+                " path=" + path +
+                '}';
+    }
 }

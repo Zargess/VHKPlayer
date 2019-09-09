@@ -3,7 +3,7 @@ package com.vhkplayer.commands.createallfolders;
 import com.vhkplayer.commands.CommandHandlerCreationStrategy;
 import com.vhkplayer.storage.DataContainer;
 
-public class CreateAllFoldersCommandCreationStrategy implements CommandHandlerCreationStrategy {
+public class CreateAllFoldersCommandCreationStrategy implements CommandHandlerCreationStrategy<CreateAllFoldersCommand> {
     private DataContainer container;
 
     public CreateAllFoldersCommandCreationStrategy(DataContainer container) {
@@ -12,6 +12,6 @@ public class CreateAllFoldersCommandCreationStrategy implements CommandHandlerCr
 
     @Override
     public CreateAllFoldersCommandHandler createHandler() {
-        return null;
+        return new CreateAllFoldersCommandHandler(container);
     }
 }

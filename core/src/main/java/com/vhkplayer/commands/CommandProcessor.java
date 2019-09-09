@@ -7,12 +7,12 @@ public final class CommandProcessor {
 
     private Map<Class, CommandHandlerCreationStrategy> handlerOptions;
 
-    protected CommandProcessor(Map<Class, CommandHandlerCreationStrategy> handlerOptions) {
+    CommandProcessor(Map<Class, CommandHandlerCreationStrategy> handlerOptions) {
         this.handlerOptions = handlerOptions;
     }
 
-    public void process(Command command) {
-        CommandHandlerCreationStrategy creationStrategy = handlerOptions.get(command.getClass());
+    public <TCommand extends Command> void process(TCommand command) {
+        CommandHandlerCreationStrategy<TCommand> creationStrategy = handlerOptions.get(command.getClass());
         if (creationStrategy != null) {
             creationStrategy.createHandler().handle(command);
         }
