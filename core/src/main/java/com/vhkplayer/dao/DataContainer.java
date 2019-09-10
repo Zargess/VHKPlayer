@@ -1,4 +1,4 @@
-package com.vhkplayer.storage;
+package com.vhkplayer.dao;
 
 import com.vhkplayer.folderstructure.FolderNode;
 
@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataContainer {
-    private static DataContainer instance;
     private List<FolderNode> folders = new ArrayList<>();
 
-    private DataContainer() {}
+    DataContainer() {
+    }
 
     public void addFolder(FolderNode folder) {
         this.folders.add(folder);
@@ -18,12 +18,5 @@ public class DataContainer {
 
     public List<FolderNode> getFolders() {
         return new ArrayList<>(folders);
-    }
-
-    public static DataContainer getInstance() {
-        if (instance == null) {
-            instance = new DataContainer();
-        }
-        return instance;
     }
 }

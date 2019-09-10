@@ -1,14 +1,12 @@
-package com.vhkplayer.queries;
+package com.vhkplayer.dao.queries;
 
 import java.util.Map;
 import java.util.Optional;
 
 public class QueryProcessor {
-    private static QueryProcessor instance;
-
     private final Map<Class, QueryHandlerCreationStrategy> handlerOptions;
 
-    QueryProcessor(Map<Class, QueryHandlerCreationStrategy> handlerOptions) {
+    public QueryProcessor(Map<Class, QueryHandlerCreationStrategy> handlerOptions) {
         this.handlerOptions = handlerOptions;
     }
 
@@ -18,12 +16,5 @@ public class QueryProcessor {
             return Optional.of(strategy.createHandler().handle(query));
         }
         return Optional.empty();
-    }
-
-    public static QueryProcessor getInstance() {
-        if (instance == null) {
-            instance = QueryProcessorFactory.createQueryProcessor();
-        }
-        return instance;
     }
 }

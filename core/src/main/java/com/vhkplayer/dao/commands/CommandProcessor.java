@@ -1,13 +1,11 @@
-package com.vhkplayer.commands;
+package com.vhkplayer.dao.commands;
 
 import java.util.Map;
 
 public final class CommandProcessor {
-    private static CommandProcessor instance;
-
     private Map<Class, CommandHandlerCreationStrategy> handlerOptions;
 
-    CommandProcessor(Map<Class, CommandHandlerCreationStrategy> handlerOptions) {
+    public CommandProcessor(Map<Class, CommandHandlerCreationStrategy> handlerOptions) {
         this.handlerOptions = handlerOptions;
     }
 
@@ -16,12 +14,5 @@ public final class CommandProcessor {
         if (creationStrategy != null) {
             creationStrategy.createHandler().handle(command);
         }
-    }
-
-    public static CommandProcessor getInstance() {
-        if (instance == null) {
-            instance = CommandProcessorFactory.createCommandProcessor();
-        }
-        return instance;
     }
 }

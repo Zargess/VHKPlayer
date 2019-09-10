@@ -1,6 +1,6 @@
-package com.vhkplayer.commands.createallfolders;
+package com.vhkplayer.dao.commands.createallfolders;
 
-import com.vhkplayer.commands.Command;
+import com.vhkplayer.dao.commands.Command;
 
 import java.nio.file.Path;
 

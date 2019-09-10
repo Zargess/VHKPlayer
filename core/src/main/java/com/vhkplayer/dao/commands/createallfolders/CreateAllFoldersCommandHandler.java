@@ -1,8 +1,8 @@
-package com.vhkplayer.commands.createallfolders;
+package com.vhkplayer.dao.commands.createallfolders;
 
-import com.vhkplayer.commands.CommandHandler;
+import com.vhkplayer.dao.DataContainer;
+import com.vhkplayer.dao.commands.CommandHandler;
 import com.vhkplayer.folderstructure.FolderNode;
-import com.vhkplayer.storage.DataContainer;
 
 import java.io.File;
 import java.io.IOException;

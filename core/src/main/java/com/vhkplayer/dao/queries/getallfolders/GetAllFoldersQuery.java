@@ -1,7 +1,7 @@
-package com.vhkplayer.queries.getallfolders;
+package com.vhkplayer.dao.queries.getallfolders;
 
+import com.vhkplayer.dao.queries.Query;
 import com.vhkplayer.folderstructure.FolderNode;
-import com.vhkplayer.queries.Query;
 
 import java.util.List;
 
